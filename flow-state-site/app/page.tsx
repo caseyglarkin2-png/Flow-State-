@@ -7,22 +7,20 @@ import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import Card from '@/components/Card';
 import {
-  BarChart3,
-  Bot,
-  BookOpen,
-  Brain,
-  ClipboardList,
-  DollarSign,
-  Globe,
-  MessageSquare,
-  Rocket,
-  Satellite,
+  Metrics,
+  Agent,
+  Cortex,
+  Nexus,
+  Ignite,
+  Orbital,
   Shield,
-  Target,
-  Timer,
-  TrendingUp,
-  Zap,
-} from 'lucide-react';
+  Crosshair,
+  Velocity,
+  Manifest,
+  FlowArrow,
+  Timeline,
+  Prism,
+} from '@/components/icons/FlowIcons';
 
 export default function Home() {
   return (
@@ -50,10 +48,10 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Button variant="neon-fill" size="lg" icon={<Rocket className="w-5 h-5" />}>
+            <Button variant="neon-fill" size="lg" icon={<Ignite size={20} className="text-void" />}>
               Get Started
             </Button>
-            <Button variant="neon" size="lg" icon={<BookOpen className="w-5 h-5" />}>
+            <Button variant="neon" size="lg" icon={<Manifest size={20} />}>
               See Live Demo
             </Button>
           </div>
@@ -178,22 +176,22 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                icon: <Shield className="w-10 h-10 text-neon" />,
+                icon: <Shield size={40} className="text-neon" />,
                 name: 'Digital Guard',
                 desc: 'Automate access. Verify drivers in seconds. Eliminate the clipboard.',
               },
               {
-                icon: <MessageSquare className="w-10 h-10 text-neon" />,
+                icon: <Agent size={40} className="text-neon" />,
                 name: 'Digital Comms',
                 desc: 'Direct driver messaging. Native language translation. Zero radio chatter.',
               },
               {
-                icon: <ClipboardList className="w-10 h-10 text-neon" />,
+                icon: <Manifest size={40} className="text-neon" />,
                 name: 'Digital BOL',
                 desc: 'Touchless documentation. Timestamped chain of custody. $10k/site savings.',
               },
               {
-                icon: <Brain className="w-10 h-10 text-neon" />,
+                icon: <Cortex size={40} className="text-neon" />,
                 name: 'Digital YMS',
                 desc: 'The central brain. Real-time asset tracking. AI-driven move recommendations.',
               },
@@ -219,7 +217,7 @@ export default function Home() {
               <p className="text-lg text-steel/90 mb-8 leading-relaxed">
                 The deployment cliff is dead. Our generative AI turns an address into a working digital twin in under 10 minutes. No site visits. No friction.
               </p>
-              <Button variant="neon-fill" size="lg" icon={<Rocket className="w-5 h-5" />}>
+              <Button variant="neon-fill" size="lg" icon={<Ignite size={20} className="text-void" />}>
                 Try YardBuilder AI
               </Button>
             </div>
@@ -228,7 +226,7 @@ export default function Home() {
             <div className="glass-card aspect-square flex items-center justify-center">
               <div className="text-center">
                 <div className="flex justify-center mb-4 text-neon">
-                  <Satellite className="w-14 h-14" />
+                  <Orbital size={56} className="text-neon" />
                 </div>
                 <p className="text-neon font-semibold">Satellite Scan Animation</p>
                 <p className="text-steel/60 text-sm mt-2">10 min digital twin generation</p>
@@ -312,13 +310,13 @@ export default function Home() {
                   Experience the moment when logistics becomes <span className="text-neon font-semibold">autonomous</span>.
                 </p>
                 <a href="/singularity" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold">
-                  <Zap className="w-5 h-5" />
+                  <Velocity size={20} className="text-void" />
                   Enter the Simulation
                 </a>
               </div>
               <div className="text-center">
                 <div className="flex justify-center mb-4 text-neon">
-                  <Globe className="w-20 h-20" />
+                  <Nexus size={80} className="text-neon" />
                 </div>
                 <p className="text-5xl font-black neon-glow mb-2">$24.5M</p>
                 <p className="text-steel">Annual savings for 12-site network</p>
@@ -335,10 +333,10 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {[
-              { metric: '847%', label: 'Average Year 1 ROI', icon: <TrendingUp className="w-7 h-7" /> },
-              { metric: '4.2mo', label: 'Payback Period', icon: <Timer className="w-7 h-7" /> },
-              { metric: '65%', label: 'Detention Reduction', icon: <DollarSign className="w-7 h-7" /> },
-              { metric: '70%', label: 'Gate Labor Savings', icon: <Bot className="w-7 h-7" /> },
+              { metric: '847%', label: 'Average Year 1 ROI', icon: <FlowArrow size={28} /> },
+              { metric: '4.2mo', label: 'Payback Period', icon: <Timeline size={28} /> },
+              { metric: '65%', label: 'Detention Reduction', icon: <Prism size={28} /> },
+              { metric: '70%', label: 'Gate Labor Savings', icon: <Agent size={28} /> },
             ].map((item, i) => (
               <Card key={i} hover className="text-center">
                 <div className="flex justify-center mb-2 text-neon">{item.icon}</div>
@@ -350,7 +348,7 @@ export default function Home() {
 
           <div className="text-center">
             <a href="/roi" className="btn-neon inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">
-              <BarChart3 className="w-5 h-5" />
+              <Metrics size={20} />
               Calculate Your ROI
             </a>
           </div>
@@ -365,11 +363,11 @@ export default function Home() {
           <p className="text-lg text-neon font-semibold mb-12">Only 23 Founding Member spots remaining.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/singularity" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all">
-              <Target className="w-5 h-5" />
+              <Crosshair size={20} className="text-void" />
               Apply for Founding Membership
             </a>
             <a href="/roi" className="btn-neon inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">
-              <BarChart3 className="w-5 h-5" />
+              <Metrics size={20} />
               See the Numbers
             </a>
           </div>

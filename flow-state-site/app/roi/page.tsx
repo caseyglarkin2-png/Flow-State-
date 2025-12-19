@@ -5,7 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import Card from '@/components/Card';
-import { ArrowRight, BarChart3, Calendar } from 'lucide-react';
+import { FlowArrow, Metrics, Timeline } from '@/components/icons/FlowIcons';
 
 export default function ROICalculatorPage() {
   const [facilities, setFacilities] = useState(5);
@@ -327,7 +327,7 @@ export default function ROICalculatorPage() {
                   <div>
                     <div className="flex justify-between text-sm mb-1">
                       <span className="text-steel">Dwell Time Reduction</span>
-                      <span className="text-white inline-flex items-center gap-1">{avgDwellTime} min <ArrowRight className="w-3 h-3" /> {Math.round(calculations.newDwellTime)} min</span>
+                      <span className="text-white inline-flex items-center gap-1">{avgDwellTime} min <FlowArrow size={12} /> {Math.round(calculations.newDwellTime)} min</span>
                     </div>
                     <div className="h-2 bg-carbon rounded-full overflow-hidden">
                       <div 
@@ -365,10 +365,10 @@ export default function ROICalculatorPage() {
             Get a custom analysis with your actual operational data.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="neon-fill" size="lg" icon={<BarChart3 className="w-5 h-5" />}>
+            <Button variant="neon-fill" size="lg" icon={<Metrics size={20} className="text-void" />}>
               Get Custom Analysis
             </Button>
-            <Button variant="neon" size="lg" icon={<Calendar className="w-5 h-5" />}>
+            <Button variant="neon" size="lg" icon={<Timeline size={20} />}>
               Schedule Demo
             </Button>
           </div>

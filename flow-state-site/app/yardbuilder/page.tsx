@@ -5,7 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import Card from '@/components/Card';
-import { BarChart3, Calendar, Globe, MapPin, Rocket, Search, Settings, Sparkles, Construction, RefreshCw, Satellite } from 'lucide-react';
+import { Metrics, Timeline, Nexus, Beacon, Ignite, Scope, Config, Genesis, Construct, Cycle, Orbital } from '@/components/icons/FlowIcons';
 
 export default function YardBuilderPage() {
   return (
@@ -33,21 +33,21 @@ export default function YardBuilderPage() {
                 title: 'Input',
                 subtitle: 'Location',
                 desc: 'Type "123 Industrial Way, Jacksonville FL"',
-                icon: <MapPin className="w-12 h-12 text-neon" />,
+                icon: <Beacon size={48} className="text-neon" />,
               },
               {
                 step: 2,
                 title: 'Scan',
                 subtitle: 'Analysis',
                 desc: 'AI analyzes satellite imagery and detects structures',
-                icon: <Satellite className="w-12 h-12 text-neon" />,
+                icon: <Orbital size={48} className="text-neon" />,
               },
               {
                 step: 3,
                 title: 'Build',
                 subtitle: 'Configuration',
                 desc: 'Digital twin created. Customize zones and workflows',
-                icon: <Sparkles className="w-12 h-12 text-neon" />,
+                icon: <Genesis size={48} className="text-neon" />,
               },
             ].map((phase, i) => (
               <Card key={i} hover>
@@ -154,32 +154,32 @@ export default function YardBuilderPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                icon: <Construction className="w-10 h-10" />,
+                icon: <Construct size={40} />,
                 title: 'New Facility Setup',
                 desc: 'Launching a new DC? YardBuilder maps it instantly. No delays to your opening day.',
               },
               {
-                icon: <RefreshCw className="w-10 h-10" />,
+                icon: <Cycle size={40} />,
                 title: 'Facility Expansion',
                 desc: 'Added a new yard wing? Rescan and re-optimize in minutes.',
               },
               {
-                icon: <BarChart3 className="w-10 h-10" />,
+                icon: <Metrics size={40} />,
                 title: 'Network Consolidation',
                 desc: 'Merging multiple yards? Create digital twins for each, then orchestrate together.',
               },
               {
-                icon: <Globe className="w-10 h-10" />,
+                icon: <Nexus size={40} />,
                 title: 'Global Rollout',
                 desc: 'Going international? Deploy to 50 facilities across geographies—zero manual mapping.',
               },
               {
-                icon: <Search className="w-10 h-10" />,
+                icon: <Scope size={40} />,
                 title: 'Competitive Analysis',
                 desc: 'Analyze competitor yards. Optimize your own layout against the best in class.',
               },
               {
-                icon: <Settings className="w-10 h-10" />,
+                icon: <Config size={40} />,
                 title: 'Capacity Planning',
                 desc: 'Model "what-if" scenarios. Increase throughput without expanding footprint.',
               },
@@ -237,10 +237,10 @@ export default function YardBuilderPage() {
           <h2 className="text-5xl font-black mb-8">Ready to Map Your Yard?</h2>
           <p className="text-xl text-steel/90 mb-12">Get your digital twin in 10 minutes. Try it free.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="neon-fill" size="lg" icon={<Rocket className="w-5 h-5" />}>
+            <Button variant="neon-fill" size="lg" icon={<Ignite size={20} className="text-void" />}>
               Start Free Trial
             </Button>
-            <Button variant="neon" size="lg" icon={<Calendar className="w-5 h-5" />}>
+            <Button variant="neon" size="lg" icon={<Timeline size={20} />}>
               Schedule Demo
             </Button>
           </div>

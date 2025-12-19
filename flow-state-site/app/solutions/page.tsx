@@ -5,37 +5,37 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import Card from '@/components/Card';
-import { Anchor, ArrowRight, Check, Factory, Package, ShoppingCart, Target, Truck, X } from 'lucide-react';
+import { Anchor, FlowArrow, Confirm, Dismiss, Plant, Cargo, Cart, Haul, Crosshair } from '@/components/icons/FlowIcons';
 
 export default function SolutionsPage() {
   const archetypes = [
     {
       name: 'Retail & Grocery DC',
-      icon: <ShoppingCart className="w-12 h-12 text-neon" />,
+      icon: <Cart size={48} className="text-neon" />,
       pain: 'Spoilage, detention fees, peak season chaos',
       flow: 'Synthetic Capacity. Process 142% more throughput during peak season without expanding your yard.',
     },
     {
       name: '3PL & Contract Logistics',
-      icon: <Package className="w-12 h-12 text-neon" />,
+      icon: <Cargo size={48} className="text-neon" />,
       pain: '"Ghost trailers," multi-client complexity, billing leakage',
       flow: 'Total Visibility. A single source of truth across multi-building campuses. Never lose a trailer again.',
     },
     {
       name: 'Port & Marine Terminal',
-      icon: <Anchor className="w-12 h-12 text-neon" />,
+      icon: <Anchor size={48} className="text-neon" />,
       pain: 'Drayage congestion, chassis dislocation, "The Shuffle"',
       flow: 'Intermodal Fluidity. Synchronize gate moves with vessel cut-offs. Optimize chassis utilization.',
     },
     {
       name: 'LTL Terminal',
-      icon: <Truck className="w-12 h-12 text-neon" />,
+      icon: <Haul size={48} className="text-neon" />,
       pain: 'Linehaul cut times, cross-dock congestion',
       flow: 'Network Velocity. Ensure linehaul trucks depart on time, every time. Optimize cross-dock flows.',
     },
     {
       name: 'Industrial & Manufacturing',
-      icon: <Factory className="w-12 h-12 text-neon" />,
+      icon: <Plant size={48} className="text-neon" />,
       pain: 'Raw material shortages stopping the line, finished goods bottleneck',
       flow: 'Production Synchronization. Align yard movements with production schedules. Just-In-Time becomes reality.',
     },
@@ -82,7 +82,7 @@ export default function SolutionsPage() {
                 </div>
 
                 <Button variant="ghost" className="mt-6 w-full">
-                  Learn More <ArrowRight className="w-4 h-4" />
+                  Learn More <FlowArrow size={16} />
                 </Button>
               </Card>
             ))}
@@ -161,7 +161,7 @@ export default function SolutionsPage() {
                     <td className="py-4 text-center text-steel/60">
                       {typeof row.legacy === 'boolean' ? (
                         <span className="inline-flex justify-center w-full">
-                          {row.legacy ? <Check className="w-5 h-5 text-neon" /> : <X className="w-5 h-5 text-ember" />}
+                          {row.legacy ? <Confirm size={20} className="text-neon" /> : <Dismiss size={20} className="text-ember" />}
                         </span>
                       ) : (
                         row.legacy
@@ -170,7 +170,7 @@ export default function SolutionsPage() {
                     <td className="py-4 text-center text-neon font-semibold">
                       {typeof row.flow === 'boolean' ? (
                         <span className="inline-flex justify-center w-full">
-                          {row.flow ? <Check className="w-5 h-5 text-neon" /> : <X className="w-5 h-5 text-ember" />}
+                          {row.flow ? <Confirm size={20} className="text-neon" /> : <Dismiss size={20} className="text-ember" />}
                         </span>
                       ) : (
                         row.flow
@@ -223,7 +223,7 @@ export default function SolutionsPage() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-5xl font-black mb-8">Which Archetype Are You?</h2>
           <p className="text-xl text-steel/90 mb-12">Get a personalized assessment for your operation.</p>
-          <Button variant="neon-fill" size="lg" icon={<Target className="w-5 h-5" />}>
+          <Button variant="neon-fill" size="lg" icon={<Crosshair size={20} className="text-void" />}>
             Start Your Assessment
           </Button>
         </div>
