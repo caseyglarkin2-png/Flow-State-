@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd flow-state-site && npm install && npm run build",
+  "outputDirectory": "flow-state-site/out",
+  "framework": null,
+  "installCommand": "echo 'Using custom build'"
+}
