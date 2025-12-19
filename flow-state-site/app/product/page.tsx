@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import Card from '@/components/Card';
+import { BarChart3, Bot, Check, Globe, Lock, Map, Rocket, Smartphone, Target, Zap } from 'lucide-react';
 
 export default function ProductPage() {
   return (
@@ -22,7 +23,7 @@ export default function ProductPage() {
             A modular, driver-first platform that synchronizes the gate, the dock, and the yard.
           </p>
 
-          <Button variant="neon-fill" size="lg" icon="🚀">
+          <Button variant="neon-fill" size="lg" icon={<Rocket className="w-5 h-5" />}>
             Get Started
           </Button>
         </div>
@@ -46,7 +47,7 @@ export default function ProductPage() {
                   'Reduced gate delays',
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3">
-                    <span className="text-neon flex-shrink-0">✓</span>
+                    <Check className="w-5 h-5 text-neon flex-shrink-0" />
                     <span className="text-steel/80">{item}</span>
                   </li>
                 ))}
@@ -57,7 +58,9 @@ export default function ProductPage() {
             {/* Visual */}
             <div className="glass-card aspect-square flex items-center justify-center">
               <div className="text-center">
-                <p className="text-6xl mb-4">📱</p>
+                <div className="flex justify-center mb-4 text-neon">
+                  <Smartphone className="w-14 h-14" />
+                </div>
                 <p className="text-neon font-semibold">Kiosk UI Mockup</p>
                 <p className="text-steel/60 text-sm mt-2">Self-service access verification</p>
               </div>
@@ -73,7 +76,9 @@ export default function ProductPage() {
             {/* Visual */}
             <div className="glass-card aspect-square flex items-center justify-center order-2 lg:order-1">
               <div className="text-center">
-                <p className="text-6xl mb-4">🗺️</p>
+                <div className="flex justify-center mb-4 text-neon">
+                  <Map className="w-14 h-14" />
+                </div>
                 <p className="text-neon font-semibold">Drag & Drop Yard Map</p>
                 <p className="text-steel/60 text-sm mt-2">Real-time asset positioning</p>
               </div>
@@ -93,7 +98,7 @@ export default function ProductPage() {
                   'Autonomous move execution',
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3">
-                    <span className="text-neon flex-shrink-0">✓</span>
+                    <Check className="w-5 h-5 text-neon flex-shrink-0" />
                     <span className="text-steel/80">{item}</span>
                   </li>
                 ))}
@@ -122,7 +127,7 @@ export default function ProductPage() {
                   'Real-time navigation',
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3">
-                    <span className="text-neon flex-shrink-0">✓</span>
+                    <Check className="w-5 h-5 text-neon flex-shrink-0" />
                     <span className="text-steel/80">{item}</span>
                   </li>
                 ))}
@@ -133,7 +138,9 @@ export default function ProductPage() {
             {/* Visual */}
             <div className="glass-card aspect-square flex items-center justify-center">
               <div className="text-center">
-                <p className="text-6xl mb-4">📲</p>
+                <div className="flex justify-center mb-4 text-neon">
+                  <Smartphone className="w-14 h-14" />
+                </div>
                 <p className="text-neon font-semibold">Mobile Portal</p>
                 <p className="text-steel/60 text-sm mt-2">Proceed to Door 5</p>
               </div>
@@ -150,38 +157,38 @@ export default function ProductPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                icon: '⚡',
+                icon: <Zap className="w-10 h-10" />,
                 title: 'Lightning Fast',
                 desc: 'Reduce yard dwell time by 50% with optimized workflows.',
               },
               {
-                icon: '🎯',
+                icon: <Target className="w-10 h-10" />,
                 title: 'Precision Tracking',
                 desc: 'Know exactly where every asset is, every moment.',
               },
               {
-                icon: '🔐',
+                icon: <Lock className="w-10 h-10" />,
                 title: 'Enterprise Security',
                 desc: 'Bank-grade encryption and compliance-ready architecture.',
               },
               {
-                icon: '🤖',
+                icon: <Bot className="w-10 h-10" />,
                 title: 'AI-Powered',
                 desc: 'Intelligent move recommendations learn from your patterns.',
               },
               {
-                icon: '📊',
+                icon: <BarChart3 className="w-10 h-10" />,
                 title: 'Real-Time Analytics',
                 desc: 'Live dashboards with actionable operational insights.',
               },
               {
-                icon: '🌍',
+                icon: <Globe className="w-10 h-10" />,
                 title: 'Global Scale',
                 desc: 'Deploy across multi-site networks with unified control.',
               },
             ].map((feature, i) => (
               <Card key={i} hover>
-                <p className="text-4xl mb-4">{feature.icon}</p>
+                <div className="text-neon mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-bold mb-3 text-neon">{feature.title}</h3>
                 <p className="text-steel/80">{feature.desc}</p>
               </Card>
@@ -195,7 +202,7 @@ export default function ProductPage() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-5xl font-black mb-8">Ready to Transform Your Yard?</h2>
           <p className="text-xl text-steel/90 mb-12">Get a live demo of YardOS in action.</p>
-          <Button variant="neon-fill" size="lg" icon="🎯">
+          <Button variant="neon-fill" size="lg" icon={<Target className="w-5 h-5" />}>
             Book Your Demo
           </Button>
         </div>

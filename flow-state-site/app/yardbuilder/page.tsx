@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import Card from '@/components/Card';
+import { BarChart3, Calendar, Globe, MapPin, Rocket, Search, Settings, Sparkles, Construction, RefreshCw, Satellite } from 'lucide-react';
 
 export default function YardBuilderPage() {
   return (
@@ -32,26 +33,26 @@ export default function YardBuilderPage() {
                 title: 'Input',
                 subtitle: 'Location',
                 desc: 'Type "123 Industrial Way, Jacksonville FL"',
-                icon: '📍',
+                icon: <MapPin className="w-12 h-12 text-neon" />,
               },
               {
                 step: 2,
                 title: 'Scan',
                 subtitle: 'Analysis',
                 desc: 'AI analyzes satellite imagery and detects structures',
-                icon: '🛰️',
+                icon: <Satellite className="w-12 h-12 text-neon" />,
               },
               {
                 step: 3,
                 title: 'Build',
                 subtitle: 'Configuration',
                 desc: 'Digital twin created. Customize zones and workflows',
-                icon: '✨',
+                icon: <Sparkles className="w-12 h-12 text-neon" />,
               },
             ].map((phase, i) => (
               <Card key={i} hover>
                 <div className="text-center">
-                  <p className="text-5xl mb-4">{phase.icon}</p>
+                  <div className="flex justify-center mb-4">{phase.icon}</div>
                   <p className="text-sm font-semibold text-steel/60 mb-2">STEP {phase.step}</p>
                   <h3 className="text-xl font-bold neon-glow mb-2">{phase.title}</h3>
                   <p className="text-xs text-steel/60 mb-4">{phase.subtitle}</p>
@@ -153,38 +154,38 @@ export default function YardBuilderPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                icon: '🏗️',
+                icon: <Construction className="w-10 h-10" />,
                 title: 'New Facility Setup',
                 desc: 'Launching a new DC? YardBuilder maps it instantly. No delays to your opening day.',
               },
               {
-                icon: '🔄',
+                icon: <RefreshCw className="w-10 h-10" />,
                 title: 'Facility Expansion',
                 desc: 'Added a new yard wing? Rescan and re-optimize in minutes.',
               },
               {
-                icon: '📊',
+                icon: <BarChart3 className="w-10 h-10" />,
                 title: 'Network Consolidation',
                 desc: 'Merging multiple yards? Create digital twins for each, then orchestrate together.',
               },
               {
-                icon: '🌍',
+                icon: <Globe className="w-10 h-10" />,
                 title: 'Global Rollout',
                 desc: 'Going international? Deploy to 50 facilities across geographies—zero manual mapping.',
               },
               {
-                icon: '🔍',
+                icon: <Search className="w-10 h-10" />,
                 title: 'Competitive Analysis',
                 desc: 'Analyze competitor yards. Optimize your own layout against the best in class.',
               },
               {
-                icon: '⚙️',
+                icon: <Settings className="w-10 h-10" />,
                 title: 'Capacity Planning',
                 desc: 'Model "what-if" scenarios. Increase throughput without expanding footprint.',
               },
             ].map((use, i) => (
               <Card key={i} hover>
-                <p className="text-4xl mb-4">{use.icon}</p>
+                <div className="text-neon mb-4">{use.icon}</div>
                 <h3 className="text-xl font-bold text-neon mb-3">{use.title}</h3>
                 <p className="text-steel/80">{use.desc}</p>
               </Card>
@@ -236,10 +237,10 @@ export default function YardBuilderPage() {
           <h2 className="text-5xl font-black mb-8">Ready to Map Your Yard?</h2>
           <p className="text-xl text-steel/90 mb-12">Get your digital twin in 10 minutes. Try it free.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="neon-fill" size="lg" icon="🚀">
+            <Button variant="neon-fill" size="lg" icon={<Rocket className="w-5 h-5" />}>
               Start Free Trial
             </Button>
-            <Button variant="neon" size="lg" icon="📅">
+            <Button variant="neon" size="lg" icon={<Calendar className="w-5 h-5" />}>
               Schedule Demo
             </Button>
           </div>

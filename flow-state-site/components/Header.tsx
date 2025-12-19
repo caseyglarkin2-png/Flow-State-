@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { ArrowRight, Rocket, Zap } from 'lucide-react';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -10,9 +11,12 @@ export default function Header() {
     <header className="fixed top-0 w-full z-50 bg-void/80 backdrop-blur-md border-b border-neon/20">
       {/* Founding Member Banner */}
       <div className="bg-neon/10 border-b border-neon/20 py-2 px-4 text-center text-sm">
-        <span className="text-steel">🚀 Founding Member Program Open — </span>
-        <Link href="/singularity" className="text-neon font-semibold hover:underline">
-          Only 23 spots left →
+        <span className="text-steel inline-flex items-center gap-2">
+          <Rocket className="w-4 h-4 text-neon" />
+          Founding Member Program Open —
+        </span>
+        <Link href="/singularity" className="text-neon font-semibold hover:underline inline-flex items-center gap-1">
+          Only 23 spots left <ArrowRight className="w-3 h-3" />
         </Link>
       </div>
 
@@ -47,7 +51,7 @@ export default function Header() {
             YardBuilder
           </Link>
           <Link href="/singularity" className="text-sm text-neon font-semibold hover:text-white transition-colors">
-            Singularity ✨
+            Singularity
           </Link>
           <Link href="/roi" className="text-sm text-steel hover:text-neon transition-colors">
             ROI Calculator
@@ -60,7 +64,8 @@ export default function Header() {
             Login
           </button>
           <Link href="/singularity" className="px-4 py-2 text-sm font-semibold bg-neon text-void rounded-lg hover:shadow-lg hover:shadow-neon/50 transition-all flex items-center gap-1">
-            <span>⚡</span> Book Demo
+            <Zap className="w-4 h-4" />
+            Book Demo
           </Link>
           
           {/* Mobile Menu Button */}
@@ -85,7 +90,7 @@ export default function Header() {
           <Link href="/product" className="block text-steel hover:text-neon transition-colors">Product</Link>
           <Link href="/solutions" className="block text-steel hover:text-neon transition-colors">Solutions</Link>
           <Link href="/yardbuilder" className="block text-steel hover:text-neon transition-colors">YardBuilder</Link>
-          <Link href="/singularity" className="block text-neon font-semibold">Singularity ✨</Link>
+          <Link href="/singularity" className="block text-neon font-semibold">Singularity</Link>
           <Link href="/roi" className="block text-steel hover:text-neon transition-colors">ROI Calculator</Link>
           <button className="w-full px-4 py-2 text-sm font-semibold text-neon border border-neon rounded-lg hover:bg-neon hover:text-void transition-all">
             Login

@@ -5,36 +5,37 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import Card from '@/components/Card';
+import { Anchor, ArrowRight, Check, Factory, Package, ShoppingCart, Target, Truck, X } from 'lucide-react';
 
 export default function SolutionsPage() {
   const archetypes = [
     {
       name: 'Retail & Grocery DC',
-      icon: '🛒',
+      icon: <ShoppingCart className="w-12 h-12 text-neon" />,
       pain: 'Spoilage, detention fees, peak season chaos',
       flow: 'Synthetic Capacity. Process 142% more throughput during peak season without expanding your yard.',
     },
     {
       name: '3PL & Contract Logistics',
-      icon: '📦',
+      icon: <Package className="w-12 h-12 text-neon" />,
       pain: '"Ghost trailers," multi-client complexity, billing leakage',
       flow: 'Total Visibility. A single source of truth across multi-building campuses. Never lose a trailer again.',
     },
     {
       name: 'Port & Marine Terminal',
-      icon: '⚓',
+      icon: <Anchor className="w-12 h-12 text-neon" />,
       pain: 'Drayage congestion, chassis dislocation, "The Shuffle"',
       flow: 'Intermodal Fluidity. Synchronize gate moves with vessel cut-offs. Optimize chassis utilization.',
     },
     {
       name: 'LTL Terminal',
-      icon: '🚚',
+      icon: <Truck className="w-12 h-12 text-neon" />,
       pain: 'Linehaul cut times, cross-dock congestion',
       flow: 'Network Velocity. Ensure linehaul trucks depart on time, every time. Optimize cross-dock flows.',
     },
     {
       name: 'Industrial & Manufacturing',
-      icon: '🏭',
+      icon: <Factory className="w-12 h-12 text-neon" />,
       pain: 'Raw material shortages stopping the line, finished goods bottleneck',
       flow: 'Production Synchronization. Align yard movements with production schedules. Just-In-Time becomes reality.',
     },
@@ -64,7 +65,7 @@ export default function SolutionsPage() {
             {archetypes.map((archetype, i) => (
               <Card key={i} hover className="flex flex-col">
                 <div className="flex items-start gap-4 mb-6">
-                  <p className="text-5xl">{archetype.icon}</p>
+                  <div className="flex-shrink-0">{archetype.icon}</div>
                   <div>
                     <h3 className="text-2xl font-bold text-neon">{archetype.name}</h3>
                   </div>
@@ -81,7 +82,7 @@ export default function SolutionsPage() {
                 </div>
 
                 <Button variant="ghost" className="mt-6 w-full">
-                  Learn More →
+                  Learn More <ArrowRight className="w-4 h-4" />
                 </Button>
               </Card>
             ))}
@@ -146,19 +147,35 @@ export default function SolutionsPage() {
               </thead>
               <tbody>
                 {[
-                  { cap: 'Real-time Tracking', legacy: '❌', flow: '✓' },
-                  { cap: 'AI Move Recommendations', legacy: '❌', flow: '✓' },
-                  { cap: 'Driver Self-Service', legacy: '❌', flow: '✓' },
+                  { cap: 'Real-time Tracking', legacy: false, flow: true },
+                  { cap: 'AI Move Recommendations', legacy: false, flow: true },
+                  { cap: 'Driver Self-Service', legacy: false, flow: true },
                   { cap: 'Deployment Time', legacy: '90 days', flow: '10 minutes' },
                   { cap: 'Integration Complexity', legacy: 'High', flow: 'Low' },
                   { cap: 'Cost per Site', legacy: '$50k+', flow: '$15k' },
-                  { cap: 'Mobile-First UI', legacy: '❌', flow: '✓' },
-                  { cap: 'Multi-language Support', legacy: '❌', flow: '✓' },
+                  { cap: 'Mobile-First UI', legacy: false, flow: true },
+                  { cap: 'Multi-language Support', legacy: false, flow: true },
                 ].map((row, i) => (
                   <tr key={i} className="border-b border-steel/20 hover:bg-carbon/50 transition-colors">
                     <td className="py-4 font-semibold">{row.cap}</td>
-                    <td className="py-4 text-center text-steel/60">{row.legacy}</td>
-                    <td className="py-4 text-center text-neon font-semibold">{row.flow}</td>
+                    <td className="py-4 text-center text-steel/60">
+                      {typeof row.legacy === 'boolean' ? (
+                        <span className="inline-flex justify-center w-full">
+                          {row.legacy ? <Check className="w-5 h-5 text-neon" /> : <X className="w-5 h-5 text-ember" />}
+                        </span>
+                      ) : (
+                        row.legacy
+                      )}
+                    </td>
+                    <td className="py-4 text-center text-neon font-semibold">
+                      {typeof row.flow === 'boolean' ? (
+                        <span className="inline-flex justify-center w-full">
+                          {row.flow ? <Check className="w-5 h-5 text-neon" /> : <X className="w-5 h-5 text-ember" />}
+                        </span>
+                      ) : (
+                        row.flow
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -206,7 +223,7 @@ export default function SolutionsPage() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-5xl font-black mb-8">Which Archetype Are You?</h2>
           <p className="text-xl text-steel/90 mb-12">Get a personalized assessment for your operation.</p>
-          <Button variant="neon-fill" size="lg" icon="🎯">
+          <Button variant="neon-fill" size="lg" icon={<Target className="w-5 h-5" />}>
             Start Your Assessment
           </Button>
         </div>
