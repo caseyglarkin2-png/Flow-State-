@@ -5,7 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import Card from '@/components/Card';
-import { Anchor, Check, Factory, Package, ShoppingCart, Target, Truck, X } from 'lucide-react';
+import { Anchor, ArrowRight, Check, Factory, Package, ShoppingCart, Target, Truck, X } from 'lucide-react';
 
 export default function SolutionsPage() {
   const archetypes = [
@@ -82,7 +82,7 @@ export default function SolutionsPage() {
                 </div>
 
                 <Button variant="ghost" className="mt-6 w-full">
-                  Learn More →
+                  Learn More <ArrowRight className="w-4 h-4" />
                 </Button>
               </Card>
             ))}

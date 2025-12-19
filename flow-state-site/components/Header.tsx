@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Rocket, Zap } from 'lucide-react';
+import { ArrowRight, Rocket, Zap } from 'lucide-react';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -15,8 +15,8 @@ export default function Header() {
           <Rocket className="w-4 h-4 text-neon" />
           Founding Member Program Open —
         </span>
-        <Link href="/singularity" className="text-neon font-semibold hover:underline">
-          Only 23 spots left →
+        <Link href="/singularity" className="text-neon font-semibold hover:underline inline-flex items-center gap-1">
+          Only 23 spots left <ArrowRight className="w-3 h-3" />
         </Link>
       </div>
 

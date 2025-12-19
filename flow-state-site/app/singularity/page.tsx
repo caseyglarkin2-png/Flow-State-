@@ -7,6 +7,7 @@ import Button from '@/components/Button';
 import Card from '@/components/Card';
 import {
   AlertTriangle,
+  ArrowRight,
   BarChart3,
   Brain,
   Diamond,
@@ -534,19 +535,19 @@ export default function SingularityPage() {
 
             <ul className="space-y-4 pl-6">
               <li className="flex gap-3">
-                <span className="text-neon">→</span>
+                <ArrowRight className="w-4 h-4 text-neon flex-shrink-0 mt-1" />
                 <span>Drivers check in <span className="text-white font-semibold">without human intervention</span>. Gate to dock in 4 minutes, not 48.</span>
               </li>
               <li className="flex gap-3">
-                <span className="text-neon">→</span>
+                <ArrowRight className="w-4 h-4 text-neon flex-shrink-0 mt-1" />
                 <span>BOLs are <span className="text-white font-semibold">born digital</span>. Chain of custody is immutable. Disputes vanish.</span>
               </li>
               <li className="flex gap-3">
-                <span className="text-neon">→</span>
+                <ArrowRight className="w-4 h-4 text-neon flex-shrink-0 mt-1" />
                 <span>Every asset speaks. Every move is <span className="text-white font-semibold">orchestrated by AI</span>. Yard jockeys become operators.</span>
               </li>
               <li className="flex gap-3">
-                <span className="text-neon">→</span>
+                <ArrowRight className="w-4 h-4 text-neon flex-shrink-0 mt-1" />
                 <span>Network intelligence compounds. <span className="text-white font-semibold">Metcalfe's Law</span> kicks in. Each new site multiplies value.</span>
               </li>
             </ul>
@@ -610,7 +611,7 @@ export default function SingularityPage() {
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-3">
                       <span className="text-ember line-through text-sm">{item.before}</span>
-                      <span className="text-neon">→</span>
+                      <ArrowRight className="w-4 h-4 text-neon" />
                       <span className="text-neon font-semibold">{item.after}</span>
                     </div>
                     <p className="text-steel/80 text-sm leading-relaxed">{item.detail}</p>
