@@ -5,7 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import Card from '@/components/Card';
-import { BarChart3, Bot, Check, Globe, Lock, Map, Rocket, Smartphone, Target, Zap } from 'lucide-react';
+import { Metrics, Agent, Confirm, Nexus, Shield, Territory, Ignite, Device, Crosshair, Velocity } from '@/components/icons/FlowIcons';
 
 export default function ProductPage() {
   return (
@@ -23,7 +23,7 @@ export default function ProductPage() {
             A modular, driver-first platform that synchronizes the gate, the dock, and the yard.
           </p>
 
-          <Button variant="neon-fill" size="lg" icon={<Rocket className="w-5 h-5" />}>
+          <Button variant="neon-fill" size="lg" icon={<Ignite size={20} className="text-void" />}>
             Get Started
           </Button>
         </div>
@@ -47,7 +47,7 @@ export default function ProductPage() {
                   'Reduced gate delays',
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3">
-                    <Check className="w-5 h-5 text-neon flex-shrink-0" />
+                    <Confirm size={20} className="text-neon flex-shrink-0" />
                     <span className="text-steel/80">{item}</span>
                   </li>
                 ))}
@@ -59,7 +59,7 @@ export default function ProductPage() {
             <div className="glass-card aspect-square flex items-center justify-center">
               <div className="text-center">
                 <div className="flex justify-center mb-4 text-neon">
-                  <Smartphone className="w-14 h-14" />
+                  <Device size={56} className="text-neon" />
                 </div>
                 <p className="text-neon font-semibold">Kiosk UI Mockup</p>
                 <p className="text-steel/60 text-sm mt-2">Self-service access verification</p>
@@ -77,7 +77,7 @@ export default function ProductPage() {
             <div className="glass-card aspect-square flex items-center justify-center order-2 lg:order-1">
               <div className="text-center">
                 <div className="flex justify-center mb-4 text-neon">
-                  <Map className="w-14 h-14" />
+                  <Territory size={56} className="text-neon" />
                 </div>
                 <p className="text-neon font-semibold">Drag & Drop Yard Map</p>
                 <p className="text-steel/60 text-sm mt-2">Real-time asset positioning</p>
@@ -98,7 +98,7 @@ export default function ProductPage() {
                   'Autonomous move execution',
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3">
-                    <Check className="w-5 h-5 text-neon flex-shrink-0" />
+                    <Confirm size={20} className="text-neon flex-shrink-0" />
                     <span className="text-steel/80">{item}</span>
                   </li>
                 ))}
@@ -127,7 +127,7 @@ export default function ProductPage() {
                   'Real-time navigation',
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3">
-                    <Check className="w-5 h-5 text-neon flex-shrink-0" />
+                    <Confirm size={20} className="text-neon flex-shrink-0" />
                     <span className="text-steel/80">{item}</span>
                   </li>
                 ))}
@@ -139,7 +139,7 @@ export default function ProductPage() {
             <div className="glass-card aspect-square flex items-center justify-center">
               <div className="text-center">
                 <div className="flex justify-center mb-4 text-neon">
-                  <Smartphone className="w-14 h-14" />
+                  <Device size={56} className="text-neon" />
                 </div>
                 <p className="text-neon font-semibold">Mobile Portal</p>
                 <p className="text-steel/60 text-sm mt-2">Proceed to Door 5</p>
@@ -157,32 +157,32 @@ export default function ProductPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                icon: <Zap className="w-10 h-10" />,
+                icon: <Velocity size={40} />,
                 title: 'Lightning Fast',
                 desc: 'Reduce yard dwell time by 50% with optimized workflows.',
               },
               {
-                icon: <Target className="w-10 h-10" />,
+                icon: <Crosshair size={40} />,
                 title: 'Precision Tracking',
                 desc: 'Know exactly where every asset is, every moment.',
               },
               {
-                icon: <Lock className="w-10 h-10" />,
+                icon: <Shield size={40} />,
                 title: 'Enterprise Security',
                 desc: 'Bank-grade encryption and compliance-ready architecture.',
               },
               {
-                icon: <Bot className="w-10 h-10" />,
+                icon: <Agent size={40} />,
                 title: 'AI-Powered',
                 desc: 'Intelligent move recommendations learn from your patterns.',
               },
               {
-                icon: <BarChart3 className="w-10 h-10" />,
+                icon: <Metrics size={40} />,
                 title: 'Real-Time Analytics',
                 desc: 'Live dashboards with actionable operational insights.',
               },
               {
-                icon: <Globe className="w-10 h-10" />,
+                icon: <Nexus size={40} />,
                 title: 'Global Scale',
                 desc: 'Deploy across multi-site networks with unified control.',
               },
@@ -202,7 +202,7 @@ export default function ProductPage() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-5xl font-black mb-8">Ready to Transform Your Yard?</h2>
           <p className="text-xl text-steel/90 mb-12">Get a live demo of YardOS in action.</p>
-          <Button variant="neon-fill" size="lg" icon={<Target className="w-5 h-5" />}>
+          <Button variant="neon-fill" size="lg" icon={<Crosshair size={20} className="text-void" />}>
             Book Your Demo
           </Button>
         </div>

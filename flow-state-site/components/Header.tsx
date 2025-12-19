@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Rocket, Zap } from 'lucide-react';
+import { FlowArrow, Ignite, Velocity } from '@/components/icons/FlowIcons';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -12,11 +12,11 @@ export default function Header() {
       {/* Founding Member Banner */}
       <div className="bg-neon/10 border-b border-neon/20 py-2 px-4 text-center text-sm">
         <span className="text-steel inline-flex items-center gap-2">
-          <Rocket className="w-4 h-4 text-neon" />
+          <Ignite size={16} className="text-neon" />
           Founding Member Program Open —
         </span>
         <Link href="/singularity" className="text-neon font-semibold hover:underline inline-flex items-center gap-1">
-          Only 23 spots left <ArrowRight className="w-3 h-3" />
+          Only 23 spots left <FlowArrow size={12} className="text-neon" />
         </Link>
       </div>
 
@@ -64,7 +64,7 @@ export default function Header() {
             Login
           </button>
           <Link href="/singularity" className="px-4 py-2 text-sm font-semibold bg-neon text-void rounded-lg hover:shadow-lg hover:shadow-neon/50 transition-all flex items-center gap-1">
-            <Zap className="w-4 h-4" />
+            <Velocity size={16} className="text-void" />
             Book Demo
           </Link>
           
