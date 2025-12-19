@@ -6,8 +6,6 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: '/Flow-State-',
-  assetPrefix: '/Flow-State-/',
 };
 
 module.exports = nextConfig;

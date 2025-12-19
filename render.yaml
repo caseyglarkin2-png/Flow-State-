@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: flow-state
+    runtime: static
+    buildCommand: cd flow-state-site && npm install && npm run build
+    staticPublishPath: flow-state-site/out
+    pullRequestPreviewsEnabled: true
+    envVars:
+      - key: NODE_VERSION
+        value: 20
