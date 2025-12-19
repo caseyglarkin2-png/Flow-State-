@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import Card from '@/components/Card';
+import { BarChart3, Calendar } from 'lucide-react';
 
 export default function ROICalculatorPage() {
   const [facilities, setFacilities] = useState(5);
@@ -364,11 +365,11 @@ export default function ROICalculatorPage() {
             Get a custom analysis with your actual operational data.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="neon-fill" size="lg">
-              📊 Get Custom Analysis
+            <Button variant="neon-fill" size="lg" icon={<BarChart3 className="w-5 h-5" />}>
+              Get Custom Analysis
             </Button>
-            <Button variant="neon" size="lg">
-              📅 Schedule Demo
+            <Button variant="neon" size="lg" icon={<Calendar className="w-5 h-5" />}>
+              Schedule Demo
             </Button>
           </div>
         </div>

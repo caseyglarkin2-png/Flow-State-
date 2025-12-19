@@ -6,6 +6,23 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import Card from '@/components/Card';
+import {
+  BarChart3,
+  Bot,
+  BookOpen,
+  Brain,
+  ClipboardList,
+  DollarSign,
+  Globe,
+  MessageSquare,
+  Rocket,
+  Satellite,
+  Shield,
+  Target,
+  Timer,
+  TrendingUp,
+  Zap,
+} from 'lucide-react';
 
 export default function Home() {
   return (
@@ -33,10 +50,10 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Button variant="neon-fill" size="lg" icon="🚀">
+            <Button variant="neon-fill" size="lg" icon={<Rocket className="w-5 h-5" />}>
               Get Started
             </Button>
-            <Button variant="neon" size="lg" icon="✨">
+            <Button variant="neon" size="lg" icon={<BookOpen className="w-5 h-5" />}>
               See Live Demo
             </Button>
           </div>
@@ -161,28 +178,28 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                icon: '🛡️',
+                icon: <Shield className="w-10 h-10 text-neon" />,
                 name: 'Digital Guard',
                 desc: 'Automate access. Verify drivers in seconds. Eliminate the clipboard.',
               },
               {
-                icon: '💬',
+                icon: <MessageSquare className="w-10 h-10 text-neon" />,
                 name: 'Digital Comms',
                 desc: 'Direct driver messaging. Native language translation. Zero radio chatter.',
               },
               {
-                icon: '📋',
+                icon: <ClipboardList className="w-10 h-10 text-neon" />,
                 name: 'Digital BOL',
                 desc: 'Touchless documentation. Timestamped chain of custody. $10k/site savings.',
               },
               {
-                icon: '⬡',
+                icon: <Brain className="w-10 h-10 text-neon" />,
                 name: 'Digital YMS',
                 desc: 'The central brain. Real-time asset tracking. AI-driven move recommendations.',
               },
             ].map((module, i) => (
               <Card key={i} hover>
-                <div className="text-4xl mb-4">{module.icon}</div>
+                <div className="mb-4">{module.icon}</div>
                 <h3 className="text-2xl font-bold mb-3 text-neon">{module.name}</h3>
                 <p className="text-steel/80 leading-relaxed">{module.desc}</p>
               </Card>
@@ -202,7 +219,7 @@ export default function Home() {
               <p className="text-lg text-steel/90 mb-8 leading-relaxed">
                 The deployment cliff is dead. Our generative AI turns an address into a working digital twin in under 10 minutes. No site visits. No friction.
               </p>
-              <Button variant="neon-fill" size="lg" icon="🚀">
+              <Button variant="neon-fill" size="lg" icon={<Rocket className="w-5 h-5" />}>
                 Try YardBuilder AI
               </Button>
             </div>
@@ -210,7 +227,9 @@ export default function Home() {
             {/* Animation placeholder */}
             <div className="glass-card aspect-square flex items-center justify-center">
               <div className="text-center">
-                <p className="text-6xl mb-4">🛰️</p>
+                <div className="flex justify-center mb-4 text-neon">
+                  <Satellite className="w-14 h-14" />
+                </div>
                 <p className="text-neon font-semibold">Satellite Scan Animation</p>
                 <p className="text-steel/60 text-sm mt-2">10 min digital twin generation</p>
               </div>
@@ -283,7 +302,7 @@ export default function Home() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <div className="inline-block px-3 py-1 rounded-full border border-neon/50 text-neon text-sm font-semibold mb-6">
-                  ✨ THE SINGULARITY
+                  THE SINGULARITY
                 </div>
                 <h2 className="text-4xl md:text-5xl font-black mb-6">
                   What happens when <span className="neon-glow">every yard</span> achieves Flow?
@@ -293,11 +312,14 @@ export default function Home() {
                   Experience the moment when logistics becomes <span className="text-neon font-semibold">autonomous</span>.
                 </p>
                 <a href="/singularity" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold">
-                  ⚡ Enter the Simulation
+                  <Zap className="w-5 h-5" />
+                  Enter the Simulation
                 </a>
               </div>
               <div className="text-center">
-                <div className="text-8xl mb-4">🌐</div>
+                <div className="flex justify-center mb-4 text-neon">
+                  <Globe className="w-20 h-20" />
+                </div>
                 <p className="text-5xl font-black neon-glow mb-2">$24.5M</p>
                 <p className="text-steel">Annual savings for 12-site network</p>
               </div>
@@ -313,13 +335,13 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {[
-              { metric: '847%', label: 'Average Year 1 ROI', icon: '📈' },
-              { metric: '4.2mo', label: 'Payback Period', icon: '⏱️' },
-              { metric: '65%', label: 'Detention Reduction', icon: '💰' },
-              { metric: '70%', label: 'Gate Labor Savings', icon: '🤖' },
+              { metric: '847%', label: 'Average Year 1 ROI', icon: <TrendingUp className="w-7 h-7" /> },
+              { metric: '4.2mo', label: 'Payback Period', icon: <Timer className="w-7 h-7" /> },
+              { metric: '65%', label: 'Detention Reduction', icon: <DollarSign className="w-7 h-7" /> },
+              { metric: '70%', label: 'Gate Labor Savings', icon: <Bot className="w-7 h-7" /> },
             ].map((item, i) => (
               <Card key={i} hover className="text-center">
-                <p className="text-3xl mb-2">{item.icon}</p>
+                <div className="flex justify-center mb-2 text-neon">{item.icon}</div>
                 <p className="text-4xl font-black neon-glow mb-2">{item.metric}</p>
                 <p className="text-steel/80 text-sm">{item.label}</p>
               </Card>
@@ -328,7 +350,8 @@ export default function Home() {
 
           <div className="text-center">
             <a href="/roi" className="btn-neon inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">
-              📊 Calculate Your ROI
+              <BarChart3 className="w-5 h-5" />
+              Calculate Your ROI
             </a>
           </div>
         </div>
@@ -342,10 +365,12 @@ export default function Home() {
           <p className="text-lg text-neon font-semibold mb-12">Only 23 Founding Member spots remaining.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/singularity" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all">
-              🎯 Apply for Founding Membership
+              <Target className="w-5 h-5" />
+              Apply for Founding Membership
             </a>
             <a href="/roi" className="btn-neon inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">
-              📊 See the Numbers
+              <BarChart3 className="w-5 h-5" />
+              See the Numbers
             </a>
           </div>
         </div>

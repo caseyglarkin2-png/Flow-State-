@@ -24,6 +24,8 @@ export default function RootLayout({
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/favicon.svg" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
         <script async src="https://cdn.jsdelivr.net/npm/three@r128/build/three.min.js"></script>
       </head>

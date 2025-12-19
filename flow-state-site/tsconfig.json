@@ -22,7 +22,8 @@
         "./*"
       ],
       "@/components/*": [
-        "./components/*"
+        "./components/*",
+        "./src/components/*"
       ],
       "@/pages/*": [
         "./pages/*"
@@ -31,7 +32,20 @@
         "./styles/*"
       ],
       "@/lib/*": [
-        "./lib/*"
+        "./lib/*",
+        "./src/lib/*"
+      ],
+      "@/brand/*": [
+        "./src/brand/*"
+      ],
+      "@/types/*": [
+        "./src/types/*"
+      ],
+      "@/store/*": [
+        "./src/store/*"
+      ],
+      "@/data/*": [
+        "./src/data/*"
       ]
     },
     "allowJs": true,

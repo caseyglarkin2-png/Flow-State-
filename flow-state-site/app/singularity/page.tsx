@@ -5,6 +5,22 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import Card from '@/components/Card';
+import {
+  AlertTriangle,
+  BarChart3,
+  Brain,
+  Diamond,
+  FileText,
+  Globe,
+  Phone,
+  Radio,
+  RefreshCw,
+  Rocket,
+  Search,
+  SignpostBig,
+  Target,
+  Zap,
+} from 'lucide-react';
 
 // Facility node type
 interface Facility {
@@ -201,9 +217,24 @@ export default function SingularityPage() {
                 phase === 'transition' ? 'bg-yellow-500/20 text-yellow-400' :
                 'bg-neon/20 text-neon'
               }`}>
-                {phase === 'chaos' ? '⚠️ CHAOS STATE' :
-                 phase === 'transition' ? '🔄 TRANSFORMATION IN PROGRESS' :
-                 '✨ FLOW STATE ACHIEVED'}
+                  <span className="inline-flex items-center gap-2">
+                    {phase === 'chaos' ? (
+                      <>
+                        <AlertTriangle className="w-4 h-4" />
+                        CHAOS STATE
+                      </>
+                    ) : phase === 'transition' ? (
+                      <>
+                        <RefreshCw className="w-4 h-4" />
+                        TRANSFORMATION IN PROGRESS
+                      </>
+                    ) : (
+                      <>
+                        <Zap className="w-4 h-4" />
+                        FLOW STATE ACHIEVED
+                      </>
+                    )}
+                  </span>
               </div>
             </div>
 
@@ -359,16 +390,21 @@ export default function SingularityPage() {
           {/* Control Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             {!isSimulating ? (
-              <Button variant="neon-fill" size="lg" onClick={startSimulation}>
-                ⚡ Initiate Singularity
+              <Button variant="neon-fill" size="lg" onClick={startSimulation} icon={<Zap className="w-5 h-5" />}>
+                Initiate Singularity
               </Button>
             ) : (
-              <Button variant="neon" size="lg" onClick={resetSimulation}>
-                🔄 Reset Simulation
+              <Button variant="neon" size="lg" onClick={resetSimulation} icon={<RefreshCw className="w-5 h-5" />}>
+                Reset Simulation
               </Button>
             )}
-            <Button variant="ghost" size="lg" onClick={() => setShowROI(!showROI)}>
-              📊 {showROI ? 'Hide' : 'Show'} ROI Breakdown
+            <Button
+              variant="ghost"
+              size="lg"
+              onClick={() => setShowROI(!showROI)}
+              icon={<BarChart3 className="w-5 h-5" />}
+            >
+              {showROI ? 'Hide' : 'Show'} ROI Breakdown
             </Button>
           </div>
 
@@ -534,43 +570,43 @@ export default function SingularityPage() {
               {
                 before: 'Guard shack with clipboard',
                 after: 'Autonomous kiosk network',
-                icon: '🚧',
+                icon: <SignpostBig className="w-10 h-10 text-neon" />,
                 detail: 'Drivers verify identity via mobile. OCR validates trucks. Average gate time: 47 seconds.'
               },
               {
                 before: 'Paper BOLs and fax machines',
                 after: 'Digital chain of custody',
-                icon: '📄',
+                icon: <FileText className="w-10 h-10 text-neon" />,
                 detail: 'Documents are captured, validated, and stored immutably. No disputes. No lost paperwork.'
               },
               {
                 before: 'Radio calls and shouting',
                 after: 'Real-time SMS orchestration',
-                icon: '📻',
+                icon: <Radio className="w-10 h-10 text-neon" />,
                 detail: 'Drivers get translated instructions instantly. No app download. No radio chatter.'
               },
               {
                 before: 'Yard checks every 4 hours',
                 after: 'Continuous ground source truth',
-                icon: '🔍',
+                icon: <Search className="w-10 h-10 text-neon" />,
                 detail: 'Know where every asset is, every moment. GPS + computer vision + driver confirmation.'
               },
               {
                 before: 'Reactive firefighting',
                 after: 'Predictive orchestration',
-                icon: '🧠',
+                icon: <Brain className="w-10 h-10 text-neon" />,
                 detail: 'AI recommends optimal moves before congestion happens. Autonomous execution optional.'
               },
               {
                 before: 'Siloed facility data',
                 after: 'Network intelligence',
-                icon: '🌐',
+                icon: <Globe className="w-10 h-10 text-neon" />,
                 detail: 'Cross-facility visibility. Predict arrivals. Balance loads. Compound efficiency.'
               },
             ].map((item, i) => (
               <Card key={i} hover className="overflow-hidden">
                 <div className="flex items-start gap-4">
-                  <p className="text-4xl">{item.icon}</p>
+                  <div className="flex-shrink-0">{item.icon}</div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-3">
                       <span className="text-ember line-through text-sm">{item.before}</span>
@@ -590,7 +626,10 @@ export default function SingularityPage() {
       <section className="py-24 bg-gradient-to-br from-neon/10 to-transparent border-t border-neon/20">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="inline-block px-4 py-2 rounded-full border border-neon/50 text-neon text-sm font-semibold mb-8">
-            🚀 FOUNDING MEMBER PROGRAM
+            <span className="inline-flex items-center gap-2">
+              <Rocket className="w-4 h-4" />
+              FOUNDING MEMBER PROGRAM
+            </span>
           </div>
 
           <h2 className="text-5xl font-black mb-6">
@@ -604,17 +643,23 @@ export default function SingularityPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             <Card>
-              <p className="text-4xl mb-3">⚡</p>
+              <div className="text-neon mb-3">
+                <Zap className="w-10 h-10" />
+              </div>
               <h3 className="font-bold text-neon mb-2">Priority Access</h3>
               <p className="text-steel/80 text-sm">Jump the deployment queue. Go live in weeks, not quarters.</p>
             </Card>
             <Card>
-              <p className="text-4xl mb-3">🎯</p>
+              <div className="text-neon mb-3">
+                <Target className="w-10 h-10" />
+              </div>
               <h3 className="font-bold text-neon mb-2">Product Council</h3>
               <p className="text-steel/80 text-sm">Direct input on roadmap. Shape the features your network needs.</p>
             </Card>
             <Card>
-              <p className="text-4xl mb-3">💎</p>
+              <div className="text-neon mb-3">
+                <Diamond className="w-10 h-10" />
+              </div>
               <h3 className="font-bold text-neon mb-2">Founder Pricing</h3>
               <p className="text-steel/80 text-sm">Lock in 2024 rates forever. No increases. Ever.</p>
             </Card>
@@ -626,11 +671,11 @@ export default function SingularityPage() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="neon-fill" size="lg">
-              🎯 Apply for Founding Membership
+            <Button variant="neon-fill" size="lg" icon={<Target className="w-5 h-5" />}>
+              Apply for Founding Membership
             </Button>
-            <Button variant="neon" size="lg">
-              📞 Talk to a Human
+            <Button variant="neon" size="lg" icon={<Phone className="w-5 h-5" />}>
+              Talk to a Human
             </Button>
           </div>
 
@@ -649,7 +694,9 @@ export default function SingularityPage() {
 
           <div className="glass-card p-8 border border-ember/30 mb-8">
             <div className="flex items-start gap-4">
-              <p className="text-4xl">⚠️</p>
+              <div className="text-ember flex-shrink-0">
+                <AlertTriangle className="w-10 h-10" />
+              </div>
               <div>
                 <p className="text-lg text-steel/90 leading-relaxed">
                   In the last 90 days, <span className="text-white font-bold">7 of your direct competitors</span> have 
@@ -670,7 +717,10 @@ export default function SingularityPage() {
             </p>
 
             <Button variant="neon-fill" size="lg">
-              ⚡ Secure Your Position Now
+              <span className="inline-flex items-center gap-2">
+                <Zap className="w-5 h-5" />
+                Secure Your Position Now
+              </span>
             </Button>
           </div>
         </div>
