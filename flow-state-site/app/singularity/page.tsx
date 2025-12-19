@@ -56,20 +56,66 @@ export default function SingularityPage() {
   const [isSimulating, setIsSimulating] = useState(false);
   const [showROI, setShowROI] = useState(false);
 
-  // Facility network
+  // Facility network - 50 sites across North America
   const facilities: Facility[] = [
-    { id: 1, name: 'Chicago DC', x: 45, y: 35, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
-    { id: 2, name: 'Atlanta Hub', x: 55, y: 55, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 52 } },
-    { id: 3, name: 'LA Port', x: 15, y: 50, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 65 } },
-    { id: 4, name: 'Newark Terminal', x: 75, y: 30, type: 'terminal', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 58 } },
-    { id: 5, name: 'Dallas Cross-Dock', x: 35, y: 60, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
-    { id: 6, name: 'Seattle Gateway', x: 12, y: 20, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 55 } },
-    { id: 7, name: 'Miami Import', x: 70, y: 75, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 62 } },
-    { id: 8, name: 'Phoenix Plant', x: 22, y: 55, type: 'plant', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 50 } },
-    { id: 9, name: 'Memphis Hub', x: 50, y: 50, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 42 } },
-    { id: 10, name: 'Denver DC', x: 30, y: 40, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
-    { id: 11, name: 'Boston Terminal', x: 82, y: 22, type: 'terminal', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 54 } },
-    { id: 12, name: 'Houston Port', x: 38, y: 72, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 60 } },
+    // West Coast Corridor
+    { id: 1, name: 'Seattle Gateway', x: 10, y: 12, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 55 } },
+    { id: 2, name: 'Portland DC', x: 11, y: 18, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
+    { id: 3, name: 'Oakland Port', x: 8, y: 35, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 62 } },
+    { id: 4, name: 'LA Port', x: 12, y: 48, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 65 } },
+    { id: 5, name: 'Long Beach', x: 14, y: 50, type: 'terminal', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 58 } },
+    { id: 6, name: 'San Diego Cross', x: 15, y: 55, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
+    // Mountain West
+    { id: 7, name: 'Phoenix Plant', x: 22, y: 52, type: 'plant', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 50 } },
+    { id: 8, name: 'Tucson DC', x: 24, y: 56, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
+    { id: 9, name: 'Las Vegas Hub', x: 18, y: 42, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 44 } },
+    { id: 10, name: 'Salt Lake DC', x: 22, y: 32, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
+    { id: 11, name: 'Denver DC', x: 32, y: 36, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
+    { id: 12, name: 'Albuquerque', x: 28, y: 48, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 49 } },
+    // Texas Triangle
+    { id: 13, name: 'El Paso Cross', x: 26, y: 55, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 51 } },
+    { id: 14, name: 'Dallas Hub', x: 38, y: 52, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
+    { id: 15, name: 'Fort Worth DC', x: 36, y: 50, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
+    { id: 16, name: 'Houston Port', x: 42, y: 62, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 60 } },
+    { id: 17, name: 'San Antonio', x: 36, y: 60, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
+    { id: 18, name: 'Austin Plant', x: 37, y: 56, type: 'plant', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 44 } },
+    // Central Corridor
+    { id: 19, name: 'Kansas City', x: 42, y: 38, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 43 } },
+    { id: 20, name: 'Omaha DC', x: 40, y: 32, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
+    { id: 21, name: 'Minneapolis', x: 44, y: 22, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
+    { id: 22, name: 'St Louis Hub', x: 48, y: 40, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
+    { id: 23, name: 'Oklahoma City', x: 38, y: 46, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
+    // Great Lakes
+    { id: 24, name: 'Chicago DC', x: 52, y: 32, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
+    { id: 25, name: 'Detroit Plant', x: 58, y: 28, type: 'plant', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 52 } },
+    { id: 26, name: 'Cleveland', x: 62, y: 30, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 49 } },
+    { id: 27, name: 'Indianapolis', x: 55, y: 36, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
+    { id: 28, name: 'Columbus DC', x: 60, y: 34, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
+    { id: 29, name: 'Milwaukee', x: 50, y: 26, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
+    // Southeast
+    { id: 30, name: 'Memphis Hub', x: 50, y: 46, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 42 } },
+    { id: 31, name: 'Nashville DC', x: 54, y: 44, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 44 } },
+    { id: 32, name: 'Atlanta Hub', x: 60, y: 50, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 52 } },
+    { id: 33, name: 'Birmingham', x: 56, y: 50, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
+    { id: 34, name: 'New Orleans', x: 52, y: 62, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 58 } },
+    { id: 35, name: 'Jacksonville', x: 68, y: 58, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 55 } },
+    { id: 36, name: 'Tampa DC', x: 68, y: 65, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 50 } },
+    { id: 37, name: 'Miami Import', x: 72, y: 75, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 62 } },
+    { id: 38, name: 'Savannah Port', x: 68, y: 54, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 56 } },
+    { id: 39, name: 'Charlotte DC', x: 66, y: 46, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
+    // Mid-Atlantic
+    { id: 40, name: 'Richmond DC', x: 70, y: 40, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
+    { id: 41, name: 'Norfolk Port', x: 74, y: 42, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 54 } },
+    { id: 42, name: 'Baltimore', x: 74, y: 36, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 52 } },
+    { id: 43, name: 'Philadelphia', x: 78, y: 32, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 50 } },
+    { id: 44, name: 'Harrisburg DC', x: 75, y: 30, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
+    // Northeast
+    { id: 45, name: 'Newark Terminal', x: 80, y: 28, type: 'terminal', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 58 } },
+    { id: 46, name: 'Brooklyn DC', x: 82, y: 26, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 55 } },
+    { id: 47, name: 'Hartford DC', x: 84, y: 22, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
+    { id: 48, name: 'Boston Terminal', x: 88, y: 18, type: 'terminal', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 54 } },
+    { id: 49, name: 'Albany DC', x: 80, y: 22, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
+    { id: 50, name: 'Pittsburgh', x: 68, y: 32, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 49 } },
   ];
 
   const [facilityStates, setFacilityStates] = useState(facilities);
@@ -102,10 +148,10 @@ export default function SingularityPage() {
       activated++;
 
       // Network effect: each new facility multiplies value
-      const networkMultiplier = 1 + (activated * 0.15);
+      const networkMultiplier = 1 + (activated * 0.13);
       setNetworkVelocity(Math.round(networkMultiplier * 100));
 
-    }, 800);
+    }, 350);
 
     return () => clearInterval(activationInterval);
   }, [facilities.length]);
@@ -447,45 +493,45 @@ export default function SingularityPage() {
                       <span className="text-white">1.0x</span>
                     </li>
                     <li className="flex justify-between">
-                      <span>5 sites</span>
-                      <span className="text-white">1.8x</span>
-                    </li>
-                    <li className="flex justify-between">
-                      <span>12 sites</span>
-                      <span className="text-white">2.8x</span>
+                      <span>10 sites</span>
+                      <span className="text-white">2.2x</span>
                     </li>
                     <li className="flex justify-between">
                       <span>25 sites</span>
                       <span className="text-white">4.2x</span>
                     </li>
+                    <li className="flex justify-between">
+                      <span>50 sites</span>
+                      <span className="text-white">6.5x</span>
+                    </li>
                     <li className="flex justify-between border-t border-neon/20 pt-2 mt-2">
-                      <span className="font-bold">50+ sites</span>
-                      <span className="text-neon font-bold">6.5x+</span>
+                      <span className="font-bold">100+ sites</span>
+                      <span className="text-neon font-bold">9.8x+</span>
                     </li>
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-neon mb-3">12-Site Network</h4>
+                  <h4 className="font-semibold text-neon mb-3">50-Site Network</h4>
                   <ul className="space-y-2 text-sm text-steel">
                     <li className="flex justify-between">
                       <span>Base savings</span>
-                      <span className="text-white">$7.27M/yr</span>
+                      <span className="text-white">$30.3M/yr</span>
                     </li>
                     <li className="flex justify-between">
-                      <span>Network effect (2.8x)</span>
-                      <span className="text-white">+$13.1M/yr</span>
+                      <span>Network effect (6.5x)</span>
+                      <span className="text-white">+$166.6M/yr</span>
                     </li>
                     <li className="flex justify-between">
                       <span>Velocity gains</span>
-                      <span className="text-white">+$4.2M/yr</span>
+                      <span className="text-white">+$24.8M/yr</span>
                     </li>
                     <li className="flex justify-between border-t border-neon/20 pt-2 mt-2">
                       <span className="font-bold">Total annual</span>
-                      <span className="text-neon font-bold">$24.5M/yr</span>
+                      <span className="text-neon font-bold">$221.7M/yr</span>
                     </li>
                     <li className="flex justify-between">
                       <span className="font-bold">ROI</span>
-                      <span className="text-neon font-bold">847%</span>
+                      <span className="text-neon font-bold">1,847%</span>
                     </li>
                   </ul>
                 </div>
