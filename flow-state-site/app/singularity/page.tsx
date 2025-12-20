@@ -56,65 +56,66 @@ export default function SingularityPage() {
   const [isSimulating, setIsSimulating] = useState(false);
   const [showROI, setShowROI] = useState(false);
 
-  // Facility network - 50 sites across North America
+  // Facility network - 50 sites across North America (coordinates mapped to viewBox 0-100)
+  // x: 5=West Coast, 95=East Coast | y: 10=Canada border, 85=South Florida
   const facilities: Facility[] = [
     // West Coast Corridor
-    { id: 1, name: 'Seattle Gateway', x: 10, y: 12, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 55 } },
-    { id: 2, name: 'Portland DC', x: 11, y: 18, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
-    { id: 3, name: 'Oakland Port', x: 8, y: 35, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 62 } },
-    { id: 4, name: 'LA Port', x: 12, y: 48, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 65 } },
-    { id: 5, name: 'Long Beach', x: 14, y: 50, type: 'terminal', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 58 } },
-    { id: 6, name: 'San Diego Cross', x: 15, y: 55, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
+    { id: 1, name: 'Seattle', x: 8, y: 14, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 55 } },
+    { id: 2, name: 'Portland', x: 7, y: 20, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
+    { id: 3, name: 'Oakland', x: 6, y: 38, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 62 } },
+    { id: 4, name: 'Los Angeles', x: 10, y: 50, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 65 } },
+    { id: 5, name: 'Long Beach', x: 11, y: 52, type: 'terminal', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 58 } },
+    { id: 6, name: 'San Diego', x: 12, y: 56, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
     // Mountain West
-    { id: 7, name: 'Phoenix Plant', x: 22, y: 52, type: 'plant', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 50 } },
-    { id: 8, name: 'Tucson DC', x: 24, y: 56, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
-    { id: 9, name: 'Las Vegas Hub', x: 18, y: 42, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 44 } },
-    { id: 10, name: 'Salt Lake DC', x: 22, y: 32, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
-    { id: 11, name: 'Denver DC', x: 32, y: 36, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
-    { id: 12, name: 'Albuquerque', x: 28, y: 48, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 49 } },
+    { id: 7, name: 'Phoenix', x: 18, y: 54, type: 'plant', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 50 } },
+    { id: 8, name: 'Tucson', x: 17, y: 58, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
+    { id: 9, name: 'Las Vegas', x: 14, y: 44, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 44 } },
+    { id: 10, name: 'Salt Lake City', x: 17, y: 30, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
+    { id: 11, name: 'Denver', x: 28, y: 34, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
+    { id: 12, name: 'Albuquerque', x: 23, y: 50, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 49 } },
     // Texas Triangle
-    { id: 13, name: 'El Paso Cross', x: 26, y: 55, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 51 } },
-    { id: 14, name: 'Dallas Hub', x: 38, y: 52, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
-    { id: 15, name: 'Fort Worth DC', x: 36, y: 50, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
-    { id: 16, name: 'Houston Port', x: 42, y: 62, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 60 } },
-    { id: 17, name: 'San Antonio', x: 36, y: 60, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
-    { id: 18, name: 'Austin Plant', x: 37, y: 56, type: 'plant', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 44 } },
+    { id: 13, name: 'El Paso', x: 22, y: 56, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 51 } },
+    { id: 14, name: 'Dallas', x: 40, y: 54, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
+    { id: 15, name: 'Fort Worth', x: 38, y: 53, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
+    { id: 16, name: 'Houston', x: 42, y: 62, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 60 } },
+    { id: 17, name: 'San Antonio', x: 38, y: 60, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
+    { id: 18, name: 'Austin', x: 39, y: 58, type: 'plant', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 44 } },
     // Central Corridor
-    { id: 19, name: 'Kansas City', x: 42, y: 38, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 43 } },
-    { id: 20, name: 'Omaha DC', x: 40, y: 32, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
-    { id: 21, name: 'Minneapolis', x: 44, y: 22, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
-    { id: 22, name: 'St Louis Hub', x: 48, y: 40, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
-    { id: 23, name: 'Oklahoma City', x: 38, y: 46, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
+    { id: 19, name: 'Kansas City', x: 42, y: 36, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 43 } },
+    { id: 20, name: 'Omaha', x: 40, y: 30, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
+    { id: 21, name: 'Minneapolis', x: 44, y: 18, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
+    { id: 22, name: 'St Louis', x: 48, y: 38, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
+    { id: 23, name: 'Oklahoma City', x: 38, y: 48, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
     // Great Lakes
-    { id: 24, name: 'Chicago DC', x: 52, y: 32, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
-    { id: 25, name: 'Detroit Plant', x: 58, y: 28, type: 'plant', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 52 } },
-    { id: 26, name: 'Cleveland', x: 62, y: 30, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 49 } },
-    { id: 27, name: 'Indianapolis', x: 55, y: 36, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
-    { id: 28, name: 'Columbus DC', x: 60, y: 34, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
-    { id: 29, name: 'Milwaukee', x: 50, y: 26, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
+    { id: 24, name: 'Chicago', x: 54, y: 28, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
+    { id: 25, name: 'Detroit', x: 60, y: 26, type: 'plant', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 52 } },
+    { id: 26, name: 'Cleveland', x: 64, y: 28, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 49 } },
+    { id: 27, name: 'Indianapolis', x: 56, y: 34, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
+    { id: 28, name: 'Columbus', x: 62, y: 32, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
+    { id: 29, name: 'Milwaukee', x: 52, y: 24, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
     // Southeast
-    { id: 30, name: 'Memphis Hub', x: 50, y: 46, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 42 } },
-    { id: 31, name: 'Nashville DC', x: 54, y: 44, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 44 } },
-    { id: 32, name: 'Atlanta Hub', x: 60, y: 50, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 52 } },
+    { id: 30, name: 'Memphis', x: 50, y: 46, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 42 } },
+    { id: 31, name: 'Nashville', x: 56, y: 44, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 44 } },
+    { id: 32, name: 'Atlanta', x: 62, y: 50, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 52 } },
     { id: 33, name: 'Birmingham', x: 56, y: 50, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
-    { id: 34, name: 'New Orleans', x: 52, y: 62, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 58 } },
+    { id: 34, name: 'New Orleans', x: 50, y: 62, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 58 } },
     { id: 35, name: 'Jacksonville', x: 68, y: 58, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 55 } },
-    { id: 36, name: 'Tampa DC', x: 68, y: 65, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 50 } },
-    { id: 37, name: 'Miami Import', x: 72, y: 75, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 62 } },
-    { id: 38, name: 'Savannah Port', x: 68, y: 54, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 56 } },
-    { id: 39, name: 'Charlotte DC', x: 66, y: 46, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
+    { id: 36, name: 'Tampa', x: 66, y: 66, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 50 } },
+    { id: 37, name: 'Miami', x: 70, y: 78, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 62 } },
+    { id: 38, name: 'Savannah', x: 66, y: 52, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 56 } },
+    { id: 39, name: 'Charlotte', x: 66, y: 46, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
     // Mid-Atlantic
-    { id: 40, name: 'Richmond DC', x: 70, y: 40, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
-    { id: 41, name: 'Norfolk Port', x: 74, y: 42, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 54 } },
-    { id: 42, name: 'Baltimore', x: 74, y: 36, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 52 } },
+    { id: 40, name: 'Richmond', x: 72, y: 40, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
+    { id: 41, name: 'Norfolk', x: 74, y: 44, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 54 } },
+    { id: 42, name: 'Baltimore', x: 76, y: 36, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 52 } },
     { id: 43, name: 'Philadelphia', x: 78, y: 32, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 50 } },
-    { id: 44, name: 'Harrisburg DC', x: 75, y: 30, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
+    { id: 44, name: 'Harrisburg', x: 76, y: 30, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
     // Northeast
-    { id: 45, name: 'Newark Terminal', x: 80, y: 28, type: 'terminal', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 58 } },
-    { id: 46, name: 'Brooklyn DC', x: 82, y: 26, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 55 } },
-    { id: 47, name: 'Hartford DC', x: 84, y: 22, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
-    { id: 48, name: 'Boston Terminal', x: 88, y: 18, type: 'terminal', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 54 } },
-    { id: 49, name: 'Albany DC', x: 80, y: 22, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
+    { id: 45, name: 'Newark', x: 80, y: 30, type: 'terminal', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 58 } },
+    { id: 46, name: 'New York', x: 82, y: 28, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 55 } },
+    { id: 47, name: 'Hartford', x: 84, y: 26, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
+    { id: 48, name: 'Boston', x: 88, y: 22, type: 'terminal', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 54 } },
+    { id: 49, name: 'Albany', x: 80, y: 24, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
     { id: 50, name: 'Pittsburgh', x: 68, y: 32, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 49 } },
   ];
 
@@ -314,104 +315,28 @@ export default function SingularityPage() {
                 </filter>
               </defs>
 
-              {/* US & Canada Map Outline - SONAR style */}
-              <g opacity="0.4">
-                {/* Continental US - recognizable outline */}
-                <path
-                  d="M5,28 C5,26 6,24 8,22 L8,20 C8,18 9,16 10,15 L10,14 L11,13 L11,12 
-                     C12,11 14,10 16,10 L18,10 L20,11 L22,10 L24,10 L26,12 L28,13 L30,12 
-                     L32,11 L34,10 L36,10 L38,12 L40,14 L42,15 L44,14 L46,12 L48,11 L50,12 
-                     L52,14 L54,16 L56,18 L58,18 L60,17 L62,16 L64,17 L66,19 L68,21 L70,22 
-                     L72,21 L74,20 L76,21 L78,23 L80,25 L82,26 L84,25 L86,24 L88,25 L90,27 
-                     L90,30 L88,32 L86,34 L85,36 L84,38 L82,40 L80,42 L78,44 
-                     L76,46 L74,48 L73,50 L72,52 L72,54 L74,56 L76,58 L75,60 L73,62 
-                     L71,64 L70,66 L72,68 L74,70 L75,73 L74,76 L72,78 L70,78 L68,76 
-                     L66,74 L64,72 L62,70 L60,68 L58,66 L56,65 L54,66 L52,68 L50,70 
-                     L48,71 L46,70 L44,68 L42,67 L40,68 L38,70 L36,70 L34,68 L32,66 
-                     L30,65 L28,66 L26,68 L24,67 L22,65 L20,64 L18,65 L16,67 L14,66 
-                     L12,64 L11,62 L10,60 L9,58 L8,56 L7,54 L6,52 L5,50 L5,48 L6,46 
-                     L7,44 L6,42 L5,40 L5,38 L6,36 L7,34 L6,32 L5,30 Z"
-                  fill="url(#mapGradient)"
-                  stroke="#0066BB"
-                  strokeWidth="0.5"
-                  strokeOpacity="0.6"
-                />
-                
-                {/* Florida */}
-                <path
-                  d="M70,66 L72,68 L74,70 L75,73 L74,76 L72,78 L70,78 L68,76 L67,73 L68,70 L70,66"
-                  fill="url(#mapGradient)"
-                  stroke="#0066BB"
-                  strokeWidth="0.4"
-                  strokeOpacity="0.5"
-                />
-                
-                {/* Michigan upper peninsula hint */}
-                <path
-                  d="M50,26 L52,25 L54,26 L53,28 L51,28 Z"
-                  fill="url(#mapGradient)"
-                  stroke="#0066BB"
-                  strokeWidth="0.3"
-                  strokeOpacity="0.4"
-                />
-                
-                {/* Great Lakes */}
-                <ellipse cx="52" cy="30" rx="4" ry="2.5" fill="#080812" stroke="#0055AA" strokeWidth="0.25" opacity="0.7" />
-                <ellipse cx="58" cy="28" rx="2.5" ry="1.8" fill="#080812" stroke="#0055AA" strokeWidth="0.25" opacity="0.7" />
-                <ellipse cx="48" cy="28" rx="2" ry="1.5" fill="#080812" stroke="#0055AA" strokeWidth="0.25" opacity="0.7" />
-                <ellipse cx="62" cy="30" rx="2" ry="1.2" fill="#080812" stroke="#0055AA" strokeWidth="0.25" opacity="0.7" />
-                <ellipse cx="56" cy="32" rx="1.5" ry="1" fill="#080812" stroke="#0055AA" strokeWidth="0.25" opacity="0.7" />
-                
-                {/* Southern Canada outline */}
-                <path
-                  d="M5,28 C4,24 5,20 8,16 C12,12 18,8 28,6 C38,4 50,4 62,6 C74,8 82,12 88,18 C90,20 92,24 92,28"
-                  fill="none"
-                  stroke="#004488"
-                  strokeWidth="0.4"
-                  strokeOpacity="0.35"
-                  strokeDasharray="2 1"
-                />
-                
-                {/* Major highway/freight corridor hints */}
-                <g stroke="#0077CC" strokeWidth="0.15" strokeOpacity="0.25" fill="none">
-                  {/* I-10 corridor */}
-                  <path d="M8,52 Q30,58 50,55 Q70,52 74,70" />
-                  {/* I-40 corridor */}
-                  <path d="M10,48 Q35,50 55,48 Q75,46 82,42" />
-                  {/* I-80/90 corridor */}
-                  <path d="M10,38 Q30,36 50,34 Q70,32 85,30" />
-                  {/* I-95 corridor */}
-                  <path d="M88,26 Q86,40 80,50 Q74,60 72,75" />
-                  {/* I-5 corridor */}
-                  <path d="M10,14 L10,28 L8,40 L6,52" />
-                </g>
+              {/* Subtle map background - just Great Lakes as geographic reference */}
+              <g opacity="0.5">
+                {/* Great Lakes - positioned to match facility coordinates */}
+                <ellipse cx="55" cy="22" rx="5" ry="3" fill="#080815" stroke="#0055AA" strokeWidth="0.3" opacity="0.6" />
+                <ellipse cx="62" cy="24" rx="3" ry="2" fill="#080815" stroke="#0055AA" strokeWidth="0.3" opacity="0.6" />
+                <ellipse cx="50" cy="20" rx="2.5" ry="1.8" fill="#080815" stroke="#0055AA" strokeWidth="0.3" opacity="0.6" />
+                <ellipse cx="66" cy="26" rx="2" ry="1.5" fill="#080815" stroke="#0055AA" strokeWidth="0.3" opacity="0.6" />
+                <ellipse cx="58" cy="26" rx="2" ry="1.2" fill="#080815" stroke="#0055AA" strokeWidth="0.3" opacity="0.6" />
               </g>
 
-              {/* Animated water/wave effect overlay */}
-              <g opacity="0.15">
-                <rect x="0" y="0" width="100" height="100" fill="none">
-                  <animate attributeName="opacity" values="0.1;0.2;0.1" dur="4s" repeatCount="indefinite" />
-                </rect>
-                {/* Wave lines */}
-                {[20, 35, 50, 65, 80].map((y, i) => (
-                  <path
-                    key={`wave-${i}`}
-                    d={`M 0 ${y} Q 25 ${y + (i % 2 === 0 ? 3 : -3)} 50 ${y} Q 75 ${y + (i % 2 === 0 ? -3 : 3)} 100 ${y}`}
+              {/* Subtle grid overlay for SONAR effect */}
+              <g stroke="#0044AA" strokeWidth="0.1" strokeOpacity="0.15">
+                {[10, 20, 30, 40, 50, 60, 70, 80, 90].map(x => (
+                  <line key={`vgrid-${x}`} x1={x} y1="5" x2={x} y2="95" />
+                ))}
+                {[10, 20, 30, 40, 50, 60, 70, 80, 90].map(y => (
+                  <line key={`hgrid-${y}`} x1="5" y1={y} x2="95" y2={y} />
+                ))}
+              </g>
                     fill="none"
                     stroke="#0088FF"
                     strokeWidth="0.2"
-                    opacity="0.3"
-                  >
-                    <animate
-                      attributeName="d"
-                      values={`M 0 ${y} Q 25 ${y + 3} 50 ${y} Q 75 ${y - 3} 100 ${y};M 0 ${y} Q 25 ${y - 3} 50 ${y} Q 75 ${y + 3} 100 ${y};M 0 ${y} Q 25 ${y + 3} 50 ${y} Q 75 ${y - 3} 100 ${y}`}
-                      dur={`${3 + i * 0.5}s`}
-                      repeatCount="indefinite"
-                    />
-                  </path>
-                ))}
-              </g>
-
               {/* Connection lines between online facilities */}
               {phase !== 'chaos' && facilityStates.filter(f => f.status === 'online').map((from, i, arr) => 
                 arr.slice(i + 1).map(to => (
