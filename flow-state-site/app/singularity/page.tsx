@@ -314,34 +314,77 @@ export default function SingularityPage() {
                 </filter>
               </defs>
 
-              {/* US Map Outline - SONAR style */}
-              <g opacity="0.6" filter="url(#waveFilter)">
-                {/* Continental US outline - simplified polygon */}
+              {/* US & Canada Map Outline - SONAR style */}
+              <g opacity="0.4">
+                {/* Continental US - recognizable outline */}
                 <path
-                  d="M 5 20 
-                     L 8 15 L 12 12 L 15 14 L 18 11 L 22 10 L 28 12 L 32 11 L 38 10 
-                     L 42 12 L 45 10 L 48 8 L 52 10 L 56 8 L 60 10 L 65 12 L 70 14 
-                     L 75 16 L 78 18 L 82 16 L 85 18 L 88 20 L 90 24 L 88 28 L 86 32 
-                     L 84 36 L 82 40 L 80 44 L 76 48 L 72 52 L 70 56 L 72 60 L 75 65 
-                     L 72 70 L 68 72 L 64 68 L 58 66 L 52 68 L 48 72 L 44 70 L 40 68 
-                     L 36 72 L 32 70 L 28 68 L 24 66 L 20 62 L 16 58 L 14 54 L 12 50 
-                     L 10 46 L 8 42 L 6 38 L 5 34 L 4 30 L 5 25 Z"
+                  d="M5,28 C5,26 6,24 8,22 L8,20 C8,18 9,16 10,15 L10,14 L11,13 L11,12 
+                     C12,11 14,10 16,10 L18,10 L20,11 L22,10 L24,10 L26,12 L28,13 L30,12 
+                     L32,11 L34,10 L36,10 L38,12 L40,14 L42,15 L44,14 L46,12 L48,11 L50,12 
+                     L52,14 L54,16 L56,18 L58,18 L60,17 L62,16 L64,17 L66,19 L68,21 L70,22 
+                     L72,21 L74,20 L76,21 L78,23 L80,25 L82,26 L84,25 L86,24 L88,25 L90,27 
+                     L90,30 L88,32 L86,34 L85,36 L84,38 L82,40 L80,42 L78,44 
+                     L76,46 L74,48 L73,50 L72,52 L72,54 L74,56 L76,58 L75,60 L73,62 
+                     L71,64 L70,66 L72,68 L74,70 L75,73 L74,76 L72,78 L70,78 L68,76 
+                     L66,74 L64,72 L62,70 L60,68 L58,66 L56,65 L54,66 L52,68 L50,70 
+                     L48,71 L46,70 L44,68 L42,67 L40,68 L38,70 L36,70 L34,68 L32,66 
+                     L30,65 L28,66 L26,68 L24,67 L22,65 L20,64 L18,65 L16,67 L14,66 
+                     L12,64 L11,62 L10,60 L9,58 L8,56 L7,54 L6,52 L5,50 L5,48 L6,46 
+                     L7,44 L6,42 L5,40 L5,38 L6,36 L7,34 L6,32 L5,30 Z"
                   fill="url(#mapGradient)"
-                  stroke="#0088FF"
+                  stroke="#0066BB"
+                  strokeWidth="0.5"
+                  strokeOpacity="0.6"
+                />
+                
+                {/* Florida */}
+                <path
+                  d="M70,66 L72,68 L74,70 L75,73 L74,76 L72,78 L70,78 L68,76 L67,73 L68,70 L70,66"
+                  fill="url(#mapGradient)"
+                  stroke="#0066BB"
+                  strokeWidth="0.4"
+                  strokeOpacity="0.5"
+                />
+                
+                {/* Michigan upper peninsula hint */}
+                <path
+                  d="M50,26 L52,25 L54,26 L53,28 L51,28 Z"
+                  fill="url(#mapGradient)"
+                  stroke="#0066BB"
                   strokeWidth="0.3"
                   strokeOpacity="0.4"
                 />
-                {/* State-like internal lines for texture */}
+                
+                {/* Great Lakes */}
+                <ellipse cx="52" cy="30" rx="4" ry="2.5" fill="#080812" stroke="#0055AA" strokeWidth="0.25" opacity="0.7" />
+                <ellipse cx="58" cy="28" rx="2.5" ry="1.8" fill="#080812" stroke="#0055AA" strokeWidth="0.25" opacity="0.7" />
+                <ellipse cx="48" cy="28" rx="2" ry="1.5" fill="#080812" stroke="#0055AA" strokeWidth="0.25" opacity="0.7" />
+                <ellipse cx="62" cy="30" rx="2" ry="1.2" fill="#080812" stroke="#0055AA" strokeWidth="0.25" opacity="0.7" />
+                <ellipse cx="56" cy="32" rx="1.5" ry="1" fill="#080812" stroke="#0055AA" strokeWidth="0.25" opacity="0.7" />
+                
+                {/* Southern Canada outline */}
                 <path
-                  d="M 20 20 L 22 35 L 18 50 M 35 15 L 38 40 L 35 60 M 50 12 L 52 45 L 50 65 
-                     M 65 18 L 62 42 L 65 58 M 78 25 L 75 45 L 72 55
-                     M 10 35 L 45 38 M 12 50 L 55 52 M 25 22 L 75 28"
+                  d="M5,28 C4,24 5,20 8,16 C12,12 18,8 28,6 C38,4 50,4 62,6 C74,8 82,12 88,18 C90,20 92,24 92,28"
                   fill="none"
-                  stroke="#0077DD"
-                  strokeWidth="0.15"
-                  strokeOpacity="0.3"
-                  strokeDasharray="2 2"
+                  stroke="#004488"
+                  strokeWidth="0.4"
+                  strokeOpacity="0.35"
+                  strokeDasharray="2 1"
                 />
+                
+                {/* Major highway/freight corridor hints */}
+                <g stroke="#0077CC" strokeWidth="0.15" strokeOpacity="0.25" fill="none">
+                  {/* I-10 corridor */}
+                  <path d="M8,52 Q30,58 50,55 Q70,52 74,70" />
+                  {/* I-40 corridor */}
+                  <path d="M10,48 Q35,50 55,48 Q75,46 82,42" />
+                  {/* I-80/90 corridor */}
+                  <path d="M10,38 Q30,36 50,34 Q70,32 85,30" />
+                  {/* I-95 corridor */}
+                  <path d="M88,26 Q86,40 80,50 Q74,60 72,75" />
+                  {/* I-5 corridor */}
+                  <path d="M10,14 L10,28 L8,40 L6,52" />
+                </g>
               </g>
 
               {/* Animated water/wave effect overlay */}
