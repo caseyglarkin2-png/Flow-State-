@@ -13,7 +13,7 @@ export interface LogoProps {
 
 const defaultProps: LogoProps = {
   size: 32,
-  color: '#00FFC2',
+  color: '#00B4FF',
   secondaryColor: '#FFFFFF',
   appName: 'Flow State',
 };
@@ -21,7 +21,7 @@ const defaultProps: LogoProps = {
 // The Flow State Mark - Abstract flowing network symbol
 export const FlowStateMark: React.FC<LogoProps> = ({
   size = 32,
-  color = '#00FFC2',
+  color = '#00B4FF',
   className,
 }) => (
   <svg
@@ -92,7 +92,7 @@ export const FlowStateMark: React.FC<LogoProps> = ({
 // Wordmark only - "Flow State" text
 export const FlowStateWordmark: React.FC<LogoProps> = ({
   size = 32,
-  color = '#00FFC2',
+  color = '#00B4FF',
   secondaryColor = '#FFFFFF',
   className,
   appName = 'Flow State',
@@ -126,7 +126,7 @@ export const FlowStateWordmark: React.FC<LogoProps> = ({
 // Horizontal Lockup - Mark + Wordmark side by side
 export const FlowStateHorizontal: React.FC<LogoProps> = ({
   size = 32,
-  color = '#00FFC2',
+  color = '#00B4FF',
   secondaryColor = '#FFFFFF',
   className,
   appName = 'Flow State',
@@ -208,7 +208,7 @@ export const FlowStateHorizontal: React.FC<LogoProps> = ({
 // Stacked Lockup - Mark above Wordmark
 export const FlowStateStacked: React.FC<LogoProps> = ({
   size = 32,
-  color = '#00FFC2',
+  color = '#00B4FF',
   secondaryColor = '#FFFFFF',
   className,
   appName = 'Flow State',

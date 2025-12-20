@@ -43,7 +43,7 @@ const MAP_STYLE = {
 const getStatusColor = (status: string): [number, number, number] => {
   switch (status) {
     case 'Flow':
-      return [0, 255, 194]; // #00FFC2
+      return [0, 180, 255]; // #00B4FF
     case 'Activating':
       return [255, 184, 0]; // #FFB800
     case 'Chaos':

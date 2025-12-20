@@ -63,17 +63,17 @@ export default function Home() {
               {/* Grid */}
               <defs>
                 <linearGradient id="gridGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#00FFC2" stopOpacity="0.1" />
-                  <stop offset="100%" stopColor="#00FFC2" stopOpacity="0.05" />
+                  <stop offset="0%" stopColor="#00B4FF" stopOpacity="0.1" />
+                  <stop offset="100%" stopColor="#00B4FF" stopOpacity="0.05" />
                 </linearGradient>
               </defs>
               
               {/* Yard outline */}
-              <rect x="100" y="100" width="600" height="400" fill="url(#gridGrad)" stroke="#00FFC2" strokeWidth="2" opacity="0.5" />
+              <rect x="100" y="100" width="600" height="400" fill="url(#gridGrad)" stroke="#00B4FF" strokeWidth="2" opacity="0.5" />
               
               {/* Gate */}
-              <rect x="100" y="120" width="80" height="40" fill="none" stroke="#00FFC2" strokeWidth="2" opacity="0.7" />
-              <text x="130" y="150" fontSize="12" fill="#00FFC2" opacity="0.6" textAnchor="middle">Gate</text>
+              <rect x="100" y="120" width="80" height="40" fill="none" stroke="#00B4FF" strokeWidth="2" opacity="0.7" />
+              <text x="130" y="150" fontSize="12" fill="#00B4FF" opacity="0.6" textAnchor="middle">Gate</text>
               
               {/* Docks */}
               <rect x="620" y="150" width="40" height="120" fill="none" stroke="#FF2A00" strokeWidth="2" opacity="0.7" />
@@ -82,24 +82,24 @@ export default function Home() {
               {/* Parking spots */}
               {[200, 320, 440].map((x, i) => (
                 <g key={i}>
-                  <rect x={x} y="200" width="80" height="100" fill="none" stroke="#00FFC2" strokeWidth="1" opacity="0.3" />
-                  <circle cx={x + 40} cy={250} r="8" fill="#00FFC2" opacity="0.6" />
+                  <rect x={x} y="200" width="80" height="100" fill="none" stroke="#00B4FF" strokeWidth="1" opacity="0.3" />
+                  <circle cx={x + 40} cy={250} r="8" fill="#00B4FF" opacity="0.6" />
                 </g>
               ))}
               
               {/* Moving data packets (trucks) */}
               <g id="packet1" opacity="0.8">
-                <circle cx="200" cy="250" r="12" fill="#00FFC2" />
-                <circle cx="200" cy="250" r="12" fill="none" stroke="#00FFC2" strokeWidth="2" opacity="0.5" />
+                <circle cx="200" cy="250" r="12" fill="#00B4FF" />
+                <circle cx="200" cy="250" r="12" fill="none" stroke="#00B4FF" strokeWidth="2" opacity="0.5" />
               </g>
               <g id="packet2" opacity="0.6">
-                <circle cx="340" cy="280" r="12" fill="#00FFC2" />
-                <circle cx="340" cy="280" r="12" fill="none" stroke="#00FFC2" strokeWidth="2" opacity="0.3" />
+                <circle cx="340" cy="280" r="12" fill="#00B4FF" />
+                <circle cx="340" cy="280" r="12" fill="none" stroke="#00B4FF" strokeWidth="2" opacity="0.3" />
               </g>
               
               {/* Connection lines */}
-              <line x1="200" y1="250" x2="640" y2="200" stroke="#00FFC2" strokeWidth="1" opacity="0.3" strokeDasharray="5,5" />
-              <line x1="340" y1="280" x2="640" y2="250" stroke="#00FFC2" strokeWidth="1" opacity="0.2" strokeDasharray="5,5" />
+              <line x1="200" y1="250" x2="640" y2="200" stroke="#00B4FF" strokeWidth="1" opacity="0.3" strokeDasharray="5,5" />
+              <line x1="340" y1="280" x2="640" y2="250" stroke="#00B4FF" strokeWidth="1" opacity="0.2" strokeDasharray="5,5" />
             </svg>
           </div>
         </div>
@@ -148,8 +148,8 @@ export default function Home() {
             {[
               { level: 1, name: 'Chaos', color: '#FF2A00', desc: 'Turbulent. Manual. Opaque.' },
               { level: 2, name: 'Management', color: '#FFB800', desc: 'Recorded. Reported. Reactive.' },
-              { level: 3, name: 'Orchestration', color: '#00FFC2', desc: 'Optimized. Directed. Proactive.' },
-              { level: 4, name: 'Flow State', color: '#00FFC2', desc: 'Perfect. Automated. Autonomous.' },
+              { level: 3, name: 'Orchestration', color: '#00B4FF', desc: 'Optimized. Directed. Proactive.' },
+              { level: 4, name: 'Flow State', color: '#00B4FF', desc: 'Perfect. Automated. Autonomous.' },
             ].map((step, i) => (
               <div key={i} className="glass-card p-6 flex items-center gap-6">
                 <div 

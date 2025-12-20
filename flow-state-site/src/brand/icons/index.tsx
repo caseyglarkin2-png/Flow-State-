@@ -631,7 +631,7 @@ export const NetworkIcon: React.FC<IconProps> = ({
 // Status Icons
 export const FlowStatusIcon: React.FC<IconProps> = ({
   size = defaultProps.size,
-  color = '#00FFC2',
+  color = '#00B4FF',
   strokeWidth = defaultProps.strokeWidth,
   className,
 }) => (

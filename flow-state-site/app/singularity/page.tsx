@@ -287,80 +287,86 @@ export default function SingularityPage() {
 
             {/* SVG Network Map */}
             <svg viewBox="0 0 100 100" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
+              {/* Definitions for gradients and filters */}
+              <defs>
+                {/* Blue gradient for map */}
+                <linearGradient id="mapGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#0066CC" stopOpacity="0.15" />
+                  <stop offset="50%" stopColor="#0088FF" stopOpacity="0.1" />
+                  <stop offset="100%" stopColor="#00AAFF" stopOpacity="0.15" />
+                </linearGradient>
+                {/* Wave animation filter */}
+                <filter id="waveFilter" x="-20%" y="-20%" width="140%" height="140%">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" result="noise">
+                    <animate attributeName="baseFrequency" values="0.015;0.02;0.015" dur="8s" repeatCount="indefinite" />
+                  </feTurbulence>
+                  <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G" />
+                </filter>
+                {/* Glow filter for active nodes */}
+                <filter id="blueGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="0.8" result="blur" />
+                  <feFlood floodColor="#00AAFF" floodOpacity="0.6" />
+                  <feComposite in2="blur" operator="in" />
+                  <feMerge>
+                    <feMergeNode />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+
               {/* US Map Outline - SONAR style */}
-              <g className="us-map-outline">
-                {/* Continental US outline path - simplified for performance */}
+              <g opacity="0.6" filter="url(#waveFilter)">
+                {/* Continental US outline - simplified polygon */}
                 <path
-                  d="M8,18 L10,12 L12,10 L11,15 L10,20 L8,28 L7,35 L6,42 L8,48 L10,52 L12,55 L15,58 L18,56 L22,58 L26,60 L30,58 L34,62 L38,65 L42,68 L46,66 L50,68 L54,65 L58,62 L62,58 L66,60 L70,58 L72,62 L74,68 L76,75 L72,78 L68,72 L64,65 L60,60 L56,58 L52,55 L48,52 L44,50 L40,48 L36,50 L32,48 L28,50 L24,52 L20,50 L16,48 L12,50 L8,48"
-                  fill="none"
-                  stroke="#00FFC2"
+                  d="M 5 20 
+                     L 8 15 L 12 12 L 15 14 L 18 11 L 22 10 L 28 12 L 32 11 L 38 10 
+                     L 42 12 L 45 10 L 48 8 L 52 10 L 56 8 L 60 10 L 65 12 L 70 14 
+                     L 75 16 L 78 18 L 82 16 L 85 18 L 88 20 L 90 24 L 88 28 L 86 32 
+                     L 84 36 L 82 40 L 80 44 L 76 48 L 72 52 L 70 56 L 72 60 L 75 65 
+                     L 72 70 L 68 72 L 64 68 L 58 66 L 52 68 L 48 72 L 44 70 L 40 68 
+                     L 36 72 L 32 70 L 28 68 L 24 66 L 20 62 L 16 58 L 14 54 L 12 50 
+                     L 10 46 L 8 42 L 6 38 L 5 34 L 4 30 L 5 25 Z"
+                  fill="url(#mapGradient)"
+                  stroke="#0088FF"
                   strokeWidth="0.3"
-                  opacity="0.15"
-                  className="transition-opacity duration-1000"
+                  strokeOpacity="0.4"
                 />
-                {/* West Coast */}
+                {/* State-like internal lines for texture */}
                 <path
-                  d="M8,12 L10,10 L11,14 L10,22 L8,30 L6,38 L7,45 L10,50 L13,54 L16,56"
+                  d="M 20 20 L 22 35 L 18 50 M 35 15 L 38 40 L 35 60 M 50 12 L 52 45 L 50 65 
+                     M 65 18 L 62 42 L 65 58 M 78 25 L 75 45 L 72 55
+                     M 10 35 L 45 38 M 12 50 L 55 52 M 25 22 L 75 28"
                   fill="none"
-                  stroke="#00FFC2"
-                  strokeWidth="0.4"
-                  opacity={phase === 'flow' ? 0.35 : 0.12}
-                  className="transition-opacity duration-1000"
+                  stroke="#0077DD"
+                  strokeWidth="0.15"
+                  strokeOpacity="0.3"
+                  strokeDasharray="2 2"
                 />
-                {/* Southern Border */}
-                <path
-                  d="M16,56 L20,54 L24,56 L28,55 L32,58 L36,62 L40,64 L44,66 L48,65 L52,68 L56,66 L60,62 L64,58 L68,56 L72,60 L74,68 L76,78"
-                  fill="none"
-                  stroke="#00FFC2"
-                  strokeWidth="0.4"
-                  opacity={phase === 'flow' ? 0.35 : 0.12}
-                  className="transition-opacity duration-1000"
-                />
-                {/* East Coast */}
-                <path
-                  d="M76,78 L74,72 L72,65 L70,58 L72,52 L74,46 L76,40 L78,34 L80,28 L82,24 L86,20 L90,16"
-                  fill="none"
-                  stroke="#00FFC2"
-                  strokeWidth="0.4"
-                  opacity={phase === 'flow' ? 0.35 : 0.12}
-                  className="transition-opacity duration-1000"
-                />
-                {/* Northern Border */}
-                <path
-                  d="M90,16 L86,14 L80,16 L74,14 L68,16 L62,15 L56,16 L50,14 L44,16 L38,15 L32,16 L26,14 L20,15 L14,14 L10,12 L8,12"
-                  fill="none"
-                  stroke="#00FFC2"
-                  strokeWidth="0.4"
-                  opacity={phase === 'flow' ? 0.35 : 0.12}
-                  className="transition-opacity duration-1000"
-                />
-                {/* Great Lakes region outline */}
-                <path
-                  d="M50,22 L54,20 L58,22 L62,20 L64,24 L60,28 L56,26 L52,28 L48,26 L50,22"
-                  fill="none"
-                  stroke="#00FFC2"
-                  strokeWidth="0.25"
-                  opacity={phase === 'flow' ? 0.25 : 0.08}
-                  className="transition-opacity duration-1000"
-                />
-                {/* Florida peninsula */}
-                <path
-                  d="M64,58 L66,62 L68,66 L70,72 L72,78 L74,80 L72,76 L68,68 L66,62"
-                  fill="none"
-                  stroke="#00FFC2"
-                  strokeWidth="0.3"
-                  opacity={phase === 'flow' ? 0.3 : 0.1}
-                  className="transition-opacity duration-1000"
-                />
-                {/* Texas shape */}
-                <path
-                  d="M28,55 L32,52 L36,50 L40,52 L44,56 L46,62 L44,66 L40,64 L36,62 L32,58 L28,55"
-                  fill="none"
-                  stroke="#00FFC2"
-                  strokeWidth="0.25"
-                  opacity={phase === 'flow' ? 0.2 : 0.06}
-                  className="transition-opacity duration-1000"
-                />
+              </g>
+
+              {/* Animated water/wave effect overlay */}
+              <g opacity="0.15">
+                <rect x="0" y="0" width="100" height="100" fill="none">
+                  <animate attributeName="opacity" values="0.1;0.2;0.1" dur="4s" repeatCount="indefinite" />
+                </rect>
+                {/* Wave lines */}
+                {[20, 35, 50, 65, 80].map((y, i) => (
+                  <path
+                    key={`wave-${i}`}
+                    d={`M 0 ${y} Q 25 ${y + (i % 2 === 0 ? 3 : -3)} 50 ${y} Q 75 ${y + (i % 2 === 0 ? -3 : 3)} 100 ${y}`}
+                    fill="none"
+                    stroke="#0088FF"
+                    strokeWidth="0.2"
+                    opacity="0.3"
+                  >
+                    <animate
+                      attributeName="d"
+                      values={`M 0 ${y} Q 25 ${y + 3} 50 ${y} Q 75 ${y - 3} 100 ${y};M 0 ${y} Q 25 ${y - 3} 50 ${y} Q 75 ${y + 3} 100 ${y};M 0 ${y} Q 25 ${y + 3} 50 ${y} Q 75 ${y - 3} 100 ${y}`}
+                      dur={`${3 + i * 0.5}s`}
+                      repeatCount="indefinite"
+                    />
+                  </path>
+                ))}
               </g>
 
               {/* Connection lines between online facilities */}
@@ -372,7 +378,7 @@ export default function SingularityPage() {
                     y1={from.y}
                     x2={to.x}
                     y2={to.y}
-                    stroke="#00FFC2"
+                    stroke="#00AAFF"
                     strokeWidth="0.15"
                     opacity={phase === 'flow' ? 0.4 : 0.2}
                     className="transition-opacity duration-500"
@@ -395,8 +401,9 @@ export default function SingularityPage() {
                       cx={x}
                       cy={y}
                       r={packet.type === 'truck' ? 1.2 : 0.8}
-                      fill={packet.type === 'truck' ? '#00FFC2' : packet.type === 'bol' ? '#FFB800' : '#00A8FF'}
+                      fill={packet.type === 'truck' ? '#00AAFF' : packet.type === 'bol' ? '#00DDFF' : '#0066CC'}
                       opacity={0.9}
+                      filter="url(#blueGlow)"
                     >
                       <animate
                         attributeName="opacity"
@@ -419,7 +426,7 @@ export default function SingularityPage() {
                       cy={facility.y}
                       r="3"
                       fill="none"
-                      stroke="#00FFC2"
+                      stroke="#00AAFF"
                       strokeWidth="0.3"
                       opacity="0.5"
                     >
@@ -443,8 +450,9 @@ export default function SingularityPage() {
                     cx={facility.x}
                     cy={facility.y}
                     r="2"
-                    fill={facility.status === 'offline' ? '#FF2A00' : 
-                          facility.status === 'activating' ? '#FFB800' : '#00FFC2'}
+                    fill={facility.status === 'offline' ? '#334466' : 
+                          facility.status === 'activating' ? '#00DDFF' : '#00AAFF'}
+                    filter={facility.status === 'online' ? 'url(#blueGlow)' : undefined}
                     className="transition-all duration-500"
                   />
                   
@@ -453,7 +461,7 @@ export default function SingularityPage() {
                     <polygon
                       points={`${facility.x},${facility.y-2.5} ${facility.x+2.2},${facility.y-1.25} ${facility.x+2.2},${facility.y+1.25} ${facility.x},${facility.y+2.5} ${facility.x-2.2},${facility.y+1.25} ${facility.x-2.2},${facility.y-1.25}`}
                       fill="none"
-                      stroke="#00FFC2"
+                      stroke="#00AAFF"
                       strokeWidth="0.3"
                     />
                   )}
@@ -463,7 +471,7 @@ export default function SingularityPage() {
                     x={facility.x}
                     y={facility.y + 5}
                     fontSize="2"
-                    fill={facility.status === 'online' ? '#00FFC2' : '#888888'}
+                    fill={facility.status === 'online' ? '#00AAFF' : '#556677'}
                     textAnchor="middle"
                     className="transition-colors duration-500"
                   >
@@ -476,16 +484,16 @@ export default function SingularityPage() {
             {/* Legend */}
             <div className="absolute bottom-4 right-4 glass-card p-3 text-xs">
               <div className="flex items-center gap-2 mb-1">
-                <div className="w-2 h-2 rounded-full bg-neon"></div>
+                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#00AAFF', boxShadow: '0 0 6px #00AAFF' }}></div>
                 <span className="text-steel">Flow State</span>
               </div>
               <div className="flex items-center gap-2 mb-1">
-                <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
+                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#00DDFF' }}></div>
                 <span className="text-steel">Activating</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-ember"></div>
-                <span className="text-steel">Chaos</span>
+                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#334466' }}></div>
+                <span className="text-steel">Standby</span>
               </div>
             </div>
           </div>

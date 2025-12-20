@@ -196,7 +196,7 @@ export const ControlPanel: React.FC = () => {
   ];
   
   const statuses: { status: FacilityStatus; color: string; icon: React.ReactNode }[] = [
-    { status: 'Flow', color: '#00FFC2', icon: <FlowStatusIcon size={14} /> },
+    { status: 'Flow', color: '#00B4FF', icon: <FlowStatusIcon size={14} /> },
     { status: 'Activating', color: '#FFB800', icon: <ActivatingStatusIcon size={14} /> },
     { status: 'Chaos', color: '#FF2A00', icon: <ChaosStatusIcon size={14} /> },
   ];

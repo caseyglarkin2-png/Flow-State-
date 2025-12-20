@@ -92,7 +92,7 @@ const QualityIndicator: React.FC<QualityIndicatorProps> = ({ checks }) => {
   const invalidFields = checks.filter((c) => c.status === 'invalid');
   
   const getColor = () => {
-    if (percentage >= 90) return '#00FFC2';
+    if (percentage >= 90) return '#00B4FF';
     if (percentage >= 70) return '#FFB800';
     return '#FF2A00';
   };
@@ -311,7 +311,7 @@ export const FacilityDrawer: React.FC = () => {
                   icon={InboundLaneIcon}
                   label="Inbound Lanes"
                   value={facility.counts.inboundLanes}
-                  color="#00FFC2"
+                  color="#00B4FF"
                 />
                 <CountItem
                   icon={OutboundLaneIcon}

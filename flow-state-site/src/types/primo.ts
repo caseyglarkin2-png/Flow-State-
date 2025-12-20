@@ -129,7 +129,7 @@ export const defaultTheme: Theme = {
   colors: {
     background: '#050505',
     surface: '#0F0F0F',
-    primary: '#00FFC2',
+    primary: '#00B4FF',
     alert: '#FF2A00',
     text: '#FFFFFF',
     textSecondary: '#888888',
@@ -189,7 +189,7 @@ export function getRegionByState(state: string): string {
 
 // Status Colors
 export const STATUS_COLORS: Record<FacilityStatus, string> = {
-  Flow: '#00FFC2',
+  Flow: '#00B4FF',
   Activating: '#FFB800',
   Chaos: '#FF2A00',
 };
