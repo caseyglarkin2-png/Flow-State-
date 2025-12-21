@@ -13,8 +13,8 @@ export default function PrimoSingularityPage() {
   useEffect(() => {
     setMounted(true);
     
-    // Dynamically import the map component
-    import('@/components/primo/PrimoMap')
+    // First try the simple map to test basic rendering
+    import('@/components/primo/SimpleMap')
       .then((mod) => {
         setMapComponent(() => mod.default);
       })
