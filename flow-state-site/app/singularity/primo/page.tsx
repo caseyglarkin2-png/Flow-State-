@@ -6,19 +6,16 @@
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
-import { usePrimoStore, selectSelectedFacility } from '@/store/primoStore';
-import { useDigitalTwinStore } from '@/store/digitalTwinStore';
-import {
-  KPIStrip,
-  ControlPanel,
-  ControlPanelToggle,
-  FacilityDrawer,
-  ThemeStudio,
-  CSVImport,
-  LogoSwitcher,
-  DigitalTwinGenerator,
-} from '@/components/primo';
-import { SettingsIcon, FilterIcon } from '@/brand/icons';
+
+// Dynamic import for all components to avoid SSR issues
+const KPIStrip = dynamic(() => import('@/components/primo/KPIStrip'), { ssr: false });
+const ControlPanel = dynamic(() => import('@/components/primo/ControlPanel').then(m => m.default), { ssr: false });
+const ControlPanelToggle = dynamic(() => import('@/components/primo/ControlPanel').then(m => m.ControlPanelToggle), { ssr: false });
+const FacilityDrawer = dynamic(() => import('@/components/primo/FacilityDrawer'), { ssr: false });
+const ThemeStudio = dynamic(() => import('@/components/primo/ThemeStudio'), { ssr: false });
+const CSVImport = dynamic(() => import('@/components/primo/CSVImport'), { ssr: false });
+const LogoSwitcher = dynamic(() => import('@/components/primo/LogoSwitcher'), { ssr: false });
+const DigitalTwinGenerator = dynamic(() => import('@/components/primo/DigitalTwinGenerator').then(m => m.DigitalTwinGenerator), { ssr: false });
 
 // Dynamic import for map to avoid SSR issues
 const PrimoMap = dynamic(
@@ -37,14 +34,61 @@ const PrimoMap = dynamic(
 );
 
 export default function PrimoSingularityPage() {
-  const theme = usePrimoStore((state) => state.theme);
-  const isControlPanelOpen = usePrimoStore((state) => state.isControlPanelOpen);
-  const setControlPanelOpen = usePrimoStore((state) => state.setControlPanelOpen);
-  const setThemeStudioOpen = usePrimoStore((state) => state.setThemeStudioOpen);
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="w-screen h-screen bg-[#050505] flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-2 border-[#00B4FF] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-[#888] text-sm">Loading Primo Singularity Map...</p>
+        </div>
+      </div>
+    );
+  }
+
+  return <PrimoSingularityContent />;
+}
+
+// Separate component that only renders on client
+function PrimoSingularityContent() {
+  const [storeLoaded, setStoreLoaded] = useState(false);
+  const [storeState, setStoreState] = useState<any>(null);
+  
+  useEffect(() => {
+    // Dynamically load store on client side only
+    const loadStore = async () => {
+      const { usePrimoStore } = await import('@/store/primoStore');
+      setStoreState({
+        theme: usePrimoStore.getState().theme,
+        isControlPanelOpen: usePrimoStore.getState().isControlPanelOpen,
+        setControlPanelOpen: usePrimoStore.getState().setControlPanelOpen,
+        setThemeStudioOpen: usePrimoStore.getState().setThemeStudioOpen,
+      });
+      
+      // Subscribe to changes
+      usePrimoStore.subscribe((state) => {
+        setStoreState({
+          theme: state.theme,
+          isControlPanelOpen: state.isControlPanelOpen,
+          setControlPanelOpen: state.setControlPanelOpen,
+          setThemeStudioOpen: state.setThemeStudioOpen,
+        });
+      });
+      
+      setStoreLoaded(true);
+    };
+    loadStore();
+  }, []);
 
   // Apply theme to document
   useEffect(() => {
-    if (!theme?.colors) return;
+    if (!storeState?.theme?.colors) return;
+    const theme = storeState.theme;
     document.documentElement.style.setProperty('--color-background', theme.colors.background);
     document.documentElement.style.setProperty('--color-surface', theme.colors.surface);
     document.documentElement.style.setProperty('--color-primary', theme.colors.primary);
@@ -53,7 +97,20 @@ export default function PrimoSingularityPage() {
     document.documentElement.style.setProperty('--color-text-secondary', theme.colors.textSecondary);
     document.documentElement.style.setProperty('--font-body', theme.typography.bodyFont);
     document.documentElement.style.setProperty('--font-mono', theme.typography.monoFont);
-  }, [theme]);
+  }, [storeState?.theme]);
+
+  if (!storeLoaded || !storeState?.theme) {
+    return (
+      <div className="w-screen h-screen bg-[#050505] flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-2 border-[#00B4FF] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-[#888] text-sm">Initializing...</p>
+        </div>
+      </div>
+    );
+  }
+
+  const { theme, isControlPanelOpen, setControlPanelOpen, setThemeStudioOpen } = storeState;
 
   return (
     <div
@@ -115,7 +172,10 @@ export default function PrimoSingularityPage() {
             }}
             title="Open Control Panel"
           >
-            <FilterIcon size={20} color={theme.colors.primary} />
+            {/* Filter Icon */}
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={theme.colors.primary} strokeWidth="2">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+            </svg>
           </motion.button>
         )}
         <motion.button
@@ -129,7 +189,11 @@ export default function PrimoSingularityPage() {
           }}
           title="Open Theme Studio"
         >
-          <SettingsIcon size={20} color={theme.colors.primary} />
+          {/* Settings Icon */}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={theme.colors.primary} strokeWidth="2">
+            <circle cx="12" cy="12" r="3" />
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+          </svg>
         </motion.button>
       </div>
 
