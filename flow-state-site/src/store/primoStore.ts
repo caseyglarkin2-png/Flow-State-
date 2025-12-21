@@ -20,12 +20,17 @@ import {
 // Import sample data
 import sampleFacilities from '@/data/primoFacilities.sample.json';
 import sampleLanes from '@/data/primoLanes.sample.json';
+import realFacilities from '@/data/primoRealFacilities.json';
+
+// Data source type
+export type DataSource = 'sample' | 'real' | 'combined';
 
 // Primo Store State
 interface PrimoState {
   // Data
   facilities: Facility[];
   lanes: Lane[];
+  dataSource: DataSource;
   
   // Filters
   filters: FilterState;
@@ -50,6 +55,9 @@ interface PrimoState {
   setFacilities: (facilities: Facility[]) => void;
   setLanes: (lanes: Lane[]) => void;
   loadSampleData: () => void;
+  loadRealData: () => void;
+  loadCombinedData: () => void;
+  setDataSource: (source: DataSource) => void;
   
   // Actions - Filters
   setSearch: (search: string) => void;
@@ -173,9 +181,10 @@ const defaultToggles: ToggleState = {
 export const usePrimoStore = create<PrimoState>()(
   persist(
     (set, get) => ({
-      // Initial state
-      facilities: sampleFacilities as Facility[],
+      // Initial state - default to real Primo facilities
+      facilities: [...(realFacilities as Facility[]), ...(sampleFacilities as Facility[])],
       lanes: sampleLanes as Lane[],
+      dataSource: 'combined' as DataSource,
       filters: defaultFilters,
       toggles: defaultToggles,
       selectedFacilityId: null,
@@ -192,7 +201,31 @@ export const usePrimoStore = create<PrimoState>()(
       loadSampleData: () => set({
         facilities: sampleFacilities as Facility[],
         lanes: sampleLanes as Lane[],
+        dataSource: 'sample',
       }),
+      loadRealData: () => set({
+        facilities: realFacilities as Facility[],
+        lanes: [], // No lanes for real data yet
+        dataSource: 'real',
+      }),
+      loadCombinedData: () => set({
+        facilities: [...(realFacilities as Facility[]), ...(sampleFacilities as Facility[])],
+        lanes: sampleLanes as Lane[],
+        dataSource: 'combined',
+      }),
+      setDataSource: (source: DataSource) => {
+        switch (source) {
+          case 'sample':
+            get().loadSampleData();
+            break;
+          case 'real':
+            get().loadRealData();
+            break;
+          case 'combined':
+            get().loadCombinedData();
+            break;
+        }
+      },
       
       // Filter actions
       setSearch: (search) => set((state) => ({

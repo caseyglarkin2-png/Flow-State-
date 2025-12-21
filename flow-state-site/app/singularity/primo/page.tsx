@@ -3,10 +3,11 @@
 
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { motion } from 'framer-motion';
-import { usePrimoStore } from '@/store/primoStore';
+import { usePrimoStore, selectSelectedFacility } from '@/store/primoStore';
+import { useDigitalTwinStore } from '@/store/digitalTwinStore';
 import {
   KPIStrip,
   ControlPanel,
@@ -15,6 +16,13 @@ import {
   ThemeStudio,
   CSVImport,
   LogoSwitcher,
+  DigitalTwinGenerator,
+  Yard3DView,
+  AgentChat,
+  PredictiveAlertsPanel,
+  HistoricalPlayback,
+  MultiFacilityDashboard,
+  IntegrationHooks,
 } from '@/components/primo';
 import { SettingsIcon, FilterIcon } from '@/brand/icons';
 
@@ -39,6 +47,29 @@ export default function PrimoSingularityPage() {
   const isControlPanelOpen = usePrimoStore((state) => state.isControlPanelOpen);
   const setControlPanelOpen = usePrimoStore((state) => state.setControlPanelOpen);
   const setThemeStudioOpen = usePrimoStore((state) => state.setThemeStudioOpen);
+  const selectedFacility = usePrimoStore(selectSelectedFacility);
+  
+  // Enhancement panel states
+  const [enhancementPanels, setEnhancementPanels] = useState({
+    yard3d: false,
+    agentChat: false,
+    predictiveAlerts: false,
+    historicalPlayback: false,
+    multiFacility: false,
+    integrationHooks: false,
+  });
+  
+  const handleOpenPanel = (panel: string) => {
+    setEnhancementPanels(prev => ({ ...prev, [panel]: true }));
+  };
+  
+  const handleClosePanel = (panel: string) => {
+    setEnhancementPanels(prev => ({ ...prev, [panel]: false }));
+  };
+  
+  // Get current twin for panels that need it
+  const twins = useDigitalTwinStore((state) => state.twins);
+  const currentTwin = selectedFacility ? twins[selectedFacility.id] : null;
 
   // Apply theme to document
   useEffect(() => {
@@ -78,6 +109,49 @@ export default function PrimoSingularityPage() {
 
       {/* CSV Import Modal */}
       <CSVImport />
+
+      {/* Digital Twin Generator Panel */}
+      <DigitalTwinGenerator onOpenPanel={handleOpenPanel} />
+
+      {/* Enhancement Panels */}
+      {currentTwin && (
+        <>
+          <Yard3DView
+            twin={currentTwin}
+            isOpen={enhancementPanels.yard3d}
+            onClose={() => handleClosePanel('yard3d')}
+          />
+          
+          <AgentChat
+            twin={currentTwin}
+            isOpen={enhancementPanels.agentChat}
+            onClose={() => handleClosePanel('agentChat')}
+          />
+          
+          <PredictiveAlertsPanel
+            twin={currentTwin}
+            isOpen={enhancementPanels.predictiveAlerts}
+            onClose={() => handleClosePanel('predictiveAlerts')}
+          />
+          
+          <HistoricalPlayback
+            twin={currentTwin}
+            isOpen={enhancementPanels.historicalPlayback}
+            onClose={() => handleClosePanel('historicalPlayback')}
+          />
+          
+          <IntegrationHooks
+            twin={currentTwin}
+            isOpen={enhancementPanels.integrationHooks}
+            onClose={() => handleClosePanel('integrationHooks')}
+          />
+        </>
+      )}
+      
+      <MultiFacilityDashboard
+        isOpen={enhancementPanels.multiFacility}
+        onClose={() => handleClosePanel('multiFacility')}
+      />
 
       {/* Header overlay with logo and controls */}
       <motion.div

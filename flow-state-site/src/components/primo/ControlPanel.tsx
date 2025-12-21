@@ -5,7 +5,8 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { usePrimoStore, selectUniqueBrands, selectUniqueRegions } from '@/store/primoStore';
+import { usePrimoStore, selectUniqueBrands, selectUniqueRegions, DataSource } from '@/store/primoStore';
+import { useDigitalTwinStore } from '@/store/digitalTwinStore';
 import {
   SearchIcon,
   FilterIcon,
@@ -159,6 +160,10 @@ export const ControlPanel: React.FC = () => {
   const isOpen = usePrimoStore((state) => state.isControlPanelOpen);
   const brands = usePrimoStore(selectUniqueBrands);
   const regions = usePrimoStore(selectUniqueRegions);
+  const dataSource = usePrimoStore((state) => state.dataSource);
+  const setDataSource = usePrimoStore((state) => state.setDataSource);
+  
+  const { setDigitalTwinPanelOpen } = useDigitalTwinStore();
   
   const {
     setSearch,
@@ -398,6 +403,56 @@ export const ControlPanel: React.FC = () => {
               checked={toggles.animationEnabled}
               onChange={setAnimationEnabled}
             />
+          </div>
+          
+          {/* Data Source */}
+          <div
+            className="p-4 border-t space-y-3"
+            style={{ borderColor: `${theme.colors.primary}20` }}
+          >
+            <div className="flex items-center gap-2 mb-2">
+              <span className="text-sm font-medium" style={{ color: theme.colors.text }}>
+                Data Source
+              </span>
+            </div>
+            <div className="grid grid-cols-3 gap-1">
+              {(['real', 'sample', 'combined'] as DataSource[]).map((source) => (
+                <button
+                  key={source}
+                  onClick={() => setDataSource(source)}
+                  className="px-2 py-1.5 rounded text-xs font-medium transition-all"
+                  style={{
+                    backgroundColor: dataSource === source 
+                      ? theme.colors.primary 
+                      : `${theme.colors.background}60`,
+                    color: dataSource === source 
+                      ? theme.colors.background 
+                      : theme.colors.text,
+                  }}
+                >
+                  {source === 'real' ? 'Primo' : source === 'sample' ? 'Sample' : 'All'}
+                </button>
+              ))}
+            </div>
+            <p className="text-xs" style={{ color: theme.colors.textSecondary }}>
+              {dataSource === 'real' && '16 verified Primo facilities'}
+              {dataSource === 'sample' && '260 sample facilities'}
+              {dataSource === 'combined' && '276 total facilities'}
+            </p>
+          </div>
+          
+          {/* Digital Twin */}
+          <div className="p-4 border-t" style={{ borderColor: `${theme.colors.primary}20` }}>
+            <button
+              onClick={() => setDigitalTwinPanelOpen(true)}
+              className="w-full py-3 rounded-lg text-sm font-medium transition-all hover:scale-[1.02]"
+              style={{
+                background: `linear-gradient(135deg, ${theme.colors.primary}, ${theme.colors.alert})`,
+                color: theme.colors.background,
+              }}
+            >
+              Digital Twin Generator
+            </button>
           </div>
         </motion.div>
       )}
