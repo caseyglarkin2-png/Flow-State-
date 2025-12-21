@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "framework": "nextjs",
   "buildCommand": "cd flow-state-site && npm run build",
   "outputDirectory": "flow-state-site/out",
-  "installCommand": "cd flow-state-site && npm install"
+  "installCommand": "cd flow-state-site && npm install",
+  "framework": null
 }
