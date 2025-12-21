@@ -328,9 +328,7 @@ const YardMiniMap: React.FC<{
 };
 
 // Main Digital Twin Generator Component
-export const DigitalTwinGenerator: React.FC<{
-  onOpenPanel?: (panel: string) => void;
-}> = ({ onOpenPanel }) => {
+export const DigitalTwinGenerator: React.FC = () => {
   const theme = usePrimoStore((state) => state.theme);
   const facility = usePrimoStore(selectSelectedFacility);
   const isDrawerOpen = usePrimoStore((state) => state.isDrawerOpen);
@@ -572,39 +570,6 @@ export const DigitalTwinGenerator: React.FC<{
                       <div className="text-xs" style={{ color: theme.colors.textSecondary }}>Issues</div>
                     </div>
                   </div>
-                  
-                  {/* Enhancement Tools */}
-                  {onOpenPanel && (
-                    <div className="space-y-2">
-                      <p className="text-xs font-medium" style={{ color: theme.colors.textSecondary }}>
-                        Enhancement Tools
-                      </p>
-                      <div className="grid grid-cols-3 gap-2">
-                        {[
-                          { key: 'yard3d', label: '3D View', icon: '🏗️' },
-                          { key: 'agentChat', label: 'AI Chat', icon: '💬' },
-                          { key: 'predictiveAlerts', label: 'Alerts', icon: '⚠️' },
-                          { key: 'historicalPlayback', label: 'History', icon: '📊' },
-                          { key: 'multiFacility', label: 'Compare', icon: '📍' },
-                          { key: 'integrationHooks', label: 'Integrations', icon: '🔌' },
-                        ].map(tool => (
-                          <button
-                            key={tool.key}
-                            onClick={() => onOpenPanel(tool.key)}
-                            className="flex flex-col items-center gap-1 p-2 rounded-lg text-xs transition-all hover:scale-105"
-                            style={{
-                              backgroundColor: `${theme.colors.primary}15`,
-                              border: `1px solid ${theme.colors.primary}30`,
-                              color: theme.colors.text,
-                            }}
-                          >
-                            <span className="text-lg">{tool.icon}</span>
-                            <span>{tool.label}</span>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
                 </div>
                 
                 {/* Right: Agents */}
