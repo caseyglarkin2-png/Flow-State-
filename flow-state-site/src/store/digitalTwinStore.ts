@@ -3,6 +3,7 @@
 
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
+import React from 'react';
 import {
   YardAsset,
   YardAssetType,
@@ -639,6 +640,3 @@ export function useSimulationTick() {
     return () => clearInterval(interval);
   }, [isSimulating, simulationSpeed, tickSimulation]);
 }
-
-// Need React import for the hook
-import React from 'react';
