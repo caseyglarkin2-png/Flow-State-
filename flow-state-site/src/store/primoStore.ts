@@ -371,7 +371,17 @@ export const usePrimoStore = create<PrimoState>()(
     }),
     {
       name: 'primo-singularity-storage',
-      storage: createJSONStorage(() => localStorage),
+      storage: createJSONStorage(() => {
+        // Return a no-op storage during SSR
+        if (typeof window === 'undefined') {
+          return {
+            getItem: () => null,
+            setItem: () => {},
+            removeItem: () => {},
+          };
+        }
+        return localStorage;
+      }),
       version: 2,
       migrate: (persistedState) => {
         const state = persistedState as Partial<PrimoState> | undefined;
@@ -384,6 +394,7 @@ export const usePrimoStore = create<PrimoState>()(
         theme: state.theme,
         toggles: state.toggles,
       }),
+      skipHydration: true, // Skip hydration to avoid SSR mismatch
     }
   )
 );
