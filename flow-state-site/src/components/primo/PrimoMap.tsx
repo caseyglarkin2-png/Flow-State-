@@ -64,6 +64,14 @@ interface PrimoMapProps {
 }
 
 export const PrimoMap: React.FC<PrimoMapProps> = ({ className }) => {
+  // Add safety check for client-side only
+  const [isClient, setIsClient] = useState(false);
+  
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Store selectors - only access after client mount
   const theme = usePrimoStore((state) => state.theme);
   const mapViewState = usePrimoStore((state) => state.mapViewState);
   const setMapViewState = usePrimoStore((state) => state.setMapViewState);
@@ -231,6 +239,18 @@ export const PrimoMap: React.FC<PrimoMapProps> = ({ className }) => {
     onClick,
     onHover,
   ]);
+
+  // Don't render map until client is ready
+  if (!isClient) {
+    return (
+      <div className={className} style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#050505' }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ width: 32, height: 32, border: '2px solid #00B4FF', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite', margin: '0 auto 16px' }} />
+          <p style={{ color: '#888', fontSize: 14 }}>Initializing map...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={className} style={{ position: 'relative' }}>

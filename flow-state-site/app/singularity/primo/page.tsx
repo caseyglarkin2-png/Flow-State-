@@ -3,34 +3,25 @@
 
 'use client';
 
-import React, { useEffect, useState, Suspense } from 'react';
-import dynamic from 'next/dynamic';
-
-// Dynamic import for map to avoid SSR issues with maplibre-gl
-const PrimoMapComponent = dynamic(
-  () => import('@/components/primo/PrimoMap').then(mod => ({ default: mod.default })),
-  { 
-    ssr: false,
-    loading: () => (
-      <div className="w-full h-full flex items-center justify-center bg-[#050505]">
-        <div className="text-center">
-          <div className="w-8 h-8 border-2 border-[#00B4FF] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-[#888] text-sm">Loading map...</p>
-        </div>
-      </div>
-    ),
-  }
-);
-
-function MapWrapper() {
-  return <PrimoMapComponent className="w-full h-full" />;
-}
+import React, { useEffect, useState } from 'react';
 
 export default function PrimoSingularityPage() {
   const [mounted, setMounted] = useState(false);
+  const [mapError, setMapError] = useState<string | null>(null);
+  const [MapComponent, setMapComponent] = useState<React.ComponentType<any> | null>(null);
   
   useEffect(() => {
     setMounted(true);
+    
+    // Dynamically import the map component
+    import('@/components/primo/PrimoMap')
+      .then((mod) => {
+        setMapComponent(() => mod.default);
+      })
+      .catch((err) => {
+        console.error('Failed to load map:', err);
+        setMapError(err?.message || 'Failed to load map component');
+      });
   }, []);
 
   return (
@@ -48,22 +39,27 @@ export default function PrimoSingularityPage() {
 
       {/* Map */}
       <div className="absolute inset-0 pt-14">
-        {mounted ? (
-          <Suspense fallback={
-            <div className="w-full h-full flex items-center justify-center bg-[#050505]">
-              <div className="text-center">
-                <div className="w-8 h-8 border-2 border-[#00B4FF] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-                <p className="text-[#888] text-sm">Initializing...</p>
-              </div>
-            </div>
-          }>
-            <MapWrapper />
-          </Suspense>
-        ) : (
+        {!mounted ? (
           <div className="w-full h-full flex items-center justify-center bg-[#050505]">
             <div className="text-center">
               <div className="w-8 h-8 border-2 border-[#00B4FF] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
               <p className="text-[#888] text-sm">Loading...</p>
+            </div>
+          </div>
+        ) : mapError ? (
+          <div className="w-full h-full flex items-center justify-center bg-[#050505]">
+            <div className="text-center max-w-md p-6">
+              <p className="text-red-500 text-lg mb-2">Error Loading Map</p>
+              <p className="text-[#888] text-sm">{mapError}</p>
+            </div>
+          </div>
+        ) : MapComponent ? (
+          <MapComponent className="w-full h-full" />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-[#050505]">
+            <div className="text-center">
+              <div className="w-8 h-8 border-2 border-[#00B4FF] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+              <p className="text-[#888] text-sm">Loading map...</p>
             </div>
           </div>
         )}
