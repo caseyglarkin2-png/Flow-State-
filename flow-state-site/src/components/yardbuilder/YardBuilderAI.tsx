@@ -3,7 +3,7 @@
 
 'use client';
 
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 // Asset types that can be counted in a yard
 interface YardAssets {
@@ -74,8 +74,8 @@ export default function YardBuilderAI({ onFacilityCreated }: YardBuilderAIProps)
   // Generated facilities
   const [generatedFacilities, setGeneratedFacilities] = useState<FacilityProfile[]>([]);
   
-  // Map canvas ref
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  // Map zoom level for satellite view
+  const [mapZoom, setMapZoom] = useState(18);
 
   // Search for address using Nominatim (OpenStreetMap)
   const searchAddress = async () => {
@@ -180,103 +180,21 @@ export default function YardBuilderAI({ onFacilityCreated }: YardBuilderAIProps)
     setSearchQuery('');
   };
 
-  // Draw the map
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    
-    const draw = () => {
-      const { width, height } = canvas;
-      
-      // Dark background
-      ctx.fillStyle = '#0a0a0a';
-      ctx.fillRect(0, 0, width, height);
-      
-      // Grid pattern
-      ctx.strokeStyle = '#1a1a1a';
-      ctx.lineWidth = 1;
-      const gridSize = 30;
-      for (let x = 0; x < width; x += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, height);
-        ctx.stroke();
-      }
-      for (let y = 0; y < height; y += gridSize) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(width, y);
-        ctx.stroke();
-      }
-      
-      if (selectedLocation) {
-        const centerX = width / 2;
-        const centerY = height / 2;
-        
-        // Draw crosshairs
-        ctx.strokeStyle = '#00B4FF40';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.moveTo(centerX, 0);
-        ctx.lineTo(centerX, height);
-        ctx.moveTo(0, centerY);
-        ctx.lineTo(width, centerY);
-        ctx.stroke();
-        
-        // Draw location marker with glow
-        const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, 60);
-        gradient.addColorStop(0, '#00B4FF40');
-        gradient.addColorStop(1, 'transparent');
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, 60, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Inner marker
-        ctx.fillStyle = '#00B4FF';
-        ctx.beginPath();
-        ctx.arc(centerX, centerY, 12, 0, Math.PI * 2);
-        ctx.fill();
-        
-        ctx.strokeStyle = '#fff';
-        ctx.lineWidth = 3;
-        ctx.stroke();
-        
-        // Coordinates text
-        ctx.fillStyle = '#888';
-        ctx.font = '11px "JetBrains Mono", monospace';
-        ctx.textAlign = 'center';
-        ctx.fillText(`${selectedLocation.lat.toFixed(4)}, ${selectedLocation.lon.toFixed(4)}`, centerX, centerY + 35);
-        
-        // Satellite imagery placeholder text
-        ctx.fillStyle = '#333';
-        ctx.font = '14px Inter, sans-serif';
-        ctx.fillText('Satellite View', centerX, height - 20);
-      } else {
-        // Empty state
-        ctx.fillStyle = '#333';
-        ctx.font = '16px Inter, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText('Search for an address to view location', width / 2, height / 2);
-      }
-    };
-    
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-    draw();
-    
-    const handleResize = () => {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-      draw();
-    };
-    
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [selectedLocation]);
+  // Generate Google Maps satellite embed URL
+  const getMapEmbedUrl = () => {
+    if (!selectedLocation) return '';
+    const { lat, lon } = selectedLocation;
+    // Using Google Maps embed with satellite view
+    return `https://www.google.com/maps/embed/v1/view?key=AIzaSyBFw0Qbyq9zTFTd-tUY6CE8NZ_kBI5xAoM&center=${lat},${lon}&zoom=${mapZoom}&maptype=satellite`;
+  };
+
+  // Alternative: OpenStreetMap tile URL for satellite (using ESRI)
+  const getEsriSatelliteUrl = () => {
+    if (!selectedLocation) return '';
+    const { lat, lon } = selectedLocation;
+    // ESRI World Imagery - free satellite tiles
+    return `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/${mapZoom}/${Math.floor((1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) / 2 * Math.pow(2, mapZoom))}/${Math.floor((lon + 180) / 360 * Math.pow(2, mapZoom))}`;
+  };
 
   return (
     <div className="h-full flex">
@@ -455,19 +373,67 @@ export default function YardBuilderAI({ onFacilityCreated }: YardBuilderAIProps)
         )}
       </div>
       
-      {/* Right Panel - Map View */}
-      <div className="flex-1 relative">
-        <canvas ref={canvasRef} className="w-full h-full" />
+      {/* Right Panel - Satellite Map View */}
+      <div className="flex-1 relative bg-[#0a0a0a]">
+        {selectedLocation ? (
+          <>
+            {/* Google Maps Satellite Embed */}
+            <iframe
+              src={`https://www.google.com/maps?q=${selectedLocation.lat},${selectedLocation.lon}&z=${mapZoom}&t=k&output=embed`}
+              className="w-full h-full border-0"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+            
+            {/* Alternative: Link to open in Google Maps */}
+            <a
+              href={`https://www.google.com/maps/@${selectedLocation.lat},${selectedLocation.lon},${mapZoom}z/data=!3m1!1e3`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute top-4 left-4 px-3 py-2 bg-[#0F0F0F]/90 border border-[#222] rounded text-white text-sm hover:bg-[#1a1a1a] flex items-center gap-2"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+              Open in Google Maps
+            </a>
+          </>
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <div className="text-center">
+              <div className="text-6xl mb-4">🛰️</div>
+              <p className="text-[#888] text-lg">Search for an address to view satellite imagery</p>
+              <p className="text-[#555] text-sm mt-2">Enter a facility address in the search box</p>
+            </div>
+          </div>
+        )}
         
-        {/* Map Controls */}
+        {/* Zoom Controls */}
         <div className="absolute top-4 right-4 flex flex-col gap-2">
-          <button className="w-10 h-10 bg-[#0F0F0F]/90 border border-[#222] rounded text-white hover:bg-[#1a1a1a]">
+          <button 
+            onClick={() => setMapZoom(z => Math.min(21, z + 1))}
+            className="w-10 h-10 bg-[#0F0F0F]/90 border border-[#222] rounded text-white hover:bg-[#1a1a1a] text-xl font-bold"
+          >
             +
           </button>
-          <button className="w-10 h-10 bg-[#0F0F0F]/90 border border-[#222] rounded text-white hover:bg-[#1a1a1a]">
+          <button 
+            onClick={() => setMapZoom(z => Math.max(15, z - 1))}
+            className="w-10 h-10 bg-[#0F0F0F]/90 border border-[#222] rounded text-white hover:bg-[#1a1a1a] text-xl font-bold"
+          >
             −
           </button>
+          <div className="w-10 h-10 bg-[#0F0F0F]/90 border border-[#222] rounded text-white flex items-center justify-center text-xs">
+            {mapZoom}x
+          </div>
         </div>
+        
+        {/* Coordinates overlay */}
+        {selectedLocation && (
+          <div className="absolute bottom-20 left-4 px-3 py-2 bg-[#0F0F0F]/90 border border-[#222] rounded text-xs font-mono text-[#00B4FF]">
+            {selectedLocation.lat.toFixed(6)}, {selectedLocation.lon.toFixed(6)}
+          </div>
+        )}
         
         {/* Info overlay when location selected */}
         {selectedLocation && analysisComplete && (
