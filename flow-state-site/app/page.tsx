@@ -359,7 +359,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-5xl md:text-6xl font-black mb-8">Ready for Laminar Flow?</h2>
           <p className="text-xl text-steel/90 mb-4">Join 200+ enterprises orchestrating their yards.</p>
-          <p className="text-lg text-neon font-semibold mb-12">Only 5 Founding Member spots remaining.</p>
+          <p className="text-lg text-neon font-semibold mb-12">Only 3 Founding Member spots remaining.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/singularity" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all">
               <Crosshair size={20} className="text-void" />

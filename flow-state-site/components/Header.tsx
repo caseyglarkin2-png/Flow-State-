@@ -16,7 +16,7 @@ export default function Header() {
           Founding Member Program Closing:
         </span>
         <Link href="/singularity" className="text-neon font-semibold hover:underline inline-flex items-center gap-1">
-          Only 5 spots left <FlowArrow size={12} className="text-neon" />
+          Only 3 spots left <FlowArrow size={12} className="text-neon" />
         </Link>
       </div>
 

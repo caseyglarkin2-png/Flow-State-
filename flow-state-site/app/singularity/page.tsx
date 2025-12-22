@@ -759,10 +759,14 @@ export default function SingularityPage() {
             Join the First 50
           </h2>
 
-          <p className="text-xl text-steel mb-12 max-w-2xl mx-auto">
+          <p className="text-xl text-steel mb-8 max-w-2xl mx-auto">
             We're building the network with a select cohort of forward-thinking enterprises. 
             Founding members get priority deployment, direct product input, and <span className="text-neon font-semibold">locked-in pricing for life</span>.
           </p>
+
+          <div className="glass-card p-4 mb-12 inline-block border border-neon/30">
+            <p className="text-neon font-semibold">Now seeking: <span className="text-white">Reefer & Flatbed operations</span></p>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             <Card>
@@ -790,7 +794,7 @@ export default function SingularityPage() {
 
           <div className="glass-card p-8 inline-block mb-8">
             <p className="text-steel mb-2">Founding Member Spots Remaining</p>
-            <p className="text-6xl font-black neon-glow">5 / 50</p>
+            <p className="text-6xl font-black neon-glow">3 / 50</p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -819,11 +823,11 @@ export default function SingularityPage() {
               </div>
               <div>
                 <p className="text-lg text-steel/90 leading-relaxed">
-                  In the last 90 days, <span className="text-white font-bold">7 of your direct competitors</span> have 
-                  initiated Flow State evaluations. Three have already signed founding agreements.
+                  In the last 90 days, <span className="text-white font-bold">9 of your direct competitors</span> have 
+                  initiated Flow State evaluations. Five have already signed founding agreements.
                 </p>
                 <p className="text-sm text-steel/60 mt-4">
-                  We can't tell you who. But we can tell you the window is closing.
+                  We can't tell you who. But we can tell you the window is closing fast.
                 </p>
               </div>
             </div>
