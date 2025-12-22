@@ -56,66 +56,65 @@ export default function SingularityPage() {
   const [isSimulating, setIsSimulating] = useState(false);
   const [showROI, setShowROI] = useState(false);
 
-  // Facility network - 50 sites across North America (coordinates mapped to viewBox 0-100)
-  // x: 5=West Coast, 95=East Coast | y: 10=Canada border, 85=South Florida
+  // Facility network - 50 sites across North America
   const facilities: Facility[] = [
     // West Coast Corridor
-    { id: 1, name: 'Seattle', x: 8, y: 14, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 55 } },
-    { id: 2, name: 'Portland', x: 7, y: 20, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
-    { id: 3, name: 'Oakland', x: 6, y: 38, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 62 } },
-    { id: 4, name: 'Los Angeles', x: 10, y: 50, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 65 } },
-    { id: 5, name: 'Long Beach', x: 11, y: 52, type: 'terminal', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 58 } },
-    { id: 6, name: 'San Diego', x: 12, y: 56, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
+    { id: 1, name: 'Seattle Gateway', x: 10, y: 12, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 55 } },
+    { id: 2, name: 'Portland DC', x: 11, y: 18, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
+    { id: 3, name: 'Oakland Port', x: 8, y: 35, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 62 } },
+    { id: 4, name: 'LA Port', x: 12, y: 48, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 65 } },
+    { id: 5, name: 'Long Beach', x: 14, y: 50, type: 'terminal', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 58 } },
+    { id: 6, name: 'San Diego Cross', x: 15, y: 55, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
     // Mountain West
-    { id: 7, name: 'Phoenix', x: 18, y: 54, type: 'plant', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 50 } },
-    { id: 8, name: 'Tucson', x: 17, y: 58, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
-    { id: 9, name: 'Las Vegas', x: 14, y: 44, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 44 } },
-    { id: 10, name: 'Salt Lake City', x: 17, y: 30, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
-    { id: 11, name: 'Denver', x: 28, y: 34, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
-    { id: 12, name: 'Albuquerque', x: 23, y: 50, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 49 } },
+    { id: 7, name: 'Phoenix Plant', x: 22, y: 52, type: 'plant', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 50 } },
+    { id: 8, name: 'Tucson DC', x: 24, y: 56, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
+    { id: 9, name: 'Las Vegas Hub', x: 18, y: 42, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 44 } },
+    { id: 10, name: 'Salt Lake DC', x: 22, y: 32, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
+    { id: 11, name: 'Denver DC', x: 32, y: 36, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
+    { id: 12, name: 'Albuquerque', x: 28, y: 48, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 49 } },
     // Texas Triangle
-    { id: 13, name: 'El Paso', x: 22, y: 56, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 51 } },
-    { id: 14, name: 'Dallas', x: 40, y: 54, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
-    { id: 15, name: 'Fort Worth', x: 38, y: 53, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
-    { id: 16, name: 'Houston', x: 42, y: 62, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 60 } },
-    { id: 17, name: 'San Antonio', x: 38, y: 60, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
-    { id: 18, name: 'Austin', x: 39, y: 58, type: 'plant', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 44 } },
+    { id: 13, name: 'El Paso Cross', x: 26, y: 55, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 51 } },
+    { id: 14, name: 'Dallas Hub', x: 38, y: 52, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
+    { id: 15, name: 'Fort Worth DC', x: 36, y: 50, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
+    { id: 16, name: 'Houston Port', x: 42, y: 62, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 60 } },
+    { id: 17, name: 'San Antonio', x: 36, y: 60, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
+    { id: 18, name: 'Austin Plant', x: 37, y: 56, type: 'plant', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 44 } },
     // Central Corridor
-    { id: 19, name: 'Kansas City', x: 42, y: 36, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 43 } },
-    { id: 20, name: 'Omaha', x: 40, y: 30, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
-    { id: 21, name: 'Minneapolis', x: 44, y: 18, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
-    { id: 22, name: 'St Louis', x: 48, y: 38, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
-    { id: 23, name: 'Oklahoma City', x: 38, y: 48, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
+    { id: 19, name: 'Kansas City', x: 42, y: 38, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 43 } },
+    { id: 20, name: 'Omaha DC', x: 40, y: 32, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
+    { id: 21, name: 'Minneapolis', x: 44, y: 22, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
+    { id: 22, name: 'St Louis Hub', x: 48, y: 40, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
+    { id: 23, name: 'Oklahoma City', x: 38, y: 46, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
     // Great Lakes
-    { id: 24, name: 'Chicago', x: 54, y: 28, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
-    { id: 25, name: 'Detroit', x: 60, y: 26, type: 'plant', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 52 } },
-    { id: 26, name: 'Cleveland', x: 64, y: 28, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 49 } },
-    { id: 27, name: 'Indianapolis', x: 56, y: 34, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
-    { id: 28, name: 'Columbus', x: 62, y: 32, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
-    { id: 29, name: 'Milwaukee', x: 52, y: 24, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
+    { id: 24, name: 'Chicago DC', x: 52, y: 32, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
+    { id: 25, name: 'Detroit Plant', x: 58, y: 28, type: 'plant', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 52 } },
+    { id: 26, name: 'Cleveland', x: 62, y: 30, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 49 } },
+    { id: 27, name: 'Indianapolis', x: 55, y: 36, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
+    { id: 28, name: 'Columbus DC', x: 60, y: 34, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
+    { id: 29, name: 'Milwaukee', x: 50, y: 26, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
     // Southeast
-    { id: 30, name: 'Memphis', x: 50, y: 46, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 42 } },
-    { id: 31, name: 'Nashville', x: 56, y: 44, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 44 } },
-    { id: 32, name: 'Atlanta', x: 62, y: 50, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 52 } },
+    { id: 30, name: 'Memphis Hub', x: 50, y: 46, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 42 } },
+    { id: 31, name: 'Nashville DC', x: 54, y: 44, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 44 } },
+    { id: 32, name: 'Atlanta Hub', x: 60, y: 50, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 52 } },
     { id: 33, name: 'Birmingham', x: 56, y: 50, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
-    { id: 34, name: 'New Orleans', x: 50, y: 62, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 58 } },
+    { id: 34, name: 'New Orleans', x: 52, y: 62, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 58 } },
     { id: 35, name: 'Jacksonville', x: 68, y: 58, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 55 } },
-    { id: 36, name: 'Tampa', x: 66, y: 66, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 50 } },
-    { id: 37, name: 'Miami', x: 70, y: 78, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 62 } },
-    { id: 38, name: 'Savannah', x: 66, y: 52, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 56 } },
-    { id: 39, name: 'Charlotte', x: 66, y: 46, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
+    { id: 36, name: 'Tampa DC', x: 68, y: 65, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 50 } },
+    { id: 37, name: 'Miami Import', x: 72, y: 75, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 62 } },
+    { id: 38, name: 'Savannah Port', x: 68, y: 54, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 56 } },
+    { id: 39, name: 'Charlotte DC', x: 66, y: 46, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 45 } },
     // Mid-Atlantic
-    { id: 40, name: 'Richmond', x: 72, y: 40, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
-    { id: 41, name: 'Norfolk', x: 74, y: 44, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 54 } },
-    { id: 42, name: 'Baltimore', x: 76, y: 36, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 52 } },
+    { id: 40, name: 'Richmond DC', x: 70, y: 40, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
+    { id: 41, name: 'Norfolk Port', x: 74, y: 42, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 54 } },
+    { id: 42, name: 'Baltimore', x: 74, y: 36, type: 'port', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 52 } },
     { id: 43, name: 'Philadelphia', x: 78, y: 32, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 50 } },
-    { id: 44, name: 'Harrisburg', x: 76, y: 30, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
+    { id: 44, name: 'Harrisburg DC', x: 75, y: 30, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 46 } },
     // Northeast
-    { id: 45, name: 'Newark', x: 80, y: 30, type: 'terminal', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 58 } },
-    { id: 46, name: 'New York', x: 82, y: 28, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 55 } },
-    { id: 47, name: 'Hartford', x: 84, y: 26, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
-    { id: 48, name: 'Boston', x: 88, y: 22, type: 'terminal', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 54 } },
-    { id: 49, name: 'Albany', x: 80, y: 24, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
+    { id: 45, name: 'Newark Terminal', x: 80, y: 28, type: 'terminal', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 58 } },
+    { id: 46, name: 'Brooklyn DC', x: 82, y: 26, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 55 } },
+    { id: 47, name: 'Hartford DC', x: 84, y: 22, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 48 } },
+    { id: 48, name: 'Boston Terminal', x: 88, y: 18, type: 'terminal', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 54 } },
+    { id: 49, name: 'Albany DC', x: 80, y: 22, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 47 } },
     { id: 50, name: 'Pittsburgh', x: 68, y: 32, type: 'dc', status: 'offline', metrics: { trucks: 0, savings: 0, turnTime: 49 } },
   ];
 
@@ -288,55 +287,82 @@ export default function SingularityPage() {
 
             {/* SVG Network Map */}
             <svg viewBox="0 0 100 100" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
-              {/* Definitions for gradients and filters */}
-              <defs>
-                {/* Blue gradient for map */}
-                <linearGradient id="mapGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#0066CC" stopOpacity="0.15" />
-                  <stop offset="50%" stopColor="#0088FF" stopOpacity="0.1" />
-                  <stop offset="100%" stopColor="#00AAFF" stopOpacity="0.15" />
-                </linearGradient>
-                {/* Wave animation filter */}
-                <filter id="waveFilter" x="-20%" y="-20%" width="140%" height="140%">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" result="noise">
-                    <animate attributeName="baseFrequency" values="0.015;0.02;0.015" dur="8s" repeatCount="indefinite" />
-                  </feTurbulence>
-                  <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G" />
-                </filter>
-                {/* Glow filter for active nodes */}
-                <filter id="blueGlow" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="0.8" result="blur" />
-                  <feFlood floodColor="#00AAFF" floodOpacity="0.6" />
-                  <feComposite in2="blur" operator="in" />
-                  <feMerge>
-                    <feMergeNode />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-              </defs>
-
-              {/* Subtle map background - just Great Lakes as geographic reference */}
-              <g opacity="0.5">
-                {/* Great Lakes - positioned to match facility coordinates */}
-                <ellipse cx="55" cy="22" rx="5" ry="3" fill="#080815" stroke="#0055AA" strokeWidth="0.3" opacity="0.6" />
-                <ellipse cx="62" cy="24" rx="3" ry="2" fill="#080815" stroke="#0055AA" strokeWidth="0.3" opacity="0.6" />
-                <ellipse cx="50" cy="20" rx="2.5" ry="1.8" fill="#080815" stroke="#0055AA" strokeWidth="0.3" opacity="0.6" />
-                <ellipse cx="66" cy="26" rx="2" ry="1.5" fill="#080815" stroke="#0055AA" strokeWidth="0.3" opacity="0.6" />
-                <ellipse cx="58" cy="26" rx="2" ry="1.2" fill="#080815" stroke="#0055AA" strokeWidth="0.3" opacity="0.6" />
+              {/* US Map Outline - SONAR style */}
+              <g className="us-map-outline">
+                {/* Continental US outline path - simplified for performance */}
+                <path
+                  d="M8,18 L10,12 L12,10 L11,15 L10,20 L8,28 L7,35 L6,42 L8,48 L10,52 L12,55 L15,58 L18,56 L22,58 L26,60 L30,58 L34,62 L38,65 L42,68 L46,66 L50,68 L54,65 L58,62 L62,58 L66,60 L70,58 L72,62 L74,68 L76,75 L72,78 L68,72 L64,65 L60,60 L56,58 L52,55 L48,52 L44,50 L40,48 L36,50 L32,48 L28,50 L24,52 L20,50 L16,48 L12,50 L8,48"
+                  fill="none"
+                  stroke="#00FFC2"
+                  strokeWidth="0.3"
+                  opacity="0.15"
+                  className="transition-opacity duration-1000"
+                />
+                {/* West Coast */}
+                <path
+                  d="M8,12 L10,10 L11,14 L10,22 L8,30 L6,38 L7,45 L10,50 L13,54 L16,56"
+                  fill="none"
+                  stroke="#00FFC2"
+                  strokeWidth="0.4"
+                  opacity={phase === 'flow' ? 0.35 : 0.12}
+                  className="transition-opacity duration-1000"
+                />
+                {/* Southern Border */}
+                <path
+                  d="M16,56 L20,54 L24,56 L28,55 L32,58 L36,62 L40,64 L44,66 L48,65 L52,68 L56,66 L60,62 L64,58 L68,56 L72,60 L74,68 L76,78"
+                  fill="none"
+                  stroke="#00FFC2"
+                  strokeWidth="0.4"
+                  opacity={phase === 'flow' ? 0.35 : 0.12}
+                  className="transition-opacity duration-1000"
+                />
+                {/* East Coast */}
+                <path
+                  d="M76,78 L74,72 L72,65 L70,58 L72,52 L74,46 L76,40 L78,34 L80,28 L82,24 L86,20 L90,16"
+                  fill="none"
+                  stroke="#00FFC2"
+                  strokeWidth="0.4"
+                  opacity={phase === 'flow' ? 0.35 : 0.12}
+                  className="transition-opacity duration-1000"
+                />
+                {/* Northern Border */}
+                <path
+                  d="M90,16 L86,14 L80,16 L74,14 L68,16 L62,15 L56,16 L50,14 L44,16 L38,15 L32,16 L26,14 L20,15 L14,14 L10,12 L8,12"
+                  fill="none"
+                  stroke="#00FFC2"
+                  strokeWidth="0.4"
+                  opacity={phase === 'flow' ? 0.35 : 0.12}
+                  className="transition-opacity duration-1000"
+                />
+                {/* Great Lakes region outline */}
+                <path
+                  d="M50,22 L54,20 L58,22 L62,20 L64,24 L60,28 L56,26 L52,28 L48,26 L50,22"
+                  fill="none"
+                  stroke="#00FFC2"
+                  strokeWidth="0.25"
+                  opacity={phase === 'flow' ? 0.25 : 0.08}
+                  className="transition-opacity duration-1000"
+                />
+                {/* Florida peninsula */}
+                <path
+                  d="M64,58 L66,62 L68,66 L70,72 L72,78 L74,80 L72,76 L68,68 L66,62"
+                  fill="none"
+                  stroke="#00FFC2"
+                  strokeWidth="0.3"
+                  opacity={phase === 'flow' ? 0.3 : 0.1}
+                  className="transition-opacity duration-1000"
+                />
+                {/* Texas shape */}
+                <path
+                  d="M28,55 L32,52 L36,50 L40,52 L44,56 L46,62 L44,66 L40,64 L36,62 L32,58 L28,55"
+                  fill="none"
+                  stroke="#00FFC2"
+                  strokeWidth="0.25"
+                  opacity={phase === 'flow' ? 0.2 : 0.06}
+                  className="transition-opacity duration-1000"
+                />
               </g>
 
-              {/* Subtle grid overlay for SONAR effect */}
-              <g stroke="#0044AA" strokeWidth="0.1" strokeOpacity="0.15">
-                {[10, 20, 30, 40, 50, 60, 70, 80, 90].map(x => (
-                  <line key={`vgrid-${x}`} x1={x} y1="5" x2={x} y2="95" />
-                ))}
-                {[10, 20, 30, 40, 50, 60, 70, 80, 90].map(y => (
-                  <line key={`hgrid-${y}`} x1="5" y1={y} x2="95" y2={y} />
-                ))}
-              </g>
-                    fill="none"
-                    stroke="#0088FF"
-                    strokeWidth="0.2"
               {/* Connection lines between online facilities */}
               {phase !== 'chaos' && facilityStates.filter(f => f.status === 'online').map((from, i, arr) => 
                 arr.slice(i + 1).map(to => (
@@ -346,7 +372,7 @@ export default function SingularityPage() {
                     y1={from.y}
                     x2={to.x}
                     y2={to.y}
-                    stroke="#00AAFF"
+                    stroke="#00FFC2"
                     strokeWidth="0.15"
                     opacity={phase === 'flow' ? 0.4 : 0.2}
                     className="transition-opacity duration-500"
@@ -369,9 +395,8 @@ export default function SingularityPage() {
                       cx={x}
                       cy={y}
                       r={packet.type === 'truck' ? 1.2 : 0.8}
-                      fill={packet.type === 'truck' ? '#00AAFF' : packet.type === 'bol' ? '#00DDFF' : '#0066CC'}
+                      fill={packet.type === 'truck' ? '#00FFC2' : packet.type === 'bol' ? '#FFB800' : '#00A8FF'}
                       opacity={0.9}
-                      filter="url(#blueGlow)"
                     >
                       <animate
                         attributeName="opacity"
@@ -394,7 +419,7 @@ export default function SingularityPage() {
                       cy={facility.y}
                       r="3"
                       fill="none"
-                      stroke="#00AAFF"
+                      stroke="#00FFC2"
                       strokeWidth="0.3"
                       opacity="0.5"
                     >
@@ -418,9 +443,8 @@ export default function SingularityPage() {
                     cx={facility.x}
                     cy={facility.y}
                     r="2"
-                    fill={facility.status === 'offline' ? '#334466' : 
-                          facility.status === 'activating' ? '#00DDFF' : '#00AAFF'}
-                    filter={facility.status === 'online' ? 'url(#blueGlow)' : undefined}
+                    fill={facility.status === 'offline' ? '#FF2A00' : 
+                          facility.status === 'activating' ? '#FFB800' : '#00FFC2'}
                     className="transition-all duration-500"
                   />
                   
@@ -429,7 +453,7 @@ export default function SingularityPage() {
                     <polygon
                       points={`${facility.x},${facility.y-2.5} ${facility.x+2.2},${facility.y-1.25} ${facility.x+2.2},${facility.y+1.25} ${facility.x},${facility.y+2.5} ${facility.x-2.2},${facility.y+1.25} ${facility.x-2.2},${facility.y-1.25}`}
                       fill="none"
-                      stroke="#00AAFF"
+                      stroke="#00FFC2"
                       strokeWidth="0.3"
                     />
                   )}
@@ -439,7 +463,7 @@ export default function SingularityPage() {
                     x={facility.x}
                     y={facility.y + 5}
                     fontSize="2"
-                    fill={facility.status === 'online' ? '#00AAFF' : '#556677'}
+                    fill={facility.status === 'online' ? '#00FFC2' : '#888888'}
                     textAnchor="middle"
                     className="transition-colors duration-500"
                   >
@@ -452,16 +476,16 @@ export default function SingularityPage() {
             {/* Legend */}
             <div className="absolute bottom-4 right-4 glass-card p-3 text-xs">
               <div className="flex items-center gap-2 mb-1">
-                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#00AAFF', boxShadow: '0 0 6px #00AAFF' }}></div>
+                <div className="w-2 h-2 rounded-full bg-neon"></div>
                 <span className="text-steel">Flow State</span>
               </div>
               <div className="flex items-center gap-2 mb-1">
-                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#00DDFF' }}></div>
+                <div className="w-2 h-2 rounded-full bg-yellow-400"></div>
                 <span className="text-steel">Activating</span>
               </div>
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#334466' }}></div>
-                <span className="text-steel">Standby</span>
+                <div className="w-2 h-2 rounded-full bg-ember"></div>
+                <span className="text-steel">Chaos</span>
               </div>
             </div>
           </div>
@@ -603,12 +627,12 @@ export default function SingularityPage() {
           <div className="space-y-8 text-lg text-steel/90 leading-relaxed">
             <p>
               <span className="text-neon font-bold text-2xl">"</span>
-              There are moments in history when technology doesn't just improve—it <span className="text-neon font-semibold">transforms</span>. 
+              There are moments in history when technology doesn't just improve, it <span className="text-neon font-semibold">transforms</span>. 
               The printing press. The telegraph. The internet. The smartphone.
             </p>
 
             <p>
-              Each created a <span className="text-white font-semibold">singularity</span>—a point where the old way becomes 
+              Each created a <span className="text-white font-semibold">singularity</span>: a point where the old way becomes 
               not just inefficient, but <span className="text-ember">unthinkable</span>.
             </p>
 
@@ -766,15 +790,12 @@ export default function SingularityPage() {
 
           <div className="glass-card p-8 inline-block mb-8">
             <p className="text-steel mb-2">Founding Member Spots Remaining</p>
-            <p className="text-6xl font-black neon-glow">23 / 50</p>
+            <p className="text-6xl font-black neon-glow">5 / 50</p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button variant="neon-fill" size="lg" icon={<Crosshair size={20} className="text-void" />}>
-              Apply for Founding Membership
-            </Button>
-            <Button variant="neon" size="lg" icon={<Comm size={20} />}>
-              Talk to a Human
+              Apply for Membership
             </Button>
           </div>
 

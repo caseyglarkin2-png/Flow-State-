@@ -23,9 +23,10 @@ export default function ProductPage() {
             A modular, driver-first platform that synchronizes the gate, the dock, and the yard.
           </p>
 
-          <Button variant="neon-fill" size="lg" icon={<Ignite size={20} className="text-void" />}>
-            Get Started
-          </Button>
+          <a href="/singularity" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all">
+            <Ignite size={20} className="text-void" />
+            Apply for Membership
+          </a>
         </div>
       </section>
 
@@ -52,7 +53,7 @@ export default function ProductPage() {
                   </li>
                 ))}
               </ul>
-              <Button variant="neon">Learn More</Button>
+              <a href="/singularity" className="btn-neon inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">Apply for Access</a>
             </div>
 
             {/* Visual */}
@@ -103,7 +104,7 @@ export default function ProductPage() {
                   </li>
                 ))}
               </ul>
-              <Button variant="neon">Explore Features</Button>
+              <a href="/singularity" className="btn-neon inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">Apply for Access</a>
             </div>
           </div>
         </div>
@@ -132,7 +133,7 @@ export default function ProductPage() {
                   </li>
                 ))}
               </ul>
-              <Button variant="neon">See in Action</Button>
+              <a href="/singularity" className="btn-neon inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">Apply for Access</a>
             </div>
 
             {/* Visual */}
@@ -201,10 +202,12 @@ export default function ProductPage() {
       <section className="py-24 border-t border-neon/20">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-5xl font-black mb-8">Ready to Transform Your Yard?</h2>
-          <p className="text-xl text-steel/90 mb-12">Get a live demo of YardOS in action.</p>
-          <Button variant="neon-fill" size="lg" icon={<Crosshair size={20} className="text-void" />}>
-            Book Your Demo
-          </Button>
+          <p className="text-xl text-steel/90 mb-4">Only 5 Founding Member spots remaining.</p>
+          <p className="text-lg text-neon font-semibold mb-12">Applications close when filled.</p>
+          <a href="/singularity" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all">
+            <Crosshair size={20} className="text-void" />
+            Apply for Membership
+          </a>
         </div>
       </section>
 

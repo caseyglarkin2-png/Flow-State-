@@ -19,7 +19,7 @@ export const metadata = {
         url: '/og.png',
         width: 1200,
         height: 630,
-        alt: 'Flow State — Industrial Fluidity & Yard Orchestration Software',
+        alt: 'Flow State: Industrial Fluidity & Yard Orchestration Software',
       },
     ],
   },

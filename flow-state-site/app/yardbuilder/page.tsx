@@ -123,7 +123,7 @@ export default function YardBuilderPage() {
               },
               {
                 title: 'Generative Configuration',
-                desc: 'The AI generates an initial yard layout with optimized zones, parking spots, and workflows. You refine it via a drag-and-drop editor—adding reefer zones, customizing spot counts, setting flow rules.',
+                desc: 'The AI generates an initial yard layout with optimized zones, parking spots, and workflows. You refine it via a drag-and-drop editor: adding reefer zones, customizing spot counts, setting flow rules.',
               },
               {
                 title: 'Instant Integration',
@@ -171,7 +171,7 @@ export default function YardBuilderPage() {
               {
                 icon: <Nexus size={40} />,
                 title: 'Global Rollout',
-                desc: 'Going international? Deploy to 50 facilities across geographies—zero manual mapping.',
+                desc: 'Going international? Deploy to 50 facilities across geographies. Zero manual mapping.',
               },
               {
                 icon: <Scope size={40} />,
@@ -211,7 +211,7 @@ export default function YardBuilderPage() {
               },
               {
                 q: 'What about facilities with shade/shadows?',
-                a: 'Our multi-spectral analysis works in various lighting conditions. Overcast, dawn, dusk—all covered.',
+                a: 'Our multi-spectral analysis works in various lighting conditions. Overcast, dawn, dusk: all covered.',
               },
               {
                 q: 'Do I need GPS equipment pre-installed?',

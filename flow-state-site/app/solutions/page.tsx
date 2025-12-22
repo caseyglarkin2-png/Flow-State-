@@ -81,9 +81,9 @@ export default function SolutionsPage() {
                   <p className="text-steel/80 leading-relaxed">{archetype.flow}</p>
                 </div>
 
-                <Button variant="ghost" className="mt-6 w-full">
-                  Learn More <FlowArrow size={16} />
-                </Button>
+                <a href="/singularity" className="mt-6 w-full inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-semibold text-neon hover:bg-neon/10 transition-all">
+                  Apply for Access <FlowArrow size={16} />
+                </a>
               </Card>
             ))}
           </div>
@@ -222,10 +222,12 @@ export default function SolutionsPage() {
       <section className="py-24 border-t border-neon/20">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-5xl font-black mb-8">Which Archetype Are You?</h2>
-          <p className="text-xl text-steel/90 mb-12">Get a personalized assessment for your operation.</p>
-          <Button variant="neon-fill" size="lg" icon={<Crosshair size={20} className="text-void" />}>
-            Start Your Assessment
-          </Button>
+          <p className="text-xl text-steel/90 mb-4">Only 5 Founding Member spots remaining.</p>
+          <p className="text-lg text-neon font-semibold mb-12">Applications close when filled.</p>
+          <a href="/singularity" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all">
+            <Crosshair size={20} className="text-void" />
+            Apply for Membership
+          </a>
         </div>
       </section>
 

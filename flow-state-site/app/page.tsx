@@ -48,12 +48,10 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Button variant="neon-fill" size="lg" icon={<Ignite size={20} className="text-void" />}>
-              Get Started
-            </Button>
-            <Button variant="neon" size="lg" icon={<Manifest size={20} />}>
-              See Live Demo
-            </Button>
+            <a href="/singularity" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all">
+              <Ignite size={20} className="text-void" />
+              Apply for Membership
+            </a>
           </div>
 
           {/* Isometric Yard Visual */}
@@ -111,7 +109,7 @@ export default function Home() {
           <h2 className="text-5xl md:text-6xl font-black mb-8 neon-glow">The Supply Chain's Black Hole.</h2>
           
           <p className="text-lg md:text-xl text-steel/90 mb-12 leading-relaxed max-w-3xl">
-            Transportation is digitized. Warehousing is automated. But the yard remains a chaotic gap of manual processes and opaque data. This breakdown drives <span className="text-neon font-semibold">"market fat"</span>—billions in wasted fuel, detention fees, and idle assets.
+            Transportation is digitized. Warehousing is automated. But the yard remains a chaotic gap of manual processes and opaque data. This breakdown drives <span className="text-neon font-semibold">"market fat"</span>: billions in wasted fuel, detention fees, and idle assets.
           </p>
 
           {/* Stats Grid */}
@@ -217,9 +215,10 @@ export default function Home() {
               <p className="text-lg text-steel/90 mb-8 leading-relaxed">
                 The deployment cliff is dead. Our generative AI turns an address into a working digital twin in under 10 minutes. No site visits. No friction.
               </p>
-              <Button variant="neon-fill" size="lg" icon={<Ignite size={20} className="text-void" />}>
-                Try YardBuilder AI
-              </Button>
+              <a href="/singularity" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all">
+                <Ignite size={20} className="text-void" />
+                Apply for Membership
+              </a>
             </div>
 
             {/* Animation placeholder */}
@@ -318,8 +317,8 @@ export default function Home() {
                 <div className="flex justify-center mb-4 text-neon">
                   <Nexus size={80} className="text-neon" />
                 </div>
-                <p className="text-5xl font-black neon-glow mb-2">$24.5M</p>
-                <p className="text-steel">Annual savings for 12-site network</p>
+                <p className="text-5xl font-black neon-glow mb-2">$221.7M</p>
+                <p className="text-steel">Annual savings for 50 site network</p>
               </div>
             </div>
           </div>
@@ -360,15 +359,11 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-5xl md:text-6xl font-black mb-8">Ready for Laminar Flow?</h2>
           <p className="text-xl text-steel/90 mb-4">Join 200+ enterprises orchestrating their yards.</p>
-          <p className="text-lg text-neon font-semibold mb-12">Only 23 Founding Member spots remaining.</p>
+          <p className="text-lg text-neon font-semibold mb-12">Only 5 Founding Member spots remaining.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/singularity" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all">
               <Crosshair size={20} className="text-void" />
-              Apply for Founding Membership
-            </a>
-            <a href="/roi" className="btn-neon inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">
-              <Metrics size={20} />
-              See the Numbers
+              Apply for Membership
             </a>
           </div>
         </div>

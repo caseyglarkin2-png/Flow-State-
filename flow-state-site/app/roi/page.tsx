@@ -364,13 +364,12 @@ export default function ROICalculatorPage() {
           <p className="text-xl text-steel mb-8">
             Get a custom analysis with your actual operational data.
           </p>
+          <p className="text-lg text-neon font-semibold mb-8">Only 5 Founding Member spots remaining.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="neon-fill" size="lg" icon={<Metrics size={20} className="text-void" />}>
-              Get Custom Analysis
-            </Button>
-            <Button variant="neon" size="lg" icon={<Timeline size={20} />}>
-              Schedule Demo
-            </Button>
+            <a href="/singularity" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all">
+              <Metrics size={20} className="text-void" />
+              Apply for Membership
+            </a>
           </div>
         </div>
       </section>

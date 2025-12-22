@@ -13,10 +13,10 @@ export default function Header() {
       <div className="bg-neon/10 border-b border-neon/20 py-2 px-4 text-center text-sm">
         <span className="text-steel inline-flex items-center gap-2">
           <Ignite size={16} className="text-neon" />
-          Founding Member Program Open —
+          Founding Member Program Closing:
         </span>
         <Link href="/singularity" className="text-neon font-semibold hover:underline inline-flex items-center gap-1">
-          Only 23 spots left <FlowArrow size={12} className="text-neon" />
+          Only 5 spots left <FlowArrow size={12} className="text-neon" />
         </Link>
       </div>
 
@@ -65,7 +65,7 @@ export default function Header() {
           </button>
           <Link href="/singularity" className="px-4 py-2 text-sm font-semibold bg-neon text-void rounded-lg hover:shadow-lg hover:shadow-neon/50 transition-all flex items-center gap-1">
             <Velocity size={16} className="text-void" />
-            Book Demo
+            Apply Now
           </Link>
           
           {/* Mobile Menu Button */}
