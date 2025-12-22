@@ -23,17 +23,59 @@ export default function Header() {
       <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-full border-2 border-neon flex items-center justify-center group-hover:neon-glow-hover">
-            <svg viewBox="0 0 24 24" className="w-4 h-4 text-neon">
-              <circle cx="12" cy="12" r="2" fill="currentColor" />
-              <circle cx="6" cy="6" r="1.5" fill="currentColor" opacity="0.6" />
-              <circle cx="18" cy="6" r="1.5" fill="currentColor" opacity="0.6" />
-              <circle cx="6" cy="18" r="1.5" fill="currentColor" opacity="0.6" />
-              <circle cx="18" cy="18" r="1.5" fill="currentColor" opacity="0.6" />
-              <line x1="12" y1="12" x2="6" y2="6" stroke="currentColor" strokeWidth="0.5" opacity="0.4" />
-              <line x1="12" y1="12" x2="18" y2="6" stroke="currentColor" strokeWidth="0.5" opacity="0.4" />
-              <line x1="12" y1="12" x2="6" y2="18" stroke="currentColor" strokeWidth="0.5" opacity="0.4" />
-              <line x1="12" y1="12" x2="18" y2="18" stroke="currentColor" strokeWidth="0.5" opacity="0.4" />
+          <div className="w-9 h-9 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <svg viewBox="0 0 36 36" className="w-9 h-9">
+              {/* Outer glow ring */}
+              <circle cx="18" cy="18" r="16" fill="none" stroke="url(#nodeGlow)" strokeWidth="1" opacity="0.4" />
+              
+              {/* Orbital path */}
+              <ellipse cx="18" cy="18" rx="12" ry="12" fill="none" stroke="#00FF88" strokeWidth="0.5" opacity="0.15" strokeDasharray="3 5" />
+              
+              {/* Connection lines radiating outward */}
+              <line x1="18" y1="18" x2="4" y2="8" stroke="url(#lineGrad)" strokeWidth="1.2" opacity="0.7" />
+              <line x1="18" y1="18" x2="32" y2="8" stroke="url(#lineGrad)" strokeWidth="1.2" opacity="0.7" />
+              <line x1="18" y1="18" x2="4" y2="28" stroke="url(#lineGrad)" strokeWidth="1" opacity="0.5" />
+              <line x1="18" y1="18" x2="32" y2="28" stroke="url(#lineGrad)" strokeWidth="1" opacity="0.5" />
+              <line x1="18" y1="18" x2="18" y2="2" stroke="url(#lineGrad)" strokeWidth="1.2" opacity="0.8" />
+              <line x1="18" y1="18" x2="18" y2="34" stroke="url(#lineGrad)" strokeWidth="0.8" opacity="0.4" />
+              
+              {/* Satellite nodes - the network */}
+              <circle cx="4" cy="8" r="2.5" fill="#00FF88" opacity="0.8">
+                <animate attributeName="opacity" values="0.8;0.4;0.8" dur="2s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="32" cy="8" r="2.5" fill="#00FF88" opacity="0.6">
+                <animate attributeName="opacity" values="0.6;0.9;0.6" dur="2.5s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="4" cy="28" r="2" fill="#00FF88" opacity="0.45" />
+              <circle cx="32" cy="28" r="2" fill="#00FF88" opacity="0.45" />
+              <circle cx="18" cy="2" r="2" fill="#00FF88" opacity="0.7">
+                <animate attributeName="opacity" values="0.7;1;0.7" dur="1.8s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="18" cy="34" r="1.5" fill="#00FF88" opacity="0.35" />
+              
+              {/* Central core node - THE FLOW STATE */}
+              <circle cx="18" cy="18" r="6" fill="url(#coreGrad)" />
+              <circle cx="18" cy="18" r="4.5" fill="#0A0A0A" />
+              <circle cx="18" cy="18" r="2.5" fill="#00FF88">
+                <animate attributeName="r" values="2.5;3;2.5" dur="1.5s" repeatCount="indefinite" />
+                <animate attributeName="opacity" values="1;0.8;1" dur="1.5s" repeatCount="indefinite" />
+              </circle>
+              
+              {/* Gradients */}
+              <defs>
+                <radialGradient id="coreGrad" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#00FF88" />
+                  <stop offset="100%" stopColor="#00AA55" />
+                </radialGradient>
+                <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#00FF88" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="#00FF88" stopOpacity="0.15" />
+                </linearGradient>
+                <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#00FF88" stopOpacity="0.6" />
+                  <stop offset="100%" stopColor="#00FF88" stopOpacity="0" />
+                </radialGradient>
+              </defs>
             </svg>
           </div>
           <span className="font-bold text-lg tracking-tight neon-glow-hover">FLOW STATE</span>
