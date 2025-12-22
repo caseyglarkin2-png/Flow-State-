@@ -756,7 +756,7 @@ export default function SingularityPage() {
           </div>
 
           <h2 className="text-5xl font-black mb-6">
-            Join the First 5
+            Founding Members
           </h2>
 
           <p className="text-xl text-steel mb-8 max-w-2xl mx-auto">
@@ -794,7 +794,7 @@ export default function SingularityPage() {
 
           <div className="glass-card p-8 inline-block mb-8">
             <p className="text-steel mb-2">Founding Member Spots Remaining</p>
-            <p className="text-6xl font-black neon-glow">3 / 5</p>
+            <p className="text-6xl font-black neon-glow">3</p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
