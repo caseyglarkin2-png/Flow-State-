@@ -4,16 +4,13 @@
   "engines": {
     "node": ">=18.17.0"
   },
-  "workspaces": [
-    "flow-state-site"
-  ],
   "scripts": {
-    "dev": "npm --workspace flow-state-site run dev",
-    "build": "npm --workspace flow-state-site run build",
-    "start": "npm --workspace flow-state-site run start",
-    "lint": "npm --workspace flow-state-site run lint",
-    "test": "npm --workspace flow-state-site run test",
-    "test:e2e:ci": "npm --workspace flow-state-site run test:e2e:ci"
+    "dev": "cd flow-state-site && npm run dev",
+    "build": "cd flow-state-site && npm run build",
+    "start": "cd flow-state-site && npm run start",
+    "lint": "cd flow-state-site && npm run lint",
+    "test": "cd flow-state-site && npm run test",
+    "test:e2e:ci": "cd flow-state-site && npm run test:e2e:ci"
   },
   "dependencies": {
     "next": "^16.1.0",
