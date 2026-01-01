@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Next build output
+.next/
+out/
+
+# Playwright
+**/test-results/
+**/playwright-report/
+
+# Vercel
+.vercel/
+
+# Env files
+.env
+.env.*
+
+# Python
+.venv/
+__pycache__/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store

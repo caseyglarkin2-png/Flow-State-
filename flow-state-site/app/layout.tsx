@@ -1,16 +1,31 @@
 import React from 'react';
 import '@/styles/globals.css';
+import { Inter, JetBrains_Mono } from 'next/font/google';
+import Script from 'next/script';
+import AppChrome from '@/components/AppChrome';
 
 const siteUrl = 'https://flow-state-wbv9.vercel.app';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mono',
+});
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: 'Flow State | Yard Orchestration Software',
   description:
-    'Transform your logistics yard from a bottleneck into a network of intelligent nodes. Only 3 Founding Member spots remaining.',
+    'Transform your logistics yard from a bottleneck into a network of intelligent nodes.',
   openGraph: {
     title: 'Flow State | Yard Orchestration Software',
-    description: 'Transform your logistics yard into a network of intelligent nodes. Only 3 Founding Member spots remaining.',
+    description: 'Transform your logistics yard into a network of intelligent nodes.',
     url: siteUrl,
     siteName: 'Flow State',
     type: 'website',
@@ -27,7 +42,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Flow State | Yard Orchestration Software',
     description:
-      'Transform your logistics yard from a bottleneck into a network of intelligent nodes. Only 3 Founding Member spots remaining.',
+      'Transform your logistics yard from a bottleneck into a network of intelligent nodes.',
     images: [`${siteUrl}/og.png`],
   },
 };
@@ -37,17 +52,50 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        name: 'Flow State',
+        url: siteUrl,
+        logo: `${siteUrl}/favicon.svg`,
+      },
+      {
+        '@type': 'SoftwareApplication',
+        name: 'Flow State',
+        applicationCategory: 'BusinessApplication',
+        operatingSystem: 'Web',
+        url: siteUrl,
+        description:
+          'Yard orchestration software that transforms logistics yards from bottlenecks into networks of intelligent nodes.',
+        offers: {
+          '@type': 'Offer',
+          priceCurrency: 'USD',
+          price: '5000-15000',
+          category: 'Subscription',
+        },
+      },
+    ],
+  };
+
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/favicon.svg" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-        <script async src="https://cdn.jsdelivr.net/npm/three@r128/build/three.min.js"></script>
       </head>
-      <body className="bg-void text-white font-sans">{children}</body>
+      <body className="bg-void text-white font-sans">
+        {children}
+        <AppChrome />
+      </body>
+      <Script
+        id="structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
     </html>
   );
 }

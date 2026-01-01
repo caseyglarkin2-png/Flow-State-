@@ -2,14 +2,13 @@
 
 import React from 'react';
 
-interface ButtonProps {
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: 'neon' | 'neon-fill' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   children: React.ReactNode;
   icon?: React.ReactNode;
-  [key: string]: any;
-}
+};
 
 export default function Button({ 
   variant = 'neon', 

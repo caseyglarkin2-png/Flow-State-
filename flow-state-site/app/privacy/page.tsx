@@ -1,0 +1,74 @@
+'use client';
+
+import React from 'react';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import Card from '@/components/Card';
+
+export default function PrivacyPage() {
+  return (
+    <div className="min-h-screen bg-void">
+      <Header />
+
+      <section className="pt-32 pb-16 border-b border-neon/20">
+        <div className="max-w-5xl mx-auto px-6">
+          <h1 className="text-4xl md:text-6xl font-black mb-4">
+            Privacy <span className="neon-glow">Policy</span>
+          </h1>
+          <p className="text-steel">Last updated: Jan 1, 2026</p>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="max-w-5xl mx-auto px-6">
+          <Card>
+            <div className="space-y-6 text-steel leading-relaxed">
+              <p>
+                This Privacy Policy explains how Flow State collects and uses information when you visit our website
+                or apply for the Founding Member program.
+              </p>
+
+              <div>
+                <h2 className="text-neon font-bold mb-2">Information we collect</h2>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li>Information you provide (e.g., name, email, company, and application details).</li>
+                  <li>Basic usage information (e.g., pages visited) to improve performance and reliability.</li>
+                </ul>
+              </div>
+
+              <div>
+                <h2 className="text-neon font-bold mb-2">How we use information</h2>
+                <ul className="list-disc pl-5 space-y-2">
+                  <li>To respond to inquiries and process applications.</li>
+                  <li>To operate, maintain, and improve the site and product experience.</li>
+                  <li>To communicate product updates relevant to applicants (you can opt out).</li>
+                </ul>
+              </div>
+
+              <div>
+                <h2 className="text-neon font-bold mb-2">Sharing</h2>
+                <p>
+                  We do not sell personal information. We may share information with service providers who help us run
+                  the site and support operations, subject to reasonable confidentiality obligations.
+                </p>
+              </div>
+
+              <div>
+                <h2 className="text-neon font-bold mb-2">Contact</h2>
+                <p>
+                  Questions? Email{' '}
+                  <a className="text-neon hover:underline" href="mailto:founding@flow-state.ai">
+                    founding@flow-state.ai
+                  </a>
+                  .
+                </p>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+}

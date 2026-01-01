@@ -1,0 +1,140 @@
+'use client';
+
+import React, { useMemo, useState } from 'react';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
+import { trackEvent } from '@/lib/analytics';
+
+type Props = {
+  title?: string;
+  subtitle?: string;
+  endpoint: '/api/pdf/roi' | '/api/pdf/yardbuilder';
+  buildPayload: (lead: { name: string; email: string; company: string }) => unknown;
+  eventName: 'roi_export_pdf' | 'pdf_generated_roi' | 'pdf_generated_yardbuilder';
+};
+
+export default function BoardReadyExportCTA({
+  title = 'Board-ready export',
+  subtitle = 'Generate a clean PDF you can forward internally. Modeled estimates; results vary.',
+  endpoint,
+  buildPayload,
+  eventName,
+}: Props) {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [company, setCompany] = useState('');
+  const [captchaToken, setCaptchaToken] = useState<string>('');
+  const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState<string>('');
+
+  const hcaptchaSiteKey = process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY ?? '';
+  const canUseCaptcha = Boolean(hcaptchaSiteKey);
+
+  const disabledReason = useMemo(() => {
+    if (busy) return 'Generating…';
+    if (!name || !email || !company) return 'Fill required fields';
+    if (!captchaToken && canUseCaptcha) return 'Complete captcha';
+    if (!canUseCaptcha && process.env.NODE_ENV === 'production') return 'Captcha not configured';
+    return '';
+  }, [busy, name, email, company, captchaToken, canUseCaptcha]);
+
+  async function generate() {
+    if (disabledReason) return;
+    setMsg('');
+    setBusy(true);
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...(buildPayload({ name, email, company }) as object),
+          captchaToken,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = (await res.json().catch(() => ({}))) as { message?: string };
+        setMsg(data.message || 'Failed to generate PDF.');
+        return;
+      }
+
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = endpoint === '/api/pdf/roi' ? 'flow-state-roi-summary.pdf' : 'flow-state-yard-readiness-report.pdf';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+
+      trackEvent(eventName, { endpoint });
+      setMsg('Generated. Check your downloads.');
+    } catch {
+      setMsg('Network error. Try again.');
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div className="rounded-xl border border-neon/15 bg-carbon/40 p-6">
+      <h3 className="text-xl font-bold text-neon">{title}</h3>
+      <p className="text-sm text-steel/80 mt-2">{subtitle}</p>
+
+      <div className="mt-5 grid grid-cols-1 md:grid-cols-3 gap-3">
+        <input
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Name"
+          className="bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+        />
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Work email"
+          type="email"
+          className="bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+        />
+        <input
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+          placeholder="Company"
+          className="bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+        />
+      </div>
+
+      <div className="mt-4 flex flex-col sm:flex-row gap-3">
+        <button
+          type="button"
+          onClick={generate}
+          disabled={Boolean(disabledReason)}
+          className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold bg-neon text-void disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {disabledReason || 'Export PDF'}
+        </button>
+        <a
+          href="/contact"
+          className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
+        >
+          Send to finance / procurement
+        </a>
+      </div>
+
+      {canUseCaptcha ? (
+        <div className="mt-4">
+          <HCaptcha
+            sitekey={hcaptchaSiteKey}
+            onVerify={(token) => setCaptchaToken(token)}
+            onExpire={() => setCaptchaToken('')}
+          />
+        </div>
+      ) : (
+        <p className="mt-4 text-xs text-steel/70">
+          Captcha is not configured. Set <span className="text-white">NEXT_PUBLIC_HCAPTCHA_SITEKEY</span>.
+        </p>
+      )}
+
+      {msg ? <p className="mt-3 text-xs text-steel/80" role="status">{msg}</p> : null}
+    </div>
+  );
+}

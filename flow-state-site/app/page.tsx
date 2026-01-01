@@ -1,11 +1,12 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Button from '@/components/Button';
 import Card from '@/components/Card';
+import LaneToggle from '@/components/LaneToggle';
+import RevealMetric from '@/components/RevealMetric';
+import { useLaneStore } from '@/store/lane';
 import {
   Metrics,
   Agent,
@@ -23,6 +24,8 @@ import {
 } from '@/components/icons/FlowIcons';
 
 export default function Home() {
+  const lane = useLaneStore((s) => s.lane);
+
   return (
     <div className="min-h-screen bg-void">
       <Header />
@@ -33,25 +36,42 @@ export default function Home() {
         <div className="absolute inset-0 grid-background opacity-30"></div>
         
         <div className="relative z-10 max-w-6xl mx-auto px-6 text-center py-20">
-          <h1 className="text-6xl md:text-8xl font-black mb-6 tracking-tight leading-tight">
-            <span className="neon-glow">Put your yard</span>
+          <h1 className="text-6xl md:text-8xl font-black mb-4 tracking-tight leading-tight">
+            <span className="neon-glow">Visibility ≠ control.</span>
             <br />
-            <span>in Flow.</span>
+            <span>Flow State makes the yard obey.</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-steel mb-4 max-w-3xl mx-auto">
-            <span className="text-neon font-semibold">Orchestrate the yard.</span> Eliminate turbulence.
+          <p className="text-xl md:text-2xl text-steel mb-3 max-w-3xl mx-auto">
+            Turn every facility into an <span className="text-neon font-semibold">intelligent node</span> with defensible timestamps.
           </p>
           
-          <p className="text-lg text-steel/80 mb-12 max-w-3xl mx-auto leading-relaxed">
-            Transform your facility from a siloed bottleneck into a network of intelligent nodes transmitting ground source truth.
+          <p className="text-lg text-steel/80 mb-8 max-w-3xl mx-auto leading-relaxed">
+            The reveal: once the yard is instrumented, dwell, detention, and labor stop being “soft problems.”
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <a href="/singularity" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all">
+          <div className="flex justify-center mb-10">
+            <LaneToggle />
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+            <a
+              href="/yardbuilder"
+              className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
+            >
               <Ignite size={20} className="text-void" />
-              Apply for Membership
+              Generate Yard Report (PDF)
             </a>
+            <a
+              href="/contact"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
+            >
+              Book Demo
+            </a>
+          </div>
+
+          <div className="text-sm text-steel/80 mb-10">
+            Micro‑reward: <span className="text-white font-semibold">You’re 20%</span> to a board‑ready ROI story.
           </div>
 
           {/* Isometric Yard Visual */}
@@ -103,8 +123,37 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Problem Section */}
-      <section className="py-24 bg-carbon/50 border-t border-neon/20">
+      {/* Brief lane: clarity fast */}
+      {lane === 'brief' ? (
+        <section className="py-16 bg-carbon/50 border-t border-neon/20">
+          <div className="max-w-6xl mx-auto px-6">
+            <h2 className="text-4xl md:text-5xl font-black mb-6 neon-glow">The villain: motion without control.</h2>
+            <p className="text-lg text-steel/90 mb-8 max-w-3xl">
+              Most “visibility” tools show dots moving. They don’t change gate behavior. Flow State closes the loop: it turns
+              timestamps into actions.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <RevealMetric label="Where money hides" value={48} suffix=" min" />
+              <RevealMetric label="Where ops bleeds" value={75} prefix="$" suffix="/hr" />
+              <RevealMetric label="Where execs get stuck" value={260} suffix=" sites" />
+            </div>
+
+            <div className="mt-10">
+              <Card className="border-neon/20">
+                <h3 className="text-2xl font-bold text-neon mb-3">The reveal</h3>
+                <p className="text-steel">
+                  Yard → network of intelligent nodes. Each facility becomes an instrumented edge that standardizes execution
+                  and makes outcomes defensible.
+                </p>
+              </Card>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {/* Deep lane: original long-form content */}
+      <section className={`py-24 bg-carbon/50 border-t border-neon/20 ${lane === 'brief' ? 'hidden' : ''}`}>
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-5xl md:text-6xl font-black mb-8 neon-glow">The Supply Chain's Black Hole.</h2>
           

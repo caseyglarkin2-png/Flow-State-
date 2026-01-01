@@ -11,13 +11,6 @@ export interface LogoProps {
   appName?: string;
 }
 
-const defaultProps: LogoProps = {
-  size: 32,
-  color: '#00B4FF',
-  secondaryColor: '#FFFFFF',
-  appName: 'Flow State',
-};
-
 // The Flow State Mark - Abstract flowing network symbol
 export const FlowStateMark: React.FC<LogoProps> = ({
   size = 32,

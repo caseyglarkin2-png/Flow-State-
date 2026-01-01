@@ -13,7 +13,6 @@ import {
   Prism,
   Manifest,
   Nexus,
-  Comm,
   Signal,
   Cycle,
   Ignite,
@@ -296,7 +295,7 @@ export default function SingularityPage() {
                     y1={from.y}
                     x2={to.x}
                     y2={to.y}
-                    stroke="#00FFC2"
+                    stroke="#00B4FF"
                     strokeWidth="0.15"
                     opacity={phase === 'flow' ? 0.4 : 0.2}
                     className="transition-opacity duration-500"
@@ -319,7 +318,7 @@ export default function SingularityPage() {
                       cx={x}
                       cy={y}
                       r={packet.type === 'truck' ? 1.2 : 0.8}
-                      fill={packet.type === 'truck' ? '#00FFC2' : packet.type === 'bol' ? '#FFB800' : '#00A8FF'}
+                      fill={packet.type === 'truck' ? '#00B4FF' : packet.type === 'bol' ? '#FFB800' : '#00B4FF'}
                       opacity={0.9}
                     >
                       <animate
@@ -343,7 +342,7 @@ export default function SingularityPage() {
                       cy={facility.y}
                       r="3"
                       fill="none"
-                      stroke="#00FFC2"
+                      stroke="#00B4FF"
                       strokeWidth="0.3"
                       opacity="0.5"
                     >
@@ -368,7 +367,7 @@ export default function SingularityPage() {
                     cy={facility.y}
                     r="2"
                     fill={facility.status === 'offline' ? '#FF2A00' : 
-                          facility.status === 'activating' ? '#FFB800' : '#00FFC2'}
+                          facility.status === 'activating' ? '#FFB800' : '#00B4FF'}
                     className="transition-all duration-500"
                   />
                   
@@ -377,7 +376,7 @@ export default function SingularityPage() {
                     <polygon
                       points={`${facility.x},${facility.y-2.5} ${facility.x+2.2},${facility.y-1.25} ${facility.x+2.2},${facility.y+1.25} ${facility.x},${facility.y+2.5} ${facility.x-2.2},${facility.y+1.25} ${facility.x-2.2},${facility.y-1.25}`}
                       fill="none"
-                      stroke="#00FFC2"
+                      stroke="#00B4FF"
                       strokeWidth="0.3"
                     />
                   )}
@@ -387,7 +386,7 @@ export default function SingularityPage() {
                     x={facility.x}
                     y={facility.y + 5}
                     fontSize="2"
-                    fill={facility.status === 'online' ? '#00FFC2' : '#888888'}
+                    fill={facility.status === 'online' ? '#00B4FF' : '#888888'}
                     textAnchor="middle"
                     className="transition-colors duration-500"
                   >

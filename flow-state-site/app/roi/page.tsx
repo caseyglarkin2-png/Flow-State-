@@ -1,13 +1,17 @@
+
 'use client';
 
 import React, { useState, useMemo } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Button from '@/components/Button';
 import Card from '@/components/Card';
-import { FlowArrow, Metrics, Timeline } from '@/components/icons/FlowIcons';
+import BoardReadyExportCTA from '@/components/BoardReadyExportCTA';
+import { FlowArrow, Metrics } from '@/components/icons/FlowIcons';
+import { calcRoiV1, calcRoiV2, defaultRoiV2Inputs, roiV2InputsFromQuickMode } from '@/lib/roi/calc';
+import type { RoiV2Inputs } from '@/lib/roi/types';
 
 export default function ROICalculatorPage() {
+  const [mode, setMode] = useState<'quick' | 'pro'>('quick');
   const [facilities, setFacilities] = useState(5);
   const [trucksPerDay, setTrucksPerDay] = useState(150);
   const [avgDwellTime, setAvgDwellTime] = useState(48);
@@ -15,72 +19,88 @@ export default function ROICalculatorPage() {
   const [laborCostPerHour, setLaborCostPerHour] = useState(28);
   const [gateStaff, setGateStaff] = useState(3);
 
+  const [proInputs, setProInputs] = useState<RoiV2Inputs>(() => defaultRoiV2Inputs());
+
+  const inputsForPdf = useMemo(() => {
+    if (mode === 'pro') return proInputs;
+    return roiV2InputsFromQuickMode({
+      facilities,
+      trucksPerDayPerFacility: trucksPerDay,
+      avgDwellTimeMinutes: avgDwellTime,
+      detentionCostPerHour: detentionCost,
+      laborCostPerHour,
+      gateStaffPerFacility: gateStaff,
+    });
+  }, [mode, proInputs, facilities, trucksPerDay, avgDwellTime, detentionCost, laborCostPerHour, gateStaff]);
+
   const calculations = useMemo(() => {
-    // Network effect multiplier based on Metcalfe's Law
-    const networkMultiplier = 1 + (Math.log(facilities + 1) * 0.5);
+    if (mode === 'pro') {
+      const v2 = calcRoiV2(proInputs);
 
-    // Time savings
-    const newDwellTime = avgDwellTime * 0.5; // 50% reduction
-    const timeSavedPerTruck = avgDwellTime - newDwellTime; // minutes
-    const annualTimeSaved = timeSavedPerTruck * trucksPerDay * 365 * facilities; // minutes
+      const timeSavedPerTruck =
+        Math.max(0, proInputs.throughput.reduceCheckInMinutes) +
+        Math.max(0, proInputs.throughput.reduceCheckOutMinutes);
+      const annualTimeSaved = timeSavedPerTruck * v2.totalShipmentsPerYear;
 
-    // Detention savings
-    const detentionReduction = 0.65; // 65% reduction in detention
-    const annualDetentionSavings = (trucksPerDay * 0.15 * detentionCost * 365 * facilities) * detentionReduction;
+      // UI expects some fields that only exist in V1. We map them in a CFO-friendly way.
+      // Time-saved is only shown in the Operational Impact card; Pro Mode uses throughput/labor/paper/detention.
+      return {
+        networkMultiplier: v2.networkMultiplier,
+        timeSavedPerTruck,
+        annualTimeSaved,
+        annualDetentionSavings: v2.annualDetentionSavings,
+        annualLaborSavings: v2.annualLaborSavings,
+        throughputValue: v2.throughputValue,
+        paperlessSavings: v2.paperlessSavings,
+        baseSavings: v2.baseSavings,
+        networkBonusSavings: v2.networkBonusSavings,
+        totalAnnualSavings: v2.totalAnnualSavings,
+        implementationCost: v2.implementationCost,
+        annualSubscription: v2.annualSubscription,
+        yearOneSavings: v2.yearOneNetGain,
+        yearOneROI: v2.yearOneRoiPercent,
+        paybackMonths: v2.paybackMonths,
+        fiveYearSavings: v2.fiveYearValue,
+        newDwellTime: avgDwellTime,
+        v2,
+      };
+    }
 
-    // Labor savings (gate automation)
-    const laborSavingsPerFacility = gateStaff * 0.7 * laborCostPerHour * 2080; // 70% reduction, 2080 hrs/yr
-    const annualLaborSavings = laborSavingsPerFacility * facilities;
+    const quickInputs = {
+      facilities,
+      trucksPerDayPerFacility: trucksPerDay,
+      avgDwellTimeMinutes: avgDwellTime,
+      detentionCostPerHour: detentionCost,
+      laborCostPerHour,
+      gateStaffPerFacility: gateStaff,
+    };
 
-    // Throughput increase value
-    const throughputIncrease = 0.42; // 42% more trucks
-    const valuePerTruck = 45; // marginal value per additional truck processed
-    const throughputValue = trucksPerDay * throughputIncrease * valuePerTruck * 365 * facilities;
-
-    // Paperless savings
-    const paperlessSavings = 15 * trucksPerDay * 365 * facilities; // $15 per truck in paper/admin
-
-    // Total before network effect
-    const baseSavings = annualDetentionSavings + annualLaborSavings + throughputValue + paperlessSavings;
-
-    // Apply network effect
-    const networkBonusSavings = baseSavings * (networkMultiplier - 1);
-    const totalAnnualSavings = baseSavings + networkBonusSavings;
-
-    // Implementation cost
-    const implementationCost = facilities * 15000 + 50000; // $15k per site + $50k base
-    const annualSubscription = facilities * 2500 * 12; // $2,500/month per site
-
-    // ROI calculations
-    const yearOneSavings = totalAnnualSavings - implementationCost - annualSubscription;
-    const yearOneROI = ((totalAnnualSavings - annualSubscription) / implementationCost) * 100;
-    const paybackMonths = implementationCost / ((totalAnnualSavings - annualSubscription) / 12);
-
-    // 5-year projections (2% annual growth in savings from optimization)
-    const fiveYearSavings = Array.from({ length: 5 }, (_, i) => 
-      totalAnnualSavings * Math.pow(1.02, i) - annualSubscription
-    ).reduce((a, b) => a + b, 0) - implementationCost;
+    // Keep the existing time-saved metrics from V1 sliders,
+    // but run the economics through the unified V2 engine.
+    const v1 = calcRoiV1(quickInputs);
+    const v2 = calcRoiV2(roiV2InputsFromQuickMode(quickInputs));
 
     return {
-      networkMultiplier,
-      timeSavedPerTruck,
-      annualTimeSaved,
-      annualDetentionSavings,
-      annualLaborSavings,
-      throughputValue,
-      paperlessSavings,
-      baseSavings,
-      networkBonusSavings,
-      totalAnnualSavings,
-      implementationCost,
-      annualSubscription,
-      yearOneSavings,
-      yearOneROI,
-      paybackMonths,
-      fiveYearSavings,
-      newDwellTime,
+      networkMultiplier: v2.networkMultiplier,
+      timeSavedPerTruck: v1.timeSavedPerTruckMinutes,
+      annualTimeSaved: v1.annualTimeSavedMinutes,
+      annualDetentionSavings: v2.annualDetentionSavings,
+      annualLaborSavings: v2.annualLaborSavings,
+      throughputValue: v2.throughputValue,
+      paperlessSavings: v2.paperlessSavings,
+      baseSavings: v2.baseSavings,
+      networkBonusSavings: v2.networkBonusSavings,
+      totalAnnualSavings: v2.totalAnnualSavings,
+      implementationCost: v2.implementationCost,
+      annualSubscription: v2.annualSubscription,
+      yearOneSavings: v2.yearOneNetGain,
+      yearOneROI: v2.yearOneRoiPercent,
+      paybackMonths: v2.paybackMonths,
+      fiveYearSavings: v2.fiveYearValue,
+      newDwellTime: v1.newDwellTimeMinutes,
+      v2,
     };
-  }, [facilities, trucksPerDay, avgDwellTime, detentionCost, laborCostPerHour, gateStaff]);
+  }, [mode, facilities, trucksPerDay, avgDwellTime, detentionCost, laborCostPerHour, gateStaff, proInputs]);
 
   const formatMoney = (amount: number) => {
     if (amount >= 1000000) return `$${(amount / 1000000).toFixed(2)}M`;
@@ -115,129 +135,1003 @@ export default function ROICalculatorPage() {
             {/* Inputs */}
             <div>
               <h2 className="text-2xl font-bold mb-8 neon-glow">Your Operation</h2>
+
+              <div className="flex items-center justify-between mb-8">
+                <div className="text-sm text-steel">
+                  Mode: <span className="text-white font-semibold">{mode === 'quick' ? 'Quick' : 'Pro'}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMode((m) => {
+                      if (m === 'quick') {
+                        setProInputs(
+                          roiV2InputsFromQuickMode({
+                            facilities,
+                            trucksPerDayPerFacility: trucksPerDay,
+                            avgDwellTimeMinutes: avgDwellTime,
+                            detentionCostPerHour: detentionCost,
+                            laborCostPerHour,
+                            gateStaffPerFacility: gateStaff,
+                          })
+                        );
+                        return 'pro';
+                      }
+                      return 'quick';
+                    });
+                  }}
+                  className="text-sm px-3 py-2 rounded-lg border border-steel/30 hover:border-neon/40 transition-colors"
+                >
+                  {mode === 'quick' ? 'Switch to Pro Mode' : 'Back to Quick Mode'}
+                </button>
+              </div>
               
               <div className="space-y-8">
-                {/* Facilities */}
-                <div>
-                  <label className="flex justify-between mb-3">
-                    <span className="text-steel">Number of Facilities</span>
-                    <span className="text-neon font-bold">{facilities}</span>
-                  </label>
-                  <input
-                    type="range"
-                    min="1"
-                    max="50"
-                    value={facilities}
-                    onChange={(e) => setFacilities(parseInt(e.target.value))}
-                    className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon"
-                  />
-                  <div className="flex justify-between text-xs text-steel/60 mt-1">
-                    <span>1</span>
-                    <span>50</span>
-                  </div>
-                </div>
+                {mode === 'quick' && (
+                  <>
+                    {/* Facilities */}
+                    <div>
+                      <label className="flex justify-between mb-3">
+                        <span className="text-steel">Number of Facilities</span>
+                        <span className="text-neon font-bold">{facilities}</span>
+                      </label>
+                      <input
+                        type="range"
+                        min="1"
+                        max="50"
+                        value={facilities}
+                        onChange={(e) => setFacilities(parseInt(e.target.value))}
+                        className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon"
+                      />
+                      <div className="flex justify-between text-xs text-steel/60 mt-1">
+                        <span>1</span>
+                        <span>50</span>
+                      </div>
+                    </div>
 
-                {/* Trucks per day */}
-                <div>
-                  <label className="flex justify-between mb-3">
-                    <span className="text-steel">Trucks per Day (per facility)</span>
-                    <span className="text-neon font-bold">{trucksPerDay}</span>
-                  </label>
-                  <input
-                    type="range"
-                    min="20"
-                    max="500"
-                    step="10"
-                    value={trucksPerDay}
-                    onChange={(e) => setTrucksPerDay(parseInt(e.target.value))}
-                    className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon"
-                  />
-                  <div className="flex justify-between text-xs text-steel/60 mt-1">
-                    <span>20</span>
-                    <span>500</span>
-                  </div>
-                </div>
+                    {/* Trucks per day */}
+                    <div>
+                      <label className="flex justify-between mb-3">
+                        <span className="text-steel">Trucks per Day (per facility)</span>
+                        <span className="text-neon font-bold">{trucksPerDay}</span>
+                      </label>
+                      <input
+                        type="range"
+                        min="20"
+                        max="500"
+                        step="10"
+                        value={trucksPerDay}
+                        onChange={(e) => setTrucksPerDay(parseInt(e.target.value))}
+                        className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon"
+                      />
+                      <div className="flex justify-between text-xs text-steel/60 mt-1">
+                        <span>20</span>
+                        <span>500</span>
+                      </div>
+                    </div>
 
-                {/* Dwell time */}
-                <div>
-                  <label className="flex justify-between mb-3">
-                    <span className="text-steel">Current Avg. Dwell Time (min)</span>
-                    <span className="text-neon font-bold">{avgDwellTime} min</span>
-                  </label>
-                  <input
-                    type="range"
-                    min="20"
-                    max="120"
-                    value={avgDwellTime}
-                    onChange={(e) => setAvgDwellTime(parseInt(e.target.value))}
-                    className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon"
-                  />
-                  <div className="flex justify-between text-xs text-steel/60 mt-1">
-                    <span>20 min</span>
-                    <span>120 min</span>
-                  </div>
-                </div>
+                    {/* Dwell time */}
+                    <div>
+                      <label className="flex justify-between mb-3">
+                        <span className="text-steel">Current Avg. Dwell Time (min)</span>
+                        <span className="text-neon font-bold">{avgDwellTime} min</span>
+                      </label>
+                      <input
+                        type="range"
+                        min="20"
+                        max="120"
+                        value={avgDwellTime}
+                        onChange={(e) => setAvgDwellTime(parseInt(e.target.value))}
+                        className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon"
+                      />
+                      <div className="flex justify-between text-xs text-steel/60 mt-1">
+                        <span>20 min</span>
+                        <span>120 min</span>
+                      </div>
+                    </div>
 
-                {/* Detention cost */}
-                <div>
-                  <label className="flex justify-between mb-3">
-                    <span className="text-steel">Detention Cost (per hour)</span>
-                    <span className="text-neon font-bold">${detentionCost}</span>
-                  </label>
-                  <input
-                    type="range"
-                    min="25"
-                    max="150"
-                    step="5"
-                    value={detentionCost}
-                    onChange={(e) => setDetentionCost(parseInt(e.target.value))}
-                    className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon"
-                  />
-                  <div className="flex justify-between text-xs text-steel/60 mt-1">
-                    <span>$25</span>
-                    <span>$150</span>
-                  </div>
-                </div>
+                    {/* Detention cost */}
+                    <div>
+                      <label className="flex justify-between mb-3">
+                        <span className="text-steel">Detention Cost (per hour)</span>
+                        <span className="text-neon font-bold">${detentionCost}</span>
+                      </label>
+                      <input
+                        type="range"
+                        min="25"
+                        max="150"
+                        step="5"
+                        value={detentionCost}
+                        onChange={(e) => setDetentionCost(parseInt(e.target.value))}
+                        className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon"
+                      />
+                      <div className="flex justify-between text-xs text-steel/60 mt-1">
+                        <span>$25</span>
+                        <span>$150</span>
+                      </div>
+                    </div>
 
-                {/* Gate staff */}
-                <div>
-                  <label className="flex justify-between mb-3">
-                    <span className="text-steel">Gate Staff (per facility)</span>
-                    <span className="text-neon font-bold">{gateStaff}</span>
-                  </label>
-                  <input
-                    type="range"
-                    min="1"
-                    max="10"
-                    value={gateStaff}
-                    onChange={(e) => setGateStaff(parseInt(e.target.value))}
-                    className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon"
-                  />
-                  <div className="flex justify-between text-xs text-steel/60 mt-1">
-                    <span>1</span>
-                    <span>10</span>
-                  </div>
-                </div>
+                    {/* Gate staff */}
+                    <div>
+                      <label className="flex justify-between mb-3">
+                        <span className="text-steel">Gate Staff (per facility)</span>
+                        <span className="text-neon font-bold">{gateStaff}</span>
+                      </label>
+                      <input
+                        type="range"
+                        min="1"
+                        max="10"
+                        value={gateStaff}
+                        onChange={(e) => setGateStaff(parseInt(e.target.value))}
+                        className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon"
+                      />
+                      <div className="flex justify-between text-xs text-steel/60 mt-1">
+                        <span>1</span>
+                        <span>10</span>
+                      </div>
+                    </div>
 
-                {/* Labor cost */}
-                <div>
-                  <label className="flex justify-between mb-3">
-                    <span className="text-steel">Fully-Loaded Labor Cost ($/hr)</span>
-                    <span className="text-neon font-bold">${laborCostPerHour}</span>
-                  </label>
-                  <input
-                    type="range"
-                    min="15"
-                    max="60"
-                    value={laborCostPerHour}
-                    onChange={(e) => setLaborCostPerHour(parseInt(e.target.value))}
-                    className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon"
-                  />
-                  <div className="flex justify-between text-xs text-steel/60 mt-1">
-                    <span>$15</span>
-                    <span>$60</span>
-                  </div>
-                </div>
+                    {/* Labor cost */}
+                    <div>
+                      <label className="flex justify-between mb-3">
+                        <span className="text-steel">Fully-Loaded Labor Cost ($/hr)</span>
+                        <span className="text-neon font-bold">${laborCostPerHour}</span>
+                      </label>
+                      <input
+                        type="range"
+                        min="15"
+                        max="60"
+                        value={laborCostPerHour}
+                        onChange={(e) => setLaborCostPerHour(parseInt(e.target.value))}
+                        className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon"
+                      />
+                      <div className="flex justify-between text-xs text-steel/60 mt-1">
+                        <span>$15</span>
+                        <span>$60</span>
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {/* Pro mode inputs */}
+                {mode === 'pro' && (
+                  <Card className="border-neon/20">
+                    <h3 className="font-bold text-neon mb-4">Pro Mode Assumptions</h3>
+
+                    <div className="space-y-6">
+                      <div>
+                        <p className="text-sm text-steel mb-3">Facility Mix</p>
+                        <div className="grid grid-cols-4 gap-2 text-xs text-steel mb-2">
+                          <div>Tier</div>
+                          <div className="text-right">Count</div>
+                          <div className="text-right">Ship/day</div>
+                          <div className="text-right">Days/yr</div>
+                        </div>
+
+                        {(['XL', 'L', 'M', 'S'] as const).map((tier) => (
+                          <div key={tier} className="grid grid-cols-4 gap-2 items-center mb-2">
+                            <div className="text-sm text-white font-semibold">{tier}</div>
+                            <input
+                              type="number"
+                              min={0}
+                              value={proInputs.tiers[tier].count}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  tiers: {
+                                    ...prev.tiers,
+                                    [tier]: { ...prev.tiers[tier], count: parseInt(e.target.value || '0') },
+                                  },
+                                }))
+                              }
+                              className="w-full text-right bg-carbon border border-steel/20 rounded-md px-2 py-1 text-white"
+                            />
+                            <input
+                              type="number"
+                              min={0}
+                              value={proInputs.tiers[tier].shipmentsPerDay}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  tiers: {
+                                    ...prev.tiers,
+                                    [tier]: { ...prev.tiers[tier], shipmentsPerDay: parseFloat(e.target.value || '0') },
+                                  },
+                                }))
+                              }
+                              className="w-full text-right bg-carbon border border-steel/20 rounded-md px-2 py-1 text-white"
+                            />
+                            <input
+                              type="number"
+                              min={0}
+                              value={proInputs.tiers[tier].operatingDaysPerYear}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  tiers: {
+                                    ...prev.tiers,
+                                    [tier]: {
+                                      ...prev.tiers[tier],
+                                      operatingDaysPerYear: parseInt(e.target.value || '0'),
+                                    },
+                                  },
+                                }))
+                              }
+                              className="w-full text-right bg-carbon border border-steel/20 rounded-md px-2 py-1 text-white"
+                            />
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <label className="text-sm text-steel">DC FTE Annual Cost ($)</label>
+                          <input
+                            type="number"
+                            min={0}
+                            value={proInputs.tiers.M.dcFteAnnualCost}
+                            onChange={(e) => {
+                              const v = parseFloat(e.target.value || '0');
+                              setProInputs((prev) => ({
+                                ...prev,
+                                tiers: {
+                                  XL: { ...prev.tiers.XL, dcFteAnnualCost: v },
+                                  L: { ...prev.tiers.L, dcFteAnnualCost: v },
+                                  M: { ...prev.tiers.M, dcFteAnnualCost: v },
+                                  S: { ...prev.tiers.S, dcFteAnnualCost: v },
+                                },
+                              }));
+                            }}
+                            className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                          />
+                          <p className="text-xs text-steel/60 mt-1">Applies to all tiers</p>
+                        </div>
+                        <div>
+                          <label className="text-sm text-steel">Year-1 Ramp (0–1)</label>
+                          <input
+                            type="number"
+                            step="0.05"
+                            min={0}
+                            max={1}
+                            value={proInputs.yearOneRampShare}
+                            onChange={(e) =>
+                              setProInputs((prev) => ({ ...prev, yearOneRampShare: parseFloat(e.target.value || '0') }))
+                            }
+                            className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                          />
+                        </div>
+                      </div>
+
+                      <details className="text-sm text-steel">
+                        <summary className="cursor-pointer text-neon">Labor assumptions</summary>
+                        <div className="mt-4 space-y-4">
+                          <p className="text-xs text-steel/70">
+                            Uses conservative rounding down for saved FTE (spreadsheet parity).
+                          </p>
+                          <div className="grid grid-cols-7 gap-2 text-xs text-steel mb-2">
+                            <div>Tier</div>
+                            <div className="text-right">Dock FTE/shift</div>
+                            <div className="text-right">Shifts/day</div>
+                            <div className="text-right">Dock time %</div>
+                            <div className="text-right">Dock save %</div>
+                            <div className="text-right">Guard FTE/shift</div>
+                            <div className="text-right">Guard auto %</div>
+                          </div>
+                          {(['XL', 'L', 'M', 'S'] as const).map((tier) => (
+                            <div key={tier} className="grid grid-cols-7 gap-2 items-center">
+                              <div className="text-sm text-white font-semibold">{tier}</div>
+                              <input
+                                type="number"
+                                min={0}
+                                step="0.1"
+                                value={proInputs.labor.tiers[tier].dockOfficeFtePerShift}
+                                onChange={(e) =>
+                                  setProInputs((prev) => ({
+                                    ...prev,
+                                    labor: {
+                                      ...prev.labor,
+                                      tiers: {
+                                        ...prev.labor.tiers,
+                                        [tier]: {
+                                          ...prev.labor.tiers[tier],
+                                          dockOfficeFtePerShift: parseFloat(e.target.value || '0'),
+                                        },
+                                      },
+                                    },
+                                  }))
+                                }
+                                className="w-full text-right bg-carbon border border-steel/20 rounded-md px-2 py-1 text-white"
+                              />
+                              <input
+                                type="number"
+                                min={0}
+                                value={proInputs.labor.tiers[tier].shiftsPerDay}
+                                onChange={(e) =>
+                                  setProInputs((prev) => ({
+                                    ...prev,
+                                    labor: {
+                                      ...prev.labor,
+                                      tiers: {
+                                        ...prev.labor.tiers,
+                                        [tier]: { ...prev.labor.tiers[tier], shiftsPerDay: parseFloat(e.target.value || '0') },
+                                      },
+                                    },
+                                  }))
+                                }
+                                className="w-full text-right bg-carbon border border-steel/20 rounded-md px-2 py-1 text-white"
+                              />
+                              <input
+                                type="number"
+                                min={0}
+                                max={1}
+                                step="0.01"
+                                value={proInputs.labor.tiers[tier].dockOfficeTimeShareOnDriverProcess}
+                                onChange={(e) =>
+                                  setProInputs((prev) => ({
+                                    ...prev,
+                                    labor: {
+                                      ...prev.labor,
+                                      tiers: {
+                                        ...prev.labor.tiers,
+                                        [tier]: {
+                                          ...prev.labor.tiers[tier],
+                                          dockOfficeTimeShareOnDriverProcess: parseFloat(e.target.value || '0'),
+                                        },
+                                      },
+                                    },
+                                  }))
+                                }
+                                className="w-full text-right bg-carbon border border-steel/20 rounded-md px-2 py-1 text-white"
+                              />
+                              <input
+                                type="number"
+                                min={0}
+                                max={1}
+                                step="0.01"
+                                value={proInputs.labor.tiers[tier].dockOfficeTimeSavingsShare}
+                                onChange={(e) =>
+                                  setProInputs((prev) => ({
+                                    ...prev,
+                                    labor: {
+                                      ...prev.labor,
+                                      tiers: {
+                                        ...prev.labor.tiers,
+                                        [tier]: {
+                                          ...prev.labor.tiers[tier],
+                                          dockOfficeTimeSavingsShare: parseFloat(e.target.value || '0'),
+                                        },
+                                      },
+                                    },
+                                  }))
+                                }
+                                className="w-full text-right bg-carbon border border-steel/20 rounded-md px-2 py-1 text-white"
+                              />
+                              <input
+                                type="number"
+                                min={0}
+                                step="0.1"
+                                value={proInputs.labor.tiers[tier].guardFtePerShift}
+                                onChange={(e) =>
+                                  setProInputs((prev) => ({
+                                    ...prev,
+                                    labor: {
+                                      ...prev.labor,
+                                      tiers: {
+                                        ...prev.labor.tiers,
+                                        [tier]: {
+                                          ...prev.labor.tiers[tier],
+                                          guardFtePerShift: parseFloat(e.target.value || '0'),
+                                        },
+                                      },
+                                    },
+                                  }))
+                                }
+                                className="w-full text-right bg-carbon border border-steel/20 rounded-md px-2 py-1 text-white"
+                              />
+                              <input
+                                type="number"
+                                min={0}
+                                max={1}
+                                step="0.01"
+                                value={proInputs.labor.tiers[tier].guardAutomationShare}
+                                onChange={(e) =>
+                                  setProInputs((prev) => ({
+                                    ...prev,
+                                    labor: {
+                                      ...prev.labor,
+                                      tiers: {
+                                        ...prev.labor.tiers,
+                                        [tier]: {
+                                          ...prev.labor.tiers[tier],
+                                          guardAutomationShare: parseFloat(e.target.value || '0'),
+                                        },
+                                      },
+                                    },
+                                  }))
+                                }
+                                className="w-full text-right bg-carbon border border-steel/20 rounded-md px-2 py-1 text-white"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </details>
+
+                      <details className="text-sm text-steel">
+                        <summary className="cursor-pointer text-neon">Paper assumptions</summary>
+                        <div className="mt-4 grid grid-cols-2 gap-4">
+                          <div>
+                            <label className="text-sm text-steel">Pages per BOL</label>
+                            <input
+                              type="number"
+                              min={0}
+                              value={proInputs.paper.pagesPerBol}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  paper: { ...prev.paper, pagesPerBol: parseFloat(e.target.value || '0') },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">BOLs per Shipment</label>
+                            <input
+                              type="number"
+                              min={0}
+                              value={proInputs.paper.bolsPerShipment}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  paper: { ...prev.paper, bolsPerShipment: parseFloat(e.target.value || '0') },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">Printing Cost / Page ($)</label>
+                            <input
+                              type="number"
+                              min={0}
+                              step="0.01"
+                              value={proInputs.paper.printingCostPerPage}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  paper: { ...prev.paper, printingCostPerPage: parseFloat(e.target.value || '0') },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">Storage Cost / Page ($)</label>
+                            <input
+                              type="number"
+                              min={0}
+                              step="0.01"
+                              value={proInputs.paper.storageCostPerPage}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  paper: { ...prev.paper, storageCostPerPage: parseFloat(e.target.value || '0') },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">Outbound % (0–1)</label>
+                            <input
+                              type="number"
+                              min={0}
+                              max={1}
+                              step="0.01"
+                              value={proInputs.paper.outboundShare}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  paper: { ...prev.paper, outboundShare: parseFloat(e.target.value || '0') },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">Phase-1 Saved % (0–1)</label>
+                            <input
+                              type="number"
+                              min={0}
+                              max={1}
+                              step="0.01"
+                              value={proInputs.paper.phase1SavedShare}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  paper: { ...prev.paper, phase1SavedShare: parseFloat(e.target.value || '0') },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                        </div>
+                      </details>
+
+                      <details className="text-sm text-steel">
+                        <summary className="cursor-pointer text-neon">Detention assumptions</summary>
+                        <div className="mt-4 grid grid-cols-2 gap-4">
+                          <div>
+                            <label className="text-sm text-steel">Detention Budget % of Transport (0–1)</label>
+                            <input
+                              type="number"
+                              min={0}
+                              max={1}
+                              step="0.001"
+                              value={proInputs.detention.detentionBudgetShareOfTransport}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  detention: {
+                                    ...prev.detention,
+                                    detentionBudgetShareOfTransport: parseFloat(e.target.value || '0'),
+                                  },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">Avg Detention Hours</label>
+                            <input
+                              type="number"
+                              min={0}
+                              step="0.1"
+                              value={proInputs.detention.avgDetentionHours}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  detention: { ...prev.detention, avgDetentionHours: parseFloat(e.target.value || '0') },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">$ per Hour Detention</label>
+                            <input
+                              type="number"
+                              min={0}
+                              step="1"
+                              value={proInputs.detention.costPerHourDetention}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  detention: {
+                                    ...prev.detention,
+                                    costPerHourDetention: parseFloat(e.target.value || '0'),
+                                  },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">Claim Shares (15–30 / 30+)</label>
+                            <div className="grid grid-cols-2 gap-2 mt-2">
+                              <input
+                                type="number"
+                                min={0}
+                                max={1}
+                                step="0.01"
+                                value={proInputs.detention.claimsShare15to30MinOver}
+                                onChange={(e) =>
+                                  setProInputs((prev) => ({
+                                    ...prev,
+                                    detention: {
+                                      ...prev.detention,
+                                      claimsShare15to30MinOver: parseFloat(e.target.value || '0'),
+                                    },
+                                  }))
+                                }
+                                className="w-full text-right bg-carbon border border-steel/20 rounded-md px-2 py-2 text-white"
+                              />
+                              <input
+                                type="number"
+                                min={0}
+                                max={1}
+                                step="0.01"
+                                value={proInputs.detention.claimsShare30PlusMinOver}
+                                onChange={(e) =>
+                                  setProInputs((prev) => ({
+                                    ...prev,
+                                    detention: {
+                                      ...prev.detention,
+                                      claimsShare30PlusMinOver: parseFloat(e.target.value || '0'),
+                                    },
+                                  }))
+                                }
+                                className="w-full text-right bg-carbon border border-steel/20 rounded-md px-2 py-2 text-white"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </details>
+
+                      <details className="text-sm text-steel">
+                        <summary className="cursor-pointer text-neon">Throughput + shipper-of-choice assumptions</summary>
+                        <div className="mt-4 grid grid-cols-2 gap-4">
+                          <div>
+                            <label className="text-sm text-steel">Avg Gate In→Out (min)</label>
+                            <input
+                              type="number"
+                              min={0}
+                              value={proInputs.throughput.avgGateInToOutMinutes}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  throughput: {
+                                    ...prev.throughput,
+                                    avgGateInToOutMinutes: parseFloat(e.target.value || '0'),
+                                  },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">Incremental Margin / Truck ($)</label>
+                            <input
+                              type="number"
+                              min={0}
+                              value={proInputs.throughput.incrementalMarginPerTruck}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  throughput: {
+                                    ...prev.throughput,
+                                    incrementalMarginPerTruck: parseFloat(e.target.value || '0'),
+                                  },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">Reduce Check-in / Check-out (min)</label>
+                            <div className="grid grid-cols-2 gap-2 mt-2">
+                              <input
+                                type="number"
+                                min={0}
+                                value={proInputs.throughput.reduceCheckInMinutes}
+                                onChange={(e) =>
+                                  setProInputs((prev) => ({
+                                    ...prev,
+                                    throughput: {
+                                      ...prev.throughput,
+                                      reduceCheckInMinutes: parseFloat(e.target.value || '0'),
+                                    },
+                                  }))
+                                }
+                                className="w-full text-right bg-carbon border border-steel/20 rounded-md px-2 py-2 text-white"
+                              />
+                              <input
+                                type="number"
+                                min={0}
+                                value={proInputs.throughput.reduceCheckOutMinutes}
+                                onChange={(e) =>
+                                  setProInputs((prev) => ({
+                                    ...prev,
+                                    throughput: {
+                                      ...prev.throughput,
+                                      reduceCheckOutMinutes: parseFloat(e.target.value || '0'),
+                                    },
+                                  }))
+                                }
+                                className="w-full text-right bg-carbon border border-steel/20 rounded-md px-2 py-2 text-white"
+                              />
+                            </div>
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">Realized % (0–1)</label>
+                            <input
+                              type="number"
+                              min={0}
+                              max={1}
+                              step="0.01"
+                              value={proInputs.throughput.realizedShare}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  throughput: {
+                                    ...prev.throughput,
+                                    realizedShare: parseFloat(e.target.value || '0'),
+                                  },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">Cost per Shipment ($)</label>
+                            <input
+                              type="number"
+                              min={0}
+                              value={proInputs.shipper.costPerShipment}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  shipper: { ...prev.shipper, costPerShipment: parseFloat(e.target.value || '0') },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">Shipper Discount % + Realized %</label>
+                            <div className="grid grid-cols-2 gap-2 mt-2">
+                              <input
+                                type="number"
+                                min={0}
+                                max={1}
+                                step="0.01"
+                                value={proInputs.shipper.shipperOfChoiceDiscountShare}
+                                onChange={(e) =>
+                                  setProInputs((prev) => ({
+                                    ...prev,
+                                    shipper: {
+                                      ...prev.shipper,
+                                      shipperOfChoiceDiscountShare: parseFloat(e.target.value || '0'),
+                                    },
+                                  }))
+                                }
+                                className="w-full text-right bg-carbon border border-steel/20 rounded-md px-2 py-2 text-white"
+                              />
+                              <input
+                                type="number"
+                                min={0}
+                                max={1}
+                                step="0.01"
+                                value={proInputs.shipper.realizedShare}
+                                onChange={(e) =>
+                                  setProInputs((prev) => ({
+                                    ...prev,
+                                    shipper: { ...prev.shipper, realizedShare: parseFloat(e.target.value || '0') },
+                                  }))
+                                }
+                                className="w-full text-right bg-carbon border border-steel/20 rounded-md px-2 py-2 text-white"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </details>
+
+                      <details className="text-sm text-steel">
+                        <summary className="cursor-pointer text-neon">Network effect</summary>
+                        <div className="mt-4">
+                          <label className="text-sm text-steel">Network log factor (0 disables)</label>
+                          <input
+                            type="number"
+                            min={0}
+                            step="0.05"
+                            value={proInputs.network.logFactor}
+                            onChange={(e) =>
+                              setProInputs((prev) => ({
+                                ...prev,
+                                network: { ...prev.network, logFactor: parseFloat(e.target.value || '0') },
+                              }))
+                            }
+                            className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                          />
+                        </div>
+                      </details>
+
+                      <details className="text-sm text-steel">
+                        <summary className="cursor-pointer text-neon">
+                          Enterprise add-ons ($/shipment)
+                        </summary>
+                        <div className="mt-4 grid grid-cols-2 gap-4">
+                          <div>
+                            <label className="text-sm text-steel">Lost BOLs → Lost Sales</label>
+                            <input
+                              type="number"
+                              min={0}
+                              step="0.01"
+                              value={proInputs.enterpriseAddOns.perShipment.lostBolsLostSales}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  enterpriseAddOns: {
+                                    perShipment: {
+                                      ...prev.enterpriseAddOns.perShipment,
+                                      lostBolsLostSales: parseFloat(e.target.value || '0'),
+                                    },
+                                  },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">Manual WMS Failover Savings</label>
+                            <input
+                              type="number"
+                              min={0}
+                              step="0.01"
+                              value={proInputs.enterpriseAddOns.perShipment.manualWmsFailoverSavings}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  enterpriseAddOns: {
+                                    perShipment: {
+                                      ...prev.enterpriseAddOns.perShipment,
+                                      manualWmsFailoverSavings: parseFloat(e.target.value || '0'),
+                                    },
+                                  },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">Dock Clerk Productivity</label>
+                            <input
+                              type="number"
+                              min={0}
+                              step="0.01"
+                              value={proInputs.enterpriseAddOns.perShipment.dockClerkProductivity}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  enterpriseAddOns: {
+                                    perShipment: {
+                                      ...prev.enterpriseAddOns.perShipment,
+                                      dockClerkProductivity: parseFloat(e.target.value || '0'),
+                                    },
+                                  },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">Missed Deliveries</label>
+                            <input
+                              type="number"
+                              min={0}
+                              step="0.01"
+                              value={proInputs.enterpriseAddOns.perShipment.missedDeliveries}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  enterpriseAddOns: {
+                                    perShipment: {
+                                      ...prev.enterpriseAddOns.perShipment,
+                                      missedDeliveries: parseFloat(e.target.value || '0'),
+                                    },
+                                  },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">Yard Spotter Productivity</label>
+                            <input
+                              type="number"
+                              min={0}
+                              step="0.01"
+                              value={proInputs.enterpriseAddOns.perShipment.yardSpotterProductivity}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  enterpriseAddOns: {
+                                    perShipment: {
+                                      ...prev.enterpriseAddOns.perShipment,
+                                      yardSpotterProductivity: parseFloat(e.target.value || '0'),
+                                    },
+                                  },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">OS&D Search Time</label>
+                            <input
+                              type="number"
+                              min={0}
+                              step="0.01"
+                              value={proInputs.enterpriseAddOns.perShipment.osdSearchTime}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  enterpriseAddOns: {
+                                    perShipment: {
+                                      ...prev.enterpriseAddOns.perShipment,
+                                      osdSearchTime: parseFloat(e.target.value || '0'),
+                                    },
+                                  },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">Detention Claim Reduction</label>
+                            <input
+                              type="number"
+                              min={0}
+                              step="0.01"
+                              value={proInputs.enterpriseAddOns.perShipment.detentionClaimsReduction}
+                              onChange={(e) =>
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  enterpriseAddOns: {
+                                    perShipment: {
+                                      ...prev.enterpriseAddOns.perShipment,
+                                      detentionClaimsReduction: parseFloat(e.target.value || '0'),
+                                    },
+                                  },
+                                }))
+                              }
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                          </div>
+                        </div>
+                      </details>
+
+                      <details className="text-sm text-steel">
+                        <summary className="cursor-pointer text-neon">Pricing (transparent)</summary>
+                        <div className="mt-4 grid grid-cols-2 gap-4">
+                          <div>
+                            <label className="text-sm text-steel">Annual subscription per facility ($/year)</label>
+                            <input
+                              type="number"
+                              min={5000}
+                              max={15000}
+                              step={250}
+                              value={proInputs.commercial.annualSubscriptionPerFacility}
+                              onChange={(e) => {
+                                const v = parseFloat(e.target.value || '0');
+                                setProInputs((prev) => ({
+                                  ...prev,
+                                  commercial: {
+                                    ...prev.commercial,
+                                    annualSubscriptionPerFacility: v,
+                                  },
+                                }));
+                              }}
+                              className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                            />
+                            <p className="text-xs text-steel/70 mt-2">
+                              Typical range: $5k–$15k. Primo example: ~$8k × 260 ≈ $2.08M/year.
+                            </p>
+                          </div>
+                          <div>
+                            <label className="text-sm text-steel">Implementation per facility (one-time)</label>
+                            <input
+                              type="number"
+                              value={2500}
+                              disabled
+                              className="w-full mt-2 bg-carbon/60 border border-steel/10 rounded-md px-3 py-2 text-white/70"
+                            />
+                            <p className="text-xs text-steel/70 mt-2">
+                              Model assumes $2,500 per facility across the applicant network.
+                            </p>
+                          </div>
+                        </div>
+                      </details>
+
+                      <details className="text-sm text-steel">
+                        <summary className="cursor-pointer text-neon">Show all assumptions</summary>
+                        <pre className="mt-3 whitespace-pre-wrap text-xs text-steel/80">
+{JSON.stringify(proInputs, null, 2)}
+                        </pre>
+                      </details>
+                    </div>
+                  </Card>
+                )}
               </div>
             </div>
 
@@ -362,13 +1256,31 @@ export default function ROICalculatorPage() {
             Ready to Capture <span className="neon-glow">{formatMoney(calculations.totalAnnualSavings)}/year</span>?
           </h2>
           <p className="text-xl text-steel mb-8">
-            Get a custom analysis with your actual operational data.
+            Export a board-ready PDF, or get a custom analysis with your actual operational data.
           </p>
-          <p className="text-lg text-neon font-semibold mb-8">Only 3 Founding Member spots remaining.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/singularity" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all">
+          <div className="mt-10 text-left">
+            <BoardReadyExportCTA
+              endpoint="/api/pdf/roi"
+              eventName="roi_export_pdf"
+              buildPayload={(lead) => ({ lead, inputs: inputsForPdf })}
+              title="Board-ready ROI PDF"
+              subtitle="Generate a clean PDF you can forward internally. Modeled estimates; results vary."
+            />
+          </div>
+
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/contact"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
+            >
+              Get a custom analysis
+            </a>
+            <a
+              href="/singularity"
+              className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
+            >
               <Metrics size={20} className="text-void" />
-              Apply for Membership
+              Founding Member Program
             </a>
           </div>
         </div>
