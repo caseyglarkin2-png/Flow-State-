@@ -3,8 +3,7 @@ import '@/styles/globals.css';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import Script from 'next/script';
 import AppChrome from '@/components/AppChrome';
-
-const siteUrl = 'https://flow-state-wbv9.vercel.app';
+import { siteUrl } from '@/lib/site';
 
 const inter = Inter({
   subsets: ['latin'],

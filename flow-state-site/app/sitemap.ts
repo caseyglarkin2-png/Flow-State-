@@ -1,6 +1,5 @@
 import type { MetadataRoute } from 'next';
-
-const siteUrl = 'https://flow-state-wbv9.vercel.app';
+import { siteUrl } from '@/lib/site';
 
 const routes = [
   '/',
