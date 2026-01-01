@@ -19,6 +19,9 @@
   ],
   "author": "Flow State",
   "license": "MIT",
+  "engines": {
+    "node": ">=18.17.0"
+  },
   "dependencies": {
     "@deck.gl/core": "^9.2.5",
     "@deck.gl/geo-layers": "^9.2.5",

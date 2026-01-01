@@ -1,6 +1,5 @@
 {
   "buildCommand": "cd flow-state-site && npm run build",
-  "installCommand": "cd flow-state-site && npm install",
-  "framework": "nextjs",
-  "outputDirectory": "flow-state-site/.next"
+  "installCommand": "cd flow-state-site && npm ci",
+  "framework": "nextjs"
 }
