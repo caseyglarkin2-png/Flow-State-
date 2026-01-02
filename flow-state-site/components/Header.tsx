@@ -87,9 +87,7 @@ export default function Header() {
           <Link href="/yardbuilder" className="block text-steel hover:text-neon transition-colors">YardBuilder</Link>
           <Link href="/singularity" className="block text-neon font-semibold">Singularity</Link>
           <Link href="/roi" className="block text-steel hover:text-neon transition-colors">ROI Calculator</Link>
-          <button className="w-full px-4 py-2 text-sm font-semibold text-neon border border-neon rounded-lg hover:bg-neon hover:text-void transition-all">
-            Login
-          </button>
+          <ThemeToggle className="sm:hidden" />
         </div>
       )}
     </header>
