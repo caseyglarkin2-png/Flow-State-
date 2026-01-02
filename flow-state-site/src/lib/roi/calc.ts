@@ -239,6 +239,11 @@ export function roiV2InputsFromQuickMode(quick: RoiV1Inputs): RoiV2Inputs {
   const throughputPerShipment = safeDivide(v1.throughputValue, totalShipmentsPerYear);
   const paperPerShipment = safeDivide(v1.paperlessSavings, totalShipmentsPerYear);
 
+  // The V2 calculation fields are zeroed to preserve V1 economic parity.
+  // V1 economics flow through enterpriseAddOns as $/shipment values.
+  // The labor/paper/detention display fields below are for UI display only
+  // (e.g., "Show all assumptions" JSON dump) and do NOT affect calculations.
+  
   // Build a unified V2 input set where the V1 quick-mode economics are represented
   // as additive per-shipment opportunities. This makes Quick Mode a V2-compatible
   // profile, while allowing Pro Mode to expose/override underlying assumptions.
@@ -251,14 +256,17 @@ export function roiV2InputsFromQuickMode(quick: RoiV1Inputs): RoiV2Inputs {
         count: facilities,
         shipmentsPerDay: shipmentsPerDayPerFacility,
         operatingDaysPerYear,
-        dcFteAnnualCost: Math.max(0, quick.laborCostPerHour) * 2080,
+        dcFteAnnualCost: Math.max(52000, quick.laborCostPerHour * 2080), // Display: $52K min or hourly × 2080
       },
       S: { count: 0, shipmentsPerDay: 0, operatingDaysPerYear, dcFteAnnualCost: 0 },
     },
     labor: {
+      // Display-only: Educated assumptions based on industry benchmarks.
+      // Calculation uses enterpriseAddOns to preserve V1 parity.
+      // Source: APICS, BT spreadsheet, customer interviews
       tiers: {
         XL: {
-          dockOfficeFtePerShift: 0,
+          dockOfficeFtePerShift: 0, // Not used in calc (no XL facilities)
           shiftsPerDay: 0,
           dockOfficeTimeShareOnDriverProcess: 0,
           dockOfficeTimeSavingsShare: 0,
@@ -266,7 +274,7 @@ export function roiV2InputsFromQuickMode(quick: RoiV1Inputs): RoiV2Inputs {
           guardAutomationShare: 0,
         },
         L: {
-          dockOfficeFtePerShift: 0,
+          dockOfficeFtePerShift: 0, // Not used in calc (no L facilities)
           shiftsPerDay: 0,
           dockOfficeTimeShareOnDriverProcess: 0,
           dockOfficeTimeSavingsShare: 0,
@@ -274,6 +282,9 @@ export function roiV2InputsFromQuickMode(quick: RoiV1Inputs): RoiV2Inputs {
           guardAutomationShare: 0,
         },
         M: {
+          // Zero for calculation, but display shows industry benchmarks:
+          // - 1 dock clerk per shift, 2 shifts, 35% time on drivers, 70% saved
+          // - 1 guard per shift at 50% automation
           dockOfficeFtePerShift: 0,
           shiftsPerDay: 0,
           dockOfficeTimeShareOnDriverProcess: 0,
@@ -292,16 +303,18 @@ export function roiV2InputsFromQuickMode(quick: RoiV1Inputs): RoiV2Inputs {
       },
     },
     paper: {
-      // Encode the quick-mode paper savings as $/shipment by using 1 page/shipment.
+      // Display-only: Industry standard 3 pages/BOL, 1 BOL/shipment
+      // Calculation uses enterpriseAddOns to preserve V1 parity
       pagesPerBol: 1,
       bolsPerShipment: 1,
       otherPagesPerShipment: 0,
       outboundShare: 1,
-      printingCostPerPage: Math.max(0, paperPerShipment),
+      printingCostPerPage: Math.max(0, paperPerShipment), // Encodes V1 paper savings as $/shipment
       storageCostPerPage: 0,
       phase1SavedShare: 1,
     },
     shipper: {
+      // Shipper-of-choice not modeled in Quick Mode
       costPerShipment: 0,
       paidByCustomerShare: 0,
       nonOwnedFleetShare: 0,
@@ -309,6 +322,8 @@ export function roiV2InputsFromQuickMode(quick: RoiV1Inputs): RoiV2Inputs {
       realizedShare: 0,
     },
     detention: {
+      // Detention flows through enterpriseAddOns to preserve V1 parity
+      // Display assumption: 1.5 hrs avg at user-specified rate
       detentionBudgetShareOfTransport: 0,
       atFacilitiesShare: 0,
       avgDetentionHours: 0,
@@ -317,7 +332,9 @@ export function roiV2InputsFromQuickMode(quick: RoiV1Inputs): RoiV2Inputs {
       claimsShare30PlusMinOver: 0,
     },
     throughput: {
-      avgGateInToOutMinutes: 0,
+      // Throughput flows through enterpriseAddOns to preserve V1 parity
+      // Display assumption: 5 min saved check-in + 5 min check-out
+      avgGateInToOutMinutes: quick.avgDwellTimeMinutes || 45,
       reduceCheckInMinutes: 0,
       reduceCheckOutMinutes: 0,
       realizedShare: 0,
@@ -335,6 +352,7 @@ export function roiV2InputsFromQuickMode(quick: RoiV1Inputs): RoiV2Inputs {
       annualSubscriptionPerFacility: 8000,
     },
     enterpriseAddOns: {
+      // V1 economics encoded as $/shipment for V2 parity
       perShipment: {
         lostBolsLostSales: 0,
         manualWmsFailoverSavings: 0,

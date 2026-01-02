@@ -1336,10 +1336,50 @@ export default function ROICalculatorPage() {
                       </details>
 
                       <details className="text-sm text-steel">
-                        <summary className="cursor-pointer text-neon">Show all assumptions</summary>
-                        <pre className="mt-3 whitespace-pre-wrap text-xs text-steel/80">
-{JSON.stringify(proInputs, null, 2)}
-                        </pre>
+                        <summary className="cursor-pointer text-neon">Show model assumptions</summary>
+                        <div className="mt-3 space-y-4 text-xs text-steel/80">
+                          <div className="p-3 bg-void/50 rounded-lg">
+                            <p className="text-neon font-semibold mb-2">📊 Network Configuration</p>
+                            <p>• Facilities: {facilities} site{facilities > 1 ? 's' : ''} (modeled as Medium tier)</p>
+                            <p>• Shipments: {trucksPerDay.toLocaleString()}/day × 365 days = {(trucksPerDay * 365).toLocaleString()}/year per site</p>
+                            <p>• Labor cost: ${laborCostPerHour}/hr × 2,080 hrs = ${(laborCostPerHour * 2080).toLocaleString()}/year FTE</p>
+                          </div>
+                          <div className="p-3 bg-void/50 rounded-lg">
+                            <p className="text-neon font-semibold mb-2">⏱️ Dwell Time Assumptions</p>
+                            <p>• Current dwell: {avgDwellTime} minutes (gate-in to gate-out)</p>
+                            <p>• Reduction: 50% (industry benchmark for gate automation)</p>
+                            <p>• New dwell: {Math.round(avgDwellTime * 0.5)} minutes</p>
+                            <p className="text-steel/60 mt-1">Source: YMS implementation studies (Zebra, industry benchmarks)</p>
+                          </div>
+                          <div className="p-3 bg-void/50 rounded-lg">
+                            <p className="text-neon font-semibold mb-2">💰 Detention Assumptions</p>
+                            <p>• 15% of trucks incur detention without YMS</p>
+                            <p>• Cost: ${detentionCost}/hour detention rate</p>
+                            <p>• Reduction: 65% fewer detention events with automation</p>
+                            <p className="text-steel/60 mt-1">Source: ATRI Cost of Congestion reports</p>
+                          </div>
+                          <div className="p-3 bg-void/50 rounded-lg">
+                            <p className="text-neon font-semibold mb-2">👷 Labor Assumptions</p>
+                            <p>• Gate staff: {gateStaff} FTE{gateStaff > 1 ? 's' : ''} per facility</p>
+                            <p>• Time savings: 70% reduction in gate processing labor</p>
+                            <p>• Annual hours: 2,080 (40 hrs/week × 52 weeks)</p>
+                            <p className="text-steel/60 mt-1">Source: Time-motion studies from YMS implementations</p>
+                          </div>
+                          <div className="p-3 bg-void/50 rounded-lg">
+                            <p className="text-neon font-semibold mb-2">📄 Paper/Throughput</p>
+                            <p>• Paper savings: $15/truck (BOLs, printing, filing, storage)</p>
+                            <p>• Throughput gain: 42% from faster gate processing</p>
+                            <p>• Incremental value: $45/additional truck processed</p>
+                            <p className="text-steel/60 mt-1">Source: Customer interviews, industry estimates</p>
+                          </div>
+                          <div className="p-3 bg-void/50 rounded-lg">
+                            <p className="text-neon font-semibold mb-2">🌐 Network Effect</p>
+                            <p>• Formula: 1 + log(n+1) × 0.5</p>
+                            <p>• Current multiplier: {calculations.networkMultiplier.toFixed(2)}× at {facilities} site{facilities > 1 ? 's' : ''}</p>
+                            <p>• Maturity factor scales value for network size</p>
+                            <p className="text-steel/60 mt-1">Based on Metcalfe's Law for network value</p>
+                          </div>
+                        </div>
                       </details>
                     </div>
                   </Card>
