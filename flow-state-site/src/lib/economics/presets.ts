@@ -1,7 +1,7 @@
 import type { RoiV1Inputs, RoiV2Inputs } from './roiTypes';
 import { roiV2InputsFromQuickMode } from './roi';
 
-export type EconomicsScenarioId = 'regional_10' | 'enterprise_50';
+export type EconomicsScenarioId = 'pilot_1' | 'regional_10' | 'enterprise_50' | 'primo_260';
 export type EconomicsMode = 'conservative' | 'expected' | 'upside';
 
 export const DEFAULT_SCENARIO_ID: EconomicsScenarioId = 'enterprise_50';
@@ -11,8 +11,10 @@ export const ECONOMICS_SCENARIOS: Record<
   EconomicsScenarioId,
   { id: EconomicsScenarioId; label: string; facilities: number }
 > = {
+  pilot_1: { id: 'pilot_1', label: 'Pilot (1 site)', facilities: 1 },
   regional_10: { id: 'regional_10', label: 'Network (10 sites)', facilities: 10 },
   enterprise_50: { id: 'enterprise_50', label: 'Network (50 sites)', facilities: 50 },
+  primo_260: { id: 'primo_260', label: 'Enterprise (260 sites)', facilities: 260 },
 };
 
 export const ECONOMICS_MODES: Record<

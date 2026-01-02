@@ -4,48 +4,48 @@ Date: 2026-01-02
 Site: https://flow-state-klbt.vercel.app/
 
 ## Goal
-Make every number on `/`, `/roi`, and `/singularity` come from a single canonical model given the same **Scenario + Mode**, with guardrails and tests that prevent regressions.
+Make every number on `/`, `/roi`, `/network-effect`, and `/singularity` come from a single canonical model given the same **Scenario + Mode**, with guardrails and tests that prevent regressions.
+
+Critical framing update
+- In this business, **“shipment” means TRUCKLOAD**.
+- Dwell remains a mechanism metric, but the CFO headline must lead with:
+  - **Truckload capacity unlocked** (per facility and across the network)
+  - **Profit impact** (contribution margin or avoided outsourced capacity)
 
 ## Findings (current state)
 
-### 1) ROI assumptions live in multiple places (duplicated constants + formulas)
+### 1) ROI assumptions live in multiple places (and outputs aren’t aligned everywhere)
 
-**Primary ROI engines**
-- `src/lib/roi/calc.ts`
-  - `calcRoiV1()` (Quick) includes hard-coded constants:
-    - Network multiplier: `1 + log(facilities + 1) * 0.5`
-    - Paper savings: `11900` per facility
-    - Throughput capacity increase: `0.10`
-    - Incremental margin: `500` per truck
-    - Detention incidence: `0.15` and reduction: `0.65`
-    - Gate labor savings: `0.70`
-    - Terms: `2500` one-time + `8000` annual per facility
-  - `calcRoiV2()` (Pro) includes its own network multiplier + network-effect breakdown function.
+**Canonical ROI engine exists (good news)**
+- `src/lib/economics/roi.ts`
+  - `calcRoiV2()` is the primary finance model.
+  - Spreadsheet parity is already enforced by unit tests (see `src/__tests__/roi.test.ts`).
+- `src/lib/roi/calc.ts` and `src/lib/roi/types.ts` are wrappers re-exporting the economics layer.
+
+**Where duplication still happens (needs cleanup)**
+- `app/roi/page.tsx` computes additional CFO metrics (NPV) in the UI layer.
+- `app/network-effect/page.tsx` uses a standalone placeholder model (explicitly says it’s placeholder) rather than the ROI engine.
+- `app/singularity/page.tsx` uses hard-coded per-site savings and a synthetic network multiplier/savings accumulator for the animation/“ROI breakdown”.
 
 **ROI page duplicates business math**
 - `app/roi/page.tsx`
   - `calculateCFOMetrics()` re-derives ROI/payback/NPV and includes a fabricated IRR approximation (`+ 15`), violating “no fabricated claims”.
   - Has separate “modeling presets” (conservative/base/aggressive) that are not shared with homepage/network/singularity.
 
-### 2) Homepage Network Effect numbers come from a separate model
-- `components/NetworkEffectModel.tsx`
-  - Uses a separate “$1700 per truck per year” and calls it “aligned”, but it is not derived from the ROI engines.
-  - Duplicates the network-effect breakdown logic (maturity factor, predictive/carrier/coordination/learning streams) in TSX.
+### 2) Homepage and “Network Effect” page are not fully model-congruent
+- Homepage (`app/page.tsx`) already calls `calcRoiV2(getRoiV2InputsForPreset(...))` for KPI tiles (good).
+- The flagship `/network-effect` page currently computes base savings using a per-facility placeholder (not the ROI model).
+- `components/NetworkEffectModel.tsx` uses `calcRoiV2()` (good), but any static copy like “$10k/site annual savings” is not tied to the canonical model.
 
-- `app/network-effect/page.tsx`
-  - Has its own `networkMultiplier(facilities, logFactor)` helper.
-
-### 3) Singularity simulation uses its own economics
+### 3) Singularity uses synthetic economics (must be replaced)
 - `app/singularity/page.tsx`
-  - Has a separate “networkMultiplier”/velocity calculation (e.g., `1 + activated * 0.15`) and simulation metrics that are not derived from ROI/network functions.
-  - Facility list and packet animation are fine; the issue is the *numbers* shown to users.
+  - The animation is fine.
+  - The displayed “Live Savings”, “ROI Breakdown” and the “network multiplier/velocity” are synthetic.
+  - The hard-coded line items ($127K, $89K, etc.) and “5.8× / +$93.1M/yr” must be derived from the canonical model (or clearly labeled as illustrative only).
 
-### 4) Proof paths
-- Broken/unsupported link:
-  - `/case-studies/primo-network` is linked from:
-    - `app/page.tsx`
-    - `components/Footer.tsx`
-  - The repo currently has `app/case-studies/page.tsx` but **no** `app/case-studies/[slug]/page.tsx` handler, so the “Primo network” case study link can 404.
+### 4) Proof paths (case studies)
+- `/case-studies/primo-network` exists in code (`app/case-studies/[slug]/page.tsx`).
+- Action item: validate all case-study links resolve and add coverage in Playwright smoke tests.
 
 ### 5) Lead capture (hCaptcha)
 - Frontend:
@@ -55,6 +55,9 @@ Make every number on `/`, `/roi`, and `/singularity` come from a single canonica
 
 Observed risk:
 - hCaptcha “sitekey is incorrect” banner in production typically indicates the key is not configured for the current hostname in the hCaptcha dashboard (this is not fixable purely in code).
+
+Action item:
+- If `NEXT_PUBLIC_HCAPTCHA_SITEKEY` is missing, the UI must fail gracefully (clear message + fallback CTA) rather than appearing broken.
 
 ### 6) Routes inventory (marketing + calculators)
 
@@ -72,22 +75,17 @@ Observed risk:
 - `src/lib/api/leadHandler.ts`
 
 ## Root cause (core bug)
-There is no single canonical “economics spine.” We have at least 4 separate implementations of network/ROI logic:
-- ROI V1
-- ROI V2
-- Homepage NetworkEffectModel
-- Singularity simulation
+We have a strong ROI V2 engine already, but there is no single canonical *CFO-first* “capacity unlocked + profit impact” model driving every page.
 
-This guarantees drift.
+Current drift surfaces:
+- `/network-effect` uses a placeholder calculator.
+- `/singularity` uses synthetic savings/multiplier numbers.
+- Some UI-level KPIs and copy are not derived from the model outputs.
 
 ## Plan (what changes next)
-1. Create `src/lib/economics/` as the single model layer:
-   - assumptions store, types, ROI + network functions, presets, validations.
-2. Replace ROI page’s duplicated CFO metrics with computed outputs from the model.
-3. Refactor homepage NetworkEffectModel and Singularity economics to use the model.
-4. Add a shared Scenario+Mode selector (preset + mode) used across `/`, `/roi`, `/singularity`.
-5. Fix proof route `/case-studies/primo-network` by adding a slug page.
-6. Add Methodology page and link it from all ROI surfaces.
-7. Add tests:
-   - Unit tests for economics spine.
-   - Playwright smoke test + congruence test.
+1. Extend the economics layer to include **truckload capacity unlocked** and **profit impact** outputs.
+2. Wire `/roi` (board-ready default) to lead with capacity unlocked and profit impact (still showing hard savings + network bonus).
+3. Replace `/network-effect` placeholder math with canonical economics outputs.
+4. Replace `/singularity` synthetic numbers with canonical economics outputs (or clearly label as illustrative).
+5. Add congruence tests across surfaces (preset enterprise_50 + base mode).
+6. Add methodology doc and exportable assumptions JSON.

@@ -11,10 +11,10 @@ Non‑negotiables honored
 ## Primary CFO Journey (CFO Gravity Well)
 
 ### / (Home)
-- Purpose: Reframe the category (yard orchestration → network advantage) and create intrigue.
+- Purpose: Reframe the category (yard tool → compounding truckload capacity) and create intrigue.
 - Key questions answered:
-  - “Is this a tool, or a compounding operating advantage?”
-  - “What does it touch (dwell/detention/labor/throughput)?”
+  - “Is this a tool, or a compounding capacity advantage?”
+  - “How does saved time convert into incremental truckloads and profit?”
 - Primary CTA: “See the network effect” → /network-effect
 - Secondary CTA: “Generate board‑ready ROI” → /roi
 
@@ -30,9 +30,11 @@ Non‑negotiables honored
 ### /roi
 - Purpose: Convert belief into a board‑ready financial story (modeled, transparent assumptions).
 - Key questions answered:
-  - “What are base savings vs network bonus?”
+  - “How many incremental truckloads are unlocked?”
+  - “What is the profit impact (margin vs avoided outsourced capacity)?”
+  - “What are hard savings vs opportunity upside?”
   - “What’s realistic Year‑1 realization?”
-  - “What’s payback and 5‑year value?”
+  - “What’s payback and 5‑year value/NPV?”
 - Primary CTA: “Export ROI Summary (PDF)”
 - Secondary CTA: “Email to Finance” (server‑side)
 
@@ -109,14 +111,14 @@ Non‑negotiables honored
 ## Frame Map (Hook → Stakes → Reveal → Proof → CTA)
 
 ### / (Home)
-- Hook: “The yard is where networks bleed money.”
-- Stakes: dwell/detention/labor/throughput volatility.
-- Reveal: orchestration creates defensible timestamps and repeatable playbooks.
+- Hook: “Peak season isn’t demand. It’s capacity.”
+- Stakes: premium freight + outsourced capacity tax + missed volume.
+- Reveal: orchestration removes the constraint and converts time into incremental truckloads.
 - Proof: modeled outcomes + artifacts (Evidence Vault).
 - CTA: /network-effect then /roi.
 
 ### /network-effect
-- Hook: “This isn’t a tool. It’s compounding operating advantage.”
+- Hook: “This isn’t a tool. It’s compounding truckload capacity.”
 - Stakes: “pilot forever” destroys opportunity cost + rollout speed.
 - Reveal: facilities → network multiplier (modeled curve).
 - Proof: transparent assumptions + rollout ladder + anonymized rollout narrative template.
@@ -125,7 +127,7 @@ Non‑negotiables honored
 ### /roi
 - Hook: “Board‑ready ROI story in minutes.”
 - Stakes: cost + operational volatility + missed leverage.
-- Reveal: base savings + network bonus + realistic Year‑1 ramp.
+- Reveal: capacity unlocked + profit impact + hard savings + network bonus + realistic Year‑1 ramp.
 - Proof: assumptions drawer + exportable PDF.
 - CTA: export PDF + email to finance.
 

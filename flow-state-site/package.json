@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings 0",
-    "test": "tsx src/__tests__/schema.test.ts && tsx src/__tests__/roi.test.ts",
+    "test": "tsx src/__tests__/schema.test.ts && tsx src/__tests__/roi.test.ts && tsx src/lib/economics/tests/model.test.ts",
     "test:e2e": "playwright test",
     "test:e2e:ci": "npm run build && playwright test"
   },
