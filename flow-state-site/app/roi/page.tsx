@@ -1385,23 +1385,52 @@ export default function ROICalculatorPage() {
                   {/* Value Breakdown */}
                   <Card className="mb-8">
                     <h3 className="font-bold text-neon mb-4">Value Breakdown</h3>
+                    <p className="text-xs text-steel/60 mb-4">
+                      {mode === 'quick' 
+                        ? 'Based on industry benchmarks for gate automation, detention reduction, and throughput gains.'
+                        : 'Based on your custom assumptions in Pro Mode.'}
+                    </p>
                     <div className="space-y-3">
                       {[
-                        { label: 'Detention Reduction', value: calculations.annualDetentionSavings, pct: '65%' },
-                        { label: 'Labor Automation', value: calculations.annualLaborSavings, pct: '70%' },
-                        { label: 'Throughput Gains', value: calculations.throughputValue, pct: '42%' },
-                        { label: 'Paperless Operations', value: calculations.paperlessSavings, pct: '100%' },
+                        { 
+                          label: 'Detention Reduction', 
+                          value: calculations.annualDetentionSavings, 
+                          tooltip: mode === 'quick' 
+                            ? 'Assumes 15% of trucks incur detention, 65% reduction with automation' 
+                            : 'From your detention assumptions'
+                        },
+                        { 
+                          label: 'Labor Automation', 
+                          value: calculations.annualLaborSavings, 
+                          tooltip: mode === 'quick' 
+                            ? 'Assumes 70% time savings for gate staff (3 FTE × $28/hr × 2080 hrs/yr)' 
+                            : 'From your labor tier assumptions'
+                        },
+                        { 
+                          label: 'Throughput Gains', 
+                          value: calculations.throughputValue, 
+                          tooltip: mode === 'quick' 
+                            ? 'Assumes 42% throughput increase at $45/truck additional margin' 
+                            : 'From your throughput assumptions'
+                        },
+                        { 
+                          label: 'Paperless Operations', 
+                          value: calculations.paperlessSavings, 
+                          tooltip: mode === 'quick' 
+                            ? 'Assumes $15/truck in paper, printing, filing costs eliminated' 
+                            : 'From your paper assumptions'
+                        },
                       ].map((item) => (
-                        <div key={item.label} className="flex items-center gap-4">
+                        <div key={item.label} className="flex items-center gap-4 group">
                           <div className="flex-1">
                             <div className="flex justify-between text-sm mb-1">
-                              <span className="text-steel">{item.label} ({item.pct})</span>
+                              <span className="text-steel cursor-help" title={item.tooltip}>{item.label}</span>
                               <span className="text-white font-medium">{formatMoney(item.value)}</span>
                             </div>
                             <div className="h-1.5 bg-carbon rounded-full overflow-hidden">
                               <div 
                                 className="h-full bg-neon/60 rounded-full"
-                                style={{ width: `${Math.min(100, (item.value / calculations.baseSavings) * 100)}%` }}
+                                style={{ width: `${Math.min(100, (item.value / Math.max(1, calculations.baseSavings)) * 100)}%` }}
                               />
                             </div>
                           </div>

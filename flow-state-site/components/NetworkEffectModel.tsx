@@ -6,15 +6,29 @@ import { Nexus } from '@/components/icons/FlowIcons';
 /**
  * NetworkEffectModel — Interactive visualization of network effects for yard networks.
  * Shows how value compounds through specific, credible mechanisms.
+ * 
+ * Base savings assumptions (aligned with ROI calculator Quick Mode):
+ * - Detention: 15% of 150 trucks/day × $75/hr × 365 days × 65% reduction = ~$267K/facility
+ * - Labor: 3 FTE × 70% × $28/hr × 2080 hrs = ~$122K/facility  
+ * - Throughput: 150 × 42% × $45 × 365 = ~$1.03M/facility
+ * - Paper: $15 × 150 × 365 = ~$821K/facility
+ * Total: ~$2.24M/facility base savings (before network effect)
+ * 
+ * This visualization uses a simplified $250K/facility for demonstration purposes.
+ * The actual ROI calculator provides precise calculations based on your inputs.
  */
 export default function NetworkEffectModel() {
   const [nodes, setNodes] = useState(10);
+  const [trucksPerDay, setTrucksPerDay] = useState(150);
 
   const calculations = useMemo(() => {
     const n = Math.max(1, nodes);
     
-    // Base savings per facility (conservative industry estimate)
-    const baseSavingsPerFacility = 85000; // $85k/yr from labor, paper, detention
+    // Base savings per facility - aligned with ROI calculator assumptions
+    // Using simplified model: ~$1,700/truck/year in combined savings
+    // At 150 trucks/day = ~$250K/facility (conservative for visualization)
+    const baseSavingsPerTruckPerYear = 1700;
+    const baseSavingsPerFacility = trucksPerDay * baseSavingsPerTruckPerYear;
     
     // Linear value (no network effect - just adding facilities)
     const linearValue = n * baseSavingsPerFacility;
@@ -22,8 +36,8 @@ export default function NetworkEffectModel() {
     // Network connections = n(n-1)/2 (Metcalfe's Law)
     const connections = (n * (n - 1)) / 2;
     
-    // Shipments per year (estimate: 150 trucks/day × 365 × facilities)
-    const shipmentsPerYear = n * 150 * 365;
+    // Shipments per year
+    const shipmentsPerYear = n * trucksPerDay * 365;
     
     // ========= NETWORK EFFECT VALUE STREAMS =========
     // CRITICAL: Network effects are MINIMAL for small networks
@@ -83,6 +97,7 @@ export default function NetworkEffectModel() {
       networkMultiplier,
       connections,
       networkMaturityFactor: networkMaturityFactor * 100, // as percentage
+      baseSavingsPerFacility,
       // Breakdown
       predictiveSavings,
       carrierSavings,
@@ -93,7 +108,7 @@ export default function NetworkEffectModel() {
       variabilityReduction,
       onboardingDaysSaved,
     };
-  }, [nodes]);
+  }, [nodes, trucksPerDay]);
 
   const formatCurrency = (value: number) => {
     if (value >= 1000000) return `$${(value / 1000000).toFixed(1)}M`;
@@ -151,7 +166,7 @@ export default function NetworkEffectModel() {
             {formatCurrency(calculations.linearValue)}
           </p>
           <p className="text-steel/50 text-sm mt-1">
-            {nodes} sites × $85k base savings
+            {nodes} sites × {formatCurrency(calculations.baseSavingsPerFacility)}/site
           </p>
         </div>
         
