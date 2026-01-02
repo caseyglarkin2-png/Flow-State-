@@ -1507,11 +1507,10 @@ export default function ROICalculatorPage() {
                               <Manifest size={16} className="text-neon" />
                               <span>Paperless Operations (Primary Value)</span>
                             </div>
-                            <p>• <strong>Guaranteed: $11,900/facility/year</strong></p>
-                            <p>• Eliminates 1 BOL per shipment (3 BOLs → 2 BOLs)</p>
-                            <p>• Covers ink, paper, printing, filing, storage, retrieval</p>
-                            <p>• <strong>This alone pays for the $8,000/facility subscription</strong></p>
-                            <p className="text-steel/60 mt-1">Source: Customer data, verified operational savings</p>
+                            <p>• Savings scale with shipment volume</p>
+                            <p>• Driven by outbound paperwork reduction (printing + storage)</p>
+                            <p>• Assumptions: pages per BOL, BOLs per shipment, and cost per page</p>
+                            <p className="text-steel/60 mt-1">Tune in Pro Mode if you have audited document costs</p>
                           </div>
                           <div className="p-3 bg-void/50 rounded-lg">
                             <div className="flex items-center gap-2 text-neon font-semibold mb-2">
@@ -1645,7 +1644,7 @@ export default function ROICalculatorPage() {
                           label: 'Paperless Operations', 
                           value: calculations.paperlessSavings, 
                           tooltip: mode === 'quick' 
-                            ? 'Guaranteed: $11,900/facility eliminating 1 BOL per shipment (3→2 BOLs). Covers platform cost.' 
+                            ? 'Paper savings from reduced outbound paperwork (printing + storage). Scales with shipment volume.' 
                             : 'From your paper assumptions'
                         },
                         { 

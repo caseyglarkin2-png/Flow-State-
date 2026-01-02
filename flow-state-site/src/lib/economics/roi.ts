@@ -255,6 +255,13 @@ export function roiV2InputsFromQuickMode(quick: RoiV1Inputs): RoiV2Inputs {
       ...base.throughput,
       avgGateInToOutMinutes: Math.max(0.0001, quick.avgDwellTimeMinutes || base.throughput.avgGateInToOutMinutes),
     },
+    // Paper savings are a critical base layer in the Quick Mode story.
+    // The V2 engine computes paper savings from pages/shipment × cost/page × saved-share;
+    // we enable a conservative phase-1 saved share here.
+    paper: {
+      ...base.paper,
+      phase1SavedShare: 0.4,
+    },
     // Keep network effect on, but at a more conservative level than the old
     // Quick Mode mapping.
     network: {
