@@ -80,7 +80,51 @@ export default function ROICalculatorPage() {
   const [laborCostPerHour, setLaborCostPerHour] = useState(28);
   const [gateStaff, setGateStaff] = useState(4);
 
-  // Scenario presets for quick modeling
+  // Modeling Presets: Conservative / Base / Aggressive
+  const modelingPresets = {
+    conservative: {
+      facilities: 50,
+      trucksPerDay: 120,
+      avgDwellTime: 60,
+      detentionCost: 85,
+      laborCostPerHour: 32,
+      gateStaff: 5,
+      label: 'Conservative',
+      description: 'Higher costs, lower throughput gains'
+    },
+    base: {
+      facilities: 50,
+      trucksPerDay: 150,
+      avgDwellTime: 55,
+      detentionCost: 75,
+      laborCostPerHour: 28,
+      gateStaff: 4,
+      label: 'Base Case',
+      description: 'Industry-standard assumptions'
+    },
+    aggressive: {
+      facilities: 50,
+      trucksPerDay: 180,
+      avgDwellTime: 50,
+      detentionCost: 65,
+      laborCostPerHour: 25,
+      gateStaff: 3,
+      label: 'Aggressive',
+      description: 'Optimistic throughput, lower costs'
+    },
+  };
+
+  const applyPreset = (key: keyof typeof modelingPresets) => {
+    const p = modelingPresets[key];
+    setFacilities(p.facilities);
+    setTrucksPerDay(p.trucksPerDay);
+    setAvgDwellTime(p.avgDwellTime);
+    setDetentionCost(p.detentionCost);
+    setLaborCostPerHour(p.laborCostPerHour);
+    setGateStaff(p.gateStaff);
+  };
+
+  // Scenario presets for quick modeling (legacy, kept for backward compat)
   const scenarios = {
     regional: { facilities: 10, trucksPerDay: 120, avgDwellTime: 50, gateStaff: 3, label: 'Network (10 sites)' },
     enterprise: { facilities: 50, trucksPerDay: 150, avgDwellTime: 55, gateStaff: 4, label: 'Network (50 sites)' },
@@ -343,9 +387,38 @@ export default function ROICalculatorPage() {
               <div className="space-y-8">
                 {mode === 'quick' && (
                   <>
-                    {/* Scenario Presets */}
+                    {/* Modeling Presets: Conservative / Base / Aggressive */}
                     <div className="mb-6">
-                      <label className="block text-steel mb-3">Scenario presets (network-first):</label>
+                      <label className="block text-steel mb-2">
+                        <span className="font-semibold">Modeling Assumptions</span>
+                        <span className="text-xs text-steel/60 ml-2">(CFO-calibrated)</span>
+                      </label>
+                      <div className="grid grid-cols-3 gap-2 mb-3">
+                        {Object.entries(modelingPresets).map(([key, preset]) => (
+                          <button
+                            key={key}
+                            onClick={() => applyPreset(key as keyof typeof modelingPresets)}
+                            className={`px-3 py-3 rounded-lg text-sm font-medium transition-all ${
+                              trucksPerDay === preset.trucksPerDay && detentionCost === preset.detentionCost
+                                ? 'bg-neon/20 border-2 border-neon text-neon'
+                                : 'bg-carbon border border-steel/30 text-steel hover:border-neon/50 hover:text-white'
+                            }`}
+                          >
+                            <div className="font-bold">{preset.label}</div>
+                            <div className="text-xs opacity-70 mt-1">{preset.description}</div>
+                          </button>
+                        ))}
+                      </div>
+                      <p className="text-xs text-steel/60 bg-void/50 rounded px-3 py-2">
+                        <strong>Conservative:</strong> Higher labor/detention costs, lower throughput gains. 
+                        <strong className="ml-2">Aggressive:</strong> Optimistic throughput, lower baseline costs.
+                        <strong className="ml-2">Base:</strong> Industry-standard benchmarks.
+                      </p>
+                    </div>
+
+                    {/* Scenario Presets (legacy, kept for compat) */}
+                    <div className="mb-6">
+                      <label className="block text-steel mb-3">Network size presets:</label>
                       <div className="flex flex-wrap gap-2">
                         {Object.entries(scenarios).map(([key, s]) => (
                           <button

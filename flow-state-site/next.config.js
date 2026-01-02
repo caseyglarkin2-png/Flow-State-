@@ -23,11 +23,12 @@ const nextConfig = {
       "base-uri 'self'",
       "object-src 'none'",
       "frame-ancestors 'none'",
-      "img-src 'self' data: blob:",
+      "img-src 'self' data: blob: https://vercel.com https://*.vercel.com https://hcaptcha.com https://*.hcaptcha.com",
       "font-src 'self' data:",
-      "style-src 'self' 'unsafe-inline'",
-      "script-src 'self' 'unsafe-inline'",
-      "connect-src 'self'",
+      "style-src 'self' 'unsafe-inline' https://hcaptcha.com https://*.hcaptcha.com",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://hcaptcha.com https://*.hcaptcha.com https://vercel.live",
+      "connect-src 'self' https://hcaptcha.com https://*.hcaptcha.com https://vercel.live https://vitals.vercel-insights.com",
+      "frame-src https://hcaptcha.com https://*.hcaptcha.com https://vercel.live",
       "form-action 'self'",
     ].join('; ');
 

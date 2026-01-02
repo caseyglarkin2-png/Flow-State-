@@ -1,7 +1,13 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { Nexus, Crosshair, Metrics, Velocity, Cortex } from '@/components/icons/FlowIcons';
+import { Nexus } from '@/components/icons/FlowIcons';
+import {
+  FlowGlyphPredictiveIntelligence,
+  FlowGlyphCarrierBenchmarking,
+  FlowGlyphCoordinationEfficiency,
+  FlowGlyphSharedLearning,
+} from '@/components/icons/FlowGlyphs';
 
 /**
  * NetworkEffectModel — Interactive visualization of network effects for yard networks.
@@ -199,7 +205,7 @@ export default function NetworkEffectModel() {
           <div className="p-4 rounded-lg border border-steel/20 bg-carbon/30">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
-                <Crosshair size={16} className="text-neon" />
+                <FlowGlyphPredictiveIntelligence className="w-5 h-5 text-neon" />
                 <p className="text-sm font-semibold text-white">Predictive Intelligence</p>
               </div>
               <span className="text-lg font-bold text-neon">{formatCurrency(calculations.predictiveSavings)}</span>
@@ -213,7 +219,7 @@ export default function NetworkEffectModel() {
           <div className="p-4 rounded-lg border border-steel/20 bg-carbon/30">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
-                <Metrics size={16} className="text-neon" />
+                <FlowGlyphCarrierBenchmarking className="w-5 h-5 text-neon" />
                 <p className="text-sm font-semibold text-white">Carrier Benchmarking</p>
               </div>
               <span className="text-lg font-bold text-neon">{formatCurrency(calculations.carrierSavings)}</span>
@@ -227,7 +233,7 @@ export default function NetworkEffectModel() {
           <div className="p-4 rounded-lg border border-steel/20 bg-carbon/30">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
-                <Velocity size={16} className="text-neon" />
+                <FlowGlyphCoordinationEfficiency className="w-5 h-5 text-neon" />
                 <p className="text-sm font-semibold text-white">Coordination Efficiency</p>
               </div>
               <span className="text-lg font-bold text-neon">{formatCurrency(calculations.coordinationSavings)}</span>
@@ -241,7 +247,7 @@ export default function NetworkEffectModel() {
           <div className="p-4 rounded-lg border border-steel/20 bg-carbon/30">
             <div className="flex items-center justify-between mb-2">
               <div className="flex items-center gap-2">
-                <Cortex size={16} className="text-neon" />
+                <FlowGlyphSharedLearning className="w-5 h-5 text-neon" />
                 <p className="text-sm font-semibold text-white">Shared Learning</p>
               </div>
               <span className="text-lg font-bold text-neon">{formatCurrency(calculations.learningSavings)}</span>

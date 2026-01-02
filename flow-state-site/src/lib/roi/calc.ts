@@ -202,7 +202,11 @@ export function calcRoiV1(inputs: RoiV1Inputs): RoiV1Outputs {
   // ROI calculations
   const yearOneNetGain = totalAnnualSavings - implementationCost - annualSubscription;
   const yearOneRoiPercent = safeDivide(totalAnnualSavings - annualSubscription, implementationCost) * 100;
-  const paybackMonths = safeDivide(implementationCost, safeDivide(totalAnnualSavings - annualSubscription, 12));
+  const rawPaybackMonths = safeDivide(implementationCost, safeDivide(totalAnnualSavings - annualSubscription, 12));
+  
+  // GUARDRAIL: Clamp payback to minimum 0.1 months (prevents absurd "0.0 months" display)
+  // If savings are so massive that payback is instant, cap it at "less than 1 month"
+  const paybackMonths = rawPaybackMonths > 0 ? Math.max(0.1, rawPaybackMonths) : 0;
 
   // 5-year projections (2% annual growth in savings from optimization)
   const fiveYearValue =
@@ -865,7 +869,10 @@ export function calcRoiV2(rawInputs: RoiV2Inputs): RoiV2Outputs {
   const yearOneRoiPercent = safeDivide(yearOneNetGain, yearOneCostBasis) * 100;
 
   const netAnnualBenefitForPayback = Math.max(0, yearOneGrossSavings - annualSubscription);
-  const paybackMonths = safeDivide(implementationCost, safeDivide(netAnnualBenefitForPayback, 12));
+  const rawPaybackMonths = safeDivide(implementationCost, safeDivide(netAnnualBenefitForPayback, 12));
+  
+  // GUARDRAIL: Clamp payback to minimum 0.1 months (prevents absurd "0.0 months" display)
+  const paybackMonths = rawPaybackMonths > 0 ? Math.max(0.1, rawPaybackMonths) : 0;
 
   const fiveYearValue = sum(
     Array.from({ length: 5 }, (_, i) => totalAnnualSavings * Math.pow(1.02, i) - annualSubscription),

@@ -56,10 +56,7 @@ export default function Header() {
         {/* Right Actions */}
         <div className="flex items-center gap-3">
           <ThemeToggle className="hidden sm:flex" />
-          <button className="hidden sm:block px-4 py-2 text-sm font-semibold text-neon border border-neon rounded-lg hover:bg-neon hover:text-void transition-all">
-            Login
-          </button>
-          <Link href="/singularity" className="px-4 py-2 text-sm font-semibold bg-neon text-void rounded-lg hover:shadow-lg hover:shadow-neon/50 transition-all flex items-center gap-1">
+          <Link href="/contact?intent=qualify" className="px-4 py-2 text-sm font-semibold bg-neon text-void rounded-lg hover:shadow-lg hover:shadow-neon/50 transition-all flex items-center gap-1">
             <Velocity size={16} className="text-void" />
             Qualify
           </Link>

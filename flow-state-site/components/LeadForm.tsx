@@ -203,9 +203,17 @@ export default function LeadForm({ leadType, title, subtitle }: LeadFormProps) {
           />
         </div>
       ) : (
-        <p className="text-xs text-steel/70">
-          Captcha is not configured. Set <span className="text-white">NEXT_PUBLIC_HCAPTCHA_SITEKEY</span>.
-        </p>
+        <div className="p-4 border border-steel/20 rounded-lg bg-carbon/30">
+          <p className="text-sm text-steel mb-2">
+            Form submission is temporarily unavailable.
+          </p>
+          <p className="text-xs text-steel/70">
+            Please email us directly at{' '}
+            <a href="mailto:founding@flow-state.ai" className="text-neon hover:underline font-semibold">
+              founding@flow-state.ai
+            </a>
+          </p>
+        </div>
       )}
 
       {result ? (

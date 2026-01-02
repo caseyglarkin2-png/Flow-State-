@@ -1,6 +1,7 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
@@ -8,8 +9,12 @@ import LeadForm from '@/components/LeadForm';
 import NextSteps from '@/components/NextSteps';
 import { trackEvent } from '@/lib/analytics';
 
-export default function ContactPage() {
+function ContactContent() {
+  const searchParams = useSearchParams();
+  const intent = searchParams.get('intent');
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/';
+
+  const isQualify = intent === 'qualify';
 
   return (
     <div className="min-h-screen bg-void">
@@ -18,10 +23,20 @@ export default function ContactPage() {
       <section className="pt-32 pb-16 border-b border-neon/20">
         <div className="max-w-5xl mx-auto px-6">
           <h1 className="text-4xl md:text-6xl font-black mb-4">
-            Contact <span className="neon-glow">Flow State</span>
+            {isQualify ? (
+              <>
+                Qualify for <span className="neon-glow">Founding Membership</span>
+              </>
+            ) : (
+              <>
+                Contact <span className="neon-glow">Flow State</span>
+              </>
+            )}
           </h1>
           <p className="text-xl text-steel max-w-3xl">
-            For Founding Member applicants and enterprise networks.
+            {isQualify
+              ? 'Join the network-first revolution. Submit your details and we\'ll evaluate your network for Founding Member status.'
+              : 'For Founding Member applicants and enterprise networks.'}
           </p>
         </div>
       </section>
@@ -57,9 +72,13 @@ export default function ContactPage() {
 
             <Card>
               <LeadForm
-                leadType="quote"
-                title="Get a quote"
-                subtitle="Tell us your network size and we’ll respond with a tailored plan and ROI view."
+                leadType={isQualify ? 'founding' : 'quote'}
+                title={isQualify ? 'Apply for Founding Membership' : 'Get a quote'}
+                subtitle={
+                  isQualify
+                    ? 'Tell us about your multi-facility network and we\'ll assess your fit.'
+                    : 'Tell us your network size and we\'ll respond with a tailored plan and ROI view.'
+                }
               />
             </Card>
           </div>
@@ -74,5 +93,20 @@ export default function ContactPage() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-void">
+        <Header />
+        <div className="pt-32 pb-16 flex items-center justify-center">
+          <div className="text-steel">Loading...</div>
+        </div>
+      </div>
+    }>
+      <ContactContent />
+    </Suspense>
   );
 }

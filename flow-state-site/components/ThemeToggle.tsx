@@ -34,9 +34,10 @@ export default function ThemeToggle({ className = '' }: { className?: string }) 
       <button
         className={`flex items-center gap-2 px-3 py-1.5 rounded text-xs font-mono border border-steel/30 text-steel ${className}`}
         disabled
+        aria-label="Loading theme toggle"
       >
         <span className="w-3 h-3 rounded-full bg-steel/30"></span>
-        LOADING
+        <span className="hidden sm:inline opacity-50">---</span>
       </button>
     );
   }
