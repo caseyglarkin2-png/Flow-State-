@@ -4,9 +4,10 @@ type SendEmailArgs = {
   to: string;
   subject: string;
   text: string;
+  attachments?: Array<{ filename: string; content: Buffer | string; contentType?: string }>;
 };
 
-export async function sendEmail({ to, subject, text }: SendEmailArgs): Promise<void> {
+export async function sendEmail({ to, subject, text, attachments }: SendEmailArgs): Promise<void> {
   const resendKey = process.env.RESEND_API_KEY;
   if (!resendKey) return;
 
@@ -18,5 +19,6 @@ export async function sendEmail({ to, subject, text }: SendEmailArgs): Promise<v
     to,
     subject,
     text,
+    ...(attachments?.length ? { attachments } : {}),
   });
 }

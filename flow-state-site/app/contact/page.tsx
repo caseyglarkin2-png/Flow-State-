@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
 import LeadForm from '@/components/LeadForm';
+import NextSteps from '@/components/NextSteps';
 import { trackEvent } from '@/lib/analytics';
 
 export default function ContactPage() {
@@ -37,7 +38,10 @@ export default function ContactPage() {
                 href={calendlyUrl}
                 target="_blank"
                 rel="noreferrer"
-                onClick={() => trackEvent('pricing_demo_click', { source: 'contact', calendlyUrl })}
+                onClick={() => {
+                  trackEvent('pricing_demo_click', { source: 'contact', calendlyUrl });
+                  trackEvent('demo_booked', { source: 'contact', calendlyUrl });
+                }}
                 className="inline-flex items-center justify-center w-full px-6 py-3 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
               >
                 Book a demo
@@ -59,6 +63,12 @@ export default function ContactPage() {
               />
             </Card>
           </div>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="max-w-5xl mx-auto px-6">
+          <NextSteps title="Next best step" />
         </div>
       </section>
 

@@ -6,6 +6,11 @@ export type RoiPdfPayload = {
   inputs: Record<string, unknown>;
   results: {
     totalAnnualSavings?: number;
+    baseSavings?: number;
+    networkBonusSavings?: number;
+
+    yearOneRampShare?: number;
+    yearOneGrossSavings?: number;
     yearOneNetGain?: number;
     yearOneRoiPercent?: number;
     paybackMonths?: number;
@@ -38,12 +43,22 @@ function pct(n: number | undefined): string {
   return `${Math.round(n)}%`;
 }
 
+function pct01(n: number | undefined): string {
+  if (typeof n !== 'number' || Number.isNaN(n)) return '—';
+  return `${Math.round(n * 100)}%`;
+}
+
 function num(n: number | undefined): string {
   if (typeof n !== 'number' || Number.isNaN(n)) return '—';
   return `${Math.round(n).toLocaleString()}`;
 }
 
 export function RoiSummaryPdf({ payload }: { payload: RoiPdfPayload }) {
+  const opportunityCost90d =
+    typeof payload.results.yearOneGrossSavings === 'number'
+      ? Math.max(0, payload.results.yearOneGrossSavings) / 4
+      : undefined;
+
   return (
     <Document>
       <Page size="LETTER" style={styles.page}>
@@ -59,6 +74,29 @@ export function RoiSummaryPdf({ payload }: { payload: RoiPdfPayload }) {
             <Text style={styles.label}>Total annual savings (modeled)</Text>
             <Text style={styles.value}>{money(payload.results.totalAnnualSavings)}</Text>
           </View>
+
+          <View style={styles.row}>
+            <Text style={styles.label}>Base savings (modeled)</Text>
+            <Text style={styles.value}>{money(payload.results.baseSavings)}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.label}>Network bonus (modeled)</Text>
+            <Text style={styles.value}>{money(payload.results.networkBonusSavings)}</Text>
+          </View>
+
+          <View style={styles.row}>
+            <Text style={styles.label}>Year‑1 realization factor</Text>
+            <Text style={styles.value}>{pct01(payload.results.yearOneRampShare)}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.label}>Year‑1 gross savings (before costs)</Text>
+            <Text style={styles.value}>{money(payload.results.yearOneGrossSavings)}</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.label}>Opportunity cost (90 days, illustrative)</Text>
+            <Text style={styles.value}>{money(opportunityCost90d)}</Text>
+          </View>
+
           <View style={styles.row}>
             <Text style={styles.label}>Year 1 net gain (modeled)</Text>
             <Text style={styles.value}>{money(payload.results.yearOneNetGain)}</Text>

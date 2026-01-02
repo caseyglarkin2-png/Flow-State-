@@ -6,11 +6,13 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
 import BoardReadyExportCTA from '@/components/BoardReadyExportCTA';
+import NextSteps from '@/components/NextSteps';
 import { FlowArrow, Metrics } from '@/components/icons/FlowIcons';
 import { calcRoiV1, calcRoiV2, defaultRoiV2Inputs, roiV2InputsFromQuickMode } from '@/lib/roi/calc';
 import type { RoiV2Inputs } from '@/lib/roi/types';
 
 export default function ROICalculatorPage() {
+  const [view, setView] = useState<'board' | 'deep'>('board');
   const [mode, setMode] = useState<'quick' | 'pro'>('quick');
   const [facilities, setFacilities] = useState(5);
   const [trucksPerDay, setTrucksPerDay] = useState(150);
@@ -57,6 +59,8 @@ export default function ROICalculatorPage() {
         totalAnnualSavings: v2.totalAnnualSavings,
         implementationCost: v2.implementationCost,
         annualSubscription: v2.annualSubscription,
+        yearOneRampShare: proInputs.yearOneRampShare,
+        yearOneGrossSavings: v2.yearOneGrossSavings,
         yearOneSavings: v2.yearOneNetGain,
         yearOneROI: v2.yearOneRoiPercent,
         paybackMonths: v2.paybackMonths,
@@ -93,6 +97,8 @@ export default function ROICalculatorPage() {
       totalAnnualSavings: v2.totalAnnualSavings,
       implementationCost: v2.implementationCost,
       annualSubscription: v2.annualSubscription,
+      yearOneRampShare: 1,
+      yearOneGrossSavings: v2.yearOneGrossSavings,
       yearOneSavings: v2.yearOneNetGain,
       yearOneROI: v2.yearOneRoiPercent,
       paybackMonths: v2.paybackMonths,
@@ -131,8 +137,40 @@ export default function ROICalculatorPage() {
       {/* Calculator */}
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-2xl font-bold neon-glow">ROI model</h2>
+              <p className="text-sm text-steel mt-1">Board-ready summary first. Deep model when you need it.</p>
+            </div>
+            <div className="inline-flex items-center gap-2 bg-carbon/60 border border-neon/20 rounded-xl p-2">
+              <button
+                type="button"
+                onClick={() => setView('board')}
+                className={
+                  view === 'board'
+                    ? 'px-3 py-2 rounded-lg bg-neon text-void font-semibold'
+                    : 'px-3 py-2 rounded-lg border border-steel/30 text-white hover:border-neon/40 transition-colors'
+                }
+              >
+                Board-ready
+              </button>
+              <button
+                type="button"
+                onClick={() => setView('deep')}
+                className={
+                  view === 'deep'
+                    ? 'px-3 py-2 rounded-lg bg-neon text-void font-semibold'
+                    : 'px-3 py-2 rounded-lg border border-steel/30 text-white hover:border-neon/40 transition-colors'
+                }
+              >
+                Deep model
+              </button>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Inputs */}
+            {view === 'deep' ? (
             <div>
               <h2 className="text-2xl font-bold mb-8 neon-glow">Your Operation</h2>
 
@@ -1134,10 +1172,40 @@ export default function ROICalculatorPage() {
                 )}
               </div>
             </div>
+            ) : null}
 
             {/* Results */}
-            <div>
+            <div className={view === 'board' ? 'lg:col-span-2' : ''}>
               <h2 className="text-2xl font-bold mb-8 neon-glow">Your ROI</h2>
+
+              {view === 'board' ? (
+                <Card className="mb-8 border-neon/30">
+                  <h3 className="font-bold text-neon mb-3">Board-ready summary</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                    <div>
+                      <p className="text-steel">Year‑1 realization</p>
+                      <p className="text-white font-semibold">{Math.round(calculations.yearOneRampShare * 100)}%</p>
+                      <p className="text-xs text-steel/70 mt-1">Gross savings recognized in Year 1</p>
+                    </div>
+                    <div>
+                      <p className="text-steel">Year‑1 gross savings</p>
+                      <p className="text-white font-semibold">{formatMoney(calculations.yearOneGrossSavings)}</p>
+                      <p className="text-xs text-steel/70 mt-1">Before subscription + implementation</p>
+                    </div>
+                    <div>
+                      <p className="text-steel">Opportunity cost (90 days)</p>
+                      <p className="text-white font-semibold">
+                        ~{formatMoney(Math.max(0, calculations.yearOneGrossSavings) / 4)}
+                      </p>
+                      <p className="text-xs text-steel/70 mt-1">Modeled; depends on rollout timing</p>
+                    </div>
+                  </div>
+                  <div className="mt-5 text-sm text-steel">
+                    <span className="text-white font-semibold">Base</span> vs <span className="text-white font-semibold">Network</span> are shown below.
+                    Switch to <span className="text-white font-semibold">Deep model</span> to edit assumptions.
+                  </div>
+                </Card>
+              ) : null}
 
               {/* Hero metrics */}
               <div className="grid grid-cols-2 gap-4 mb-8">
@@ -1215,6 +1283,7 @@ export default function ROICalculatorPage() {
               </Card>
 
               {/* Operational Impact */}
+              {view === 'deep' ? (
               <Card>
                 <h3 className="font-bold text-neon mb-4">Operational Impact</h3>
                 <div className="space-y-4">
@@ -1244,6 +1313,20 @@ export default function ROICalculatorPage() {
                   </div>
                 </div>
               </Card>
+              ) : null}
+
+              {view === 'board' ? (
+                <div className="mt-10">
+                  <BoardReadyExportCTA
+                    endpoint="/api/pdf/roi"
+                    emailEndpoint="/api/email/roi"
+                    eventName="roi_pdf_exported"
+                    buildPayload={(lead) => ({ lead, inputs: inputsForPdf })}
+                    title="Board-ready ROI PDF"
+                    subtitle="Generate a clean PDF you can forward internally, or email it to finance/procurement. Modeled estimates; results vary."
+                  />
+                </div>
+              ) : null}
             </div>
           </div>
         </div>
@@ -1261,10 +1344,11 @@ export default function ROICalculatorPage() {
           <div className="mt-10 text-left">
             <BoardReadyExportCTA
               endpoint="/api/pdf/roi"
-              eventName="roi_export_pdf"
+              emailEndpoint="/api/email/roi"
+              eventName="roi_pdf_exported"
               buildPayload={(lead) => ({ lead, inputs: inputsForPdf })}
               title="Board-ready ROI PDF"
-              subtitle="Generate a clean PDF you can forward internally. Modeled estimates; results vary."
+              subtitle="Generate a clean PDF you can forward internally, or email it to finance/procurement. Modeled estimates; results vary."
             />
           </div>
 
@@ -1283,6 +1367,12 @@ export default function ROICalculatorPage() {
               Founding Member Program
             </a>
           </div>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <NextSteps title="Next best step" />
         </div>
       </section>
 

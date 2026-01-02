@@ -4,6 +4,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
+import NextSteps from '@/components/NextSteps';
 import { trackEvent } from '@/lib/analytics';
 
 export default function PricingPage() {
@@ -39,7 +40,10 @@ export default function PricingPage() {
               <div className="mt-6 flex flex-col sm:flex-row gap-3">
                 <a
                   href="/contact"
-                  onClick={() => trackEvent('pricing_cta_click', { cta: 'get_quote' })}
+                  onClick={() => {
+                    trackEvent('pricing_cta_click', { cta: 'get_quote' });
+                    trackEvent('quote_requested', { source: 'pricing' });
+                  }}
                   className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
                 >
                   Get a quote
@@ -48,7 +52,10 @@ export default function PricingPage() {
                   href={calendlyUrl}
                   target="_blank"
                   rel="noreferrer"
-                  onClick={() => trackEvent('pricing_demo_click', { source: 'pricing', calendlyUrl })}
+                  onClick={() => {
+                    trackEvent('pricing_demo_click', { source: 'pricing', calendlyUrl });
+                    trackEvent('demo_booked', { source: 'pricing', calendlyUrl });
+                  }}
                   className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
                 >
                   Book a demo
@@ -154,6 +161,12 @@ export default function PricingPage() {
               </div>
             </Card>
           </div>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <NextSteps title="Next best step" personaOverride="procurement" />
         </div>
       </section>
 

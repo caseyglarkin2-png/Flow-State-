@@ -15,7 +15,8 @@ test.describe('smoke', () => {
   test('roi calculator loads', async ({ page }) => {
     await page.goto('/roi');
     await expect(page.getByRole('heading', { name: /calculate your flow state/i })).toBeVisible();
-    await expect(page.getByRole('heading', { name: /your operation/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /roi model/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /board-ready/i })).toBeVisible();
   });
 
   test('contact loads', async ({ page }) => {

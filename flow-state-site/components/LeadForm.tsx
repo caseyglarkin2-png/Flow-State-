@@ -2,6 +2,8 @@
 
 import React, { useMemo, useState } from 'react';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
+import { trackEvent } from '@/lib/analytics';
+import { usePersonaStore } from '@/store/persona';
 
 type LeadType = 'quote' | 'founding' | 'demo';
 
@@ -37,6 +39,8 @@ export default function LeadForm({ leadType, title, subtitle }: LeadFormProps) {
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<{ ok: boolean; message: string } | null>(null);
 
+  const persona = usePersonaStore((s) => s.persona);
+
   const hcaptchaSiteKey = process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY ?? '';
   const canUseCaptcha = Boolean(hcaptchaSiteKey);
 
@@ -71,6 +75,10 @@ export default function LeadForm({ leadType, title, subtitle }: LeadFormProps) {
       }
 
       setResult({ ok: true, message: 'Submitted. We’ll reach out shortly.' });
+
+      if (leadType === 'quote') trackEvent('quote_requested', { persona });
+      if (leadType === 'demo') trackEvent('demo_booked', { persona, source: 'lead_form' });
+
       setState(initialState);
       setCaptchaToken('');
     } catch {
@@ -190,7 +198,7 @@ export default function LeadForm({ leadType, title, subtitle }: LeadFormProps) {
         <div>
           <HCaptcha
             sitekey={hcaptchaSiteKey}
-            onVerify={(token) => setCaptchaToken(token)}
+            onVerify={(token: string) => setCaptchaToken(token)}
             onExpire={() => setCaptchaToken('')}
           />
         </div>

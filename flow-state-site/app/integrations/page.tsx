@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
+import NextSteps from '@/components/NextSteps';
 
 export default function IntegrationsPage() {
   return (
@@ -72,6 +73,12 @@ export default function IntegrationsPage() {
               Share your stack
             </a>
           </Card>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <NextSteps title="Next best step" personaOverride="it" />
         </div>
       </section>
 

@@ -8,20 +8,28 @@ type Props = {
   title?: string;
   subtitle?: string;
   endpoint: '/api/pdf/roi' | '/api/pdf/yardbuilder';
+  emailEndpoint?: '/api/email/roi';
   buildPayload: (lead: { name: string; email: string; company: string }) => unknown;
-  eventName: 'roi_export_pdf' | 'pdf_generated_roi' | 'pdf_generated_yardbuilder';
+  eventName:
+    | 'roi_export_pdf'
+    | 'roi_pdf_exported'
+    | 'roi_email_to_finance'
+    | 'pdf_generated_roi'
+    | 'pdf_generated_yardbuilder';
 };
 
 export default function BoardReadyExportCTA({
   title = 'Board-ready export',
   subtitle = 'Generate a clean PDF you can forward internally. Modeled estimates; results vary.',
   endpoint,
+  emailEndpoint,
   buildPayload,
   eventName,
 }: Props) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
+  const [toEmail, setToEmail] = useState('');
   const [captchaToken, setCaptchaToken] = useState<string>('');
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<string>('');
@@ -36,6 +44,16 @@ export default function BoardReadyExportCTA({
     if (!canUseCaptcha && process.env.NODE_ENV === 'production') return 'Captcha not configured';
     return '';
   }, [busy, name, email, company, captchaToken, canUseCaptcha]);
+
+  const emailDisabledReason = useMemo(() => {
+    if (!emailEndpoint) return 'Email not available';
+    if (busy) return 'Sending…';
+    if (!name || !email || !company) return 'Fill required fields';
+    if (!toEmail) return 'Add finance email';
+    if (!captchaToken && canUseCaptcha) return 'Complete captcha';
+    if (!canUseCaptcha && process.env.NODE_ENV === 'production') return 'Captcha not configured';
+    return '';
+  }, [emailEndpoint, busy, name, email, company, toEmail, captchaToken, canUseCaptcha]);
 
   async function generate() {
     if (disabledReason) return;
@@ -68,7 +86,39 @@ export default function BoardReadyExportCTA({
       URL.revokeObjectURL(url);
 
       trackEvent(eventName, { endpoint });
+      // PASS5 instrumentation (kept alongside legacy eventName for backwards compatibility)
+      if (endpoint === '/api/pdf/roi') trackEvent('roi_pdf_exported', { endpoint });
       setMsg('Generated. Check your downloads.');
+    } catch {
+      setMsg('Network error. Try again.');
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function emailToFinance() {
+    if (emailDisabledReason) return;
+    setMsg('');
+    setBusy(true);
+    try {
+      const res = await fetch(emailEndpoint!, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...(buildPayload({ name, email, company }) as object),
+          toEmail,
+          captchaToken,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = (await res.json().catch(() => ({}))) as { message?: string };
+        setMsg(data.message || 'Failed to email PDF.');
+        return;
+      }
+
+      trackEvent('roi_email_to_finance', { endpoint: emailEndpoint });
+      setMsg('Emailed. Check with finance/procurement.');
     } catch {
       setMsg('Network error. Try again.');
     } finally {
@@ -103,6 +153,18 @@ export default function BoardReadyExportCTA({
         />
       </div>
 
+      {emailEndpoint ? (
+        <div className="mt-3">
+          <input
+            value={toEmail}
+            onChange={(e) => setToEmail(e.target.value)}
+            placeholder="Finance/procurement email (optional)"
+            type="email"
+            className="w-full bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+          />
+        </div>
+      ) : null}
+
       <div className="mt-4 flex flex-col sm:flex-row gap-3">
         <button
           type="button"
@@ -112,19 +174,31 @@ export default function BoardReadyExportCTA({
         >
           {disabledReason || 'Export PDF'}
         </button>
+
+        {emailEndpoint ? (
+          <button
+            type="button"
+            onClick={emailToFinance}
+            disabled={Boolean(emailDisabledReason)}
+            className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {emailDisabledReason || 'Email to finance'}
+          </button>
+        ) : (
         <a
           href="/contact"
           className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
         >
           Send to finance / procurement
         </a>
+        )}
       </div>
 
       {canUseCaptcha ? (
         <div className="mt-4">
           <HCaptcha
             sitekey={hcaptchaSiteKey}
-            onVerify={(token) => setCaptchaToken(token)}
+            onVerify={(token: string) => setCaptchaToken(token)}
             onExpire={() => setCaptchaToken('')}
           />
         </div>

@@ -14,15 +14,21 @@ export const runtime = 'nodejs';
 type RequestBody = {
   lead: { name: string; email: string; company: string };
   inputs: RoiV2Inputs;
+  toEmail: string;
   captchaToken?: string;
 };
+
+function isValidEmail(value: string): boolean {
+  // Lightweight validation only.
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
 
 export async function POST(req: Request) {
   const ip = getClientIp(req);
   if (
-    isRateLimited(`pdf:roi:${ip}`, {
+    isRateLimited(`email:roi:${ip}`, {
       windowMs: 60_000,
-      max: 6,
+      max: 4,
     })
   ) {
     return NextResponse.json({ ok: false, message: 'Too many requests. Try again soon.' }, { status: 429 });
@@ -37,6 +43,10 @@ export async function POST(req: Request) {
 
   if (!body.lead?.name || !body.lead?.email || !body.lead?.company) {
     return NextResponse.json({ ok: false, message: 'Missing lead fields.' }, { status: 400 });
+  }
+
+  if (!body.toEmail || !isValidEmail(body.toEmail)) {
+    return NextResponse.json({ ok: false, message: 'Missing or invalid recipient email.' }, { status: 400 });
   }
 
   const captchaOk = await verifyHCaptcha(body.captchaToken);
@@ -79,34 +89,47 @@ export async function POST(req: Request) {
 
   const pdf = await renderPdfToBuffer(React.createElement(RoiSummaryPdf, { payload }));
 
+  const filename = 'flow-state-roi-summary.pdf';
+  const subjectToFinance = `[Flow State] ROI summary for ${body.lead.company}`;
+  const textToFinance = [
+    `Hi — sharing a board-ready ROI summary for ${body.lead.company}.`,
+    '',
+    `Prepared for: ${body.lead.name} (${body.lead.email})`,
+    `Year 1 ROI: ${Math.round(result.yearOneRoiPercent)}%`,
+    `Year 1 net gain: $${Math.round(result.yearOneNetGain).toLocaleString()}`,
+    '',
+    'Modeled estimate for planning purposes only; results vary by facility, adoption, and operating conditions.',
+  ].join('\n');
+
+  await sendEmail({
+    to: body.toEmail,
+    subject: subjectToFinance,
+    text: textToFinance,
+    attachments: [{ filename, content: Buffer.from(pdf), contentType: 'application/pdf' }],
+  });
+
+  // Internal notification + CRM webhook.
   const leadTo = process.env.LEADS_TO_EMAIL || 'founding@flow-state.ai';
-  const subject = `[Flow State] ROI PDF generated — ${body.lead.company}`;
-  const text = [
-    'An ROI PDF was generated.',
+  const subjectInternal = `[Flow State] ROI PDF emailed — ${body.lead.company}`;
+  const textInternal = [
+    'An ROI PDF was emailed.',
     `Company: ${body.lead.company}`,
     `Name: ${body.lead.name}`,
-    `Email: ${body.lead.email}`,
+    `Requester email: ${body.lead.email}`,
+    `Recipient email: ${body.toEmail}`,
     `Year 1 ROI: ${Math.round(result.yearOneRoiPercent)}%`,
     `Year 1 net gain: $${Math.round(result.yearOneNetGain).toLocaleString()}`,
     `IP: ${ip}`,
   ].join('\n');
 
-  await sendEmail({ to: leadTo, subject, text });
+  await sendEmail({ to: leadTo, subject: subjectInternal, text: textInternal });
   await postWebhook(process.env.HUBSPOT_WEBHOOK_URL, {
-    event: 'pdf_generated_roi',
+    event: 'roi_emailed_to_finance',
     lead: body.lead,
+    toEmail: body.toEmail,
     ip,
     results: payload.results,
   });
 
-  const pdfBody = new Uint8Array(pdf);
-
-  return new NextResponse(pdfBody, {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/pdf',
-      'Content-Disposition': 'attachment; filename="flow-state-roi-summary.pdf"',
-      'Cache-Control': 'no-store',
-    },
-  });
+  return NextResponse.json({ ok: true });
 }

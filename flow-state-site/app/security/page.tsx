@@ -4,6 +4,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
+import NextSteps from '@/components/NextSteps';
 
 export default function SecurityPage() {
   return (
@@ -70,6 +71,12 @@ export default function SecurityPage() {
               questionnaires, policies, DPAs) are provided during procurement.
             </p>
           </Card>
+        </div>
+      </section>
+
+      <section className="py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <NextSteps title="Next best step" personaOverride="it" />
         </div>
       </section>
 
