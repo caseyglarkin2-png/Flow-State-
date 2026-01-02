@@ -2010,14 +2010,22 @@ export default function ROICalculatorPage() {
                     <div className="h-2 bg-carbon rounded-full overflow-hidden">
                       <div 
                         className="h-full bg-neon rounded-full transition-all duration-500"
-                        style={{ width: `${(1 - calculations.newDwellTime / avgDwellTime) * 100}%` }}
+                        style={{
+                          width: `${Math.min(
+                            100,
+                            Math.max(
+                              0,
+                              avgDwellTime > 0 ? (1 - calculations.newDwellTime / avgDwellTime) * 100 : 0,
+                            ),
+                          )}%`,
+                        }}
                       ></div>
                     </div>
                   </div>
                   <div>
                     <div className="flex justify-between text-sm mb-1">
-                      <span className="text-steel">Annual Time Saved</span>
-                      <span className="text-white">{formatNumber(calculations.annualTimeSaved / 60)} hours</span>
+                      <span className="text-steel">Year 1 Time Saved</span>
+                      <span className="text-white">{formatNumber((calculations.annualTimeSaved * calculations.yearOneRampShare) / 60)} hours</span>
                     </div>
                   </div>
                   <div>
