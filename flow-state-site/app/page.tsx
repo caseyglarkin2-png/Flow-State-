@@ -21,6 +21,7 @@ import {
   FlowArrow,
   Timeline,
   Prism,
+  Genesis,
 } from '@/components/icons/FlowIcons';
 
 export default function Home() {
@@ -36,41 +37,35 @@ export default function Home() {
         <div className="absolute inset-0 grid-background opacity-30"></div>
         
         <div className="relative z-10 max-w-6xl mx-auto px-6 text-center py-20">
-          <h1 className="text-6xl md:text-8xl font-black mb-4 tracking-tight leading-tight">
-            <span className="neon-glow">Visibility ≠ control.</span>
+          <h1 className="text-7xl md:text-9xl font-black mb-6 tracking-tighter leading-none">
+            <span className="text-neon drop-shadow-[0_0_30px_rgba(0,180,255,0.6)]">Put your yard</span>
             <br />
-            <span>Flow State makes the yard obey.</span>
+            <span className="text-white">in Flow.</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-steel mb-3 max-w-3xl mx-auto">
-            Turn every facility into an <span className="text-neon font-semibold">intelligent node</span> with defensible timestamps.
+          <p className="text-2xl md:text-3xl text-steel mb-6 max-w-4xl mx-auto font-light">
+            <span className="text-neon font-medium">Orchestrate the yard.</span> Eliminate turbulence.
           </p>
           
-          <p className="text-lg text-steel/80 mb-8 max-w-3xl mx-auto leading-relaxed">
-            The reveal: once the yard is instrumented, dwell, detention, and labor stop being “soft problems.”
+          <p className="text-lg text-steel/80 mb-12 max-w-2xl mx-auto leading-relaxed">
+            Transform your facility from a siloed bottleneck into a network of intelligent nodes transmitting ground source truth.
           </p>
 
-          <div className="flex justify-center mb-10">
+          <div className="flex justify-center mb-16">
+            <a
+              href="/contact"
+              className="group relative inline-flex items-center gap-3 px-10 py-5 rounded-lg font-bold text-lg bg-neon text-void hover:bg-neon/90 transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(0,180,255,0.4)]"
+            >
+              <Genesis size={24} className="text-void animate-pulse" />
+              Apply for Membership
+            </a>
+          </div>
+
+          <div className="flex justify-center mb-10 opacity-80 hover:opacity-100 transition-opacity">
             <LaneToggle />
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
-            <a
-              href="/yardbuilder"
-              className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
-            >
-              <Ignite size={20} className="text-void" />
-              Generate Yard Report (PDF)
-            </a>
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
-            >
-              Book Demo
-            </a>
-          </div>
-
-          <div className="text-sm text-steel/80 mb-10">
+          <div className="text-sm text-steel/60 mb-10">
             Micro‑reward: <span className="text-white font-semibold">You’re 20%</span> to a board‑ready ROI story.
           </div>
 
