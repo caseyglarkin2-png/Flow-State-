@@ -448,7 +448,8 @@ export default function ROICalculatorPage() {
                         max="50"
                         value={facilities}
                         onChange={(e) => setFacilities(parseInt(e.target.value))}
-                        className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon"
+                        aria-label={`Number of facilities: ${facilities}`}
+                        className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-void"
                       />
                       <div className="flex justify-between text-xs text-steel/60 mt-1">
                         <span>1</span>
@@ -469,7 +470,8 @@ export default function ROICalculatorPage() {
                         step="10"
                         value={trucksPerDay}
                         onChange={(e) => setTrucksPerDay(parseInt(e.target.value))}
-                        className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon"
+                        aria-label={`Trucks per day per facility: ${trucksPerDay}`}
+                        className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-void"
                       />
                       <div className="flex justify-between text-xs text-steel/60 mt-1">
                         <span>20</span>
@@ -489,7 +491,8 @@ export default function ROICalculatorPage() {
                         max="120"
                         value={avgDwellTime}
                         onChange={(e) => setAvgDwellTime(parseInt(e.target.value))}
-                        className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon"
+                        aria-label={`Average dwell time: ${avgDwellTime} minutes`}
+                        className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-void"
                       />
                       <div className="flex justify-between text-xs text-steel/60 mt-1">
                         <span>20 min</span>
@@ -510,7 +513,8 @@ export default function ROICalculatorPage() {
                         step="5"
                         value={detentionCost}
                         onChange={(e) => setDetentionCost(parseInt(e.target.value))}
-                        className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon"
+                        aria-label={`Detention cost per hour: $${detentionCost}`}
+                        className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-void"
                       />
                       <div className="flex justify-between text-xs text-steel/60 mt-1">
                         <span>$25</span>
@@ -530,7 +534,8 @@ export default function ROICalculatorPage() {
                         max="10"
                         value={gateStaff}
                         onChange={(e) => setGateStaff(parseInt(e.target.value))}
-                        className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon"
+                        aria-label={`Gate staff per facility: ${gateStaff}`}
+                        className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-void"
                       />
                       <div className="flex justify-between text-xs text-steel/60 mt-1">
                         <span>1</span>
@@ -550,7 +555,8 @@ export default function ROICalculatorPage() {
                         max="60"
                         value={laborCostPerHour}
                         onChange={(e) => setLaborCostPerHour(parseInt(e.target.value))}
-                        className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon"
+                        aria-label={`Labor cost per hour: $${laborCostPerHour}`}
+                        className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-void"
                       />
                       <div className="flex justify-between text-xs text-steel/60 mt-1">
                         <span>$15</span>
