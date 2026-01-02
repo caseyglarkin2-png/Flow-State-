@@ -1611,7 +1611,7 @@ export default function ROICalculatorPage() {
                         {/* Predictive Intelligence */}
                         <div className="p-4 rounded-lg bg-void/50 border border-steel/10">
                           <div className="flex items-start justify-between mb-2">
-                            <div>
+                            <div className="flex-1">
                               <p className="text-sm font-semibold text-white flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-neon"></span>
                                 Predictive Intelligence
@@ -1624,18 +1624,28 @@ export default function ROICalculatorPage() {
                               {formatMoney(calculations.v2.networkEffectBreakdown.predictiveIntelligence.planningSavings)}
                             </span>
                           </div>
-                          <div className="flex items-center gap-2 text-xs text-steel/60">
+                          <div className="flex items-center gap-2 text-xs text-steel/60 mb-2">
                             <span className="px-2 py-0.5 rounded bg-neon/10 text-neon">
                               +{calculations.v2.networkEffectBreakdown.predictiveIntelligence.etaAccuracyImprovement.toFixed(0)}% ETA accuracy
                             </span>
                             <span>→ Better dock scheduling</span>
                           </div>
+                          <details className="text-xs text-steel/60 mt-2">
+                            <summary className="cursor-pointer hover:text-neon">Show calculation</summary>
+                            <div className="mt-2 p-2 bg-void/30 rounded border border-steel/10 font-mono text-[10px] space-y-1">
+                              <p>• ETA improvement: min(25%, log(max(1, n-4)+1) × 6%) × maturity</p>
+                              <p>• Maturity factor: 1 - e^(-n/20) = {(1 - Math.exp(-facilities / 20)).toFixed(2)}</p>
+                              <p>• Planning value: $1.50/shipment × {calculations.v2.networkEffectBreakdown.predictiveIntelligence.etaAccuracyImprovement.toFixed(1)}% improvement</p>
+                              <p>• Annual shipments: {(calculations.v2?.totalShipmentsPerYear || 0).toLocaleString()}</p>
+                              <p className="text-neon pt-1">= ${calculations.v2.networkEffectBreakdown.predictiveIntelligence.planningSavings.toLocaleString()}</p>
+                            </div>
+                          </details>
                         </div>
 
                         {/* Carrier Benchmarking */}
                         <div className="p-4 rounded-lg bg-void/50 border border-steel/10">
                           <div className="flex items-start justify-between mb-2">
-                            <div>
+                            <div className="flex-1">
                               <p className="text-sm font-semibold text-white flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-neon"></span>
                                 Carrier Benchmarking
@@ -1648,18 +1658,29 @@ export default function ROICalculatorPage() {
                               {formatMoney(calculations.v2.networkEffectBreakdown.carrierBenchmarking.negotiationLeverage)}
                             </span>
                           </div>
-                          <div className="flex items-center gap-2 text-xs text-steel/60">
+                          <div className="flex items-center gap-2 text-xs text-steel/60 mb-2">
                             <span className="px-2 py-0.5 rounded bg-neon/10 text-neon">
                               {Math.round(calculations.v2.networkEffectBreakdown.carrierBenchmarking.dataPointsShared).toLocaleString()} data points
                             </span>
                             <span>→ Rate negotiation leverage</span>
                           </div>
+                          <details className="text-xs text-steel/60 mt-2">
+                            <summary className="cursor-pointer hover:text-neon">Show calculation</summary>
+                            <div className="mt-2 p-2 bg-void/30 rounded border border-steel/10 font-mono text-[10px] space-y-1">
+                              <p>• Network connections: n(n-1)/2 = {facilities}×{facilities-1}/2 = {(facilities * (facilities - 1) / 2).toLocaleString()}</p>
+                              <p>• Data points: connections × 30 × maturity = {Math.round(calculations.v2.networkEffectBreakdown.carrierBenchmarking.dataPointsShared).toLocaleString()}</p>
+                              <p>• Carrier leverage: min(2%, 0.3% + log(max(1,n-5)+1) × 0.4%)</p>
+                              <p>• 3rd-party spend: {(calculations.v2?.totalShipmentsPerYear || 0).toLocaleString()} × 60% × $150</p>
+                              <p>• Threshold: max(0, n-8)/n = {((Math.max(0, facilities - 8) / facilities) * 100).toFixed(0)}%</p>
+                              <p className="text-neon pt-1">= ${calculations.v2.networkEffectBreakdown.carrierBenchmarking.negotiationLeverage.toLocaleString()}</p>
+                            </div>
+                          </details>
                         </div>
 
                         {/* Coordination Efficiency */}
                         <div className="p-4 rounded-lg bg-void/50 border border-steel/10">
                           <div className="flex items-start justify-between mb-2">
-                            <div>
+                            <div className="flex-1">
                               <p className="text-sm font-semibold text-white flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-neon"></span>
                                 Coordination Efficiency
@@ -1672,18 +1693,28 @@ export default function ROICalculatorPage() {
                               {formatMoney(calculations.v2.networkEffectBreakdown.coordinationEfficiency.bufferSavings)}
                             </span>
                           </div>
-                          <div className="flex items-center gap-2 text-xs text-steel/60">
+                          <div className="flex items-center gap-2 text-xs text-steel/60 mb-2">
                             <span className="px-2 py-0.5 rounded bg-neon/10 text-neon">
                               -{calculations.v2.networkEffectBreakdown.coordinationEfficiency.variabilityReduction.toFixed(0)}% variance
                             </span>
                             <span>→ Leaner operations</span>
                           </div>
+                          <details className="text-xs text-steel/60 mt-2">
+                            <summary className="cursor-pointer hover:text-neon">Show calculation</summary>
+                            <div className="mt-2 p-2 bg-void/30 rounded border border-steel/10 font-mono text-[10px] space-y-1">
+                              <p>• Variability reduction: min(20%, log₂(max(1,n-5)+1) × 4%) × maturity</p>
+                              <p>• Base savings: ${calculations.baseSavings.toLocaleString()}</p>
+                              <p>• Buffer cost (5% of base): ${(calculations.baseSavings * 0.05).toLocaleString()}</p>
+                              <p>• Reduction: {calculations.v2.networkEffectBreakdown.coordinationEfficiency.variabilityReduction.toFixed(1)}%</p>
+                              <p className="text-neon pt-1">= ${calculations.v2.networkEffectBreakdown.coordinationEfficiency.bufferSavings.toLocaleString()}</p>
+                            </div>
+                          </details>
                         </div>
 
                         {/* Shared Learning */}
                         <div className="p-4 rounded-lg bg-void/50 border border-steel/10">
                           <div className="flex items-start justify-between mb-2">
-                            <div>
+                            <div className="flex-1">
                               <p className="text-sm font-semibold text-white flex items-center gap-2">
                                 <span className="w-2 h-2 rounded-full bg-neon"></span>
                                 Shared Learning
@@ -1696,12 +1727,26 @@ export default function ROICalculatorPage() {
                               {formatMoney(calculations.v2.networkEffectBreakdown.sharedLearning.errorReduction)}
                             </span>
                           </div>
-                          <div className="flex items-center gap-2 text-xs text-steel/60">
+                          <div className="flex items-center gap-2 text-xs text-steel/60 mb-2">
                             <span className="px-2 py-0.5 rounded bg-neon/10 text-neon">
                               {Math.round(calculations.v2.networkEffectBreakdown.sharedLearning.onboardingAcceleration)} days saved/site
                             </span>
                             <span>→ Faster time-to-value</span>
                           </div>
+                          <details className="text-xs text-steel/60 mt-2">
+                            <summary className="cursor-pointer hover:text-neon">Show calculation</summary>
+                            <div className="mt-2 p-2 bg-void/30 rounded border border-steel/10 font-mono text-[10px] space-y-1">
+                              <p className="font-semibold text-steel">Onboarding acceleration:</p>
+                              <p>• Days saved: min(45, log(max(1,n-3)+1) × 12) × maturity</p>
+                              <p>• Value/day lost productivity: $400</p>
+                              <p>• Annual new sites (8% growth): {Math.ceil(facilities * 0.08)} sites</p>
+                              <p>• Onboarding savings: {Math.round(calculations.v2.networkEffectBreakdown.sharedLearning.onboardingAcceleration)} days × $400 × {Math.ceil(facilities * 0.08)}</p>
+                              <p className="font-semibold text-steel pt-2">Error reduction:</p>
+                              <p>• Error rate reduction: min(12%, log(max(1,n-5)+1) × 2.5%) × maturity</p>
+                              <p>• Error cost: {(calculations.v2?.totalShipmentsPerYear || 0).toLocaleString()} shipments × $0.30</p>
+                              <p className="text-neon pt-1">Total = ${calculations.v2.networkEffectBreakdown.sharedLearning.errorReduction.toLocaleString()}</p>
+                            </div>
+                          </details>
                         </div>
 
                         {/* Effective Multiplier Summary */}
