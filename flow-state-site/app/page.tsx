@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import Card from '@/components/Card';
 import YardBuilderHook from '@/components/YardBuilderHook';
 import NetworkEffectModel from '@/components/NetworkEffectModel';
+import { calcRoiV2, getRoiV2InputsForPreset } from '@/lib/economics';
 import {
   Agent,
   Cortex,
@@ -19,6 +20,8 @@ import {
 } from '@/components/icons/FlowIcons';
 
 export default function Home() {
+  const cfoBaseline = calcRoiV2(getRoiV2InputsForPreset('enterprise_50', 'expected'));
+
   return (
     <div className="min-h-screen bg-void">
       <Header />
@@ -369,8 +372,8 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
             {[
-              { metric: '847%', label: 'Avg Year 1 ROI', icon: <FlowArrow size={24} /> },
-              { metric: '4.2', label: 'Month Payback', icon: <Timeline size={24} />, suffix: 'mo' },
+              { metric: `${Math.round(cfoBaseline.yearOneRoiPercent)}%`, label: 'Avg Year 1 ROI', icon: <FlowArrow size={24} /> },
+              { metric: cfoBaseline.paybackMonths.toFixed(1), label: 'Month Payback', icon: <Timeline size={24} />, suffix: 'mo' },
               { metric: '65%', label: 'Detention Cut', icon: <Crosshair size={24} /> },
               { metric: '70%', label: 'Gate Labor Saved', icon: <Agent size={24} /> },
             ].map((item, i) => (

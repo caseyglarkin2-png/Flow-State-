@@ -213,114 +213,66 @@ export function roiV2InputsFromQuickMode(quick: RoiV1Inputs): RoiV2Inputs {
   const shipmentsPerDayPerFacility = Math.max(0, quick.trucksPerDayPerFacility);
   const operatingDaysPerYear = 365;
 
-  const totalShipmentsPerYear = facilities * shipmentsPerDayPerFacility * operatingDaysPerYear;
-  const v1 = calcRoiV1(quick);
+  // Anchor Quick Mode on the spreadsheet-backed V2 assumptions so the
+  // board-ready outputs stay realistic and congruent.
+  const base = defaultRoiV2Inputs();
 
-  const laborPerShipment = safeDivide(v1.annualLaborSavings, totalShipmentsPerYear);
-  const detentionPerShipment = safeDivide(v1.annualDetentionSavings, totalShipmentsPerYear);
-  const throughputPerShipment = safeDivide(v1.throughputValue, totalShipmentsPerYear);
-  const paperPerShipment = safeDivide(v1.paperlessSavings, totalShipmentsPerYear);
+  const shiftsPerDay = Math.max(1, Math.round(base.labor.tiers.XL.shiftsPerDay || 4));
+  const guardFtePerShift = safeDivide(Math.max(0, quick.gateStaffPerFacility), shiftsPerDay);
 
   return {
+    ...base,
     tiers: {
-      XL: { count: 0, shipmentsPerDay: 0, operatingDaysPerYear, dcFteAnnualCost: 0 },
-      L: { count: 0, shipmentsPerDay: 0, operatingDaysPerYear, dcFteAnnualCost: 0 },
-      M: {
+      XL: {
         count: facilities,
         shipmentsPerDay: shipmentsPerDayPerFacility,
         operatingDaysPerYear,
-        dcFteAnnualCost: Math.max(52000, quick.laborCostPerHour * 2080),
+        dcFteAnnualCost: Math.max(60000, quick.laborCostPerHour * 2080),
       },
-      S: { count: 0, shipmentsPerDay: 0, operatingDaysPerYear, dcFteAnnualCost: 0 },
+      L: { ...base.tiers.L, count: 0 },
+      M: { ...base.tiers.M, count: 0 },
+      S: { ...base.tiers.S, count: 0 },
     },
     labor: {
+      ...base.labor,
       tiers: {
+        ...base.labor.tiers,
+        // Treat Quick Mode as a single-tier network with XL-like staffing dynamics.
         XL: {
-          dockOfficeFtePerShift: 0,
-          shiftsPerDay: 0,
-          dockOfficeTimeShareOnDriverProcess: 0,
-          dockOfficeTimeSavingsShare: 0,
-          guardFtePerShift: 0,
-          guardAutomationShare: 0,
+          ...base.labor.tiers.XL,
+          guardFtePerShift,
         },
-        L: {
-          dockOfficeFtePerShift: 0,
-          shiftsPerDay: 0,
-          dockOfficeTimeShareOnDriverProcess: 0,
-          dockOfficeTimeSavingsShare: 0,
-          guardFtePerShift: 0,
-          guardAutomationShare: 0,
-        },
-        M: {
-          dockOfficeFtePerShift: 0,
-          shiftsPerDay: 0,
-          dockOfficeTimeShareOnDriverProcess: 0,
-          dockOfficeTimeSavingsShare: 0,
-          guardFtePerShift: 0,
-          guardAutomationShare: 0,
-        },
-        S: {
-          dockOfficeFtePerShift: 0,
-          shiftsPerDay: 0,
-          dockOfficeTimeShareOnDriverProcess: 0,
-          dockOfficeTimeSavingsShare: 0,
-          guardFtePerShift: 0,
-          guardAutomationShare: 0,
-        },
+        L: { ...base.labor.tiers.L, shiftsPerDay: 0, guardFtePerShift: 0, dockOfficeFtePerShift: 0 },
+        M: { ...base.labor.tiers.M, shiftsPerDay: 0, guardFtePerShift: 0, dockOfficeFtePerShift: 0 },
+        S: { ...base.labor.tiers.S, shiftsPerDay: 0, guardFtePerShift: 0, dockOfficeFtePerShift: 0 },
       },
     },
-    paper: {
-      pagesPerBol: 1,
-      bolsPerShipment: 1,
-      otherPagesPerShipment: 0,
-      outboundShare: 1,
-      printingCostPerPage: Math.max(0, paperPerShipment),
-      storageCostPerPage: 0,
-      phase1SavedShare: 1,
-    },
-    shipper: {
-      costPerShipment: 0,
-      paidByCustomerShare: 0,
-      nonOwnedFleetShare: 0,
-      shipperOfChoiceDiscountShare: 0,
-      realizedShare: 0,
-    },
     detention: {
-      detentionBudgetShareOfTransport: 0,
-      atFacilitiesShare: 0,
-      avgDetentionHours: 0,
-      costPerHourDetention: 0,
-      claimsShare15to30MinOver: 0,
-      claimsShare30PlusMinOver: 0,
+      ...base.detention,
+      costPerHourDetention: Math.max(0, quick.detentionCostPerHour),
     },
     throughput: {
-      avgGateInToOutMinutes: quick.avgDwellTimeMinutes || 45,
-      reduceCheckInMinutes: 0,
-      reduceCheckOutMinutes: 0,
-      realizedShare: 0,
-      outboundShare: 0,
-      incrementalMarginPerTruck: 0,
+      ...base.throughput,
+      avgGateInToOutMinutes: Math.max(0.0001, quick.avgDwellTimeMinutes || base.throughput.avgGateInToOutMinutes),
     },
+    // Keep network effect on, but at a more conservative level than the old
+    // Quick Mode mapping.
     network: {
-      logFactor: 0.5,
-    },
-    commercial: {
-      implementationBaseCost: 0,
-      implementationCostPerFacility: 2500,
-      annualSubscriptionPerFacility: 8000,
+      ...base.network,
+      logFactor: 0.15,
     },
     enterpriseAddOns: {
       perShipment: {
+        ...base.enterpriseAddOns.perShipment,
         lostBolsLostSales: 0,
         manualWmsFailoverSavings: 0,
-        dockClerkProductivity: Math.max(0, laborPerShipment),
-        missedDeliveries: Math.max(0, throughputPerShipment),
+        dockClerkProductivity: 0,
+        missedDeliveries: 0,
         yardSpotterProductivity: 0,
         osdSearchTime: 0,
-        detentionClaimsReduction: Math.max(0, detentionPerShipment),
+        detentionClaimsReduction: 0,
       },
     },
-    yearOneRampShare: 1,
   };
 }
 

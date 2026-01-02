@@ -82,30 +82,30 @@ test('calcRoiV2 returns finite, non-negative key values', () => {
   );
 });
 
-test('quick-mode sliders mapped into V2 preserve V1 economics', () => {
+test('quick-mode mapping is anchored on spreadsheet-backed V2 assumptions', () => {
   const quick = {
-    facilities: 5,
+    facilities: 50,
     trucksPerDayPerFacility: 150,
-    avgDwellTimeMinutes: 48,
+    avgDwellTimeMinutes: 55,
     detentionCostPerHour: 75,
     laborCostPerHour: 28,
-    gateStaffPerFacility: 3,
+    gateStaffPerFacility: 4,
   };
 
-  const v1 = calcRoiV1(quick);
-  const v2 = calcRoiV2(roiV2InputsFromQuickMode(quick));
+  const inputs = roiV2InputsFromQuickMode(quick);
 
   return (
-    approxEqual(v2.networkMultiplier, v1.networkMultiplier, 1e-9) &&
-    approxEqual(v2.annualDetentionSavings, v1.annualDetentionSavings, 1e-6) &&
-    approxEqual(v2.annualLaborSavings, v1.annualLaborSavings, 1e-6) &&
-    approxEqual(v2.throughputValue, v1.throughputValue, 1e-6) &&
-    approxEqual(v2.paperlessSavings, v1.paperlessSavings, 1e-6) &&
-    approxEqual(v2.totalAnnualSavings, v1.totalAnnualSavings, 1e-6) &&
-    approxEqual(v2.implementationCost, v1.implementationCost, 1e-6) &&
-    approxEqual(v2.annualSubscription, v1.annualSubscription, 1e-6) &&
-    approxEqual(v2.paybackMonths, v1.paybackMonths, 1e-12) &&
-    approxEqual(v2.fiveYearValue, v1.fiveYearValue, 1e-6)
+    inputs.tiers.XL.count === 50 &&
+    inputs.tiers.XL.shipmentsPerDay === 150 &&
+    inputs.tiers.XL.operatingDaysPerYear === 365 &&
+    approxEqual(inputs.network.logFactor, 0.15, 1e-12) &&
+    inputs.throughput.reduceCheckInMinutes === 5 &&
+    inputs.throughput.reduceCheckOutMinutes === 5 &&
+    inputs.throughput.realizedShare === 0.1 &&
+    inputs.throughput.outboundShare === 0.6 &&
+    inputs.throughput.incrementalMarginPerTruck === 500 &&
+    inputs.commercial.annualSubscriptionPerFacility === 8000 &&
+    inputs.commercial.implementationCostPerFacility === 2500
   );
 });
 

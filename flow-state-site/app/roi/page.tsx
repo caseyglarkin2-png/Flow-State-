@@ -12,64 +12,6 @@ import { calcRoiV1, calcRoiV2, defaultRoiV2Inputs, roiV2InputsFromQuickMode } fr
 import type { RoiV2Inputs } from '@/lib/roi/types';
 import { ECONOMICS_MODES, ECONOMICS_SCENARIOS, getQuickInputsForPreset } from '@/lib/economics';
 
-// CFO-focused summary metrics
-interface CFOMetrics {
-  totalAnnualSavings: number;
-  yearOneROI: number;
-  paybackMonths: number;
-  fiveYearNPV: number;
-  costOfDelay90Days: number;
-  irr: number;
-  savingsPerFacility: number;
-  networkMultiplier: number;
-}
-
-function calculateCFOMetrics(
-  totalAnnualSavings: number,
-  implementationCost: number,
-  annualSubscription: number,
-  facilities: number,
-  networkMultiplier: number
-): CFOMetrics {
-  const yearOneGrossSavings = totalAnnualSavings;
-  const yearOneNetGain = yearOneGrossSavings - implementationCost - annualSubscription;
-  const yearOneROI = implementationCost > 0 
-    ? ((yearOneGrossSavings - annualSubscription) / implementationCost) * 100 
-    : 0;
-  
-  const paybackMonths = implementationCost > 0
-    ? implementationCost / ((yearOneGrossSavings - annualSubscription) / 12)
-    : 0;
-  
-  // 5-year NPV with 10% discount rate
-  const discountRate = 0.10;
-  const fiveYearNPV = -implementationCost + 
-    Array.from({ length: 5 }, (_, i) => 
-      (totalAnnualSavings * Math.pow(1.02, i) - annualSubscription) / Math.pow(1 + discountRate, i + 1)
-    ).reduce((a, b) => a + b, 0);
-  
-  // Cost of 90-day delay (quarterly savings lost)
-  const costOfDelay90Days = yearOneGrossSavings / 4;
-  
-  // Simplified IRR approximation
-  const irr = implementationCost > 0 
-    ? ((yearOneNetGain / implementationCost) * 100) + 15 // Simplified for display
-    : 0;
-  
-  const savingsPerFacility = facilities > 0 ? totalAnnualSavings / facilities : 0;
-  
-  return {
-    totalAnnualSavings,
-    yearOneROI,
-    paybackMonths,
-    fiveYearNPV,
-    costOfDelay90Days,
-    irr,
-    savingsPerFacility,
-    networkMultiplier,
-  };
-}
-
 export default function ROICalculatorPage() {
   const defaultQuick = getQuickInputsForPreset('enterprise_50', 'expected');
 
@@ -246,19 +188,28 @@ export default function ROICalculatorPage() {
     };
   }, [mode, facilities, trucksPerDay, avgDwellTime, detentionCost, laborCostPerHour, gateStaff, proInputs]);
 
-  // CFO-focused metrics
   const cfoMetrics = useMemo(() => {
-    const facilityCount = mode === 'pro' 
+    const facilityCount = mode === 'pro'
       ? Object.values(proInputs.tiers).reduce((acc, t) => acc + t.count, 0)
       : facilities;
-    
-    return calculateCFOMetrics(
-      calculations.totalAnnualSavings,
-      calculations.implementationCost,
-      calculations.annualSubscription,
-      facilityCount,
-      calculations.networkMultiplier
-    );
+
+    const discountRate = 0.10;
+    const fiveYearNPV =
+      -calculations.implementationCost +
+      Array.from({ length: 5 }, (_, i) =>
+        (calculations.totalAnnualSavings * Math.pow(1.02, i) - calculations.annualSubscription) /
+        Math.pow(1 + discountRate, i + 1),
+      ).reduce((a, b) => a + b, 0);
+
+    return {
+      totalAnnualSavings: calculations.totalAnnualSavings,
+      yearOneROI: calculations.yearOneROI,
+      paybackMonths: calculations.paybackMonths,
+      fiveYearNPV,
+      costOfDelay90Days: calculations.totalAnnualSavings / 4,
+      savingsPerFacility: facilityCount > 0 ? calculations.totalAnnualSavings / facilityCount : 0,
+      networkMultiplier: calculations.networkMultiplier,
+    };
   }, [calculations, facilities, mode, proInputs]);
 
   const formatMoney = (amount: number) => {
@@ -316,14 +267,16 @@ export default function ROICalculatorPage() {
               <div className="flex items-start gap-4">
                 <Manifest size={32} className="text-neon mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="text-xl font-bold text-neon mb-2">Paperless Operations Pay for Flow State</h3>
+                  <h3 className="text-xl font-bold text-neon mb-2">What’s Included in This Model</h3>
                   <p className="text-steel text-sm leading-relaxed">
-                    <strong className="text-white">Guaranteed: $11,900/facility/year</strong> eliminating 1 BOL per shipment (3→2 BOLs). 
-                    This covers ink, paper, printing, filing, storage, and retrieval costs—<strong className="text-neon">paying for the $8,000 subscription before any other benefits.</strong>
+                    This board-ready view includes <strong className="text-white">labor</strong>, <strong className="text-white">detention</strong>,
+                    <strong className="text-white"> paper</strong>, and <strong className="text-white">throughput</strong> assumptions,
+                    plus an explicit <strong className="text-white">annual subscription</strong> and <strong className="text-white">implementation</strong> cost basis.
                   </p>
                   <p className="text-steel text-sm leading-relaxed mt-2">
-                    Then: <strong className="text-white">10% throughput capacity increase</strong> unlocks millions in additional operating margin. 
-                    Labor automation and detention reduction compound the value.
+                    Modeled annually: <strong className="text-white">{formatMoney(calculations.paperlessSavings)}</strong> paper savings,
+                    <strong className="text-white"> {formatMoney(calculations.throughputValue)}</strong> throughput value,
+                    and <strong className="text-white">{formatMoney(calculations.annualSubscription)}</strong> subscription.
                   </p>
                 </div>
               </div>
