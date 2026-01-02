@@ -7,7 +7,7 @@ import Footer from '@/components/Footer';
 import Card from '@/components/Card';
 import BoardReadyExportCTA from '@/components/BoardReadyExportCTA';
 import NextSteps from '@/components/NextSteps';
-import { FlowArrow, Metrics, Velocity, Crosshair } from '@/components/icons/FlowIcons';
+import { FlowArrow, Metrics, Velocity, Crosshair, Config, Timeline, Caution, Agent, Manifest, Nexus } from '@/components/icons/FlowIcons';
 import { calcRoiV1, calcRoiV2, defaultRoiV2Inputs, roiV2InputsFromQuickMode } from '@/lib/roi/calc';
 import type { RoiV2Inputs } from '@/lib/roi/types';
 
@@ -72,18 +72,18 @@ function calculateCFOMetrics(
 export default function ROICalculatorPage() {
   const [view, setView] = useState<'board' | 'deep'>('board');
   const [mode, setMode] = useState<'quick' | 'pro'>('quick');
-  const [facilities, setFacilities] = useState(1);
-  const [trucksPerDay, setTrucksPerDay] = useState(100);
-  const [avgDwellTime, setAvgDwellTime] = useState(45);
+  // Default to a network-first scenario.
+  const [facilities, setFacilities] = useState(50);
+  const [trucksPerDay, setTrucksPerDay] = useState(150);
+  const [avgDwellTime, setAvgDwellTime] = useState(55);
   const [detentionCost, setDetentionCost] = useState(75);
   const [laborCostPerHour, setLaborCostPerHour] = useState(28);
-  const [gateStaff, setGateStaff] = useState(2);
+  const [gateStaff, setGateStaff] = useState(4);
 
   // Scenario presets for quick modeling
   const scenarios = {
-    pilot: { facilities: 1, trucksPerDay: 100, avgDwellTime: 45, gateStaff: 2, label: 'Single Site Pilot' },
-    regional: { facilities: 10, trucksPerDay: 120, avgDwellTime: 50, gateStaff: 3, label: 'Regional (10 sites)' },
-    enterprise: { facilities: 50, trucksPerDay: 150, avgDwellTime: 55, gateStaff: 4, label: 'Enterprise (50 sites)' },
+    regional: { facilities: 10, trucksPerDay: 120, avgDwellTime: 50, gateStaff: 3, label: 'Network (10 sites)' },
+    enterprise: { facilities: 50, trucksPerDay: 150, avgDwellTime: 55, gateStaff: 4, label: 'Network (50 sites)' },
   };
 
   const applyScenario = (key: keyof typeof scenarios) => {
@@ -213,15 +213,13 @@ export default function ROICalculatorPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-8">
             <p className="text-neon font-mono text-sm mb-4 tracking-wider">
-              {facilities === 1 ? 'SINGLE-SITE PILOT MODEL' : `${facilities}-SITE NETWORK MODEL`}
+              {`${facilities}-SITE NETWORK MODEL`}
             </p>
             <h1 className="text-5xl md:text-7xl font-black mb-6">
               <span className="neon-glow">{formatMoney(cfoMetrics.totalAnnualSavings)}</span>/year
             </h1>
             <p className="text-xl text-steel max-w-2xl mx-auto">
-              {facilities === 1 
-                ? "Single-site savings from automation. Scale to see network effects."
-                : `Total projected savings across ${facilities} connected facilities.`}
+              Total projected savings across {facilities} connected facilities.
               <br />
               <span className="text-neon font-semibold">Directional until validated with your data.</span>
             </p>
@@ -289,9 +287,7 @@ export default function ROICalculatorPage() {
             <div>
               <h2 className="text-2xl font-bold mb-4 neon-glow">Your Operation</h2>
               <p className="text-sm text-steel mb-8">
-                {facilities === 1 
-                  ? "Model a single-site pilot. Network benefits unlock at 2+ facilities."
-                  : `Modeling ${facilities} connected facilities. Network value compounds with scale.`}
+                Modeling {facilities} connected facilities. Network value compounds with scale.
               </p>
 
               <div className="flex items-center justify-between mb-8">
@@ -329,7 +325,7 @@ export default function ROICalculatorPage() {
                   <>
                     {/* Scenario Presets */}
                     <div className="mb-6">
-                      <label className="block text-steel mb-3">Start with a scenario:</label>
+                      <label className="block text-steel mb-3">Scenario presets (network-first):</label>
                       <div className="flex flex-wrap gap-2">
                         {Object.entries(scenarios).map(([key, s]) => (
                           <button
@@ -1339,41 +1335,59 @@ export default function ROICalculatorPage() {
                         <summary className="cursor-pointer text-neon">Show model assumptions</summary>
                         <div className="mt-3 space-y-4 text-xs text-steel/80">
                           <div className="p-3 bg-void/50 rounded-lg">
-                            <p className="text-neon font-semibold mb-2">📊 Network Configuration</p>
+                            <div className="flex items-center gap-2 text-neon font-semibold mb-2">
+                              <Config size={16} className="text-neon" />
+                              <span>Network Configuration</span>
+                            </div>
                             <p>• Facilities: {facilities} site{facilities > 1 ? 's' : ''} (modeled as Medium tier)</p>
                             <p>• Shipments: {trucksPerDay.toLocaleString()}/day × 365 days = {(trucksPerDay * 365).toLocaleString()}/year per site</p>
                             <p>• Labor cost: ${laborCostPerHour}/hr × 2,080 hrs = ${(laborCostPerHour * 2080).toLocaleString()}/year FTE</p>
                           </div>
                           <div className="p-3 bg-void/50 rounded-lg">
-                            <p className="text-neon font-semibold mb-2">⏱️ Dwell Time Assumptions</p>
+                            <div className="flex items-center gap-2 text-neon font-semibold mb-2">
+                              <Timeline size={16} className="text-neon" />
+                              <span>Dwell Time Assumptions</span>
+                            </div>
                             <p>• Current dwell: {avgDwellTime} minutes (gate-in to gate-out)</p>
                             <p>• Reduction: 50% (industry benchmark for gate automation)</p>
                             <p>• New dwell: {Math.round(avgDwellTime * 0.5)} minutes</p>
                             <p className="text-steel/60 mt-1">Source: YMS implementation studies (Zebra, industry benchmarks)</p>
                           </div>
                           <div className="p-3 bg-void/50 rounded-lg">
-                            <p className="text-neon font-semibold mb-2">💰 Detention Assumptions</p>
+                            <div className="flex items-center gap-2 text-neon font-semibold mb-2">
+                              <Caution size={16} className="text-neon" />
+                              <span>Detention Assumptions</span>
+                            </div>
                             <p>• 15% of trucks incur detention without YMS</p>
                             <p>• Cost: ${detentionCost}/hour detention rate</p>
                             <p>• Reduction: 65% fewer detention events with automation</p>
                             <p className="text-steel/60 mt-1">Source: ATRI Cost of Congestion reports</p>
                           </div>
                           <div className="p-3 bg-void/50 rounded-lg">
-                            <p className="text-neon font-semibold mb-2">👷 Labor Assumptions</p>
+                            <div className="flex items-center gap-2 text-neon font-semibold mb-2">
+                              <Agent size={16} className="text-neon" />
+                              <span>Labor Assumptions</span>
+                            </div>
                             <p>• Gate staff: {gateStaff} FTE{gateStaff > 1 ? 's' : ''} per facility</p>
                             <p>• Time savings: 70% reduction in gate processing labor</p>
                             <p>• Annual hours: 2,080 (40 hrs/week × 52 weeks)</p>
                             <p className="text-steel/60 mt-1">Source: Time-motion studies from YMS implementations</p>
                           </div>
                           <div className="p-3 bg-void/50 rounded-lg">
-                            <p className="text-neon font-semibold mb-2">📄 Paper/Throughput</p>
+                            <div className="flex items-center gap-2 text-neon font-semibold mb-2">
+                              <Manifest size={16} className="text-neon" />
+                              <span>Paper/Throughput</span>
+                            </div>
                             <p>• Paper savings: $15/truck (BOLs, printing, filing, storage)</p>
                             <p>• Throughput gain: 42% from faster gate processing</p>
                             <p>• Incremental value: $45/additional truck processed</p>
                             <p className="text-steel/60 mt-1">Source: Customer interviews, industry estimates</p>
                           </div>
                           <div className="p-3 bg-void/50 rounded-lg">
-                            <p className="text-neon font-semibold mb-2">🌐 Network Effect</p>
+                            <div className="flex items-center gap-2 text-neon font-semibold mb-2">
+                              <Nexus size={16} className="text-neon" />
+                              <span>Network Effect</span>
+                            </div>
                             <p>• Formula: 1 + log(n+1) × 0.5</p>
                             <p>• Current multiplier: {calculations.networkMultiplier.toFixed(2)}× at {facilities} site{facilities > 1 ? 's' : ''}</p>
                             <p>• Maturity factor scales value for network size</p>
@@ -1534,22 +1548,21 @@ export default function ROICalculatorPage() {
                       <span className="text-2xl font-black text-neon">+{formatMoney(calculations.networkBonusSavings)}</span>
                     </div>
                     
-                    {facilities === 1 ? (
-                      /* Single facility - explain network effect as future opportunity */
+                    {facilities < 2 ? (
                       <div className="p-4 rounded-lg bg-void/50 border border-steel/20">
                         <div className="flex items-start gap-3">
-                          <span className="text-2xl">🚀</span>
+                          <Nexus size={20} className="text-neon mt-0.5" />
                           <div>
-                            <p className="text-white font-semibold mb-2">Network Effect: Unlocked at Scale</p>
+                            <p className="text-white font-semibold mb-2">Network Effect Requires Multi-Site</p>
                             <p className="text-sm text-steel/80">
-                              Single-site pilots capture core automation savings. Network effects—predictive intelligence, 
-                              carrier benchmarking, coordination efficiency—activate when you expand to 2+ sites.
+                              The network effect is driven by shared patterns, benchmarking, and coordination across facilities.
+                              Set facilities to 2+ to model network value.
                             </p>
                             <button
-                              onClick={() => applyScenario('regional')}
+                              onClick={() => applyScenario('enterprise')}
                               className="mt-3 text-sm text-neon hover:underline"
                             >
-                              → Model a 10-site regional deployment
+                              → Model a 50-site network
                             </button>
                           </div>
                         </div>
