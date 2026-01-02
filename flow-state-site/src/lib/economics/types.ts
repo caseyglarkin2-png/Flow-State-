@@ -37,10 +37,14 @@ export interface CapacityUnlockedOutputs {
   theoreticalThroughputGainPct: number;
   realizedGainPct: number;
 
+  /** Steady-state (full rollout) values */
   currentOutboundTruckloadsPerYear: number;
   incrementalOutboundTruckloadsPerYear: number;
-
   annualProfitImpact: number;
+
+  /** Year-1 ramped values (scaled by yearOneRampShare) */
+  yearOneIncrementalTruckloads: number;
+  yearOneProfitImpact: number;
 }
 
 export interface Outputs {

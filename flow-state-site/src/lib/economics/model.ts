@@ -41,6 +41,11 @@ export function calcScenario(inputs: ScenarioInputs): Outputs {
 
   const annualProfitImpact = incrementalOutboundTruckloadsPerYear * perTruckloadProfit;
 
+  // Year-1 ramped values (match savings ramp behavior)
+  const yearOneRamp = Math.max(0, Math.min(1, roiInputs.yearOneRampShare));
+  const yearOneIncrementalTruckloads = incrementalOutboundTruckloadsPerYear * yearOneRamp;
+  const yearOneProfitImpact = yearOneIncrementalTruckloads * perTruckloadProfit;
+
   const hardSavingsAnnual = roi.annualLaborSavings + roi.paperlessSavings + roi.annualDetentionSavings;
 
   const out: Outputs = {
@@ -54,6 +59,8 @@ export function calcScenario(inputs: ScenarioInputs): Outputs {
       currentOutboundTruckloadsPerYear,
       incrementalOutboundTruckloadsPerYear,
       annualProfitImpact,
+      yearOneIncrementalTruckloads,
+      yearOneProfitImpact,
     },
     warnings: [],
   };
