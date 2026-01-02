@@ -7,10 +7,8 @@ import {
   Shield,
   Agent,
   Cortex,
-  FlowArrow,
   Timeline,
   Confirm,
-  Metrics,
 } from '@/components/icons/FlowIcons';
 
 export const metadata = {

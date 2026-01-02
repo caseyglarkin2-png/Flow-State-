@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useSyncExternalStore } from 'react';
 
 type Theme = 'dark' | 'light';
 
@@ -9,38 +9,33 @@ type Theme = 'dark' | 'light';
  * Persists choice to localStorage and applies theme class to html element.
  */
 export default function ThemeToggle({ className = '' }: { className?: string }) {
-  const [theme, setTheme] = useState<Theme>('dark');
-  const [mounted, setMounted] = useState(false);
+  const theme = useSyncExternalStore(
+    (onStoreChange) => {
+      const handler = () => onStoreChange();
+      window.addEventListener('storage', handler);
+      window.addEventListener('fs-theme', handler);
+      return () => {
+        window.removeEventListener('storage', handler);
+        window.removeEventListener('fs-theme', handler);
+      };
+    },
+    () => {
+      const stored = localStorage.getItem('fs-theme') as Theme | null;
+      return stored === 'light' ? 'light' : 'dark';
+    },
+    () => 'dark',
+  );
 
   useEffect(() => {
-    setMounted(true);
-    const stored = localStorage.getItem('fs-theme') as Theme | null;
-    if (stored) {
-      setTheme(stored);
-      document.documentElement.classList.toggle('light-mode', stored === 'light');
-    }
-  }, []);
+    document.documentElement.classList.toggle('light-mode', theme === 'light');
+  }, [theme]);
 
   const toggleTheme = () => {
     const next = theme === 'dark' ? 'light' : 'dark';
-    setTheme(next);
     localStorage.setItem('fs-theme', next);
     document.documentElement.classList.toggle('light-mode', next === 'light');
+    window.dispatchEvent(new Event('fs-theme'));
   };
-
-  // Prevent hydration mismatch
-  if (!mounted) {
-    return (
-      <button
-        className={`flex items-center gap-2 px-3 py-1.5 rounded text-xs font-mono border border-steel/30 text-steel ${className}`}
-        disabled
-        aria-label="Loading theme toggle"
-      >
-        <span className="w-3 h-3 rounded-full bg-steel/30"></span>
-        <span className="hidden sm:inline opacity-50">---</span>
-      </button>
-    );
-  }
 
   return (
     <button

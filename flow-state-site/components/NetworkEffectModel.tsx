@@ -8,111 +8,56 @@ import {
   FlowGlyphCoordinationEfficiency,
   FlowGlyphSharedLearning,
 } from '@/components/icons/FlowGlyphs';
+import { calcRoiV2, getQuickInputsForPreset, roiV2InputsFromQuickMode } from '@/lib/economics';
 
 /**
  * NetworkEffectModel — Interactive visualization of network effects for yard networks.
  * Shows how value compounds through specific, credible mechanisms.
- * 
- * Base savings assumptions (aligned with ROI calculator Quick Mode):
- * - Detention: 15% of 150 trucks/day × $75/hr × 365 days × 65% reduction = ~$267K/facility
- * - Labor: 3 FTE × 70% × $28/hr × 2080 hrs = ~$122K/facility  
- * - Throughput: 150 × 42% × $45 × 365 = ~$1.03M/facility
- * - Paper: $15 × 150 × 365 = ~$821K/facility
- * Total: ~$2.24M/facility base savings (before network effect)
- * 
- * This visualization uses a simplified $250K/facility for demonstration purposes.
- * The actual ROI calculator provides precise calculations based on your inputs.
+ *
+ * Pass 5: All economics shown here are sourced from the canonical economics spine
+ * (the same model used by /roi), so numbers remain congruent across the site.
  */
 export default function NetworkEffectModel() {
   const [nodes, setNodes] = useState(50);
-  const [trucksPerDay, setTrucksPerDay] = useState(150);
+  const trucksPerDay = 150;
 
   const calculations = useMemo(() => {
     const n = Math.max(1, nodes);
-    
-    // Base savings per facility - aligned with ROI calculator assumptions
-    // Using simplified model: ~$1,700/truck/year in combined savings
-    // At 150 trucks/day = ~$250K/facility (conservative for visualization)
-    const baseSavingsPerTruckPerYear = 1700;
-    const baseSavingsPerFacility = trucksPerDay * baseSavingsPerTruckPerYear;
-    
-    // Linear value (no network effect - just adding facilities)
-    const linearValue = n * baseSavingsPerFacility;
-    
+
+    const baseQuick = getQuickInputsForPreset('enterprise_50', 'expected');
+    const roi = calcRoiV2(
+      roiV2InputsFromQuickMode({
+        ...baseQuick,
+        facilities: n,
+        trucksPerDayPerFacility: trucksPerDay,
+      }),
+    );
+
     // Network connections = n(n-1)/2 (Metcalfe's Law)
     const connections = (n * (n - 1)) / 2;
-    
-    // Shipments per year
-    const shipmentsPerYear = n * trucksPerDay * 365;
-    
-    // ========= NETWORK EFFECT VALUE STREAMS =========
-    // CRITICAL: Network effects are MINIMAL for small networks
-    // Only compound meaningfully at 10+ facilities
-    
-    // Network maturity factor - makes effect minimal for small networks
-    // At 5 facilities: ~22% of full effect
-    // At 10 facilities: ~39% 
-    // At 25 facilities: ~71%
-    // At 50 facilities: ~92%
-    const networkMaturityFactor = 1 - Math.exp(-n / 20);
-    
-    // 1. PREDICTIVE INTELLIGENCE
-    // Need 5+ facilities before predictions improve meaningfully
-    const etaAccuracyBase = Math.min(0.25, Math.log(Math.max(1, n - 4) + 1) * 0.06);
-    const etaAccuracyImprovement = etaAccuracyBase * networkMaturityFactor * 100;
-    const planningValuePerShipment = 1.5 * etaAccuracyBase * networkMaturityFactor;
-    const predictiveSavings = planningValuePerShipment * shipmentsPerYear * networkMaturityFactor;
-    
-    // 2. CARRIER BENCHMARKING
-    // Only meaningful with 10+ facilities of data
-    const carrierThreshold = Math.max(0, n - 8) / n;
-    const carrierLeveragePercent = Math.min(0.02, 0.003 + Math.log(Math.max(1, n - 5) + 1) * 0.004);
-    const thirdPartySpend = shipmentsPerYear * 0.6 * 150;
-    const carrierSavings = thirdPartySpend * carrierLeveragePercent * carrierThreshold * networkMaturityFactor;
-    
-    // 3. COORDINATION EFFICIENCY
-    // Minimal effect until 10+ coordinated sites
-    const variabilityBase = Math.min(0.20, Math.log2(Math.max(1, n - 5) + 1) * 0.04);
-    const variabilityReduction = variabilityBase * networkMaturityFactor * 100;
-    const bufferCostBase = linearValue * 0.05;
-    const coordinationSavings = bufferCostBase * variabilityBase * networkMaturityFactor;
-    
-    // 4. SHARED LEARNING
-    // Only meaningful if there's a network to learn from (5+ sites)
-    const onboardingBase = Math.min(45, Math.log(Math.max(1, n - 3) + 1) * 12);
-    const onboardingDaysSaved = onboardingBase * networkMaturityFactor;
-    const newSitesPerYear = Math.max(0, Math.ceil(n * 0.08));
-    const onboardingSavings = onboardingDaysSaved * 400 * newSitesPerYear;
-    const errorReductionBase = Math.min(0.12, Math.log(Math.max(1, n - 5) + 1) * 0.025);
-    const errorSavings = shipmentsPerYear * 0.30 * errorReductionBase * networkMaturityFactor;
-    const learningSavings = onboardingSavings + errorSavings;
-    
-    // Total network bonus
-    const networkBonus = predictiveSavings + carrierSavings + coordinationSavings + learningSavings;
-    
-    // Total with network effect
-    const networkValue = linearValue + networkBonus;
-    
-    // Effective multiplier
-    const networkMultiplier = linearValue > 0 ? networkValue / linearValue : 1;
-    
+
+    // Network maturity factor (for narrative/UI only)
+    const networkMaturityFactor = (1 - Math.exp(-n / 20)) * 100;
+
+    const breakdown = roi.networkEffectBreakdown;
+
     return {
-      linearValue,
-      networkValue,
-      networkBonus,
-      networkMultiplier,
+      linearValue: roi.baseSavings,
+      networkValue: roi.totalAnnualSavings,
+      networkBonus: roi.networkBonusSavings,
+      networkMultiplier: roi.networkMultiplier,
       connections,
-      networkMaturityFactor: networkMaturityFactor * 100, // as percentage
-      baseSavingsPerFacility,
+      networkMaturityFactor,
+      baseSavingsPerFacility: n > 0 ? roi.baseSavings / n : 0,
       // Breakdown
-      predictiveSavings,
-      carrierSavings,
-      coordinationSavings,
-      learningSavings,
+      predictiveSavings: breakdown.predictiveIntelligence.planningSavings,
+      carrierSavings: breakdown.carrierBenchmarking.negotiationLeverage,
+      coordinationSavings: breakdown.coordinationEfficiency.bufferSavings,
+      learningSavings: breakdown.sharedLearning.errorReduction,
       // Rates
-      etaAccuracyImprovement,
-      variabilityReduction,
-      onboardingDaysSaved,
+      etaAccuracyImprovement: breakdown.predictiveIntelligence.etaAccuracyImprovement,
+      variabilityReduction: breakdown.coordinationEfficiency.variabilityReduction,
+      onboardingDaysSaved: breakdown.sharedLearning.onboardingAcceleration,
     };
   }, [nodes, trucksPerDay]);
 

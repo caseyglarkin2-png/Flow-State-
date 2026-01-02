@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
@@ -284,8 +285,9 @@ export default function SingularityPage() {
   }, [phase, activeFacilities]);
 
   // Animate packets - optimized
+  const hasPackets = packets.length > 0;
   useEffect(() => {
-    if (packets.length === 0) return;
+    if (!hasPackets) return;
 
     const animationInterval = setInterval(() => {
       setPackets(prev => 
@@ -296,7 +298,7 @@ export default function SingularityPage() {
     }, 60);
 
     return () => clearInterval(animationInterval);
-  }, [packets.length > 0]);
+  }, [hasPackets]);
 
   const resetSimulation = useCallback(() => {
     setIsSimulating(false);

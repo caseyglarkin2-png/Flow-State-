@@ -9,6 +9,12 @@ import {
   roiV2InputsFromQuickMode,
 } from '../lib/roi/calc';
 
+import {
+  calcRoiV2 as calcRoiV2Economics,
+  getQuickInputsForPreset,
+  getRoiV2InputsForPreset,
+} from '../lib/economics';
+
 let passed = 0;
 let failed = 0;
 
@@ -54,7 +60,8 @@ test('calcRoiV1(default UI inputs) matches expected outputs', () => {
     approxEqual(out.totalAnnualSavings, 31017193.215176396, 1e-6) &&
     approxEqual(out.implementationCost, 12500, 1e-6) &&
     approxEqual(out.annualSubscription, 40000, 1e-6) &&
-    approxEqual(out.paybackMonths, 0.004842272150289968, 1e-12) &&
+    // Payback is clamped to a minimum of 0.1 months ("< 1 month")
+    approxEqual(out.paybackMonths, 0.1, 1e-12) &&
     approxEqual(out.yearOneRoiPercent, 247817.54572141118, 1e-9) &&
     approxEqual(out.fiveYearValue, 161202219.1422575, 1e-6)
   );
@@ -152,6 +159,19 @@ test('calcRoiV2(default Lineage scenario) matches Lineage spreadsheet totals', (
     approxEqual(out.annualLaborSavings, expectedDockClerk, 1e-6) &&
     approxEqual(out.throughputValue, otherThroughput, 1e-6) &&
     approxEqual(out.totalAnnualSavings, expectedTotalOpportunity, 1e-6)
+  );
+});
+
+test('economics presets are congruent with roi wrappers (enterprise_50 + expected)', () => {
+  const quick = getQuickInputsForPreset('enterprise_50', 'expected');
+  const outViaRoi = calcRoiV2(roiV2InputsFromQuickMode(quick));
+  const outViaEconomics = calcRoiV2Economics(getRoiV2InputsForPreset('enterprise_50', 'expected'));
+
+  return (
+    quick.facilities === 50 &&
+    approxEqual(outViaRoi.totalAnnualSavings, outViaEconomics.totalAnnualSavings, 1e-9) &&
+    approxEqual(outViaRoi.networkMultiplier, outViaEconomics.networkMultiplier, 1e-12) &&
+    approxEqual(outViaRoi.implementationCost, outViaEconomics.implementationCost, 1e-9)
   );
 });
 

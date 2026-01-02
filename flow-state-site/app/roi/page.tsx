@@ -7,9 +7,10 @@ import Footer from '@/components/Footer';
 import Card from '@/components/Card';
 import BoardReadyExportCTA from '@/components/BoardReadyExportCTA';
 import NextSteps from '@/components/NextSteps';
-import { FlowArrow, Metrics, Velocity, Crosshair, Config, Timeline, Caution, Agent, Manifest, Nexus } from '@/components/icons/FlowIcons';
+import { FlowArrow, Metrics, Velocity, Config, Timeline, Caution, Agent, Manifest, Nexus } from '@/components/icons/FlowIcons';
 import { calcRoiV1, calcRoiV2, defaultRoiV2Inputs, roiV2InputsFromQuickMode } from '@/lib/roi/calc';
 import type { RoiV2Inputs } from '@/lib/roi/types';
+import { ECONOMICS_MODES, ECONOMICS_SCENARIOS, getQuickInputsForPreset } from '@/lib/economics';
 
 // CFO-focused summary metrics
 interface CFOMetrics {
@@ -70,47 +71,49 @@ function calculateCFOMetrics(
 }
 
 export default function ROICalculatorPage() {
+  const defaultQuick = getQuickInputsForPreset('enterprise_50', 'expected');
+
   const [view, setView] = useState<'board' | 'deep'>('board');
   const [mode, setMode] = useState<'quick' | 'pro'>('quick');
   // Default to a network-first scenario.
-  const [facilities, setFacilities] = useState(50);
-  const [trucksPerDay, setTrucksPerDay] = useState(150);
-  const [avgDwellTime, setAvgDwellTime] = useState(55);
-  const [detentionCost, setDetentionCost] = useState(75);
-  const [laborCostPerHour, setLaborCostPerHour] = useState(28);
-  const [gateStaff, setGateStaff] = useState(4);
+  const [facilities, setFacilities] = useState(defaultQuick.facilities);
+  const [trucksPerDay, setTrucksPerDay] = useState(defaultQuick.trucksPerDayPerFacility);
+  const [avgDwellTime, setAvgDwellTime] = useState(defaultQuick.avgDwellTimeMinutes);
+  const [detentionCost, setDetentionCost] = useState(defaultQuick.detentionCostPerHour);
+  const [laborCostPerHour, setLaborCostPerHour] = useState(defaultQuick.laborCostPerHour);
+  const [gateStaff, setGateStaff] = useState(defaultQuick.gateStaffPerFacility);
 
   // Modeling Presets: Conservative / Base / Aggressive
   const modelingPresets = {
     conservative: {
       facilities: 50,
-      trucksPerDay: 120,
-      avgDwellTime: 60,
-      detentionCost: 85,
-      laborCostPerHour: 32,
-      gateStaff: 5,
+      trucksPerDay: getQuickInputsForPreset('enterprise_50', 'conservative').trucksPerDayPerFacility,
+      avgDwellTime: getQuickInputsForPreset('enterprise_50', 'conservative').avgDwellTimeMinutes,
+      detentionCost: getQuickInputsForPreset('enterprise_50', 'conservative').detentionCostPerHour,
+      laborCostPerHour: getQuickInputsForPreset('enterprise_50', 'conservative').laborCostPerHour,
+      gateStaff: getQuickInputsForPreset('enterprise_50', 'conservative').gateStaffPerFacility,
       label: 'Conservative',
-      description: 'Higher costs, lower throughput gains'
+      description: ECONOMICS_MODES.conservative.description,
     },
     base: {
       facilities: 50,
-      trucksPerDay: 150,
-      avgDwellTime: 55,
-      detentionCost: 75,
-      laborCostPerHour: 28,
-      gateStaff: 4,
+      trucksPerDay: getQuickInputsForPreset('enterprise_50', 'expected').trucksPerDayPerFacility,
+      avgDwellTime: getQuickInputsForPreset('enterprise_50', 'expected').avgDwellTimeMinutes,
+      detentionCost: getQuickInputsForPreset('enterprise_50', 'expected').detentionCostPerHour,
+      laborCostPerHour: getQuickInputsForPreset('enterprise_50', 'expected').laborCostPerHour,
+      gateStaff: getQuickInputsForPreset('enterprise_50', 'expected').gateStaffPerFacility,
       label: 'Base Case',
-      description: 'Industry-standard assumptions'
+      description: ECONOMICS_MODES.expected.description,
     },
     aggressive: {
       facilities: 50,
-      trucksPerDay: 180,
-      avgDwellTime: 50,
-      detentionCost: 65,
-      laborCostPerHour: 25,
-      gateStaff: 3,
+      trucksPerDay: getQuickInputsForPreset('enterprise_50', 'upside').trucksPerDayPerFacility,
+      avgDwellTime: getQuickInputsForPreset('enterprise_50', 'upside').avgDwellTimeMinutes,
+      detentionCost: getQuickInputsForPreset('enterprise_50', 'upside').detentionCostPerHour,
+      laborCostPerHour: getQuickInputsForPreset('enterprise_50', 'upside').laborCostPerHour,
+      gateStaff: getQuickInputsForPreset('enterprise_50', 'upside').gateStaffPerFacility,
       label: 'Aggressive',
-      description: 'Optimistic throughput, lower costs'
+      description: ECONOMICS_MODES.upside.description,
     },
   };
 
@@ -126,8 +129,24 @@ export default function ROICalculatorPage() {
 
   // Scenario presets for quick modeling (legacy, kept for backward compat)
   const scenarios = {
-    regional: { facilities: 10, trucksPerDay: 120, avgDwellTime: 50, gateStaff: 3, label: 'Network (10 sites)' },
-    enterprise: { facilities: 50, trucksPerDay: 150, avgDwellTime: 55, gateStaff: 4, label: 'Network (50 sites)' },
+    regional: {
+      facilities: getQuickInputsForPreset('regional_10', 'expected').facilities,
+      trucksPerDay: getQuickInputsForPreset('regional_10', 'expected').trucksPerDayPerFacility,
+      avgDwellTime: getQuickInputsForPreset('regional_10', 'expected').avgDwellTimeMinutes,
+      detentionCost: getQuickInputsForPreset('regional_10', 'expected').detentionCostPerHour,
+      laborCostPerHour: getQuickInputsForPreset('regional_10', 'expected').laborCostPerHour,
+      gateStaff: getQuickInputsForPreset('regional_10', 'expected').gateStaffPerFacility,
+      label: ECONOMICS_SCENARIOS.regional_10.label,
+    },
+    enterprise: {
+      facilities: getQuickInputsForPreset('enterprise_50', 'expected').facilities,
+      trucksPerDay: getQuickInputsForPreset('enterprise_50', 'expected').trucksPerDayPerFacility,
+      avgDwellTime: getQuickInputsForPreset('enterprise_50', 'expected').avgDwellTimeMinutes,
+      detentionCost: getQuickInputsForPreset('enterprise_50', 'expected').detentionCostPerHour,
+      laborCostPerHour: getQuickInputsForPreset('enterprise_50', 'expected').laborCostPerHour,
+      gateStaff: getQuickInputsForPreset('enterprise_50', 'expected').gateStaffPerFacility,
+      label: ECONOMICS_SCENARIOS.enterprise_50.label,
+    },
   };
 
   const applyScenario = (key: keyof typeof scenarios) => {
@@ -135,6 +154,8 @@ export default function ROICalculatorPage() {
     setFacilities(s.facilities);
     setTrucksPerDay(s.trucksPerDay);
     setAvgDwellTime(s.avgDwellTime);
+    setDetentionCost(s.detentionCost);
+    setLaborCostPerHour(s.laborCostPerHour);
     setGateStaff(s.gateStaff);
   };
 

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { canonicalUrl, siteName, siteUrl } from '@/lib/site';
+import { canonicalUrl, siteUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'ROI Calculator - Model Your Yard Savings',
