@@ -148,6 +148,12 @@ export interface RoiEnterpriseAddOns {
 export interface RoiV2Inputs {
   tiers: Record<FacilityTier, RoiFacilityTierInputs>;
 
+  /**
+   * Optional pricing basis: contracted facility count.
+   * If omitted, pricing is based on totalFacilities derived from tiers.
+   */
+  contractedFacilities?: number;
+
   labor: RoiLaborAssumptions;
   paper: RoiPaperAssumptions;
   shipper: RoiShipperOfChoiceAssumptions;

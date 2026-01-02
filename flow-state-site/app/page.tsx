@@ -20,7 +20,10 @@ import {
 } from '@/components/icons/FlowIcons';
 
 export default function Home() {
-  const cfoBaseline = calcRoiV2(getRoiV2InputsForPreset('enterprise_50', 'expected'));
+  const cfoBaseline = calcRoiV2({
+    ...getRoiV2InputsForPreset('enterprise_50', 'expected'),
+    yearOneRampShare: 0.5,
+  });
 
   return (
     <div className="min-h-screen bg-void">

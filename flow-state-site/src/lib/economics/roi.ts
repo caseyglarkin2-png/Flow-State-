@@ -700,10 +700,12 @@ export function calcRoiV2(rawInputs: RoiV2Inputs): RoiV2Outputs {
   networkEffectBreakdown.totalNetworkBonus = networkBonusSavings;
   networkEffectBreakdown.effectiveMultiplier = networkMultiplier;
 
+  const pricingFacilities = Math.max(0, Math.floor(inputs.contractedFacilities ?? totalFacilities));
+
   const implementationCost =
     Math.max(0, inputs.commercial.implementationBaseCost) +
-    totalFacilities * Math.max(0, inputs.commercial.implementationCostPerFacility);
-  const annualSubscription = totalFacilities * Math.max(0, inputs.commercial.annualSubscriptionPerFacility);
+    pricingFacilities * Math.max(0, inputs.commercial.implementationCostPerFacility);
+  const annualSubscription = pricingFacilities * Math.max(0, inputs.commercial.annualSubscriptionPerFacility);
 
   const yearOneGrossSavings = totalAnnualSavings * inputs.yearOneRampShare;
   const yearOneNetGain = yearOneGrossSavings - implementationCost - annualSubscription;

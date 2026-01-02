@@ -19,6 +19,10 @@ export default function ROICalculatorPage() {
   const [mode, setMode] = useState<'quick' | 'pro'>('quick');
   // Default to a network-first scenario.
   const [facilities, setFacilities] = useState(defaultQuick.facilities);
+  // Pricing basis: charge per contracted facility, regardless of rollout.
+  const [contractedFacilities, setContractedFacilities] = useState(defaultQuick.facilities);
+  // Year-1 realization: savings ramp as rollout progresses; costs are charged on the contracted count.
+  const [yearOneRampShare, setYearOneRampShare] = useState(0.5);
   const [trucksPerDay, setTrucksPerDay] = useState(defaultQuick.trucksPerDayPerFacility);
   const [avgDwellTime, setAvgDwellTime] = useState(defaultQuick.avgDwellTimeMinutes);
   const [detentionCost, setDetentionCost] = useState(defaultQuick.detentionCostPerHour);
@@ -62,6 +66,7 @@ export default function ROICalculatorPage() {
   const applyPreset = (key: keyof typeof modelingPresets) => {
     const p = modelingPresets[key];
     setFacilities(p.facilities);
+    setContractedFacilities(p.facilities);
     setTrucksPerDay(p.trucksPerDay);
     setAvgDwellTime(p.avgDwellTime);
     setDetentionCost(p.detentionCost);
@@ -94,6 +99,7 @@ export default function ROICalculatorPage() {
   const applyScenario = (key: keyof typeof scenarios) => {
     const s = scenarios[key];
     setFacilities(s.facilities);
+    setContractedFacilities(s.facilities);
     setTrucksPerDay(s.trucksPerDay);
     setAvgDwellTime(s.avgDwellTime);
     setDetentionCost(s.detentionCost);
@@ -105,7 +111,7 @@ export default function ROICalculatorPage() {
 
   const inputsForPdf = useMemo(() => {
     if (mode === 'pro') return proInputs;
-    return roiV2InputsFromQuickMode({
+    const v2 = roiV2InputsFromQuickMode({
       facilities,
       trucksPerDayPerFacility: trucksPerDay,
       avgDwellTimeMinutes: avgDwellTime,
@@ -113,7 +119,23 @@ export default function ROICalculatorPage() {
       laborCostPerHour,
       gateStaffPerFacility: gateStaff,
     });
-  }, [mode, proInputs, facilities, trucksPerDay, avgDwellTime, detentionCost, laborCostPerHour, gateStaff]);
+    return {
+      ...v2,
+      contractedFacilities,
+      yearOneRampShare,
+    };
+  }, [
+    mode,
+    proInputs,
+    facilities,
+    contractedFacilities,
+    yearOneRampShare,
+    trucksPerDay,
+    avgDwellTime,
+    detentionCost,
+    laborCostPerHour,
+    gateStaff,
+  ]);
 
   const calculations = useMemo(() => {
     if (mode === 'pro') {
@@ -162,7 +184,11 @@ export default function ROICalculatorPage() {
     // Keep the existing time-saved metrics from V1 sliders,
     // but run the economics through the unified V2 engine.
     const v1 = calcRoiV1(quickInputs);
-    const v2 = calcRoiV2(roiV2InputsFromQuickMode(quickInputs));
+    const v2 = calcRoiV2({
+      ...roiV2InputsFromQuickMode(quickInputs),
+      contractedFacilities,
+      yearOneRampShare,
+    });
 
     return {
       networkMultiplier: v2.networkMultiplier,
@@ -177,7 +203,7 @@ export default function ROICalculatorPage() {
       totalAnnualSavings: v2.totalAnnualSavings,
       implementationCost: v2.implementationCost,
       annualSubscription: v2.annualSubscription,
-      yearOneRampShare: 1,
+      yearOneRampShare,
       yearOneGrossSavings: v2.yearOneGrossSavings,
       yearOneSavings: v2.yearOneNetGain,
       yearOneROI: v2.yearOneRoiPercent,
@@ -186,7 +212,18 @@ export default function ROICalculatorPage() {
       newDwellTime: v1.newDwellTimeMinutes,
       v2,
     };
-  }, [mode, facilities, trucksPerDay, avgDwellTime, detentionCost, laborCostPerHour, gateStaff, proInputs]);
+  }, [
+    mode,
+    facilities,
+    contractedFacilities,
+    yearOneRampShare,
+    trucksPerDay,
+    avgDwellTime,
+    detentionCost,
+    laborCostPerHour,
+    gateStaff,
+    proInputs,
+  ]);
 
   const cfoMetrics = useMemo(() => {
     const facilityCount = mode === 'pro'
@@ -325,7 +362,7 @@ export default function ROICalculatorPage() {
             <div>
               <h2 className="text-2xl font-bold mb-4 neon-glow">Your Operation</h2>
               <p className="text-sm text-steel mb-8">
-                Modeling {facilities} connected facilities. Network value compounds with scale.
+                Modeling {contractedFacilities} contracted facilities. Network value compounds with scale.
               </p>
 
               <div className="flex items-center justify-between mb-8">
@@ -338,14 +375,18 @@ export default function ROICalculatorPage() {
                     setMode((m) => {
                       if (m === 'quick') {
                         setProInputs(
-                          roiV2InputsFromQuickMode({
-                            facilities,
-                            trucksPerDayPerFacility: trucksPerDay,
-                            avgDwellTimeMinutes: avgDwellTime,
-                            detentionCostPerHour: detentionCost,
-                            laborCostPerHour,
-                            gateStaffPerFacility: gateStaff,
-                          })
+                          {
+                            ...roiV2InputsFromQuickMode({
+                              facilities,
+                              trucksPerDayPerFacility: trucksPerDay,
+                              avgDwellTimeMinutes: avgDwellTime,
+                              detentionCostPerHour: detentionCost,
+                              laborCostPerHour,
+                              gateStaffPerFacility: gateStaff,
+                            }),
+                            contractedFacilities,
+                            yearOneRampShare,
+                          }
                         );
                         return 'pro';
                       }
@@ -410,25 +451,50 @@ export default function ROICalculatorPage() {
                       </div>
                     </div>
 
-                    {/* Facilities */}
+                    {/* Contracted facilities (pricing basis) */}
                     <div>
                       <label className="flex justify-between mb-3">
-                        <span className="text-steel">Number of Facilities</span>
-                        <span className="text-neon font-bold">{facilities}</span>
+                        <span className="text-steel">Contracted Facilities (billed)</span>
+                        <span className="text-neon font-bold">{contractedFacilities}</span>
                       </label>
                       <input
                         type="range"
                         min="1"
-                        max="50"
-                        value={facilities}
-                        onChange={(e) => setFacilities(parseInt(e.target.value))}
-                        aria-label={`Number of facilities: ${facilities}`}
+                        max="250"
+                        value={contractedFacilities}
+                        onChange={(e) => {
+                          const next = parseInt(e.target.value);
+                          setFacilities(next);
+                          setContractedFacilities(next);
+                        }}
+                        aria-label={`Contracted facilities: ${contractedFacilities}`}
                         className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-void"
                       />
                       <div className="flex justify-between text-xs text-steel/60 mt-1">
                         <span>1</span>
-                        <span>50</span>
+                        <span>250</span>
                       </div>
+                    </div>
+
+                    {/* Year-1 realization */}
+                    <div>
+                      <label className="flex justify-between mb-3">
+                        <span className="text-steel">Year‑1 Realization (rollout ramp)</span>
+                        <span className="text-neon font-bold">{Math.round(yearOneRampShare * 100)}%</span>
+                      </label>
+                      <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.05"
+                        value={yearOneRampShare}
+                        onChange={(e) => setYearOneRampShare(parseFloat(e.target.value))}
+                        aria-label={`Year-1 realization: ${Math.round(yearOneRampShare * 100)}%`}
+                        className="w-full h-2 bg-carbon rounded-lg appearance-none cursor-pointer accent-neon focus:outline-none focus:ring-2 focus:ring-neon focus:ring-offset-2 focus:ring-offset-void"
+                      />
+                      <p className="text-xs text-steel/60 mt-2">
+                        Savings ramp with rollout; subscription + implementation are charged on the contracted facility count.
+                      </p>
                     </div>
 
                     {/* Trucks per day */}
