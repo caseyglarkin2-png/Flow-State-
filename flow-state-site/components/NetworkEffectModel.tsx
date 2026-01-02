@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { Nexus } from '@/components/icons/FlowIcons';
+import { Nexus, Crosshair, Metrics, Velocity, Cortex } from '@/components/icons/FlowIcons';
 
 /**
  * NetworkEffectModel — Interactive visualization of network effects for yard networks.
@@ -198,7 +198,10 @@ export default function NetworkEffectModel() {
           {/* Predictive Intelligence */}
           <div className="p-4 rounded-lg border border-steel/20 bg-carbon/30">
             <div className="flex items-center justify-between mb-2">
-              <p className="text-sm font-semibold text-white">🎯 Predictive Intelligence</p>
+              <div className="flex items-center gap-2">
+                <Crosshair size={16} className="text-neon" />
+                <p className="text-sm font-semibold text-white">Predictive Intelligence</p>
+              </div>
               <span className="text-lg font-bold text-neon">{formatCurrency(calculations.predictiveSavings)}</span>
             </div>
             <p className="text-xs text-steel/70">
@@ -209,7 +212,10 @@ export default function NetworkEffectModel() {
           {/* Carrier Benchmarking */}
           <div className="p-4 rounded-lg border border-steel/20 bg-carbon/30">
             <div className="flex items-center justify-between mb-2">
-              <p className="text-sm font-semibold text-white">📊 Carrier Benchmarking</p>
+              <div className="flex items-center gap-2">
+                <Metrics size={16} className="text-neon" />
+                <p className="text-sm font-semibold text-white">Carrier Benchmarking</p>
+              </div>
               <span className="text-lg font-bold text-neon">{formatCurrency(calculations.carrierSavings)}</span>
             </div>
             <p className="text-xs text-steel/70">
@@ -220,7 +226,10 @@ export default function NetworkEffectModel() {
           {/* Coordination Efficiency */}
           <div className="p-4 rounded-lg border border-steel/20 bg-carbon/30">
             <div className="flex items-center justify-between mb-2">
-              <p className="text-sm font-semibold text-white">⚡ Coordination Efficiency</p>
+              <div className="flex items-center gap-2">
+                <Velocity size={16} className="text-neon" />
+                <p className="text-sm font-semibold text-white">Coordination Efficiency</p>
+              </div>
               <span className="text-lg font-bold text-neon">{formatCurrency(calculations.coordinationSavings)}</span>
             </div>
             <p className="text-xs text-steel/70">
@@ -231,7 +240,10 @@ export default function NetworkEffectModel() {
           {/* Shared Learning */}
           <div className="p-4 rounded-lg border border-steel/20 bg-carbon/30">
             <div className="flex items-center justify-between mb-2">
-              <p className="text-sm font-semibold text-white">🧠 Shared Learning</p>
+              <div className="flex items-center gap-2">
+                <Cortex size={16} className="text-neon" />
+                <p className="text-sm font-semibold text-white">Shared Learning</p>
+              </div>
               <span className="text-lg font-bold text-neon">{formatCurrency(calculations.learningSavings)}</span>
             </div>
             <p className="text-xs text-steel/70">

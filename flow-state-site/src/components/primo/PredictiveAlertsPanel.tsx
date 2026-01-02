@@ -9,6 +9,7 @@ import { usePrimoStore } from '@/store/primoStore';
 import { DigitalTwin } from '@/types/digitalTwin';
 import { CloseIcon } from '@/brand/icons';
 import { cn } from '@/lib/utils';
+import { Caution, Cargo, Metrics, Construct, Signal, Crosshair } from '@/components/icons/FlowIcons';
 
 interface PredictiveAlert {
   id: string;
@@ -182,13 +183,14 @@ export const PredictiveAlertsPanel: React.FC<PredictiveAlertsPanelProps> = ({
   };
 
   const getTypeIcon = (type: string) => {
+    const iconProps = { size: 16, className: "text-current" };
     switch (type) {
-      case 'congestion': return '🚦';
-      case 'bottleneck': return '⚠️';
-      case 'capacity': return '📦';
-      case 'efficiency': return '📈';
-      case 'maintenance': return '🔧';
-      default: return '📊';
+      case 'congestion': return <Signal {...iconProps} />;
+      case 'bottleneck': return <Caution {...iconProps} />;
+      case 'capacity': return <Cargo {...iconProps} />;
+      case 'efficiency': return <Metrics {...iconProps} />;
+      case 'maintenance': return <Construct {...iconProps} />;
+      default: return <Metrics {...iconProps} />;
     }
   };
 
@@ -223,7 +225,7 @@ export const PredictiveAlertsPanel: React.FC<PredictiveAlertsPanelProps> = ({
                     : `linear-gradient(135deg, ${theme.colors.primary}40, ${theme.colors.primary}20)`,
                 }}
               >
-                <span className="text-lg">🔮</span>
+                <Crosshair size={18} className="text-current" />
               </div>
               <div>
                 <h3 className="font-bold" style={{ color: theme.colors.text }}>
@@ -264,7 +266,7 @@ export const PredictiveAlertsPanel: React.FC<PredictiveAlertsPanelProps> = ({
           <div className="flex-1 overflow-y-auto p-4 space-y-3">
             {!twin ? (
               <div className="text-center py-8">
-                <span className="text-4xl mb-4 block">🔮</span>
+                <Crosshair size={48} className="mx-auto mb-4 text-current opacity-40" />
                 <p style={{ color: theme.colors.textSecondary }}>
                   Generate a digital twin to see predictive alerts
                 </p>

@@ -74,7 +74,7 @@ function generateAgentResponse(
     const peakTime = new Date(metrics.predictedPeakTime);
     const hoursUntil = Math.round((peakTime.getTime() - Date.now()) / (1000 * 60 * 60));
     return {
-      content: `📊 **Congestion Forecast**\n\nPredicted congestion level: **${metrics.predictedCongestion}%**\nExpected peak: **${hoursUntil > 0 ? `in ${hoursUntil} hours` : 'now'}**\n\nRecommendation: ${metrics.predictedCongestion > 50 ? 'Pre-position trailers in outbound staging and increase dock throughput.' : 'Normal operations - continue current pace.'}`,
+      content: `**Congestion Forecast**\n\nPredicted congestion level: **${metrics.predictedCongestion}%**\nExpected peak: **${hoursUntil > 0 ? `in ${hoursUntil} hours` : 'now'}**\n\nRecommendation: ${metrics.predictedCongestion > 50 ? 'Pre-position trailers in outbound staging and increase dock throughput.' : 'Normal operations - continue current pace.'}`,
       agentRole: 'Flow Analyzer',
     };
   }
@@ -82,26 +82,26 @@ function generateAgentResponse(
   if (q.includes('bottleneck') || q.includes('issue') || q.includes('problem')) {
     if (metrics.bottlenecks.length === 0) {
       return {
-        content: '✅ **No bottlenecks detected**\n\nAll systems operating within normal parameters. Flow score: ' + metrics.flowScore + '/100.',
+        content: '**No bottlenecks detected**\n\nAll systems operating within normal parameters. Flow score: ' + metrics.flowScore + '/100.',
         agentRole: 'Flow Analyzer',
       };
     }
     return {
-      content: `⚠️ **Bottleneck Analysis**\n\n${metrics.bottlenecks.map((b: string) => `• ${b}`).join('\n')}\n\n**Suggested Actions:**\n• Expedite trailer movements in affected zones\n• Coordinate with gate controller for priority processing\n• Consider temporary dock reallocation`,
+      content: `**Bottleneck Analysis**\n\n${metrics.bottlenecks.map((b: string) => `• ${b}`).join('\n')}\n\n**Suggested Actions:**\n• Expedite trailer movements in affected zones\n• Coordinate with gate controller for priority processing\n• Consider temporary dock reallocation`,
       agentRole: 'Yard Optimizer',
     };
   }
 
   if (q.includes('dwell') || q.includes('time')) {
     return {
-      content: `📈 **Dwell Time Analysis**\n\nAverage trailer dwell: **${metrics.averageDwellTime} minutes**\nGate processing: **${metrics.gateProcessingTime} minutes**\nDock turnaround: **${metrics.dockTurnaroundTime} minutes**\n\n${metrics.averageDwellTime > 120 ? '⚠️ Dwell times elevated - analyzing root causes...' : '✅ Dwell times within target range.'}`,
+      content: `**Dwell Time Analysis**\n\nAverage trailer dwell: **${metrics.averageDwellTime} minutes**\nGate processing: **${metrics.gateProcessingTime} minutes**\nDock turnaround: **${metrics.dockTurnaroundTime} minutes**\n\n${metrics.averageDwellTime > 120 ? '⚠ Dwell times elevated - analyzing root causes...' : '✓ Dwell times within target range.'}`,
       agentRole: 'Flow Analyzer',
     };
   }
 
   if (q.includes('truck') || q.includes('inbound') || q.includes('outbound')) {
     return {
-      content: `🚛 **Truck Activity**\n\nInbound: **${metrics.trucksInbound}** trucks\nOutbound: **${metrics.trucksOutbound}** trucks\nTotal active: **${trucks.length}** in facility\n\nGate processing running smoothly at ${metrics.gateProcessingTime} min average.`,
+      content: `**Truck Activity**\n\nInbound: **${metrics.trucksInbound}** trucks\nOutbound: **${metrics.trucksOutbound}** trucks\nTotal active: **${trucks.length}** in facility\n\nGate processing running smoothly at ${metrics.gateProcessingTime} min average.`,
       agentRole: 'Truck Dispatcher',
     };
   }

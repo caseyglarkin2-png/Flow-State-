@@ -10,6 +10,7 @@ import { useDigitalTwinStore } from '@/store/digitalTwinStore';
 import { CloseIcon } from '@/brand/icons';
 import { Facility } from '@/types/primo';
 import { cn } from '@/lib/utils';
+import { Metrics } from '@/components/icons/FlowIcons';
 
 export interface MultiFacilityDashboardProps {
   isOpen: boolean;
@@ -226,7 +227,7 @@ export const MultiFacilityDashboard: React.FC<MultiFacilityDashboardProps> = ({ 
                     background: `linear-gradient(135deg, ${theme.colors.primary}40, ${theme.colors.alert}20)`,
                   }}
                 >
-                  <span className="text-2xl">📊</span>
+                  <Metrics size={24} className="text-current" />
                 </div>
                 <div>
                   <h3 className="font-bold text-lg" style={{ color: theme.colors.text }}>
@@ -305,7 +306,7 @@ export const MultiFacilityDashboard: React.FC<MultiFacilityDashboardProps> = ({ 
                 {selectedTwins.length === 0 ? (
                   <div className="h-full flex items-center justify-center">
                     <div className="text-center">
-                      <span className="text-6xl mb-4 block">📊</span>
+                      <Metrics size={64} className="mx-auto mb-4 text-current opacity-20" />
                       <h4 className="text-lg font-medium mb-2" style={{ color: theme.colors.text }}>
                         Select Facilities to Compare
                       </h4>

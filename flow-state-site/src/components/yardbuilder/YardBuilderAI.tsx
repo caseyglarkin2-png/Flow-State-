@@ -4,6 +4,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
+import { Velocity } from '@/components/icons/FlowIcons';
 
 // Asset types that can be counted in a yard
 interface YardAssets {
@@ -203,7 +204,7 @@ export default function YardBuilderAI({ onFacilityCreated }: YardBuilderAIProps)
         {/* Header */}
         <div className="p-4 border-b border-[#1a1a1a]">
           <h2 className="text-lg font-semibold text-white flex items-center gap-2">
-            <span className="text-[#00B4FF]">⚡</span>
+            <Velocity size={18} className="text-[#00B4FF]" />
             YardBuilder AI
           </h2>
           <p className="text-xs text-[#666] mt-1">Generate facility digital twins</p>
