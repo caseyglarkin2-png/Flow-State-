@@ -10,7 +10,7 @@ import NextSteps from '@/components/NextSteps';
 import { FlowArrow, Metrics, Velocity, Config, Timeline, Caution, Agent, Manifest, Nexus } from '@/components/icons/FlowIcons';
 import { calcRoiV1, calcRoiV2, defaultRoiV2Inputs, roiV2InputsFromQuickMode } from '@/lib/roi/calc';
 import type { RoiV2Inputs } from '@/lib/roi/types';
-import { ECONOMICS_MODES, ECONOMICS_SCENARIOS, getQuickInputsForPreset } from '@/lib/economics';
+import { calcScenario, ECONOMICS_MODES, ECONOMICS_SCENARIOS, getQuickInputsForPreset, truckloads as formatTruckloads } from '@/lib/economics';
 
 export default function ROICalculatorPage() {
   const defaultQuick = getQuickInputsForPreset('enterprise_50', 'expected');
@@ -22,7 +22,7 @@ export default function ROICalculatorPage() {
   // Pricing basis: charge per contracted facility, regardless of rollout.
   const [contractedFacilities, setContractedFacilities] = useState(defaultQuick.facilities);
   // Year-1 realization: savings ramp as rollout progresses; costs are charged on the contracted count.
-  const [yearOneRampShare, setYearOneRampShare] = useState(0.5);
+  const [yearOneRampShare, setYearOneRampShare] = useState(0.05);
   const [trucksPerDay, setTrucksPerDay] = useState(defaultQuick.trucksPerDayPerFacility);
   const [avgDwellTime, setAvgDwellTime] = useState(defaultQuick.avgDwellTimeMinutes);
   const [detentionCost, setDetentionCost] = useState(defaultQuick.detentionCostPerHour);
@@ -107,7 +107,7 @@ export default function ROICalculatorPage() {
     setGateStaff(s.gateStaff);
   };
 
-  const [proInputs, setProInputs] = useState<RoiV2Inputs>(() => defaultRoiV2Inputs());
+  const [proInputs, setProInputs] = useState<RoiV2Inputs>(() => ({ ...defaultRoiV2Inputs(), yearOneRampShare: 0.05 }));
 
   const inputsForPdf = useMemo(() => {
     if (mode === 'pro') return proInputs;
@@ -225,6 +225,23 @@ export default function ROICalculatorPage() {
     proInputs,
   ]);
 
+  const scenario = useMemo(() => {
+    const roiInputs = inputsForPdf;
+    const perTruckloadProfit = Math.max(0, roiInputs.throughput.incrementalMarginPerTruck);
+
+    return calcScenario({
+      roi: roiInputs,
+      profit: {
+        method: 'contribution_margin',
+        contributionMarginPerTruckload: perTruckloadProfit,
+        outsourcedCostPerTruckload: 0,
+        internalVariableCostPerTruckload: 0,
+      },
+      discountRate: 0.1,
+      growthRate: 0.02,
+    });
+  }, [inputsForPdf]);
+
   const cfoMetrics = useMemo(() => {
     const facilityCount = mode === 'pro'
       ? Object.values(proInputs.tiers).reduce((acc, t) => acc + t.count, 0)
@@ -271,10 +288,12 @@ export default function ROICalculatorPage() {
               {`${facilities}-SITE NETWORK MODEL`}
             </p>
             <h1 className="text-5xl md:text-7xl font-black mb-6">
-              <span className="neon-glow">{formatMoney(cfoMetrics.yearOneGrossSavings)}</span>/year
+              <span className="neon-glow">{formatTruckloads(scenario.capacity.incrementalOutboundTruckloadsPerYear)}</span>
+              <span className="text-white"> truckloads</span>
+              <span className="text-steel">/year unlocked</span>
             </h1>
             <p className="text-xl text-steel max-w-2xl mx-auto">
-              Year‑1 realized savings across {facilities} connected facilities.
+              Profit impact: <span className="text-white font-semibold">{formatMoney(scenario.capacity.annualProfitImpact)}</span>/year.
               <br />
               <span className="text-neon font-semibold">Directional until validated with your data.</span>
             </p>
@@ -283,12 +302,12 @@ export default function ROICalculatorPage() {
           {/* Executive Snapshot - Always visible */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
             <div className="glass-card p-4 text-center border border-neon/30">
-              <p className="text-xs text-steel uppercase tracking-wider mb-1">Year 1 ROI</p>
-              <p className="text-3xl font-black neon-glow">{Math.round(cfoMetrics.yearOneROI)}%</p>
+              <p className="text-xs text-steel uppercase tracking-wider mb-1">Profit Impact</p>
+              <p className="text-3xl font-black neon-glow">{formatMoney(scenario.capacity.annualProfitImpact)}</p>
             </div>
             <div className="glass-card p-4 text-center">
-              <p className="text-xs text-steel uppercase tracking-wider mb-1">Payback</p>
-              <p className="text-3xl font-black">{cfoMetrics.paybackMonths.toFixed(1)} mo</p>
+              <p className="text-xs text-steel uppercase tracking-wider mb-1">Year‑1 Realized Savings</p>
+              <p className="text-3xl font-black">{formatMoney(cfoMetrics.yearOneGrossSavings)}</p>
             </div>
             <div className="glass-card p-4 text-center">
               <p className="text-xs text-steel uppercase tracking-wider mb-1">5-Year NPV</p>
