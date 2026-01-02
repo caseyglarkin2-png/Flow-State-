@@ -231,20 +231,22 @@ export default function ROICalculatorPage() {
       : facilities;
 
     const discountRate = 0.10;
+    const yearOneCashflow = calculations.yearOneGrossSavings - calculations.annualSubscription;
     const fiveYearNPV =
       -calculations.implementationCost +
-      Array.from({ length: 5 }, (_, i) =>
-        (calculations.totalAnnualSavings * Math.pow(1.02, i) - calculations.annualSubscription) /
-        Math.pow(1 + discountRate, i + 1),
+      (yearOneCashflow / Math.pow(1 + discountRate, 1)) +
+      Array.from({ length: 4 }, (_, i) =>
+        (calculations.totalAnnualSavings * Math.pow(1.02, i + 1) - calculations.annualSubscription) /
+        Math.pow(1 + discountRate, i + 2),
       ).reduce((a, b) => a + b, 0);
 
     return {
-      totalAnnualSavings: calculations.totalAnnualSavings,
+      yearOneGrossSavings: calculations.yearOneGrossSavings,
       yearOneROI: calculations.yearOneROI,
       paybackMonths: calculations.paybackMonths,
       fiveYearNPV,
-      costOfDelay90Days: calculations.totalAnnualSavings / 4,
-      savingsPerFacility: facilityCount > 0 ? calculations.totalAnnualSavings / facilityCount : 0,
+      costOfDelay90Days: calculations.yearOneGrossSavings / 4,
+      savingsPerFacility: facilityCount > 0 ? calculations.yearOneGrossSavings / facilityCount : 0,
       networkMultiplier: calculations.networkMultiplier,
     };
   }, [calculations, facilities, mode, proInputs]);
@@ -269,10 +271,10 @@ export default function ROICalculatorPage() {
               {`${facilities}-SITE NETWORK MODEL`}
             </p>
             <h1 className="text-5xl md:text-7xl font-black mb-6">
-              <span className="neon-glow">{formatMoney(cfoMetrics.totalAnnualSavings)}</span>/year
+              <span className="neon-glow">{formatMoney(cfoMetrics.yearOneGrossSavings)}</span>/year
             </h1>
             <p className="text-xl text-steel max-w-2xl mx-auto">
-              Total projected savings across {facilities} connected facilities.
+              Year‑1 realized savings across {facilities} connected facilities.
               <br />
               <span className="text-neon font-semibold">Directional until validated with your data.</span>
             </p>
@@ -311,8 +313,8 @@ export default function ROICalculatorPage() {
                     plus an explicit <strong className="text-white">annual subscription</strong> and <strong className="text-white">implementation</strong> cost basis.
                   </p>
                   <p className="text-steel text-sm leading-relaxed mt-2">
-                    Modeled annually: <strong className="text-white">{formatMoney(calculations.paperlessSavings)}</strong> paper savings,
-                    <strong className="text-white"> {formatMoney(calculations.throughputValue)}</strong> throughput value,
+                    Year‑1 modeled: <strong className="text-white">{formatMoney(calculations.paperlessSavings * calculations.yearOneRampShare)}</strong> paper savings,
+                    <strong className="text-white"> {formatMoney(calculations.throughputValue * calculations.yearOneRampShare)}</strong> throughput value,
                     and <strong className="text-white">{formatMoney(calculations.annualSubscription)}</strong> subscription.
                   </p>
                 </div>
@@ -1568,8 +1570,8 @@ export default function ROICalculatorPage() {
                     {/* Key Decision Metrics */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                       <div className="text-center p-3 rounded-lg bg-void/50">
-                        <p className="text-xs text-steel uppercase tracking-wider">Annual Value</p>
-                        <p className="text-2xl font-black neon-glow">{formatMoney(cfoMetrics.totalAnnualSavings)}</p>
+                        <p className="text-xs text-steel uppercase tracking-wider">Year‑1 Value</p>
+                        <p className="text-2xl font-black neon-glow">{formatMoney(cfoMetrics.yearOneGrossSavings)}</p>
                       </div>
                       <div className="text-center p-3 rounded-lg bg-void/50">
                         <p className="text-xs text-steel uppercase tracking-wider">Per Facility</p>
@@ -1642,28 +1644,28 @@ export default function ROICalculatorPage() {
                       {[
                         { 
                           label: 'Paperless Operations', 
-                          value: calculations.paperlessSavings, 
+                          value: calculations.paperlessSavings * calculations.yearOneRampShare, 
                           tooltip: mode === 'quick' 
                             ? 'Paper savings from reduced outbound paperwork (printing + storage). Scales with shipment volume.' 
                             : 'From your paper assumptions'
                         },
                         { 
                           label: 'Throughput Gains', 
-                          value: calculations.throughputValue, 
+                          value: calculations.throughputValue * calculations.yearOneRampShare, 
                           tooltip: mode === 'quick' 
                             ? '10% additional freight capacity from faster turns. $500/truck incremental margin.' 
                             : 'From your throughput assumptions'
                         },
                         { 
                           label: 'Labor Automation', 
-                          value: calculations.annualLaborSavings, 
+                          value: calculations.annualLaborSavings * calculations.yearOneRampShare, 
                           tooltip: mode === 'quick' 
                             ? '70% time savings for gate staff with automated check-in/out' 
                             : 'From your labor tier assumptions'
                         },
                         { 
                           label: 'Detention Reduction', 
-                          value: calculations.annualDetentionSavings, 
+                          value: calculations.annualDetentionSavings * calculations.yearOneRampShare, 
                           tooltip: mode === 'quick' 
                             ? '65% reduction in detention events with automated tracking' 
                             : 'From your detention assumptions'
@@ -1678,7 +1680,7 @@ export default function ROICalculatorPage() {
                             <div className="h-1.5 bg-carbon rounded-full overflow-hidden">
                               <div 
                                 className="h-full bg-neon/60 rounded-full"
-                                style={{ width: `${Math.min(100, (item.value / Math.max(1, calculations.baseSavings)) * 100)}%` }}
+                                style={{ width: `${Math.min(100, (item.value / Math.max(1, calculations.baseSavings * calculations.yearOneRampShare)) * 100)}%` }}
                               />
                             </div>
                           </div>
@@ -1686,7 +1688,7 @@ export default function ROICalculatorPage() {
                       ))}
                       <div className="flex justify-between pt-3 border-t border-neon/20">
                         <span className="text-steel font-medium">Base Savings</span>
-                        <span className="text-white font-bold">{formatMoney(calculations.baseSavings)}</span>
+                        <span className="text-white font-bold">{formatMoney(calculations.baseSavings * calculations.yearOneRampShare)}</span>
                       </div>
                     </div>
                   </Card>
@@ -1695,7 +1697,7 @@ export default function ROICalculatorPage() {
                   <Card className="mb-8 border-neon/30 bg-gradient-to-br from-neon/5 to-transparent">
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="font-bold text-neon">Network Effect Value</h3>
-                      <span className="text-2xl font-black text-neon">+{formatMoney(calculations.networkBonusSavings)}</span>
+                      <span className="text-2xl font-black text-neon">+{formatMoney(calculations.networkBonusSavings * calculations.yearOneRampShare)}</span>
                     </div>
                     
                     {facilities < 2 ? (
@@ -1739,7 +1741,7 @@ export default function ROICalculatorPage() {
                               </p>
                             </div>
                             <span className="text-lg font-bold text-neon">
-                              {formatMoney(calculations.v2.networkEffectBreakdown.predictiveIntelligence.planningSavings)}
+                              {formatMoney(calculations.v2.networkEffectBreakdown.predictiveIntelligence.planningSavings * calculations.yearOneRampShare)}
                             </span>
                           </div>
                           <div className="flex items-center gap-2 text-xs text-steel/60 mb-2">
@@ -1755,7 +1757,7 @@ export default function ROICalculatorPage() {
                               <p>• Maturity factor: 1 - e^(-n/20) = {(1 - Math.exp(-facilities / 20)).toFixed(2)}</p>
                               <p>• Planning value: $1.50/shipment × {calculations.v2.networkEffectBreakdown.predictiveIntelligence.etaAccuracyImprovement.toFixed(1)}% improvement</p>
                               <p>• Annual shipments: {(calculations.v2?.totalShipmentsPerYear || 0).toLocaleString()}</p>
-                              <p className="text-neon pt-1">= ${calculations.v2.networkEffectBreakdown.predictiveIntelligence.planningSavings.toLocaleString()}</p>
+                              <p className="text-neon pt-1">= ${Math.round(calculations.v2.networkEffectBreakdown.predictiveIntelligence.planningSavings * calculations.yearOneRampShare).toLocaleString()}</p>
                             </div>
                           </details>
                         </div>
@@ -1773,7 +1775,7 @@ export default function ROICalculatorPage() {
                               </p>
                             </div>
                             <span className="text-lg font-bold text-neon">
-                              {formatMoney(calculations.v2.networkEffectBreakdown.carrierBenchmarking.negotiationLeverage)}
+                              {formatMoney(calculations.v2.networkEffectBreakdown.carrierBenchmarking.negotiationLeverage * calculations.yearOneRampShare)}
                             </span>
                           </div>
                           <div className="flex items-center gap-2 text-xs text-steel/60 mb-2">
@@ -1790,7 +1792,7 @@ export default function ROICalculatorPage() {
                               <p>• Carrier leverage: min(2%, 0.3% + log(max(1,n-5)+1) × 0.4%)</p>
                               <p>• 3rd-party spend: {(calculations.v2?.totalShipmentsPerYear || 0).toLocaleString()} × 60% × $150</p>
                               <p>• Threshold: max(0, n-8)/n = {((Math.max(0, facilities - 8) / facilities) * 100).toFixed(0)}%</p>
-                              <p className="text-neon pt-1">= ${calculations.v2.networkEffectBreakdown.carrierBenchmarking.negotiationLeverage.toLocaleString()}</p>
+                              <p className="text-neon pt-1">= ${Math.round(calculations.v2.networkEffectBreakdown.carrierBenchmarking.negotiationLeverage * calculations.yearOneRampShare).toLocaleString()}</p>
                             </div>
                           </details>
                         </div>
@@ -1808,7 +1810,7 @@ export default function ROICalculatorPage() {
                               </p>
                             </div>
                             <span className="text-lg font-bold text-neon">
-                              {formatMoney(calculations.v2.networkEffectBreakdown.coordinationEfficiency.bufferSavings)}
+                              {formatMoney(calculations.v2.networkEffectBreakdown.coordinationEfficiency.bufferSavings * calculations.yearOneRampShare)}
                             </span>
                           </div>
                           <div className="flex items-center gap-2 text-xs text-steel/60 mb-2">
@@ -1824,7 +1826,7 @@ export default function ROICalculatorPage() {
                               <p>• Base savings: ${calculations.baseSavings.toLocaleString()}</p>
                               <p>• Buffer cost (5% of base): ${(calculations.baseSavings * 0.05).toLocaleString()}</p>
                               <p>• Reduction: {calculations.v2.networkEffectBreakdown.coordinationEfficiency.variabilityReduction.toFixed(1)}%</p>
-                              <p className="text-neon pt-1">= ${calculations.v2.networkEffectBreakdown.coordinationEfficiency.bufferSavings.toLocaleString()}</p>
+                              <p className="text-neon pt-1">= ${Math.round(calculations.v2.networkEffectBreakdown.coordinationEfficiency.bufferSavings * calculations.yearOneRampShare).toLocaleString()}</p>
                             </div>
                           </details>
                         </div>
@@ -1842,7 +1844,7 @@ export default function ROICalculatorPage() {
                               </p>
                             </div>
                             <span className="text-lg font-bold text-neon">
-                              {formatMoney(calculations.v2.networkEffectBreakdown.sharedLearning.errorReduction)}
+                              {formatMoney(calculations.v2.networkEffectBreakdown.sharedLearning.errorReduction * calculations.yearOneRampShare)}
                             </span>
                           </div>
                           <div className="flex items-center gap-2 text-xs text-steel/60 mb-2">
@@ -1862,7 +1864,7 @@ export default function ROICalculatorPage() {
                               <p className="font-semibold text-steel pt-2">Error reduction:</p>
                               <p>• Error rate reduction: min(12%, log(max(1,n-5)+1) × 2.5%) × maturity</p>
                               <p>• Error cost: {(calculations.v2?.totalShipmentsPerYear || 0).toLocaleString()} shipments × $0.30</p>
-                              <p className="text-neon pt-1">Total = ${calculations.v2.networkEffectBreakdown.sharedLearning.errorReduction.toLocaleString()}</p>
+                              <p className="text-neon pt-1">Total = ${Math.round(calculations.v2.networkEffectBreakdown.sharedLearning.errorReduction * calculations.yearOneRampShare).toLocaleString()}</p>
                             </div>
                           </details>
                         </div>
@@ -1883,7 +1885,7 @@ export default function ROICalculatorPage() {
                     {!calculations.v2?.networkEffectBreakdown && (
                       <div className="flex justify-between text-neon">
                         <span className="font-medium">Network Effect ({calculations.networkMultiplier.toFixed(2)}x)</span>
-                        <span className="font-bold">+{formatMoney(calculations.networkBonusSavings)}</span>
+                        <span className="font-bold">+{formatMoney(calculations.networkBonusSavings * calculations.yearOneRampShare)}</span>
                       </div>
                     )}
                       </>
@@ -1924,8 +1926,8 @@ export default function ROICalculatorPage() {
                 {/* Hero metrics - Deep view */}
                 <div className="grid grid-cols-2 gap-4 mb-8">
                   <Card className="text-center bg-neon/10 border-neon">
-                    <p className="text-sm text-steel mb-2">Annual Savings</p>
-                    <p className="text-4xl font-black neon-glow">{formatMoney(calculations.totalAnnualSavings)}</p>
+                    <p className="text-sm text-steel mb-2">Year‑1 Realized Savings</p>
+                    <p className="text-4xl font-black neon-glow">{formatMoney(calculations.yearOneGrossSavings)}</p>
                   </Card>
                   <Card className="text-center bg-neon/10 border-neon">
                     <p className="text-sm text-steel mb-2">Year 1 ROI</p>
@@ -1950,27 +1952,27 @@ export default function ROICalculatorPage() {
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
                       <span className="text-steel">Detention Reduction (65%)</span>
-                      <span className="text-white">{formatMoney(calculations.annualDetentionSavings)}</span>
+                      <span className="text-white">{formatMoney(calculations.annualDetentionSavings * calculations.yearOneRampShare)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-steel">Labor Automation (70%)</span>
-                      <span className="text-white">{formatMoney(calculations.annualLaborSavings)}</span>
+                      <span className="text-white">{formatMoney(calculations.annualLaborSavings * calculations.yearOneRampShare)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-steel">Throughput Increase (42%)</span>
-                      <span className="text-white">{formatMoney(calculations.throughputValue)}</span>
+                      <span className="text-white">{formatMoney(calculations.throughputValue * calculations.yearOneRampShare)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-steel">Paperless Operations</span>
-                      <span className="text-white">{formatMoney(calculations.paperlessSavings)}</span>
+                      <span className="text-white">{formatMoney(calculations.paperlessSavings * calculations.yearOneRampShare)}</span>
                     </div>
                     <div className="flex justify-between border-t border-neon/20 pt-3">
                       <span className="text-steel">Base Savings</span>
-                      <span className="text-white font-semibold">{formatMoney(calculations.baseSavings)}</span>
+                      <span className="text-white font-semibold">{formatMoney(calculations.baseSavings * calculations.yearOneRampShare)}</span>
                     </div>
                     <div className="flex justify-between text-neon">
                       <span>Network Effect Bonus ({calculations.networkMultiplier.toFixed(2)}x)</span>
-                      <span className="font-bold">+{formatMoney(calculations.networkBonusSavings)}</span>
+                      <span className="font-bold">+{formatMoney(calculations.networkBonusSavings * calculations.yearOneRampShare)}</span>
                     </div>
                   </div>
                 </Card>
@@ -2050,7 +2052,7 @@ export default function ROICalculatorPage() {
       <section className="py-16 bg-gradient-to-br from-neon/10 to-transparent border-t border-neon/20">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-black mb-6">
-            Ready to Capture <span className="neon-glow">{formatMoney(calculations.totalAnnualSavings)}/year</span>?
+            Ready to Capture <span className="neon-glow">{formatMoney(calculations.yearOneGrossSavings)}/year</span>?
           </h2>
           <p className="text-xl text-steel mb-8">
             Export a board-ready PDF, or get a custom analysis with your actual operational data.

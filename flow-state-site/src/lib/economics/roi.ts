@@ -725,7 +725,8 @@ export function calcRoiV2(rawInputs: RoiV2Inputs): RoiV2Outputs {
   const paybackMonths = rawPaybackMonths > 0 ? Math.max(0.1, rawPaybackMonths) : 0;
 
   const fiveYearValue =
-    sum(Array.from({ length: 5 }, (_, i) => totalAnnualSavings * Math.pow(1.02, i) - annualSubscription)) -
+    (yearOneGrossSavings - annualSubscription) +
+    sum(Array.from({ length: 4 }, (_, i) => totalAnnualSavings * Math.pow(1.02, i + 1) - annualSubscription)) -
     implementationCost;
 
   return {

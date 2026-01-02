@@ -75,16 +75,16 @@ export function RoiSummaryPdf({ payload }: { payload: RoiPdfPayload }) {
         <View style={styles.box}>
           <Text style={styles.h2}>Executive Summary</Text>
           <View style={styles.row}>
-            <Text style={styles.label}>Total annual savings (modeled)</Text>
+            <Text style={styles.label}>Steady-state annual savings (modeled)</Text>
             <Text style={styles.value}>{money(payload.results.totalAnnualSavings)}</Text>
           </View>
 
           <View style={styles.row}>
-            <Text style={styles.label}>Base savings (modeled)</Text>
+            <Text style={styles.label}>Base savings (steady-state)</Text>
             <Text style={styles.value}>{money(payload.results.baseSavings)}</Text>
           </View>
           <View style={styles.row}>
-            <Text style={styles.label}>Network bonus (modeled)</Text>
+            <Text style={styles.label}>Network bonus (steady-state)</Text>
             <Text style={styles.value}>{money(payload.results.networkBonusSavings)}</Text>
           </View>
 
@@ -93,7 +93,7 @@ export function RoiSummaryPdf({ payload }: { payload: RoiPdfPayload }) {
             <Text style={styles.value}>{pct01(payload.results.yearOneRampShare)}</Text>
           </View>
           <View style={styles.row}>
-            <Text style={styles.label}>Year‑1 gross savings (before costs)</Text>
+            <Text style={styles.label}>Year‑1 realized savings (before costs)</Text>
             <Text style={styles.value}>{money(payload.results.yearOneGrossSavings)}</Text>
           </View>
           <View style={styles.row}>
