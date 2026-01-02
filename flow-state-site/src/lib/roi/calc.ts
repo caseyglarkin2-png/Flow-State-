@@ -25,6 +25,9 @@ function sum(values: number[]): number {
 /**
  * Calculate detailed network effect breakdown
  * Based on research-backed value streams from connected facility networks
+ * 
+ * Key insight: Network effects are MINIMAL for small networks (1-5 sites)
+ * and compound meaningfully only at scale (10+ sites)
  */
 function calculateNetworkEffectBreakdown(
   facilities: number,
@@ -34,51 +37,69 @@ function calculateNetworkEffectBreakdown(
 ): NetworkEffectBreakdown {
   const n = Math.max(1, facilities);
   
-  // Base multiplier using log scale (Metcalfe-inspired, tempered for logistics)
-  const rawMultiplier = 1 + Math.log(n + 1) * Math.max(0, logFactor);
+  // Network effects only matter if logFactor > 0 AND we have multiple facilities
+  if (logFactor <= 0 || n <= 1) {
+    return {
+      predictiveIntelligence: { etaAccuracyImprovement: 0, planningSavings: 0 },
+      carrierBenchmarking: { dataPointsShared: 0, negotiationLeverage: 0 },
+      coordinationEfficiency: { variabilityReduction: 0, bufferSavings: 0 },
+      sharedLearning: { onboardingAcceleration: 0, errorReduction: 0 },
+      totalNetworkBonus: 0,
+      effectiveMultiplier: 1,
+    };
+  }
   
   // Network connections = n(n-1)/2 (Metcalfe's Law)
   const connections = (n * (n - 1)) / 2;
   
-  // 1. PREDICTIVE INTELLIGENCE
-  // More data = better ETA predictions. Each facility contributes patterns.
-  // Research: 15-25% improvement in prediction accuracy with 10+ nodes
-  const dataPointsPerFacility = shipmentsPerYear / Math.max(1, n);
-  const etaAccuracyImprovement = Math.min(0.35, 0.05 + Math.log(n + 1) * 0.08); // 5-35% improvement
-  // Better ETAs = better dock scheduling = $2-5 per shipment in avoided idle time
-  const planningValuePerShipment = 2.5 * etaAccuracyImprovement;
-  const planningSavings = planningValuePerShipment * shipmentsPerYear;
+  // CRITICAL: Scale factor that makes network effect minimal for small networks
+  // At 5 facilities: 0.2 (20% of full effect)
+  // At 10 facilities: 0.45 (45% of full effect)
+  // At 25 facilities: 0.75 (75% of full effect)
+  // At 50+ facilities: ~0.95 (near full effect)
+  const networkMaturityFactor = 1 - Math.exp(-n / 20);
   
-  // 2. CARRIER BENCHMARKING
+  // 1. PREDICTIVE INTELLIGENCE
+  // More data = better ETA predictions, but only meaningful with enough data points
+  // Threshold: Need 5+ facilities before predictions improve meaningfully
+  const etaAccuracyBase = Math.min(0.25, Math.log(Math.max(1, n - 4) + 1) * 0.06); // 0-25%
+  const etaAccuracyImprovement = etaAccuracyBase * networkMaturityFactor;
+  // Better ETAs = better dock scheduling = $1.50-3 per shipment at scale
+  const planningValuePerShipment = 1.5 * etaAccuracyImprovement;
+  const planningSavings = planningValuePerShipment * shipmentsPerYear * networkMaturityFactor;
+  
+  // 2. CARRIER BENCHMARKING  
   // Cross-network performance data creates negotiation leverage
-  // Each connection shares carrier scorecards
-  const dataPointsShared = Math.min(connections * 50, shipmentsPerYear * 0.2); // Carrier records shared
-  // 1-3% rate improvement from benchmarking leverage at scale
-  const carrierLeveragePercent = Math.min(0.03, 0.005 + Math.log(n + 1) * 0.006);
+  // Only meaningful with 10+ facilities of data
+  const carrierThreshold = Math.max(0, n - 8) / n; // 0% at 8, grows from there
+  const carrierLeveragePercent = Math.min(0.02, 0.003 + Math.log(Math.max(1, n - 5) + 1) * 0.004);
   // Assume $150 avg transport cost per shipment, 60% third-party
   const thirdPartySpend = shipmentsPerYear * 0.6 * 150;
-  const negotiationLeverage = thirdPartySpend * carrierLeveragePercent;
+  const negotiationLeverage = thirdPartySpend * carrierLeveragePercent * carrierThreshold * networkMaturityFactor;
+  const dataPointsShared = connections * 30 * networkMaturityFactor;
   
   // 3. COORDINATION EFFICIENCY
   // Reduced variability across network = smaller buffers needed
-  // Coefficient of variation drops ~5% per doubling of connected nodes
-  const variabilityReduction = Math.min(0.30, Math.log2(Math.max(1, n)) * 0.05); // Up to 30%
-  // Buffer cost is ~8% of labor cost, reduced by variability improvement
-  const bufferCostBase = baseSavings * 0.08;
+  // Minimal effect until 10+ coordinated sites
+  const variabilityBase = Math.min(0.20, Math.log2(Math.max(1, n - 5) + 1) * 0.04); // Up to 20%
+  const variabilityReduction = variabilityBase * networkMaturityFactor;
+  // Buffer cost is ~5% of base savings, reduced by variability improvement
+  const bufferCostBase = baseSavings * 0.05;
   const bufferSavings = bufferCostBase * variabilityReduction;
   
   // 4. SHARED LEARNING
   // Faster onboarding: new sites inherit patterns from existing network
-  // Error reduction from pattern recognition across sites
-  const onboardingDaysBase = 90; // Days to full productivity without network
-  const onboardingAcceleration = Math.min(60, Math.log(n + 1) * 15); // Up to 60 days saved
-  const onboardingValuePerDay = 500; // $ lost productivity per day
-  const annualNewSites = Math.ceil(n * 0.1); // Assume 10% network growth
+  // Only meaningful if there's a network to learn from (5+ sites)
+  const onboardingBase = Math.min(45, Math.log(Math.max(1, n - 3) + 1) * 12); // Up to 45 days
+  const onboardingAcceleration = onboardingBase * networkMaturityFactor;
+  const onboardingValuePerDay = 400; // $ lost productivity per day
+  const annualNewSites = Math.max(0, Math.ceil(n * 0.08)); // 8% network growth
   const onboardingSavings = onboardingAcceleration * onboardingValuePerDay * annualNewSites;
   
   // Error patterns recognized across network
-  const errorReductionPercent = Math.min(0.20, Math.log(n + 1) * 0.04); // Up to 20%
-  const errorCostBase = shipmentsPerYear * 0.5; // $0.50 error cost per shipment baseline
+  const errorReductionBase = Math.min(0.12, Math.log(Math.max(1, n - 5) + 1) * 0.025); // Up to 12%
+  const errorReductionPercent = errorReductionBase * networkMaturityFactor;
+  const errorCostBase = shipmentsPerYear * 0.30; // $0.30 error cost per shipment baseline
   const errorReduction = errorCostBase * errorReductionPercent;
   
   const sharedLearningSavings = onboardingSavings + errorReduction;
