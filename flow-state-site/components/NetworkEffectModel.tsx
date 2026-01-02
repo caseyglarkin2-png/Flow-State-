@@ -24,7 +24,7 @@ import {
  * The actual ROI calculator provides precise calculations based on your inputs.
  */
 export default function NetworkEffectModel() {
-  const [nodes, setNodes] = useState(10);
+  const [nodes, setNodes] = useState(50);
   const [trucksPerDay, setTrucksPerDay] = useState(150);
 
   const calculations = useMemo(() => {
