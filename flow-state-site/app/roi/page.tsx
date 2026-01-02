@@ -129,7 +129,7 @@ export default function ROICalculatorPage() {
           <p className="text-xl text-steel max-w-2xl mx-auto">
             Input your operation's parameters. See the transformation in real-time.
             <br />
-            <span className="text-neon font-semibold">Numbers don't lie.</span>
+            <span className="text-neon font-semibold">Directional until validated with your data.</span>
           </p>
         </div>
       </section>
@@ -336,6 +336,11 @@ export default function ROICalculatorPage() {
                   <Card className="border-neon/20">
                     <h3 className="font-bold text-neon mb-4">Pro Mode Assumptions</h3>
 
+                    <p className="text-xs text-steel/70 mb-4">
+                      Pro mode is spreadsheet-parity and assumption-driven. Defaults are aligned to a reference “Example Customer Opportunity” model;
+                      edit inputs to reflect your operation and document your sources.
+                    </p>
+
                     <div className="space-y-6">
                       <div>
                         <p className="text-sm text-steel mb-3">Facility Mix</p>
@@ -445,6 +450,9 @@ export default function ROICalculatorPage() {
                         <div className="mt-4 space-y-4">
                           <p className="text-xs text-steel/70">
                             Uses conservative rounding down for saved FTE (spreadsheet parity).
+                          </p>
+                          <p className="text-xs text-steel/70">
+                            Enter fully-loaded annual cost (wage + benefits + burden). Savings assume capacity can be repurposed or avoided.
                           </p>
                           <div className="grid grid-cols-7 gap-2 text-xs text-steel mb-2">
                             <div>Tier</div>
@@ -596,7 +604,11 @@ export default function ROICalculatorPage() {
 
                       <details className="text-sm text-steel">
                         <summary className="cursor-pointer text-neon">Paper assumptions</summary>
-                        <div className="mt-4 grid grid-cols-2 gap-4">
+                        <div className="mt-4">
+                          <p className="text-xs text-steel/70 mb-4">
+                            Models the cost of printing + storing shipment paperwork. “Phase‑1 saved %” represents the portion eliminated in the first rollout.
+                          </p>
+                          <div className="grid grid-cols-2 gap-4">
                           <div>
                             <label className="text-sm text-steel">Pages per BOL</label>
                             <input
@@ -693,12 +705,18 @@ export default function ROICalculatorPage() {
                               className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
                             />
                           </div>
+                          </div>
                         </div>
                       </details>
 
                       <details className="text-sm text-steel">
                         <summary className="cursor-pointer text-neon">Detention assumptions</summary>
-                        <div className="mt-4 grid grid-cols-2 gap-4">
+                        <div className="mt-4">
+                          <p className="text-xs text-steel/70 mb-4">
+                            Converts detention spend into an implied claim count, then into $/shipment savings. Bucket shares (15–30 min vs 30+ min)
+                            follow the reference model; adjust if you have claims history.
+                          </p>
+                          <div className="grid grid-cols-2 gap-4">
                           <div>
                             <label className="text-sm text-steel">Detention Budget % of Transport (0–1)</label>
                             <input
@@ -793,12 +811,18 @@ export default function ROICalculatorPage() {
                               />
                             </div>
                           </div>
+                          </div>
                         </div>
                       </details>
 
                       <details className="text-sm text-steel">
                         <summary className="cursor-pointer text-neon">Throughput + shipper-of-choice assumptions</summary>
-                        <div className="mt-4 grid grid-cols-2 gap-4">
+                        <div className="mt-4">
+                          <p className="text-xs text-steel/70 mb-4">
+                            Throughput uses a conservative “realized %” multiplier on theoretical gate-time improvement. Shipper-of-choice models a realized
+                            discount on applicable transport spend.
+                          </p>
+                          <div className="grid grid-cols-2 gap-4">
                           <div>
                             <label className="text-sm text-steel">Avg Gate In→Out (min)</label>
                             <input
@@ -941,12 +965,16 @@ export default function ROICalculatorPage() {
                               />
                             </div>
                           </div>
+                          </div>
                         </div>
                       </details>
 
                       <details className="text-sm text-steel">
                         <summary className="cursor-pointer text-neon">Network effect</summary>
                         <div className="mt-4">
+                          <p className="text-xs text-steel/70 mb-3">
+                            Off by default for spreadsheet parity. Enable only if you’re modeling compounding value from standardization across a multi-site network.
+                          </p>
                           <label className="text-sm text-steel">Network log factor (0 disables)</label>
                           <input
                             type="number"
@@ -968,7 +996,12 @@ export default function ROICalculatorPage() {
                         <summary className="cursor-pointer text-neon">
                           Enterprise add-ons ($/shipment)
                         </summary>
-                        <div className="mt-4 grid grid-cols-2 gap-4">
+                        <div className="mt-4">
+                          <p className="text-xs text-steel/70 mb-4">
+                            Use these when you have a validated $/shipment opportunity (e.g., from an enterprise workbook). These add directly to annual value
+                            across total shipments.
+                          </p>
+                          <div className="grid grid-cols-2 gap-4">
                           <div>
                             <label className="text-sm text-steel">Lost BOLs → Lost Sales</label>
                             <input
@@ -1115,6 +1148,7 @@ export default function ROICalculatorPage() {
                               }
                               className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
                             />
+                          </div>
                           </div>
                         </div>
                       </details>

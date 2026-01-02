@@ -25,19 +25,27 @@ test.describe('smoke', () => {
     await expect(page.getByRole('heading', { name: /get a quote/i })).toBeVisible();
   });
 
-  test('close-deals pages load', async ({ page }) => {
+  test('security loads', async ({ page }) => {
     await page.goto('/security');
     await expect(page.getByRole('heading', { level: 1, name: /security/i })).toBeVisible();
+  });
 
+  test('integrations loads', async ({ page }) => {
     await page.goto('/integrations');
     await expect(page.getByRole('heading', { level: 1, name: /integrations/i })).toBeVisible();
+  });
 
+  test('implementation loads', async ({ page }) => {
     await page.goto('/implementation');
     await expect(page.getByRole('heading', { level: 1, name: /implementation/i })).toBeVisible();
+  });
 
+  test('compare loads', async ({ page }) => {
     await page.goto('/compare');
     await expect(page.getByRole('heading', { level: 1, name: /compare/i })).toBeVisible();
+  });
 
+  test('faq loads', async ({ page }) => {
     await page.goto('/faq');
     await expect(page.getByRole('heading', { level: 1, name: /faq/i })).toBeVisible();
   });

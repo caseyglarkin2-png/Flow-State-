@@ -42,7 +42,7 @@ test('calcRoiV1(default UI inputs) matches expected outputs', () => {
   });
 
   // These are hard-coded to lock backward compatibility with the current live calculator.
-  // If you change calcRoiV1, update docs/roi-model-spec.md and these values deliberately.
+  // If you change calcRoiV1, update docs/roi-model-spec.md (in flow-state-site/docs) and these values deliberately.
   return (
     approxEqual(out.networkMultiplier, 1.8958797346140275, 1e-9) &&
     approxEqual(out.annualDetentionSavings, 2001796.875, 1e-6) &&

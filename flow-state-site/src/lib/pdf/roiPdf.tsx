@@ -67,6 +67,10 @@ export function RoiSummaryPdf({ payload }: { payload: RoiPdfPayload }) {
         <Text style={styles.muted}>
           Prepared for: {payload.lead.name} ({payload.lead.email})
         </Text>
+        <Text style={[styles.muted, { marginTop: 6 }]}>
+          This summary is a directional model. Pro-mode defaults are aligned to a reference spreadsheet model; accuracy depends on
+          validating assumptions against your operational data.
+        </Text>
 
         <View style={styles.box}>
           <Text style={styles.h2}>Executive Summary</Text>

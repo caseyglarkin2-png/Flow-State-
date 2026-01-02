@@ -285,7 +285,7 @@ export default function NetworkEffectPage() {
             <Link
               href={implHref}
               className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
-              onClick={() => trackEvent('implementation_pdf_exported', { action: 'cta_get_rollout_plan_page' })}
+              onClick={() => trackEvent('implementation_cta_click', { action: 'cta_get_rollout_plan_page', href: implHref })}
             >
               Get rollout plan
             </Link>
