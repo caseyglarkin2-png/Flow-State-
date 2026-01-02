@@ -244,6 +244,26 @@ export default function ROICalculatorPage() {
               <p className="text-3xl font-black text-ember">{formatMoney(cfoMetrics.costOfDelay90Days)}</p>
             </div>
           </div>
+
+          {/* Paperless Value Callout */}
+          <div className="mt-8 max-w-3xl mx-auto">
+            <div className="glass-card p-6 border border-neon/40 bg-gradient-to-br from-neon/10 to-transparent">
+              <div className="flex items-start gap-4">
+                <Manifest size={32} className="text-neon mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="text-xl font-bold text-neon mb-2">Paperless Operations Pay for Flow State</h3>
+                  <p className="text-steel text-sm leading-relaxed">
+                    <strong className="text-white">Guaranteed: $11,900/facility/year</strong> eliminating 1 BOL per shipment (3→2 BOLs). 
+                    This covers ink, paper, printing, filing, storage, and retrieval costs—<strong className="text-neon">paying for the $8,000 subscription before any other benefits.</strong>
+                  </p>
+                  <p className="text-steel text-sm leading-relaxed mt-2">
+                    Then: <strong className="text-white">10% throughput capacity increase</strong> unlocks millions in additional operating margin. 
+                    Labor automation and detention reduction compound the value.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1365,23 +1385,35 @@ export default function ROICalculatorPage() {
                           </div>
                           <div className="p-3 bg-void/50 rounded-lg">
                             <div className="flex items-center gap-2 text-neon font-semibold mb-2">
+                              <Manifest size={16} className="text-neon" />
+                              <span>Paperless Operations (Primary Value)</span>
+                            </div>
+                            <p>• <strong>Guaranteed: $11,900/facility/year</strong></p>
+                            <p>• Eliminates 1 BOL per shipment (3 BOLs → 2 BOLs)</p>
+                            <p>• Covers ink, paper, printing, filing, storage, retrieval</p>
+                            <p>• <strong>This alone pays for the $8,000/facility subscription</strong></p>
+                            <p className="text-steel/60 mt-1">Source: Customer data, verified operational savings</p>
+                          </div>
+                          <div className="p-3 bg-void/50 rounded-lg">
+                            <div className="flex items-center gap-2 text-neon font-semibold mb-2">
+                              <Velocity size={16} className="text-neon" />
+                              <span>Throughput Gains (Secondary Value)</span>
+                            </div>
+                            <p>• 10% additional freight capacity per facility</p>
+                            <p>• Faster truck turns (50% dwell reduction) enable more volume</p>
+                            <p>• $500/truck incremental operating margin</p>
+                            <p>• Millions in additional revenue capacity per facility</p>
+                            <p className="text-steel/60 mt-1">Source: Logistics margin benchmarks, customer analysis</p>
+                          </div>
+                          <div className="p-3 bg-void/50 rounded-lg">
+                            <div className="flex items-center gap-2 text-neon font-semibold mb-2">
                               <Agent size={16} className="text-neon" />
-                              <span>Labor Assumptions</span>
+                              <span>Labor Automation</span>
                             </div>
                             <p>• Gate staff: {gateStaff} FTE{gateStaff > 1 ? 's' : ''} per facility</p>
                             <p>• Time savings: 70% reduction in gate processing labor</p>
                             <p>• Annual hours: 2,080 (40 hrs/week × 52 weeks)</p>
                             <p className="text-steel/60 mt-1">Source: Time-motion studies from YMS implementations</p>
-                          </div>
-                          <div className="p-3 bg-void/50 rounded-lg">
-                            <div className="flex items-center gap-2 text-neon font-semibold mb-2">
-                              <Manifest size={16} className="text-neon" />
-                              <span>Paper/Throughput</span>
-                            </div>
-                            <p>• Paper savings: $15/truck (BOLs, printing, filing, storage)</p>
-                            <p>• Throughput gain: 42% from faster gate processing</p>
-                            <p>• Incremental value: $45/additional truck processed</p>
-                            <p className="text-steel/60 mt-1">Source: Customer interviews, industry estimates</p>
                           </div>
                           <div className="p-3 bg-void/50 rounded-lg">
                             <div className="flex items-center gap-2 text-neon font-semibold mb-2">
@@ -1491,32 +1523,32 @@ export default function ROICalculatorPage() {
                     <div className="space-y-3">
                       {[
                         { 
-                          label: 'Detention Reduction', 
-                          value: calculations.annualDetentionSavings, 
+                          label: 'Paperless Operations', 
+                          value: calculations.paperlessSavings, 
                           tooltip: mode === 'quick' 
-                            ? 'Assumes 15% of trucks incur detention, 65% reduction with automation' 
-                            : 'From your detention assumptions'
-                        },
-                        { 
-                          label: 'Labor Automation', 
-                          value: calculations.annualLaborSavings, 
-                          tooltip: mode === 'quick' 
-                            ? 'Assumes 70% time savings for gate staff (3 FTE × $28/hr × 2080 hrs/yr)' 
-                            : 'From your labor tier assumptions'
+                            ? 'Guaranteed: $11,900/facility eliminating 1 BOL per shipment (3→2 BOLs). Covers platform cost.' 
+                            : 'From your paper assumptions'
                         },
                         { 
                           label: 'Throughput Gains', 
                           value: calculations.throughputValue, 
                           tooltip: mode === 'quick' 
-                            ? 'Assumes 42% throughput increase at $45/truck additional margin' 
+                            ? '10% additional freight capacity from faster turns. $500/truck incremental margin.' 
                             : 'From your throughput assumptions'
                         },
                         { 
-                          label: 'Paperless Operations', 
-                          value: calculations.paperlessSavings, 
+                          label: 'Labor Automation', 
+                          value: calculations.annualLaborSavings, 
                           tooltip: mode === 'quick' 
-                            ? 'Assumes $15/truck in paper, printing, filing costs eliminated' 
-                            : 'From your paper assumptions'
+                            ? '70% time savings for gate staff with automated check-in/out' 
+                            : 'From your labor tier assumptions'
+                        },
+                        { 
+                          label: 'Detention Reduction', 
+                          value: calculations.annualDetentionSavings, 
+                          tooltip: mode === 'quick' 
+                            ? '65% reduction in detention events with automated tracking' 
+                            : 'From your detention assumptions'
                         },
                       ].map((item) => (
                         <div key={item.label} className="flex items-center gap-4 group">

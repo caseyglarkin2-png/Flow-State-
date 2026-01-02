@@ -168,22 +168,27 @@ export function calcRoiV1(inputs: RoiV1Inputs): RoiV1Outputs {
   const laborSavingsPerFacility = gateStaff * laborTimeSavingsPercent * laborCostPerHour * hoursPerYear;
   const annualLaborSavings = laborSavingsPerFacility * facilities;
 
-  // Throughput increase value:
-  // - 42% throughput increase from faster gate processing
-  // - $45 margin per additional truck processed (conservative estimate)
-  // - Source: Based on 50% dwell time reduction enabling more daily throughput
-  const throughputIncrease = 0.42;
-  const valuePerTruck = 45;
-  const throughputValue = trucksPerDay * throughputIncrease * valuePerTruck * 365 * facilities;
+  // PAPERLESS OPERATIONS - PRIMARY VALUE DRIVER
+  // Guaranteed savings: Eliminating 1 BOL per shipment (3 BOLs → 2 BOLs)
+  // $11,900/facility in ink, paper, printing, filing, storage, retrieval
+  // This alone covers the $8,000/facility annual subscription
+  // Source: Customer data, industry benchmarks for paper-based yard operations
+  const guaranteedPaperSavingsPerFacility = 11900;
+  const paperlessSavings = guaranteedPaperSavingsPerFacility * facilities;
 
-  // Paperless savings:
-  // - $15/truck covers: paper BOLs ($3), printing ($2), filing labor ($5), storage ($2), retrieval ($3)
-  // - Source: Industry estimates for paper-based yard check-in processes
-  const paperCostPerTruck = 15;
-  const paperlessSavings = paperCostPerTruck * trucksPerDay * 365 * facilities;
+  // THROUGHPUT GAINS - SECONDARY VALUE DRIVER
+  // 10% additional freight capacity from faster truck turns (50% dwell reduction)
+  // Realistic capacity increase - faster turns don't guarantee 42% more freight
+  // Value: Incremental operating margin on additional volume
+  // Conservative margin: $500/truck on incremental freight
+  // Source: Customer analysis, logistics margin benchmarks
+  const throughputCapacityIncrease = 0.10;  // 10% more freight capacity
+  const incrementalMarginPerTruck = 500;     // Operating margin on additional volume
+  const throughputValue = trucksPerDay * throughputCapacityIncrease * incrementalMarginPerTruck * 365 * facilities;
 
   // Total before network effect
-  const baseSavings = annualDetentionSavings + annualLaborSavings + throughputValue + paperlessSavings;
+  // Order matters for UI display: Paper → Throughput → Labor → Detention
+  const baseSavings = paperlessSavings + throughputValue + annualLaborSavings + annualDetentionSavings;
 
   // Apply network effect
   const networkBonusSavings = baseSavings * (networkMultiplier - 1);

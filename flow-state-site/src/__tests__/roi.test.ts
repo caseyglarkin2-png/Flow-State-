@@ -41,20 +41,22 @@ test('calcRoiV1(default UI inputs) matches expected outputs', () => {
     gateStaffPerFacility: 3,
   });
 
-  // These are hard-coded to lock backward compatibility with the current live calculator.
-  // If you change calcRoiV1, update docs/roi-model-spec.md (in flow-state-site/docs) and these values deliberately.
+  // Updated to reflect new paper-first ROI model:
+  // - Paperless: $11,900/facility guaranteed (was $15/truck)
+  // - Throughput: 10% capacity increase at $500/truck margin (was 42% at $45/truck)
+  // If you change calcRoiV1, update docs/roi-model-spec.md and these values deliberately.
   return (
     approxEqual(out.networkMultiplier, 1.8958797346140275, 1e-9) &&
     approxEqual(out.annualDetentionSavings, 2001796.875, 1e-6) &&
     approxEqual(out.annualLaborSavings, 611519.9999999999, 1e-6) &&
-    approxEqual(out.throughputValue, 5173875, 1e-6) &&
-    approxEqual(out.paperlessSavings, 4106250, 1e-6) &&
-    approxEqual(out.totalAnnualSavings, 22548535.42562236, 1e-6) &&
+    approxEqual(out.throughputValue, 13687500, 1e-6) &&  // 10% throughput at $500/truck
+    approxEqual(out.paperlessSavings, 59500, 1e-6) &&     // $11,900/facility × 5
+    approxEqual(out.totalAnnualSavings, 31017193.215176396, 1e-6) &&
     approxEqual(out.implementationCost, 12500, 1e-6) &&
     approxEqual(out.annualSubscription, 40000, 1e-6) &&
-    approxEqual(out.paybackMonths, 0.006664138610691171, 1e-12) &&
-    approxEqual(out.yearOneRoiPercent, 180068.28340497887, 1e-9) &&
-    approxEqual(out.fiveYearValue, 117130983.90412144, 1e-6)
+    approxEqual(out.paybackMonths, 0.004842272150289968, 1e-12) &&
+    approxEqual(out.yearOneRoiPercent, 247817.54572141118, 1e-9) &&
+    approxEqual(out.fiveYearValue, 161202219.1422575, 1e-6)
   );
 });
 
