@@ -12,12 +12,21 @@ export default function AboutPage() {
 
       <section className="pt-32 pb-16 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
+          {/* Rebrand Notice */}
+          <div className="mb-8 inline-block px-4 py-2 rounded-lg bg-neon/10 border border-neon/30">
+            <p className="text-neon font-mono text-sm">
+              <span className="font-bold">FreightRoll → Flow State</span> · Same team. Sharper product. Bigger vision.
+            </p>
+          </div>
+          
           <h1 className="text-5xl md:text-7xl font-black mb-6">
             About <span className="neon-glow">Flow State</span>
           </h1>
+          <p className="text-xl text-steel max-w-3xl mb-4">
+            We're the team behind FreightRoll, now operating as <span className="text-white font-semibold">Flow State</span>.
+          </p>
           <p className="text-xl text-steel max-w-3xl">
-            Flow State is the next chapter of FreightRoll — built for enterprise networks that need ground-truth,
-            not guesswork.
+            Same obsession with yard orchestration. Expanded into a platform that turns every facility into an intelligent network node.
           </p>
         </div>
       </section>
@@ -25,13 +34,16 @@ export default function AboutPage() {
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
           <Card>
-            <h2 className="text-2xl font-bold text-neon mb-3">Formerly FreightRoll</h2>
-            <p className="text-steel">
-              FreightRoll started as a focus on yard execution and carrier coordination. Flow State expands that into a
-              network model: every facility becomes an intelligent node transmitting real-time operational truth.
+            <h2 className="text-2xl font-bold text-neon mb-3">Why the rebrand?</h2>
+            <p className="text-steel mb-3">
+              <strong className="text-white">FreightRoll</strong> was focused on yard execution and carrier coordination. Great start.
             </p>
-            <p className="text-steel mt-4">
-              Same obsession with the yard. Sharper product. Bigger ambition.
+            <p className="text-steel mb-3">
+              <strong className="text-white">Flow State</strong> is the full platform vision: a network where every facility becomes 
+              an intelligent node, sharing real-time operational truth across your entire logistics footprint.
+            </p>
+            <p className="text-neon font-semibold text-sm">
+              New name. Same team. Bigger ambition.
             </p>
           </Card>
 

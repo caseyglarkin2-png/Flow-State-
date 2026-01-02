@@ -24,8 +24,14 @@ export default function NotFound() {
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-6">
           <Card className="text-center">
+            <div className="mb-6 inline-block px-4 py-2 rounded-lg bg-neon/10 border border-neon/30">
+              <p className="text-neon font-mono text-sm">
+                <span className="font-bold">FreightRoll is now Flow State</span>
+              </p>
+            </div>
             <p className="text-steel mb-6">
-              If you came from an old FreightRoll link, we may have restructured the site.
+              If you came from an old FreightRoll link, we've rebranded to Flow State and restructured the site.
+              Same team, same product — just a bigger vision.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
@@ -33,6 +39,12 @@ export default function NotFound() {
                 className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
               >
                 Go Home
+              </Link>
+              <Link
+                href="/about"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
+              >
+                About the Rebrand
               </Link>
               <Link
                 href="/contact"

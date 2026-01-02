@@ -17,7 +17,8 @@ export default function Footer() {
               </div>
               <span className="font-bold text-neon">FLOW STATE</span>
             </div>
-            <p className="text-steel text-sm">Industrial fluidity. Yard orchestration. Ground source truth.</p>
+            <p className="text-steel text-sm mb-2">Industrial fluidity. Yard orchestration. Ground source truth.</p>
+            <p className="text-steel/60 text-xs italic">Formerly FreightRoll</p>
           </div>
 
           {/* Product */}
