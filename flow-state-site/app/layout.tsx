@@ -28,12 +28,21 @@ export const metadata = {
     url: siteUrl,
     siteName: 'Flow State',
     type: 'website',
+    images: [
+      {
+        url: `${siteUrl}/og.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Flow State - Put your yard in Flow',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Flow State | Put your yard in Flow',
     description:
       'Orchestrate the yard. Eliminate turbulence. Transform your facility from a siloed bottleneck into a network of intelligent nodes.',
+    images: [`${siteUrl}/og.png`],
   },
 };
 

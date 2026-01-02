@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FlowArrow, Ignite, Velocity } from '@/components/icons/FlowIcons';
-import PersonaSelector from '@/components/PersonaSelector';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -55,6 +55,7 @@ export default function Header() {
 
         {/* Right Actions */}
         <div className="flex items-center gap-3">
+          <ThemeToggle className="hidden sm:flex" />
           <button className="hidden sm:block px-4 py-2 text-sm font-semibold text-neon border border-neon rounded-lg hover:bg-neon hover:text-void transition-all">
             Login
           </button>

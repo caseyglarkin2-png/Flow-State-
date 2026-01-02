@@ -238,3 +238,105 @@
     animation: flow-in 0.6s ease-out;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   LIGHT MODE OVERRIDES
+   Applied when .light-mode class is on <html>
+═══════════════════════════════════════════════════════════════ */
+html.light-mode {
+  --color-void: #F8F9FA;
+  --color-carbon: #FFFFFF;
+  --color-steel: #4A5568;
+  
+  body {
+    background-color: #F8F9FA;
+    color: #1A1A1A;
+  }
+  
+  .bg-void {
+    background-color: #F8F9FA;
+  }
+  
+  .bg-carbon {
+    background-color: #FFFFFF;
+  }
+  
+  .bg-carbon\/50 {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .text-white {
+    color: #1A1A1A;
+  }
+  
+  .text-steel {
+    color: #4A5568;
+  }
+  
+  .text-steel\/90 {
+    color: rgba(74, 85, 104, 0.9);
+  }
+  
+  .text-steel\/80 {
+    color: rgba(74, 85, 104, 0.8);
+  }
+  
+  .text-steel\/70 {
+    color: rgba(74, 85, 104, 0.7);
+  }
+  
+  .text-steel\/60 {
+    color: rgba(74, 85, 104, 0.6);
+  }
+  
+  .text-steel\/50 {
+    color: rgba(74, 85, 104, 0.5);
+  }
+  
+  .border-neon\/20 {
+    border-color: rgba(0, 180, 255, 0.3);
+  }
+  
+  .border-steel\/30 {
+    border-color: rgba(74, 85, 104, 0.2);
+  }
+  
+  .border-steel\/20 {
+    border-color: rgba(74, 85, 104, 0.15);
+  }
+  
+  .border-steel\/10 {
+    border-color: rgba(74, 85, 104, 0.1);
+  }
+  
+  .glass-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(74, 85, 104, 0.1);
+  }
+  
+  .glass-card-hover:hover {
+    background: rgba(255, 255, 255, 0.95);
+  }
+  
+  .grid-background {
+    background-image:
+      linear-gradient(rgba(0, 180, 255, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 180, 255, 0.08) 1px, transparent 1px);
+  }
+  
+  /* Neon stays neon for brand consistency */
+  .neon-glow {
+    text-shadow: 0 0 10px rgba(0, 180, 255, 0.4), 0 0 20px rgba(0, 180, 255, 0.2);
+  }
+  
+  /* Cards and inputs */
+  input, select, textarea {
+    background-color: #FFFFFF;
+    border-color: rgba(74, 85, 104, 0.2);
+    color: #1A1A1A;
+  }
+  
+  input::placeholder {
+    color: rgba(74, 85, 104, 0.5);
+  }
+}
