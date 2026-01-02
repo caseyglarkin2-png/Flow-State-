@@ -26,7 +26,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <div className="w-9 h-9 flex items-center justify-center group-hover:scale-110 transition-transform">
-            <Image src="/favicon.svg" alt="Flow State" width={36} height={36} className="w-9 h-9" />
+            <Image src="/logo.svg" alt="Flow State" width={36} height={36} className="w-9 h-9" />
           </div>
           <span className="font-bold text-lg tracking-tight neon-glow-hover">FLOW STATE</span>
         </Link>

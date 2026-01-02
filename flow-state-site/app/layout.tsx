@@ -58,7 +58,7 @@ export default function RootLayout({
         '@type': 'Organization',
         name: 'Flow State',
         url: siteUrl,
-        logo: `${siteUrl}/favicon.svg`,
+        logo: `${siteUrl}/logo.svg`,
       },
       {
         '@type': 'SoftwareApplication',
