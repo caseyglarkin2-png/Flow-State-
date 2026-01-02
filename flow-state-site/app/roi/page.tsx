@@ -367,7 +367,7 @@ export default function ROICalculatorPage() {
 
               <div className="flex items-center justify-between mb-8">
                 <div className="text-sm text-steel">
-                  Mode: <span className="text-white font-semibold">{mode === 'quick' ? 'Quick' : 'Pro'}</span>
+                  Inputs: <span className="text-white font-semibold">{mode === 'quick' ? 'Summary' : 'Assumptions'}</span>
                 </div>
                 <button
                   type="button"
@@ -395,7 +395,7 @@ export default function ROICalculatorPage() {
                   }}
                   className="text-sm px-3 py-2 rounded-lg border border-steel/30 hover:border-neon/40 transition-colors"
                 >
-                  {mode === 'quick' ? 'Switch to Pro Mode' : 'Back to Quick Mode'}
+                  {mode === 'quick' ? 'View assumptions' : 'Back to summary'}
                 </button>
               </div>
               
@@ -606,13 +606,13 @@ export default function ROICalculatorPage() {
                   </>
                 )}
 
-                {/* Pro mode inputs */}
+                {/* Assumptions inputs */}
                 {mode === 'pro' && (
                   <Card className="border-neon/20">
-                    <h3 className="font-bold text-neon mb-4">Pro Mode Assumptions</h3>
+                    <h3 className="font-bold text-neon mb-4">Assumptions</h3>
 
                     <p className="text-xs text-steel/70 mb-4">
-                      Pro mode is spreadsheet-parity and assumption-driven. Defaults are aligned to a reference “Example Customer Opportunity” model;
+                      Assumptions are spreadsheet-parity and input-driven. Defaults are aligned to a reference “Example Customer Opportunity” model;
                       edit inputs to reflect your operation and document your sources.
                     </p>
 
@@ -1510,7 +1510,7 @@ export default function ROICalculatorPage() {
                             <p>• Savings scale with shipment volume</p>
                             <p>• Driven by outbound paperwork reduction (printing + storage)</p>
                             <p>• Assumptions: pages per BOL, BOLs per shipment, and cost per page</p>
-                            <p className="text-steel/60 mt-1">Tune in Pro Mode if you have audited document costs</p>
+                            <p className="text-steel/60 mt-1">Tune in Assumptions if you have audited document costs</p>
                           </div>
                           <div className="p-3 bg-void/50 rounded-lg">
                             <div className="flex items-center gap-2 text-neon font-semibold mb-2">
@@ -1636,7 +1636,7 @@ export default function ROICalculatorPage() {
                     <p className="text-xs text-steel/60 mb-4">
                       {mode === 'quick' 
                         ? 'Based on industry benchmarks for gate automation, detention reduction, and throughput gains.'
-                        : 'Based on your custom assumptions in Pro Mode.'}
+                        : 'Based on your custom assumptions.'}
                     </p>
                     <div className="space-y-3">
                       {[
