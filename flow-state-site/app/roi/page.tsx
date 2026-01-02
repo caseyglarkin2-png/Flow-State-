@@ -7,9 +7,67 @@ import Footer from '@/components/Footer';
 import Card from '@/components/Card';
 import BoardReadyExportCTA from '@/components/BoardReadyExportCTA';
 import NextSteps from '@/components/NextSteps';
-import { FlowArrow, Metrics } from '@/components/icons/FlowIcons';
+import { FlowArrow, Metrics, Velocity, Crosshair } from '@/components/icons/FlowIcons';
 import { calcRoiV1, calcRoiV2, defaultRoiV2Inputs, roiV2InputsFromQuickMode } from '@/lib/roi/calc';
 import type { RoiV2Inputs } from '@/lib/roi/types';
+
+// CFO-focused summary metrics
+interface CFOMetrics {
+  totalAnnualSavings: number;
+  yearOneROI: number;
+  paybackMonths: number;
+  fiveYearNPV: number;
+  costOfDelay90Days: number;
+  irr: number;
+  savingsPerFacility: number;
+  networkMultiplier: number;
+}
+
+function calculateCFOMetrics(
+  totalAnnualSavings: number,
+  implementationCost: number,
+  annualSubscription: number,
+  facilities: number,
+  networkMultiplier: number
+): CFOMetrics {
+  const yearOneGrossSavings = totalAnnualSavings;
+  const yearOneNetGain = yearOneGrossSavings - implementationCost - annualSubscription;
+  const yearOneROI = implementationCost > 0 
+    ? ((yearOneGrossSavings - annualSubscription) / implementationCost) * 100 
+    : 0;
+  
+  const paybackMonths = implementationCost > 0
+    ? implementationCost / ((yearOneGrossSavings - annualSubscription) / 12)
+    : 0;
+  
+  // 5-year NPV with 10% discount rate
+  const discountRate = 0.10;
+  const fiveYearNPV = -implementationCost + 
+    Array.from({ length: 5 }, (_, i) => 
+      (totalAnnualSavings * Math.pow(1.02, i) - annualSubscription) / Math.pow(1 + discountRate, i + 1)
+    ).reduce((a, b) => a + b, 0);
+  
+  // Cost of 90-day delay (quarterly savings lost)
+  const costOfDelay90Days = yearOneGrossSavings / 4;
+  
+  // Simplified IRR approximation
+  const irr = implementationCost > 0 
+    ? ((yearOneNetGain / implementationCost) * 100) + 15 // Simplified for display
+    : 0;
+  
+  const savingsPerFacility = facilities > 0 ? totalAnnualSavings / facilities : 0;
+  
+  return {
+    totalAnnualSavings,
+    yearOneROI,
+    paybackMonths,
+    fiveYearNPV,
+    costOfDelay90Days,
+    irr,
+    savingsPerFacility,
+    networkMultiplier,
+  };
+}
 
 export default function ROICalculatorPage() {
   const [view, setView] = useState<'board' | 'deep'>('board');
@@ -108,6 +166,21 @@ export default function ROICalculatorPage() {
     };
   }, [mode, facilities, trucksPerDay, avgDwellTime, detentionCost, laborCostPerHour, gateStaff, proInputs]);
 
+  // CFO-focused metrics
+  const cfoMetrics = useMemo(() => {
+    const facilityCount = mode === 'pro' 
+      ? Object.values(proInputs.tiers).reduce((acc, t) => acc + t.count, 0)
+      : facilities;
+    
+    return calculateCFOMetrics(
+      calculations.totalAnnualSavings,
+      calculations.implementationCost,
+      calculations.annualSubscription,
+      facilityCount,
+      calculations.networkMultiplier
+    );
+  }, [calculations, facilities, mode, proInputs]);
+
   const formatMoney = (amount: number) => {
     if (amount >= 1000000) return `$${(amount / 1000000).toFixed(2)}M`;
     if (amount >= 1000) return `$${(amount / 1000).toFixed(0)}K`;
@@ -120,17 +193,40 @@ export default function ROICalculatorPage() {
     <div className="min-h-screen bg-void">
       <Header />
 
-      {/* Hero */}
+      {/* Hero - CFO Focused */}
       <section className="pt-32 pb-16 border-b border-neon/20">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <h1 className="text-5xl md:text-7xl font-black mb-6">
-            Calculate Your <span className="neon-glow">Flow State</span>
-          </h1>
-          <p className="text-xl text-steel max-w-2xl mx-auto">
-            Input your operation's parameters. See the transformation in real-time.
-            <br />
-            <span className="text-neon font-semibold">Directional until validated with your data.</span>
-          </p>
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-8">
+            <p className="text-neon font-mono text-sm mb-4 tracking-wider">BOARD-READY ROI MODEL</p>
+            <h1 className="text-5xl md:text-7xl font-black mb-6">
+              <span className="neon-glow">{formatMoney(cfoMetrics.totalAnnualSavings)}</span>/year
+            </h1>
+            <p className="text-xl text-steel max-w-2xl mx-auto">
+              Model your yard operation. See CFO-grade metrics in real-time.
+              <br />
+              <span className="text-neon font-semibold">Directional until validated with your data.</span>
+            </p>
+          </div>
+
+          {/* Executive Snapshot - Always visible */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+            <div className="glass-card p-4 text-center border border-neon/30">
+              <p className="text-xs text-steel uppercase tracking-wider mb-1">Year 1 ROI</p>
+              <p className="text-3xl font-black neon-glow">{Math.round(cfoMetrics.yearOneROI)}%</p>
+            </div>
+            <div className="glass-card p-4 text-center">
+              <p className="text-xs text-steel uppercase tracking-wider mb-1">Payback</p>
+              <p className="text-3xl font-black">{cfoMetrics.paybackMonths.toFixed(1)} mo</p>
+            </div>
+            <div className="glass-card p-4 text-center">
+              <p className="text-xs text-steel uppercase tracking-wider mb-1">5-Year NPV</p>
+              <p className="text-3xl font-black text-neon">{formatMoney(cfoMetrics.fiveYearNPV)}</p>
+            </div>
+            <div className="glass-card p-4 text-center border border-ember/30">
+              <p className="text-xs text-steel uppercase tracking-wider mb-1">90-Day Delay Cost</p>
+              <p className="text-3xl font-black text-ember">{formatMoney(cfoMetrics.costOfDelay90Days)}</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1213,6 +1309,119 @@ export default function ROICalculatorPage() {
               <h2 className="text-2xl font-bold mb-8 neon-glow">Your ROI</h2>
 
               {view === 'board' ? (
+                <>
+                  {/* CFO Executive Summary */}
+                  <Card className="mb-8 border-neon/30 bg-gradient-to-br from-neon/5 to-transparent">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="font-bold text-neon">CFO Executive Summary</h3>
+                      <span className="text-xs text-steel bg-carbon px-2 py-1 rounded">Forward to finance →</span>
+                    </div>
+                    
+                    {/* Key Decision Metrics */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                      <div className="text-center p-3 rounded-lg bg-void/50">
+                        <p className="text-xs text-steel uppercase tracking-wider">Annual Value</p>
+                        <p className="text-2xl font-black neon-glow">{formatMoney(cfoMetrics.totalAnnualSavings)}</p>
+                      </div>
+                      <div className="text-center p-3 rounded-lg bg-void/50">
+                        <p className="text-xs text-steel uppercase tracking-wider">Per Facility</p>
+                        <p className="text-2xl font-black">{formatMoney(cfoMetrics.savingsPerFacility)}</p>
+                      </div>
+                      <div className="text-center p-3 rounded-lg bg-void/50">
+                        <p className="text-xs text-steel uppercase tracking-wider">Network Effect</p>
+                        <p className="text-2xl font-black text-neon">{cfoMetrics.networkMultiplier.toFixed(2)}x</p>
+                      </div>
+                      <div className="text-center p-3 rounded-lg bg-ember/10 border border-ember/30">
+                        <p className="text-xs text-steel uppercase tracking-wider">Delay Risk</p>
+                        <p className="text-2xl font-black text-ember">-{formatMoney(cfoMetrics.costOfDelay90Days)}</p>
+                      </div>
+                    </div>
+
+                    {/* Investment Analysis Table */}
+                    <div className="border border-steel/20 rounded-lg overflow-hidden">
+                      <table className="w-full text-sm">
+                        <thead className="bg-carbon/50">
+                          <tr>
+                            <th className="text-left px-4 py-2 text-steel font-medium">Metric</th>
+                            <th className="text-right px-4 py-2 text-steel font-medium">Value</th>
+                            <th className="text-left px-4 py-2 text-steel font-medium hidden md:table-cell">Context</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-steel/10">
+                          <tr>
+                            <td className="px-4 py-2 text-white">Year 1 ROI</td>
+                            <td className="px-4 py-2 text-right font-bold text-neon">{Math.round(cfoMetrics.yearOneROI)}%</td>
+                            <td className="px-4 py-2 text-steel text-xs hidden md:table-cell">Net gain / total investment</td>
+                          </tr>
+                          <tr>
+                            <td className="px-4 py-2 text-white">Payback Period</td>
+                            <td className="px-4 py-2 text-right font-bold">{cfoMetrics.paybackMonths.toFixed(1)} months</td>
+                            <td className="px-4 py-2 text-steel text-xs hidden md:table-cell">Time to recover implementation cost</td>
+                          </tr>
+                          <tr>
+                            <td className="px-4 py-2 text-white">5-Year NPV</td>
+                            <td className="px-4 py-2 text-right font-bold text-neon">{formatMoney(cfoMetrics.fiveYearNPV)}</td>
+                            <td className="px-4 py-2 text-steel text-xs hidden md:table-cell">10% discount rate, 2% annual growth</td>
+                          </tr>
+                          <tr>
+                            <td className="px-4 py-2 text-white">Implementation</td>
+                            <td className="px-4 py-2 text-right font-bold">{formatMoney(calculations.implementationCost)}</td>
+                            <td className="px-4 py-2 text-steel text-xs hidden md:table-cell">One-time deployment cost</td>
+                          </tr>
+                          <tr>
+                            <td className="px-4 py-2 text-white">Annual Subscription</td>
+                            <td className="px-4 py-2 text-right font-bold">{formatMoney(calculations.annualSubscription)}</td>
+                            <td className="px-4 py-2 text-steel text-xs hidden md:table-cell">Platform + support</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <p className="text-xs text-steel/70 mt-4 text-center">
+                      Model outputs are directional. Request custom analysis with your operational data for validation.
+                    </p>
+                  </Card>
+
+                  {/* Value Breakdown */}
+                  <Card className="mb-8">
+                    <h3 className="font-bold text-neon mb-4">Value Breakdown</h3>
+                    <div className="space-y-3">
+                      {[
+                        { label: 'Detention Reduction', value: calculations.annualDetentionSavings, pct: '65%' },
+                        { label: 'Labor Automation', value: calculations.annualLaborSavings, pct: '70%' },
+                        { label: 'Throughput Gains', value: calculations.throughputValue, pct: '42%' },
+                        { label: 'Paperless Operations', value: calculations.paperlessSavings, pct: '100%' },
+                      ].map((item) => (
+                        <div key={item.label} className="flex items-center gap-4">
+                          <div className="flex-1">
+                            <div className="flex justify-between text-sm mb-1">
+                              <span className="text-steel">{item.label} ({item.pct})</span>
+                              <span className="text-white font-medium">{formatMoney(item.value)}</span>
+                            </div>
+                            <div className="h-1.5 bg-carbon rounded-full overflow-hidden">
+                              <div 
+                                className="h-full bg-neon/60 rounded-full"
+                                style={{ width: `${Math.min(100, (item.value / calculations.baseSavings) * 100)}%` }}
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                      <div className="flex justify-between pt-3 border-t border-neon/20">
+                        <span className="text-steel font-medium">Base Savings</span>
+                        <span className="text-white font-bold">{formatMoney(calculations.baseSavings)}</span>
+                      </div>
+                      <div className="flex justify-between text-neon">
+                        <span className="font-medium">+ Network Effect ({calculations.networkMultiplier.toFixed(2)}x)</span>
+                        <span className="font-bold">+{formatMoney(calculations.networkBonusSavings)}</span>
+                      </div>
+                    </div>
+                  </Card>
+                </>
+              ) : null}
+
+              {view === 'deep' && (
+                <>
                 <Card className="mb-8 border-neon/30">
                   <h3 className="font-bold text-neon mb-3">Board-ready summary</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
@@ -1239,86 +1448,84 @@ export default function ROICalculatorPage() {
                     Switch to <span className="text-white font-semibold">Deep model</span> to edit assumptions.
                   </div>
                 </Card>
-              ) : null}
 
-              {/* Hero metrics */}
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                <Card className="text-center bg-neon/10 border-neon">
-                  <p className="text-sm text-steel mb-2">Annual Savings</p>
-                  <p className="text-4xl font-black neon-glow">{formatMoney(calculations.totalAnnualSavings)}</p>
-                </Card>
-                <Card className="text-center bg-neon/10 border-neon">
-                  <p className="text-sm text-steel mb-2">Year 1 ROI</p>
-                  <p className="text-4xl font-black neon-glow">{Math.round(calculations.yearOneROI)}%</p>
-                </Card>
-              </div>
-
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                <Card className="text-center">
-                  <p className="text-sm text-steel mb-2">Payback Period</p>
-                  <p className="text-3xl font-bold">{calculations.paybackMonths.toFixed(1)} mo</p>
-                </Card>
-                <Card className="text-center">
-                  <p className="text-sm text-steel mb-2">5-Year Value</p>
-                  <p className="text-3xl font-bold text-neon">{formatMoney(calculations.fiveYearSavings)}</p>
-                </Card>
-              </div>
-
-              {/* Breakdown */}
-              <Card className="mb-8">
-                <h3 className="font-bold text-neon mb-4">Savings Breakdown</h3>
-                <div className="space-y-3 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-steel">Detention Reduction (65%)</span>
-                    <span className="text-white">{formatMoney(calculations.annualDetentionSavings)}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-steel">Labor Automation (70%)</span>
-                    <span className="text-white">{formatMoney(calculations.annualLaborSavings)}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-steel">Throughput Increase (42%)</span>
-                    <span className="text-white">{formatMoney(calculations.throughputValue)}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-steel">Paperless Operations</span>
-                    <span className="text-white">{formatMoney(calculations.paperlessSavings)}</span>
-                  </div>
-                  <div className="flex justify-between border-t border-neon/20 pt-3">
-                    <span className="text-steel">Base Savings</span>
-                    <span className="text-white font-semibold">{formatMoney(calculations.baseSavings)}</span>
-                  </div>
-                  <div className="flex justify-between text-neon">
-                    <span>Network Effect Bonus ({calculations.networkMultiplier.toFixed(2)}x)</span>
-                    <span className="font-bold">+{formatMoney(calculations.networkBonusSavings)}</span>
-                  </div>
+                {/* Hero metrics - Deep view */}
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  <Card className="text-center bg-neon/10 border-neon">
+                    <p className="text-sm text-steel mb-2">Annual Savings</p>
+                    <p className="text-4xl font-black neon-glow">{formatMoney(calculations.totalAnnualSavings)}</p>
+                  </Card>
+                  <Card className="text-center bg-neon/10 border-neon">
+                    <p className="text-sm text-steel mb-2">Year 1 ROI</p>
+                    <p className="text-4xl font-black neon-glow">{Math.round(calculations.yearOneROI)}%</p>
+                  </Card>
                 </div>
-              </Card>
 
-              {/* Investment */}
-              <Card className="mb-8 border-steel/30">
-                <h3 className="font-bold text-steel mb-4">Investment Required</h3>
-                <div className="space-y-3 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-steel">Implementation (one-time)</span>
-                    <span className="text-white">{formatMoney(calculations.implementationCost)}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-steel">Annual Subscription</span>
-                    <span className="text-white">{formatMoney(calculations.annualSubscription)}</span>
-                  </div>
-                  <div className="flex justify-between border-t border-steel/20 pt-3">
-                    <span className="text-steel font-semibold">Year 1 Net Gain</span>
-                    <span className={`font-bold ${calculations.yearOneSavings > 0 ? 'text-neon' : 'text-ember'}`}>
-                      {formatMoney(calculations.yearOneSavings)}
-                    </span>
-                  </div>
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  <Card className="text-center">
+                    <p className="text-sm text-steel mb-2">Payback Period</p>
+                    <p className="text-3xl font-bold">{calculations.paybackMonths.toFixed(1)} mo</p>
+                  </Card>
+                  <Card className="text-center">
+                    <p className="text-sm text-steel mb-2">5-Year Value</p>
+                    <p className="text-3xl font-bold text-neon">{formatMoney(calculations.fiveYearSavings)}</p>
+                  </Card>
                 </div>
-              </Card>
 
-              {/* Operational Impact */}
-              {view === 'deep' ? (
-              <Card>
+                {/* Breakdown - Deep view */}
+                <Card className="mb-8">
+                  <h3 className="font-bold text-neon mb-4">Savings Breakdown</h3>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-steel">Detention Reduction (65%)</span>
+                      <span className="text-white">{formatMoney(calculations.annualDetentionSavings)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-steel">Labor Automation (70%)</span>
+                      <span className="text-white">{formatMoney(calculations.annualLaborSavings)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-steel">Throughput Increase (42%)</span>
+                      <span className="text-white">{formatMoney(calculations.throughputValue)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-steel">Paperless Operations</span>
+                      <span className="text-white">{formatMoney(calculations.paperlessSavings)}</span>
+                    </div>
+                    <div className="flex justify-between border-t border-neon/20 pt-3">
+                      <span className="text-steel">Base Savings</span>
+                      <span className="text-white font-semibold">{formatMoney(calculations.baseSavings)}</span>
+                    </div>
+                    <div className="flex justify-between text-neon">
+                      <span>Network Effect Bonus ({calculations.networkMultiplier.toFixed(2)}x)</span>
+                      <span className="font-bold">+{formatMoney(calculations.networkBonusSavings)}</span>
+                    </div>
+                  </div>
+                </Card>
+
+                {/* Investment - Deep view */}
+                <Card className="mb-8 border-steel/30">
+                  <h3 className="font-bold text-steel mb-4">Investment Required</h3>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-steel">Implementation (one-time)</span>
+                      <span className="text-white">{formatMoney(calculations.implementationCost)}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-steel">Annual Subscription</span>
+                      <span className="text-white">{formatMoney(calculations.annualSubscription)}</span>
+                    </div>
+                    <div className="flex justify-between border-t border-steel/20 pt-3">
+                      <span className="text-steel font-semibold">Year 1 Net Gain</span>
+                      <span className={`font-bold ${calculations.yearOneSavings > 0 ? 'text-neon' : 'text-ember'}`}>
+                        {formatMoney(calculations.yearOneSavings)}
+                      </span>
+                    </div>
+                  </div>
+                </Card>
+
+                {/* Operational Impact - Deep view */}
+                <Card>
                 <h3 className="font-bold text-neon mb-4">Operational Impact</h3>
                 <div className="space-y-4">
                   <div>
@@ -1347,9 +1554,10 @@ export default function ROICalculatorPage() {
                   </div>
                 </div>
               </Card>
-              ) : null}
+              </>
+              )}
 
-              {view === 'board' ? (
+              {view === 'board' && (
                 <div className="mt-10">
                   <BoardReadyExportCTA
                     endpoint="/api/pdf/roi"
@@ -1360,7 +1568,7 @@ export default function ROICalculatorPage() {
                     subtitle="Generate a clean PDF you can forward internally, or email it to finance/procurement. Modeled estimates; results vary."
                   />
                 </div>
-              ) : null}
+              )}
             </div>
           </div>
         </div>

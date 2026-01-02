@@ -1,11 +1,26 @@
 import type { Metadata } from 'next';
-import { canonicalUrl, siteName } from '@/lib/site';
+import { canonicalUrl, siteName, siteUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
-  title: `ROI Calculator | ${siteName}`,
-  description: 'Model Flow State ROI across your facility network with transparent pricing and assumptions.',
+  title: 'ROI Calculator - Model Your Yard Savings',
+  description: 'Calculate your yard management ROI. Board-ready metrics: Year 1 ROI, payback period, 5-year NPV, and per-facility savings. Transparent assumptions you can customize.',
+  keywords: ['YMS ROI calculator', 'yard management ROI', 'logistics savings calculator', 'detention cost reduction', 'supply chain ROI'],
   alternates: {
     canonical: canonicalUrl('/roi'),
+  },
+  openGraph: {
+    title: 'ROI Calculator | Flow State',
+    description: 'Model $600K+ annual savings per facility. CFO-ready metrics with transparent assumptions.',
+    url: `${siteUrl}/roi`,
+    type: 'website',
+    images: [
+      {
+        url: `${siteUrl}/og.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Flow State ROI Calculator',
+      },
+    ],
   },
 };
 
