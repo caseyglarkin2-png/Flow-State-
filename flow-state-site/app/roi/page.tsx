@@ -1589,16 +1589,16 @@ export default function ROICalculatorPage() {
                     {/* Key Decision Metrics */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                       <div className="text-center p-3 rounded-lg bg-void/50">
-                        <p className="text-xs text-steel uppercase tracking-wider">Year‑1 Value</p>
-                        <p className="text-2xl font-black neon-glow">{formatMoney(cfoMetrics.yearOneGrossSavings)}</p>
+                        <p className="text-xs text-steel uppercase tracking-wider">Truckloads Unlocked</p>
+                        <p className="text-2xl font-black neon-glow">{formatTruckloads(scenario.capacity.incrementalOutboundTruckloadsPerYear)}/yr</p>
                       </div>
                       <div className="text-center p-3 rounded-lg bg-void/50">
-                        <p className="text-xs text-steel uppercase tracking-wider">Per Facility</p>
-                        <p className="text-2xl font-black">{formatMoney(cfoMetrics.savingsPerFacility)}</p>
+                        <p className="text-xs text-steel uppercase tracking-wider">Profit Impact</p>
+                        <p className="text-2xl font-black">{formatMoney(scenario.capacity.annualProfitImpact)}/yr</p>
                       </div>
                       <div className="text-center p-3 rounded-lg bg-void/50">
-                        <p className="text-xs text-steel uppercase tracking-wider">Network Effect</p>
-                        <p className="text-2xl font-black text-neon">{cfoMetrics.networkMultiplier.toFixed(2)}x</p>
+                        <p className="text-xs text-steel uppercase tracking-wider">Payback</p>
+                        <p className="text-2xl font-black text-neon">{cfoMetrics.paybackMonths.toFixed(1)} mo</p>
                       </div>
                       <div className="text-center p-3 rounded-lg bg-ember/10 border border-ember/30">
                         <p className="text-xs text-steel uppercase tracking-wider">Delay Risk</p>
@@ -1618,14 +1618,14 @@ export default function ROICalculatorPage() {
                         </thead>
                         <tbody className="divide-y divide-steel/10">
                           <tr>
-                            <td className="px-4 py-2 text-white">Year 1 ROI</td>
-                            <td className="px-4 py-2 text-right font-bold text-neon">{Math.round(cfoMetrics.yearOneROI)}%</td>
-                            <td className="px-4 py-2 text-steel text-xs hidden md:table-cell">Net gain / total investment</td>
+                            <td className="px-4 py-2 text-white">Year‑1 Realized Savings</td>
+                            <td className="px-4 py-2 text-right font-bold text-neon">{formatMoney(cfoMetrics.yearOneGrossSavings)}</td>
+                            <td className="px-4 py-2 text-steel text-xs hidden md:table-cell">Ramped value across rollout year</td>
                           </tr>
                           <tr>
-                            <td className="px-4 py-2 text-white">Payback Period</td>
-                            <td className="px-4 py-2 text-right font-bold">{cfoMetrics.paybackMonths.toFixed(1)} months</td>
-                            <td className="px-4 py-2 text-steel text-xs hidden md:table-cell">Time to recover implementation cost</td>
+                            <td className="px-4 py-2 text-white">Year 1 ROI</td>
+                            <td className="px-4 py-2 text-right font-bold">{Math.round(cfoMetrics.yearOneROI)}%</td>
+                            <td className="px-4 py-2 text-steel text-xs hidden md:table-cell">Net gain / total investment</td>
                           </tr>
                           <tr>
                             <td className="px-4 py-2 text-white">5-Year NPV</td>
