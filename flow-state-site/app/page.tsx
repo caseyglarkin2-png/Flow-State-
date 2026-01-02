@@ -4,9 +4,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
-import LaneToggle from '@/components/LaneToggle';
 import RevealMetric from '@/components/RevealMetric';
-import { useLaneStore } from '@/store/lane';
 import {
   Metrics,
   Agent,
@@ -25,8 +23,6 @@ import {
 } from '@/components/icons/FlowIcons';
 
 export default function Home() {
-  const lane = useLaneStore((s) => s.lane);
-
   return (
     <div className="min-h-screen bg-void">
       <Header />
@@ -59,14 +55,6 @@ export default function Home() {
               <Genesis size={24} className="text-void animate-pulse" />
               Apply for Membership
             </a>
-          </div>
-
-          <div className="flex justify-center mb-10 opacity-80 hover:opacity-100 transition-opacity">
-            <LaneToggle />
-          </div>
-
-          <div className="text-sm text-steel/60 mb-10">
-            Micro‑reward: <span className="text-white font-semibold">You’re 20%</span> to a board‑ready ROI story.
           </div>
 
           {/* Isometric Yard Visual */}
@@ -119,57 +107,28 @@ export default function Home() {
       </section>
 
       {/* Brief lane: clarity fast */}
-      {lane === 'brief' ? (
-        <section className="py-16 bg-carbon/50 border-t border-neon/20">
-          <div className="max-w-6xl mx-auto px-6">
-            <h2 className="text-4xl md:text-5xl font-black mb-6 neon-glow">The villain: motion without control.</h2>
-            <p className="text-lg text-steel/90 mb-8 max-w-3xl">
-              Most “visibility” tools show dots moving. They don’t change gate behavior. Flow State closes the loop: it turns
-              timestamps into actions.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <RevealMetric label="Where money hides" value={48} suffix=" min" />
-              <RevealMetric label="Where ops bleeds" value={75} prefix="$" suffix="/hr" />
-              <RevealMetric label="Where execs get stuck" value={260} suffix=" sites" />
-            </div>
-
-            <div className="mt-10">
-              <Card className="border-neon/20">
-                <h3 className="text-2xl font-bold text-neon mb-3">The reveal</h3>
-                <p className="text-steel">
-                  Yard → network of intelligent nodes. Each facility becomes an instrumented edge that standardizes execution
-                  and makes outcomes defensible.
-                </p>
-              </Card>
-            </div>
-          </div>
-        </section>
-      ) : null}
-
-      {/* Deep lane: original long-form content */}
-      <section className={`py-24 bg-carbon/50 border-t border-neon/20 ${lane === 'brief' ? 'hidden' : ''}`}>
+      <section className="py-16 bg-carbon/50 border-t border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-5xl md:text-6xl font-black mb-8 neon-glow">The Supply Chain's Black Hole.</h2>
-          
-          <p className="text-lg md:text-xl text-steel/90 mb-12 leading-relaxed max-w-3xl">
-            Transportation is digitized. Warehousing is automated. But the yard remains a chaotic gap of manual processes and opaque data. This breakdown drives <span className="text-neon font-semibold">"market fat"</span>: billions in wasted fuel, detention fees, and idle assets.
+          <h2 className="text-4xl md:text-5xl font-black mb-6 neon-glow">The villain: motion without control.</h2>
+          <p className="text-lg text-steel/90 mb-8 max-w-3xl">
+            Most “visibility” tools show dots moving. They don’t change gate behavior. Flow State closes the loop: it turns
+            timestamps into actions.
           </p>
 
-          {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {[
-              { stat: '40%', label: 'Driver time spent waiting' },
-              { stat: '$100B', label: 'Annual industry waste' },
-              { stat: '48 Min', label: 'Avg. manual turn time' },
-            ].map((item, i) => (
-              <Card key={i} hover>
-                <div className="text-center">
-                  <p className="text-5xl font-black neon-glow mb-3">{item.stat}</p>
-                  <p className="text-steel/80">{item.label}</p>
-                </div>
-              </Card>
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <RevealMetric label="Where money hides" value={48} suffix=" min" />
+            <RevealMetric label="Where ops bleeds" value={75} prefix="$" suffix="/hr" />
+            <RevealMetric label="Where execs get stuck" value={260} suffix=" sites" />
+          </div>
+
+          <div className="mt-10">
+            <Card className="border-neon/20">
+              <h3 className="text-2xl font-bold text-neon mb-3">The reveal</h3>
+              <p className="text-steel">
+                Yard → network of intelligent nodes. Each facility becomes an instrumented edge that standardizes execution
+                and makes outcomes defensible.
+              </p>
+            </Card>
           </div>
         </div>
       </section>

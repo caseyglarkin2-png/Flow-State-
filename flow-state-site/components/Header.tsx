@@ -51,7 +51,6 @@ export default function Header() {
           <Link href="/roi" className="text-sm text-steel hover:text-neon transition-colors">
             ROI Calculator
           </Link>
-          <PersonaSelector className="ml-2" />
         </div>
 
         {/* Right Actions */}
@@ -84,9 +83,6 @@ export default function Header() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-carbon border-t border-neon/20 py-4 px-6 space-y-4">
-          <div>
-            <PersonaSelector />
-          </div>
           <Link href="/product" className="block text-steel hover:text-neon transition-colors">Product</Link>
           <Link href="/solutions" className="block text-steel hover:text-neon transition-colors">Solutions</Link>
           <Link href="/pricing" className="block text-steel hover:text-neon transition-colors">Pricing</Link>
