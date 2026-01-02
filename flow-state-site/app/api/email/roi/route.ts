@@ -109,7 +109,7 @@ export async function POST(req: Request) {
   });
 
   // Internal notification + CRM webhook.
-  const leadTo = process.env.LEADS_TO_EMAIL || 'founding@flow-state.ai';
+  const leadTo = process.env.LEADS_TO_EMAIL || 'casey@freightroll.com';
   const subjectInternal = `[Flow State] ROI PDF emailed — ${body.lead.company}`;
   const textInternal = [
     'An ROI PDF was emailed.',

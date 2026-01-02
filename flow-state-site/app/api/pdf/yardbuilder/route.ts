@@ -86,7 +86,7 @@ export async function POST(req: Request) {
 
   const pdf = await renderPdfToBuffer(React.createElement(YardReadinessPdf, { payload }));
 
-  const leadTo = process.env.LEADS_TO_EMAIL || 'founding@flow-state.ai';
+  const leadTo = process.env.LEADS_TO_EMAIL || 'casey@freightroll.com';
   const subject = `[Flow State] YardBuilder report generated — ${payload.inputs.company}`;
   const text = [
     'A YardBuilder PDF was generated.',

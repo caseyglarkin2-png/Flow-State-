@@ -48,7 +48,7 @@ export async function handleLeadPost(req: Request) {
     return NextResponse.json({ ok: false, message: 'Captcha failed. Please retry.' }, { status: 400 });
   }
 
-  const leadTo = process.env.LEADS_TO_EMAIL || 'founding@flow-state.ai';
+  const leadTo = process.env.LEADS_TO_EMAIL || 'casey@freightroll.com';
 
   const subject = `[Flow State] ${payload.leadType.toUpperCase()} lead — ${payload.company}`;
   const text = [

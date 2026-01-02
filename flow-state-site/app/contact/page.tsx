@@ -63,8 +63,8 @@ function ContactContent() {
               </a>
               <p className="text-xs text-steel/70 mt-3">
                 If you’re behind a firewall, email{' '}
-                <a className="text-neon hover:underline" href="mailto:founding@flow-state.ai">
-                  founding@flow-state.ai
+                <a className="text-neon hover:underline" href="mailto:casey@freightroll.com">
+                  casey@freightroll.com
                 </a>
                 .
               </p>

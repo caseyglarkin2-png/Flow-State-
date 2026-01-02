@@ -209,8 +209,8 @@ export default function LeadForm({ leadType, title, subtitle }: LeadFormProps) {
           </p>
           <p className="text-xs text-steel/70">
             Please email us directly at{' '}
-            <a href="mailto:founding@flow-state.ai" className="text-neon hover:underline font-semibold">
-              founding@flow-state.ai
+            <a href="mailto:casey@freightroll.com" className="text-neon hover:underline font-semibold">
+              casey@freightroll.com
             </a>
           </p>
         </div>

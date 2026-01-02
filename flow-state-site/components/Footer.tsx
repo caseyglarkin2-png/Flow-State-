@@ -65,7 +65,7 @@ export default function Footer() {
         <div className="border-t border-neon/10 pt-8 flex items-center justify-between text-sm text-steel">
           <p>&copy; 2026 Flow State. All rights reserved.</p>
           <div className="flex gap-4">
-            <a href="mailto:founding@flow-state.ai" className="hover:text-neon transition-colors">Email</a>
+            <a href="mailto:casey@freightroll.com" className="hover:text-neon transition-colors">Email</a>
             <Link href="/pricing" className="hover:text-neon transition-colors">Pricing</Link>
           </div>
         </div>
