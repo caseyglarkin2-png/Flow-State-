@@ -72,12 +72,27 @@ function calculateCFOMetrics(
 export default function ROICalculatorPage() {
   const [view, setView] = useState<'board' | 'deep'>('board');
   const [mode, setMode] = useState<'quick' | 'pro'>('quick');
-  const [facilities, setFacilities] = useState(5);
-  const [trucksPerDay, setTrucksPerDay] = useState(150);
-  const [avgDwellTime, setAvgDwellTime] = useState(48);
+  const [facilities, setFacilities] = useState(1);
+  const [trucksPerDay, setTrucksPerDay] = useState(100);
+  const [avgDwellTime, setAvgDwellTime] = useState(45);
   const [detentionCost, setDetentionCost] = useState(75);
   const [laborCostPerHour, setLaborCostPerHour] = useState(28);
-  const [gateStaff, setGateStaff] = useState(3);
+  const [gateStaff, setGateStaff] = useState(2);
+
+  // Scenario presets for quick modeling
+  const scenarios = {
+    pilot: { facilities: 1, trucksPerDay: 100, avgDwellTime: 45, gateStaff: 2, label: 'Single Site Pilot' },
+    regional: { facilities: 10, trucksPerDay: 120, avgDwellTime: 50, gateStaff: 3, label: 'Regional (10 sites)' },
+    enterprise: { facilities: 50, trucksPerDay: 150, avgDwellTime: 55, gateStaff: 4, label: 'Enterprise (50 sites)' },
+  };
+
+  const applyScenario = (key: keyof typeof scenarios) => {
+    const s = scenarios[key];
+    setFacilities(s.facilities);
+    setTrucksPerDay(s.trucksPerDay);
+    setAvgDwellTime(s.avgDwellTime);
+    setGateStaff(s.gateStaff);
+  };
 
   const [proInputs, setProInputs] = useState<RoiV2Inputs>(() => defaultRoiV2Inputs());
 
@@ -197,12 +212,16 @@ export default function ROICalculatorPage() {
       <section className="pt-32 pb-16 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-8">
-            <p className="text-neon font-mono text-sm mb-4 tracking-wider">BOARD-READY ROI MODEL</p>
+            <p className="text-neon font-mono text-sm mb-4 tracking-wider">
+              {facilities === 1 ? 'SINGLE-SITE PILOT MODEL' : `${facilities}-SITE NETWORK MODEL`}
+            </p>
             <h1 className="text-5xl md:text-7xl font-black mb-6">
               <span className="neon-glow">{formatMoney(cfoMetrics.totalAnnualSavings)}</span>/year
             </h1>
             <p className="text-xl text-steel max-w-2xl mx-auto">
-              Model your yard operation. See CFO-grade metrics in real-time.
+              {facilities === 1 
+                ? "Single-site savings from automation. Scale to see network effects."
+                : `Total projected savings across ${facilities} connected facilities.`}
               <br />
               <span className="text-neon font-semibold">Directional until validated with your data.</span>
             </p>
@@ -268,7 +287,12 @@ export default function ROICalculatorPage() {
             {/* Inputs */}
             {view === 'deep' ? (
             <div>
-              <h2 className="text-2xl font-bold mb-8 neon-glow">Your Operation</h2>
+              <h2 className="text-2xl font-bold mb-4 neon-glow">Your Operation</h2>
+              <p className="text-sm text-steel mb-8">
+                {facilities === 1 
+                  ? "Model a single-site pilot. Network benefits unlock at 2+ facilities."
+                  : `Modeling ${facilities} connected facilities. Network value compounds with scale.`}
+              </p>
 
               <div className="flex items-center justify-between mb-8">
                 <div className="text-sm text-steel">
@@ -303,6 +327,26 @@ export default function ROICalculatorPage() {
               <div className="space-y-8">
                 {mode === 'quick' && (
                   <>
+                    {/* Scenario Presets */}
+                    <div className="mb-6">
+                      <label className="block text-steel mb-3">Start with a scenario:</label>
+                      <div className="flex flex-wrap gap-2">
+                        {Object.entries(scenarios).map(([key, s]) => (
+                          <button
+                            key={key}
+                            onClick={() => applyScenario(key as keyof typeof scenarios)}
+                            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                              facilities === s.facilities
+                                ? 'bg-neon/20 border border-neon text-neon'
+                                : 'bg-night-light border border-steel/30 text-steel hover:border-neon/50 hover:text-white'
+                            }`}
+                          >
+                            {s.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
                     {/* Facilities */}
                     <div>
                       <label className="flex justify-between mb-3">
@@ -1449,11 +1493,35 @@ export default function ROICalculatorPage() {
                       <h3 className="font-bold text-neon">Network Effect Value</h3>
                       <span className="text-2xl font-black text-neon">+{formatMoney(calculations.networkBonusSavings)}</span>
                     </div>
-                    <p className="text-sm text-steel/80 mb-6">
-                      Connected facilities share data, patterns, and intelligence. Here's where that value comes from:
-                    </p>
                     
-                    {calculations.v2?.networkEffectBreakdown && (
+                    {facilities === 1 ? (
+                      /* Single facility - explain network effect as future opportunity */
+                      <div className="p-4 rounded-lg bg-void/50 border border-steel/20">
+                        <div className="flex items-start gap-3">
+                          <span className="text-2xl">🚀</span>
+                          <div>
+                            <p className="text-white font-semibold mb-2">Network Effect: Unlocked at Scale</p>
+                            <p className="text-sm text-steel/80">
+                              Single-site pilots capture core automation savings. Network effects—predictive intelligence, 
+                              carrier benchmarking, coordination efficiency—activate when you expand to 2+ sites.
+                            </p>
+                            <button
+                              onClick={() => applyScenario('regional')}
+                              className="mt-3 text-sm text-neon hover:underline"
+                            >
+                              → Model a 10-site regional deployment
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      /* Multi-facility - show full network breakdown */
+                      <>
+                        <p className="text-sm text-steel/80 mb-6">
+                          {facilities} connected facilities share data, patterns, and intelligence. Here's where that value comes from:
+                        </p>
+                        
+                        {calculations.v2?.networkEffectBreakdown && (
                       <div className="space-y-4">
                         {/* Predictive Intelligence */}
                         <div className="p-4 rounded-lg bg-void/50 border border-steel/10">
@@ -1569,6 +1637,8 @@ export default function ROICalculatorPage() {
                         <span className="font-medium">Network Effect ({calculations.networkMultiplier.toFixed(2)}x)</span>
                         <span className="font-bold">+{formatMoney(calculations.networkBonusSavings)}</span>
                       </div>
+                    )}
+                      </>
                     )}
                   </Card>
                 </>
