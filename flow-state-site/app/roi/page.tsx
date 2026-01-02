@@ -242,6 +242,8 @@ export default function ROICalculatorPage() {
     });
   }, [inputsForPdf]);
 
+  const profitPerTruckload = Math.max(0, inputsForPdf.throughput.incrementalMarginPerTruck);
+
   const cfoMetrics = useMemo(() => {
     const facilityCount = mode === 'pro'
       ? Object.values(proInputs.tiers).reduce((acc, t) => acc + t.count, 0)
@@ -295,6 +297,11 @@ export default function ROICalculatorPage() {
             <p className="text-xl text-steel max-w-2xl mx-auto">
               Profit impact: <span className="text-white font-semibold">{formatMoney(scenario.capacity.annualProfitImpact)}</span>/year.
               <br />
+              <span className="text-sm text-steel/80">
+                Calculated as {formatTruckloads(scenario.capacity.incrementalOutboundTruckloadsPerYear)} incremental outbound truckloads ×{' '}
+                {formatMoney(profitPerTruckload)}/truckload contribution margin.
+              </span>
+              <br />
               <span className="text-neon font-semibold">Directional until validated with your data.</span>
             </p>
           </div>
@@ -304,6 +311,9 @@ export default function ROICalculatorPage() {
             <div className="glass-card p-4 text-center border border-neon/30">
               <p className="text-xs text-steel uppercase tracking-wider mb-1">Profit Impact</p>
               <p className="text-3xl font-black neon-glow">{formatMoney(scenario.capacity.annualProfitImpact)}</p>
+              <p className="text-xs text-steel/70 mt-1">
+                {formatMoney(profitPerTruckload)}/truckload × {formatTruckloads(scenario.capacity.incrementalOutboundTruckloadsPerYear)} truckloads
+              </p>
             </div>
             <div className="glass-card p-4 text-center">
               <p className="text-xs text-steel uppercase tracking-wider mb-1">Year‑1 Realized Savings</p>
@@ -1595,6 +1605,9 @@ export default function ROICalculatorPage() {
                       <div className="text-center p-3 rounded-lg bg-void/50">
                         <p className="text-xs text-steel uppercase tracking-wider">Profit Impact</p>
                         <p className="text-2xl font-black">{formatMoney(scenario.capacity.annualProfitImpact)}/yr</p>
+                        <p className="text-xs text-steel/70 mt-1">
+                          {formatMoney(profitPerTruckload)}/truckload × {formatTruckloads(scenario.capacity.incrementalOutboundTruckloadsPerYear)}
+                        </p>
                       </div>
                       <div className="text-center p-3 rounded-lg bg-void/50">
                         <p className="text-xs text-steel uppercase tracking-wider">Payback</p>
