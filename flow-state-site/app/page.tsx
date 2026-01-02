@@ -20,9 +20,11 @@ import {
 } from '@/components/icons/FlowIcons';
 
 export default function Home() {
+  // Match ROI calculator defaults: 50 facilities, 5% Year-1 rollout ramp
+  // This ensures homepage KPIs match what users see when they click "Build Your Model"
   const cfoBaseline = calcRoiV2({
     ...getRoiV2InputsForPreset('enterprise_50', 'expected'),
-    yearOneRampShare: 0.5,
+    yearOneRampShare: 0.05,
   });
 
   return (
@@ -375,10 +377,10 @@ export default function Home() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
             {[
-              { metric: `${Math.round(cfoBaseline.yearOneRoiPercent)}%`, label: 'Avg Year 1 ROI', icon: <FlowArrow size={24} /> },
+              { metric: `${Math.round(cfoBaseline.yearOneRoiPercent)}%`, label: 'Year‑1 ROI (5% Rollout)', icon: <FlowArrow size={24} /> },
               { metric: cfoBaseline.paybackMonths.toFixed(1), label: 'Month Payback', icon: <Timeline size={24} />, suffix: 'mo' },
-              { metric: '65%', label: 'Detention Cut', icon: <Crosshair size={24} /> },
-              { metric: '70%', label: 'Gate Labor Saved', icon: <Agent size={24} /> },
+              { metric: '65%', label: 'Detention Reduction', icon: <Crosshair size={24} /> },
+              { metric: '70%', label: 'Gate Labor Savings', icon: <Agent size={24} /> },
             ].map((item, i) => (
               <Card key={i} className="text-center p-6">
                 <div className="flex justify-center mb-3 text-neon">{item.icon}</div>
