@@ -9,37 +9,26 @@ import Card from '@/components/Card';
 import NextSteps from '@/components/NextSteps';
 import { trackEvent } from '@/lib/analytics';
 import { ROUTES, DEFINITIONS } from '@/content/config';
+import { calcScenario, getQuickInputsForPreset, roiV2InputsFromQuickMode, money as formatMoney } from '@/lib/economics';
 
 type Scenario = 'conservative' | 'expected' | 'aggressive';
 
 type NetworkModelAssumptions = {
-  logFactor: number;
   yearOneRampShare: number;
-  baseSavingsPerFacility: number;
 };
-
-function formatMoney(amount: number) {
-  const abs = Math.abs(amount);
-  if (abs >= 1_000_000_000) return `$${(amount / 1_000_000_000).toFixed(2)}B`;
-  if (abs >= 1_000_000) return `$${(amount / 1_000_000).toFixed(2)}M`;
-  if (abs >= 1_000) return `$${(amount / 1_000).toFixed(1)}K`;
-  return `$${Math.round(amount)}`;
-}
 
 function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n));
 }
 
 function getAssumptions(scenario: Scenario): NetworkModelAssumptions {
-  // Modeled assumptions. Not customer claims.
-  // We keep the multiplier formula consistent with ROI v2: 1 + ln(facilities+1) * logFactor.
   if (scenario === 'conservative') {
-    return { logFactor: 0.25, yearOneRampShare: 0.55, baseSavingsPerFacility: 350_000 };
+    return { yearOneRampShare: 0.55 };
   }
   if (scenario === 'aggressive') {
-    return { logFactor: 0.55, yearOneRampShare: 0.8, baseSavingsPerFacility: 650_000 };
+    return { yearOneRampShare: 0.8 };
   }
-  return { logFactor: 0.4, yearOneRampShare: 0.7, baseSavingsPerFacility: 500_000 };
+  return { yearOneRampShare: 0.7 };
 }
 
 function networkMultiplier(facilities: number, logFactor: number): number {
@@ -52,7 +41,13 @@ function buildCurvePoints(logFactor: number) {
   return xs.map((x) => ({ x, y: networkMultiplier(x, logFactor) }));
 }
 
-function AssumptionsDrawer({ scenario, assumptions }: { scenario: Scenario; assumptions: NetworkModelAssumptions }) {
+function AssumptionsDrawer({
+  scenario,
+  assumptions,
+}: {
+  scenario: Scenario;
+  assumptions: NetworkModelAssumptions & { logFactor: number; baseSavingsPerFacility: number };
+}) {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
@@ -108,7 +103,7 @@ function AssumptionsDrawer({ scenario, assumptions }: { scenario: Scenario; assu
                 </div>
               </div>
               <p className="text-xs text-steel/70 mt-4">
-                Base savings are a planning placeholder here. Your ROI page uses your inputs to compute base savings.
+                Base savings / facility is computed from the same ROI engine used on /roi (steady-state base savings, before network bonus).
               </p>
             </div>
 
@@ -223,16 +218,58 @@ export default function NetworkEffectPage() {
 
   const modeled = useMemo(() => {
     const f = clamp(Math.floor(facilities), 1, 500);
-    const mult = networkMultiplier(f, assumptions.logFactor);
-    const base = assumptions.baseSavingsPerFacility * f;
-    const networkBonus = base * (mult - 1);
-    const total = base + networkBonus;
-    const yearOne = total * assumptions.yearOneRampShare;
-    const oppCostStopAt1 = (assumptions.baseSavingsPerFacility * 1) * (networkMultiplier(1, assumptions.logFactor) - 1);
+    const econMode = scenario === 'aggressive' ? 'upside' : scenario;
+    const quick = getQuickInputsForPreset('enterprise_50', econMode);
+    const roiInputs = {
+      ...roiV2InputsFromQuickMode({ ...quick, facilities: f }),
+      contractedFacilities: f,
+      yearOneRampShare: assumptions.yearOneRampShare,
+    };
+
+    const out = calcScenario({
+      roi: roiInputs,
+      profit: {
+        method: 'contribution_margin',
+        contributionMarginPerTruckload: roiInputs.throughput.incrementalMarginPerTruck,
+        outsourcedCostPerTruckload: 0,
+        internalVariableCostPerTruckload: 0,
+      },
+      discountRate: 0.1,
+      growthRate: 0.02,
+    });
+
+    const roiAt1Inputs = {
+      ...roiV2InputsFromQuickMode({ ...quick, facilities: 1 }),
+      contractedFacilities: 1,
+      yearOneRampShare: assumptions.yearOneRampShare,
+    };
+
+    const outAt1 = calcScenario({
+      roi: roiAt1Inputs,
+      profit: {
+        method: 'contribution_margin',
+        contributionMarginPerTruckload: roiAt1Inputs.throughput.incrementalMarginPerTruck,
+        outsourcedCostPerTruckload: 0,
+        internalVariableCostPerTruckload: 0,
+      },
+      discountRate: 0.1,
+      growthRate: 0.02,
+    });
+
+    const mult = out.roi.networkMultiplier;
+    const base = out.roi.baseSavings;
+    const networkBonus = out.roi.networkBonusSavings;
+    const total = out.roi.totalAnnualSavings;
+    const yearOne = out.roi.yearOneGrossSavings;
+    const oppCostStopAt1 = outAt1.roi.networkBonusSavings;
+    const baseSavingsPerFacility = f > 0 ? base / f : 0;
+    const logFactor = out.roi.assumptionsUsed.network.logFactor;
 
     return {
       f,
       mult,
+      logFactor,
+      baseSavingsPerFacility,
       base,
       networkBonus,
       total,
@@ -241,7 +278,7 @@ export default function NetworkEffectPage() {
     };
   }, [assumptions, facilities]);
 
-  const curvePoints = useMemo(() => buildCurvePoints(assumptions.logFactor), [assumptions.logFactor]);
+  const curvePoints = useMemo(() => buildCurvePoints(modeled.logFactor), [modeled.logFactor]);
 
   function onScenario(next: Scenario) {
     setScenario(next);
@@ -289,7 +326,14 @@ export default function NetworkEffectPage() {
             >
               Get rollout plan
             </Link>
-            <AssumptionsDrawer scenario={scenario} assumptions={assumptions} />
+            <AssumptionsDrawer
+              scenario={scenario}
+              assumptions={{
+                ...assumptions,
+                logFactor: modeled.logFactor,
+                baseSavingsPerFacility: modeled.baseSavingsPerFacility,
+              }}
+            />
           </div>
         </div>
       </section>
@@ -313,10 +357,10 @@ export default function NetworkEffectPage() {
               Stopping at a single site leaves the network bonus near zero — because the playbook can’t compound.
             </p>
             <div className="mt-5 rounded-lg border border-neon/10 bg-carbon/40 p-4">
-              <div className="text-sm text-steel">Network bonus at 1 facility (placeholder)</div>
+              <div className="text-sm text-steel">Network bonus at 1 facility</div>
               <div className="text-3xl font-black neon-glow">{formatMoney(modeled.oppCostStopAt1)} / year</div>
               <div className="text-xs text-steel/70 mt-2">
-                Modeled with the multiplier curve only. Your ROI page uses your operational inputs.
+                Computed from the same ROI engine used on /roi, using this page’s per-facility assumptions.
               </div>
             </div>
           </Card>
@@ -390,13 +434,13 @@ export default function NetworkEffectPage() {
                   </div>
                 </div>
                 <div className="rounded-lg border border-neon/10 bg-carbon/40 p-4">
-                  <div className="text-sm text-steel">Year‑1 realized value (placeholder)</div>
+                  <div className="text-sm text-steel">Year‑1 realized value</div>
                   <div className="text-3xl font-black neon-glow">{formatMoney(modeled.yearOne)}</div>
                 </div>
               </div>
 
               <p className="text-xs text-steel/70 mt-4">
-                Placeholder economics are here to explain compounding. Use /roi for your real base savings.
+                This page uses the same ROI engine as /roi, with scenario presets for fast planning.
               </p>
             </Card>
 

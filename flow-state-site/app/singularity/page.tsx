@@ -6,6 +6,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import Card from '@/components/Card';
+import { calcScenario, getQuickInputsForPreset, roiV2InputsFromQuickMode, money as formatMoney } from '@/lib/economics';
 import {
   Caution,
   FlowArrow,
@@ -209,6 +210,71 @@ export default function SingularityPage() {
   const [showROI, setShowROI] = useState(false);
   const [packets, setPackets] = useState<DataPacket[]>([]);
 
+  const modeled = useMemo(() => {
+    const f = Math.max(0, Math.min(TOTAL_FACILITIES, Math.floor(activeFacilities)));
+    if (f <= 0) {
+      return {
+        facilities: 0,
+        annualLaborSavings: 0,
+        paperlessSavings: 0,
+        annualDetentionSavings: 0,
+        throughputValue: 0,
+        baseSavings: 0,
+        networkMultiplier: 1,
+        networkBonusSavings: 0,
+        totalAnnualSavings: 0,
+        logFactor: 0,
+        examples: {
+          m1: 1,
+          m10: 1,
+          m25: 1,
+          m32: 1,
+        },
+      };
+    }
+
+    const quick = getQuickInputsForPreset('enterprise_50', 'expected');
+    const roiInputs = {
+      ...roiV2InputsFromQuickMode({ ...quick, facilities: f }),
+      contractedFacilities: f,
+      yearOneRampShare: 0.5,
+    };
+
+    const out = calcScenario({
+      roi: roiInputs,
+      profit: {
+        method: 'contribution_margin',
+        contributionMarginPerTruckload: roiInputs.throughput.incrementalMarginPerTruck,
+        outsourcedCostPerTruckload: 0,
+        internalVariableCostPerTruckload: 0,
+      },
+      discountRate: 0.1,
+      growthRate: 0.02,
+    });
+
+    const logFactor = out.roi.assumptionsUsed.network.logFactor;
+    const m = (n: number) => 1 + Math.log(Math.max(0, Math.floor(n)) + 1) * Math.max(0, logFactor);
+
+    return {
+      facilities: f,
+      annualLaborSavings: out.roi.annualLaborSavings,
+      paperlessSavings: out.roi.paperlessSavings,
+      annualDetentionSavings: out.roi.annualDetentionSavings,
+      throughputValue: out.roi.throughputValue,
+      baseSavings: out.roi.baseSavings,
+      networkMultiplier: out.roi.networkMultiplier,
+      networkBonusSavings: out.roi.networkBonusSavings,
+      totalAnnualSavings: out.roi.totalAnnualSavings,
+      logFactor,
+      examples: {
+        m1: m(1),
+        m10: m(10),
+        m25: m(25),
+        m32: m(32),
+      },
+    };
+  }, [activeFacilities]);
+
   // Start the singularity simulation - optimized
   const startSimulation = useCallback(() => {
     setIsSimulating(true);
@@ -310,12 +376,6 @@ export default function SingularityPage() {
     setPackets([]);
   }, []);
 
-  const formatMoney = (amount: number) => {
-    if (amount >= 1000000) return `$${(amount / 1000000).toFixed(2)}M`;
-    if (amount >= 1000) return `$${(amount / 1000).toFixed(1)}K`;
-    return `$${amount}`;
-  };
-
   return (
     <div className="min-h-screen bg-void">
       <Header />
@@ -386,8 +446,9 @@ export default function SingularityPage() {
               <p className="text-3xl md:text-4xl font-black neon-glow">{activeFacilities}/{TOTAL_FACILITIES}</p>
             </Card>
             <Card className="text-center">
-              <p className="text-sm text-steel mb-1">Live Savings</p>
+              <p className="text-sm text-steel mb-1">Simulated Savings</p>
               <p className="text-3xl md:text-4xl font-black text-neon">{formatMoney(totalSavings)}</p>
+              <p className="text-xs text-steel/70 mt-1">Illustrative animation (not a forecast)</p>
             </Card>
             <Card className="text-center">
               <p className="text-sm text-steel mb-1">Trucks Processed</p>
@@ -428,38 +489,40 @@ export default function SingularityPage() {
                 <div>
                   <h4 className="font-semibold text-neon mb-3">Per-Site Savings</h4>
                   <ul className="space-y-2 text-sm text-steel">
-                    <li className="flex justify-between"><span>Gate automation</span><span className="text-white">$127K/yr</span></li>
-                    <li className="flex justify-between"><span>Paperless BOL</span><span className="text-white">$89K/yr</span></li>
-                    <li className="flex justify-between"><span>Detention reduction</span><span className="text-white">$234K/yr</span></li>
-                    <li className="flex justify-between"><span>Labor optimization</span><span className="text-white">$156K/yr</span></li>
+                    <li className="flex justify-between"><span>Labor</span><span className="text-white">{formatMoney(modeled.facilities > 0 ? modeled.annualLaborSavings / modeled.facilities : 0)}/yr</span></li>
+                    <li className="flex justify-between"><span>Paperless</span><span className="text-white">{formatMoney(modeled.facilities > 0 ? modeled.paperlessSavings / modeled.facilities : 0)}/yr</span></li>
+                    <li className="flex justify-between"><span>Detention</span><span className="text-white">{formatMoney(modeled.facilities > 0 ? modeled.annualDetentionSavings / modeled.facilities : 0)}/yr</span></li>
+                    <li className="flex justify-between"><span>Throughput</span><span className="text-white">{formatMoney(modeled.facilities > 0 ? modeled.throughputValue / modeled.facilities : 0)}/yr</span></li>
                     <li className="flex justify-between border-t border-neon/20 pt-2 mt-2">
                       <span className="font-bold">Total per site</span>
-                      <span className="text-neon font-bold">$606K/yr</span>
+                      <span className="text-neon font-bold">{formatMoney(modeled.facilities > 0 ? modeled.baseSavings / modeled.facilities : 0)}/yr</span>
                     </li>
                   </ul>
+                  <p className="text-xs text-steel/70 mt-3">Computed from the same ROI engine used on /roi.</p>
                 </div>
                 <div>
                   <h4 className="font-semibold text-neon mb-3">Network Multiplier</h4>
                   <ul className="space-y-2 text-sm text-steel">
-                    <li className="flex justify-between"><span>1 site</span><span className="text-white">1.0x</span></li>
-                    <li className="flex justify-between"><span>10 sites</span><span className="text-white">2.5x</span></li>
-                    <li className="flex justify-between"><span>25 sites</span><span className="text-white">4.8x</span></li>
+                    <li className="flex justify-between"><span>1 site</span><span className="text-white">{modeled.examples.m1.toFixed(1)}x</span></li>
+                    <li className="flex justify-between"><span>10 sites</span><span className="text-white">{modeled.examples.m10.toFixed(1)}x</span></li>
+                    <li className="flex justify-between"><span>25 sites</span><span className="text-white">{modeled.examples.m25.toFixed(1)}x</span></li>
                     <li className="flex justify-between border-t border-neon/20 pt-2 mt-2">
                       <span className="font-bold">32 sites</span>
-                      <span className="text-neon font-bold">5.8x</span>
+                      <span className="text-neon font-bold">{modeled.examples.m32.toFixed(1)}x</span>
                     </li>
                   </ul>
                 </div>
                 <div>
                   <h4 className="font-semibold text-neon mb-3">32-Site Network</h4>
                   <ul className="space-y-2 text-sm text-steel">
-                    <li className="flex justify-between"><span>Base savings</span><span className="text-white">$19.4M/yr</span></li>
-                    <li className="flex justify-between"><span>Network effect (5.8x)</span><span className="text-white">+$93.1M/yr</span></li>
+                    <li className="flex justify-between"><span>Base savings</span><span className="text-white">{formatMoney(modeled.baseSavings)}/yr</span></li>
+                    <li className="flex justify-between"><span>Network effect ({modeled.networkMultiplier.toFixed(1)}x)</span><span className="text-white">+{formatMoney(modeled.networkBonusSavings)}/yr</span></li>
                     <li className="flex justify-between border-t border-neon/20 pt-2 mt-2">
                       <span className="font-bold">Total annual</span>
-                      <span className="text-neon font-bold">$112.5M/yr</span>
+                      <span className="text-neon font-bold">{formatMoney(modeled.totalAnnualSavings)}/yr</span>
                     </li>
                   </ul>
+                  <p className="text-xs text-steel/70 mt-3">Values update as sites come online.</p>
                 </div>
               </div>
             </div>
