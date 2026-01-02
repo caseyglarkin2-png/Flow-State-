@@ -2005,7 +2005,13 @@ export default function ROICalculatorPage() {
                   <div>
                     <div className="flex justify-between text-sm mb-1">
                       <span className="text-steel">Dwell Time Reduction</span>
-                      <span className="text-white inline-flex items-center gap-1">{avgDwellTime} min <FlowArrow size={12} /> {Math.round(calculations.newDwellTime)} min</span>
+                      <span className="text-white inline-flex items-center gap-1">
+                        {avgDwellTime} min <FlowArrow size={12} />{' '}
+                        {Math.round(
+                          avgDwellTime - (avgDwellTime - calculations.newDwellTime) * calculations.yearOneRampShare,
+                        )}{' '}
+                        min
+                      </span>
                     </div>
                     <div className="h-2 bg-carbon rounded-full overflow-hidden">
                       <div 
@@ -2015,7 +2021,13 @@ export default function ROICalculatorPage() {
                             100,
                             Math.max(
                               0,
-                              avgDwellTime > 0 ? (1 - calculations.newDwellTime / avgDwellTime) * 100 : 0,
+                              avgDwellTime > 0
+                                ? (1 -
+                                    (avgDwellTime -
+                                      (avgDwellTime - calculations.newDwellTime) * calculations.yearOneRampShare) /
+                                      avgDwellTime) *
+                                    100
+                                : 0,
                             ),
                           )}%`,
                         }}
