@@ -103,6 +103,33 @@ export interface RoiNetworkAssumptions {
   logFactor: number;
 }
 
+// Network Effect Value Streams - CFO-grade breakdown
+export interface NetworkEffectBreakdown {
+  // 1. Predictive Intelligence: ETA predictions improve with more data points
+  predictiveIntelligence: {
+    etaAccuracyImprovement: number; // % improvement in ETA predictions
+    planningSavings: number;        // $ from better dock scheduling
+  };
+  // 2. Carrier Performance: Cross-network carrier scorecards
+  carrierBenchmarking: {
+    dataPointsShared: number;       // Number of carrier performance records
+    negotiationLeverage: number;    // $ from better rate negotiations
+  };
+  // 3. Coordination Benefits: Reduced variability across network
+  coordinationEfficiency: {
+    variabilityReduction: number;   // % reduction in arrival variance
+    bufferSavings: number;          // $ from reduced safety buffers
+  };
+  // 4. Shared Learning: Faster onboarding, fewer errors
+  sharedLearning: {
+    onboardingAcceleration: number; // Days saved per new site
+    errorReduction: number;         // $ from pattern recognition
+  };
+  // Totals
+  totalNetworkBonus: number;
+  effectiveMultiplier: number;
+}
+
 export interface RoiCommercialAssumptions {
   implementationBaseCost: number;
   implementationCostPerFacility: number;
@@ -168,6 +195,7 @@ export interface RoiV2Outputs {
   baseSavings: number;
   networkMultiplier: number;
   networkBonusSavings: number;
+  networkEffectBreakdown: NetworkEffectBreakdown;
   totalAnnualSavings: number;
 
   implementationCost: number;

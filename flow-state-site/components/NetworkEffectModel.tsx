@@ -4,37 +4,64 @@ import React, { useState, useMemo } from 'react';
 import { Nexus } from '@/components/icons/FlowIcons';
 
 /**
- * NetworkEffectModel — Interactive visualization of Metcalfe's Law for yard networks.
- * Shows how value compounds as nodes are added.
+ * NetworkEffectModel — Interactive visualization of network effects for yard networks.
+ * Shows how value compounds through specific, credible mechanisms.
  */
 export default function NetworkEffectModel() {
   const [nodes, setNodes] = useState(10);
 
-  // Metcalfe's Law: Value = n(n-1)/2 connections
-  // We apply a modified version for yard networks with diminishing marginal complexity
   const calculations = useMemo(() => {
-    const n = nodes;
+    const n = Math.max(1, nodes);
     
-    // Base savings per facility (conservative)
+    // Base savings per facility (conservative industry estimate)
     const baseSavingsPerFacility = 85000; // $85k/yr from labor, paper, detention
     
-    // Linear value (no network effect)
+    // Linear value (no network effect - just adding facilities)
     const linearValue = n * baseSavingsPerFacility;
     
-    // Network multiplier: 1 + log(n) * 0.5 (matches the ROI calc)
-    const networkMultiplier = 1 + Math.log(n + 1) * 0.5;
-    
-    // Network-enhanced value
-    const networkValue = linearValue * networkMultiplier;
-    
-    // Network bonus (the extra value from being connected)
-    const networkBonus = networkValue - linearValue;
-    
-    // Connections (Metcalfe)
+    // Network connections = n(n-1)/2 (Metcalfe's Law)
     const connections = (n * (n - 1)) / 2;
     
-    // Value per connection (data sharing benefit)
-    const valuePerConnection = n > 1 ? networkBonus / connections : 0;
+    // Shipments per year (estimate: 150 trucks/day × 365 × facilities)
+    const shipmentsPerYear = n * 150 * 365;
+    
+    // ========= NETWORK EFFECT VALUE STREAMS =========
+    
+    // 1. PREDICTIVE INTELLIGENCE
+    // More data points = better ETA predictions = better dock scheduling
+    const etaAccuracyImprovement = Math.min(0.35, 0.05 + Math.log(n + 1) * 0.08);
+    const planningValuePerShipment = 2.5 * etaAccuracyImprovement;
+    const predictiveSavings = planningValuePerShipment * shipmentsPerYear;
+    
+    // 2. CARRIER BENCHMARKING
+    // Cross-network carrier performance creates negotiation leverage
+    const carrierLeveragePercent = Math.min(0.03, 0.005 + Math.log(n + 1) * 0.006);
+    const thirdPartySpend = shipmentsPerYear * 0.6 * 150; // 60% third-party, $150 avg
+    const carrierSavings = thirdPartySpend * carrierLeveragePercent;
+    
+    // 3. COORDINATION EFFICIENCY
+    // Reduced variability = smaller buffers
+    const variabilityReduction = Math.min(0.30, Math.log2(Math.max(1, n)) * 0.05);
+    const bufferCostBase = linearValue * 0.08;
+    const coordinationSavings = bufferCostBase * variabilityReduction;
+    
+    // 4. SHARED LEARNING
+    // Faster onboarding + error reduction
+    const onboardingDaysSaved = Math.min(60, Math.log(n + 1) * 15);
+    const newSitesPerYear = Math.ceil(n * 0.1);
+    const onboardingSavings = onboardingDaysSaved * 500 * newSitesPerYear;
+    const errorReductionPercent = Math.min(0.20, Math.log(n + 1) * 0.04);
+    const errorSavings = shipmentsPerYear * 0.5 * errorReductionPercent;
+    const learningSavings = onboardingSavings + errorSavings;
+    
+    // Total network bonus
+    const networkBonus = predictiveSavings + carrierSavings + coordinationSavings + learningSavings;
+    
+    // Total with network effect
+    const networkValue = linearValue + networkBonus;
+    
+    // Effective multiplier
+    const networkMultiplier = networkValue / linearValue;
     
     return {
       linearValue,
@@ -42,7 +69,15 @@ export default function NetworkEffectModel() {
       networkBonus,
       networkMultiplier,
       connections,
-      valuePerConnection,
+      // Breakdown
+      predictiveSavings,
+      carrierSavings,
+      coordinationSavings,
+      learningSavings,
+      // Rates
+      etaAccuracyImprovement: etaAccuracyImprovement * 100,
+      variabilityReduction: variabilityReduction * 100,
+      onboardingDaysSaved,
     };
   }, [nodes]);
 
@@ -112,7 +147,7 @@ export default function NetworkEffectModel() {
             {formatCurrency(calculations.networkValue)}
           </p>
           <p className="text-steel/70 text-sm mt-1">
-            {calculations.networkMultiplier.toFixed(2)}× multiplier
+            {calculations.networkMultiplier.toFixed(2)}× effective multiplier
           </p>
         </div>
         
@@ -124,6 +159,56 @@ export default function NetworkEffectModel() {
           <p className="text-steel/50 text-sm mt-1">
             {calculations.connections.toLocaleString()} data connections
           </p>
+        </div>
+      </div>
+
+      {/* Network Effect Breakdown - NEW */}
+      <div className="bg-void/50 rounded-lg p-6 mb-8">
+        <p className="text-steel/60 text-xs font-mono mb-4 uppercase">Where Network Value Comes From</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Predictive Intelligence */}
+          <div className="p-4 rounded-lg border border-steel/20 bg-carbon/30">
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-sm font-semibold text-white">🎯 Predictive Intelligence</p>
+              <span className="text-lg font-bold text-neon">{formatCurrency(calculations.predictiveSavings)}</span>
+            </div>
+            <p className="text-xs text-steel/70">
+              +{calculations.etaAccuracyImprovement.toFixed(0)}% ETA accuracy from shared arrival patterns
+            </p>
+          </div>
+          
+          {/* Carrier Benchmarking */}
+          <div className="p-4 rounded-lg border border-steel/20 bg-carbon/30">
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-sm font-semibold text-white">📊 Carrier Benchmarking</p>
+              <span className="text-lg font-bold text-neon">{formatCurrency(calculations.carrierSavings)}</span>
+            </div>
+            <p className="text-xs text-steel/70">
+              Cross-network performance data for rate negotiations
+            </p>
+          </div>
+          
+          {/* Coordination Efficiency */}
+          <div className="p-4 rounded-lg border border-steel/20 bg-carbon/30">
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-sm font-semibold text-white">⚡ Coordination Efficiency</p>
+              <span className="text-lg font-bold text-neon">{formatCurrency(calculations.coordinationSavings)}</span>
+            </div>
+            <p className="text-xs text-steel/70">
+              -{calculations.variabilityReduction.toFixed(0)}% variance = smaller safety buffers
+            </p>
+          </div>
+          
+          {/* Shared Learning */}
+          <div className="p-4 rounded-lg border border-steel/20 bg-carbon/30">
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-sm font-semibold text-white">🧠 Shared Learning</p>
+              <span className="text-lg font-bold text-neon">{formatCurrency(calculations.learningSavings)}</span>
+            </div>
+            <p className="text-xs text-steel/70">
+              {Math.round(calculations.onboardingDaysSaved)} days saved per new site onboarding
+            </p>
+          </div>
         </div>
       </div>
 

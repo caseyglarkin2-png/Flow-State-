@@ -1411,11 +1411,136 @@ export default function ROICalculatorPage() {
                         <span className="text-steel font-medium">Base Savings</span>
                         <span className="text-white font-bold">{formatMoney(calculations.baseSavings)}</span>
                       </div>
+                    </div>
+                  </Card>
+
+                  {/* Network Effect Breakdown - NEW */}
+                  <Card className="mb-8 border-neon/30 bg-gradient-to-br from-neon/5 to-transparent">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="font-bold text-neon">Network Effect Value</h3>
+                      <span className="text-2xl font-black text-neon">+{formatMoney(calculations.networkBonusSavings)}</span>
+                    </div>
+                    <p className="text-sm text-steel/80 mb-6">
+                      Connected facilities share data, patterns, and intelligence. Here's where that value comes from:
+                    </p>
+                    
+                    {calculations.v2?.networkEffectBreakdown && (
+                      <div className="space-y-4">
+                        {/* Predictive Intelligence */}
+                        <div className="p-4 rounded-lg bg-void/50 border border-steel/10">
+                          <div className="flex items-start justify-between mb-2">
+                            <div>
+                              <p className="text-sm font-semibold text-white flex items-center gap-2">
+                                <span className="w-2 h-2 rounded-full bg-neon"></span>
+                                Predictive Intelligence
+                              </p>
+                              <p className="text-xs text-steel/70 mt-1">
+                                Better ETAs from shared arrival patterns across {mode === 'pro' ? Object.values(proInputs.tiers).reduce((a, t) => a + t.count, 0) : facilities} sites
+                              </p>
+                            </div>
+                            <span className="text-lg font-bold text-neon">
+                              {formatMoney(calculations.v2.networkEffectBreakdown.predictiveIntelligence.planningSavings)}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2 text-xs text-steel/60">
+                            <span className="px-2 py-0.5 rounded bg-neon/10 text-neon">
+                              +{calculations.v2.networkEffectBreakdown.predictiveIntelligence.etaAccuracyImprovement.toFixed(0)}% ETA accuracy
+                            </span>
+                            <span>→ Better dock scheduling</span>
+                          </div>
+                        </div>
+
+                        {/* Carrier Benchmarking */}
+                        <div className="p-4 rounded-lg bg-void/50 border border-steel/10">
+                          <div className="flex items-start justify-between mb-2">
+                            <div>
+                              <p className="text-sm font-semibold text-white flex items-center gap-2">
+                                <span className="w-2 h-2 rounded-full bg-neon"></span>
+                                Carrier Benchmarking
+                              </p>
+                              <p className="text-xs text-steel/70 mt-1">
+                                Cross-network carrier performance data for better negotiations
+                              </p>
+                            </div>
+                            <span className="text-lg font-bold text-neon">
+                              {formatMoney(calculations.v2.networkEffectBreakdown.carrierBenchmarking.negotiationLeverage)}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2 text-xs text-steel/60">
+                            <span className="px-2 py-0.5 rounded bg-neon/10 text-neon">
+                              {Math.round(calculations.v2.networkEffectBreakdown.carrierBenchmarking.dataPointsShared).toLocaleString()} data points
+                            </span>
+                            <span>→ Rate negotiation leverage</span>
+                          </div>
+                        </div>
+
+                        {/* Coordination Efficiency */}
+                        <div className="p-4 rounded-lg bg-void/50 border border-steel/10">
+                          <div className="flex items-start justify-between mb-2">
+                            <div>
+                              <p className="text-sm font-semibold text-white flex items-center gap-2">
+                                <span className="w-2 h-2 rounded-full bg-neon"></span>
+                                Coordination Efficiency
+                              </p>
+                              <p className="text-xs text-steel/70 mt-1">
+                                Reduced variability = smaller safety buffers needed
+                              </p>
+                            </div>
+                            <span className="text-lg font-bold text-neon">
+                              {formatMoney(calculations.v2.networkEffectBreakdown.coordinationEfficiency.bufferSavings)}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2 text-xs text-steel/60">
+                            <span className="px-2 py-0.5 rounded bg-neon/10 text-neon">
+                              -{calculations.v2.networkEffectBreakdown.coordinationEfficiency.variabilityReduction.toFixed(0)}% variance
+                            </span>
+                            <span>→ Leaner operations</span>
+                          </div>
+                        </div>
+
+                        {/* Shared Learning */}
+                        <div className="p-4 rounded-lg bg-void/50 border border-steel/10">
+                          <div className="flex items-start justify-between mb-2">
+                            <div>
+                              <p className="text-sm font-semibold text-white flex items-center gap-2">
+                                <span className="w-2 h-2 rounded-full bg-neon"></span>
+                                Shared Learning
+                              </p>
+                              <p className="text-xs text-steel/70 mt-1">
+                                Faster onboarding + error pattern recognition
+                              </p>
+                            </div>
+                            <span className="text-lg font-bold text-neon">
+                              {formatMoney(calculations.v2.networkEffectBreakdown.sharedLearning.errorReduction)}
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2 text-xs text-steel/60">
+                            <span className="px-2 py-0.5 rounded bg-neon/10 text-neon">
+                              {Math.round(calculations.v2.networkEffectBreakdown.sharedLearning.onboardingAcceleration)} days saved/site
+                            </span>
+                            <span>→ Faster time-to-value</span>
+                          </div>
+                        </div>
+
+                        {/* Effective Multiplier Summary */}
+                        <div className="flex items-center justify-between pt-4 border-t border-neon/20">
+                          <div className="text-sm">
+                            <span className="text-steel">Effective Network Multiplier</span>
+                            <p className="text-xs text-steel/60">Value compounds as you add sites</p>
+                          </div>
+                          <span className="text-3xl font-black text-neon">
+                            {calculations.v2.networkEffectBreakdown.effectiveMultiplier.toFixed(2)}×
+                          </span>
+                        </div>
+                      </div>
+                    )}
+                    
+                    {!calculations.v2?.networkEffectBreakdown && (
                       <div className="flex justify-between text-neon">
-                        <span className="font-medium">+ Network Effect ({calculations.networkMultiplier.toFixed(2)}x)</span>
+                        <span className="font-medium">Network Effect ({calculations.networkMultiplier.toFixed(2)}x)</span>
                         <span className="font-bold">+{formatMoney(calculations.networkBonusSavings)}</span>
                       </div>
-                    </div>
+                    )}
                   </Card>
                 </>
               ) : null}
