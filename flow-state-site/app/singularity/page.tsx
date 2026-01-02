@@ -631,50 +631,11 @@ export default function SingularityPage() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="neon-fill" size="lg" icon={<Crosshair size={20} className="text-void" />}>
-              Apply for Membership
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* Competitive Intelligence */}
-      <section className="py-20 md:py-24 border-t border-neon/20">
-        <div className="max-w-4xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-black mb-8 text-center">
-            <span className="text-ember">Your Competitors</span> Are Already Here
-          </h2>
-
-          <div className="glass-card p-6 md:p-8 border border-ember/30 mb-8">
-            <div className="flex items-start gap-4">
-              <div className="text-ember flex-shrink-0">
-                <Caution size={32} />
-              </div>
-              <div>
-                <p className="text-base md:text-lg text-steel/90 leading-relaxed">
-                  In the last 90 days, <span className="text-white font-bold">9 of your direct competitors</span> have 
-                  initiated Flow State evaluations. Five have already signed founding agreements.
-                </p>
-                <p className="text-sm text-steel/60 mt-4">
-                  We can't tell you who. But we can tell you the window is closing fast.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center">
-            <p className="text-base md:text-lg text-steel mb-8">
-              The network effect is real. The first movers will define the standard.
-              <br />
-              <span className="text-neon font-semibold">Which side of history will you be on?</span>
-            </p>
-
-            <Button variant="neon-fill" size="lg">
-              <span className="inline-flex items-center gap-2">
-                <Velocity size={20} className="text-void" />
-                Secure Your Position Now
-              </span>
-            </Button>
+            <Link href="/contact?intent=qualify">
+              <Button variant="neon-fill" size="lg" icon={<Crosshair size={20} className="text-void" />}>
+                Apply for Membership
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
