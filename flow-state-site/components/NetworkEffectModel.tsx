@@ -8,7 +8,7 @@ import {
   FlowGlyphCoordinationEfficiency,
   FlowGlyphSharedLearning,
 } from '@/components/icons/FlowGlyphs';
-import { calcRoiV2, getQuickInputsForPreset, roiV2InputsFromQuickMode } from '@/lib/economics';
+import { calcRoiV2, getQuickInputsForPreset, roiV2InputsFromQuickMode, metcalfeInspiredMultiplier } from '@/lib/economics';
 
 /**
  * NetworkEffectModel — Interactive visualization of network effects for yard networks.
@@ -33,11 +33,9 @@ export default function NetworkEffectModel() {
       }),
     );
 
-    // Network connections = n(n-1)/2 (Metcalfe's Law)
-    const connections = (n * (n - 1)) / 2;
-
-    // Network maturity factor (for narrative/UI only)
-    const networkMaturityFactor = (1 - Math.exp(-n / 20)) * 100;
+    const net = metcalfeInspiredMultiplier(n, roi.assumptionsUsed.network);
+    const connections = net.connections;
+    const networkMaturityFactor = net.realization * 100;
 
     const breakdown = roi.networkEffectBreakdown;
 

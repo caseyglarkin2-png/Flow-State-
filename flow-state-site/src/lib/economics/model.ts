@@ -48,6 +48,24 @@ export function calcScenario(inputs: ScenarioInputs): Outputs {
 
   const hardSavingsAnnual = roi.annualLaborSavings + roi.paperlessSavings + roi.annualDetentionSavings;
 
+  // CFO finance outputs (kept canonical so pages don't re-derive inconsistently)
+  const discountRate = Math.max(0, inputs.discountRate);
+  const growthRate = inputs.growthRate;
+
+  const yearOneCashflow = roi.yearOneGrossSavings - roi.annualSubscription;
+
+  const fiveYearNPV =
+    -roi.implementationCost +
+    safeDivide(yearOneCashflow, Math.pow(1 + discountRate, 1)) +
+    Array.from({ length: 4 }, (_, i) => {
+      const t = i + 2;
+      const annualCashflow = roi.totalAnnualSavings * Math.pow(1 + growthRate, i + 1) - roi.annualSubscription;
+      return safeDivide(annualCashflow, Math.pow(1 + discountRate, t));
+    }).reduce((a, b) => a + b, 0);
+
+  const savingsPerFacility = roi.totalFacilities > 0 ? roi.yearOneGrossSavings / roi.totalFacilities : 0;
+  const costOfDelay90Days = roi.yearOneGrossSavings / 4;
+
   const out: Outputs = {
     roi,
     hardSavingsAnnual,
@@ -61,6 +79,12 @@ export function calcScenario(inputs: ScenarioInputs): Outputs {
       annualProfitImpact,
       yearOneIncrementalTruckloads,
       yearOneProfitImpact,
+    },
+    finance: {
+      yearOneCashflow,
+      fiveYearNPV,
+      costOfDelay90Days,
+      savingsPerFacility,
     },
     warnings: [],
   };

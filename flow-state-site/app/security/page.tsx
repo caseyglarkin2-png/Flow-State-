@@ -461,7 +461,7 @@ export default function SecurityPage() {
             Ready for the Security Review?
           </h2>
           <p className="text-xl text-steel/80 mb-8">
-            We'll complete your security questionnaire within 48 hours.
+            We aim to turn around security questionnaires quickly (often within 48 hours).
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

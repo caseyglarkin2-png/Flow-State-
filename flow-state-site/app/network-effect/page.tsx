@@ -9,7 +9,7 @@ import Card from '@/components/Card';
 import NextSteps from '@/components/NextSteps';
 import { trackEvent } from '@/lib/analytics';
 import { ROUTES, DEFINITIONS } from '@/content/config';
-import { calcScenario, getQuickInputsForPreset, roiV2InputsFromQuickMode, money as formatMoney } from '@/lib/economics';
+import { calcScenario, getQuickInputsForPreset, roiV2InputsFromQuickMode, money as formatMoney, metcalfeInspiredMultiplier } from '@/lib/economics';
 
 type Scenario = 'conservative' | 'expected' | 'aggressive';
 
@@ -31,14 +31,9 @@ function getAssumptions(scenario: Scenario): NetworkModelAssumptions {
   return { yearOneRampShare: 0.7 };
 }
 
-function networkMultiplier(facilities: number, logFactor: number): number {
-  const f = Math.max(0, Math.floor(facilities));
-  return 1 + Math.log(f + 1) * Math.max(0, logFactor);
-}
-
-function buildCurvePoints(logFactor: number) {
+function buildCurvePoints(params: { beta: number; tau: number }) {
   const xs = [1, 5, 10, 25, 50, 100];
-  return xs.map((x) => ({ x, y: networkMultiplier(x, logFactor) }));
+  return xs.map((x) => ({ x, y: metcalfeInspiredMultiplier(x, params).multiplier }));
 }
 
 function AssumptionsDrawer({
@@ -46,7 +41,7 @@ function AssumptionsDrawer({
   assumptions,
 }: {
   scenario: Scenario;
-  assumptions: NetworkModelAssumptions & { logFactor: number; baseSavingsPerFacility: number };
+  assumptions: NetworkModelAssumptions & { beta: number; tau: number; baseSavingsPerFacility: number };
 }) {
   return (
     <Dialog.Root>
@@ -86,22 +81,25 @@ function AssumptionsDrawer({
             <div className="rounded-xl border border-neon/10 bg-void/20 p-4">
               <div className="text-white font-semibold">Network multiplier</div>
               <p className="text-sm text-steel mt-1">
-                Formula: <span className="text-white">1 + ln(facilities + 1) × log factor</span>
+                Formula: <span className="text-white">M(n)=1+β·(C(n)/C0)·R(n)</span>
               </p>
               <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
                 <div className="rounded-lg border border-neon/10 bg-carbon/40 p-3">
-                  <div className="text-steel">Log factor</div>
-                  <div className="text-white font-semibold">{assumptions.logFactor.toFixed(2)}</div>
+                  <div className="text-steel">β (strength)</div>
+                  <div className="text-white font-semibold">{assumptions.beta.toFixed(3)}</div>
                 </div>
                 <div className="rounded-lg border border-neon/10 bg-carbon/40 p-3">
-                  <div className="text-steel">Year‑1 realization</div>
-                  <div className="text-white font-semibold">{Math.round(assumptions.yearOneRampShare * 100)}%</div>
+                  <div className="text-steel">τ (maturity)</div>
+                  <div className="text-white font-semibold">{Math.round(assumptions.tau)} facilities</div>
                 </div>
                 <div className="rounded-lg border border-neon/10 bg-carbon/40 p-3">
                   <div className="text-steel">Base savings / facility</div>
                   <div className="text-white font-semibold">{formatMoney(assumptions.baseSavingsPerFacility)} / year</div>
                 </div>
               </div>
+              <p className="text-xs text-steel/70 mt-4">
+                Year‑1 ramp is modeled separately (realistic adoption) and does not change the network formula.
+              </p>
               <p className="text-xs text-steel/70 mt-4">
                 Base savings / facility is computed from the same ROI engine used on /roi (steady-state base savings, before network bonus).
               </p>
@@ -263,12 +261,13 @@ export default function NetworkEffectPage() {
     const yearOne = out.roi.yearOneGrossSavings;
     const oppCostStopAt1 = outAt1.roi.networkBonusSavings;
     const baseSavingsPerFacility = f > 0 ? base / f : 0;
-    const logFactor = out.roi.assumptionsUsed.network.logFactor;
+    const { beta, tau } = out.roi.assumptionsUsed.network;
 
     return {
       f,
       mult,
-      logFactor,
+      beta,
+      tau,
       baseSavingsPerFacility,
       base,
       networkBonus,
@@ -278,7 +277,7 @@ export default function NetworkEffectPage() {
     };
   }, [assumptions, facilities]);
 
-  const curvePoints = useMemo(() => buildCurvePoints(modeled.logFactor), [modeled.logFactor]);
+  const curvePoints = useMemo(() => buildCurvePoints({ beta: modeled.beta, tau: modeled.tau }), [modeled.beta, modeled.tau]);
 
   function onScenario(next: Scenario) {
     setScenario(next);
@@ -330,7 +329,8 @@ export default function NetworkEffectPage() {
               scenario={scenario}
               assumptions={{
                 ...assumptions,
-                logFactor: modeled.logFactor,
+                beta: modeled.beta,
+                tau: modeled.tau,
                 baseSavingsPerFacility: modeled.baseSavingsPerFacility,
               }}
             />

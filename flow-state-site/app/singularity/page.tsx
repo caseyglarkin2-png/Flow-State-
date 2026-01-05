@@ -6,7 +6,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import Card from '@/components/Card';
-import { calcScenario, getQuickInputsForPreset, roiV2InputsFromQuickMode, money as formatMoney } from '@/lib/economics';
+import { calcScenario, getQuickInputsForPreset, roiV2InputsFromQuickMode, money as formatMoney, metcalfeInspiredMultiplier } from '@/lib/economics';
 import {
   Caution,
   FlowArrow,
@@ -223,7 +223,8 @@ export default function SingularityPage() {
         networkMultiplier: 1,
         networkBonusSavings: 0,
         totalAnnualSavings: 0,
-        logFactor: 0,
+        beta: 0,
+        tau: 45,
         examples: {
           m1: 1,
           m10: 1,
@@ -252,8 +253,8 @@ export default function SingularityPage() {
       growthRate: 0.02,
     });
 
-    const logFactor = out.roi.assumptionsUsed.network.logFactor;
-    const m = (n: number) => 1 + Math.log(Math.max(0, Math.floor(n)) + 1) * Math.max(0, logFactor);
+    const { beta, tau } = out.roi.assumptionsUsed.network;
+    const m = (n: number) => metcalfeInspiredMultiplier(n, { beta, tau }).multiplier;
 
     return {
       facilities: f,
@@ -265,7 +266,8 @@ export default function SingularityPage() {
       networkMultiplier: out.roi.networkMultiplier,
       networkBonusSavings: out.roi.networkBonusSavings,
       totalAnnualSavings: out.roi.totalAnnualSavings,
-      logFactor,
+      beta,
+      tau,
       examples: {
         m1: m(1),
         m10: m(10),
@@ -300,13 +302,13 @@ export default function SingularityPage() {
       activated++;
       setActiveFacilities(activated);
       
-      // Network effect multiplier
-      const networkMultiplier = 1 + (activated * 0.15);
-      setNetworkVelocity(Math.round(networkMultiplier * 100));
+      // Network effect multiplier (canonical, realization-adjusted)
+      const mult = metcalfeInspiredMultiplier(activated, { beta: modeled.beta, tau: modeled.tau }).multiplier;
+      setNetworkVelocity(Math.round(mult * 100));
     }, 250);
 
     return () => clearInterval(activationInterval);
-  }, [isSimulating, phase]);
+  }, [isSimulating, phase, modeled.beta, modeled.tau]);
 
   // Accumulate savings - throttled updates
   useEffect(() => {

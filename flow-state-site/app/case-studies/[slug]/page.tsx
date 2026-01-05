@@ -22,7 +22,7 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
       'Disclaimer: This is a representative case study format using modeled assumptions (not a public customer claim). Procurement and implementation details vary by network.',
     highlights: [
       { label: 'Network size', value: '260 facilities' },
-      { label: 'Subscription example', value: '$8,000 / facility / year (~$2.08M/year)' },
+      { label: 'Subscription example', value: '$8,000 / facility / year (illustrative)' },
       { label: 'Primary value levers', value: 'Detention reduction, labor automation, throughput' },
       { label: 'Implementation', value: '$2,500 / facility (one-time)' },
     ],
@@ -34,8 +34,13 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
   },
 };
 
-export default function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const cs = CASE_STUDIES[params.slug];
+export default async function CaseStudyPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const cs = CASE_STUDIES[slug];
   if (!cs) notFound();
 
   return (

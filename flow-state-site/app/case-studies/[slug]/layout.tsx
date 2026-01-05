@@ -5,14 +5,19 @@ const descriptions: Record<string, string> = {
   'primo-network': 'A modeled enterprise network scenario illustrating Flow State ROI and pricing alignment.',
 };
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const title = params.slug === 'primo-network' ? `Case Study: Primo Network | ${siteName}` : `Case Study | ${siteName}`;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const title = slug === 'primo-network' ? `Case Study: Primo Network | ${siteName}` : `Case Study | ${siteName}`;
 
   return {
     title,
-    description: descriptions[params.slug] ?? 'Enterprise-style case study format for Flow State.',
+    description: descriptions[slug] ?? 'Enterprise-style case study format for Flow State.',
     alternates: {
-      canonical: canonicalUrl(`/case-studies/${params.slug}`),
+      canonical: canonicalUrl(`/case-studies/${slug}`),
     },
   };
 }

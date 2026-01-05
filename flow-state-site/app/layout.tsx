@@ -24,7 +24,7 @@ export const metadata = {
     template: '%s | Flow State',
   },
   description:
-    'Yard orchestration platform that transforms logistics facilities from bottlenecks into intelligent networks. Reduce dwell time by 50%, automate gate operations, and unlock $600K+ annual savings per site.',
+    'Yard orchestration platform that turns facilities into coordinated networks with defensible timestamps, modeled hard savings, and capacity unlocked.',
   keywords: [
     'yard management system',
     'YMS software',
@@ -53,7 +53,7 @@ export const metadata = {
   },
   openGraph: {
     title: 'Flow State | Put your yard in Flow',
-    description: 'Yard orchestration platform. Reduce dwell time 50%. $600K+ savings per site. Network effect compounds across facilities.',
+    description: 'Yard orchestration platform with CFO-grade, scenario-based modeling for hard savings, capacity unlocked, and realization-adjusted network effects.',
     url: siteUrl,
     siteName: 'Flow State',
     type: 'website',
@@ -70,7 +70,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Flow State | Put your yard in Flow',
-    description: 'Yard orchestration platform. Reduce dwell time 50%. $600K+ savings per site.',
+    description: 'Yard orchestration platform with CFO-grade, scenario-based modeling for hard savings, capacity unlocked, and network effects.',
     images: [`${siteUrl}/og.png`],
     creator: '@flowstate_io',
   },
@@ -136,18 +136,6 @@ export default function RootLayout({
         url: siteUrl,
         description:
           'AI-powered yard orchestration software that transforms logistics yards from bottlenecks into networks of intelligent nodes. Features include automated gate operations, real-time trailer tracking, and network-effect ROI.',
-        offers: {
-          '@type': 'Offer',
-          priceCurrency: 'USD',
-          price: '8000',
-          priceValidUntil: '2026-12-31',
-          availability: 'https://schema.org/InStock',
-        },
-        aggregateRating: {
-          '@type': 'AggregateRating',
-          ratingValue: '4.9',
-          reviewCount: '27',
-        },
         featureList: [
           'Automated gate check-in/check-out',
           'Real-time yard visibility',
@@ -175,7 +163,7 @@ export default function RootLayout({
             name: 'How much can I save with Flow State?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Customers typically see $600K+ in annual savings per facility through detention reduction (65%), labor automation (70%), and throughput gains (42%). Network effects multiply value as more facilities join.',
+              text: 'Savings are scenario-dependent and driven by measurable mechanisms like dwell reduction, detention recovery, labor productivity, and incremental capacity unlocked. Use the ROI calculator to model assumptions and see how results change by facility count and operating profile.',
             },
           },
           {

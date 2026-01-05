@@ -52,18 +52,18 @@ test('calcRoiV1(default UI inputs) matches expected outputs', () => {
   // - Throughput: 10% capacity increase at $500/truck margin (was 42% at $45/truck)
   // If you change calcRoiV1, update docs/roi-model-spec.md and these values deliberately.
   return (
-    approxEqual(out.networkMultiplier, 1.8958797346140275, 1e-9) &&
+    approxEqual(out.networkMultiplier, 1.0000934761628317, 1e-12) &&
     approxEqual(out.annualDetentionSavings, 2001796.875, 1e-6) &&
     approxEqual(out.annualLaborSavings, 611519.9999999999, 1e-6) &&
     approxEqual(out.throughputValue, 13687500, 1e-6) &&  // 10% throughput at $500/truck
     approxEqual(out.paperlessSavings, 59500, 1e-6) &&     // $11,900/facility × 5
-    approxEqual(out.totalAnnualSavings, 31017193.215176396, 1e-6) &&
+    approxEqual(out.totalAnnualSavings, 16361846.174644187, 1e-6) &&
     approxEqual(out.implementationCost, 12500, 1e-6) &&
     approxEqual(out.annualSubscription, 40000, 1e-6) &&
     // Payback is clamped to a minimum of 0.1 months ("< 1 month")
     approxEqual(out.paybackMonths, 0.1, 1e-12) &&
-    approxEqual(out.yearOneRoiPercent, 247817.54572141118, 1e-9) &&
-    approxEqual(out.fiveYearValue, 161202219.1422575, 1e-6)
+    approxEqual(out.yearOneRoiPercent, 130574.7693971535, 1e-9) &&
+    approxEqual(out.fiveYearValue, 84935204.58459073, 1e-6)
   );
 });
 
@@ -98,7 +98,9 @@ test('quick-mode mapping is anchored on spreadsheet-backed V2 assumptions', () =
     inputs.tiers.XL.count === 50 &&
     inputs.tiers.XL.shipmentsPerDay === 150 &&
     inputs.tiers.XL.operatingDaysPerYear === 365 &&
-    approxEqual(inputs.network.logFactor, 0.15, 1e-12) &&
+    // Quick mode defaults to expected-mode network params (can be overridden by presets).
+    approxEqual(inputs.network.beta, 0.004, 1e-12) &&
+    approxEqual(inputs.network.tau, 45, 1e-12) &&
     inputs.throughput.reduceCheckInMinutes === 5 &&
     inputs.throughput.reduceCheckOutMinutes === 5 &&
     inputs.throughput.realizedShare === 0.1 &&

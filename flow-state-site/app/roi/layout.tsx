@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'ROI Calculator | Flow State',
-    description: 'Model $600K+ annual savings per facility. CFO-ready metrics with transparent assumptions.',
+    description: 'CFO-ready, scenario-based ROI modeling with transparent assumptions you can customize and audit.',
     url: `${siteUrl}/roi`,
     type: 'website',
     images: [

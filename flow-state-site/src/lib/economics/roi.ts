@@ -7,6 +7,7 @@ import type {
   FacilityTier,
   NetworkEffectBreakdown,
 } from './roiTypes';
+import { metcalfeInspiredMultiplier } from './networkEffect';
 
 function clampPercent(value: number): Percent {
   if (!Number.isFinite(value)) return 0;
@@ -33,12 +34,13 @@ function calculateNetworkEffectBreakdown(
   facilities: number,
   shipmentsPerYear: number,
   baseSavings: number,
-  logFactor: number,
+  beta: number,
+  tau: number,
 ): NetworkEffectBreakdown {
   const n = Math.max(1, facilities);
 
-  // Network effects only matter if logFactor > 0 AND we have multiple facilities
-  if (logFactor <= 0 || n <= 1) {
+  // Network effects only matter if beta > 0 AND we have multiple facilities
+  if (beta <= 0 || n <= 1) {
     return {
       predictiveIntelligence: { etaAccuracyImprovement: 0, planningSavings: 0 },
       carrierBenchmarking: { dataPointsShared: 0, negotiationLeverage: 0 },
@@ -49,15 +51,11 @@ function calculateNetworkEffectBreakdown(
     };
   }
 
-  // Network connections = n(n-1)/2 (Metcalfe's Law)
-  const connections = (n * (n - 1)) / 2;
+  const net = metcalfeInspiredMultiplier(n, { beta, tau });
+  const connections = net.connections;
 
-  // CRITICAL: Scale factor that makes network effect minimal for small networks
-  // At 5 facilities: 0.2 (20% of full effect)
-  // At 10 facilities: 0.45 (45% of full effect)
-  // At 25 facilities: 0.75 (75% of full effect)
-  // At 50+ facilities: ~0.95 (near full effect)
-  const networkMaturityFactor = 1 - Math.exp(-n / 20);
+  // Narrative/UI maturity factor (canonical realization curve)
+  const networkMaturityFactor = net.realization;
 
   // 1. PREDICTIVE INTELLIGENCE
   // More data = better ETA predictions, but only meaningful with enough data points
@@ -140,9 +138,9 @@ export function calcRoiV1(inputs: RoiV1Inputs): RoiV1Outputs {
   const laborCostPerHour = Math.max(0, inputs.laborCostPerHour);
   const gateStaff = Math.max(0, inputs.gateStaffPerFacility);
 
-  // Network effect multiplier based on Metcalfe's Law (as implemented in the current UI)
-  // At 5 facilities: ~1.90x, at 10: ~2.09x, at 50: ~2.46x
-  const networkMultiplier = 1 + Math.log(facilities + 1) * 0.5;
+  // Network effect multiplier (canonical Metcalfe-inspired, realization-adjusted).
+  // V1 uses a conservative default parameterization (shared with the V2 presets).
+  const networkMultiplier = metcalfeInspiredMultiplier(facilities, { beta: 0.004, tau: 45 }).multiplier;
 
   // Time savings: 50% dwell time reduction is industry benchmark for gate automation
   const newDwellTimeMinutes = avgDwellTime * 0.5;
@@ -262,11 +260,11 @@ export function roiV2InputsFromQuickMode(quick: RoiV1Inputs): RoiV2Inputs {
       ...base.paper,
       phase1SavedShare: 0.4,
     },
-    // Keep network effect on, but at a more conservative level than the old
-    // Quick Mode mapping.
+    // Quick Mode defaults to an "expected" network-effect parameterization.
+    // This keeps the UI coherent without requiring the user to understand β/τ.
     network: {
-      ...base.network,
-      logFactor: 0.15,
+      beta: 0.004,
+      tau: 45,
     },
     enterpriseAddOns: {
       perShipment: {
@@ -360,7 +358,8 @@ export function defaultRoiV2Inputs(): RoiV2Inputs {
       incrementalMarginPerTruck: 500,
     },
     network: {
-      logFactor: 0,
+      beta: 0,
+      tau: 45,
     },
     commercial: {
       implementationBaseCost: 0,
@@ -459,7 +458,8 @@ export function defaultRoiV2InputsLineage(): RoiV2Inputs {
       incrementalMarginPerTruck: 0,
     },
     network: {
-      logFactor: 0,
+      beta: 0,
+      tau: 45,
     },
     commercial: {
       implementationBaseCost: 0,
@@ -674,17 +674,22 @@ export function calcRoiV2(rawInputs: RoiV2Inputs): RoiV2Outputs {
 
   const throughputValue = yardThroughputValue + shipperOfChoiceValue + enterpriseAnnualThroughputValue;
 
-  const networkMultiplier = 1 + Math.log(totalFacilities + 1) * Math.max(0, inputs.network.logFactor);
+  const network = metcalfeInspiredMultiplier(totalFacilities, {
+    beta: inputs.network.beta,
+    tau: inputs.network.tau,
+  });
+  const networkMultiplier = network.multiplier;
   const baseSavings = annualLaborSavings + paperlessSavings + annualDetentionSavings + throughputValue;
 
-  const networkBonusSavings = inputs.network.logFactor > 0 ? baseSavings * (networkMultiplier - 1) : 0;
+  const networkBonusSavings = inputs.network.beta > 0 ? baseSavings * (networkMultiplier - 1) : 0;
   const totalAnnualSavings = baseSavings + networkBonusSavings;
 
   const networkEffectBreakdown = calculateNetworkEffectBreakdown(
     totalFacilities,
     totalShipmentsPerYear,
     baseSavings,
-    inputs.network.logFactor,
+    inputs.network.beta,
+    inputs.network.tau,
   );
   // The breakdown is for UI explanation; the canonical network bonus stays
   // backward-compatible with the simple multiplier formula.

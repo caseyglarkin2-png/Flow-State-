@@ -245,30 +245,16 @@ export default function ROICalculatorPage() {
   const profitPerTruckload = Math.max(0, inputsForPdf.throughput.incrementalMarginPerTruck);
 
   const cfoMetrics = useMemo(() => {
-    const facilityCount = mode === 'pro'
-      ? Object.values(proInputs.tiers).reduce((acc, t) => acc + t.count, 0)
-      : facilities;
-
-    const discountRate = 0.10;
-    const yearOneCashflow = calculations.yearOneGrossSavings - calculations.annualSubscription;
-    const fiveYearNPV =
-      -calculations.implementationCost +
-      (yearOneCashflow / Math.pow(1 + discountRate, 1)) +
-      Array.from({ length: 4 }, (_, i) =>
-        (calculations.totalAnnualSavings * Math.pow(1.02, i + 1) - calculations.annualSubscription) /
-        Math.pow(1 + discountRate, i + 2),
-      ).reduce((a, b) => a + b, 0);
-
     return {
       yearOneGrossSavings: calculations.yearOneGrossSavings,
       yearOneROI: calculations.yearOneROI,
       paybackMonths: calculations.paybackMonths,
-      fiveYearNPV,
-      costOfDelay90Days: calculations.yearOneGrossSavings / 4,
-      savingsPerFacility: facilityCount > 0 ? calculations.yearOneGrossSavings / facilityCount : 0,
+      fiveYearNPV: scenario.finance.fiveYearNPV,
+      costOfDelay90Days: scenario.finance.costOfDelay90Days,
+      savingsPerFacility: scenario.finance.savingsPerFacility,
       networkMultiplier: calculations.networkMultiplier,
     };
-  }, [calculations, facilities, mode, proInputs]);
+  }, [calculations, scenario]);
 
   const formatMoney = (amount: number) => {
     if (amount >= 1000000) return `$${(amount / 1000000).toFixed(2)}M`;
@@ -1281,20 +1267,45 @@ export default function ROICalculatorPage() {
                           <p className="text-xs text-steel/70 mb-3">
                             Off by default for spreadsheet parity. Enable only if you’re modeling compounding value from standardization across a multi-site network.
                           </p>
-                          <label className="text-sm text-steel">Network log factor (0 disables)</label>
-                          <input
-                            type="number"
-                            min={0}
-                            step="0.05"
-                            value={proInputs.network.logFactor}
-                            onChange={(e) =>
-                              setProInputs((prev) => ({
-                                ...prev,
-                                network: { ...prev.network, logFactor: parseFloat(e.target.value || '0') },
-                              }))
-                            }
-                            className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
-                          />
+                          <p className="text-xs text-steel/70 mb-3">
+                            Metcalfe-inspired, realization-adjusted: <span className="text-white">M(n)=1+β·(C(n)/C0)·R(n)</span> with fixed baseline <span className="text-white">n0=10</span>.
+                          </p>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                              <label className="text-sm text-steel">β (strength) — 0 disables</label>
+                              <input
+                                type="number"
+                                min={0}
+                                step="0.001"
+                                value={proInputs.network.beta}
+                                onChange={(e) =>
+                                  setProInputs((prev) => ({
+                                    ...prev,
+                                    network: { ...prev.network, beta: parseFloat(e.target.value || '0') },
+                                  }))
+                                }
+                                className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                              />
+                            </div>
+
+                            <div>
+                              <label className="text-sm text-steel">τ (maturity, facilities)</label>
+                              <input
+                                type="number"
+                                min={1}
+                                step="1"
+                                value={proInputs.network.tau}
+                                onChange={(e) =>
+                                  setProInputs((prev) => ({
+                                    ...prev,
+                                    network: { ...prev.network, tau: parseFloat(e.target.value || '0') },
+                                  }))
+                                }
+                                className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
+                              />
+                            </div>
+                          </div>
                         </div>
                       </details>
 
@@ -1483,7 +1494,7 @@ export default function ROICalculatorPage() {
                               className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
                             />
                             <p className="text-xs text-steel/70 mt-2">
-                              Typical range: $5k–$15k. Primo example: ~$8k × 260 ≈ $2.08M/year.
+                              Typical range: $5k–$15k. Illustrative example: ~$8k × 260 facilities.
                             </p>
                           </div>
                           <div>

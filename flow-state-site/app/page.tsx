@@ -27,6 +27,11 @@ export default function Home() {
     yearOneRampShare: 0.05,
   });
 
+  const dollarsPerFacility = (annual: number) => {
+    const per = cfoBaseline.totalFacilities > 0 ? annual / cfoBaseline.totalFacilities : 0;
+    return `$${Math.round(per).toLocaleString()}/site (modeled)`;
+  };
+
   return (
     <div className="min-h-screen bg-void">
       <Header />
@@ -56,7 +61,7 @@ export default function Home() {
           </p>
 
           <p className="text-lg text-steel/70 mb-10 max-w-2xl mx-auto">
-            260 sites. 50% faster turns. $221M network value. One platform.
+            CFO-grade, scenario-based modeling — no fabricated metrics.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -143,7 +148,7 @@ export default function Home() {
                 {[
                   { before: 'Reported arrival', after: 'Gate camera timestamp', delta: '±47 min variance eliminated' },
                   { before: 'Estimated dwell', after: 'Actual spot-to-dock', delta: '48 min → 24 min avg' },
-                  { before: 'Guessed detention', after: 'Auditable proof', delta: '$2.1M/yr recovered' },
+                  { before: 'Guessed detention', after: 'Auditable proof', delta: 'Detention recovery (modeled)' },
                 ].map((row, i) => (
                   <div key={i} className="glass-card p-4 flex items-center gap-4">
                     <div className="flex-1">
@@ -209,7 +214,7 @@ export default function Home() {
               "If water can flow this fast, <span className="text-neon">anything can.</span>"
             </h2>
             <p className="text-xl text-steel/80">
-              Primo Brands (Poland Spring) deployed Flow State across 260 sites in 90 days.
+              Modeled enterprise rollout example (illustrative; not a public customer claim).
             </p>
           </div>
 
@@ -246,7 +251,7 @@ export default function Home() {
                   <li className="flex items-center gap-2"><span className="text-neon">✓</span> 24-min average dwell</li>
                   <li className="flex items-center gap-2"><span className="text-neon">✓</span> 100% digital chain-of-custody</li>
                   <li className="flex items-center gap-2"><span className="text-neon">✓</span> 0.5 FTE/site at gate</li>
-                  <li className="flex items-center gap-2"><span className="text-neon">✓</span> $2.1M/yr detention recovered</li>
+                  <li className="flex items-center gap-2"><span className="text-neon">✓</span> Detention recovered (modeled)</li>
                 </ul>
               </div>
               <div className="flex items-center justify-center">
@@ -322,7 +327,7 @@ export default function Home() {
                 icon: <Manifest size={36} className="text-neon" />,
                 name: 'Digital BOL',
                 desc: 'Touchless documentation. Timestamped chain of custody for every load.',
-                stat: '$10k/site annual savings',
+                stat: dollarsPerFacility(cfoBaseline.paperlessSavings),
               },
               {
                 icon: <Cortex size={36} className="text-neon" />,

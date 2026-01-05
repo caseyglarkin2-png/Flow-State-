@@ -57,10 +57,20 @@ For multi-year outputs, Year 1 uses the ramped value and years 2–5 use steady-
 
 ## Network effect
 
-Network effect is modeled as compounding advantage as the number of connected facilities increases.
+Network effect is modeled using a single, defensible, Metcalfe-inspired formula that is realization-adjusted (to stay CFO-safe).
 
-- Baseline multiplier form (used across the site):
-  - `networkMultiplier = 1 + ln(facilities + 1) * logFactor`
+Canonical network effect
+1) Potential connectivity:
+- $C(n)=n(n-1)/2$
+2) Realization factor (adoption/playbooks/data quality):
+- $R(n)=1-\exp(-n/\tau)$
+3) Baseline normalization (fixed):
+- $n_0=10$ (fixed across the site)
+- $C_0=C(n_0)$
+4) Canonical multiplier:
+- $M(n)=1+\beta\cdot\left(\frac{C(n)}{C_0}\right)\cdot R(n)$
+5) Network bonus (single definition everywhere):
+- $\text{NetworkBonus}=\text{BaseValue}\cdot(M(n)-1)$
 
 We also compute a breakdown (predictive intelligence, benchmarking, coordination efficiency, shared learning) for explanation; component values are scaled so that:
 

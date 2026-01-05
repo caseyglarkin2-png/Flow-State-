@@ -32,16 +32,25 @@ Critical framing update
   - `calculateCFOMetrics()` re-derives ROI/payback/NPV and includes a fabricated IRR approximation (`+ 15`), violating “no fabricated claims”.
   - Has separate “modeling presets” (conservative/base/aggressive) that are not shared with homepage/network/singularity.
 
-### 2) Homepage and “Network Effect” page are not fully model-congruent
-- Homepage (`app/page.tsx`) already calls `calcRoiV2(getRoiV2InputsForPreset(...))` for KPI tiles (good).
-- The flagship `/network-effect` page currently computes base savings using a per-facility placeholder (not the ROI model).
-- `components/NetworkEffectModel.tsx` uses `calcRoiV2()` (good), but any static copy like “$10k/site annual savings” is not tied to the canonical model.
+### 2) Canonical network effect math is now centralized (good)
+- `src/lib/economics/networkEffect.ts` is the single canonical implementation:
+  - $C(n)=n(n-1)/2$
+  - $R(n)=1-\exp(-n/\tau)$
+  - fixed baseline $n_0=10$, $C_0=C(n_0)$
+  - $M(n)=1+\beta\cdot(C(n)/C_0)\cdot R(n)$
+- The ad-hoc `logFactor` / `1 + ln(n+1)*k` formula has been removed from code.
+
+Still needs ongoing policing:
+- Homepage (`app/page.tsx`) already calls `calcRoiV2(getRoiV2InputsForPreset(...))` for KPI tiles (good), but any static copy like “$10k/site annual savings” should be replaced with modeled outputs.
 
 ### 3) Singularity uses synthetic economics (must be replaced)
 - `app/singularity/page.tsx`
   - The animation is fine.
   - The displayed “Live Savings”, “ROI Breakdown” and the “network multiplier/velocity” are synthetic.
   - The hard-coded line items ($127K, $89K, etc.) and “5.8× / +$93.1M/yr” must be derived from the canonical model (or clearly labeled as illustrative only).
+
+Update:
+- Network multiplier examples now pull from the canonical function via the ROI assumptions (`beta`, `tau`).
 
 ### 4) Proof paths (case studies)
 - `/case-studies/primo-network` exists in code (`app/case-studies/[slug]/page.tsx`).

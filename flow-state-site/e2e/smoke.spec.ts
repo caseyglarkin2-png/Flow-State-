@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test';
 test.describe('smoke', () => {
   test('home loads', async ({ page }) => {
     await page.goto('/');
-    await expect(page.getByRole('link', { name: /generate yard report/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /see board-ready roi/i })).toBeVisible();
   });
 
   test('pricing loads', async ({ page }) => {
@@ -14,7 +14,7 @@ test.describe('smoke', () => {
 
   test('roi calculator loads', async ({ page }) => {
     await page.goto('/roi');
-    await expect(page.getByRole('heading', { name: /calculate your flow state/i })).toBeVisible();
+    await expect(page.getByText(/truckloads\/year unlocked/i)).toBeVisible();
     await expect(page.getByRole('heading', { name: /roi model/i })).toBeVisible();
     await expect(page.getByRole('button', { name: /board-ready/i })).toBeVisible();
   });
@@ -27,7 +27,7 @@ test.describe('smoke', () => {
 
   test('security loads', async ({ page }) => {
     await page.goto('/security');
-    await expect(page.getByRole('heading', { level: 1, name: /security/i })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1, name: /everything procurement needs/i })).toBeVisible();
   });
 
   test('integrations loads', async ({ page }) => {
@@ -129,7 +129,8 @@ test.describe('smoke', () => {
         incrementalMarginPerTruck: 500,
       },
       network: {
-        logFactor: 0,
+        beta: 0,
+        tau: 45,
       },
       commercial: {
         implementationBaseCost: 0,

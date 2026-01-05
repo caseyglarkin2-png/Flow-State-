@@ -28,6 +28,10 @@ export const ECONOMICS_MODES: Record<
     detentionCostPerHour: number;
     laborCostPerHour: number;
     gateStaffPerFacility: number;
+
+    // Canonical Metcalfe-inspired network effect parameters
+    networkBeta: number;
+    networkTau: number;
   }
 > = {
   conservative: {
@@ -39,6 +43,9 @@ export const ECONOMICS_MODES: Record<
     detentionCostPerHour: 85,
     laborCostPerHour: 32,
     gateStaffPerFacility: 5,
+
+    networkBeta: 0.003,
+    networkTau: 60,
   },
   expected: {
     id: 'expected',
@@ -49,6 +56,9 @@ export const ECONOMICS_MODES: Record<
     detentionCostPerHour: 75,
     laborCostPerHour: 28,
     gateStaffPerFacility: 4,
+
+    networkBeta: 0.004,
+    networkTau: 45,
   },
   upside: {
     id: 'upside',
@@ -59,6 +69,9 @@ export const ECONOMICS_MODES: Record<
     detentionCostPerHour: 65,
     laborCostPerHour: 25,
     gateStaffPerFacility: 3,
+
+    networkBeta: 0.006,
+    networkTau: 35,
   },
 };
 
@@ -77,5 +90,13 @@ export function getQuickInputsForPreset(scenarioId: EconomicsScenarioId, mode: E
 }
 
 export function getRoiV2InputsForPreset(scenarioId: EconomicsScenarioId, mode: EconomicsMode): RoiV2Inputs {
-  return roiV2InputsFromQuickMode(getQuickInputsForPreset(scenarioId, mode));
+  const m = ECONOMICS_MODES[mode];
+
+  return {
+    ...roiV2InputsFromQuickMode(getQuickInputsForPreset(scenarioId, mode)),
+    network: {
+      beta: m.networkBeta,
+      tau: m.networkTau,
+    },
+  };
 }

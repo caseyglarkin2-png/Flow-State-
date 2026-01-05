@@ -53,5 +53,12 @@ export interface Outputs {
   hardSavingsAnnual: number;
   capacity: CapacityUnlockedOutputs;
 
+  finance: {
+    yearOneCashflow: number;
+    fiveYearNPV: number;
+    costOfDelay90Days: number;
+    savingsPerFacility: number;
+  };
+
   warnings: string[];
 }

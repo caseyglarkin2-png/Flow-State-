@@ -100,7 +100,19 @@ export interface RoiThroughputAssumptions {
 }
 
 export interface RoiNetworkAssumptions {
-  logFactor: number;
+  /**
+   * Metcalfe-inspired network effect strength parameter (β).
+   * Used in the canonical multiplier:
+   *   M(n) = 1 + β * (C(n)/C0) * R(n)
+   */
+  beta: number;
+
+  /**
+   * Metcalfe-inspired realization maturity constant (τ).
+   * Used in the canonical realization curve:
+   *   R(n) = 1 - exp(-n/τ)
+   */
+  tau: number;
 }
 
 export interface NetworkEffectBreakdown {
