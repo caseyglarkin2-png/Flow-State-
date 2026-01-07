@@ -326,13 +326,13 @@ export default function YNSPage() {
             {[
               {
                 number: '01',
-                title: 'The Labor Crisis Isn't Ending',
+                title: 'The Labor Crisis Isn\'t Ending',
                 description: 'Gate attendants, yard jockeys, dispatchers — all impossible to hire. Autonomous workflows are the only path to consistent operations.',
               },
               {
                 number: '02',
                 title: 'Networks Are Already Here',
-                description: 'Regional carriers serve 10-50 facilities. 3PLs manage hundreds. Shippers operate coast-to-coast. The yard network exists — it's just invisible.',
+                description: 'Regional carriers serve 10-50 facilities. 3PLs manage hundreds. Shippers operate coast-to-coast. The yard network exists — it\'s just invisible.',
               },
               {
                 number: '03',
