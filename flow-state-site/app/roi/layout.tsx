@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     canonical: canonicalUrl('/roi'),
   },
   openGraph: {
-    title: 'ROI Calculator | Flow State',
+    title: 'ROI Calculator | YardFlow by FreightRoll',
     description: 'CFO-ready, scenario-based ROI modeling with transparent assumptions you can customize and audit.',
     url: `${siteUrl}/roi`,
     type: 'website',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
         url: `${siteUrl}/og.png`,
         width: 1200,
         height: 630,
-        alt: 'Flow State ROI Calculator',
+        alt: 'YardFlow by FreightRoll ROI Calculator',
       },
     ],
   },

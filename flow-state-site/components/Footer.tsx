@@ -13,12 +13,12 @@ export default function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="w-7 h-7 flex items-center justify-center">
-                <Image src="/favicon.svg" alt="Flow State" width={28} height={28} className="w-7 h-7" />
+                <Image src="/favicon.svg" alt="YardFlow by FreightRoll" width={28} height={28} className="w-7 h-7" />
               </div>
-              <span className="font-bold text-neon">FLOW STATE</span>
+              <span className="font-bold text-neon">YARDFLOW</span>
             </div>
             <p className="text-steel text-sm mb-2">Industrial fluidity. Yard orchestration. Ground source truth.</p>
-            <p className="text-steel/60 text-xs italic">Formerly FreightRoll</p>
+            <p className="text-steel/60 text-xs">A FreightRoll product</p>
           </div>
 
           {/* Product */}
@@ -64,7 +64,7 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="border-t border-neon/10 pt-8 flex items-center justify-between text-sm text-steel">
-          <p>&copy; 2026 Flow State. All rights reserved.</p>
+          <p>&copy; 2026 YardFlow by FreightRoll. All rights reserved.</p>
           <div className="flex gap-4">
             <a href="mailto:casey@freightroll.com" className="hover:text-neon transition-colors">Email</a>
             <Link href="/pricing" className="hover:text-neon transition-colors">Pricing</Link>

@@ -266,6 +266,15 @@ export function roiV2InputsFromQuickMode(quick: RoiV1Inputs): RoiV2Inputs {
       beta: 0.004,
       tau: 45,
     },
+    security: {
+      cargoTheftIncidentsPerYear: 0,
+      avgStolenLoadValue: 0,
+      investigationCostPerIncident: 15000,
+      annualInsurancePremium: 0,
+      theftReductionShare: 0.8,
+      insurancePremiumReductionShare: 0.15,
+      complianceFinesAvoided: 0,
+    },
     enterpriseAddOns: {
       perShipment: {
         ...base.enterpriseAddOns.perShipment,
@@ -360,6 +369,15 @@ export function defaultRoiV2Inputs(): RoiV2Inputs {
     network: {
       beta: 0,
       tau: 45,
+    },
+    security: {
+      cargoTheftIncidentsPerYear: 0,
+      avgStolenLoadValue: 0,
+      investigationCostPerIncident: 15000,
+      annualInsurancePremium: 0,
+      theftReductionShare: 0.8,
+      insurancePremiumReductionShare: 0.15,
+      complianceFinesAvoided: 0,
     },
     commercial: {
       implementationBaseCost: 0,
@@ -461,6 +479,15 @@ export function defaultRoiV2InputsLineage(): RoiV2Inputs {
       beta: 0,
       tau: 45,
     },
+    security: {
+      cargoTheftIncidentsPerYear: 0,
+      avgStolenLoadValue: 0,
+      investigationCostPerIncident: 15000,
+      annualInsurancePremium: 0,
+      theftReductionShare: 0.8,
+      insurancePremiumReductionShare: 0.15,
+      complianceFinesAvoided: 0,
+    },
     commercial: {
       implementationBaseCost: 0,
       implementationCostPerFacility: 2500,
@@ -539,6 +566,15 @@ export function calcRoiV2(rawInputs: RoiV2Inputs): RoiV2Outputs {
     },
     network: {
       ...rawInputs.network,
+    },
+    security: {
+      cargoTheftIncidentsPerYear: Math.max(0, rawInputs.security?.cargoTheftIncidentsPerYear ?? 0),
+      avgStolenLoadValue: Math.max(0, rawInputs.security?.avgStolenLoadValue ?? 0),
+      investigationCostPerIncident: Math.max(0, rawInputs.security?.investigationCostPerIncident ?? 15000),
+      annualInsurancePremium: Math.max(0, rawInputs.security?.annualInsurancePremium ?? 0),
+      theftReductionShare: clampPercent(rawInputs.security?.theftReductionShare ?? 0.8),
+      insurancePremiumReductionShare: clampPercent(rawInputs.security?.insurancePremiumReductionShare ?? 0.15),
+      complianceFinesAvoided: Math.max(0, rawInputs.security?.complianceFinesAvoided ?? 0),
     },
     commercial: {
       ...rawInputs.commercial,
@@ -674,12 +710,23 @@ export function calcRoiV2(rawInputs: RoiV2Inputs): RoiV2Outputs {
 
   const throughputValue = yardThroughputValue + shipperOfChoiceValue + enterpriseAnnualThroughputValue;
 
+  // SECURITY SAVINGS
+  const theftLosses = Math.max(0, inputs.security.cargoTheftIncidentsPerYear) * Math.max(0, inputs.security.avgStolenLoadValue);
+  const investigationCosts = Math.max(0, inputs.security.cargoTheftIncidentsPerYear) * Math.max(0, inputs.security.investigationCostPerIncident);
+  const currentInsurancePremium = Math.max(0, inputs.security.annualInsurancePremium);
+  
+  const theftReductionSavings = (theftLosses + investigationCosts) * clampPercent(inputs.security.theftReductionShare);
+  const insuranceSavings = currentInsurancePremium * clampPercent(inputs.security.insurancePremiumReductionShare);
+  const complianceSavings = Math.max(0, inputs.security.complianceFinesAvoided);
+  
+  const securitySavings = theftReductionSavings + insuranceSavings + complianceSavings;
+
   const network = metcalfeInspiredMultiplier(totalFacilities, {
     beta: inputs.network.beta,
     tau: inputs.network.tau,
   });
   const networkMultiplier = network.multiplier;
-  const baseSavings = annualLaborSavings + paperlessSavings + annualDetentionSavings + throughputValue;
+  const baseSavings = annualLaborSavings + paperlessSavings + annualDetentionSavings + throughputValue + securitySavings;
 
   const networkBonusSavings = inputs.network.beta > 0 ? baseSavings * (networkMultiplier - 1) : 0;
   const totalAnnualSavings = baseSavings + networkBonusSavings;
@@ -743,6 +790,7 @@ export function calcRoiV2(rawInputs: RoiV2Inputs): RoiV2Outputs {
     annualDetentionSavings,
     throughputValue,
     shipperOfChoiceValue,
+    securitySavings,
     baseSavings,
     networkMultiplier,
     networkBonusSavings,

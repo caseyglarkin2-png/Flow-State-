@@ -3,6 +3,7 @@ import '@/styles/globals.css';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import Script from 'next/script';
 import AppChrome from '@/components/AppChrome';
+import AnalyticsProvider from '@/components/AnalyticsProvider';
 import { siteUrl } from '@/lib/site';
 
 const inter = Inter({
@@ -20,11 +21,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Flow State | Put your yard in Flow',
-    template: '%s | Flow State',
+    default: 'YardFlow by FreightRoll | Yard Orchestration & Security',
+    template: '%s | YardFlow',
   },
   description:
-    'Yard orchestration platform that turns facilities into coordinated networks with defensible timestamps, modeled hard savings, and capacity unlocked.',
+    'Yard orchestration platform that turns facilities into coordinated networks with defensible timestamps, modeled hard savings, capacity unlocked, and verified security at every gate.',
   keywords: [
     'yard management system',
     'YMS software',
@@ -37,9 +38,9 @@ export const metadata = {
     'dwell time optimization',
     'warehouse yard management',
   ],
-  authors: [{ name: 'Flow State', url: siteUrl }],
-  creator: 'Flow State',
-  publisher: 'Flow State',
+  authors: [{ name: 'YardFlow by FreightRoll', url: siteUrl }],
+  creator: 'YardFlow by FreightRoll',
+  publisher: 'FreightRoll',
   robots: {
     index: true,
     follow: true,
@@ -52,10 +53,10 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'Flow State | Put your yard in Flow',
-    description: 'Yard orchestration platform with CFO-grade, scenario-based modeling for hard savings, capacity unlocked, and realization-adjusted network effects.',
+    title: 'YardFlow by FreightRoll | Yard Orchestration & Security',
+    description: 'Yard orchestration platform with CFO-grade, scenario-based modeling for hard savings, capacity unlocked, network effects, and verified security at every gate.',
     url: siteUrl,
-    siteName: 'Flow State',
+    siteName: 'YardFlow',
     type: 'website',
     locale: 'en_US',
     images: [
@@ -63,16 +64,16 @@ export const metadata = {
         url: `${siteUrl}/og.png`,
         width: 1200,
         height: 630,
-        alt: 'Flow State - Put your yard in Flow',
+        alt: 'YardFlow by FreightRoll - Yard Orchestration & Security',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Flow State | Put your yard in Flow',
-    description: 'Yard orchestration platform with CFO-grade, scenario-based modeling for hard savings, capacity unlocked, and network effects.',
+    title: 'YardFlow by FreightRoll | Yard Orchestration & Security',
+    description: 'Yard orchestration platform with CFO-grade, scenario-based modeling for hard savings, capacity unlocked, network effects, and verified security.',
     images: [`${siteUrl}/og.png`],
-    creator: '@flowstate_io',
+    creator: '@freightroll',
   },
   alternates: {
     canonical: siteUrl,
@@ -94,7 +95,7 @@ export default function RootLayout({
       {
         '@type': 'Organization',
         '@id': `${siteUrl}/#organization`,
-        name: 'Flow State',
+        name: 'YardFlow by FreightRoll',
         url: siteUrl,
         logo: {
           '@type': 'ImageObject',
@@ -108,15 +109,15 @@ export default function RootLayout({
         contactPoint: {
           '@type': 'ContactPoint',
           contactType: 'sales',
-          email: 'hello@flowstate.io',
+          email: 'hello@yardflow.ai',
         },
       },
       {
         '@type': 'WebSite',
         '@id': `${siteUrl}/#website`,
         url: siteUrl,
-        name: 'Flow State',
-        description: 'Yard orchestration platform for logistics operations',
+        name: 'YardFlow by FreightRoll',
+        description: 'Yard orchestration and security platform for logistics operations',
         publisher: {
           '@id': `${siteUrl}/#organization`,
         },
@@ -129,7 +130,7 @@ export default function RootLayout({
       {
         '@type': 'SoftwareApplication',
         '@id': `${siteUrl}/#software`,
-        name: 'Flow State',
+        name: 'YardFlow by FreightRoll',
         applicationCategory: 'BusinessApplication',
         applicationSubCategory: 'Yard Management System',
         operatingSystem: 'Web',
@@ -152,15 +153,15 @@ export default function RootLayout({
         mainEntity: [
           {
             '@type': 'Question',
-            name: 'What is Flow State?',
+            name: 'What is YardFlow by FreightRoll?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Flow State is a yard orchestration platform that automates gate operations, tracks trailers in real-time, and uses AI to optimize yard moves. It transforms logistics facilities from bottlenecks into intelligent network nodes.',
+              text: 'YardFlow by FreightRoll is a yard orchestration platform that automates gate operations, tracks trailers in real-time, and uses AI to optimize yard moves. It transforms logistics facilities from bottlenecks into intelligent network nodes.',
             },
           },
           {
             '@type': 'Question',
-            name: 'How much can I save with Flow State?',
+            name: 'How much can I save with YardFlow by FreightRoll?',
             acceptedAnswer: {
               '@type': 'Answer',
               text: 'Savings are scenario-dependent and driven by measurable mechanisms like dwell reduction, detention recovery, labor productivity, and incremental capacity unlocked. Use the ROI calculator to model assumptions and see how results change by facility count and operating profile.',
@@ -188,8 +189,10 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/favicon.svg" />
       </head>
       <body className="bg-void text-white font-sans">
-        {children}
-        <AppChrome />
+        <AnalyticsProvider>
+          {children}
+          <AppChrome />
+        </AnalyticsProvider>
       </body>
       <Script
         id="structured-data"

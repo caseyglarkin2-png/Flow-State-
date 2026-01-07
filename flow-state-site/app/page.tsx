@@ -5,7 +5,9 @@ import Footer from '@/components/Footer';
 import Card from '@/components/Card';
 import YardBuilderHook from '@/components/YardBuilderHook';
 import NetworkEffectModel from '@/components/NetworkEffectModel';
+import YardTaxSection from '@/components/YardTaxSection';
 import { calcRoiV2, getRoiV2InputsForPreset } from '@/lib/economics';
+import { X, Check } from 'lucide-react';
 import {
   Agent,
   Cortex,
@@ -37,47 +39,51 @@ export default function Home() {
       <Header />
 
       {/* ═══════════════════════════════════════════════════════════════
-          HERO 1: THE HOOK — CFO INTRIGUE IN 3 SECONDS
+          HERO: THE STATUS QUO TAX
+          Lead with what they're losing, not what they could gain
       ═══════════════════════════════════════════════════════════════ */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-24">
         <div className="absolute inset-0 grid-background opacity-20"></div>
         
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <p className="text-neon font-mono text-sm tracking-widest mb-6 uppercase">
-            The yard is the last black hole in logistics
+          <p className="text-ember font-mono text-sm tracking-widest mb-6 uppercase">
+            The cost you're paying today
           </p>
           
-          <h1 className="text-6xl md:text-8xl font-black mb-8 tracking-tighter leading-[0.9]">
-            <span className="text-white">Visibility ≠ control.</span>
+          <h1 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-[0.95]">
+            <span className="text-white">Your yard is bleeding margin.</span>
             <br />
-            <span className="text-neon drop-shadow-[0_0_30px_rgba(0,180,255,0.5)]">
-              Flow State makes the yard obey.
+            <span className="text-steel/70 text-4xl md:text-5xl">Detention. Expedites. Overtime. Chargebacks.</span>
+            <br />
+            <span className="text-neon drop-shadow-[0_0_30px_rgba(0,180,255,0.5)] mt-4 block">
+              You just don't have an invoice for it.
             </span>
           </h1>
           
           <p className="text-xl md:text-2xl text-steel/90 mb-4 max-w-3xl mx-auto">
-            Turn every facility into an <span className="text-neon font-semibold">intelligent node</span> with 
-            defensible timestamps. Watch "soft problems" become <span className="text-white font-semibold">hard savings</span>.
+            YardFlow by FreightRoll turns <span className="text-ember font-semibold">invisible yard friction</span> into {' '}
+            <span className="text-neon font-semibold">defensible timestamps</span> and {' '}
+            <span className="text-white font-semibold">hard savings</span>.
           </p>
 
           <p className="text-lg text-steel/70 mb-10 max-w-2xl mx-auto">
-            CFO-grade, scenario-based modeling — no fabricated metrics.
+            See exactly what your yard is costing you. Then stop paying it.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="#yardbuilder"
-              className="group inline-flex items-center gap-3 px-8 py-4 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white transition-all hover:scale-105"
+              href="/diagnostic"
+              className="group inline-flex items-center gap-3 px-8 py-4 rounded-lg font-bold text-lg bg-ember text-white hover:bg-white hover:text-void transition-all hover:scale-105"
             >
-              <Ignite size={22} className="text-void" />
-              Map Your Yard in 60 Seconds
+              <Crosshair size={22} />
+              Calculate Your Yard Tax
             </Link>
             <Link
-              href="/roi"
+              href="#yardbuilder"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
             >
-              <Metrics size={20} />
-              See Board-Ready ROI
+              <Ignite size={20} />
+              Map a Facility
             </Link>
           </div>
         </div>
@@ -91,21 +97,27 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          HERO 2: YARDBUILDER — IMMEDIATE AGENCY
-          "Map your yard in 60 seconds" — the IKEA effect hook
+          THE YARD TAX: HIDDEN COST INVENTORY
+          Make the invisible visible before offering the solution
+      ═══════════════════════════════════════════════════════════════ */}
+      <YardTaxSection />
+
+      {/* ═══════════════════════════════════════════════════════════════
+          YARDBUILDER: FROM DIAGNOSIS TO ACTION
+          "Now that you see the cost, map your specific facility"
       ═══════════════════════════════════════════════════════════════ */}
       <section id="yardbuilder" className="py-20 bg-carbon/50 border-t border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
             <p className="text-neon font-mono text-sm tracking-widest mb-4 uppercase">
-              Project Genesis
+              From Diagnosis to Action
             </p>
             <h2 className="text-4xl md:text-6xl font-black mb-4">
-              Your Yard. Your Numbers. <span className="text-neon">60 Seconds.</span>
+              See the Leak. <span className="text-neon">Fix the Leak.</span>
             </h2>
             <p className="text-xl text-steel/80 max-w-2xl mx-auto">
-              Enter an address. Get a board-ready yard report with custom ROI projections. 
-              No forms. No sales call required.
+              Enter any facility address. Get a board-ready yard report showing exactly 
+              where the margin is hiding, and how to recover it.
             </p>
           </div>
 
@@ -113,34 +125,34 @@ export default function Home() {
 
           <div className="mt-8 text-center">
             <p className="text-steel/60 text-sm">
-              ↓ Scroll to see why 200+ enterprise networks chose Flow State
+              ↓ See why the yard is the last black hole in logistics
             </p>
           </div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          THE REVEAL: GROUND SOURCE TRUTH
-          Why legacy YMS fails — and what changes with instrumentation
+          THE REVEAL: WHY THE YARD TAX EXISTS
+          The root cause is instrumentation, not effort
       ═══════════════════════════════════════════════════════════════ */}
       <section className="py-24 border-t border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <p className="text-ember font-mono text-sm tracking-widest mb-4 uppercase">
-                The Problem Nobody Talks About
+                Why the Yard Tax Exists
               </p>
               <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
-                Legacy YMS records what happened.
+                You can't cut costs you can't see.
                 <br />
-                <span className="text-neon">Flow State dictates what happens next.</span>
+                <span className="text-neon">YardFlow by FreightRoll makes the invisible auditable.</span>
               </h2>
               <p className="text-lg text-steel/90 mb-6 leading-relaxed">
-                Most "visibility" platforms show you dots moving on a screen. They don't change gate behavior. 
-                They don't reduce dwell. They don't cut detention.
+                The yard tax persists because legacy systems record what happened after the fact, 
+                based on what someone typed in. No defensible timestamps. No exception capture. No accountability.
               </p>
               <p className="text-lg text-steel/90 mb-8 leading-relaxed">
-                Flow State establishes <span className="text-neon font-semibold">Ground Source Truth</span>: 
+                YardFlow by FreightRoll establishes <span className="text-neon font-semibold">Ground Source Truth</span>: 
                 defensible timestamps from the physical yard that replace reported data with reality.
               </p>
 
@@ -168,7 +180,7 @@ export default function Home() {
                 { level: 1, name: 'Chaos', color: '#FF2A00', desc: 'Clipboards. Radios. Hope.', active: false },
                 { level: 2, name: 'Management', color: '#FFB800', desc: 'Software records events. Reactively.', active: false },
                 { level: 3, name: 'Orchestration', color: '#00B4FF', desc: 'System directs moves. Proactively.', active: true },
-                { level: 4, name: 'Flow State', color: '#00B4FF', desc: 'Network learns. Autonomously.', active: false },
+                { level: 4, name: 'YardFlow', color: '#00B4FF', desc: 'Network learns. Autonomously.', active: false },
               ].map((step, i) => (
                 <div 
                   key={i} 
@@ -239,19 +251,19 @@ export default function Home() {
               <div>
                 <p className="text-steel/60 text-sm font-mono mb-2">BEFORE</p>
                 <ul className="space-y-2 text-steel/80">
-                  <li className="flex items-center gap-2"><span className="text-ember">✗</span> 48-min average dwell</li>
-                  <li className="flex items-center gap-2"><span className="text-ember">✗</span> Paper BOLs, lost paperwork</li>
-                  <li className="flex items-center gap-2"><span className="text-ember">✗</span> 3 FTE/site at gate</li>
-                  <li className="flex items-center gap-2"><span className="text-ember">✗</span> No detention visibility</li>
+                  <li className="flex items-center gap-2"><X size={16} className="text-ember" /> 48-min average dwell</li>
+                  <li className="flex items-center gap-2"><X size={16} className="text-ember" /> Paper BOLs, lost paperwork</li>
+                  <li className="flex items-center gap-2"><X size={16} className="text-ember" /> 3 FTE/site at gate</li>
+                  <li className="flex items-center gap-2"><X size={16} className="text-ember" /> No detention visibility</li>
                 </ul>
               </div>
               <div>
                 <p className="text-steel/60 text-sm font-mono mb-2">AFTER</p>
                 <ul className="space-y-2 text-white">
-                  <li className="flex items-center gap-2"><span className="text-neon">✓</span> 24-min average dwell</li>
-                  <li className="flex items-center gap-2"><span className="text-neon">✓</span> 100% digital chain-of-custody</li>
-                  <li className="flex items-center gap-2"><span className="text-neon">✓</span> 0.5 FTE/site at gate</li>
-                  <li className="flex items-center gap-2"><span className="text-neon">✓</span> Detention recovered (modeled)</li>
+                  <li className="flex items-center gap-2"><Check size={16} className="text-neon" /> 24-min average dwell</li>
+                  <li className="flex items-center gap-2"><Check size={16} className="text-neon" /> 100% digital chain-of-custody</li>
+                  <li className="flex items-center gap-2"><Check size={16} className="text-neon" /> 0.5 FTE/site at gate</li>
+                  <li className="flex items-center gap-2"><Check size={16} className="text-neon" /> Detention recovered (modeled)</li>
                 </ul>
               </div>
               <div className="flex items-center justify-center">
@@ -270,20 +282,20 @@ export default function Home() {
 
       {/* ═══════════════════════════════════════════════════════════════
           THE COMPOUNDING ARGUMENT: NODE → NETWORK → LEVERAGE
-          Interactive network effect model
+          After you stop the bleeding, the savings compound
       ═══════════════════════════════════════════════════════════════ */}
       <section className="py-24 border-t border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <p className="text-neon font-mono text-sm tracking-widest mb-4 uppercase">
-              The Network Effect
+              From Cost Recovery to Compounding Returns
             </p>
             <h2 className="text-4xl md:text-5xl font-black mb-6">
-              Every Node You Add <span className="text-neon">Compounds.</span>
+              Stop the Yard Tax at One Site. <span className="text-neon">Then Watch It Compound.</span>
             </h2>
             <p className="text-xl text-steel/80 max-w-3xl mx-auto">
-              Metcalfe's Law applied to yard orchestration: value grows exponentially with connected facilities. 
-              Your competitors' yards become your data advantage.
+              Each facility you instrument eliminates local friction. But when you connect them, 
+              value compounds: standardized playbooks, faster rollouts, network-wide visibility.
             </p>
           </div>
 
@@ -500,14 +512,13 @@ export default function Home() {
       <section className="py-24 border-t border-neon/20 bg-gradient-to-b from-void to-carbon/50">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <p className="text-ember font-mono text-sm tracking-widest mb-6 uppercase">
-            Only 3 Founding Member spots remaining
+            Enterprise-Ready Deployment
           </p>
           <h2 className="text-5xl md:text-6xl font-black mb-6">
             Ready to put your yard <span className="text-neon">in Flow?</span>
           </h2>
           <p className="text-xl text-steel/80 mb-10 max-w-2xl mx-auto">
-            Join 200+ enterprise networks. Lock in founding rates. 
-            Get dedicated implementation support.
+            Proven economics. Defensible proof path. Enterprise deployment support.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

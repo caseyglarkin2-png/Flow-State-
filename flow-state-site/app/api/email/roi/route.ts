@@ -89,10 +89,10 @@ export async function POST(req: Request) {
 
   const pdf = await renderPdfToBuffer(React.createElement(RoiSummaryPdf, { payload }));
 
-  const filename = 'flow-state-roi-summary.pdf';
-  const subjectToFinance = `[Flow State] ROI summary for ${body.lead.company}`;
+  const filename = 'yardflow-roi-summary.pdf';
+  const subjectToFinance = `[YardFlow by FreightRoll] ROI summary for ${body.lead.company}`;
   const textToFinance = [
-    `Hi — sharing a board-ready ROI summary for ${body.lead.company}.`,
+    `Hi, sharing a board-ready ROI summary for ${body.lead.company}.`,
     '',
     `Prepared for: ${body.lead.name} (${body.lead.email})`,
     `Year 1 ROI: ${Math.round(result.yearOneRoiPercent)}%`,
@@ -110,7 +110,7 @@ export async function POST(req: Request) {
 
   // Internal notification + CRM webhook.
   const leadTo = process.env.LEADS_TO_EMAIL || 'casey@freightroll.com';
-  const subjectInternal = `[Flow State] ROI PDF emailed — ${body.lead.company}`;
+  const subjectInternal = `[YardFlow by FreightRoll] ROI PDF emailed to ${body.lead.company}`;
   const textInternal = [
     'An ROI PDF was emailed.',
     `Company: ${body.lead.company}`,

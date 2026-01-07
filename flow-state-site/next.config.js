@@ -48,6 +48,16 @@ const nextConfig = {
           },
         ],
       },
+      {
+        // Force no-cache for HTML pages to ensure crawlers get fresh content
+        source: '/((?!_next|api).*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, must-revalidate',
+          },
+        ],
+      },
     ];
   },
 };

@@ -16,11 +16,14 @@ export default function PricingPage() {
 
       <section className="pt-32 pb-16 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6 text-center">
+          <p className="text-ember font-mono text-sm mb-4 tracking-wider uppercase">
+            Cost to cut the yard tax
+          </p>
           <h1 className="text-5xl md:text-7xl font-black mb-6">
             Transparent <span className="neon-glow">Pricing</span>
           </h1>
           <p className="text-xl text-steel max-w-3xl mx-auto">
-            Flow State pricing is simple, facility-based, and designed to reward full-network adoption.
+            Simple, facility-based pricing. The subscription costs less than the yard tax it eliminates.
           </p>
         </div>
       </section>
@@ -133,7 +136,7 @@ export default function PricingPage() {
                 <div>
                   <p className="font-semibold text-white">Can we pilot before rolling out?</p>
                   <p className="text-sm text-steel/80">
-                    Yes — pilots are encouraged. The ROI compounds as adoption expands across the network.
+                    Yes, pilots are encouraged. The ROI compounds as adoption expands across the network.
                   </p>
                 </div>
               </div>

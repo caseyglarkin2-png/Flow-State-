@@ -50,7 +50,7 @@ export async function handleLeadPost(req: Request) {
 
   const leadTo = process.env.LEADS_TO_EMAIL || 'casey@freightroll.com';
 
-  const subject = `[Flow State] ${payload.leadType.toUpperCase()} lead — ${payload.company}`;
+  const subject = `[YardFlow by FreightRoll] ${payload.leadType.toUpperCase()} lead from ${payload.company}`;
   const text = [
     `Lead Type: ${payload.leadType}`,
     `Name: ${payload.name}`,

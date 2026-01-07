@@ -24,7 +24,7 @@ export default function PrivacyPage() {
           <Card>
             <div className="space-y-6 text-steel leading-relaxed">
               <p>
-                This Privacy Policy explains how Flow State collects and uses information when you visit our website
+                This Privacy Policy explains how YardFlow by FreightRoll collects and uses information when you visit our website
                 or apply for the Founding Member program.
               </p>
 
@@ -57,8 +57,8 @@ export default function PrivacyPage() {
                 <h2 className="text-neon font-bold mb-2">Contact</h2>
                 <p>
                   Questions? Email{' '}
-                  <a className="text-neon hover:underline" href="mailto:founding@flow-state.ai">
-                    founding@flow-state.ai
+                  <a className="text-neon hover:underline" href="mailto:privacy@freightroll.com">
+                    privacy@freightroll.com
                   </a>
                   .
                 </p>

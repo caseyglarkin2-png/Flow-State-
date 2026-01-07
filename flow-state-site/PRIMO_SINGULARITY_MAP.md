@@ -241,7 +241,7 @@ import { PlantIcon, TruckIcon } from '@/brand/icons';
 Four logo variants in `src/brand/logos/index.tsx`:
 
 1. **mark** - Icon only
-2. **wordmark** - Text only ("Flow State")
+2. **wordmark** - Text only ("YardFlow by FreightRoll")
 3. **horizontal** - Icon + text side by side
 4. **stacked** - Icon above text
 

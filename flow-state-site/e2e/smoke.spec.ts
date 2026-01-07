@@ -3,7 +3,19 @@ import { expect, test } from '@playwright/test';
 test.describe('smoke', () => {
   test('home loads', async ({ page }) => {
     await page.goto('/');
-    await expect(page.getByRole('link', { name: /see board-ready roi/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /calculate your yard tax/i })).toBeVisible();
+  });
+
+  test('home shows yard tax hook', async ({ page }) => {
+    await page.goto('/');
+    // The hero now leads with "your yard is bleeding margin"
+    await expect(page.getByText(/your yard is bleeding margin/i)).toBeVisible();
+  });
+
+  test('diagnostic loads', async ({ page }) => {
+    await page.goto('/diagnostic');
+    await expect(page.getByRole('heading', { name: /yard tax diagnostic/i })).toBeVisible();
+    await expect(page.getByText(/question 1 of/i)).toBeVisible();
   });
 
   test('pricing loads', async ({ page }) => {
@@ -16,7 +28,8 @@ test.describe('smoke', () => {
     await page.goto('/roi');
     await expect(page.getByText(/truckloads\/year unlocked/i)).toBeVisible();
     await expect(page.getByRole('heading', { name: /roi model/i })).toBeVisible();
-    await expect(page.getByRole('button', { name: /board-ready/i })).toBeVisible();
+    // Use exact match to avoid conflict with CFO Proof Checklist button
+    await expect(page.getByRole('button', { name: 'Board-ready', exact: true })).toBeVisible();
   });
 
   test('contact loads', async ({ page }) => {

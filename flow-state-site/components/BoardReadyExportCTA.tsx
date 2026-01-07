@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from 'react';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
+import { analytics } from '@/lib/analytics';
 import { trackEvent } from '@/lib/analytics';
 
 type Props = {
@@ -77,11 +78,18 @@ export default function BoardReadyExportCTA({
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = endpoint === '/api/pdf/roi' ? 'flow-state-roi-summary.pdf' : 'flow-state-yard-readiness-report.pdf';
+      a.download = endpoint === '/api/pdf/roi' ? 'yardflow-roi-summary.pdf' : 'yardflow-yard-readiness-report.pdf';
       document.body.appendChild(a);
       a.click();
       a.remove();
       URL.revokeObjectURL(url);
+
+      // Track analytics
+      if (endpoint === '/api/pdf/roi') {
+        analytics.generateROIPDF({ company });
+      } else {
+        analytics.generateYardBuilderPDF({ company });
+      }
 
       trackEvent(eventName, { endpoint });
       // PASS5 instrumentation (kept alongside legacy eventName for backwards compatibility)

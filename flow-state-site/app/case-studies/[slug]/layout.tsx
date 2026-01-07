@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { canonicalUrl, siteName } from '@/lib/site';
 
 const descriptions: Record<string, string> = {
-  'primo-network': 'A modeled enterprise network scenario illustrating Flow State ROI and pricing alignment.',
+  'primo-network': 'A modeled enterprise network scenario illustrating YardFlow by FreightRoll ROI and pricing alignment.',
 };
 
 export async function generateMetadata({
@@ -15,7 +15,7 @@ export async function generateMetadata({
 
   return {
     title,
-    description: descriptions[slug] ?? 'Enterprise-style case study format for Flow State.',
+    description: descriptions[slug] ?? 'Enterprise-style case study format for YardFlow by FreightRoll.',
     alternates: {
       canonical: canonicalUrl(`/case-studies/${slug}`),
     },

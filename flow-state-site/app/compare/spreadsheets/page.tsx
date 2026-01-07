@@ -11,10 +11,10 @@ export default function CompareSpreadsheetsPage() {
       <section className="pt-32 pb-16 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           <h1 className="text-5xl md:text-7xl font-black mb-6">
-            Flow State vs <span className="neon-glow">Spreadsheets + Radio</span>
+            YardFlow by FreightRoll vs <span className="neon-glow">Spreadsheets + Radio</span>
           </h1>
           <p className="text-xl text-steel max-w-3xl">
-            Spreadsheets can track. They can’t enforce. Flow State standardizes the workflow so your timestamps and
+            Spreadsheets can track. They can’t enforce. YardFlow by FreightRoll standardizes the workflow so your timestamps and
             exception reasons are actually defensible.
           </p>
         </div>

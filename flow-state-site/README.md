@@ -1,6 +1,6 @@
-# Flow State - Industrial Fluidity & Yard Orchestration Software
+# YardFlow by FreightRoll - Yard Orchestration & Security
 
-A modern, high-performance website for Flow State, a next-generation yard orchestration platform for logistics facilities.
+A modern, high-performance website for YardFlow by FreightRoll, a next-generation yard orchestration and security platform for logistics facilities.
 
 ## Features
 
@@ -83,4 +83,4 @@ All fonts loaded via Google Fonts CDN.
 
 ## License
 
-MIT License © 2025 Flow State
+MIT License © 2025 YardFlow by FreightRoll

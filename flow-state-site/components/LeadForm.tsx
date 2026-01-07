@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
-import HCaptcha from '@hcaptcha/react-hcaptcha';
+import React, { useMemo, useState } from 'react';import { analytics } from '@/lib/analytics';import HCaptcha from '@hcaptcha/react-hcaptcha';
 import { trackEvent } from '@/lib/analytics';
 import { usePersonaStore } from '@/store/persona';
 

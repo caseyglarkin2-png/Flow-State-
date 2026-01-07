@@ -87,7 +87,7 @@ export async function POST(req: Request) {
   const pdf = await renderPdfToBuffer(React.createElement(YardReadinessPdf, { payload }));
 
   const leadTo = process.env.LEADS_TO_EMAIL || 'casey@freightroll.com';
-  const subject = `[Flow State] YardBuilder report generated — ${payload.inputs.company}`;
+  const subject = `[YardFlow by FreightRoll] YardBuilder report generated for ${payload.inputs.company}`;
   const text = [
     'A YardBuilder PDF was generated.',
     `Company: ${payload.inputs.company}`,
@@ -114,7 +114,7 @@ export async function POST(req: Request) {
     status: 200,
     headers: {
       'Content-Type': 'application/pdf',
-      'Content-Disposition': 'attachment; filename="flow-state-yard-readiness-report.pdf"',
+      'Content-Disposition': 'attachment; filename="yardflow-yard-readiness-report.pdf"',
       'Cache-Control': 'no-store',
     },
   });

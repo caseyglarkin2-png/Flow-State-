@@ -15,8 +15,8 @@ export default function IntegrationsPage() {
             Integrations that <span className="neon-glow">don’t break</span>
           </h1>
           <p className="text-xl text-steel max-w-3xl">
-            Flow State is designed to fit into enterprise reality: partial data, mixed systems, and operational nuance.
-            We integrate around the workflow — not the other way around.
+            YardFlow by FreightRoll is designed to fit into enterprise reality: partial data, mixed systems, and operational nuance.
+            We integrate around the workflow, not the other way around.
           </p>
         </div>
       </section>

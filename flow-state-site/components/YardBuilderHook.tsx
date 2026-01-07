@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Ignite, FlowArrow, Metrics } from '@/components/icons/FlowIcons';
 
 /**
- * YardBuilderHook — The "IKEA Effect" hook on the homepage.
+ * YardBuilderHook: The "IKEA Effect" hook on the homepage.
  * Quick address input → instant preview → drives to full YardBuilder or ROI.
  */
 export default function YardBuilderHook() {
@@ -102,7 +102,7 @@ export default function YardBuilderHook() {
                 Yard Scan Complete
               </p>
               <h3 className="text-2xl font-bold">
-                {companyName || 'Your Facility'} — Quick Analysis
+                {companyName || 'Your Facility'}: Quick Analysis
               </h3>
             </div>
             <button

@@ -5,8 +5,8 @@ import Card from '@/components/Card';
 
 const faqs = [
   {
-    q: 'What is Flow State, in one sentence?',
-    a: 'Flow State is a yard orchestration control loop: standardized workflows that produce defensible timestamps and network-level operational truth.',
+    q: 'What is YardFlow by FreightRoll, in one sentence?',
+    a: 'YardFlow by FreightRoll is a yard orchestration control loop: standardized workflows that produce defensible timestamps and network-level operational truth.',
   },
   {
     q: 'Do you support pilots?',

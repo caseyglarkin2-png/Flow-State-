@@ -24,7 +24,7 @@ export default function TermsPage() {
           <Card>
             <div className="space-y-6 text-steel leading-relaxed">
               <p>
-                These Terms govern your use of the Flow State website and any associated application forms.
+                These Terms govern your use of the YardFlow by FreightRoll website and any associated application forms.
                 By using the site, you agree to these Terms.
               </p>
 
@@ -47,8 +47,8 @@ export default function TermsPage() {
                 <h2 className="text-neon font-bold mb-2">Contact</h2>
                 <p>
                   Questions? Email{' '}
-                  <a className="text-neon hover:underline" href="mailto:founding@flow-state.ai">
-                    founding@flow-state.ai
+                  <a className="text-neon hover:underline" href="mailto:legal@freightroll.com">
+                    legal@freightroll.com
                   </a>
                   .
                 </p>

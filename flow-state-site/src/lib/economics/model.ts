@@ -26,7 +26,7 @@ export function calcScenario(inputs: ScenarioInputs): Outputs {
 
   const roi = calcRoiV2(roiInputs);
 
-  // Capacity unlocked (truckloads) — derived from the cycle-time constraint model.
+  // Capacity unlocked (truckloads) - derived from the cycle-time constraint model.
   const baselineCycleTimeMinutes = Math.max(0.0001, Math.max(0, roiInputs.throughput.avgGateInToOutMinutes));
   const minutesSavedTotal =
     Math.max(0, roiInputs.throughput.reduceCheckInMinutes) + Math.max(0, roiInputs.throughput.reduceCheckOutMinutes);

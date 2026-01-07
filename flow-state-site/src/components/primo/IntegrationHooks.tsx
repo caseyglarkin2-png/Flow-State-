@@ -188,7 +188,7 @@ export const IntegrationHooks: React.FC<IntegrationHooksProps> = ({ twin, isOpen
               {activeTab === 'integrations' && (
                 <div className="space-y-4">
                   <p className="text-sm mb-6" style={{ color: theme.colors.textSecondary }}>
-                    Connect your existing systems to sync data with Flow State Digital Twins
+                    Connect your existing systems to sync data with YardFlow by FreightRoll Digital Twins
                   </p>
                   
                   <div className="grid grid-cols-2 gap-4">

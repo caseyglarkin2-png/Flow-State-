@@ -3,7 +3,7 @@
 Principle: every page pays off attention with micro‑rewards (clarity, reveal, progress), and creates urgency via real operational stakes (dwell, detention, labor) — no fake scarcity.
 
 ## Home (/)
-- Hook: “Visibility ≠ control. Flow State makes the yard obey.”
+- Hook: “Visibility ≠ control. YardFlow by FreightRoll makes the yard obey.”
 - Tension: motion without control; timestamps are not action.
 - Reveal: yard → network of intelligent nodes.
 - Proof: micro metrics + vignette.

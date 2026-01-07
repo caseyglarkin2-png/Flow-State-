@@ -1,6 +1,6 @@
 import 'server-only';
 
-export const siteName = 'Flow State';
+export const siteName = 'YardFlow by FreightRoll';
 
 function normalizeOrigin(origin: string): string {
   return origin.replace(/\/$/, '');

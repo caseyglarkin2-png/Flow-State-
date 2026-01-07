@@ -5,26 +5,37 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
 import { Metrics, Agent, Confirm, Nexus, Shield, Territory, Ignite, Device, Crosshair, Velocity } from '@/components/icons/FlowIcons';
+import { Lock } from 'lucide-react';
 
 export default function ProductPage() {
   return (
     <div className="min-h-screen bg-void">
       <Header />
 
-      {/* Hero Section */}
+      {/* Hero Section - Reframed around solving the Yard Tax */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6 text-center py-20">
-          <h1 className="text-6xl md:text-8xl font-black mb-6 tracking-tight leading-tight">
-            The <span className="text-neon">Operating System</span> for Heavy Water.
+          <p className="text-ember font-mono text-sm tracking-widest mb-6 uppercase">
+            The system that eliminates the yard tax
+          </p>
+          
+          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
+            Four Modules. <span className="text-neon">One Invoice.</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-steel mb-12 max-w-3xl mx-auto">
-            A modular, driver-first platform that synchronizes the gate, the dock, and the yard.
+          <p className="text-xl md:text-2xl text-steel mb-6 max-w-3xl mx-auto">
+            Each module cuts a different piece of the yard tax. Deploy what you need. 
+            See exactly what you saved.
+          </p>
+          
+          <p className="text-lg text-steel/70 mb-12 max-w-2xl mx-auto">
+            Gate labor. Detention disputes. Trailer hunts. Expedites. Security risks. 
+            Stop paying them one module at a time.
           </p>
 
-          <a href="/singularity" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all">
-            <Ignite size={20} className="text-void" />
-            Apply for Membership
+          <a href="/diagnostic" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-ember text-white hover:bg-white hover:text-void hover:shadow-lg transition-all">
+            <Crosshair size={20} />
+            Calculate Your Yard Tax First
           </a>
         </div>
       </section>
@@ -88,7 +99,7 @@ export default function ProductPage() {
             <div className="order-1 lg:order-2">
               <h2 className="text-5xl font-black mb-6">The Orchestration Engine</h2>
               <p className="text-lg text-steel/90 mb-8 leading-relaxed">
-                Stop hunting. Start moving. Flow State tracks every asset's exact location. Drag-and-drop interface makes directing yard jockeys a video-game-like experience.
+                Stop hunting. Start moving. YardFlow by FreightRoll tracks every asset's exact location. Drag-and-drop interface makes directing yard jockeys a video-game-like experience.
               </p>
               <ul className="space-y-3 mb-8">
                 {[
@@ -149,10 +160,56 @@ export default function ProductPage() {
         </div>
       </section>
 
+      {/* Module 4: Security & Verification */}
+      <section className="py-24 border-b border-neon/20 bg-gradient-to-b from-void to-carbon/30">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Visual */}
+            <div className="glass-card aspect-square flex items-center justify-center border-red-600/30">
+              <div className="text-center">
+                <div className="flex justify-center mb-4">
+                  <Lock size={56} className="text-red-500" />
+                </div>
+                <p className="text-red-500 font-semibold text-lg">Verified Access</p>
+                <p className="text-steel/60 text-sm mt-2">Carrier ID + Biometric Check</p>
+              </div>
+            </div>
+
+            {/* Text */}
+            <div>
+              <h2 className="text-5xl font-black mb-6">Security & Verification</h2>
+              <p className="text-lg text-steel/90 mb-8 leading-relaxed">
+                Every yard is a gate. Every gate is a vulnerability. YardFlow by FreightRoll verifies carrier IDs, scans credentials, and creates an auditable access log at every entry point.
+              </p>
+              <ul className="space-y-3 mb-8">
+                {[
+                  'ID scanning + verification at gate',
+                  'Biometric authentication options',
+                  'Carrier credentialing database',
+                  'Blockchain timestamp audit trail',
+                  'CTPAT & TSA compliance reporting',
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3">
+                    <Confirm size={20} className="text-neon flex-shrink-0" />
+                    <span className="text-steel/80">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-steel/70 text-sm mb-6">
+                <strong className="text-ember">Security savings:</strong> Theft prevention, insurance premium reduction, compliance cost avoidance, investigation elimination.
+              </p>
+              <a href="/security" className="btn-neon inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">
+                See Security Details
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Grid */}
       <section className="py-24 bg-carbon/50 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-5xl font-black mb-12">Why Flow State YardOS?</h2>
+          <h2 className="text-5xl font-black mb-12">Why YardFlow by FreightRoll YardOS?</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[

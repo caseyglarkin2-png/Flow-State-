@@ -1,18 +1,25 @@
 
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { analytics } from '@/lib/analytics';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
 import BoardReadyExportCTA from '@/components/BoardReadyExportCTA';
 import NextSteps from '@/components/NextSteps';
+import CFOProofChecklist from '@/components/CFOProofChecklist';
+import VarianceKillsBlock from '@/components/VarianceKillsBlock';
 import { FlowArrow, Metrics, Velocity, Config, Timeline, Caution, Agent, Manifest, Nexus } from '@/components/icons/FlowIcons';
 import { calcRoiV1, calcRoiV2, defaultRoiV2Inputs, roiV2InputsFromQuickMode } from '@/lib/roi/calc';
 import type { RoiV2Inputs } from '@/lib/roi/types';
 import { calcScenario, ECONOMICS_MODES, ECONOMICS_SCENARIOS, getQuickInputsForPreset, truckloads as formatTruckloads } from '@/lib/economics';
 
 export default function ROICalculatorPage() {
+  useEffect(() => {
+    analytics.viewROI();
+  }, []);
+
   const defaultQuick = getQuickInputsForPreset('enterprise_50', 'expected');
 
   const [view, setView] = useState<'board' | 'deep'>('board');
@@ -268,12 +275,12 @@ export default function ROICalculatorPage() {
     <div className="min-h-screen bg-void">
       <Header />
 
-      {/* Hero - CFO Focused */}
+      {/* Hero - CFO Focused, connects to Yard Tax */}
       <section className="pt-32 pb-16 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-8">
-            <p className="text-neon font-mono text-sm mb-4 tracking-wider">
-              {`${facilities}-SITE NETWORK MODEL`}
+            <p className="text-ember font-mono text-sm mb-4 tracking-wider uppercase">
+              {`Your ${facilities}-site yard tax recovery`}
             </p>
             <h1 className="text-5xl md:text-7xl font-black mb-6">
               <span className="neon-glow">{formatTruckloads(scenario.capacity.yearOneIncrementalTruckloads)}</span>
@@ -284,8 +291,7 @@ export default function ROICalculatorPage() {
               Year‑1 profit impact: <span className="text-white font-semibold">{formatMoney(scenario.capacity.yearOneProfitImpact)}</span>.
               <br />
               <span className="text-sm text-steel/80">
-                {formatTruckloads(scenario.capacity.yearOneIncrementalTruckloads)} incremental truckloads ×{' '}
-                {formatMoney(profitPerTruckload)}/truckload profit.
+                Detention recovered. Gate labor reduced. Expedites cut. Throughput lifted.
               </span>
               <br />
               <span className="text-neon font-semibold">Directional until validated with your data.</span>
@@ -312,6 +318,7 @@ export default function ROICalculatorPage() {
             <div className="glass-card p-4 text-center border border-ember/30">
               <p className="text-xs text-steel uppercase tracking-wider mb-1">90-Day Delay Cost</p>
               <p className="text-3xl font-black text-ember">{formatMoney(cfoMetrics.costOfDelay90Days)}</p>
+              <p className="text-xs text-ember/70 mt-1">yard tax continues</p>
             </div>
           </div>
 
@@ -1273,7 +1280,7 @@ export default function ROICalculatorPage() {
 
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                              <label className="text-sm text-steel">β (strength) — 0 disables</label>
+                              <label className="text-sm text-steel">β (strength) - 0 disables</label>
                               <input
                                 type="number"
                                 min={0}
@@ -2146,6 +2153,24 @@ export default function ROICalculatorPage() {
               Founding Member Program
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* Variance Kills Block */}
+      <section className="py-16 border-t border-steel/20">
+        <div className="max-w-4xl mx-auto px-6">
+          <VarianceKillsBlock />
+        </div>
+      </section>
+
+      {/* CFO Proof Checklist */}
+      <section className="py-16 bg-carbon/30 border-t border-steel/20">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-8">
+            <h2 className="text-2xl font-bold text-white mb-2">Before You Forward This...</h2>
+            <p className="text-steel/70">Every question finance will ask, answered.</p>
+          </div>
+          <CFOProofChecklist variant="full" />
         </div>
       </section>
 

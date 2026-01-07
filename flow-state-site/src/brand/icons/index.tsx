@@ -1,4 +1,4 @@
-// Flow State Brand Icon System
+// YardFlow by FreightRoll Brand Icon System
 // Consistent stroke width, rounded joins, no emoji
 
 import React from 'react';

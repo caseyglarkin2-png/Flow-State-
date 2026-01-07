@@ -15,7 +15,7 @@ export default function CompareIndexPage() {
             Compare the <span className="neon-glow">operating models</span>
           </h1>
           <p className="text-xl text-steel max-w-3xl">
-            This isn’t feature-bingo. It’s: do you have a control loop — and can you make timestamps defensible?
+            This isn't feature-bingo. It's: do you have a control loop, and can you make timestamps defensible?
           </p>
         </div>
       </section>
@@ -23,7 +23,7 @@ export default function CompareIndexPage() {
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
           <Card hover>
-            <h2 className="text-2xl font-bold text-neon mb-3">Flow State vs Legacy YMS</h2>
+            <h2 className="text-2xl font-bold text-neon mb-3">YardFlow by FreightRoll vs Legacy YMS</h2>
             <p className="text-steel">
               Legacy systems can record events, but often struggle with workflow adoption, exception truth, and network-wide
               standardization.
@@ -34,7 +34,7 @@ export default function CompareIndexPage() {
           </Card>
 
           <Card hover>
-            <h2 className="text-2xl font-bold text-neon mb-3">Flow State vs Spreadsheets + Radio</h2>
+            <h2 className="text-2xl font-bold text-neon mb-3">YardFlow by FreightRoll vs Spreadsheets + Radio</h2>
             <p className="text-steel">
               Manual tracking creates “visibility” without accountability. You can’t defend detention or improve dwell
               without consistent timestamps and reason codes.

@@ -14,7 +14,7 @@ export default function PressPage() {
             Press <span className="neon-glow">kit</span>
           </h1>
           <p className="text-xl text-steel max-w-3xl">
-            Logos, boilerplate, and product description — provided on request so we keep assets accurate and up to date.
+            Logos, boilerplate, and product description available on request so we keep assets accurate and up to date.
           </p>
         </div>
       </section>
@@ -24,8 +24,8 @@ export default function PressPage() {
           <Card>
             <h2 className="text-2xl font-bold text-neon mb-3">Boilerplate</h2>
             <p className="text-steel">
-              Flow State builds yard orchestration software for enterprise logistics networks. We focus on repeatable
-              workflows that produce defensible timestamps and operational truth — so teams can reduce detention, improve
+              YardFlow by FreightRoll builds yard orchestration software for enterprise logistics networks. We focus on repeatable
+              workflows that produce defensible timestamps and operational truth, so teams can reduce detention, improve
               throughput, and standardize execution across sites.
             </p>
           </Card>
@@ -38,7 +38,7 @@ export default function PressPage() {
               <li>Founder bio + headshot (optional)</li>
             </ul>
             <a
-              href="mailto:founding@flow-state.ai?subject=Press%20kit%20request"
+              href="mailto:press@freightroll.com?subject=Press%20kit%20request"
               className="mt-5 inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
             >
               Request press kit

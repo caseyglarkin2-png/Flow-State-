@@ -7,6 +7,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
 import NextSteps from '@/components/NextSteps';
+import CFOProofChecklist from '@/components/CFOProofChecklist';
+import VarianceKillsBlock from '@/components/VarianceKillsBlock';
 import { trackEvent } from '@/lib/analytics';
 import { ROUTES, DEFINITIONS } from '@/content/config';
 import { calcScenario, getQuickInputsForPreset, roiV2InputsFromQuickMode, money as formatMoney, metcalfeInspiredMultiplier } from '@/lib/economics';
@@ -299,15 +301,16 @@ export default function NetworkEffectPage() {
     <div className="min-h-screen bg-void">
       <Header />
 
-      {/* A) Hook + reframe */}
+      {/* A) Hook + reframe - now connects to Yard Tax */}
       <section className="pt-32 pb-16 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
-          <p className="text-neon font-semibold">CFO Gravity Well</p>
+          <p className="text-ember font-semibold uppercase tracking-wider text-sm">After You Stop the Bleeding</p>
           <h1 className="text-5xl md:text-7xl font-black mb-6">
-            This isn’t a tool. It’s <span className="neon-glow">compounding</span> operating advantage.
+            Cut the yard tax at one site. <span className="neon-glow">Then watch it compound.</span>
           </h1>
           <p className="text-xl text-steel max-w-3xl">
-            Orchestration turns yard execution into a repeatable system — and the system gets stronger with every facility you add.
+            Each facility you instrument eliminates local friction. But when you connect them, 
+            the savings multiply: standardized playbooks, faster rollouts, network-wide visibility.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
@@ -338,23 +341,23 @@ export default function NetworkEffectPage() {
         </div>
       </section>
 
-      {/* B) The villain */}
+      {/* B) The villain - reframed around yard tax compound cost */}
       <section className="py-16 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
           <Card>
-            <h2 className="text-2xl font-bold text-neon mb-3">The villain: “pilot forever”</h2>
+            <h2 className="text-2xl font-bold text-ember mb-3">The compounding cost of waiting</h2>
             <p className="text-steel">
-              A pilot that never becomes a standard kills compounding value. You pay the learning cost repeatedly — and you never earn the
-              network advantage.
+              A pilot that never scales means you pay the yard tax at every other facility. Forever. 
+              The learning cost repeats. The friction compounds. The network advantage never arrives.
             </p>
             <p className="text-steel mt-4">
-              Finance sees it as opportunity cost. Ops feels it as “we’re still doing it three different ways.”
+              Finance sees it as opportunity cost. Ops feels it as "we're still doing it three different ways."
             </p>
           </Card>
           <Card>
-            <h2 className="text-2xl font-bold text-neon mb-3">What it costs (modeled)</h2>
+            <h2 className="text-2xl font-bold text-neon mb-3">What stopping at one site costs</h2>
             <p className="text-steel">
-              Stopping at a single site leaves the network bonus near zero — because the playbook can’t compound.
+              Stopping at a single facility leaves the network bonus near zero. The yard tax keeps compounding at every other site.
             </p>
             <div className="mt-5 rounded-lg border border-neon/10 bg-carbon/40 p-4">
               <div className="text-sm text-steel">Network bonus at 1 facility</div>
@@ -504,7 +507,7 @@ export default function NetworkEffectPage() {
                 },
                 {
                   stage: '100+ facilities (Standard)',
-                  ops: 'Execution becomes a system. Exceptions become data — not hero work.',
+                  ops: 'Execution becomes a system. Exceptions become data, not hero work.',
                   fin: 'Compounding advantage: rollout speed + stabilized outcomes across the network.',
                 },
               ] as const
@@ -547,7 +550,7 @@ export default function NetworkEffectPage() {
             <Card>
               <h3 className="text-xl font-bold text-neon mb-3">Phase 3: Enterprise standard</h3>
               <ul className="text-steel space-y-2 list-disc pl-5">
-                <li>Make it the default — not a side project.</li>
+                <li>Make it the default, not a side project.</li>
                 <li>Instrument the network and reduce variance.</li>
                 <li>Turn execution into defensible operating truth.</li>
               </ul>
@@ -590,6 +593,20 @@ export default function NetworkEffectPage() {
               Evidence Vault (bottom‑right) contains forwardable artifacts: proof, trust, buying.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Variance Kills Block */}
+      <section className="py-16 bg-carbon/30 border-t border-steel/20">
+        <div className="max-w-4xl mx-auto px-6">
+          <VarianceKillsBlock />
+        </div>
+      </section>
+
+      {/* CFO Proof Checklist */}
+      <section className="py-16 border-t border-steel/20">
+        <div className="max-w-4xl mx-auto px-6">
+          <CFOProofChecklist variant="compact" />
         </div>
       </section>
 

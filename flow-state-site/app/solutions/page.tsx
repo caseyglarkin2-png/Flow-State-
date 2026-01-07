@@ -13,28 +13,33 @@ export default function SolutionsPage() {
 
   const missions = [
     {
-      title: 'Stop detention arguments',
+      title: 'Stop the detention tax',
       trigger: 'You’re paying detention and nobody trusts the timestamps.',
       whatBreaks: 'Disputes drag. Ops gets blamed. Finance treats it as a tax.',
       intervention: 'Standard check-in/out with defensible time capture and exception handling.',
       outcome: 'Fewer disputes. Clearer accountability. Negotiation leverage improves.',
     },
     {
-      title: 'Fix gate throughput during peaks',
+      title: 'Cut the expedite tax',
       trigger: 'Peak days turn the gate into a queue with no control loop.',
       whatBreaks: 'Drivers stack up. Dock plans drift. Everyone improvises.',
       intervention: 'Instrument the gate, route exceptions, and enforce repeatable workflows.',
       outcome: 'More predictable turns and fewer “surprise” delays.',
     },
     {
-      title: 'Eliminate trailer blindness',
+      title: 'Eliminate the search tax',
       trigger: 'Your network can’t answer: “Where is the trailer right now?”',
       whatBreaks: 'Teams waste hours searching and rework piles up.',
       intervention: 'Ground-truth yard state + consistent yard map + standardized moves.',
       outcome: 'Less search time and tighter yard execution.',
     },
-    {
-      title: 'Standardize a multi-site network',
+    {      title: 'Cut the security tax',
+      trigger: 'Cargo theft, fraudulent carriers, and compliance violations are costing you millions.',
+      whatBreaks: 'Manual ID checks miss fraud. Investigations take weeks. Insurance premiums climb.',
+      intervention: 'ID scanning + carrier credentialing + blockchain audit trail + CTPAT/TSA compliance.',
+      outcome: '80% theft reduction, 15% insurance discount, compliant gates with forensic-grade evidence.',
+    },
+    {      title: 'End the variance tax',
       trigger: 'Every facility runs a different process and reporting is unreliable.',
       whatBreaks: 'Leadership can’t compare performance; improvements don’t stick.',
       intervention: 'One network playbook with site-specific configuration and the same measurement layer.',
@@ -51,22 +56,22 @@ export default function SolutionsPage() {
       <FrameShiftHero
         title={
           <>
-            Use cases as <span className="neon-glow">missions</span>.
+            Cut the <span className="neon-glow">yard tax</span> one mission at a time.
           </>
         }
         reframe={
-          <>When the yard has a control loop, you stop debating “what happened” and start enforcing “what happens next.”</>
+          <>Detention. Expedites. Search time. Security. Variance. Each one is a tax you're paying. Pick the one that hurts most.</>
         }
-        proof={<>Quick lane for execs. Deep lane for ops. Same math. Same posture.</>}
-        primaryCta={{ href: '/yardbuilder', label: 'Generate Yard Report (PDF)' }}
-        secondaryCta={{ href: '/roi', label: 'Model ROI' }}
+        proof={<>Same math. Same posture. No invented metrics.</>}
+        primaryCta={{ href: '/diagnostic', label: 'Calculate Your Yard Tax' }}
+        secondaryCta={{ href: '/roi', label: 'Model Full ROI' }}
       />
 
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-black mb-3">Pick the mission you’re already fighting</h2>
+          <h2 className="text-3xl md:text-4xl font-black mb-3">Pick the tax you want to cut first</h2>
           <p className="text-steel max-w-3xl">
-            Each mission follows the same pattern: trigger → break → intervention → measurable outcome.
+            Each tax has the same pattern: invisible cost → root cause → intervention → measurable recovery.
           </p>
 
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">

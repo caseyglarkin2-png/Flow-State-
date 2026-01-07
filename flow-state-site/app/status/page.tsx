@@ -33,7 +33,7 @@ export default function StatusPage() {
             <h2 className="text-2xl font-bold text-neon mb-3">Need a status update?</h2>
             <p className="text-steel">Email us and we’ll respond with the appropriate details for your evaluation.</p>
             <a
-              href="mailto:founding@flow-state.ai?subject=Status%20request"
+              href="mailto:status@freightroll.com?subject=Status%20request"
               className="mt-5 inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
             >
               Request status details

@@ -34,22 +34,22 @@ const styles = StyleSheet.create({
 });
 
 function money(n: number | undefined): string {
-  if (typeof n !== 'number' || Number.isNaN(n)) return '—';
+  if (typeof n !== 'number' || Number.isNaN(n)) return '-';
   return `$${Math.round(n).toLocaleString()}`;
 }
 
 function pct(n: number | undefined): string {
-  if (typeof n !== 'number' || Number.isNaN(n)) return '—';
+  if (typeof n !== 'number' || Number.isNaN(n)) return '-';
   return `${Math.round(n)}%`;
 }
 
 function pct01(n: number | undefined): string {
-  if (typeof n !== 'number' || Number.isNaN(n)) return '—';
+  if (typeof n !== 'number' || Number.isNaN(n)) return '-';
   return `${Math.round(n * 100)}%`;
 }
 
 function num(n: number | undefined): string {
-  if (typeof n !== 'number' || Number.isNaN(n)) return '—';
+  if (typeof n !== 'number' || Number.isNaN(n)) return '-';
   return `${Math.round(n).toLocaleString()}`;
 }
 
@@ -62,7 +62,7 @@ export function RoiSummaryPdf({ payload }: { payload: RoiPdfPayload }) {
   return (
     <Document>
       <Page size="LETTER" style={styles.page}>
-        <Text style={styles.h1}>Flow State — ROI Summary (Modeled)</Text>
+        <Text style={styles.h1}>YardFlow by FreightRoll | ROI Summary (Modeled)</Text>
         <Text style={styles.muted}>Company: {payload.lead.company}</Text>
         <Text style={styles.muted}>
           Prepared for: {payload.lead.name} ({payload.lead.email})

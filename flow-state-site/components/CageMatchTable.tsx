@@ -29,7 +29,7 @@ export default function CageMatchTable({ title, subtitle, rows, whenLegacyWins, 
               <tr>
                 <th className="text-left px-4 py-3 text-steel font-semibold">Capability</th>
                 <th className="text-left px-4 py-3 text-steel font-semibold">Legacy</th>
-                <th className="text-left px-4 py-3 text-neon font-semibold">Flow State</th>
+                <th className="text-left px-4 py-3 text-neon font-semibold">YardFlow by FreightRoll</th>
               </tr>
             </thead>
             <tbody>
@@ -47,7 +47,7 @@ export default function CageMatchTable({ title, subtitle, rows, whenLegacyWins, 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="glass-card rounded-xl p-6 border border-neon/10">
             <h3 className="text-lg font-bold text-white">When legacy wins</h3>
-            <p className="text-sm text-steel/80 mt-1">Credibility section — we won’t pretend it never fits.</p>
+            <p className="text-sm text-steel/80 mt-1">Credibility section: we won't pretend it never fits.</p>
             <ul className="mt-4 space-y-2 text-steel list-disc pl-5">
               {whenLegacyWins.map((x) => (
                 <li key={x}>{x}</li>
@@ -56,7 +56,7 @@ export default function CageMatchTable({ title, subtitle, rows, whenLegacyWins, 
           </div>
 
           <div className="glass-card rounded-xl p-6 border border-neon/10">
-            <h3 className="text-lg font-bold text-neon">Where Flow State wins</h3>
+            <h3 className="text-lg font-bold text-neon">Where YardFlow by FreightRoll wins</h3>
             <p className="text-sm text-steel/80 mt-1">The difference: visibility → control.</p>
             <ul className="mt-4 space-y-2 text-steel list-disc pl-5">
               {whereFlowStateWins.map((x) => (

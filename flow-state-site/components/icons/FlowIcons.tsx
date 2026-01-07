@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-// Flow State Brand Icon System
+// YardFlow by FreightRoll Brand Icon System
 // Geometric, minimal, logistics-tech aesthetic
 // No emoji derivatives - purely custom SVG paths
 

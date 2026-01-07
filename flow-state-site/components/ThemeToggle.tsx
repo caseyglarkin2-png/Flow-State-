@@ -5,7 +5,7 @@ import React, { useEffect, useSyncExternalStore } from 'react';
 type Theme = 'dark' | 'light';
 
 /**
- * ThemeToggle — Tactical-styled Day/Night switch.
+ * ThemeToggle: Tactical-styled Day/Night switch.
  * Persists choice to localStorage and applies theme class to html element.
  */
 export default function ThemeToggle({ className = '' }: { className?: string }) {

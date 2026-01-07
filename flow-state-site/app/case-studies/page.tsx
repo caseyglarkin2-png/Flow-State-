@@ -9,7 +9,7 @@ import Card from '@/components/Card';
 const CASES = [
   {
     slug: 'primo-network',
-    title: 'Primo — Network Standardization at Scale',
+    title: 'Primo: Network Standardization at Scale',
     subtitle: 'Modeled enterprise scenario to show the format and the leverage curve.',
     badge: 'Modeled example',
   },

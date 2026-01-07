@@ -11,10 +11,10 @@ export default function CompareLegacyYmsPage() {
       <section className="pt-32 pb-16 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           <h1 className="text-5xl md:text-7xl font-black mb-6">
-            Flow State vs <span className="neon-glow">Legacy YMS</span>
+            YardFlow by FreightRoll vs <span className="neon-glow">Legacy YMS</span>
           </h1>
           <p className="text-xl text-steel max-w-3xl">
-            Legacy YMS can be a record system. Flow State is built as a control loop: standard workflows, defensible
+            Legacy YMS can be a record system. YardFlow by FreightRoll is built as a control loop: standard workflows, defensible
             timestamps, and network-level operational truth.
           </p>
         </div>
@@ -33,7 +33,7 @@ export default function CompareLegacyYmsPage() {
           </Card>
 
           <Card>
-            <h2 className="text-2xl font-bold text-neon mb-3">What Flow State optimizes for</h2>
+            <h2 className="text-2xl font-bold text-neon mb-3">What YardFlow by FreightRoll optimizes for</h2>
             <ul className="text-steel space-y-2 list-disc pl-5">
               <li>Repeatable check-in/out with minimal friction</li>
               <li>Defensible timestamps (audit trail mindset)</li>

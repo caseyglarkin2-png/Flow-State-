@@ -115,6 +115,18 @@ export interface RoiNetworkAssumptions {
   tau: number;
 }
 
+export interface RoiSecurityAssumptions {
+  cargoTheftIncidentsPerYear: number;
+  avgStolenLoadValue: number;
+  investigationCostPerIncident: number;
+  annualInsurancePremium: number;
+  
+  // Savings from YardFlow security implementation
+  theftReductionShare: Percent; // % of theft prevented by ID verification
+  insurancePremiumReductionShare: Percent; // % discount from better security
+  complianceFinesAvoided: number; // Annual CTPAT/TSA violation avoidance
+}
+
 export interface NetworkEffectBreakdown {
   predictiveIntelligence: {
     etaAccuracyImprovement: number;
@@ -172,6 +184,7 @@ export interface RoiV2Inputs {
   detention: RoiDetentionAssumptions;
   throughput: RoiThroughputAssumptions;
   network: RoiNetworkAssumptions;
+  security: RoiSecurityAssumptions;
   commercial: RoiCommercialAssumptions;
 
   enterpriseAddOns: RoiEnterpriseAddOns;
@@ -201,6 +214,7 @@ export interface RoiV2Outputs {
   annualDetentionSavings: number;
   throughputValue: number;
   shipperOfChoiceValue: number;
+  securitySavings: number;
 
   baseSavings: number;
   networkMultiplier: number;

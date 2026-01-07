@@ -398,7 +398,7 @@ export default function SingularityPage() {
               The <span className="neon-glow">Logistics Singularity</span>
             </h1>
             <p className="text-xl text-steel max-w-3xl mx-auto">
-              Watch what happens when every facility in your network achieves Flow State.
+              Watch what happens when every facility in your network achieves YardFlow by FreightRoll.
               <br />
               <span className="text-neon font-semibold">This is the point of no return.</span>
             </p>
@@ -419,7 +419,7 @@ export default function SingularityPage() {
                   ) : phase === 'transition' ? (
                     <><Cycle size={16} /> TRANSFORMATION</>
                   ) : (
-                    <><Velocity size={16} /> FLOW STATE</>
+                    <><Velocity size={16} /> YARDFLOW</>
                   )}
                 </span>
               </div>
@@ -432,7 +432,7 @@ export default function SingularityPage() {
             <div className="absolute bottom-4 right-4 glass-card p-3 text-xs">
               <div className="flex items-center gap-2 mb-1">
                 <div className="w-2 h-2 rounded-full bg-neon"></div>
-                <span className="text-steel">Flow State</span>
+                <span className="text-steel">YardFlow by FreightRoll</span>
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-ember"></div>
@@ -567,7 +567,7 @@ export default function SingularityPage() {
             </div>
 
             <p>
-              When every facility in your network achieves <span className="text-neon font-semibold">Flow State</span>:
+              When every facility in your network achieves <span className="text-neon font-semibold">YardFlow by FreightRoll</span>:
             </p>
 
             <ul className="space-y-4 pl-6">

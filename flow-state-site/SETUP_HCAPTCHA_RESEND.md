@@ -14,9 +14,9 @@
 
 ### 1.2 Create a Site
 1. After login, click **"New Site"** button
-2. **Site Name:** Flow State Production
+2. **Site Name:** YardFlow by FreightRoll Production
 3. **Hostnames:** Add these two:
-   - `flow-state-klbt.vercel.app`
+  - `flow-state-v2.vercel.app`
    - `localhost` (for local development)
 4. **Difficulty:** Select "Easy" (balanced security + UX)
 5. Click **"Save"**
@@ -49,7 +49,7 @@ If you want emails to come from `@freightroll.com`:
 ### 2.3 Get Your API Key
 1. Go to **API Keys** in the left sidebar
 2. Click **"Create API Key"**
-3. **Name:** Flow State Production
+3. **Name:** YardFlow by FreightRoll Production
 4. **Permission:** Full Access (for now)
 5. Click **"Create"**
 6. **Copy the key immediately** (starts with `re_...`) — You won't see it again!
@@ -60,7 +60,7 @@ If you want emails to come from `@freightroll.com`:
 
 ### 3.1 Open Vercel Dashboard
 1. Go to: https://vercel.com/
-2. Find your `flow-state-klbt` project
+2. Find your `flow-state-v2` project
 3. Click on it → **Settings** → **Environment Variables**
 
 ### 3.2 Add Variables
@@ -91,14 +91,14 @@ Wait ~2 minutes for deployment to complete.
 ## Step 4: Test It (2 minutes)
 
 ### 4.1 Test Contact Form
-1. Visit: https://flow-state-klbt.vercel.app/contact
+1. Visit: https://flow-state-v2.vercel.app/contact
 2. Fill out the form with test data
 3. **Verify hCaptcha appears** (checkbox or image challenge)
 4. Click Submit
 5. **Check your email** (`casey@freightroll.com`) for notification
 
 ### 4.2 Test ROI PDF
-1. Visit: https://flow-state-klbt.vercel.app/roi
+1. Visit: https://flow-state-v2.vercel.app/roi
 2. Adjust inputs (facilities, trucks, etc.)
 3. Scroll down → Click **"Board-ready ROI PDF"**
 4. Fill out your info in the modal
@@ -183,7 +183,7 @@ Instead of `onboarding@resend.dev`, send from `noreply@freightroll.com`:
 ## Summary Checklist
 
 - [ ] hCaptcha account created
-- [ ] Site added with `flow-state-klbt.vercel.app` hostname
+- [ ] Site added with `flow-state-v2.vercel.app` hostname
 - [ ] Sitekey and Secret copied
 - [ ] Resend account created
 - [ ] API key created and copied

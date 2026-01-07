@@ -26,12 +26,12 @@ export default function NotFound() {
           <Card className="text-center">
             <div className="mb-6 inline-block px-4 py-2 rounded-lg bg-neon/10 border border-neon/30">
               <p className="text-neon font-mono text-sm">
-                <span className="font-bold">FreightRoll is now Flow State</span>
+                <span className="font-bold">FreightRoll is now YardFlow by FreightRoll</span>
               </p>
             </div>
             <p className="text-steel mb-6">
-              If you came from an old FreightRoll link, we've rebranded to Flow State and restructured the site.
-              Same team, same product — just a bigger vision.
+              If you came from an old FreightRoll link, we've rebranded to YardFlow by FreightRoll and restructured the site.
+              Same team, same product. Just a bigger vision.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link

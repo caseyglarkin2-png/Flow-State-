@@ -28,11 +28,17 @@ export default function YardBuilderPage() {
       {/* Header */}
       <div className="flex-none flex items-center justify-between px-4 py-3 border-b border-[#00B4FF]/20 bg-[#0F0F0F]">
         <div className="flex items-center gap-4">
-          <span className="text-[#00B4FF] font-bold text-lg">Flow State</span>
+          <a href="/" className="text-[#00B4FF] font-bold text-lg hover:text-white transition-colors">YardFlow by FreightRoll</a>
           <span className="text-[#888] text-sm">YardBuilder AI</span>
         </div>
-        <div className="text-[#00B4FF] text-sm">
-          Digital Twin Generator
+        <div className="flex items-center gap-4">
+          <span className="text-[#888] text-sm">Digital Twin Generator</span>
+          <a 
+            href="/diagnostic" 
+            className="px-3 py-1.5 text-sm font-medium bg-[#FF2A00] text-white rounded hover:bg-[#FF2A00]/80 transition-colors"
+          >
+            Calculate Yard Tax
+          </a>
         </div>
       </div>
 

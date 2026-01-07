@@ -11,7 +11,7 @@ export async function sendEmail({ to, subject, text, attachments }: SendEmailArg
   const resendKey = process.env.RESEND_API_KEY;
   if (!resendKey) return;
 
-  const from = process.env.LEADS_FROM_EMAIL || 'Flow State <no-reply@flow-state.ai>';
+  const from = process.env.LEADS_FROM_EMAIL || 'YardFlow by FreightRoll <no-reply@yardflow.ai>';
   const resend = new Resend(resendKey);
 
   await resend.emails.send({

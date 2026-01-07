@@ -80,7 +80,7 @@ export async function POST(req: Request) {
   const pdf = await renderPdfToBuffer(React.createElement(RoiSummaryPdf, { payload }));
 
   const leadTo = process.env.LEADS_TO_EMAIL || 'casey@freightroll.com';
-  const subject = `[Flow State] ROI PDF generated — ${body.lead.company}`;
+  const subject = `[YardFlow by FreightRoll] ROI PDF generated for ${body.lead.company}`;
   const text = [
     'An ROI PDF was generated.',
     `Company: ${body.lead.company}`,
@@ -105,7 +105,7 @@ export async function POST(req: Request) {
     status: 200,
     headers: {
       'Content-Type': 'application/pdf',
-      'Content-Disposition': 'attachment; filename="flow-state-roi-summary.pdf"',
+      'Content-Disposition': 'attachment; filename="yardflow-roi-summary.pdf"',
       'Cache-Control': 'no-store',
     },
   });

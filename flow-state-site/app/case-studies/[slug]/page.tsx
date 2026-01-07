@@ -16,7 +16,7 @@ type CaseStudy = {
 const CASE_STUDIES: Record<string, CaseStudy> = {
   'primo-network': {
     slug: 'primo-network',
-    title: 'Primo — Network Standardization at Scale',
+    title: 'Primo: Network Standardization at Scale',
     subtitle: 'A 260-facility network scenario (modeled) to illustrate enterprise leverage.',
     disclaimer:
       'Disclaimer: This is a representative case study format using modeled assumptions (not a public customer claim). Procurement and implementation details vary by network.',
@@ -27,7 +27,7 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
       { label: 'Implementation', value: '$2,500 / facility (one-time)' },
     ],
     narrative: [
-      'At enterprise scale, the yard is not a single facility problem — it is a network execution problem. Flow State is designed to standardize the ground-truth layer across every gate and every dock.',
+      'At enterprise scale, the yard is not a single facility problem. It is a network execution problem. YardFlow by FreightRoll is designed to standardize the ground-truth layer across every gate and every dock.',
       'When a network aligns on check-in/out, timestamps, and repeatable workflows, operational velocity compounds. The ROI becomes more defensible and more predictable as adoption broadens.',
       'This scenario uses the ROI calculator’s Pro Mode to model a network-wide deployment and show how per-facility pricing aligns incentives toward full adoption.',
     ],
@@ -50,7 +50,7 @@ export default async function CaseStudyPage({
       <section className="pt-32 pb-16 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           <h1 className="text-4xl md:text-6xl font-black mb-4">
-            {cs.title.split('—')[0].trim()} — <span className="neon-glow">{cs.title.split('—')[1]?.trim()}</span>
+            {cs.title.split(':')[0].trim()}: <span className="neon-glow">{cs.title.split(':')[1]?.trim()}</span>
           </h1>
           <p className="text-xl text-steel max-w-4xl">{cs.subtitle}</p>
         </div>

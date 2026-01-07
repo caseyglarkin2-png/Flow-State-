@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     canonical: canonicalUrl('/product'),
   },
   openGraph: {
-    title: 'YardOS Product | Flow State',
+    title: 'YardOS Product | YardFlow by FreightRoll',
     description: 'Complete yard orchestration platform. Gate → Dock → Move → Integrate.',
     url: `${siteUrl}/product`,
     type: 'website',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
         url: `${siteUrl}/og.png`,
         width: 1200,
         height: 630,
-        alt: 'Flow State YardOS Platform',
+        alt: 'YardFlow by FreightRoll YardOS Platform',
       },
     ],
   },

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     canonical: canonicalUrl('/yardbuilder'),
   },
   openGraph: {
-    title: 'YardBuilder | Flow State',
+    title: 'YardBuilder | YardFlow by FreightRoll',
     description: 'Map your yard in 60 seconds. Generate ROI projections instantly.',
     url: `${siteUrl}/yardbuilder`,
     type: 'website',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
         url: `${siteUrl}/og.png`,
         width: 1200,
         height: 630,
-        alt: 'Flow State YardBuilder Tool',
+        alt: 'YardFlow by FreightRoll YardBuilder Tool',
       },
     ],
   },

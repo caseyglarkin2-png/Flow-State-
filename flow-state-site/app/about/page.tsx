@@ -15,19 +15,56 @@ export default function AboutPage() {
           {/* Rebrand Notice */}
           <div className="mb-8 inline-block px-4 py-2 rounded-lg bg-neon/10 border border-neon/30">
             <p className="text-neon font-mono text-sm">
-              <span className="font-bold">FreightRoll → Flow State</span> · Same team. Sharper product. Bigger vision.
+              <span className="font-bold">FreightRoll → YardFlow by FreightRoll</span> · Same team. Sharper product. Bigger vision.
             </p>
           </div>
           
           <h1 className="text-5xl md:text-7xl font-black mb-6">
-            About <span className="neon-glow">Flow State</span>
+            About <span className="neon-glow">YardFlow by FreightRoll</span>
           </h1>
           <p className="text-xl text-steel max-w-3xl mb-4">
-            We're the team behind FreightRoll, now operating as <span className="text-white font-semibold">Flow State</span>.
+            We're the team behind FreightRoll, now operating as <span className="text-white font-semibold">YardFlow by FreightRoll</span>.
           </p>
           <p className="text-xl text-steel max-w-3xl">
-            Same obsession with yard orchestration. Expanded into a platform that turns every facility into an intelligent network node.
+            Same obsession with yard orchestration and cargo security. Evolved into a platform that turns every facility into an intelligent, secure network node.
           </p>
+        </div>
+      </section>
+
+      <section className="py-16 border-b border-steel/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-bold text-white mb-6">The FreightRoll Heritage</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card>
+              <h3 className="text-xl font-bold text-neon mb-3">2020-2022: FreightRoll Research</h3>
+              <p className="text-steel mb-3">
+                Built <strong className="text-white">Primo</strong> (single-facility simulator) and <strong className="text-white">Singularity</strong> (enterprise network simulator).
+              </p>
+              <p className="text-steel text-sm">
+                Ran thousands of simulations to model yard dynamics, detention costs, labor allocation, and network effects before writing production code.
+              </p>
+            </Card>
+            
+            <Card>
+              <h3 className="text-xl font-bold text-neon mb-3">2023: FreightRoll 1.0</h3>
+              <p className="text-steel mb-3">
+                Launched FreightRoll as a yard execution platform focused on check-in/check-out automation and carrier coordination.
+              </p>
+              <p className="text-steel text-sm">
+                Validated core ROI assumptions: 40-60% cycle time reduction, $200K-$800K detention savings per facility.
+              </p>
+            </Card>
+            
+            <Card>
+              <h3 className="text-xl font-bold text-neon mb-3">2024: YardFlow by FreightRoll</h3>
+              <p className="text-steel mb-3">
+                Expanded into full platform: added cargo security (ID verification, blockchain audit), network orchestration, and enterprise-scale deployment.
+              </p>
+              <p className="text-steel text-sm">
+                YardFlow is FreightRoll's flagship product, built on the same economic engine with expanded capabilities.
+              </p>
+            </Card>
+          </div>
         </div>
       </section>
 
@@ -36,14 +73,13 @@ export default function AboutPage() {
           <Card>
             <h2 className="text-2xl font-bold text-neon mb-3">Why the rebrand?</h2>
             <p className="text-steel mb-3">
-              <strong className="text-white">FreightRoll</strong> was focused on yard execution and carrier coordination. Great start.
+              <strong className="text-white">FreightRoll</strong> started with yard execution and carrier coordination. We proved the economics with Primo and Singularity simulations.
             </p>
             <p className="text-steel mb-3">
-              <strong className="text-white">Flow State</strong> is the full platform vision: a network where every facility becomes 
-              an intelligent node, sharing real-time operational truth across your entire logistics footprint.
+              <strong className="text-white">YardFlow by FreightRoll</strong> is the full platform vision: every facility becomes an intelligent, secure node in a connected network. Cargo security, network orchestration, enterprise deployment at scale.
             </p>
             <p className="text-neon font-semibold text-sm">
-              New name. Same team. Bigger ambition.
+              New name. Same team. Same simulations. Bigger platform.
             </p>
           </Card>
 
@@ -52,6 +88,8 @@ export default function AboutPage() {
             <ul className="text-steel space-y-2 list-disc pl-5">
               <li>Check-in / check-out throughput</li>
               <li>Detention reduction with defensible timestamps</li>
+              <li>Cargo theft prevention and ID verification</li>
+              <li>CTPAT/TSA compliance and audit trails</li>
               <li>Gate labor automation and repeatable execution</li>
               <li>Network-wide standardization and velocity</li>
             </ul>

@@ -29,13 +29,13 @@ export const ROUTES = {
 
 export const DEFINITIONS = {
   dwell:
-    'Dwell is the time an asset sits waiting in your yard — between arrival, assignment, and completion. In practice: it shows up as variability, surprise labor, and missed turns.',
+    'Dwell is the time an asset sits waiting in your yard, between arrival, assignment, and completion. In practice: it shows up as variability, surprise labor, and missed turns.',
   detention:
     'Detention is paid time when trucks wait beyond allowed free time. It becomes expensive when timestamps are weak and exceptions can’t be defended.',
   throughput:
     'Throughput is how many turns you can complete with the same footprint. Small reductions in gate and exception time compound into more outbound moves.',
   orchestration:
-    'Orchestration is repeatable execution: standardized check-in/out, exceptions, and assignments — with timestamps you can defend across facilities.',
+    'Orchestration is repeatable execution: standardized check-in/out, exceptions, and assignments, with timestamps you can defend across facilities.',
   networkEffect:
     'The network effect here is compounding operational advantage: each added facility reduces onboarding friction, tightens variability, and improves decision quality across the network.',
 } as const;

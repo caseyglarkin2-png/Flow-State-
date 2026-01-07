@@ -1,6 +1,6 @@
-# Flow State — Production Checklist
+# YardFlow by FreightRoll — Production Checklist
 
-This document outlines required environment variables, third-party services, and testing procedures for deploying Flow State to production.
+This document outlines required environment variables, third-party services, and testing procedures for deploying YardFlow by FreightRoll to production.
 
 ---
 

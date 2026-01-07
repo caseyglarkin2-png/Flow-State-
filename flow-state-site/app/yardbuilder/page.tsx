@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
+import { analytics } from '@/lib/analytics';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
@@ -13,6 +14,10 @@ type Pain = 'detention' | 'gate' | 'labor' | 'visibility' | 'throughput';
 type GateStyle = 'guard' | 'kiosk' | 'mixed';
 
 export default function YardBuilderPage() {
+  useEffect(() => {
+    analytics.viewYardBuilder();
+  }, []);
+
   const lane = useLaneStore((s) => s.lane);
   const [step, setStep] = useState(1);
   const [company, setCompany] = useState('');

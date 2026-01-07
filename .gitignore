@@ -29,3 +29,5 @@ __pycache__/
 
 # Local ROI spreadsheet artifacts
 tmp_sheets/
+.vercel
+.env*.local

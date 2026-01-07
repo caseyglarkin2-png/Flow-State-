@@ -1,4 +1,4 @@
-// Flow State Brand Logo System
+// YardFlow by FreightRoll Brand Logo System
 // 4 modular logo variants: Mark, Wordmark, Horizontal Lockup, Stacked Lockup
 
 import React from 'react';
@@ -11,7 +11,7 @@ export interface LogoProps {
   appName?: string;
 }
 
-// The Flow State Mark - Abstract flowing network symbol
+// The YardFlow by FreightRoll Mark - Abstract flowing network symbol
 export const FlowStateMark: React.FC<LogoProps> = ({
   size = 32,
   color = '#00B4FF',
@@ -82,13 +82,13 @@ export const FlowStateMark: React.FC<LogoProps> = ({
   </svg>
 );
 
-// Wordmark only - "Flow State" text
+// Wordmark only - "YardFlow by FreightRoll" text
 export const FlowStateWordmark: React.FC<LogoProps> = ({
   size = 32,
   color = '#00B4FF',
   secondaryColor = '#FFFFFF',
   className,
-  appName = 'Flow State',
+  appName = 'YardFlow',
 }) => {
   const words = appName?.split(' ') || ['Flow', 'State'];
   const fontSize = size * 0.5;
@@ -122,7 +122,7 @@ export const FlowStateHorizontal: React.FC<LogoProps> = ({
   color = '#00B4FF',
   secondaryColor = '#FFFFFF',
   className,
-  appName = 'Flow State',
+  appName = 'YardFlow',
 }) => {
   const words = appName?.split(' ') || ['Flow', 'State'];
   const fontSize = size * 0.5;
@@ -204,7 +204,7 @@ export const FlowStateStacked: React.FC<LogoProps> = ({
   color = '#00B4FF',
   secondaryColor = '#FFFFFF',
   className,
-  appName = 'Flow State',
+  appName = 'YardFlow',
 }) => {
   const words = appName?.split(' ') || ['Flow', 'State'];
   const fontSize = size * 0.35;

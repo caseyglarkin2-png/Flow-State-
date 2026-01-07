@@ -26,7 +26,7 @@ export default function MissionCard({ title, trigger, whatBreaks, intervention, 
           <div className="text-sm text-white/90">{whatBreaks}</div>
         </div>
         <div>
-          <div className="text-xs text-steel/70">Flow State intervention</div>
+          <div className="text-xs text-steel/70">YardFlow by FreightRoll intervention</div>
           <div className="text-sm text-white/90">{intervention}</div>
         </div>
         <div>

@@ -11,7 +11,7 @@ import {
 import { calcRoiV2, getQuickInputsForPreset, roiV2InputsFromQuickMode, metcalfeInspiredMultiplier } from '@/lib/economics';
 
 /**
- * NetworkEffectModel — Interactive visualization of network effects for yard networks.
+ * NetworkEffectModel: Interactive visualization of network effects for yard networks.
  * Shows how value compounds through specific, credible mechanisms.
  *
  * Pass 5: All economics shown here are sourced from the canonical economics spine
@@ -280,7 +280,7 @@ export default function NetworkEffectModel() {
             <p className="text-steel/80 leading-relaxed">
               At <span className="text-neon font-semibold">{nodes} facilities</span>, you unlock 
               {' '}<span className="text-neon font-semibold">{calculations.connections.toLocaleString()}</span> data 
-              connections. Each connection shares arrival predictions, carrier performance, and detention patterns—making 
+              connections. Each connection shares arrival predictions, carrier performance, and detention patterns, making 
               every node smarter. Your competitors' yards become your <span className="text-white font-semibold">data advantage</span>.
             </p>
           </div>

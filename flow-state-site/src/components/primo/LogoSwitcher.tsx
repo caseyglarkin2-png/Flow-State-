@@ -35,7 +35,7 @@ export const LogoSwitcher: React.FC = () => {
         size={currentVariant === 'stacked' ? 24 : 32}
         color={theme.colors.primary}
         secondaryColor={theme.colors.text}
-        appName="Flow State"
+        appName="YardFlow by FreightRoll"
       />
     </motion.button>
   );

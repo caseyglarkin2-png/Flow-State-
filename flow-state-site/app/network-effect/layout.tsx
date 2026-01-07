@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     canonical: canonicalUrl('/network-effect'),
   },
   openGraph: {
-    title: 'Network Effect | Flow State',
+    title: 'Network Effect | YardFlow by FreightRoll',
     description:
       'A transparent, realization-adjusted network model showing how facilities compound value as adoption grows.',
     url: `${siteUrl}/network-effect`,
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: `${siteUrl}/og.png`,
         width: 1200,
         height: 630,
-        alt: 'Flow State Network Effect',
+        alt: 'YardFlow by FreightRoll Network Effect',
       },
     ],
   },

@@ -33,7 +33,7 @@ export function YardReadinessPdf({ payload }: { payload: YardbuilderPdfPayload }
   return (
     <Document>
       <Page size="LETTER" style={styles.page}>
-        <Text style={styles.h1}>Flow State — Yard Readiness Report (Modeled)</Text>
+        <Text style={styles.h1}>YardFlow by FreightRoll | Yard Readiness Report (Modeled)</Text>
         <Text style={styles.muted}>Company: {payload.inputs.company}</Text>
         <Text style={styles.muted}>
           Prepared for: {payload.lead.name} ({payload.lead.email})

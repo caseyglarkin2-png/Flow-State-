@@ -29,7 +29,7 @@ function ContactContent() {
               </>
             ) : (
               <>
-                Contact <span className="neon-glow">Flow State</span>
+                Contact <span className="neon-glow">YardFlow by FreightRoll</span>
               </>
             )}
           </h1>

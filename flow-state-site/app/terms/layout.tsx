@@ -3,7 +3,7 @@ import { canonicalUrl, siteName } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: `Terms of Service | ${siteName}`,
-  description: 'Terms of service for Flow State marketing site and applicant program.',
+  description: 'Terms of service for YardFlow by FreightRoll marketing site and applicant program.',
   alternates: {
     canonical: canonicalUrl('/terms'),
   },
