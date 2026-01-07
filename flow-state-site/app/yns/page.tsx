@@ -12,7 +12,7 @@ export default function YNSPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-20 border-b border-neon/20">
+      <section className="relative min-h-screen flex items-center justify-center pt-32 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6 text-center py-20">
           <p className="text-ember font-mono text-sm tracking-widest mb-6 uppercase">
             Stop Managing Yards. Start Orchestrating Networks.
