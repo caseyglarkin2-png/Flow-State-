@@ -152,7 +152,7 @@ export default function Home() {
               <p className="text-steel text-sm mt-1">Facilities modeled</p>
             </div>
             <div>
-              <p className="text-3xl md:text-4xl font-black text-white">{Math.round(cfoBaseline.roi)}%</p>
+              <p className="text-3xl md:text-4xl font-black text-white">{Math.round(cfoBaseline.yearOneRoiPercent)}%</p>
               <p className="text-steel text-sm mt-1">ROI (modeled, enterprise scale)</p>
             </div>
             <div>
