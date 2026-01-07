@@ -1,8 +1,0 @@
-{
-  "buildCommand": "cd flow-state-site && npm run build",
-  "devCommand": "cd flow-state-site && npm run dev",
-  "installCommand": "cd flow-state-site && npm install",
-  "framework": null,
-  "outputDirectory": "flow-state-site/.next",
-  "cleanUrls": true
-}
