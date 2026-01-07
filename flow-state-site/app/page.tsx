@@ -39,35 +39,36 @@ export default function Home() {
       <Header />
 
       {/* ═══════════════════════════════════════════════════════════════
-          HERO: THE STATUS QUO TAX
-          Lead with what they're losing, not what they could gain
+          HERO: THE SILO TRAP
+          Lead with the category problem, not the product solution
       ═══════════════════════════════════════════════════════════════ */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-24">
         <div className="absolute inset-0 grid-background opacity-20"></div>
         
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <p className="text-ember font-mono text-sm tracking-widest mb-6 uppercase">
-            The cost you're paying today
+            The Silo Trap
           </p>
           
           <h1 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-[0.95]">
-            <span className="text-white">Your yard is bleeding margin.</span>
+            <span className="text-white">You don't have 50 yards.</span>
             <br />
-            <span className="text-steel/70 text-4xl md:text-5xl">Detention. Expedites. Overtime. Chargebacks.</span>
+            <span className="text-steel/70 text-4xl md:text-5xl">You have one yard network.</span>
             <br />
             <span className="text-neon drop-shadow-[0_0_30px_rgba(0,180,255,0.5)] mt-4 block">
-              You just don't have an invoice for it.
+              But your software treats them like islands.
             </span>
           </h1>
           
           <p className="text-xl md:text-2xl text-steel/90 mb-4 max-w-3xl mx-auto">
-            YardFlow by FreightRoll turns <span className="text-ember font-semibold">invisible yard friction</span> into {' '}
-            <span className="text-neon font-semibold">defensible timestamps</span> and {' '}
-            <span className="text-white font-semibold">hard savings</span>.
+            Traditional Yard Management Systems (YMS) optimize each site in isolation. 
+            YardFlow is a <span className="text-neon font-semibold">Yard Network System (YNS)</span> — 
+            orchestrating assets, intelligence, and security across your entire network.
           </p>
 
           <p className="text-lg text-steel/70 mb-10 max-w-2xl mx-auto">
-            See exactly what your yard is costing you. Then stop paying it.
+            See exactly what your network is costing you in detention, expedites, and lost throughput. 
+            Then stop paying it.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -76,14 +77,13 @@ export default function Home() {
               className="group inline-flex items-center gap-3 px-8 py-4 rounded-lg font-bold text-lg bg-ember text-white hover:bg-white hover:text-void transition-all hover:scale-105"
             >
               <Crosshair size={22} />
-              Calculate Your Yard Tax
+              Calculate Your Network Tax
             </Link>
             <Link
-              href="#yardbuilder"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
+              href="/yns"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all"
             >
-              <Ignite size={20} />
-              Map a Facility
+              YMS vs YNS: See the Difference
             </Link>
           </div>
         </div>
@@ -152,12 +152,12 @@ export default function Home() {
               <p className="text-steel text-sm mt-1">Facilities modeled</p>
             </div>
             <div>
-              <p className="text-3xl md:text-4xl font-black text-white">$2.4M</p>
-              <p className="text-steel text-sm mt-1">Avg. savings per network (modeled)</p>
+              <p className="text-3xl md:text-4xl font-black text-white">{Math.round(cfoBaseline.roi)}%</p>
+              <p className="text-steel text-sm mt-1">ROI (modeled, enterprise scale)</p>
             </div>
             <div>
-              <p className="text-3xl md:text-4xl font-black text-white">40%</p>
-              <p className="text-steel text-sm mt-1">Cycle time reduction</p>
+              <p className="text-3xl md:text-4xl font-black text-white">50%</p>
+              <p className="text-steel text-sm mt-1">Dwell time reduction</p>
             </div>
             <div>
               <p className="text-3xl md:text-4xl font-black text-white">8 weeks</p>

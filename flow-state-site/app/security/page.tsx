@@ -43,6 +43,8 @@ export default function SecurityPage() {
           <div className="flex flex-wrap gap-4">
             {[
               { label: 'Security Controls', href: '#security' },
+              { label: 'Data Handling', href: '#data-handling' },
+              { label: 'Incident Response', href: '#incident-response' },
               { label: 'Implementation', href: '#implementation' },
               { label: 'Integrations', href: '#integrations' },
               { label: 'Compliance', href: '#compliance' },
@@ -162,6 +164,263 @@ export default function SecurityPage() {
               </ul>
             </Card>
           </div>
+        </div>
+      </section>
+
+      {/* Data Handling Policy */}
+      <section id="data-handling" className="py-20 bg-carbon/50 border-t border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="p-3 rounded-lg bg-neon/10">
+              <Shield size={32} className="text-neon" />
+            </div>
+            <div>
+              <h2 className="text-3xl font-black">Data Handling Policy</h2>
+              <p className="text-steel">Transparent data collection, storage, and usage</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card className="p-6">
+              <h3 className="text-xl font-bold text-neon mb-4">What We Collect</h3>
+              <ul className="space-y-3 text-steel/90">
+                <li className="flex items-start gap-3">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-1" />
+                  <div>
+                    <span className="font-semibold text-white">Operational Data:</span> Truck IDs, arrival/departure timestamps, dock assignments, dwell times, GPS coordinates (yard-only)
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-1" />
+                  <div>
+                    <span className="font-semibold text-white">Identity Data:</span> Driver license scans (hashed), carrier credentials, authorized user accounts
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-1" />
+                  <div>
+                    <span className="font-semibold text-white">System Logs:</span> API calls, user actions, system events, error diagnostics
+                  </div>
+                </li>
+              </ul>
+            </Card>
+
+            <Card className="p-6">
+              <h3 className="text-xl font-bold text-neon mb-4">What We DON'T Collect</h3>
+              <ul className="space-y-3 text-steel/90">
+                <li className="flex items-start gap-3">
+                  <span className="text-ember text-2xl">✗</span>
+                  <div>Cargo contents or bill of lading details (unless explicitly integrated for paperless workflows)</div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-ember text-2xl">✗</span>
+                  <div>Personal contact info of drivers (phone/email) unless provided for SMS notifications</div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-ember text-2xl">✗</span>
+                  <div>GPS tracking outside yard boundaries (geofenced)</div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-ember text-2xl">✗</span>
+                  <div>Sensitive financial data (customer invoices, payment methods)</div>
+                </li>
+              </ul>
+            </Card>
+
+            <Card className="p-6">
+              <h3 className="text-xl font-bold text-neon mb-4">How We Use Data</h3>
+              <ul className="space-y-3 text-steel/90">
+                <li className="flex items-start gap-3">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-1" />
+                  <div><strong>Operational:</strong> Real-time yard orchestration, move recommendations, dwell time analytics</div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-1" />
+                  <div><strong>Security:</strong> Access verification, audit trails, compliance reporting</div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-1" />
+                  <div><strong>Network Intelligence:</strong> Anonymized benchmarking, predictive ETA models, carrier performance scoring</div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-1" />
+                  <div><strong>Product Improvement:</strong> Feature usage analytics, error monitoring, performance optimization</div>
+                </li>
+              </ul>
+            </Card>
+
+            <Card className="p-6">
+              <h3 className="text-xl font-bold text-neon mb-4">Your Data Rights</h3>
+              <ul className="space-y-3 text-steel/90">
+                <li className="flex items-start gap-3">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-1" />
+                  <div><strong>Access:</strong> Request full export of your data (JSON/CSV) within 7 business days</div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-1" />
+                  <div><strong>Deletion:</strong> Right to erasure (GDPR/CCPA compliant) with 30-day retention for audit logs</div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-1" />
+                  <div><strong>Portability:</strong> Export data in machine-readable formats</div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-1" />
+                  <div><strong>Opt-Out:</strong> Disable anonymized benchmarking sharing (enterprise-only feature)</div>
+                </li>
+              </ul>
+            </Card>
+          </div>
+
+          <Card className="p-6 mt-8 bg-neon/5 border-neon/30">
+            <h3 className="text-xl font-bold mb-4">Data Retention & Deletion</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
+              <div>
+                <p className="font-semibold text-neon mb-2">Operational Data</p>
+                <p className="text-steel/80">Retained for 2 years (configurable) or duration of contract. Archived after 2 years, deleted after 7 years.</p>
+              </div>
+              <div>
+                <p className="font-semibold text-neon mb-2">Audit Logs</p>
+                <p className="text-steel/80">Retained for 7 years (compliance requirement). Immutable, blockchain-timestamped where applicable.</p>
+              </div>
+              <div>
+                <p className="font-semibold text-neon mb-2">Personal Data</p>
+                <p className="text-steel/80">Deleted within 30 days of account termination unless required for legal/audit purposes.</p>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </section>
+
+      {/* Incident Response */}
+      <section id="incident-response" className="py-20 border-t border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="p-3 rounded-lg bg-ember/10">
+              <Agent size={32} className="text-ember" />
+            </div>
+            <div>
+              <h2 className="text-3xl font-black">Incident Response Plan</h2>
+              <p className="text-steel">Prepared for security events with clear escalation</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            <Card className="p-6">
+              <h3 className="text-xl font-bold text-neon mb-4">Detection & Monitoring</h3>
+              <ul className="space-y-3 text-steel/90">
+                <li className="flex items-start gap-3">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-1" />
+                  <div><strong>24/7 Automated Monitoring:</strong> Intrusion detection, anomaly detection, failed login alerts</div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-1" />
+                  <div><strong>SIEM Integration:</strong> Centralized logging with real-time threat analysis</div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-1" />
+                  <div><strong>Vulnerability Scanning:</strong> Weekly automated scans, quarterly penetration testing</div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-1" />
+                  <div><strong>Customer Reporting:</strong> Security dashboard with incident notifications</div>
+                </li>
+              </ul>
+            </Card>
+
+            <Card className="p-6">
+              <h3 className="text-xl font-bold text-neon mb-4">Response Timeline</h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-20 flex-shrink-0">
+                    <span className="text-ember font-mono font-bold">0-1hr</span>
+                  </div>
+                  <div className="text-steel/90">
+                    <strong className="text-white block mb-1">Detection & Triage</strong>
+                    Automated alerts trigger on-call engineer. Initial assessment and severity classification.
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-20 flex-shrink-0">
+                    <span className="text-ember font-mono font-bold">1-4hr</span>
+                  </div>
+                  <div className="text-steel/90">
+                    <strong className="text-white block mb-1">Containment</strong>
+                    Isolate affected systems, revoke compromised credentials, implement temporary blocks.
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-20 flex-shrink-0">
+                    <span className="text-neon font-mono font-bold">4-24hr</span>
+                  </div>
+                  <div className="text-steel/90">
+                    <strong className="text-white block mb-1">Eradication & Recovery</strong>
+                    Remove threat, patch vulnerabilities, restore normal operations with enhanced monitoring.
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-20 flex-shrink-0">
+                    <span className="text-neon font-mono font-bold">24-72hr</span>
+                  </div>
+                  <div className="text-steel/90">
+                    <strong className="text-white block mb-1">Post-Incident Review</strong>
+                    Root cause analysis, customer notification (if data breach), remediation plan.
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </div>
+
+          <Card className="p-6 bg-ember/5 border-ember/30">
+            <h3 className="text-xl font-bold mb-4">Customer Notification Policy</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <p className="font-semibold text-neon mb-2">Data Breach Notification</p>
+                <ul className="space-y-2 text-sm text-steel/90">
+                  <li>• Notification within 72 hours of confirmed breach (GDPR requirement)</li>
+                  <li>• Email to primary account contact + security contact</li>
+                  <li>• Details: affected data, timeline, remediation steps, customer actions required</li>
+                  <li>• Public disclosure if &gt;10,000 records affected (CCPA threshold)</li>
+                </ul>
+              </div>
+              <div>
+                <p className="font-semibold text-neon mb-2">Service Disruption</p>
+                <ul className="space-y-2 text-sm text-steel/90">
+                  <li>• Status page updates (status.freightroll.com)</li>
+                  <li>• Email alerts for P1 incidents affecting operations</li>
+                  <li>• Post-mortem published within 5 business days</li>
+                  <li>• SLA credits applied automatically for downtime &gt;0.1%</li>
+                </ul>
+              </div>
+            </div>
+          </Card>
+
+          <Card className="p-6 mt-8">
+            <h3 className="text-xl font-bold mb-4">Contact Security Team</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+              <div>
+                <p className="font-semibold text-neon mb-2">Report Vulnerability</p>
+                <a href="mailto:security@freightroll.com" className="text-steel/80 hover:text-neon transition-colors">
+                  security@freightroll.com
+                </a>
+                <p className="text-xs text-steel/60 mt-2">Bug bounty considered case-by-case</p>
+              </div>
+              <div>
+                <p className="font-semibold text-neon mb-2">Security Incident</p>
+                <a href="mailto:incident@freightroll.com" className="text-steel/80 hover:text-neon transition-colors">
+                  incident@freightroll.com
+                </a>
+                <p className="text-xs text-steel/60 mt-2">24/7 on-call monitoring</p>
+              </div>
+              <div>
+                <p className="font-semibold text-neon mb-2">General Questions</p>
+                <a href="mailto:casey@freightroll.com" className="text-steel/80 hover:text-neon transition-colors">
+                  casey@freightroll.com
+                </a>
+                <p className="text-xs text-steel/60 mt-2">Response within 1 business day</p>
+              </div>
+            </div>
+          </Card>
         </div>
       </section>
 
