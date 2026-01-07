@@ -224,6 +224,25 @@ export default function YardBuilderPage() {
                     subtitle="Forwardable artifact for ops + finance. Modeled guidance; results vary."
                   />
                 </div>
+
+                {/* Next Step CTAs */}
+                <div className="mt-8 pt-6 border-t border-neon/10">
+                  <p className="text-steel/70 text-sm mb-4">Now that you've mapped your facility...</p>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <a 
+                      href="/roi"
+                      className="flex-1 px-6 py-3 rounded-lg bg-neon text-void font-semibold text-center hover:bg-white transition-all"
+                    >
+                      Build ROI Model →
+                    </a>
+                    <a 
+                      href="/singularity"
+                      className="flex-1 px-6 py-3 rounded-lg border-2 border-neon text-neon font-semibold text-center hover:bg-neon hover:text-void transition-all"
+                    >
+                      Apply for Access
+                    </a>
+                  </div>
+                </div>
               </Card>
             </div>
           </div>

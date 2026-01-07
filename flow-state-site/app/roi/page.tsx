@@ -2167,6 +2167,30 @@ export default function ROICalculatorPage() {
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-6">
           <NextSteps title="Next best step" />
+          
+          {/* Post-Calculation CTAs */}
+          <div className="mt-12 text-center">
+            <div className="max-w-2xl mx-auto bg-neon/5 border border-neon/20 rounded-lg p-8">
+              <h3 className="text-2xl font-bold mb-4">Ready to see this in action?</h3>
+              <p className="text-steel/80 mb-6">
+                You've built the financial case. Now see how the system works across your network.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <a 
+                  href="/yns"
+                  className="px-6 py-3 rounded-lg bg-neon text-void font-semibold hover:bg-white transition-all"
+                >
+                  Learn About YNS →
+                </a>
+                <a 
+                  href="/singularity"
+                  className="px-6 py-3 rounded-lg border-2 border-neon text-neon font-semibold hover:bg-neon hover:text-void transition-all"
+                >
+                  Apply for Membership
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

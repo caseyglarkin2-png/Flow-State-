@@ -61,6 +61,28 @@ export default function DiagnosticPage() {
             </a>{' '}
             documentation.
           </p>
+
+          {/* Post-Diagnostic CTAs */}
+          <div className="mt-12 pt-8 border-t border-neon/10">
+            <h4 className="text-xl font-bold mb-4">See the full picture</h4>
+            <p className="text-steel/70 mb-6">
+              This diagnostic shows single-site costs. See how YNS reduces yard tax across your entire network.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href="/product"
+                className="px-6 py-3 rounded-lg bg-neon text-void font-semibold hover:bg-white transition-all"
+              >
+                Explore the Product →
+              </a>
+              <a 
+                href="/roi"
+                className="px-6 py-3 rounded-lg border-2 border-neon text-neon font-semibold hover:bg-neon hover:text-void transition-all"
+              >
+                Build ROI Model
+              </a>
+            </div>
+          </div>
         </div>
       </section>
       

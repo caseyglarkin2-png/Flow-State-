@@ -55,11 +55,22 @@ export default function Header() {
           <div className="relative">
             <button 
               onClick={() => { closeAllDropdowns(); setSolutionsOpen(!solutionsOpen); }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  closeAllDropdowns();
+                  setSolutionsOpen(!solutionsOpen);
+                }
+                if (e.key === 'Escape') setSolutionsOpen(false);
+              }}
               onBlur={() => setTimeout(() => setSolutionsOpen(false), 150)}
+              aria-expanded={solutionsOpen}
+              aria-haspopup="true"
+              aria-label="Solutions menu"
               className="text-sm text-steel hover:text-neon transition-colors flex items-center gap-1"
             >
               Solutions
-              <svg className={`w-4 h-4 transition-transform ${solutionsOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className={`w-4 h-4 transition-transform ${solutionsOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
@@ -96,11 +107,22 @@ export default function Header() {
           <div className="relative">
             <button 
               onClick={() => { closeAllDropdowns(); setResourcesOpen(!resourcesOpen); }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  closeAllDropdowns();
+                  setResourcesOpen(!resourcesOpen);
+                }
+                if (e.key === 'Escape') setResourcesOpen(false);
+              }}
               onBlur={() => setTimeout(() => setResourcesOpen(false), 150)}
+              aria-expanded={resourcesOpen}
+              aria-haspopup="true"
+              aria-label="Resources menu"
               className="text-sm text-steel hover:text-neon transition-colors flex items-center gap-1"
             >
               Resources
-              <svg className={`w-4 h-4 transition-transform ${resourcesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className={`w-4 h-4 transition-transform ${resourcesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
@@ -134,11 +156,22 @@ export default function Header() {
           <div className="relative">
             <button 
               onClick={() => { closeAllDropdowns(); setCompanyOpen(!companyOpen); }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  closeAllDropdowns();
+                  setCompanyOpen(!companyOpen);
+                }
+                if (e.key === 'Escape') setCompanyOpen(false);
+              }}
               onBlur={() => setTimeout(() => setCompanyOpen(false), 150)}
+              aria-expanded={companyOpen}
+              aria-haspopup="true"
+              aria-label="Company menu"
               className="text-sm text-steel hover:text-neon transition-colors flex items-center gap-1"
             >
               Company
-              <svg className={`w-4 h-4 transition-transform ${companyOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className={`w-4 h-4 transition-transform ${companyOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
