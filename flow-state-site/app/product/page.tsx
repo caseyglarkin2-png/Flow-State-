@@ -209,7 +209,7 @@ export default function ProductPage() {
       {/* Features Grid */}
       <section className="py-24 bg-carbon/50 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-5xl font-black mb-12">Why YardFlow by FreightRoll YardOS?</h2>
+          <h2 className="text-5xl font-black mb-12">Why YardFlow by FreightRoll?</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[

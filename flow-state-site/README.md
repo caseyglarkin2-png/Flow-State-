@@ -23,7 +23,7 @@ A modern, high-performance website for YardFlow by FreightRoll, a next-generatio
 ## Pages
 
 1. **Home** (`/`) - Hero, problem statement, solution, product modules, YardBuilder preview, Primo proof, deployment timeline
-2. **Product** (`/product`) - YardOS deep dive with Digital Guard, Orchestration Engine, Driver Experience modules
+2. **Product** (`/product`) - YardFlow deep dive with Digital Guard, Orchestration Engine, Driver Experience modules
 3. **Solutions** (`/solutions`) - Industry archetypes (Retail, 3PL, Port, LTL, Manufacturing) with pain/flow mapping
 4. **YardBuilder AI** (`/yardbuilder`) - 10-minute digital twin feature with 3-step process and use cases
 

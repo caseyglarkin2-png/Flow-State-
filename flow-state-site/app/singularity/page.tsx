@@ -676,7 +676,7 @@ export default function SingularityPage() {
 
           <p className="text-lg md:text-xl text-steel mb-8 max-w-2xl mx-auto">
             We're building the network with a select cohort of forward-thinking enterprises. 
-            Founding members get priority deployment, direct product input, and <span className="text-neon font-semibold">locked-in pricing for life</span>.
+            Founding members get priority deployment, direct product input, and <span className="text-neon font-semibold">preferred pricing terms</span>.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">

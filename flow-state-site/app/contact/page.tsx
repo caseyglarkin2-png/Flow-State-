@@ -101,9 +101,11 @@ export default function ContactPage() {
     <Suspense fallback={
       <div className="min-h-screen bg-void">
         <Header />
-        <div className="pt-32 pb-16 flex items-center justify-center">
-          <div className="text-steel">Loading...</div>
+        <div className="pt-32 pb-16 flex flex-col items-center justify-center gap-4">
+          <div className="w-12 h-12 border-4 border-neon/20 border-t-neon rounded-full animate-spin"></div>
+          <p className="text-steel font-mono text-sm">Preparing your experience...</p>
         </div>
+        <Footer />
       </div>
     }>
       <ContactContent />

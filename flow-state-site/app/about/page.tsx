@@ -104,7 +104,33 @@ export default function AboutPage() {
           </Card>
         </div>
       </section>
-
+      {/* Next Steps CTA */}
+      <section className="py-16 border-t border-neon/20">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">Ready to explore?</h2>
+          <p className="text-steel mb-8">See how YardFlow can transform your yard operations.</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/diagnostic"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-bold bg-ember text-white hover:bg-white hover:text-void transition-all"
+            >
+              Calculate Your Yard Tax
+            </a>
+            <a
+              href="/roi"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
+            >
+              Build ROI Model
+            </a>
+            <a
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
+            >
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </section>
       <Footer />
     </div>
   );

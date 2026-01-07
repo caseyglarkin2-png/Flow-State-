@@ -2125,18 +2125,8 @@ export default function ROICalculatorPage() {
             Ready to Capture <span className="neon-glow">{formatMoney(calculations.yearOneGrossSavings)}/year</span>?
           </h2>
           <p className="text-xl text-steel mb-8">
-            Export a board-ready PDF, or get a custom analysis with your actual operational data.
+            Get a custom analysis with your actual operational data or explore the network effect.
           </p>
-          <div className="mt-10 text-left">
-            <BoardReadyExportCTA
-              endpoint="/api/pdf/roi"
-              emailEndpoint="/api/email/roi"
-              eventName="roi_pdf_exported"
-              buildPayload={(lead) => ({ lead, inputs: inputsForPdf })}
-              title="Board-ready ROI PDF"
-              subtitle="Generate a clean PDF you can forward internally, or email it to finance/procurement. Modeled estimates; results vary."
-            />
-          </div>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <a

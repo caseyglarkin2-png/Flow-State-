@@ -29,7 +29,43 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
     narrative: [
       'At enterprise scale, the yard is not a single facility problem. It is a network execution problem. YardFlow by FreightRoll is designed to standardize the ground-truth layer across every gate and every dock.',
       'When a network aligns on check-in/out, timestamps, and repeatable workflows, operational velocity compounds. The ROI becomes more defensible and more predictable as adoption broadens.',
-      'This scenario uses the ROI calculator’s Pro Mode to model a network-wide deployment and show how per-facility pricing aligns incentives toward full adoption.',
+      'This scenario uses the ROI calculator Pro Mode to model a network-wide deployment and show how per-facility pricing aligns incentives toward full adoption.',
+    ],
+  },
+  'regional-3pl': {
+    slug: 'regional-3pl',
+    title: 'Regional 3PL: From Manual Gates to Ground Truth',
+    subtitle: 'A 12-facility regional network eliminates detention disputes with defensible timestamps.',
+    disclaimer:
+      'Disclaimer: This is a representative case study format using modeled assumptions (not a public customer claim). Procurement and implementation details vary by network.',
+    highlights: [
+      { label: 'Network size', value: '12 facilities' },
+      { label: 'Annual detention disputes', value: '$340K → $45K (modeled)' },
+      { label: 'Gate throughput', value: '+35% improvement' },
+      { label: 'Time to ROI', value: '4 months' },
+    ],
+    narrative: [
+      'Regional 3PLs face a unique challenge: carrier disputes over detention and accessorial charges drain margin, but without defensible timestamps, every dispute becomes he-said-she-said.',
+      'This modeled scenario shows how a 12-facility network implemented YardFlow to capture gate-to-dock timestamps automatically. When carriers dispute detention charges, operations teams now have forensic-grade evidence.',
+      'The result: 85% reduction in disputed charges, faster carrier payments, and improved carrier relationships. The ROI paid for the implementation in the first quarter.',
+    ],
+  },
+  'cold-chain-security': {
+    slug: 'cold-chain-security',
+    title: 'Cold Chain: Cargo Security at the Gate',
+    subtitle: 'Temperature-sensitive logistics network reduces theft incidents 80% with ID verification.',
+    disclaimer:
+      'Disclaimer: This is a representative case study format using modeled assumptions (not a public customer claim). Procurement and implementation details vary by network.',
+    highlights: [
+      { label: 'Network size', value: '8 cold storage facilities' },
+      { label: 'Theft incidents', value: '12/year → 2/year (modeled)' },
+      { label: 'Insurance premium', value: '-18% annual savings' },
+      { label: 'CTPAT compliance', value: 'Achieved' },
+    ],
+    narrative: [
+      'Cold chain logistics is a high-value target. Pharmaceutical loads, premium proteins, and specialty foods command top dollar on the black market. Most theft starts with fraudulent credentials at the gate.',
+      'This modeled scenario demonstrates how automated ID scanning, carrier credentialing, and blockchain audit trails transform gate security. Every driver is verified against FMCSA databases in real-time.',
+      'Beyond theft prevention, the security posture enabled CTPAT certification and reduced cyber liability insurance premiums. The security investment became a competitive advantage.',
     ],
   },
 };
@@ -83,8 +119,8 @@ export default async function CaseStudyPage({
           <Card className="md:col-span-2">
             <h2 className="text-2xl font-bold text-neon mb-4">Narrative</h2>
             <div className="space-y-4 text-steel">
-              {cs.narrative.map((p) => (
-                <p key={p}>{p}</p>
+              {cs.narrative.map((p, i) => (
+                <p key={i}>{p}</p>
               ))}
               <p className="text-sm text-steel/70">{cs.disclaimer}</p>
             </div>

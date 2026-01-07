@@ -34,6 +34,9 @@ export default function Header() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
+          <Link href="/diagnostic" className="text-sm text-ember font-semibold hover:text-neon transition-colors">
+            Yard Tax Calculator
+          </Link>
           <Link href="/product" className="text-sm text-steel hover:text-neon transition-colors">
             Product
           </Link>

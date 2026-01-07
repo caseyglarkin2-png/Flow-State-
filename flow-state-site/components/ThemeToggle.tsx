@@ -50,7 +50,7 @@ export default function ThemeToggle({ className = '' }: { className?: string }) 
       {theme === 'dark' ? (
         <>
           <span className="w-3 h-3 rounded-full bg-neon shadow-[0_0_6px_rgba(0,180,255,0.5)]"></span>
-          <span className="hidden sm:inline">THERMAL</span>
+          <span className="hidden sm:inline">NIGHT</span>
         </>
       ) : (
         <>

@@ -26,8 +26,11 @@ export default function Footer() {
             <h3 className="font-semibold mb-4 text-neon">Product</h3>
             <ul className="space-y-2 text-sm text-steel">
               <li><Link href="/product" className="hover:text-neon transition-colors">Product Overview</Link></li>
+              <li><Link href="/diagnostic" className="hover:text-neon transition-colors">Yard Tax Calculator</Link></li>
               <li><Link href="/yardbuilder" className="hover:text-neon transition-colors">YardBuilder</Link></li>
               <li><Link href="/roi" className="hover:text-neon transition-colors">ROI Calculator</Link></li>
+              <li><Link href="/simulations" className="hover:text-neon transition-colors">Simulations</Link></li>
+              <li><Link href="/blog" className="hover:text-neon transition-colors">Blog</Link></li>
             </ul>
           </div>
 

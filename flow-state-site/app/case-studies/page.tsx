@@ -10,7 +10,19 @@ const CASES = [
   {
     slug: 'primo-network',
     title: 'Primo: Network Standardization at Scale',
-    subtitle: 'Modeled enterprise scenario to show the format and the leverage curve.',
+    subtitle: 'Modeled enterprise scenario showing how 50-facility networks achieve 1.4x network effect multiplier.',
+    badge: 'Modeled example',
+  },
+  {
+    slug: 'regional-3pl',
+    title: 'Regional 3PL: From Manual Gates to Ground Truth',
+    subtitle: '12-facility regional network eliminates detention disputes with defensible timestamps.',
+    badge: 'Modeled example',
+  },
+  {
+    slug: 'cold-chain-security',
+    title: 'Cold Chain: Cargo Security at the Gate',
+    subtitle: 'Temperature-sensitive logistics network reduces theft incidents 80% with ID verification.',
     badge: 'Modeled example',
   },
 ];

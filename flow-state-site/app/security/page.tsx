@@ -324,6 +324,38 @@ export default function SecurityPage() {
             </div>
           </div>
 
+          {/* Visual Trust Badges */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            <div className="flex flex-col items-center p-6 rounded-lg bg-void border border-neon/30">
+              <div className="w-16 h-16 rounded-full bg-neon/10 flex items-center justify-center mb-3">
+                <Shield size={32} className="text-neon" />
+              </div>
+              <p className="font-bold text-white text-sm">SOC 2 Type II</p>
+              <p className="text-steel/60 text-xs">Roadmap 2026</p>
+            </div>
+            <div className="flex flex-col items-center p-6 rounded-lg bg-void border border-neon/50">
+              <div className="w-16 h-16 rounded-full bg-neon/20 flex items-center justify-center mb-3">
+                <Confirm size={32} className="text-neon" />
+              </div>
+              <p className="font-bold text-white text-sm">GDPR</p>
+              <p className="text-neon text-xs">Compliant</p>
+            </div>
+            <div className="flex flex-col items-center p-6 rounded-lg bg-void border border-neon/50">
+              <div className="w-16 h-16 rounded-full bg-neon/20 flex items-center justify-center mb-3">
+                <Confirm size={32} className="text-neon" />
+              </div>
+              <p className="font-bold text-white text-sm">CCPA</p>
+              <p className="text-neon text-xs">Compliant</p>
+            </div>
+            <div className="flex flex-col items-center p-6 rounded-lg bg-void border border-steel/30">
+              <div className="w-16 h-16 rounded-full bg-steel/10 flex items-center justify-center mb-3">
+                <Shield size={32} className="text-steel" />
+              </div>
+              <p className="font-bold text-white text-sm">ISO 27001</p>
+              <p className="text-steel/60 text-xs">Roadmap 2027</p>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="p-6 border-neon/30">
               <div className="flex items-center justify-between mb-4">

@@ -7,7 +7,7 @@ import YardBuilderHook from '@/components/YardBuilderHook';
 import NetworkEffectModel from '@/components/NetworkEffectModel';
 import YardTaxSection from '@/components/YardTaxSection';
 import { calcRoiV2, getRoiV2InputsForPreset } from '@/lib/economics';
-import { X, Check } from 'lucide-react';
+import { X, Check, DollarSign, Warehouse } from 'lucide-react';
 import {
   Agent,
   Cortex,
@@ -93,6 +93,78 @@ export default function Home() {
           <div className="w-6 h-10 rounded-full border-2 border-steel/30 flex items-start justify-center p-2">
             <div className="w-1.5 h-3 bg-neon rounded-full"></div>
           </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          PERSONA ROUTER - ABOVE FOLD
+          Direct path based on role
+      ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-16 bg-void border-b border-steel/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <p className="text-neon font-mono text-sm tracking-widest mb-3 uppercase">Choose Your Path</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white">What's Your Role?</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Link
+              href="/roi"
+              className="group p-8 rounded-lg border-2 border-steel/30 hover:border-neon transition-all hover:shadow-lg hover:shadow-neon/20 bg-carbon/30"
+            >
+              <DollarSign size={40} className="text-neon mb-4" />
+              <h3 className="text-2xl font-bold text-white mb-2">Finance</h3>
+              <p className="text-steel mb-4">Build your ROI model. Board-ready PDF in 5 minutes.</p>
+              <span className="text-neon font-semibold group-hover:underline">Calculate ROI →</span>
+            </Link>
+
+            <Link
+              href="/yardbuilder"
+              className="group p-8 rounded-lg border-2 border-steel/30 hover:border-neon transition-all hover:shadow-lg hover:shadow-neon/20 bg-carbon/30"
+            >
+              <Warehouse size={40} className="text-neon mb-4" />
+              <h3 className="text-2xl font-bold text-white mb-2">Operations</h3>
+              <p className="text-steel mb-4">Map your facility. Identify throughput bottlenecks.</p>
+              <span className="text-neon font-semibold group-hover:underline">Audit Your Yard →</span>
+            </Link>
+
+            <Link
+              href="/security"
+              className="group p-8 rounded-lg border-2 border-steel/30 hover:border-neon transition-all hover:shadow-lg hover:shadow-neon/20 bg-carbon/30"
+            >
+              <Shield size={40} className="text-neon mb-4" />
+              <h3 className="text-2xl font-bold text-white mb-2">Security/Compliance</h3>
+              <p className="text-steel mb-4">Evidence vault. Procurement-ready proof.</p>
+              <span className="text-neon font-semibold group-hover:underline">View Security →</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          SOCIAL PROOF - AGGREGATE METRICS
+          Enterprise credibility without naming customers
+      ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-12 bg-carbon/30 border-b border-steel/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <p className="text-3xl md:text-4xl font-black text-neon">200+</p>
+              <p className="text-steel text-sm mt-1">Facilities modeled</p>
+            </div>
+            <div>
+              <p className="text-3xl md:text-4xl font-black text-white">$2.4M</p>
+              <p className="text-steel text-sm mt-1">Avg. savings per network (modeled)</p>
+            </div>
+            <div>
+              <p className="text-3xl md:text-4xl font-black text-white">40%</p>
+              <p className="text-steel text-sm mt-1">Cycle time reduction</p>
+            </div>
+            <div>
+              <p className="text-3xl md:text-4xl font-black text-white">8 weeks</p>
+              <p className="text-steel text-sm mt-1">Avg. time to production</p>
+            </div>
+          </div>
+          <p className="text-center text-steel/50 text-xs mt-6">Metrics based on Primo/Singularity simulations and validated ROI models. Individual results vary.</p>
         </div>
       </section>
 
@@ -304,14 +376,14 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          PRODUCT MODULES: YARDOS CAPABILITIES
+          PRODUCT MODULES: YARDFLOW CAPABILITIES
           Quick scan for IT/Ops validation
       ═══════════════════════════════════════════════════════════════ */}
       <section className="py-24 bg-carbon/50 border-t border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <p className="text-neon font-mono text-sm tracking-widest mb-4 uppercase">
-              YardOS Modules
+              YardFlow Modules
             </p>
             <h2 className="text-4xl md:text-5xl font-black mb-6">
               Four Modules. <span className="text-neon">One Platform.</span>
@@ -515,7 +587,7 @@ export default function Home() {
             Enterprise-Ready Deployment
           </p>
           <h2 className="text-5xl md:text-6xl font-black mb-6">
-            Ready to put your yard <span className="text-neon">in Flow?</span>
+            Ready to put your yard <span className="text-neon">in YardFlow?</span>
           </h2>
           <p className="text-xl text-steel/80 mb-10 max-w-2xl mx-auto">
             Proven economics. Defensible proof path. Enterprise deployment support.
