@@ -3,12 +3,19 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FlowArrow, Ignite, Velocity } from '@/components/icons/FlowIcons';
-import ThemeToggle from '@/components/ThemeToggle';
+import { FlowArrow, Ignite, Velocity, Shield } from '@/components/icons/FlowIcons';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [companyMenuOpen, setCompanyMenuOpen] = useState(false);
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
+  const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [companyOpen, setCompanyOpen] = useState(false);
+
+  const closeAllDropdowns = () => {
+    setSolutionsOpen(false);
+    setResourcesOpen(false);
+    setCompanyOpen(false);
+  };
 
   return (
     <header className="fixed top-0 w-full z-50 bg-void/80 backdrop-blur-md border-b border-neon/20">
@@ -18,8 +25,8 @@ export default function Header() {
           <Ignite size={16} className="text-neon" />
           Founding Member Program:
         </span>
-        <Link href="/singularity" className="text-neon font-semibold hover:underline inline-flex items-center gap-1">
-          Qualify your network <FlowArrow size={12} className="text-neon" />
+        <Link href="/contact?intent=qualify" className="text-neon font-semibold hover:underline inline-flex items-center gap-1 ml-1">
+          Apply now <FlowArrow size={12} className="text-neon" />
         </Link>
       </div>
 
@@ -33,70 +40,152 @@ export default function Header() {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
-          <Link href="/diagnostic" className="text-sm text-ember font-semibold hover:text-neon transition-colors">
-            Yard Tax Calculator
-          </Link>
+        <div className="hidden lg:flex items-center gap-6">
+          {/* Product - Direct link */}
           <Link href="/product" className="text-sm text-steel hover:text-neon transition-colors">
             Product
           </Link>
-          <Link href="/solutions" className="text-sm text-steel hover:text-neon transition-colors">
-            Solutions
-          </Link>
-          <Link href="/pricing" className="text-sm text-steel hover:text-neon transition-colors">
-            Pricing
-          </Link>
-          
-          {/* Company Dropdown */}
+
+          {/* Solutions Dropdown */}
           <div className="relative">
             <button 
-              onClick={() => setCompanyMenuOpen(!companyMenuOpen)}
-              onBlur={() => setTimeout(() => setCompanyMenuOpen(false), 150)}
+              onClick={() => { closeAllDropdowns(); setSolutionsOpen(!solutionsOpen); }}
+              onBlur={() => setTimeout(() => setSolutionsOpen(false), 150)}
               className="text-sm text-steel hover:text-neon transition-colors flex items-center gap-1"
             >
-              Company
-              <svg className={`w-4 h-4 transition-transform ${companyMenuOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              Solutions
+              <svg className={`w-4 h-4 transition-transform ${solutionsOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
             
-            {companyMenuOpen && (
-              <div className="absolute top-full left-0 mt-2 w-48 bg-carbon border border-neon/20 rounded-lg shadow-lg py-2 z-50">
-                <Link href="/about" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  About
+            {solutionsOpen && (
+              <div className="absolute top-full left-0 mt-2 w-64 bg-carbon border border-neon/20 rounded-lg shadow-lg py-2 z-50">
+                <Link href="/solutions" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                  <span className="font-medium text-white">Yard Orchestration</span>
+                  <span className="block text-xs text-steel/70">Gate automation, dwell reduction, throughput</span>
                 </Link>
                 <Link href="/security" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  Security
+                  <span className="font-medium text-white">Identity & Cargo Security</span>
+                  <span className="block text-xs text-steel/70">ID verification, audit trails, compliance</span>
                 </Link>
-                <Link href="/integrations" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  Integrations
-                </Link>
-                <Link href="/press" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  Press
-                </Link>
-                <Link href="/contact" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  Contact
+                <Link href="/singularity" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                  <span className="font-medium text-white">Network Intelligence</span>
+                  <span className="block text-xs text-steel/70">Multi-site optimization, network effects</span>
                 </Link>
               </div>
             )}
           </div>
-          
-          <Link href="/singularity" className="text-sm text-neon font-semibold hover:text-white transition-colors">
-            Singularity
+
+          {/* ROI - Direct link */}
+          <Link href="/roi" className="text-sm text-steel hover:text-neon transition-colors">
+            ROI
           </Link>
+
+          {/* YardBuilder - Direct link */}
+          <Link href="/yardbuilder" className="text-sm text-steel hover:text-neon transition-colors">
+            YardBuilder
+          </Link>
+
+          {/* Resources Dropdown */}
+          <div className="relative">
+            <button 
+              onClick={() => { closeAllDropdowns(); setResourcesOpen(!resourcesOpen); }}
+              onBlur={() => setTimeout(() => setResourcesOpen(false), 150)}
+              className="text-sm text-steel hover:text-neon transition-colors flex items-center gap-1"
+            >
+              Resources
+              <svg className={`w-4 h-4 transition-transform ${resourcesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            
+            {resourcesOpen && (
+              <div className="absolute top-full left-0 mt-2 w-56 bg-carbon border border-neon/20 rounded-lg shadow-lg py-2 z-50">
+                <Link href="/resources/guides" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                  <span className="font-medium text-white">Guides</span>
+                  <span className="block text-xs text-steel/70">Deep dives on yard operations</span>
+                </Link>
+                <Link href="/resources/field-notes" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                  <span className="font-medium text-white">Field Notes</span>
+                  <span className="block text-xs text-steel/70">Operational insights & patterns</span>
+                </Link>
+                <Link href="/resources/simulations" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                  <span className="font-medium text-white">Simulations</span>
+                  <span className="block text-xs text-steel/70">Primo & Singularity models</span>
+                </Link>
+                <div className="border-t border-neon/10 my-2"></div>
+                <Link href="/docs/economics-methodology" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                  Economics Methodology
+                </Link>
+                <Link href="/case-studies" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                  Case Studies
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Company Dropdown */}
+          <div className="relative">
+            <button 
+              onClick={() => { closeAllDropdowns(); setCompanyOpen(!companyOpen); }}
+              onBlur={() => setTimeout(() => setCompanyOpen(false), 150)}
+              className="text-sm text-steel hover:text-neon transition-colors flex items-center gap-1"
+            >
+              Company
+              <svg className={`w-4 h-4 transition-transform ${companyOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            
+            {companyOpen && (
+              <div className="absolute top-full right-0 mt-2 w-56 bg-carbon border border-neon/20 rounded-lg shadow-lg py-2 z-50">
+                <Link href="/security" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                  <span className="font-medium text-white flex items-center gap-2">
+                    <Shield size={14} className="text-neon" /> Evidence Vault
+                  </span>
+                  <span className="block text-xs text-steel/70">Security & compliance proof</span>
+                </Link>
+                <Link href="/implementation" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                  Implementation
+                </Link>
+                <Link href="/integrations" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                  Integrations
+                </Link>
+                <Link href="/pricing" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                  Pricing
+                </Link>
+                <div className="border-t border-neon/10 my-2"></div>
+                <Link href="/about" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                  About
+                </Link>
+                <Link href="/faq" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                  FAQ
+                </Link>
+                <Link href="/press" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                  Press
+                </Link>
+                <Link href="/status" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                  Status
+                </Link>
+                <Link href="/changelog" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                  Changelog
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Right Actions */}
         <div className="flex items-center gap-3">
-          <ThemeToggle className="hidden sm:flex" />
           <Link href="/contact?intent=qualify" className="px-4 py-2 text-sm font-semibold bg-neon text-void rounded-lg hover:shadow-lg hover:shadow-neon/50 transition-all flex items-center gap-1">
             <Velocity size={16} className="text-void" />
-            Qualify
+            Request Access
           </Link>
           
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden p-2 text-neon"
+            className="lg:hidden p-2 text-neon"
             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
@@ -113,22 +202,41 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-carbon border-t border-neon/20 py-4 px-6 space-y-4">
-          <Link href="/product" className="block text-steel hover:text-neon transition-colors">Product</Link>
-          <Link href="/solutions" className="block text-steel hover:text-neon transition-colors">Solutions</Link>
-          <Link href="/pricing" className="block text-steel hover:text-neon transition-colors">Pricing</Link>
+        <div className="lg:hidden bg-carbon border-t border-neon/20 py-4 px-6 space-y-4 max-h-[80vh] overflow-y-auto">
+          <Link href="/product" className="block text-steel hover:text-neon transition-colors font-medium">Product</Link>
           
           <div className="border-t border-neon/10 pt-4">
-            <p className="text-xs text-steel/60 font-mono mb-2 uppercase">Company</p>
-            <Link href="/about" className="block text-steel hover:text-neon transition-colors py-1">About</Link>
-            <Link href="/security" className="block text-steel hover:text-neon transition-colors py-1">Security</Link>
-            <Link href="/integrations" className="block text-steel hover:text-neon transition-colors py-1">Integrations</Link>
-            <Link href="/press" className="block text-steel hover:text-neon transition-colors py-1">Press</Link>
-            <Link href="/contact" className="block text-steel hover:text-neon transition-colors py-1">Contact</Link>
+            <p className="text-xs text-steel/60 font-mono mb-2 uppercase">Solutions</p>
+            <Link href="/solutions" className="block text-steel hover:text-neon transition-colors py-1">Yard Orchestration</Link>
+            <Link href="/security" className="block text-steel hover:text-neon transition-colors py-1">Identity & Cargo Security</Link>
+            <Link href="/singularity" className="block text-steel hover:text-neon transition-colors py-1">Network Intelligence</Link>
+          </div>
+
+          <div className="flex gap-4">
+            <Link href="/roi" className="block text-steel hover:text-neon transition-colors font-medium">ROI</Link>
+            <Link href="/yardbuilder" className="block text-steel hover:text-neon transition-colors font-medium">YardBuilder</Link>
           </div>
           
-          <Link href="/singularity" className="block text-neon font-semibold">Singularity</Link>
-          <ThemeToggle className="sm:hidden" />
+          <div className="border-t border-neon/10 pt-4">
+            <p className="text-xs text-steel/60 font-mono mb-2 uppercase">Resources</p>
+            <Link href="/resources/guides" className="block text-steel hover:text-neon transition-colors py-1">Guides</Link>
+            <Link href="/resources/field-notes" className="block text-steel hover:text-neon transition-colors py-1">Field Notes</Link>
+            <Link href="/resources/simulations" className="block text-steel hover:text-neon transition-colors py-1">Simulations</Link>
+            <Link href="/case-studies" className="block text-steel hover:text-neon transition-colors py-1">Case Studies</Link>
+          </div>
+
+          <div className="border-t border-neon/10 pt-4">
+            <p className="text-xs text-steel/60 font-mono mb-2 uppercase">Company</p>
+            <Link href="/security" className="block text-steel hover:text-neon transition-colors py-1">Evidence Vault</Link>
+            <Link href="/implementation" className="block text-steel hover:text-neon transition-colors py-1">Implementation</Link>
+            <Link href="/integrations" className="block text-steel hover:text-neon transition-colors py-1">Integrations</Link>
+            <Link href="/pricing" className="block text-steel hover:text-neon transition-colors py-1">Pricing</Link>
+            <Link href="/about" className="block text-steel hover:text-neon transition-colors py-1">About</Link>
+            <Link href="/faq" className="block text-steel hover:text-neon transition-colors py-1">FAQ</Link>
+            <Link href="/press" className="block text-steel hover:text-neon transition-colors py-1">Press</Link>
+            <Link href="/status" className="block text-steel hover:text-neon transition-colors py-1">Status</Link>
+            <Link href="/changelog" className="block text-steel hover:text-neon transition-colors py-1">Changelog</Link>
+          </div>
         </div>
       )}
     </header>

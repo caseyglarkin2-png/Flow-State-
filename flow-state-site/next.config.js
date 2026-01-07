@@ -60,6 +60,41 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      // Blog to Resources redirects
+      {
+        source: '/blog/',
+        destination: '/resources/',
+        permanent: true,
+      },
+      {
+        source: '/blog/cargo-theft-prevention/',
+        destination: '/resources/guides/cargo-theft-prevention/',
+        permanent: true,
+      },
+      {
+        source: '/blog/network-effect-yard-automation/',
+        destination: '/resources/guides/network-effect-yard-automation/',
+        permanent: true,
+      },
+      {
+        source: '/blog/ctpat-tsa-compliance/',
+        destination: '/resources/guides/ctpat-tsa-compliance/',
+        permanent: true,
+      },
+      {
+        source: '/blog/yard-tax-calculator/',
+        destination: '/diagnostic/',
+        permanent: true,
+      },
+      {
+        source: '/blog/primo-singularity-simulations/',
+        destination: '/resources/simulations/',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

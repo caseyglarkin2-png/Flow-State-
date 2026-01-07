@@ -8,9 +8,9 @@ export default function Footer() {
   return (
     <footer className="bg-carbon border-t border-neon/20 py-16">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12 mb-12">
           {/* Brand */}
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-7 h-7 flex items-center justify-center">
                 <Image src="/favicon.svg" alt="YardFlow by FreightRoll" width={28} height={28} className="w-7 h-7" />
@@ -25,12 +25,10 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-neon">Product</h3>
             <ul className="space-y-2 text-sm text-steel">
-              <li><Link href="/product" className="hover:text-neon transition-colors">Product Overview</Link></li>
-              <li><Link href="/diagnostic" className="hover:text-neon transition-colors">Yard Tax Calculator</Link></li>
-              <li><Link href="/yardbuilder" className="hover:text-neon transition-colors">YardBuilder</Link></li>
+              <li><Link href="/product" className="hover:text-neon transition-colors">Overview</Link></li>
               <li><Link href="/roi" className="hover:text-neon transition-colors">ROI Calculator</Link></li>
-              <li><Link href="/simulations" className="hover:text-neon transition-colors">Simulations</Link></li>
-              <li><Link href="/blog" className="hover:text-neon transition-colors">Blog</Link></li>
+              <li><Link href="/yardbuilder" className="hover:text-neon transition-colors">YardBuilder</Link></li>
+              <li><Link href="/diagnostic" className="hover:text-neon transition-colors">Yard Tax Calculator</Link></li>
             </ul>
           </div>
 
@@ -38,39 +36,48 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-neon">Solutions</h3>
             <ul className="space-y-2 text-sm text-steel">
-              <li><Link href="/solutions" className="hover:text-neon transition-colors">Solutions Overview</Link></li>
-              <li><Link href="/singularity" className="hover:text-neon transition-colors">Founding Member Program</Link></li>
-              <li><Link href="/case-studies/primo-network" className="hover:text-neon transition-colors">Case Studies</Link></li>
+              <li><Link href="/solutions" className="hover:text-neon transition-colors">Yard Orchestration</Link></li>
+              <li><Link href="/security" className="hover:text-neon transition-colors">Identity & Cargo Security</Link></li>
+              <li><Link href="/singularity" className="hover:text-neon transition-colors">Network Intelligence</Link></li>
+              <li><Link href="/case-studies" className="hover:text-neon transition-colors">Case Studies</Link></li>
             </ul>
           </div>
 
-          {/* Legal */}
+          {/* Resources */}
+          <div>
+            <h3 className="font-semibold mb-4 text-neon">Resources</h3>
+            <ul className="space-y-2 text-sm text-steel">
+              <li><Link href="/resources/guides" className="hover:text-neon transition-colors">Guides</Link></li>
+              <li><Link href="/resources/field-notes" className="hover:text-neon transition-colors">Field Notes</Link></li>
+              <li><Link href="/resources/simulations" className="hover:text-neon transition-colors">Simulations</Link></li>
+              <li><Link href="/docs/economics-methodology" className="hover:text-neon transition-colors">Methodology</Link></li>
+            </ul>
+          </div>
+
+          {/* Company */}
           <div>
             <h3 className="font-semibold mb-4 text-neon">Company</h3>
             <ul className="space-y-2 text-sm text-steel">
               <li><Link href="/about" className="hover:text-neon transition-colors">About</Link></li>
               <li><Link href="/pricing" className="hover:text-neon transition-colors">Pricing</Link></li>
-              <li><Link href="/security" className="hover:text-neon transition-colors">Security</Link></li>
-              <li><Link href="/integrations" className="hover:text-neon transition-colors">Integrations</Link></li>
               <li><Link href="/implementation" className="hover:text-neon transition-colors">Implementation</Link></li>
-              <li><Link href="/compare" className="hover:text-neon transition-colors">Compare</Link></li>
+              <li><Link href="/integrations" className="hover:text-neon transition-colors">Integrations</Link></li>
               <li><Link href="/faq" className="hover:text-neon transition-colors">FAQ</Link></li>
               <li><Link href="/press" className="hover:text-neon transition-colors">Press</Link></li>
               <li><Link href="/status" className="hover:text-neon transition-colors">Status</Link></li>
               <li><Link href="/changelog" className="hover:text-neon transition-colors">Changelog</Link></li>
-              <li><Link href="/privacy" className="hover:text-neon transition-colors">Privacy</Link></li>
-              <li><Link href="/terms" className="hover:text-neon transition-colors">Terms</Link></li>
               <li><Link href="/contact" className="hover:text-neon transition-colors">Contact</Link></li>
             </ul>
           </div>
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-neon/10 pt-8 flex items-center justify-between text-sm text-steel">
+        <div className="border-t border-neon/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-steel">
           <p>&copy; 2026 YardFlow by FreightRoll. All rights reserved.</p>
-          <div className="flex gap-4">
-            <a href="mailto:casey@freightroll.com" className="hover:text-neon transition-colors">Email</a>
-            <Link href="/pricing" className="hover:text-neon transition-colors">Pricing</Link>
+          <div className="flex gap-6">
+            <Link href="/privacy" className="hover:text-neon transition-colors">Privacy</Link>
+            <Link href="/terms" className="hover:text-neon transition-colors">Terms</Link>
+            <a href="mailto:sales@freightroll.com" className="hover:text-neon transition-colors">sales@freightroll.com</a>
           </div>
         </div>
       </div>
