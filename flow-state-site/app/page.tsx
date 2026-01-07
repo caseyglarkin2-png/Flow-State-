@@ -62,7 +62,7 @@ export default function Home() {
           
           <p className="text-xl md:text-2xl text-steel/90 mb-4 max-w-3xl mx-auto">
             Traditional Yard Management Systems (YMS) optimize each site in isolation. 
-            YardFlow is a <span className="text-neon font-semibold">Yard Network System (YNS)</span> — 
+            YardFlow is a <span className="text-neon font-semibold">Yard Network System (YNS)</span>: 
             orchestrating assets, intelligence, and security across your entire network.
           </p>
 

@@ -36,7 +36,7 @@ export default function RiskPage() {
             </h1>
             <p className="text-xl text-steel max-w-3xl mx-auto mb-8">
               Every year, cargo theft costs the industry $15B-$30B globally. Most incidents start at the gate. 
-              Fraudulent carriers, fake credentials, and unauthorized access are preventable—if you verify identity 
+              Fraudulent carriers, fake credentials, and unauthorized access are preventable if you verify identity 
               before granting access.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -127,7 +127,7 @@ export default function RiskPage() {
               {
                 icon: <FileCheck size={32} className="text-ember" />,
                 title: 'Missing Audit Trails',
-                description: 'Paper logs are incomplete, altered, or destroyed—making post-incident investigations nearly impossible.',
+                description: 'Paper logs are incomplete, altered, or destroyed, making post-incident investigations nearly impossible.',
                 prevention: 'Timestamped transaction records + immutable audit logs + forensic-grade evidence',
               },
               {

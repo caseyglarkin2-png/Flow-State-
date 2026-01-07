@@ -25,7 +25,7 @@ export default function YNSPage() {
           
           <p className="text-xl md:text-2xl text-steel mb-12 max-w-4xl mx-auto leading-relaxed">
             Traditional Yard Management Systems (YMS) treat each facility as an island. 
-            YardFlow is a <strong className="text-neon">Yard Network System (YNS)</strong> — 
+            YardFlow is a <strong className="text-neon">Yard Network System (YNS)</strong>: 
             orchestrating assets, intelligence, and workflows across your entire network.
           </p>
 
@@ -272,7 +272,7 @@ export default function YNSPage() {
                       <h4 className="font-bold text-lg mb-2 text-neon">Shared Learning</h4>
                       <p className="text-steel/80">
                         Every truck that enters your network teaches the system. Carrier reliability, 
-                        route patterns, seasonal variations — knowledge that compounds across all sites.
+                      route patterns, seasonal variations - knowledge that compounds across all sites.
                       </p>
                     </div>
                   </div>
@@ -327,12 +327,12 @@ export default function YNSPage() {
               {
                 number: '01',
                 title: 'The Labor Crisis Isn\'t Ending',
-                description: 'Gate attendants, yard jockeys, dispatchers — all impossible to hire. Autonomous workflows are the only path to consistent operations.',
+                description: 'Gate attendants, yard jockeys, dispatchers - all impossible to hire. Autonomous workflows are the only path to consistent operations.',
               },
               {
                 number: '02',
                 title: 'Networks Are Already Here',
-                description: 'Regional carriers serve 10-50 facilities. 3PLs manage hundreds. Shippers operate coast-to-coast. The yard network exists — it\'s just invisible.',
+                description: 'Regional carriers serve 10-50 facilities. 3PLs manage hundreds. Shippers operate coast-to-coast. The yard network exists - it\'s just invisible.',
               },
               {
                 number: '03',

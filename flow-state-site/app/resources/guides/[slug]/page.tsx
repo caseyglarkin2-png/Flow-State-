@@ -310,7 +310,7 @@ const guidesContent: Record<string, {
 <li>Network value contribution: $3M additional annual savings</li>
 </ul>
 
-<p>The network value isn't magic—it represents real operational improvements in intelligence sharing, faster implementations, and resource optimization.</p>
+<p>The network value isn't magic - it represents real operational improvements in intelligence sharing, faster implementations, and resource optimization.</p>
 </section>
 
 <section id="implementation-sequence">

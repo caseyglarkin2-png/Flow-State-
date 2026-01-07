@@ -21,7 +21,7 @@ const guides = [
   {
     slug: 'network-effect-yard-automation',
     title: 'Network Effects in Yard Automation',
-    description: 'Understanding how connected yards create compounding operational advantages—and the economics behind multi-site adoption.',
+    description: 'Understanding how connected yards create compounding operational advantages and the economics behind multi-site adoption.',
     audience: ['VPs Operations', 'CFOs', 'Strategy'],
     readTime: '10 min',
     icon: Nexus,

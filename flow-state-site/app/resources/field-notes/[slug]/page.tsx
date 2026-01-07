@@ -37,14 +37,14 @@ const fieldNotesContent: Record<string, {
 <p><strong>The difference?</strong> Visibility only helps when it's connected to action. The high-performers had clear escalation triggers and empowered staff to act on what they saw.</p>
 
 <h3>3. Appointment Compliance Is a Leading Indicator</h3>
-<p>Facilities with 80%+ appointment compliance consistently showed 15-25% lower dwell times than facilities at 60% compliance—even when controlling for volume and complexity.</p>
+<p>Facilities with 80%+ appointment compliance consistently showed 15-25% lower dwell times than facilities at 60% compliance, even when controlling for volume and complexity.</p>
 
 <h3>4. Carrier Mix Matters More Than Volume</h3>
 <p>High-volume yards with consistent carrier pools often outperformed lower-volume yards with fragmented carrier bases. Carrier familiarity with facility procedures reduces friction at every step.</p>
 
 <h2>Implications</h2>
 <ul>
-<li>Invest in gate automation before yard optimization—the upstream benefits compound</li>
+<li>Invest in gate automation before yard optimization - the upstream benefits compound</li>
 <li>Visibility systems need action frameworks to deliver value</li>
 <li>Appointment compliance programs should precede or accompany automation</li>
 <li>Carrier education and consistency may deliver faster results than technology alone</li>
@@ -90,7 +90,7 @@ const fieldNotesContent: Record<string, {
 <li><strong>Peak throughput (manual):</strong> 6-10 trucks/hour/gate</li>
 <li><strong>Peak throughput (automated):</strong> 20-30 trucks/hour/gate</li>
 </ul>
-<p>Cross-docks benefit most from speed—the entire operation depends on fast turns.</p>
+<p>Cross-docks benefit most from speed - the entire operation depends on fast turns.</p>
 
 <h2>Factors Affecting Throughput</h2>
 
