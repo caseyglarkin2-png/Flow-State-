@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { ChevronLeft, Clock, Users, CheckCircle2 } from 'lucide-react';
 import { Shield, Velocity } from '@/components/icons/FlowIcons';
 
@@ -578,7 +580,9 @@ export default async function GuidePage({ params }: Props) {
   }
   
   return (
-    <main className="min-h-screen bg-void pt-32 pb-24">
+    <>
+      <Header />
+      <main className="min-h-screen bg-void pt-32 pb-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-[1fr_280px] gap-12">
           {/* Main Content */}
@@ -695,5 +699,7 @@ export default async function GuidePage({ params }: Props) {
         </div>
       </div>
     </main>
+    <Footer />
+    </>
   );
 }

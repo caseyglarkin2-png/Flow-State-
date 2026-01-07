@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { ChevronLeft, Clock, Users } from 'lucide-react';
 import { Velocity } from '@/components/icons/FlowIcons';
 
@@ -140,7 +142,9 @@ export default async function FieldNotePage({ params }: Props) {
   }
   
   return (
-    <main className="min-h-screen bg-void pt-32 pb-24">
+    <>
+      <Header />
+      <main className="min-h-screen bg-void pt-32 pb-24">
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}
         <Link href="/resources/field-notes" className="inline-flex items-center gap-2 text-amber-400 hover:underline mb-6">
@@ -193,5 +197,7 @@ export default async function FieldNotePage({ params }: Props) {
         </div>
       </div>
     </main>
+    <Footer />
+    </>
   );
 }

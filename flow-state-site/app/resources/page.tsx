@@ -1,5 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { FlowArrow, Shield, Velocity, Ignite, Nexus } from '@/components/icons/FlowIcons';
 
 export const metadata = {
@@ -70,7 +72,9 @@ const simulations = [
 
 export default function ResourcesPage() {
   return (
-    <main className="min-h-screen bg-void pt-32 pb-24">
+    <>
+      <Header />
+      <main className="min-h-screen bg-void pt-32 pb-24">
       <div className="max-w-6xl mx-auto px-6">
         {/* Hero */}
         <div className="mb-16">
@@ -219,5 +223,7 @@ export default function ResourcesPage() {
         </section>
       </div>
     </main>
+    <Footer />
+    </>
   );
 }

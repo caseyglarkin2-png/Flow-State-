@@ -1,5 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { Velocity } from '@/components/icons/FlowIcons';
 
 export const metadata = {
@@ -26,7 +28,9 @@ const fieldNotes = [
 
 export default function FieldNotesIndexPage() {
   return (
-    <main className="min-h-screen bg-void pt-32 pb-24">
+    <>
+      <Header />
+      <main className="min-h-screen bg-void pt-32 pb-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="mb-12">
           <Link href="/resources" className="text-neon hover:underline text-sm mb-4 inline-block">
@@ -79,5 +83,7 @@ export default function FieldNotesIndexPage() {
         </div>
       </div>
     </main>
+    <Footer />
+    </>
   );
 }
