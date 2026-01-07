@@ -61,7 +61,7 @@ export const metadata = {
     locale: 'en_US',
     images: [
       {
-        url: `${siteUrl}/og.png`,
+        url: `${siteUrl}/api/og`,
         width: 1200,
         height: 630,
         alt: 'YardFlow by FreightRoll - Yard Orchestration & Security',
@@ -72,7 +72,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'YardFlow by FreightRoll | Yard Orchestration & Security',
     description: 'Yard orchestration platform with CFO-grade, scenario-based modeling for hard savings, capacity unlocked, network effects, and verified security.',
-    images: [`${siteUrl}/og.png`],
+    images: [`${siteUrl}/api/og`],
     creator: '@freightroll',
   },
   alternates: {
