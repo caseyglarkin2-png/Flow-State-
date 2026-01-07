@@ -71,7 +71,7 @@ export async function GET() {
             lineHeight: 1.4,
           }}
         >
-          Yard Orchestration & Security
+          Yard Network System (YNS)
         </div>
 
         {/* Description */}
@@ -86,7 +86,7 @@ export async function GET() {
             lineHeight: 1.5,
           }}
         >
-          CFO-grade scenario modeling for hard savings, capacity unlocked, network effects, and verified security at every gate.
+          You don't have 50 yards. You have one yard network. Orchestrating assets, intelligence, and security across your entire network.
         </div>
       </div>
     ),
