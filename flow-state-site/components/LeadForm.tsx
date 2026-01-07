@@ -48,7 +48,6 @@ export default function LeadForm({ leadType, title, subtitle }: LeadFormProps) {
     if (submitting) return 'Submitting…';
     if (!state.name || !state.email || !state.company) return 'Fill required fields';
     if (!captchaToken && canUseCaptcha) return 'Complete captcha';
-    if (!canUseCaptcha && process.env.NODE_ENV === 'production') return 'Captcha not configured';
     return '';
   }, [submitting, state.name, state.email, state.company, captchaToken, canUseCaptcha]);
 
@@ -194,25 +193,13 @@ export default function LeadForm({ leadType, title, subtitle }: LeadFormProps) {
         />
       </div>
 
-      {canUseCaptcha ? (
+      {canUseCaptcha && (
         <div>
           <HCaptcha
             sitekey={hcaptchaSiteKey}
             onVerify={(token: string) => setCaptchaToken(token)}
             onExpire={() => setCaptchaToken('')}
           />
-        </div>
-      ) : (
-        <div className="p-4 border border-steel/20 rounded-lg bg-carbon/30">
-          <p className="text-sm text-steel mb-2">
-            Form submission is temporarily unavailable.
-          </p>
-          <p className="text-xs text-steel/70">
-            Please email us directly at{' '}
-            <a href="mailto:casey@freightroll.com" className="text-neon hover:underline font-semibold">
-              casey@freightroll.com
-            </a>
-          </p>
         </div>
       )}
 
@@ -231,7 +218,7 @@ export default function LeadForm({ leadType, title, subtitle }: LeadFormProps) {
       </button>
 
       <p className="text-xs text-steel/70">
-        By submitting, you agree we can contact you about Flow State.
+        By submitting, you agree we can contact you about YardFlow by FreightRoll.
       </p>
     </form>
   );

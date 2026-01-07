@@ -12,7 +12,7 @@ import {
 } from '@/components/icons/FlowIcons';
 
 export const metadata = {
-  title: 'Evidence Vault | Security & Trust | Flow State',
+  title: 'Evidence Vault | Security & Trust | YardFlow by FreightRoll',
   description: 'Everything procurement needs: security posture, implementation timeline, integration specs, and compliance roadmap.',
 };
 
@@ -145,7 +145,7 @@ export default function SecurityPage() {
               <ul className="space-y-3">
                 {[
                   { item: 'Security questionnaire support', status: 'live' },
-                  { item: 'Penetration test reports', status: 'on request' },
+                  { item: 'Penetration test reports', status: 'available under NDA' },
                   { item: 'Vulnerability disclosure program', status: 'live' },
                   { item: 'Insurance (cyber liability)', status: 'live' },
                   { item: 'Background checks (employees)', status: 'live' },
@@ -328,15 +328,15 @@ export default function SecurityPage() {
             <Card className="p-6 border-neon/30">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-bold">SOC 2 Type II</h3>
-                <span className="text-xs font-mono px-3 py-1 rounded bg-neon/20 text-neon">
-                  Q3 2026
+                <span className="text-xs font-mono px-3 py-1 rounded bg-steel/20 text-steel">
+                  Roadmap 2026
                 </span>
               </div>
               <p className="text-steel/80 mb-4">
-                Full attestation covering security, availability, and confidentiality trust service criteria.
+                Planned attestation covering security, availability, and confidentiality trust service criteria.
               </p>
               <p className="text-steel/60 text-sm">
-                Type I assessment scheduled for Q2 2026. Contact us for current security questionnaire completion.
+                Contact us for current security questionnaire completion and penetration test reports (available under NDA).
               </p>
             </Card>
 
@@ -371,11 +371,11 @@ export default function SecurityPage() {
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-bold">ISO 27001</h3>
                 <span className="text-xs font-mono px-3 py-1 rounded bg-steel/20 text-steel">
-                  Roadmap
+                  Roadmap 2027
                 </span>
               </div>
               <p className="text-steel/80">
-                Information security management certification planned following SOC 2 completion.
+                Information security management certification planned for future roadmap.
               </p>
             </Card>
           </div>
@@ -460,8 +460,12 @@ export default function SecurityPage() {
           <h2 className="text-4xl font-black mb-6">
             Ready for the Security Review?
           </h2>
-          <p className="text-xl text-steel/80 mb-8">
+          <p className="text-xl text-steel/80 mb-4">
             We aim to turn around security questionnaires quickly (often within 48 hours).
+          </p>
+          <p className="text-steel/70 text-sm mb-8 max-w-2xl mx-auto">
+            Sensitive materials (penetration test results, compliance roadmap, architecture diagrams, 
+            customer references) available under NDA during procurement diligence.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -472,10 +476,10 @@ export default function SecurityPage() {
               Request Security Package
             </Link>
             <a
-              href="mailto:security@flow-state.ai"
+              href="mailto:security@freightroll.com"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
             >
-              security@flow-state.ai
+              security@freightroll.com
             </a>
           </div>
         </div>

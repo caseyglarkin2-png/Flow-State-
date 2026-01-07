@@ -41,7 +41,6 @@ export default function BoardReadyExportCTA({
     if (busy) return 'Generating…';
     if (!name || !email || !company) return 'Fill required fields';
     if (!captchaToken && canUseCaptcha) return 'Complete captcha';
-    if (!canUseCaptcha && process.env.NODE_ENV === 'production') return 'Captcha not configured';
     return '';
   }, [busy, name, email, company, captchaToken, canUseCaptcha]);
 
@@ -51,7 +50,6 @@ export default function BoardReadyExportCTA({
     if (!name || !email || !company) return 'Fill required fields';
     if (!toEmail) return 'Add finance email';
     if (!captchaToken && canUseCaptcha) return 'Complete captcha';
-    if (!canUseCaptcha && process.env.NODE_ENV === 'production') return 'Captcha not configured';
     return '';
   }, [emailEndpoint, busy, name, email, company, toEmail, captchaToken, canUseCaptcha]);
 
@@ -194,7 +192,7 @@ export default function BoardReadyExportCTA({
         )}
       </div>
 
-      {canUseCaptcha ? (
+      {canUseCaptcha && (
         <div className="mt-4">
           <HCaptcha
             sitekey={hcaptchaSiteKey}
@@ -202,10 +200,6 @@ export default function BoardReadyExportCTA({
             onExpire={() => setCaptchaToken('')}
           />
         </div>
-      ) : (
-        <p className="mt-4 text-xs text-steel/70">
-          Captcha is not configured. Set <span className="text-white">NEXT_PUBLIC_HCAPTCHA_SITEKEY</span>.
-        </p>
       )}
 
       {msg ? <p className="mt-3 text-xs text-steel/80" role="status">{msg}</p> : null}
