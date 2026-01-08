@@ -1,7 +1,7 @@
-import { LOGO_VARIANTS } from '@/lib/branding';
+import { LOGO_VARIANTS, type LogoVariant } from '@/lib/branding';
 
 export default function LogoPreview() {
-  const variants = Object.entries(LOGO_VARIANTS);
+  const variants = Object.entries(LOGO_VARIANTS) as Array<[LogoVariant, { svg: string; description: string }]>;
 
   return (
     <div style={{
