@@ -577,7 +577,7 @@ export default function SingularityPage() {
               </li>
               <li className="flex gap-3">
                 <FlowArrow size={16} className="text-neon flex-shrink-0 mt-1" />
-                <span>BOLs are <span className="text-white font-semibold">born digital</span>. Chain of custody is immutable. Disputes vanish.</span>
+                <span>BOLs are <span className="text-white font-semibold">born digital</span>. Chain of custody is immutable. Disputes drop significantly.</span>
               </li>
               <li className="flex gap-3">
                 <FlowArrow size={16} className="text-neon flex-shrink-0 mt-1" />

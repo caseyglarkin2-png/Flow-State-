@@ -187,7 +187,7 @@ export default function YNSPage() {
 
               <div className="pt-4 border-t border-ember/10">
                 <p className="text-xs text-steel/60 font-mono uppercase tracking-wider mb-1">Impact</p>
-                <p className="text-lg font-semibold text-ember">Zero security incidents</p>
+                <p className="text-lg font-semibold text-ember">Designed to prevent security incidents</p>
               </div>
             </Card>
 
@@ -207,7 +207,7 @@ export default function YNSPage() {
 
               <ul className="space-y-2 mb-6">
                 {[
-                  'Predictive ETA with 95% accuracy',
+                  'Predictive ETA (typically 90-95% accuracy)',
                   'Carrier performance benchmarking',
                   'Cross-site pattern recognition',
                   'Anomaly detection & alerts',
