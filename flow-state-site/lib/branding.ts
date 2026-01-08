@@ -70,8 +70,8 @@ export const LOGO_VARIANTS = {
 
 export const SITE_METADATA = {
   title: 'YardFlow powered by FreightRoll | Yard Network System (YNS)',
-  ogTitle: 'You don't have 50 yards. You have one yard network.',
-  ogDescription: 'Traditional YMS treats your facilities like disconnected islands. YardFlow's Yard Network System (YNS) orchestrates assets, intelligence, and security across your entire network in real-time.',
+  ogTitle: "You don't have 50 yards. You have one yard network.",
+  ogDescription: "Traditional YMS treats your facilities like disconnected islands. YardFlow's Yard Network System (YNS) orchestrates assets, intelligence, and security across your entire network in real-time.",
   tagline: 'Yard Network System (YNS)',
   description: "Stop the network leak. You don't have 50 yards – you have one yard network being treated like 50 disconnected islands. Traditional YMS creates isolation silos. YardFlow's Yard Network System (YNS) prevents yard viscosity by making every trailer visible across your entire network in real-time. YNS enables orchestration, security, and scale. See what your network is actually doing, not just what your individual yards report.",
   shortDescription: 'Unified yard network visibility. YNS enables orchestration, security, and scale.',
