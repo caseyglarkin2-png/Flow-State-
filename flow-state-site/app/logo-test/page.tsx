@@ -47,7 +47,7 @@ export default function LogoTestPage() {
                 {/* Info */}
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
-                    <h2 className="text-2xl font-bold text-white">{variant.name}</h2>
+                    <h2 className="text-2xl font-bold text-white capitalize">{key}</h2>
                     {key === ACTIVE_VARIANT && (
                       <span className="px-2 py-1 text-xs font-bold bg-neon text-void rounded">ACTIVE</span>
                     )}
@@ -85,8 +85,16 @@ export default function LogoTestPage() {
               <div className="mt-6 pt-6 border-t border-steel/20">
                 <p className="text-xs text-steel/60 mb-3 uppercase tracking-wider">OG Image Preview</p>
                 <div className="bg-[#0A0E14] p-6 rounded-lg flex items-center justify-center">
-                  <div 
-                    dangerouslySetInnerHTML={{ __html: variant.ogSvg(80) }}
+                  <svg
+                    viewBox="0 0 32 32"
+                    width="80"
+                    height="80"
+                    fill="none"
+                    stroke="#00FFA3"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    dangerouslySetInnerHTML={{ __html: variant.svg }}
                   />
                 </div>
               </div>
