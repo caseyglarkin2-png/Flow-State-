@@ -17,22 +17,28 @@ export const ACTIVE_VARIANT: LogoVariant = 'network';
 // ==========================================
 
 export const LOGO_VARIANTS = {
-  // Original: Network node with crosshairs
+  // Original: Hub with 3 connected nodes (the good one!)
   network: {
-    name: 'Network Node',
-    description: 'Emphasizes interconnected facilities',
+    name: 'Network Hub',
+    description: 'Central hub with 3 connected facility nodes',
     svg: `
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.5" opacity="0.3" />
-        <path d="M8 12h8M12 8v8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-        <circle cx="12" cy="12" r="3" fill="currentColor" opacity="0.4" />
+      <svg viewBox="0 0 32 32" fill="none">
+        <circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.35" />
+        <path d="M16 16 L16 8 M16 16 L24 19 M16 16 L8 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.85" />
+        <circle cx="16" cy="8" r="2.2" fill="currentColor" />
+        <circle cx="24" cy="19" r="2.2" fill="currentColor" />
+        <circle cx="8" cy="19" r="2.2" fill="currentColor" />
+        <circle cx="16" cy="16" r="3" fill="currentColor" />
       </svg>
     `,
     ogSvg: (size = 80) => `
-      <svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" stroke="#00FFA3" strokeWidth="1.5" opacity="0.3" />
-        <path d="M8 12h8M12 8v8" stroke="#00FFA3" strokeWidth="2" strokeLinecap="round" />
-        <circle cx="12" cy="12" r="3" fill="#00FFA3" opacity="0.4" />
+      <svg width="${size}" height="${size}" viewBox="0 0 32 32" fill="none">
+        <circle cx="16" cy="16" r="12" fill="none" stroke="#00B4FF" stroke-width="1.6" stroke-opacity="0.35" />
+        <path d="M16 16 L16 8 M16 16 L24 19 M16 16 L8 19" fill="none" stroke="#00B4FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.85" />
+        <circle cx="16" cy="8" r="2.2" fill="#00B4FF" />
+        <circle cx="24" cy="19" r="2.2" fill="#00B4FF" />
+        <circle cx="8" cy="19" r="2.2" fill="#00B4FF" />
+        <circle cx="16" cy="16" r="3" fill="#00B4FF" />
       </svg>
     `,
   },
