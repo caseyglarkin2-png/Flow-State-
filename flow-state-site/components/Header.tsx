@@ -36,7 +36,10 @@ export default function Header() {
           <div className="w-9 h-9 flex items-center justify-center group-hover:scale-110 transition-transform">
             <Logo size={36} />
           </div>
-          <span className="font-bold text-lg tracking-tight neon-glow-hover">YARDFLOW</span>
+          <div className="flex flex-col">
+            <span className="font-bold text-lg tracking-tight neon-glow-hover leading-none">YardFlow</span>
+            <span className="text-[10px] text-steel/60 tracking-wider leading-none mt-0.5">powered by FreightRoll</span>
+          </div>
         </Link>
 
         {/* Desktop Menu */}

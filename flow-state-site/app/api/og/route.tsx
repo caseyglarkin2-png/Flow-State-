@@ -40,22 +40,22 @@ export async function GET() {
             fontWeight: 900,
             letterSpacing: '-0.02em',
             color: '#FFFFFF',
-            marginBottom: '24px',
+            marginBottom: '16px',
           }}
         >
-          YARDFLOW
+          YardFlow
         </div>
 
         {/* Subtitle */}
         <div
           style={{
             display: 'flex',
-            fontSize: 32,
+            fontSize: 24,
             color: '#8B95A5',
             marginBottom: '48px',
           }}
         >
-          by FreightRoll
+          powered by FreightRoll
         </div>
 
         {/* Tagline */}
