@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import Logo from '@/components/Logo';
 import { FlowArrow, Ignite, Velocity, Shield } from '@/components/icons/FlowIcons';
 
 export default function Header() {
@@ -34,7 +34,7 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
           <div className="w-9 h-9 flex items-center justify-center group-hover:scale-110 transition-transform">
-            <Image src="/logo.svg" alt="YardFlow by FreightRoll" width={36} height={36} className="w-9 h-9" />
+            <Logo size={36} />
           </div>
           <span className="font-bold text-lg tracking-tight neon-glow-hover">YARDFLOW</span>
         </Link>
