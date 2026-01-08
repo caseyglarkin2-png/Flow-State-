@@ -11,7 +11,10 @@
     "test": "tsx src/__tests__/schema.test.ts && tsx src/__tests__/roi.test.ts && tsx src/lib/economics/tests/model.test.ts",
     "test:e2e": "playwright test",
     "test:e2e:ci": "npm run build && playwright test",
-    "test:smoke": "playwright test e2e/routes.spec.ts"
+    "test:smoke": "playwright test e2e/routes.spec.ts",
+    "content:budget": "node scripts/validate-content-budget.js",
+    "content:duplicates": "node scripts/find-duplicate-content.js",
+    "content:check": "npm run content:budget && npm run content:duplicates"
   },
   "keywords": [
     "logistics",

@@ -30,9 +30,61 @@ export default function SecurityPage() {
           <h1 className="text-5xl md:text-7xl font-black mb-6">
             Everything Procurement <span className="text-neon">Needs.</span>
           </h1>
-          <p className="text-xl text-steel max-w-3xl">
+          <p className="text-xl text-steel max-w-3xl mb-6">
             Security posture. Implementation timeline. Integration specs. Compliance roadmap. 
             All in one place, ready to forward.
+          </p>
+          
+          {/* Download/Forward Actions */}
+          <div className="flex flex-wrap gap-4">
+            <button className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold bg-neon text-void hover:bg-white transition-all">
+              <Shield size={18} />
+              Download Trust Packet (PDF)
+            </button>
+            <button className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold border-2 border-steel/40 text-white hover:border-neon hover:text-neon transition-all">
+              Copy Procurement Summary
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Executive Summary - NEW */}
+      <section className="py-16 bg-gradient-to-b from-carbon/50 to-void border-b border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-black mb-2">Executive Summary</h2>
+          <p className="text-steel/80 mb-8">10-second security posture overview</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { label: 'Hosting', value: 'AWS (US-East) + Vercel Edge', status: 'LIVE' },
+              { label: 'Encryption', value: 'TLS 1.3 (transit) · AES-256 (rest)', status: 'LIVE' },
+              { label: 'Access Control', value: 'RBAC + MFA for admin accounts', status: 'LIVE' },
+              { label: 'Audit Logging', value: 'All API calls, user actions, system events', status: 'LIVE' },
+              { label: 'Incident Response', value: '< 4hr acknowledgment · < 24hr remediation', status: 'LIVE' },
+              { label: 'SLA', value: '99.9% uptime · 24/7 monitoring', status: 'LIVE' },
+              { label: 'Backups', value: 'Daily automated · < 24h RPO', status: 'LIVE' },
+              { label: 'Pen Test Reports', value: 'Available under NDA', status: 'AVAILABLE' },
+              { label: 'SSO/SAML', value: 'Enterprise SSO integration', status: 'Q2 2026' },
+              { label: 'Data Residency', value: 'US/EU options', status: 'ROADMAP' },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center justify-between p-4 rounded-lg border border-steel/30 bg-carbon/40">
+                <div>
+                  <span className="block text-sm text-steel/60 font-mono uppercase tracking-wider">{item.label}</span>
+                  <span className="block text-white font-medium mt-1">{item.value}</span>
+                </div>
+                <span className={`text-xs font-mono px-3 py-1 rounded ${
+                  item.status === 'LIVE' ? 'bg-neon/20 text-neon' : 
+                  item.status === 'AVAILABLE' ? 'bg-neon/10 text-neon/70' :
+                  'bg-steel/20 text-steel'
+                }`}>
+                  {item.status}
+                </span>
+              </div>
+            ))}
+          </div>
+          
+          <p className="text-center text-steel/60 text-sm mt-8">
+            Full details below. <a href="#security" className="text-neon hover:underline">Jump to section →</a>
           </p>
         </div>
       </section>
