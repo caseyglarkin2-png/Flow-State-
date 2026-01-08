@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import Card from '@/components/Card';
 import YardBuilderHook from '@/components/YardBuilderHook';
 import NetworkEffectModel from '@/components/NetworkEffectModel';
-import YardTaxSection from '@/components/YardTaxSection';
+import YardLeakSection from '@/components/YardLeakSection';
 import { calcRoiV2, getRoiV2InputsForPreset } from '@/lib/economics';
 import { X, Check, DollarSign, Warehouse } from 'lucide-react';
 import {
@@ -162,10 +162,10 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          THE YARD TAX: HIDDEN COST INVENTORY
+          THE LEAK: HIDDEN COST INVENTORY
           Make the invisible visible before offering the solution
       ═══════════════════════════════════════════════════════════════ */}
-      <YardTaxSection />
+      <YardLeakSection />
 
       {/* ═══════════════════════════════════════════════════════════════
           YARDBUILDER: FROM DIAGNOSIS TO ACTION
@@ -197,7 +197,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          THE REVEAL: WHY THE YARD TAX EXISTS
+          THE REVEAL: WHY THE LEAK EXISTS
           The root cause is instrumentation, not effort
       ═══════════════════════════════════════════════════════════════ */}
       <section className="py-24 border-t border-neon/20">
@@ -205,7 +205,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <p className="text-ember font-mono text-sm tracking-widest mb-4 uppercase">
-                Why the Yard Tax Exists
+                Why the Leak Exists
               </p>
               <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
                 You can't cut costs you can't see.
@@ -213,7 +213,7 @@ export default function Home() {
                 <span className="text-neon">YardFlow by FreightRoll makes the invisible auditable.</span>
               </h2>
               <p className="text-lg text-steel/90 mb-6 leading-relaxed">
-                The yard tax persists because legacy systems record what happened after the fact, 
+                The leak persists because legacy systems record what happened after the fact, 
                 based on what someone typed in. No defensible timestamps. No exception capture. No accountability.
               </p>
               <p className="text-lg text-steel/90 mb-8 leading-relaxed">
@@ -356,7 +356,7 @@ export default function Home() {
               From Cost Recovery to Compounding Returns
             </p>
             <h2 className="text-4xl md:text-5xl font-black mb-6">
-              Stop the Yard Tax at One Site. <span className="text-neon">Then Watch It Compound.</span>
+              Stop the Leak at One Site. <span className="text-neon">Then Watch It Compound.</span>
             </h2>
             <p className="text-xl text-steel/80 max-w-3xl mx-auto">
               Each facility you instrument eliminates local friction. But when you connect them, 

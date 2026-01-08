@@ -23,8 +23,8 @@ const simulations = [
     ],
   },
   {
-    title: 'Yard Tax Calculator',
-    description: 'Quantify hidden operational costs from manual processes, detention, and dwell. The "tax" you may not know you\'re paying.',
+    title: 'Network Leak Calculator',
+    description: 'Quantify hidden operational costs from manual processes, detention, and dwell. The "leak" you may not know you\'re paying.',
     path: '/diagnostic',
     color: 'neon',
     icon: Velocity,

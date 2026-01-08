@@ -17,13 +17,13 @@ export default function PricingPage() {
       <section className="pt-32 pb-16 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className="text-ember font-mono text-sm mb-4 tracking-wider uppercase">
-            Cost to cut the yard tax
+            Cost to cut the network leak
           </p>
           <h1 className="text-5xl md:text-7xl font-black mb-6">
             Transparent <span className="neon-glow">Pricing</span>
           </h1>
           <p className="text-xl text-steel max-w-3xl mx-auto">
-            Simple, facility-based pricing. The subscription costs less than the yard tax it eliminates.
+            Simple, facility-based pricing. The subscription costs less than the network leak it eliminates.
           </p>
         </div>
       </section>

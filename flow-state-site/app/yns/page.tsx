@@ -175,7 +175,7 @@ export default function YNSPage() {
                 {[
                   'Carrier credentialing database',
                   'Biometric + ID verification at gate',
-                  'Blockchain-timestamped audit logs',
+                  'Cryptographically timestamped audit logs',
                   'CTPAT & TSA compliance reporting',
                 ].map((item, i) => (
                   <li key={i} className="flex gap-2 text-sm">

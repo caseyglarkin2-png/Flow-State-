@@ -64,7 +64,7 @@ const CASE_STUDIES: Record<string, CaseStudy> = {
     ],
     narrative: [
       'Cold chain logistics is a high-value target. Pharmaceutical loads, premium proteins, and specialty foods command top dollar on the black market. Most theft starts with fraudulent credentials at the gate.',
-      'This modeled scenario demonstrates how automated ID scanning, carrier credentialing, and blockchain audit trails transform gate security. Every driver is verified against FMCSA databases in real-time.',
+      'This modeled scenario demonstrates how automated ID scanning, carrier credentialing, and tamper-evident audit trails transform gate security. Every driver is verified against FMCSA databases in real-time.',
       'Beyond theft prevention, the security posture enabled CTPAT certification and reduced cyber liability insurance premiums. The security investment became a competitive advantage.',
     ],
   },

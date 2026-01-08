@@ -12,11 +12,11 @@ export default function ProductPage() {
     <div className="min-h-screen bg-void">
       <Header />
 
-      {/* Hero Section - Reframed around solving the Yard Tax */}
+      {/* Hero Section - Reframed around solving the Network Leak */}
       <section className="relative min-h-screen flex items-center justify-center pt-32 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6 text-center py-20">
           <p className="text-ember font-mono text-sm tracking-widest mb-6 uppercase">
-            The system that eliminates the yard tax
+            The system that eliminates the network leak
           </p>
           
           <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
@@ -24,7 +24,7 @@ export default function ProductPage() {
           </h1>
           
           <p className="text-xl md:text-2xl text-steel mb-6 max-w-3xl mx-auto">
-            Each module cuts a different piece of the yard tax. Deploy what you need. 
+            Each module cuts a different piece of the leak. Deploy what you need. 
             See exactly what you saved.
           </p>
           
@@ -35,7 +35,7 @@ export default function ProductPage() {
 
           <a href="/diagnostic" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-ember text-white hover:bg-white hover:text-void hover:shadow-lg transition-all">
             <Crosshair size={20} />
-            Calculate Your Yard Tax First
+            Calculate Your Network Leak First
           </a>
         </div>
       </section>
@@ -186,7 +186,7 @@ export default function ProductPage() {
                   'ID scanning + verification at gate',
                   'Biometric authentication options',
                   'Carrier credentialing database',
-                  'Blockchain timestamp audit trail',
+                  'Cryptographic timestamp audit trail',
                   'CTPAT & TSA compliance reporting',
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3">

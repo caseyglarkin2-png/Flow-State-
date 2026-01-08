@@ -275,12 +275,12 @@ export default function ROICalculatorPage() {
     <div className="min-h-screen bg-void">
       <Header />
 
-      {/* Hero - CFO Focused, connects to Yard Tax */}
+      {/* Hero - CFO Focused, connects to Network Leak */}
       <section className="pt-32 pb-16 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-8">
             <p className="text-ember font-mono text-sm mb-4 tracking-wider uppercase">
-              {`Your ${facilities}-site yard tax recovery`}
+              {`Your ${facilities}-site network leak recovery`}
             </p>
             <h1 className="text-5xl md:text-7xl font-black mb-6">
               <span className="neon-glow">{formatTruckloads(scenario.capacity.yearOneIncrementalTruckloads)}</span>
@@ -318,7 +318,7 @@ export default function ROICalculatorPage() {
             <div className="glass-card p-4 text-center border border-ember/30">
               <p className="text-xs text-steel uppercase tracking-wider mb-1">90-Day Delay Cost</p>
               <p className="text-3xl font-black text-ember">{formatMoney(cfoMetrics.costOfDelay90Days)}</p>
-              <p className="text-xs text-ember/70 mt-1">yard tax continues</p>
+              <p className="text-xs text-ember/70 mt-1">leak continues</p>
             </div>
           </div>
 

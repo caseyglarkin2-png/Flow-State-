@@ -281,7 +281,7 @@ export default function SecurityPage() {
               </div>
               <div>
                 <p className="font-semibold text-neon mb-2">Audit Logs</p>
-                <p className="text-steel/80">Retained for 7 years (compliance requirement). Immutable, blockchain-timestamped where applicable.</p>
+                <p className="text-steel/80">Retained for 7 years (compliance requirement). Immutable, cryptographically timestamped where applicable.</p>
               </div>
               <div>
                 <p className="font-semibold text-neon mb-2">Personal Data</p>

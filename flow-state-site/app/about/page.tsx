@@ -58,7 +58,7 @@ export default function AboutPage() {
             <Card>
               <h3 className="text-xl font-bold text-neon mb-3">2024: YardFlow by FreightRoll</h3>
               <p className="text-steel mb-3">
-                Expanded into full platform: added cargo security (ID verification, blockchain audit), network orchestration, and enterprise-scale deployment.
+                Expanded into full platform: added cargo security (ID verification, tamper-evident audit), network orchestration, and enterprise-scale deployment.
               </p>
               <p className="text-steel text-sm">
                 YardFlow is FreightRoll's flagship product, built on the same economic engine with expanded capabilities.
@@ -114,7 +114,7 @@ export default function AboutPage() {
               href="/diagnostic"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-bold bg-ember text-white hover:bg-white hover:text-void transition-all"
             >
-              Calculate Your Yard Tax
+              Calculate Your Network Leak
             </a>
             <a
               href="/roi"

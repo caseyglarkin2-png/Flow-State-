@@ -23,7 +23,7 @@ export default function DiagnosticPage() {
             60-Second Assessment
           </p>
           <h1 className="text-5xl md:text-6xl font-black mb-6">
-            <span className="text-white">Yard Tax</span>{' '}
+            <span className="text-white">Network Leak</span>{' '}
             <span className="text-ember">Diagnostic</span>
           </h1>
           <p className="text-xl text-steel/80 max-w-2xl mx-auto mb-8">
@@ -47,7 +47,7 @@ export default function DiagnosticPage() {
       {/* Methodology Note */}
       <section className="py-12 bg-carbon/30 border-t border-steel/10">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <h3 className="text-lg font-bold text-white mb-3">How We Calculate Your Yard Tax</h3>
+          <h3 className="text-lg font-bold text-white mb-3">How We Calculate Your Network Leak</h3>
           <p className="text-steel/70 text-sm leading-relaxed">
             The diagnostic uses industry benchmarks and your operational inputs to model hidden costs. 
             Detention rates assume $75/occurrence based on dwell time thresholds. 
@@ -66,7 +66,7 @@ export default function DiagnosticPage() {
           <div className="mt-12 pt-8 border-t border-neon/10">
             <h4 className="text-xl font-bold mb-4">See the full picture</h4>
             <p className="text-steel/70 mb-6">
-              This diagnostic shows single-site costs. See how YNS reduces yard tax across your entire network.
+              This diagnostic shows single-site costs. See how YNS reduces leak across your entire network.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 

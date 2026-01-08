@@ -36,7 +36,7 @@ export default function SolutionsPage() {
     {      title: 'Cut the security tax',
       trigger: 'Cargo theft, fraudulent carriers, and compliance violations are costing you millions.',
       whatBreaks: 'Manual ID checks miss fraud. Investigations take weeks. Insurance premiums climb.',
-      intervention: 'ID scanning + carrier credentialing + blockchain audit trail + CTPAT/TSA compliance.',
+      intervention: 'ID scanning + carrier credentialing + tamper-evident audit trail + CTPAT/TSA compliance.',
       outcome: '80% theft reduction, 15% insurance discount, compliant gates with forensic-grade evidence.',
     },
     {      title: 'End the variance tax',
@@ -56,14 +56,14 @@ export default function SolutionsPage() {
       <FrameShiftHero
         title={
           <>
-            Cut the <span className="neon-glow">yard tax</span> one mission at a time.
+            Cut the <span className="neon-glow">leak</span> one mission at a time.
           </>
         }
         reframe={
-          <>Detention. Expedites. Search time. Security. Variance. Each one is a tax you're paying. Pick the one that hurts most.</>
+          <>Detention. Expedites. Search time. Security. Variance. Each one is a leak you're paying. Pick the one that hurts most.</>
         }
         proof={<>Same math. Same posture. No invented metrics.</>}
-        primaryCta={{ href: '/diagnostic', label: 'Calculate Your Yard Tax' }}
+        primaryCta={{ href: '/diagnostic', label: 'Calculate Your Network Leak' }}
         secondaryCta={{ href: '/roi', label: 'Model Full ROI' }}
       />
 

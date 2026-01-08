@@ -13,7 +13,7 @@ import {
 } from '@/components/icons/FlowIcons';
 import { AlertTriangle, Clock, Truck, DollarSign, Lock } from 'lucide-react';
 
-interface YardTaxTile {
+interface YardLeakTile {
   symptom: string;
   cause: string;
   costRange: string;
@@ -21,7 +21,7 @@ interface YardTaxTile {
   color: string;
 }
 
-const yardTaxTiles: YardTaxTile[] = [
+const yardLeakTiles: YardLeakTile[] = [
   {
     symptom: 'Detention & disputes',
     cause: 'No defensible timestamps → carrier says one thing, you say another',
@@ -80,17 +80,17 @@ const yardTaxTiles: YardTaxTile[] = [
   },
 ];
 
-export default function YardTaxSection() {
+export default function YardLeakSection() {
   return (
     <section className="py-24 border-t border-ember/20 bg-gradient-to-b from-carbon/30 to-void">
       <div className="max-w-6xl mx-auto px-6">
-        {/* Section Header - No duplicate quote */}
+        {/* Section Header */}
         <div className="text-center mb-12">
           <p className="text-ember font-mono text-sm tracking-widest mb-4 uppercase">
             Where the Margin Goes
           </p>
           <h2 className="text-4xl md:text-5xl font-black mb-6">
-            The Yard Tax
+            The Network Leak
             <span className="block text-xl md:text-2xl font-normal text-steel/70 mt-2">
               Eight categories of invisible cost and risk. Every facility pays them.
             </span>
@@ -101,9 +101,9 @@ export default function YardTaxSection() {
           </p>
         </div>
 
-        {/* Yard Tax Tiles Grid */}
+        {/* Yard Leak Tiles Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-          {yardTaxTiles.map((tile, i) => (
+          {yardLeakTiles.map((tile, i) => (
             <Card key={i} className="p-5 hover:border-ember/50 transition-all group">
               <div className={`${tile.color} mb-3`}>
                 {tile.icon}
@@ -129,7 +129,7 @@ export default function YardTaxSection() {
         {/* Disclaimer */}
         <p className="text-center text-steel/50 text-xs mb-8">
           * Cost ranges are illustrative and based on industry benchmarks. 
-          Your actual yard tax depends on facility size, throughput, and operational maturity. {' '}
+          Your actual leak depends on facility size, throughput, and operational maturity. {' '}
           <Link href="/docs/economics-methodology" className="text-neon hover:underline">
             See methodology →
           </Link>
@@ -143,7 +143,7 @@ export default function YardTaxSection() {
               className="group inline-flex items-center gap-3 px-8 py-4 rounded-lg font-bold text-lg bg-ember text-white hover:bg-white hover:text-ember transition-all hover:scale-105"
             >
               <Timeline size={22} />
-              Run the 60-Second Yard Tax Diagnostic
+              Run the Network Leak Diagnostic
             </Link>
             <Link
               href="/roi"

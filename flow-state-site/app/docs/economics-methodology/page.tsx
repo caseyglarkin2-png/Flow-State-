@@ -4,7 +4,7 @@ import { ChevronLeft } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Economics Methodology | YardFlow by FreightRoll',
-  description: 'Transparent methodology behind YardFlow ROI calculations: yard tax modeling, network effects, and economics validation.',
+  description: 'Transparent methodology behind YardFlow ROI calculations: network leak modeling, network effects, and economics validation.',
 };
 
 export default function EconomicsMethodologyPage() {
@@ -50,12 +50,12 @@ export default function EconomicsMethodologyPage() {
               </div>
             </section>
 
-            {/* Yard Tax Categories */}
+            {/* Network Leak Categories */}
             <section className="mb-12">
-              <h2 className="mb-4 text-2xl font-bold text-white">Yard Tax: Eight Cost Categories</h2>
+              <h2 className="mb-4 text-2xl font-bold text-white">Network Leak: Eight Cost Categories</h2>
               <div className="space-y-6 text-steel">
                 <p>
-                  The "Yard Tax" represents invisible operational costs buried in your P&L. We model eight distinct categories:
+                  The "Network Leak" represents invisible operational costs buried in your P&L. We model eight distinct categories:
                 </p>
                 
                 <div className="grid gap-4 md:grid-cols-2">
@@ -202,7 +202,7 @@ export default function EconomicsMethodologyPage() {
                 >
                   <h3 className="mb-2 font-semibold text-white">60-Second Diagnostic</h3>
                   <p className="text-sm text-steel">
-                    Answer 9 questions to calculate your specific yard tax across all eight categories.
+                    Answer 9 questions to calculate your specific network leak across all eight categories.
                   </p>
                 </Link>
 
