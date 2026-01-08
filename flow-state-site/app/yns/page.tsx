@@ -32,7 +32,7 @@ export default function YNSPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/diagnostic" className="btn-neon-fill inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold bg-ember text-white hover:bg-white hover:text-void hover:shadow-lg transition-all">
               <Crosshair size={20} />
-              Calculate Your Network Savings
+              Run the Network Leak Diagnostic
             </a>
             <a href="/singularity" className="btn-neon inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">
               <Nexus size={20} />

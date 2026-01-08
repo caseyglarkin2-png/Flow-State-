@@ -114,7 +114,7 @@ export default function AboutPage() {
               href="/diagnostic"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-bold bg-ember text-white hover:bg-white hover:text-void transition-all"
             >
-              Calculate Your Network Leak
+              Run the Network Leak Diagnostic
             </a>
             <a
               href="/roi"

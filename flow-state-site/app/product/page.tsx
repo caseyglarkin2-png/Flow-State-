@@ -35,7 +35,7 @@ export default function ProductPage() {
 
           <a href="/diagnostic" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-ember text-white hover:bg-white hover:text-void hover:shadow-lg transition-all">
             <Crosshair size={20} />
-            Calculate Your Network Leak First
+            Run the Network Leak Diagnostic
           </a>
         </div>
       </section>

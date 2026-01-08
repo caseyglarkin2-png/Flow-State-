@@ -63,7 +63,7 @@ export default function SolutionsPage() {
           <>Detention. Expedites. Search time. Security. Variance. Each one is a leak you're paying. Pick the one that hurts most.</>
         }
         proof={<>Same math. Same posture. No invented metrics.</>}
-        primaryCta={{ href: '/diagnostic', label: 'Calculate Your Network Leak' }}
+        primaryCta={{ href: '/diagnostic', label: 'Run the Network Leak Diagnostic' }}
         secondaryCta={{ href: '/roi', label: 'Model Full ROI' }}
       />
 

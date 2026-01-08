@@ -77,7 +77,7 @@ export default function Home() {
               className="group inline-flex items-center gap-3 px-8 py-4 rounded-lg font-bold text-lg bg-ember text-white hover:bg-white hover:text-void transition-all hover:scale-105"
             >
               <Crosshair size={22} />
-              Calculate Your Network Tax
+              Run the Network Leak Diagnostic
             </Link>
             <Link
               href="/yns"
