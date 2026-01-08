@@ -1,11 +1,8 @@
 import { ImageResponse } from 'next/og';
-import { getActiveLogo, SITE_METADATA } from '@/lib/branding';
 
 export const runtime = 'edge';
 
 export async function GET() {
-  const logo = getActiveLogo();
-  
   const response = new ImageResponse(
     (
       <div
