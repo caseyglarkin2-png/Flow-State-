@@ -18,10 +18,18 @@ export default function Logo({ size = 24, className = '' }: LogoProps) {
   const logo = getActiveLogo();
   
   return (
-    <div 
+    <svg
+      viewBox="0 0 32 32"
+      width={size}
+      height={size}
       className={`text-neon ${className}`}
-      dangerouslySetInnerHTML={{ __html: logo.svg.replace('width="24" height="24"', `width="${size}" height="${size}"`) }}
-      aria-label={`YardFlow logo - ${logo.name}`}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-label="YardFlow logo"
+      dangerouslySetInnerHTML={{ __html: logo.svg }}
     />
   );
 }
