@@ -100,7 +100,7 @@ export default async function ContactPage({ searchParams }: Props) {
             <div className="p-6">
               <Shield size={28} className="text-neon mx-auto mb-3" />
               <h3 className="font-semibold mb-1">SOC 2 Type II</h3>
-              <p className="text-sm text-steel">Enterprise-grade security controls</p>
+              <p className="text-sm text-steel">Roadmap 2026 – Enterprise security controls</p>
             </div>
             <div className="p-6">
               <div className="text-2xl font-bold text-neon mb-1">48hr</div>

@@ -90,6 +90,176 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
+          NARRATIVE BRIDGE: VISCOSITY → LEAK → YNS
+          Connect the physics, the economics, and the solution
+      ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-16 border-b border-neon/20 bg-gradient-to-b from-void to-carbon/30">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <p className="text-neon font-mono text-sm tracking-widest mb-4 uppercase">
+              The Framework
+            </p>
+            <h2 className="text-3xl md:text-4xl font-black mb-4 text-white">
+              YNS is the system. Viscosity is the symptom. The leak is the cost.
+            </h2>
+            <p className="text-lg text-steel/80 max-w-3xl mx-auto">
+              Three lenses on the same problem. Understanding all three is how you fix it.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Viscosity - The Physics */}
+            <div className="p-6 rounded-lg border border-steel/30 bg-carbon/40 hover:border-steel/50 transition-all">
+              <div className="text-ember mb-4">
+                <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 2v20M2 12h20M6 6l12 12M6 18L18 6" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">Yard Viscosity</h3>
+              <p className="text-steel/80 text-sm mb-3 leading-relaxed">
+                <span className="text-neon font-semibold">The physics perspective.</span> Friction at every handoff. 
+                Trailers waiting for dock assignments. Drivers circling for gatehouse approval. 
+                Information siloed across facilities.
+              </p>
+              <p className="text-steel/60 text-xs">
+                High viscosity = slow flow = throughput bottlenecks
+              </p>
+            </div>
+
+            {/* Network Leak - The Economics */}
+            <div className="p-6 rounded-lg border border-ember/50 bg-gradient-to-br from-ember/10 to-transparent hover:border-ember/70 transition-all">
+              <div className="text-ember mb-4">
+                <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">Network Leak</h3>
+              <p className="text-steel/80 text-sm mb-3 leading-relaxed">
+                <span className="text-neon font-semibold">The economics perspective.</span> Detention fees you shouldn't pay. 
+                Expedite charges for preventable delays. Overtime because you can't predict arrivals. 
+                Working capital tied up "just in case."
+              </p>
+              <p className="text-ember text-xs font-semibold">
+                High viscosity → margin leak (8 cost categories)
+              </p>
+            </div>
+
+            {/* YNS - The Solution */}
+            <div className="p-6 rounded-lg border border-neon/50 bg-gradient-to-br from-neon/10 to-transparent hover:border-neon/70 transition-all">
+              <div className="text-neon mb-4">
+                <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M12 1v6m0 6v6M23 12h-6m-6 0H1" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">Yard Network System</h3>
+              <p className="text-steel/80 text-sm mb-3 leading-relaxed">
+                <span className="text-neon font-semibold">The category solution.</span> Instrumentation that makes the yard 
+                visible in real-time. Network intelligence that learns across sites. 
+                Orchestration that eliminates friction before it becomes a leak.
+              </p>
+              <p className="text-neon text-xs font-semibold">
+                Cut viscosity → stop the leak → unlock network value
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-12 text-center">
+            <p className="text-steel/60 text-sm mb-4">
+              Most YMS vendors address one lens. YardFlow connects all three.
+            </p>
+            <Link
+              href="/yns"
+              className="inline-flex items-center gap-2 text-neon hover:underline font-semibold"
+            >
+              See the full YNS framework →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          YMS vs YNS COMPARISON
+          Make the category distinction clear
+      ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-16 border-b border-steel/20 bg-carbon/20">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <p className="text-ember font-mono text-sm tracking-widest mb-4 uppercase">
+              Category Creation
+            </p>
+            <h2 className="text-3xl md:text-4xl font-black mb-4 text-white">
+              YMS vs YNS: The Critical Difference
+            </h2>
+            <p className="text-lg text-steel/80 max-w-3xl mx-auto">
+              Yard Management Systems optimize individual sites. Yard Network Systems orchestrate your entire network.
+            </p>
+          </div>
+
+          <div className="overflow-hidden rounded-lg border border-steel/30 bg-void">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b border-steel/30">
+                  <th className="py-4 px-6 text-left text-steel/60 font-mono text-xs uppercase tracking-wider">
+                    Capability
+                  </th>
+                  <th className="py-4 px-6 text-center text-steel/60 font-mono text-xs uppercase tracking-wider border-l border-steel/20">
+                    Traditional YMS
+                  </th>
+                  <th className="py-4 px-6 text-center text-neon font-mono text-xs uppercase tracking-wider border-l border-neon/30 bg-neon/5">
+                    YNS (YardFlow)
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-steel/20">
+                <tr className="hover:bg-carbon/30 transition-colors">
+                  <td className="py-4 px-6 text-sm text-white font-semibold">Optimization Scope</td>
+                  <td className="py-4 px-6 text-center text-steel/70 text-sm border-l border-steel/20">Single facility</td>
+                  <td className="py-4 px-6 text-center text-neon text-sm border-l border-neon/30 bg-neon/5">Entire network</td>
+                </tr>
+                <tr className="hover:bg-carbon/30 transition-colors">
+                  <td className="py-4 px-6 text-sm text-white font-semibold">Data Sharing</td>
+                  <td className="py-4 px-6 text-center text-steel/70 text-sm border-l border-steel/20">Isolated per site</td>
+                  <td className="py-4 px-6 text-center text-neon text-sm border-l border-neon/30 bg-neon/5">Cross-site intelligence</td>
+                </tr>
+                <tr className="hover:bg-carbon/30 transition-colors">
+                  <td className="py-4 px-6 text-sm text-white font-semibold">Carrier Intelligence</td>
+                  <td className="py-4 px-6 text-center text-steel/70 text-sm border-l border-steel/20">Local history only</td>
+                  <td className="py-4 px-6 text-center text-neon text-sm border-l border-neon/30 bg-neon/5">Network benchmarking</td>
+                </tr>
+                <tr className="hover:bg-carbon/30 transition-colors">
+                  <td className="py-4 px-6 text-sm text-white font-semibold">Predictive ETA</td>
+                  <td className="py-4 px-6 text-center text-steel/70 text-sm border-l border-steel/20">Manual updates</td>
+                  <td className="py-4 px-6 text-center text-neon text-sm border-l border-neon/30 bg-neon/5">AI-powered, learns from network</td>
+                </tr>
+                <tr className="hover:bg-carbon/30 transition-colors">
+                  <td className="py-4 px-6 text-sm text-white font-semibold">ROI Pattern</td>
+                  <td className="py-4 px-6 text-center text-steel/70 text-sm border-l border-steel/20">Linear per facility</td>
+                  <td className="py-4 px-6 text-center text-neon text-sm border-l border-neon/30 bg-neon/5">Compounds with scale</td>
+                </tr>
+                <tr className="hover:bg-carbon/30 transition-colors">
+                  <td className="py-4 px-6 text-sm text-white font-semibold">Deployment Model</td>
+                  <td className="py-4 px-6 text-center text-steel/70 text-sm border-l border-steel/20">Custom per site</td>
+                  <td className="py-4 px-6 text-center text-neon text-sm border-l border-neon/30 bg-neon/5">Standardized, faster rollout</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="mt-8 p-6 rounded-lg border border-neon/30 bg-gradient-to-r from-neon/5 to-transparent">
+            <p className="text-white font-semibold mb-2">The Network Effect</p>
+            <p className="text-steel/80 text-sm leading-relaxed">
+              Site 1 gives you local efficiency. Site 2 adds benchmarking. Site 5+ unlocks pattern recognition. 
+              Site 10+ creates a learning flywheel where each new facility makes the entire network smarter. 
+              <Link href="/network-effect" className="text-neon hover:underline ml-1">
+                See the math →
+              </Link>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════
           PERSONA ROUTER - ABOVE FOLD
           Direct path based on role
       ═══════════════════════════════════════════════════════════════ */}
