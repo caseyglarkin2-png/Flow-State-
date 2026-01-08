@@ -6,7 +6,7 @@ export const runtime = 'edge';
 export async function GET() {
   const logo = getActiveLogo();
   
-  return new ImageResponse(
+  const response = new ImageResponse(
     (
       <div
         style={{
@@ -115,19 +115,25 @@ export async function GET() {
             marginTop: '20px',
           }}
         >
+          {/* Network logo icon */}
           <svg
             viewBox="0 0 32 32"
+            width="32"
+            height="32"
             style={{
-              width: '32px',
-              height: '32px',
               fill: 'none',
               stroke: '#00FFA3',
-              strokeWidth: '1.5',
-              strokeLinecap: 'round',
-              strokeLinejoin: 'round',
             }}
-            dangerouslySetInnerHTML={{ __html: logo.svg }}
-          />
+          >
+            <circle cx="16" cy="16" r="3" fill="#00FFA3"/>
+            <circle cx="8" cy="8" r="2" fill="#00FFA3"/>
+            <circle cx="24" cy="8" r="2" fill="#00FFA3"/>
+            <circle cx="16" cy="26" r="2" fill="#00FFA3"/>
+            <line x1="16" y1="13" x2="9" y2="9.5" stroke="#00FFA3" strokeWidth="1.5"/>
+            <line x1="16" y1="13" x2="23" y2="9.5" stroke="#00FFA3" strokeWidth="1.5"/>
+            <line x1="16" y1="19" x2="16" y2="24" stroke="#00FFA3" strokeWidth="1.5"/>
+            <circle cx="16" cy="16" r="14.5" stroke="#00FFA3" strokeWidth="1" opacity="0.3"/>
+          </svg>
           <div
             style={{
               display: 'flex',
@@ -164,4 +170,11 @@ export async function GET() {
       height: 630,
     }
   );
+
+  // Add cache-busting headers to prevent stale OG images
+  response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
+  response.headers.set('Pragma', 'no-cache');
+  response.headers.set('Expires', '0');
+  
+  return response;
 }
