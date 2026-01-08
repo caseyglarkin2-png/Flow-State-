@@ -260,14 +260,49 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          PERSONA ROUTER - ABOVE FOLD
-          Direct path based on role
+          THE LEAK: HIDDEN COST INVENTORY
+          Make the invisible visible before offering the solution
+      ═══════════════════════════════════════════════════════════════ */}
+      <YardLeakSection />
+
+      {/* ═══════════════════════════════════════════════════════════════
+          SOCIAL PROOF - AGGREGATE METRICS
+          Enterprise credibility without naming customers
+      ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-12 bg-carbon/30 border-b border-steel/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <p className="text-3xl md:text-4xl font-black text-neon">200+</p>
+              <p className="text-steel text-sm mt-1">Facilities modeled</p>
+            </div>
+            <div>
+              <p className="text-3xl md:text-4xl font-black text-white">{Math.round(cfoBaseline.yearOneRoiPercent)}%</p>
+              <p className="text-steel text-sm mt-1">ROI (modeled, enterprise scale)</p>
+            </div>
+            <div>
+              <p className="text-3xl md:text-4xl font-black text-white">50%</p>
+              <p className="text-steel text-sm mt-1">Dwell time reduction</p>
+            </div>
+            <div>
+              <p className="text-3xl md:text-4xl font-black text-white">8 weeks</p>
+              <p className="text-steel text-sm mt-1">Avg. time to production</p>
+            </div>
+          </div>
+          <p className="text-center text-steel/50 text-xs mt-6">Metrics based on Primo/Singularity simulations and validated ROI models. Individual results vary.</p>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          PERSONA ROUTER - AFTER PAIN IS ESTABLISHED
+          Direct path based on role (for those ready to dive deeper)
       ═══════════════════════════════════════════════════════════════ */}
       <section className="py-16 bg-void border-b border-steel/20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
-            <p className="text-neon font-mono text-sm tracking-widest mb-3 uppercase">Choose Your Path</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white">What's Your Role?</h2>
+            <p className="text-neon font-mono text-sm tracking-widest mb-3 uppercase">Go Deeper</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white">Choose Your Entry Point</h2>
+            <p className="text-steel/70 mt-2">Different roles need different proof paths</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Link
@@ -302,40 +337,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* ═══════════════════════════════════════════════════════════════
-          SOCIAL PROOF - AGGREGATE METRICS
-          Enterprise credibility without naming customers
-      ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-12 bg-carbon/30 border-b border-steel/20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <p className="text-3xl md:text-4xl font-black text-neon">200+</p>
-              <p className="text-steel text-sm mt-1">Facilities modeled</p>
-            </div>
-            <div>
-              <p className="text-3xl md:text-4xl font-black text-white">{Math.round(cfoBaseline.yearOneRoiPercent)}%</p>
-              <p className="text-steel text-sm mt-1">ROI (modeled, enterprise scale)</p>
-            </div>
-            <div>
-              <p className="text-3xl md:text-4xl font-black text-white">50%</p>
-              <p className="text-steel text-sm mt-1">Dwell time reduction</p>
-            </div>
-            <div>
-              <p className="text-3xl md:text-4xl font-black text-white">8 weeks</p>
-              <p className="text-steel text-sm mt-1">Avg. time to production</p>
-            </div>
-          </div>
-          <p className="text-center text-steel/50 text-xs mt-6">Metrics based on Primo/Singularity simulations and validated ROI models. Individual results vary.</p>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════
-          THE LEAK: HIDDEN COST INVENTORY
-          Make the invisible visible before offering the solution
-      ═══════════════════════════════════════════════════════════════ */}
-      <YardLeakSection />
 
       {/* ═══════════════════════════════════════════════════════════════
           YARDBUILDER: FROM DIAGNOSIS TO ACTION
