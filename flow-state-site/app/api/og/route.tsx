@@ -22,14 +22,19 @@ export async function GET() {
         }}
       >
         {/* Logo Icon */}
-        <div
+        <svg
+          viewBox="0 0 32 32"
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
+            width: '80px',
+            height: '80px',
             marginBottom: '40px',
+            fill: 'none',
+            stroke: '#00FFA3',
+            strokeWidth: '1.5',
+            strokeLinecap: 'round',
+            strokeLinejoin: 'round',
           }}
-          dangerouslySetInnerHTML={{ __html: logo.ogSvg(80) }}
+          dangerouslySetInnerHTML={{ __html: logo.svg }}
         />
 
         {/* Main Title */}
