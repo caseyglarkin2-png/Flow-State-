@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YardFlow Logo Variants Preview</title>
+    <style>
+        body {
+            background: #0A0E14;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 40px;
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 50px;
+            color: #00B4FF;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .logo-card {
+            background: #1a1f2e;
+            border: 2px solid #2a3f5f;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .logo-card:hover {
+            border-color: #00B4FF;
+            transform: translateY(-5px);
+        }
+        .logo-card.active {
+            border-color: #00FFA3;
+            background: #0d1117;
+        }
+        .logo-wrapper {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0A0E14;
+            border-radius: 8px;
+        }
+        .logo-wrapper svg {
+            color: #00B4FF;
+        }
+        h2 {
+            margin: 0 0 10px;
+            font-size: 20px;
+        }
+        .active-badge {
+            display: inline-block;
+            background: #00FFA3;
+            color: #0A0E14;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .description {
+            color: #8B95A5;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .instructions {
+            background: #1a1f2e;
+            border-left: 4px solid #00B4FF;
+            padding: 20px;
+            margin-top: 40px;
+            border-radius: 4px;
+        }
+        .instructions code {
+            background: #0A0E14;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #00FFA3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>YardFlow Logo Variants</h1>
+        
+        <div class="grid">
+            <!-- NETWORK (Current) -->
+            <div class="logo-card active">
+                <div class="active-badge">CURRENT</div>
+                <div class="logo-wrapper">
+                    <svg width="120" height="120" viewBox="0 0 32 32" fill="none">
+                        <circle cx="16" cy="16" r="12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-opacity="0.35" />
+                        <path d="M16 16 L16 8 M16 16 L24 19 M16 16 L8 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.85" />
+                        <circle cx="16" cy="8" r="2.2" fill="currentColor" />
+                        <circle cx="24" cy="19" r="2.2" fill="currentColor" />
+                        <circle cx="8" cy="19" r="2.2" fill="currentColor" />
+                        <circle cx="16" cy="16" r="3" fill="currentColor" />
+                    </svg>
+                </div>
+                <h2>Network Hub</h2>
+                <p class="description">
+                    Central hub with 3 connected facility nodes. Emphasizes network coordination and interconnected facilities.
+                </p>
+            </div>
+
+            <!-- FLOW -->
+            <div class="logo-card">
+                <div class="logo-wrapper">
+                    <svg width="120" height="120" viewBox="0 0 24 24" fill="none">
+                        <path d="M4 12h16m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="4" cy="12" r="2" fill="currentColor" opacity="0.6"/>
+                        <circle cx="20" cy="12" r="2" fill="currentColor" opacity="0.6"/>
+                    </svg>
+                </div>
+                <h2>Flow Arrows</h2>
+                <p class="description">
+                    Directional movement showing Viscosity → Leak → YNS narrative. Emphasizes friction reduction and throughput optimization.
+                </p>
+            </div>
+
+            <!-- NEXUS -->
+            <div class="logo-card">
+                <div class="logo-wrapper">
+                    <svg width="120" height="120" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="6" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="6" cy="16" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="18" cy="16" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M11 8l-4 6m7-6l4 6" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+                        <circle cx="12" cy="6" r="1" fill="currentColor"/>
+                        <circle cx="6" cy="16" r="1" fill="currentColor"/>
+                        <circle cx="18" cy="16" r="1" fill="currentColor"/>
+                    </svg>
+                </div>
+                <h2>Network Nexus</h2>
+                <p class="description">
+                    Triangle of 3 connected nodes. Shows multiple facilities as part of a network. Emphasizes network effect and enterprise scale.
+                </p>
+            </div>
+
+            <!-- SIGNAL -->
+            <div class="logo-card">
+                <div class="logo-wrapper">
+                    <svg width="120" height="120" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 4v16" stroke="currentColor" stroke-width="1.5" opacity="0.2"/>
+                        <path d="M4 12l3-3 3 6 3-9 3 6 3-3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+                    </svg>
+                </div>
+                <h2>Live Signal</h2>
+                <p class="description">
+                    Waveform/pulse pattern. Represents real-time intelligence, predictive ETA, and AI-powered orchestration. Tech-forward vibe.
+                </p>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3 style="margin-top: 0;">How to Switch Logos</h3>
+            <ol>
+                <li>Open <code>lib/branding.ts</code></li>
+                <li>Go to line 13</li>
+                <li>Change <code>ACTIVE_VARIANT</code> to one of:
+                    <ul>
+                        <li><code>'network'</code> - Network Hub (current)</li>
+                        <li><code>'flow'</code> - Flow Arrows</li>
+                        <li><code>'nexus'</code> - Network Nexus</li>
+                        <li><code>'signal'</code> - Live Signal</li>
+                    </ul>
+                </li>
+                <li>Save, rebuild (<code>npm run build</code>), and push</li>
+                <li>New logo appears everywhere: header, OG images, social cards</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
