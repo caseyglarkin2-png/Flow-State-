@@ -5,6 +5,7 @@ import Script from 'next/script';
 import AppChrome from '@/components/AppChrome';
 import AnalyticsProvider from '@/components/AnalyticsProvider';
 import { siteUrl } from '@/lib/site';
+import { SITE_METADATA } from '@/lib/branding';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -20,24 +21,9 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
-  title: {
-    default: 'YardFlow by FreightRoll | Yard Orchestration & Security',
-    template: '%s | YardFlow',
-  },
-  description:
-    'Yard orchestration platform that turns facilities into coordinated networks with defensible timestamps, modeled hard savings, capacity unlocked, and verified security at every gate.',
-  keywords: [
-    'yard management system',
-    'YMS software',
-    'logistics automation',
-    'dock scheduling',
-    'gate automation',
-    'trailer tracking',
-    'supply chain visibility',
-    'detention reduction',
-    'dwell time optimization',
-    'warehouse yard management',
-  ],
+  title: SITE_METADATA.title,
+  description: SITE_METADATA.description,
+  keywords: SITE_METADATA.keywords,
   authors: [{ name: 'YardFlow by FreightRoll', url: siteUrl }],
   creator: 'YardFlow by FreightRoll',
   publisher: 'FreightRoll',
@@ -53,8 +39,8 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'YardFlow by FreightRoll | Yard Orchestration & Security',
-    description: 'Yard orchestration platform with CFO-grade, scenario-based modeling for hard savings, capacity unlocked, network effects, and verified security at every gate.',
+    title: SITE_METADATA.ogTitle,
+    description: SITE_METADATA.ogDescription,
     url: siteUrl,
     siteName: 'YardFlow',
     type: 'website',
@@ -64,14 +50,14 @@ export const metadata = {
         url: `${siteUrl}/api/og`,
         width: 1200,
         height: 630,
-        alt: 'YardFlow by FreightRoll - Yard Orchestration & Security',
+        alt: 'YardFlow by FreightRoll - Yard Network System (YNS)',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'YardFlow by FreightRoll | Yard Orchestration & Security',
-    description: 'Yard orchestration platform with CFO-grade, scenario-based modeling for hard savings, capacity unlocked, network effects, and verified security.',
+    title: SITE_METADATA.ogTitle,
+    description: SITE_METADATA.ogDescription,
     images: [`${siteUrl}/api/og`],
     creator: '@freightroll',
   },

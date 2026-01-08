@@ -1,8 +1,11 @@
 import { ImageResponse } from 'next/og';
+import { getActiveLogo, SITE_METADATA } from '@/lib/branding';
 
 export const runtime = 'edge';
 
 export async function GET() {
+  const logo = getActiveLogo();
+  
   return new ImageResponse(
     (
       <div
@@ -14,7 +17,7 @@ export async function GET() {
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: '#0A0E14',
-          backgroundImage: 'radial-gradient(circle at 25px 25px, rgba(0, 255, 163, 0.05) 2%, transparent 0%), radial-gradient(circle at 75px 75px, rgba(0, 255, 163, 0.05) 2%, transparent 0%)',
+          backgroundImage: 'radial-gradient(circle at 25px 25px, rgba(0, 180, 255, 0.08) 2%, transparent 0%), radial-gradient(circle at 75px 75px, rgba(0, 180, 255, 0.08) 2%, transparent 0%)',
           backgroundSize: '100px 100px',
         }}
       >
@@ -26,13 +29,8 @@ export async function GET() {
             justifyContent: 'center',
             marginBottom: '40px',
           }}
-        >
-          <svg width="80" height="80" viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="10" stroke="#00FFA3" strokeWidth="1.5" opacity="0.3" />
-            <path d="M8 12h8M12 8v8" stroke="#00FFA3" strokeWidth="2" strokeLinecap="round" />
-            <circle cx="12" cy="12" r="3" fill="#00FFA3" opacity="0.4" />
-          </svg>
-        </div>
+          dangerouslySetInnerHTML={{ __html: logo.ogSvg(80) }}
+        />
 
         {/* Main Title */}
         <div
@@ -64,14 +62,16 @@ export async function GET() {
         <div
           style={{
             display: 'flex',
-            fontSize: 28,
-            color: '#00FFA3',
+            fontSize: 32,
+            fontWeight: 700,
+            color: '#00B4FF',
             textAlign: 'center',
             maxWidth: '900px',
-            lineHeight: 1.4,
+            lineHeight: 1.3,
+            marginBottom: '24px',
           }}
         >
-          Yard Network System (YNS)
+          {SITE_METADATA.tagline}
         </div>
 
         {/* Description */}
@@ -82,11 +82,11 @@ export async function GET() {
             color: '#8B95A5',
             textAlign: 'center',
             maxWidth: '900px',
-            marginTop: '24px',
             lineHeight: 1.5,
           }}
         >
-          You don't have 50 yards. You have one yard network. Orchestrating assets, intelligence, and security across your entire network.
+          You don't have 50 yards. You have one yard network.<br/>
+          Stop the leak.
         </div>
       </div>
     ),
