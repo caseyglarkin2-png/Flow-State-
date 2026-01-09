@@ -46,8 +46,8 @@ export default function SecurityPage() {
               <p className="text-sm text-steel/80">Chain-of-custody tracking for every load</p>
             </div>
             <div className="p-4 rounded-lg bg-ember/10 border border-ember/30">
-              <p className="text-ember font-bold mb-1">Language Support</p>
-              <p className="text-sm text-steel/80">40+ languages, zero miscommunication</p>
+              <p className="text-ember font-bold mb-1">Driver Qualification</p>
+              <p className="text-sm text-steel/80">DOT compliance + shipper liability protection</p>
             </div>
           </div>
           
@@ -131,30 +131,30 @@ export default function SecurityPage() {
               </ul>
             </Card>
 
-            {/* Language Barriers */}
+            {/* Driver Qualification & Compliance */}
             <Card className="p-6 border-ember/30">
               <Agent size={32} className="text-ember mb-4" />
-              <h3 className="text-2xl font-bold text-white mb-3">Language Proficiency</h3>
+              <h3 className="text-2xl font-bold text-white mb-3">Driver Qualification Compliance</h3>
               <p className="text-steel/80 mb-4">
-                Drivers miss instructions. Safety risks multiply. Dwell times spike. 
-                <span className="block mt-2 text-white font-semibold">Digital Comms translates everything.</span>
+                Secretary Duffy's proposed rules make shippers liable for driver qualifications. Unqualified drivers hauling 50,000 lb loads is your legal exposure. 
+                <span className="block mt-2 text-white font-semibold">Digital Guard documents compliance.</span>
               </p>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
                   <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
-                  <span className="text-steel/90">40+ languages supported at check-in</span>
+                  <span className="text-steel/90">CDL verification + English proficiency check</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
-                  <span className="text-steel/90">Visual parking maps (no text required)</span>
+                  <span className="text-steel/90">Legal requirement: read road signs (English) for 50K+ lbs</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
-                  <span className="text-steel/90">SMS instructions in driver's native language</span>
+                  <span className="text-steel/90">Shipper liability shield: documented driver qualification</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
-                  <span className="text-steel/90">Reduce gate confusion, improve safety</span>
+                  <span className="text-steel/90">Audit-ready proof for DOT/FMCSA compliance</span>
                 </li>
               </ul>
             </Card>
@@ -162,7 +162,7 @@ export default function SecurityPage() {
 
           <div className="text-center">
             <p className="text-steel/60 text-sm mb-4">
-              These are the security gaps your competitors are ignoring. We built the system to close them.
+              Secretary Duffy's proposed regulations shift liability to shippers. Digital Guard gives you documented proof of compliance.
             </p>
             <Link href="/product" className="inline-flex items-center gap-2 text-neon hover:underline font-semibold">
               See how Digital Guard + Digital BOL work together →

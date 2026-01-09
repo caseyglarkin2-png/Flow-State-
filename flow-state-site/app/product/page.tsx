@@ -58,10 +58,10 @@ export default function ProductPage() {
               <ul className="space-y-3 mb-8">
                 {[
                   'Automated carrier ID verification (OCR + photo)',
+                  'CDL validation + English proficiency documentation',
                   'Real-time driver authentication against carrier database',
-                  'Multi-language support (40+ languages)',
                   'Flagged credentials rejected at gate',
-                  'Complete audit trail for compliance',
+                  'DOT/FMCSA audit trail for shipper liability protection',
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3">
                     <Confirm size={20} className="text-neon flex-shrink-0" />
