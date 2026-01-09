@@ -47,15 +47,21 @@ export default function ProductPage() {
             {/* Text */}
             <div>
               <h2 className="text-5xl font-black mb-6">The Digital Guard</h2>
-              <p className="text-lg text-steel/90 mb-8 leading-relaxed">
-                The Unmanned Gate is here. Self-service kiosks and mobile workflows allow drivers to check themselves in against scheduled appointments. OCR cameras validate truck IDs instantly.
+              <p className="text-lg text-steel/90 mb-4 leading-relaxed">
+                Your biggest security risk is not knowing who is on your property. 
+                <span className="text-neon font-semibold"> Digital Guard verifies every carrier before they enter.</span>
+              </p>
+              <p className="text-steel/80 mb-8">
+                Self-service kiosks with OCR license scanning, photo capture, and real-time authentication. 
+                Reject unauthorized drivers instantly. Track every entry and exit.
               </p>
               <ul className="space-y-3 mb-8">
                 {[
-                  'Eliminate paper check-ins',
-                  'Real-time driver verification',
-                  'Automated parking assignments',
-                  'Reduced gate delays',
+                  'Automated carrier ID verification (OCR + photo)',
+                  'Real-time driver authentication against carrier database',
+                  'Multi-language support (40+ languages)',
+                  'Flagged credentials rejected at gate',
+                  'Complete audit trail for compliance',
                 ].map((item, i) => (
                   <li key={i} className="flex gap-3">
                     <Confirm size={20} className="text-neon flex-shrink-0" />

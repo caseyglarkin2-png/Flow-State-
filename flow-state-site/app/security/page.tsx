@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
+import { Lock } from 'lucide-react';
 import {
   Shield,
   Agent,
@@ -24,15 +25,34 @@ export default function SecurityPage() {
       {/* Hero */}
       <section className="pt-32 pb-16 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
-          <p className="text-neon font-mono text-sm tracking-widest mb-4 uppercase">
-            Evidence Vault
+          <p className="text-ember font-mono text-sm tracking-widest mb-4 uppercase">
+            Yard Security & Compliance
           </p>
           <h1 className="text-5xl md:text-7xl font-black mb-6">
-            Everything Procurement <span className="text-neon">Needs.</span>
+            Carrier Identity. <span className="text-neon">Cargo Security.</span>
           </h1>
           <p className="text-xl text-steel max-w-3xl mb-6">
-            Security posture. Implementation timeline. Integration specs. Compliance roadmap. 
-            All in one place, ready to forward.
+            Stop unauthorized access. Verify every carrier. Prevent cargo theft. 
+            Digital check-in and BOL process that solves your biggest operational security gaps.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 max-w-4xl">
+            <div className="p-4 rounded-lg bg-ember/10 border border-ember/30">
+              <p className="text-ember font-bold mb-1">Carrier Verification</p>
+              <p className="text-sm text-steel/80">Automated ID validation at every gate</p>
+            </div>
+            <div className="p-4 rounded-lg bg-ember/10 border border-ember/30">
+              <p className="text-ember font-bold mb-1">Cargo Theft Prevention</p>
+              <p className="text-sm text-steel/80">Chain-of-custody tracking for every load</p>
+            </div>
+            <div className="p-4 rounded-lg bg-ember/10 border border-ember/30">
+              <p className="text-ember font-bold mb-1">Language Support</p>
+              <p className="text-sm text-steel/80">40+ languages, zero miscommunication</p>
+            </div>
+          </div>
+          
+          <p className="text-steel/70 text-sm max-w-3xl mb-6">
+            Plus: Data security, compliance roadmap, and everything else procurement needs.
           </p>
           
           {/* Download/Forward Actions */}
@@ -48,11 +68,114 @@ export default function SecurityPage() {
         </div>
       </section>
 
-      {/* Executive Summary - NEW */}
-      <section className="py-16 bg-gradient-to-b from-carbon/50 to-void border-b border-neon/20">
+      {/* Operational Security - PRIMARY */}
+      <section className="py-20 bg-gradient-to-b from-carbon/50 to-void border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-black mb-2">Executive Summary</h2>
-          <p className="text-steel/80 mb-8">10-second security posture overview</p>
+          <h2 className="text-4xl font-black mb-3">Operational Security First</h2>
+          <p className="text-steel/80 mb-10">The security gaps keeping you up at night</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {/* Carrier Identity */}
+            <Card className="p-6 border-ember/30">
+              <Shield size={32} className="text-ember mb-4" />
+              <h3 className="text-2xl font-bold text-white mb-3">Carrier Identity Verification</h3>
+              <p className="text-steel/80 mb-4">
+                Unknown drivers. Fake credentials. Unauthorized yard access. 
+                <span className="block mt-2 text-white font-semibold">Digital Guard solves this.</span>
+              </p>
+              <ul className="space-y-2 text-sm">
+                <li className="flex items-start gap-2">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
+                  <span className="text-steel/90">OCR license scan + photo capture</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
+                  <span className="text-steel/90">Cross-reference against carrier database</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
+                  <span className="text-steel/90">Real-time authentication at kiosk</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
+                  <span className="text-steel/90">Flagged credentials rejected instantly</span>
+                </li>
+              </ul>
+            </Card>
+
+            {/* Cargo Security */}
+            <Card className="p-6 border-ember/30">
+              <Lock size={32} className="text-ember mb-4" />
+              <h3 className="text-2xl font-bold text-white mb-3">Cargo Theft Prevention</h3>
+              <p className="text-steel/80 mb-4">
+                Trailers disappear. Loads go missing. No audit trail. 
+                <span className="block mt-2 text-white font-semibold">Digital BOL locks it down.</span>
+              </p>
+              <ul className="space-y-2 text-sm">
+                <li className="flex items-start gap-2">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
+                  <span className="text-steel/90">Timestamped chain-of-custody for every load</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
+                  <span className="text-steel/90">GPS geofencing alerts if trailer exits yard</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
+                  <span className="text-steel/90">Blockchain-backed BOL verification</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
+                  <span className="text-steel/90">Incident reporting + law enforcement integration</span>
+                </li>
+              </ul>
+            </Card>
+
+            {/* Language Barriers */}
+            <Card className="p-6 border-ember/30">
+              <Agent size={32} className="text-ember mb-4" />
+              <h3 className="text-2xl font-bold text-white mb-3">Language Proficiency</h3>
+              <p className="text-steel/80 mb-4">
+                Drivers miss instructions. Safety risks multiply. Dwell times spike. 
+                <span className="block mt-2 text-white font-semibold">Digital Comms translates everything.</span>
+              </p>
+              <ul className="space-y-2 text-sm">
+                <li className="flex items-start gap-2">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
+                  <span className="text-steel/90">40+ languages supported at check-in</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
+                  <span className="text-steel/90">Visual parking maps (no text required)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
+                  <span className="text-steel/90">SMS instructions in driver's native language</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
+                  <span className="text-steel/90">Reduce gate confusion, improve safety</span>
+                </li>
+              </ul>
+            </Card>
+          </div>
+
+          <div className="text-center">
+            <p className="text-steel/60 text-sm mb-4">
+              These are the security gaps your competitors are ignoring. We built the system to close them.
+            </p>
+            <Link href="/product" className="inline-flex items-center gap-2 text-neon hover:underline font-semibold">
+              See how Digital Guard + Digital BOL work together →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Data Security (Secondary) */}
+      <section className="py-16 bg-void border-b border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-black mb-2">Data Security & IT Compliance</h2>
+          <p className="text-steel/80 mb-8">What IT and procurement also need to know</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
@@ -84,7 +207,7 @@ export default function SecurityPage() {
           </div>
           
           <p className="text-center text-steel/60 text-sm mt-8">
-            Full details below. <a href="#security" className="text-neon hover:underline">Jump to section →</a>
+            Full technical details below. <a href="#security" className="text-neon hover:underline">Jump to data controls →</a>
           </p>
         </div>
       </section>
@@ -94,7 +217,9 @@ export default function SecurityPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-wrap gap-4">
             {[
-              { label: 'Security Controls', href: '#security' },
+              { label: 'Carrier ID Verification', href: '#carrier-id' },
+              { label: 'Cargo Security', href: '#cargo-security' },
+              { label: 'Data Controls', href: '#security' },
               { label: 'Data Handling', href: '#data-handling' },
               { label: 'Incident Response', href: '#incident-response' },
               { label: 'Implementation', href: '#implementation' },
