@@ -24,46 +24,41 @@ export default function SecurityPage() {
 
       {/* Hero */}
       <section className="pt-32 pb-16 border-b border-neon/20">
-        <div className="max-w-6xl mx-auto px-6">
-          <p className="text-ember font-mono text-sm tracking-widest mb-4 uppercase">
-            Yard Security & Compliance
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <p className="text-neon font-mono text-sm tracking-widest mb-4 uppercase">
+            Evidence Vault
           </p>
           <h1 className="text-5xl md:text-7xl font-black mb-6">
-            Carrier Identity. <span className="text-neon">Cargo Security.</span>
+            Everything procurement needs. <span className="text-neon">One page.</span>
           </h1>
-          <p className="text-xl text-steel max-w-3xl mb-6">
-            Stop unauthorized access. Verify every carrier. Prevent cargo theft. 
-            Digital check-in and BOL process that solves your biggest operational security gaps.
+          <p className="text-xl text-steel/90 max-w-3xl mx-auto mb-8 leading-relaxed">
+            Security posture. Compliance roadmap. Integration specs. Implementation timeline. Driver qualification compliance. Cargo theft prevention. Download the trust packet or dig deeper.
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 max-w-4xl">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 max-w-4xl mx-auto text-left">
             <div className="p-4 rounded-lg bg-ember/10 border border-ember/30">
-              <p className="text-ember font-bold mb-1">Carrier Verification</p>
-              <p className="text-sm text-steel/80">Automated ID validation at every gate</p>
+              <p className="text-ember font-bold mb-1">SOC 2 Type II</p>
+              <p className="text-sm text-steel/80">In progress (Q2 2026 target)</p>
             </div>
             <div className="p-4 rounded-lg bg-ember/10 border border-ember/30">
-              <p className="text-ember font-bold mb-1">Cargo Theft Prevention</p>
-              <p className="text-sm text-steel/80">Chain-of-custody tracking for every load</p>
+              <p className="text-ember font-bold mb-1">Unified Carrier ID</p>
+              <p className="text-sm text-steel/80">OCR + photo + real-time auth</p>
             </div>
             <div className="p-4 rounded-lg bg-ember/10 border border-ember/30">
               <p className="text-ember font-bold mb-1">Driver Qualification</p>
-              <p className="text-sm text-steel/80">DOT compliance + shipper liability protection</p>
+              <p className="text-sm text-steel/80">DOT/FMCSA audit trail for shipper liability</p>
             </div>
           </div>
           
-          <p className="text-steel/70 text-sm max-w-3xl mb-6">
-            Plus: Data security, compliance roadmap, and everything else procurement needs.
-          </p>
-          
           {/* Download/Forward Actions */}
-          <div className="flex flex-wrap gap-4">
-            <button className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold bg-neon text-void hover:bg-white transition-all">
-              <Shield size={18} />
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all">
+              <Shield size={20} />
               Download Trust Packet (PDF)
             </button>
-            <button className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold border-2 border-steel/40 text-white hover:border-neon hover:text-neon transition-all">
-              Copy Procurement Summary
-            </button>
+            <Link href="#evidence-vault" className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-steel/40 text-steel hover:border-neon hover:text-neon transition-all">
+              Explore Evidence Vault
+            </Link>
           </div>
         </div>
       </section>
@@ -71,8 +66,13 @@ export default function SecurityPage() {
       {/* Operational Security - PRIMARY */}
       <section className="py-20 bg-gradient-to-b from-carbon/50 to-void border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-black mb-3">Operational Security First</h2>
-          <p className="text-steel/80 mb-10">The security gaps keeping you up at night</p>
+          <p className="text-neon font-mono text-sm tracking-widest mb-4 uppercase text-center">
+            Operational Security
+          </p>
+          <h2 className="text-4xl font-black mb-3 text-center">The Three Gaps</h2>
+          <p className="text-steel/80 mb-10 text-center max-w-3xl mx-auto">
+            Carrier identity verification. Cargo theft prevention. Driver qualification compliance.
+          </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {/* Carrier Identity */}
