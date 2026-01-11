@@ -7,8 +7,8 @@ import LeadForm from '@/components/LeadForm';
 import NextSteps from '@/components/NextSteps';
 
 export const metadata: Metadata = {
-  title: 'Contact | YardFlow by FreightRoll',
-  description: 'Book a demo, apply for Founding Membership, or get a tailored quote for your yard automation needs.',
+  title: 'Book a Call | YardFlow by FreightRoll',
+  description: '30 minutes. Network audit + rollout plan. Zero fluff.',
 };
 
 type Props = {
@@ -25,101 +25,82 @@ export default async function ContactPage({ searchParams }: Props) {
     <main className="min-h-screen bg-void pt-32 pb-24">
       {/* Hero */}
       <section className="pb-16 border-b border-neon/20">
-        <div className="max-w-5xl mx-auto px-6">
-          <h1 className="text-4xl md:text-6xl font-black mb-4">
-            {isQualify ? (
-              <>
-                Qualify for <span className="neon-glow">Founding Membership</span>
-              </>
-            ) : (
-              <>
-                Contact <span className="neon-glow">YardFlow by FreightRoll</span>
-              </>
-            )}
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h1 className="text-4xl md:text-6xl font-black mb-6">
+            30 minutes. Network audit + rollout plan.
           </h1>
-          <p className="text-xl text-steel max-w-3xl">
-            {isQualify
-              ? 'Join the network-first revolution. Submit your details and we\'ll evaluate your network for Founding Member status.'
-              : 'For Founding Member applicants and enterprise networks. Book a demo or request a tailored quote.'}
+          <p className="text-xl text-steel/90 max-w-2xl mx-auto leading-relaxed">
+            We'll map your facilities to archetypes, show you the deployment sequence, and hand you the board-ready ROI model. Zero fluff. Zero pitch. Just the plan.
           </p>
         </div>
       </section>
 
-      {/* Contact Options */}
+      {/* Contact Form + What Happens Next */}
       <section className="py-16">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Demo Booking */}
-            <Card>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-lg bg-neon/10 flex items-center justify-center">
-                  <Velocity size={20} className="text-neon" />
-                </div>
-                <h2 className="text-2xl font-bold">Book a Demo</h2>
-              </div>
-              <p className="text-steel mb-6">
-                Prefer a live walkthrough? Book a time and we&apos;ll tailor the demo to your network.
-              </p>
-              <a
-                href={calendlyUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center w-full px-6 py-3 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all gap-2"
-              >
-                <FlowArrow size={16} /> Book a Demo
-              </a>
-              <p className="text-xs text-steel/70 mt-4">
-                If you&apos;re behind a firewall, email{' '}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {/* Lead Form */}
+            <div>
+              <Card>
+                <LeadForm
+                  leadType={isQualify ? 'founding' : 'quote'}
+                  title="Book Your Network Audit"
+                  subtitle="Minimal info required. We'll follow up within 24 hours."
+                />
+              </Card>
+              <p className="text-xs text-steel/70 mt-4 text-center">
+                Behind a firewall? Email{' '}
                 <a className="text-neon hover:underline" href="mailto:casey@freightroll.com">
                   casey@freightroll.com
                 </a>
-                .
               </p>
-            </Card>
+            </div>
 
-            {/* Lead Form */}
-            <Card>
-              <LeadForm
-                leadType={isQualify ? 'founding' : 'quote'}
-                title={isQualify ? 'Apply for Founding Membership' : 'Get a Quote'}
-                subtitle={
-                  isQualify
-                    ? 'Tell us about your multi-facility network and we\'ll assess your fit.'
-                    : 'Tell us your network size and we\'ll respond with a tailored plan and ROI view.'
-                }
-              />
-            </Card>
+            {/* What Happens Next */}
+            <div>
+              <h2 className="text-2xl font-bold mb-6">What Happens Next</h2>
+              <div className="space-y-6">
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full border-2 border-neon flex items-center justify-center font-bold text-neon">
+                    1
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-white mb-1">Network Audit (15 min)</h3>
+                    <p className="text-steel text-sm">
+                      We review your facility mix, throughput, current pain points. Map each facility to a yard archetype.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full border-2 border-neon flex items-center justify-center font-bold text-neon">
+                    2
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-white mb-1">Rollout Plan (10 min)</h3>
+                    <p className="text-steel text-sm">
+                      We show you the deployment sequence, timeline, and resource requirements. Which facilities first. Which modules. Expected ROI curve.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full border-2 border-neon flex items-center justify-center font-bold text-neon">
+                    3
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-white mb-1">Board-Ready ROI (5 min)</h3>
+                    <p className="text-steel text-sm">
+                      We export the ROI model with your assumptions. PDF for finance review. Next steps if assumptions validate.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-8 p-6 rounded-lg border border-neon/30 bg-neon/5">
+                <p className="text-white font-semibold mb-2">If you have 10+ facilities and the ROI model shows positive returns, this call is the next step.</p>
+                <p className="text-steel/80 text-sm">Book it.</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Trust Signals */}
-      <section className="py-12 border-t border-neon/10">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-6 text-center">
-            <div className="p-6">
-              <Shield size={28} className="text-neon mx-auto mb-3" />
-              <h3 className="font-semibold mb-1">SOC 2 Type II</h3>
-              <p className="text-sm text-steel">Roadmap 2026 – Enterprise security controls</p>
-            </div>
-            <div className="p-6">
-              <div className="text-2xl font-bold text-neon mb-1">48hr</div>
-              <h3 className="font-semibold mb-1">Response Time</h3>
-              <p className="text-sm text-steel">Typical reply for qualified inquiries</p>
-            </div>
-            <div className="p-6">
-              <div className="text-2xl font-bold text-neon mb-1">90-day</div>
-              <h3 className="font-semibold mb-1">Pilot Programs</h3>
-              <p className="text-sm text-steel">Proof of value before commitment</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Next Steps */}
-      <section className="py-16">
-        <div className="max-w-5xl mx-auto px-6">
-          <NextSteps title="What Happens Next" />
         </div>
       </section>
 

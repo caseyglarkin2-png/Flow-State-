@@ -6,6 +6,7 @@ import Card from '@/components/Card';
 import YardBuilderHook from '@/components/YardBuilderHook';
 import NetworkEffectModel from '@/components/NetworkEffectModel';
 import YardLeakSection from '@/components/YardLeakSection';
+import StickyCTABar from '@/components/StickyCTABar';
 import { calcRoiV2, getRoiV2InputsForPreset } from '@/lib/economics';
 import { X, Check, DollarSign, Warehouse } from 'lucide-react';
 import {
@@ -37,6 +38,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-void">
       <Header />
+      <StickyCTABar ctaText="Get Your Network Rollout Plan" ctaUrl="/contact" />
 
       {/* ═══════════════════════════════════════════════════════════════
           HERO: THE SILO TRAP
@@ -46,44 +48,49 @@ export default function Home() {
         <div className="absolute inset-0 grid-background opacity-20"></div>
         
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <p className="text-ember font-mono text-sm tracking-widest mb-6 uppercase">
-            The Silo Trap
+          <p className="text-neon font-mono text-sm tracking-widest mb-6 uppercase">
+            Yard Network System
           </p>
           
           <h1 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-[0.95]">
             <span className="text-white">You don't have 50 yards.</span>
             <br />
-            <span className="text-steel/70 text-4xl md:text-5xl">You have one yard network.</span>
-            <br />
             <span className="text-neon drop-shadow-[0_0_30px_rgba(0,180,255,0.5)] mt-4 block">
-              But your software treats them like islands.
+              You have one network.
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-steel/90 mb-4 max-w-3xl mx-auto">
-            Traditional Yard Management Systems (YMS) optimize each site in isolation. 
-            YardFlow is a <span className="text-neon font-semibold">Yard Network System (YNS)</span>: 
-            orchestrating assets, intelligence, and security across your entire network.
+          <p className="text-xl md:text-2xl text-steel/90 mb-6 max-w-3xl mx-auto leading-relaxed">
+            Site-by-site yard systems are the hidden tax on your logistics margin. YardFlow is a Yard Network System: one control plane, standardized protocols, network intelligence. Deploy fast. See ROI in weeks, not quarters.
           </p>
 
-          <p className="text-lg text-steel/70 mb-10 max-w-2xl mx-auto">
-            See exactly what your network is costing you in detention, expedites, and lost throughput. 
-            Then stop paying it.
-          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10 text-left">
+            <div className="p-4 rounded-lg border border-steel/30 bg-carbon/40">
+              <p className="text-neon font-bold text-2xl mb-1">70%</p>
+              <p className="text-steel/80 text-sm">Gate labor reduction (automated carrier verification)</p>
+            </div>
+            <div className="p-4 rounded-lg border border-steel/30 bg-carbon/40">
+              <p className="text-neon font-bold text-2xl mb-1">{Math.round(cfoBaseline.yearOneRoiPercent)}%</p>
+              <p className="text-steel/80 text-sm">Year-1 ROI on 5% network rollout (modeled)</p>
+            </div>
+            <div className="p-4 rounded-lg border border-steel/30 bg-carbon/40">
+              <p className="text-neon font-bold text-2xl mb-1">8 weeks</p>
+              <p className="text-steel/80 text-sm">Avg deployment per facility (standardized playbooks)</p>
+            </div>
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/diagnostic"
-              className="group inline-flex items-center gap-3 px-8 py-4 rounded-lg font-bold text-lg bg-ember text-white hover:bg-white hover:text-void transition-all hover:scale-105"
+              href="/contact"
+              className="group inline-flex items-center gap-3 px-8 py-4 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all hover:scale-105"
             >
-              <Crosshair size={22} />
-              Run the Network Leak Diagnostic
+              Get Your Network Rollout Plan
             </Link>
             <Link
-              href="/yns"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all"
+              href="/roi"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-steel/40 text-steel hover:border-neon hover:text-neon transition-all"
             >
-              YMS vs YNS: See the Difference
+              Run ROI in 3 Minutes
             </Link>
           </div>
         </div>
@@ -97,27 +104,46 @@ export default function Home() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
             <p className="text-neon font-mono text-sm tracking-widest mb-4 uppercase">
-              The Framework
+              Category Invention
             </p>
             <h2 className="text-3xl md:text-4xl font-black mb-4 text-white">
-              YNS is the system. Viscosity is the symptom. The leak is the cost.
+              YNS vs YMS: Why "yard management" doesn't scale
             </h2>
             <p className="text-lg text-steel/80 max-w-3xl mx-auto">
-              Three lenses on the same problem. Understanding all three is how you fix it.
+              Traditional YMS treats each facility as an island. YNS orchestrates the network. That's the category. One application. One dataset. Network-wide intelligence.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* YNS - The Category */}
+            <div className="p-6 rounded-lg border border-neon/50 bg-gradient-to-br from-neon/10 to-transparent hover:border-neon/70 transition-all">
+              <div className="text-neon mb-4">
+                <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M12 1v6m0 6v6M23 12h-6m-6 0H1" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3">Yard Network System</h3>
+              <p className="text-steel/80 text-sm mb-3 leading-relaxed">
+                <span className="text-neon font-semibold">The category solution.</span> Instrumentation that makes the yard 
+                visible in real-time. Network intelligence that learns across sites. 
+                Orchestration that eliminates friction before it becomes a leak.
+              </p>
+              <p className="text-neon text-xs font-semibold">
+                One control plane. Network-wide intelligence.
+              </p>
+            </div>
+
             {/* Viscosity - The Physics */}
             <div className="p-6 rounded-lg border border-steel/30 bg-carbon/40 hover:border-steel/50 transition-all">
-              <div className="text-ember mb-4">
+              <div className="text-steel/60 mb-4">
                 <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M12 2v20M2 12h20M6 6l12 12M6 18L18 6" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">Yard Viscosity</h3>
+              <h3 className="text-xl font-bold text-white mb-3">Network Friction</h3>
               <p className="text-steel/80 text-sm mb-3 leading-relaxed">
-                <span className="text-neon font-semibold">The physics perspective.</span> Friction at every handoff. 
+                <span className="text-steel/60 font-semibold">The physics perspective.</span> Friction at every handoff. 
                 Trailers waiting for dock assignments. Drivers circling for gatehouse approval. 
                 Information siloed across facilities.
               </p>
@@ -133,44 +159,22 @@ export default function Home() {
                   <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" strokeLinejoin="round" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">Network Leak</h3>
+              <h3 className="text-xl font-bold text-white mb-3">Hidden Yard Tax</h3>
               <p className="text-steel/80 text-sm mb-3 leading-relaxed">
-                <span className="text-neon font-semibold">The economics perspective.</span> Detention fees you shouldn't pay. 
+                <span className="text-ember font-semibold">The economics perspective.</span> Detention fees you shouldn't pay. 
                 Expedite charges for preventable delays. Overtime because you can't predict arrivals. 
                 Working capital tied up "just in case."
               </p>
               <p className="text-ember text-xs font-semibold">
-                High viscosity → margin leak (8 cost categories)
-              </p>
-            </div>
-
-            {/* YNS - The Solution */}
-            <div className="p-6 rounded-lg border border-neon/50 bg-gradient-to-br from-neon/10 to-transparent hover:border-neon/70 transition-all">
-              <div className="text-neon mb-4">
-                <svg className="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="3" />
-                  <path d="M12 1v6m0 6v6M23 12h-6m-6 0H1" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Yard Network System</h3>
-              <p className="text-steel/80 text-sm mb-3 leading-relaxed">
-                <span className="text-neon font-semibold">The category solution.</span> Instrumentation that makes the yard 
-                visible in real-time. Network intelligence that learns across sites. 
-                Orchestration that eliminates friction before it becomes a leak.
-              </p>
-              <p className="text-neon text-xs font-semibold">
-                Cut viscosity → stop the leak → unlock network value
+                Network friction → margin leak (8 cost categories)
               </p>
             </div>
           </div>
 
           <div className="mt-12 text-center">
-            <p className="text-steel/60 text-sm mb-4">
-              Most YMS vendors address one lens. YardFlow connects all three.
-            </p>
             <Link
               href="/yns"
-              className="inline-flex items-center gap-2 text-neon hover:underline font-semibold"
+              className="inline-flex items-center gap-2 text-neon hover:underline font-semibold text-lg"
             >
               See the full YNS framework →
             </Link>
@@ -185,14 +189,14 @@ export default function Home() {
       <section className="py-16 border-b border-steel/20 bg-carbon/20">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-12">
-            <p className="text-ember font-mono text-sm tracking-widest mb-4 uppercase">
-              Category Creation
+            <p className="text-neon font-mono text-sm tracking-widest mb-4 uppercase">
+              Full Comparison
             </p>
             <h2 className="text-3xl md:text-4xl font-black mb-4 text-white">
-              YMS vs YNS: The Critical Difference
+              What changes when you shift from site-by-site to network-level
             </h2>
             <p className="text-lg text-steel/80 max-w-3xl mx-auto">
-              Yard Management Systems optimize individual sites. Yard Network Systems orchestrate your entire network.
+              YMS was built for single facilities. YNS was built for networks. Every capability differs.
             </p>
           </div>
 
@@ -273,20 +277,20 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <p className="text-3xl md:text-4xl font-black text-neon">200+</p>
-              <p className="text-steel text-sm mt-1">Facilities modeled</p>
+              <p className="text-3xl md:text-4xl font-black text-neon">70%</p>
+              <p className="text-steel text-sm mt-1">Gate labor reduction</p>
             </div>
             <div>
-              <p className="text-3xl md:text-4xl font-black text-white">{Math.round(cfoBaseline.yearOneRoiPercent)}%</p>
-              <p className="text-steel text-sm mt-1">ROI (modeled, enterprise scale)</p>
+              <p className="text-3xl md:text-4xl font-black text-white">65%</p>
+              <p className="text-steel text-sm mt-1">Detention recovery rate</p>
             </div>
             <div>
               <p className="text-3xl md:text-4xl font-black text-white">50%</p>
-              <p className="text-steel text-sm mt-1">Dwell time reduction</p>
+              <p className="text-steel text-sm mt-1">Dwell time reduction (48 min → 24 min avg)</p>
             </div>
             <div>
               <p className="text-3xl md:text-4xl font-black text-white">8 weeks</p>
-              <p className="text-steel text-sm mt-1">Avg. time to production</p>
+              <p className="text-steel text-sm mt-1">Avg deployment per facility</p>
             </div>
           </div>
           <p className="text-center text-steel/50 text-xs mt-6">Metrics based on Primo/Singularity simulations and validated ROI models. Individual results vary.</p>
@@ -743,33 +747,29 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          FINAL CTA: APPLY FOR MEMBERSHIP
+          FINAL CTA: ASSUME THE SALE
       ═══════════════════════════════════════════════════════════════ */}
       <section className="py-24 border-t border-neon/20 bg-gradient-to-b from-void to-carbon/50">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-ember font-mono text-sm tracking-widest mb-6 uppercase">
-            Enterprise-Ready Deployment
-          </p>
-          <h2 className="text-5xl md:text-6xl font-black mb-6">
-            Ready to put your yard <span className="text-neon">in YardFlow?</span>
+          <h2 className="text-4xl md:text-5xl font-black mb-6">
+            Ready to stop managing yards and start orchestrating networks?
           </h2>
           <p className="text-xl text-steel/80 mb-10 max-w-2xl mx-auto">
-            Proven economics. Defensible proof path. Enterprise deployment support.
+            Book a call. We'll map your network, show you the rollout plan, and hand you the board-ready ROI model. 30 minutes. Zero fluff.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-3 px-10 py-5 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white transition-all hover:scale-105"
+              className="inline-flex items-center gap-3 px-10 py-5 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all hover:scale-105"
             >
-              <Velocity size={22} className="text-void" />
-              Apply for Membership
+              Get Your Network Rollout Plan
             </Link>
             <Link
-              href="/pricing"
-              className="inline-flex items-center gap-2 px-8 py-5 rounded-lg font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
+              href="/roi"
+              className="inline-flex items-center gap-2 px-8 py-5 rounded-lg font-semibold border border-steel/40 text-steel hover:border-neon hover:text-neon transition-all"
             >
-              View Pricing
+              Run ROI First
             </Link>
           </div>
         </div>
