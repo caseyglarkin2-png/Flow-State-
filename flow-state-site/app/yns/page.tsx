@@ -14,40 +14,57 @@ export default function YNSPage() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-32 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6 text-center py-20">
-          <p className="text-ember font-mono text-sm tracking-widest mb-6 uppercase">
-            Stop Managing Yards. Start Orchestrating Networks.
+          <p className="text-neon font-mono text-sm tracking-widest mb-6 uppercase">
+            The Category YardFlow Invented
           </p>
           
           <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
-            You Don't Have <span className="text-steel">50 Yards</span>.<br />
-            You Have <span className="text-neon">One Yard Network</span>.
+            Yard Network System (YNS):<br />
+            <span className="text-neon">The category YardFlow invented</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-steel mb-12 max-w-4xl mx-auto leading-relaxed">
-            Traditional Yard Management Systems (YMS) treat each facility as an island. 
-            YardFlow is a <strong className="text-neon">Yard Network System (YNS)</strong>: 
-            orchestrating assets, intelligence, and workflows across your entire network.
+          <p className="text-xl md:text-2xl text-steel/90 mb-8 max-w-4xl mx-auto leading-relaxed">
+            Traditional YMS optimizes single facilities. YNS orchestrates multi-site networks. Different architecture. Different outcomes. If you have 10+ yards, this is the category you're buying.
           </p>
 
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10 text-left">
+            <div className="p-4 rounded-lg border border-steel/30 bg-carbon/40">
+              <p className="text-steel/60 text-xs font-mono uppercase mb-1">Scope</p>
+              <p className="text-white font-semibold">YMS = site-by-site</p>
+              <p className="text-neon font-semibold">YNS = network orchestration</p>
+            </div>
+            <div className="p-4 rounded-lg border border-steel/30 bg-carbon/40">
+              <p className="text-steel/60 text-xs font-mono uppercase mb-1">Returns</p>
+              <p className="text-white font-semibold">YMS = linear ROI</p>
+              <p className="text-neon font-semibold">YNS = compounding returns</p>
+            </div>
+            <div className="p-4 rounded-lg border border-steel/30 bg-carbon/40">
+              <p className="text-steel/60 text-xs font-mono uppercase mb-1">Deployment</p>
+              <p className="text-white font-semibold">YMS = custom per site</p>
+              <p className="text-neon font-semibold">YNS = standardized playbooks</p>
+            </div>
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/diagnostic" className="btn-neon-fill inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold bg-ember text-white hover:bg-white hover:text-void hover:shadow-lg transition-all">
-              <Crosshair size={20} />
-              Run the Network Leak Diagnostic
+            <a href="/contact" className="btn-neon-fill inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:bg-white hover:text-void hover:shadow-lg transition-all">
+              Get Your Network Rollout Plan
             </a>
-            <a href="/singularity" className="btn-neon inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">
-              <Nexus size={20} />
-              See Network Effect Simulation
+            <a href="#comparison" className="btn-neon inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-steel/40 text-steel hover:border-neon hover:text-neon transition-all">
+              Compare YMS vs YNS (Full Table)
             </a>
           </div>
         </div>
       </section>
 
       {/* YMS vs YNS Comparison Table */}
-      <section className="py-24 border-b border-neon/20 bg-carbon/30">
+      <section id="comparison" className="py-24 border-b border-neon/20 bg-carbon/30">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-black mb-4 text-center">YMS vs YNS</h2>
+          <p className="text-neon font-mono text-sm tracking-widest mb-4 uppercase text-center">
+            Full Comparison
+          </p>
+          <h2 className="text-4xl md:text-5xl font-black mb-4 text-center">What changes when you shift from site-by-site to network-level</h2>
           <p className="text-xl text-steel/80 mb-12 text-center max-w-3xl mx-auto">
-            The difference between managing isolated yards and orchestrating an intelligent network.
+            YMS was built for single facilities. YNS was built for networks. Every capability differs.
           </p>
 
           <div className="overflow-x-auto">
@@ -114,12 +131,27 @@ export default function YNSPage() {
         </div>
       </section>
 
+      {/* The Problem with Site-by-Site Thinking */}
+      <section className="py-16 bg-void border-b border-steel/20">
+        <div className="max-w-4xl mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-black mb-6">
+            The Problem with Site-by-Site Thinking
+          </h2>
+          <p className="text-lg text-steel/80 leading-relaxed">
+            Your current YMS was architected for managing one yard really well. It has no idea that yard is part of a 40-facility network. Carrier learnings don't transfer. Playbooks don't standardize. Intelligence dies at the property line. You're managing friction one facility at a time. <span className="text-neon font-semibold">That's the tax.</span>
+          </p>
+        </div>
+      </section>
+
       {/* Three Pillars of YNS */}
       <section className="py-24 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl md:text-5xl font-black mb-4 text-center">The Three Pillars of YNS</h2>
+          <p className="text-neon font-mono text-sm tracking-widest mb-4 uppercase text-center">
+            Three Pillars
+          </p>
+          <h2 className="text-4xl md:text-5xl font-black mb-4 text-center">Orchestration. Security. Intelligence.</h2>
           <p className="text-xl text-steel/80 mb-16 text-center max-w-3xl mx-auto">
-            Every Yard Network System is built on three foundational capabilities that compound across your network.
+            YardFlow gives you three things site-by-site systems can't: real-time orchestration across facilities, unified carrier identity verification, and network intelligence that compounds with scale.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -133,16 +165,15 @@ export default function YNSPage() {
               </div>
               
               <p className="text-steel/80 mb-6 leading-relaxed">
-                Coordinate asset movements across all sites with real-time visibility. 
-                AI suggests optimal moves based on network-wide patterns, not just local yard state.
+                Real-time asset tracking across all facilities. AI move recommendations based on network learnings. Drag-and-drop yard maps (visual positioning).
               </p>
 
               <ul className="space-y-2 mb-6">
                 {[
-                  'Real-time GPS tracking across all facilities',
-                  'Drag-and-drop move interface',
-                  'AI-powered move recommendations',
-                  'Automated routing between sites',
+                  'Real-time asset tracking across all facilities',
+                  'AI move recommendations based on network learnings',
+                  'Drag-and-drop yard maps (visual positioning)',
+                  'Metric: Sub-5 min deployment per new facility',
                 ].map((item, i) => (
                   <li key={i} className="flex gap-2 text-sm">
                     <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
@@ -152,8 +183,8 @@ export default function YNSPage() {
               </ul>
 
               <div className="pt-4 border-t border-neon/10">
-                <p className="text-xs text-steel/60 font-mono uppercase tracking-wider mb-1">Impact</p>
-                <p className="text-lg font-semibold text-neon">50% dwell time reduction</p>
+                <p className="text-xs text-steel/60 font-mono uppercase tracking-wider mb-1">Deploy Pattern</p>
+                <p className="text-sm font-medium text-steel/90">Layer in Orchestration + Intelligence as network matures. Modular rollout.</p>
               </div>
             </Card>
 
@@ -167,16 +198,15 @@ export default function YNSPage() {
               </div>
               
               <p className="text-steel/80 mb-6 leading-relaxed">
-                Unified identity verification and access control. Know who's in your network, 
-                when they arrived, and create an immutable audit trail for compliance.
+                Automated carrier ID verification (OCR + photo + real-time auth). Digital BOL chain-of-custody for every load. Driver qualification compliance (DOT/FMCSA audit trail).
               </p>
 
               <ul className="space-y-2 mb-6">
                 {[
-                  'Carrier credentialing database',
-                  'Biometric + ID verification at gate',
-                  'Cryptographically timestamped audit logs',
-                  'CTPAT & TSA compliance reporting',
+                  'Automated carrier ID verification (OCR + photo)',
+                  'Digital BOL chain-of-custody for every load',
+                  'Driver qualification compliance (DOT/FMCSA)',
+                  'Metric: 70% gate labor reduction',
                 ].map((item, i) => (
                   <li key={i} className="flex gap-2 text-sm">
                     <Confirm size={16} className="text-ember flex-shrink-0 mt-0.5" />
@@ -186,8 +216,8 @@ export default function YNSPage() {
               </ul>
 
               <div className="pt-4 border-t border-ember/10">
-                <p className="text-xs text-steel/60 font-mono uppercase tracking-wider mb-1">Impact</p>
-                <p className="text-lg font-semibold text-ember">Designed to prevent security incidents</p>
+                <p className="text-xs text-steel/60 font-mono uppercase tracking-wider mb-1">Deploy Pattern</p>
+                <p className="text-sm font-medium text-steel/90">Deploy Digital Guard first (security + gate labor savings). Add Digital BOL next.</p>
               </div>
             </Card>
 
@@ -201,16 +231,15 @@ export default function YNSPage() {
               </div>
               
               <p className="text-steel/80 mb-6 leading-relaxed">
-                Learn from the entire network. Predictive ETAs, carrier benchmarking, 
-                shared learning from thousands of moves. Your network gets smarter every day.
+                Cross-site carrier benchmarking. Predictive ETA (learns from network patterns). Network-wide exception detection.
               </p>
 
               <ul className="space-y-2 mb-6">
                 {[
-                  'Predictive ETA (typically 90-95% accuracy)',
-                  'Carrier performance benchmarking',
-                  'Cross-site pattern recognition',
-                  'Anomaly detection & alerts',
+                  'Cross-site carrier benchmarking',
+                  'Predictive ETA (learns from network patterns)',
+                  'Network-wide exception detection',
+                  'Metric: Each site makes prior sites smarter',
                 ].map((item, i) => (
                   <li key={i} className="flex gap-2 text-sm">
                     <Confirm size={16} className="text-steel flex-shrink-0 mt-0.5" />
@@ -220,8 +249,8 @@ export default function YNSPage() {
               </ul>
 
               <div className="pt-4 border-t border-steel/10">
-                <p className="text-xs text-steel/60 font-mono uppercase tracking-wider mb-1">Impact</p>
-                <p className="text-lg font-semibold text-white">65% detention reduction</p>
+                <p className="text-xs text-steel/60 font-mono uppercase tracking-wider mb-1">Deploy Pattern</p>
+                <p className="text-sm font-medium text-steel/90">Incremental ROI. Each module adds value independently.</p>
               </div>
             </Card>
           </div>
@@ -430,32 +459,23 @@ export default function YNSPage() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-24 border-t border-neon/20">
+      <section className="py-24 border-t border-neon/20 bg-gradient-to-b from-void to-carbon/50">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-black mb-6">Join the Founding Network</h2>
-          <p className="text-xl text-steel/90 mb-4">
-            YardFlow is accepting 3 more Founding Members to build the world's first Yard Network System.
-          </p>
-          <p className="text-lg text-neon font-semibold mb-12">
-            Applications close when filled. Deploy Q2 2026.
+          <h2 className="text-4xl md:text-5xl font-black mb-6">
+            If you have 10+ facilities, YNS is the category you're buying.
+          </h2>
+          <p className="text-xl text-steel/90 mb-12">
+            The only question is timing. Book a call. We'll show you the rollout plan and the network effect curve for your facility mix.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <a href="/singularity" className="btn-neon-fill inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all">
-              <Nexus size={20} />
-              Apply for Membership
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contact" className="btn-neon-fill inline-flex items-center justify-center gap-2 px-10 py-5 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white hover:text-void hover:shadow-lg transition-all">
+              Get Your Network Rollout Plan
             </a>
-            <a href="/contact?intent=qualify" className="btn-neon inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">
-              Schedule Call
+            <a href="/roi" className="btn-neon inline-flex items-center justify-center gap-2 px-8 py-5 rounded-lg font-semibold border border-steel/40 text-steel hover:border-neon hover:text-neon transition-all">
+              Run ROI Model
             </a>
           </div>
-
-          <p className="text-sm text-steel/60">
-            Questions? Email{' '}
-            <a href="mailto:casey@freightroll.com" className="text-neon hover:underline">
-              casey@freightroll.com
-            </a>
-          </p>
         </div>
       </section>
 
