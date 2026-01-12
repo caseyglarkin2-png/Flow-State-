@@ -4,6 +4,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
+import StandardizationBand from '@/components/StandardizationBand';
 import { Nexus, Shield, Agent, Territory, Metrics, Velocity, Crosshair, FlowArrow, Confirm } from '@/components/icons/FlowIcons';
 
 export default function YNSPage() {
@@ -12,36 +13,46 @@ export default function YNSPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center pt-32 border-b border-neon/20">
-        <div className="max-w-6xl mx-auto px-6 text-center py-20">
-          <p className="text-neon font-mono text-sm tracking-widest mb-6 uppercase">
-            The Category YardFlow Invented
-          </p>
-          
-          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
-            Yard Network System (YNS):<br />
-            <span className="text-neon">The category YardFlow invented</span>
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-steel/90 mb-8 max-w-4xl mx-auto leading-relaxed">
-            Traditional YMS optimizes single facilities. YNS orchestrates multi-site networks. Different architecture. Different outcomes. If you have 10+ yards, this is the category you're buying.
-          </p>
+      <section className="relative pt-32 pb-20 border-b border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <p className="text-neon font-mono text-sm tracking-widest mb-6 uppercase">
+              The Category YardFlow Invented
+            </p>
+            
+            <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
+              Yard Network System (YNS):<br />
+              <span className="text-neon">Network-first, not site-by-site</span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-steel/90 mb-8 max-w-4xl mx-auto leading-relaxed">
+              Traditional YMS optimizes single facilities. YNS orchestrates multi-site networks through three chapters: standardized driver journey, enforced control loops, compounding network intelligence.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10 text-left">
-            <div className="p-4 rounded-lg border border-steel/30 bg-carbon/40">
-              <p className="text-steel/60 text-xs font-mono uppercase mb-1">Scope</p>
-              <p className="text-white font-semibold">YMS = site-by-site</p>
-              <p className="text-neon font-semibold">YNS = network orchestration</p>
+          {/* Standardization Band Visual */}
+          <div className="mb-12">
+            <StandardizationBand />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-10">
+            <div className="p-6 rounded-lg border border-neon/40 bg-neon/5">
+              <div className="text-neon font-mono text-xs uppercase tracking-wider mb-2">Chapter 1</div>
+              <h3 className="text-xl font-bold text-white mb-2">Standardization Band</h3>
+              <p className="text-steel/90 mb-2">Same driver journey across all yards</p>
+              <p className="text-steel/70 text-sm">QR check-in, timestamps, multilingual comms. Network foundation.</p>
             </div>
-            <div className="p-4 rounded-lg border border-steel/30 bg-carbon/40">
-              <p className="text-steel/60 text-xs font-mono uppercase mb-1">Returns</p>
-              <p className="text-white font-semibold">YMS = linear ROI</p>
-              <p className="text-neon font-semibold">YNS = compounding returns</p>
+            <div className="p-6 rounded-lg border border-steel/30 bg-carbon/40">
+              <div className="text-steel/60 font-mono text-xs uppercase tracking-wider mb-2">Chapter 2</div>
+              <h3 className="text-xl font-bold text-white mb-2">Control Loop</h3>
+              <p className="text-steel/90 mb-2">Enforces what happens next</p>
+              <p className="text-steel/70 text-sm">Per-site automation. Active, not passive.</p>
             </div>
-            <div className="p-4 rounded-lg border border-steel/30 bg-carbon/40">
-              <p className="text-steel/60 text-xs font-mono uppercase mb-1">Deployment</p>
-              <p className="text-white font-semibold">YMS = custom per site</p>
-              <p className="text-neon font-semibold">YNS = standardized playbooks</p>
+            <div className="p-6 rounded-lg border border-steel/30 bg-carbon/40">
+              <div className="text-steel/60 font-mono text-xs uppercase tracking-wider mb-2">Chapter 3</div>
+              <h3 className="text-xl font-bold text-white mb-2">Network Effect</h3>
+              <p className="text-steel/90 mb-2">Intelligence compounds with scale</p>
+              <p className="text-steel/70 text-sm">Cross-site learning. Exponential returns.</p>
             </div>
           </div>
 
@@ -52,6 +63,73 @@ export default function YNSPage() {
             <a href="#comparison" className="btn-neon inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-steel/40 text-steel hover:border-neon hover:text-neon transition-all">
               Compare YMS vs YNS (Full Table)
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* YNS = 3 Chapters Working Together */}
+      <section className="py-20 bg-carbon/30 border-b border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-black mb-4 text-white">
+              YNS = <span className="text-neon">Three Chapters Working Together</span>
+            </h2>
+            <p className="text-steel/80 max-w-2xl mx-auto">
+              Not just software. A category built on network-first principles.
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            <div className="p-8 rounded-lg border border-neon/40 bg-neon/5">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-neon flex items-center justify-center flex-shrink-0">
+                  <span className="text-void font-black text-xl">1</span>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-3">Standardization Band (Foundation)</h3>
+                  <p className="text-steel/90 mb-4">
+                    Every yard has unique workflows. But the driver journey can—and must—be identical. QR check-in, hardware-sourced timestamps, multilingual instructions. This standardized layer creates interoperable data across all facilities.
+                  </p>
+                  <p className="text-steel/80 text-sm">
+                    <strong className="text-neon">Why it matters:</strong> Without standardized inputs, you can't have network intelligence. Legacy YMS records different schemas per site. YNS enforces the same schema everywhere.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-8 rounded-lg border border-steel/30 bg-carbon/40">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-steel/60 flex items-center justify-center flex-shrink-0">
+                  <span className="text-white font-black text-xl">2</span>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-3">Control Loop (Per-Site Execution)</h3>
+                  <p className="text-steel/90 mb-4">
+                    Standardized inputs enable automated enforcement. The system doesn't just track what happened—it directs what happens next. Detention thresholds trigger auto-escalation. Dock assignments optimize for throughput. Safety protocols enforce compliance.
+                  </p>
+                  <p className="text-steel/80 text-sm">
+                    <strong className="text-white">Why it matters:</strong> Legacy YMS gives you visibility. YNS gives you control. The shift from reactive recording to proactive enforcement.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-8 rounded-lg border border-steel/30 bg-carbon/40">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-full bg-steel/60 flex items-center justify-center flex-shrink-0">
+                  <span className="text-white font-black text-xl">3</span>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-3">Network Effect (Executive Layer)</h3>
+                  <p className="text-steel/90 mb-4">
+                    When all facilities use the same schema (Chapter 1) and enforce the same control loops (Chapter 2), network intelligence emerges. Carrier benchmarks. Predictive ETAs. Bottleneck detection. Cross-site best practices. Each new facility makes the entire network smarter.
+                  </p>
+                  <p className="text-steel/80 text-sm">
+                    <strong className="text-white">Why it matters:</strong> This is where ROI goes from linear to exponential. Site 1 gives you local efficiency. Site 10+ creates a learning flywheel impossible for isolated YMS deployments.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

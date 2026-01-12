@@ -261,6 +261,103 @@ export default function ProductPage() {
         </div>
       </section>
 
+      {/* Chapter 3: Network Intelligence Layer */}
+      <section className="py-24 bg-gradient-to-b from-void to-carbon/30 border-b border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <div className="inline-block px-3 py-1 rounded bg-steel/10 border border-steel/40 mb-4">
+              <span className="text-steel font-mono text-xs uppercase tracking-wider">Chapter 3: Network Effect</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black mb-6 text-white">
+              How Modules Feed <span className="text-neon">Network Intelligence</span>
+            </h2>
+            <p className="text-xl text-steel/90 max-w-3xl mx-auto">
+              Every module generates standardized data. At scale, this data creates cross-site intelligence impossible for any single facility.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {/* Carrier Benchmarking */}
+            <div className="p-8 rounded-lg border border-neon/40 bg-neon/5">
+              <div className="flex items-center gap-3 mb-4">
+                <Metrics size={32} className="text-neon" />
+                <h3 className="text-2xl font-bold text-white">Carrier Benchmarking</h3>
+              </div>
+              <p className="text-steel/90 mb-4">
+                <strong className="text-white">Data source:</strong> Digital Guard check-ins + Digital BOL timestamps across all facilities
+              </p>
+              <p className="text-steel/80 mb-4">
+                "Carrier X averages 18 min dwell across 12 facilities. Carrier Y: 42 min. Same load types."
+              </p>
+              <p className="text-sm text-steel/70">
+                Use in rate negotiations. Prefer reliable carriers. Cut detention disputes before they happen.
+              </p>
+            </div>
+
+            {/* Predictive ETAs */}
+            <div className="p-8 rounded-lg border border-neon/40 bg-neon/5">
+              <div className="flex items-center gap-3 mb-4">
+                <Ignite size={32} className="text-neon" />
+                <h3 className="text-2xl font-bold text-white">Predictive ETAs</h3>
+              </div>
+              <p className="text-steel/90 mb-4">
+                <strong className="text-white">Data source:</strong> Digital YMS move history + Digital Comms driver patterns
+              </p>
+              <p className="text-steel/80 mb-4">
+                "Based on 847 similar loads, this truck will need 27 minutes from gate-in to dock-complete."
+              </p>
+              <p className="text-sm text-steel/70">
+                AI learns from every trip. Your 10th facility is smarter than your 1st. Predictions improve with scale.
+              </p>
+            </div>
+
+            {/* Bottleneck Detection */}
+            <div className="p-8 rounded-lg border border-neon/40 bg-neon/5">
+              <div className="flex items-center gap-3 mb-4">
+                <Crosshair size={32} className="text-neon" />
+                <h3 className="text-2xl font-bold text-white">Bottleneck Detection</h3>
+              </div>
+              <p className="text-steel/90 mb-4">
+                <strong className="text-white">Data source:</strong> All modules across all facilities (comparative analysis)
+              </p>
+              <p className="text-steel/80 mb-4">
+                "Facility 3's cross-dock is 2.3x slower than network average. Root cause: manual sortation."
+              </p>
+              <p className="text-sm text-steel/70">
+                Compare any facility to network baseline. Surface outliers. Replicate best practices automatically.
+              </p>
+            </div>
+
+            {/* Deployment Acceleration */}
+            <div className="p-8 rounded-lg border border-neon/40 bg-neon/5">
+              <div className="flex items-center gap-3 mb-4">
+                <Velocity size={32} className="text-neon" />
+                <h3 className="text-2xl font-bold text-white">Deployment Acceleration</h3>
+              </div>
+              <p className="text-steel/90 mb-4">
+                <strong className="text-white">Data source:</strong> Standardized playbooks from all previous deployments
+              </p>
+              <p className="text-steel/80 mb-4">
+                "Deploy yard 1: 8 weeks. Deploy yard 10: 4 weeks. Deploy yard 40: 2 weeks."
+              </p>
+              <p className="text-sm text-steel/70">
+                Each rollout makes the next faster. Intelligence compounds. Standardization enables transfer.
+              </p>
+            </div>
+          </div>
+
+          {/* Bottom Line */}
+          <div className="bg-carbon/50 border border-neon/30 rounded-lg p-8 text-center">
+            <p className="text-2xl font-bold text-white mb-3">
+              Chapter 1 standardizes inputs → Chapter 2 enforces locally → Chapter 3 learns globally
+            </p>
+            <p className="text-steel/80 max-w-2xl mx-auto">
+              This is why we're network-first. Site-by-site optimization is linear. Network optimization is exponential.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Features Grid */}
       <section className="py-24 bg-carbon/50 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
