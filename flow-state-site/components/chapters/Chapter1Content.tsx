@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Check } from 'lucide-react';
+import StandardizationBandVisual from '@/components/StandardizationBandVisual';
 
 export default function Chapter1Content() {
   return (
@@ -19,6 +20,9 @@ export default function Chapter1Content() {
             This is the foundation that makes everything else possible.
           </p>
         </div>
+
+        {/* Visual Diagram */}
+        <StandardizationBandVisual />
 
         {/* Driver Journey Components */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
