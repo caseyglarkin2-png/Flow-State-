@@ -539,6 +539,26 @@ export default function SingularityPage() {
             The <span className="neon-glow">Irreversible</span> Shift
           </h2>
 
+          {/* Chapter 1 Foundation Callout */}
+          <div className="mb-12 p-8 rounded-lg border-2 border-neon/40 bg-neon/5">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-full bg-neon flex items-center justify-center flex-shrink-0">
+                <span className="text-void font-black text-xl">1</span>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-3">Every Metric Starts with Chapter 1</h3>
+                <p className="text-steel/90 mb-4">
+                  The network intelligence you see in this simulation is <strong className="text-neon">100% sourced from standardized Chapter 1 inputs</strong>: 
+                  QR check-in timestamps, driver actions, reason codes, multilingual comms receipts.
+                </p>
+                <p className="text-steel/90">
+                  Without the Standardization Band (identical driver journey across all facilities), none of this is possible. 
+                  The network effect doesn't emerge from visibility—it emerges from <span className="text-white font-semibold">interoperable, defensible, hardware-sourced data</span>.
+                </p>
+              </div>
+            </div>
+          </div>
+
           <div className="space-y-8 text-lg text-steel/90 leading-relaxed">
             <p>
               <span className="text-neon font-bold text-2xl">"</span>
@@ -594,6 +614,33 @@ export default function SingularityPage() {
               <br />
               <span className="neon-glow">And it's happening now.</span>
             </p>
+          </div>
+
+          {/* Data Flow: Chapter 1 → 2 → 3 */}
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="p-6 rounded-lg border border-neon/40 bg-neon/5">
+              <div className="text-neon font-mono text-xs uppercase tracking-wider mb-2">Chapter 1 Input</div>
+              <h3 className="text-lg font-bold text-white mb-3">Standardized Timestamps</h3>
+              <p className="text-steel/80 text-sm">
+                QR check-in: 8:47:23am. Dock-start: 9:12:08am. Gate-out: 10:05:14am. Hardware-sourced. Defensible. Same schema across all 260 facilities.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-lg border border-steel/30 bg-carbon/40">
+              <div className="text-steel/60 font-mono text-xs uppercase tracking-wider mb-2">Chapter 2 Processing</div>
+              <h3 className="text-lg font-bold text-white mb-3">Per-Site Control Loop</h3>
+              <p className="text-steel/80 text-sm">
+                Facility 12 processes data locally: "Carrier X, live load, 78 min dwell." Control loop triggers: auto-escalate if &gt;90 min, assign priority dock.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-lg border border-steel/30 bg-carbon/40">
+              <div className="text-steel/60 font-mono text-xs uppercase tracking-wider mb-2">Chapter 3 Intelligence</div>
+              <h3 className="text-lg font-bold text-white mb-3">Network-Level Insight</h3>
+              <p className="text-steel/80 text-sm">
+                Network aggregates: "Carrier X averages 78 min across 12 facilities. Carrier Y: 42 min." Predictive alert: "High dwell risk detected."
+              </p>
+            </div>
           </div>
         </div>
       </section>
