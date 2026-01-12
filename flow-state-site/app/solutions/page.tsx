@@ -1,55 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   SOLUTIONS PAGE - REDUNDANCY REPORT (Pass 6)
-   ═══════════════════════════════════════════════════════════════
-   
-   A) EXACT DUPLICATE STRINGS:
-      1. "Cut the leak" phrase duplicates YardLeakSection from homepage
-      2. Mission trigger/outcome text not found elsewhere - GOOD
-      3. "Same math. Same posture." is unique - OK
-   
-   B) CONCEPT DUPLICATION:
-      1. "Tax" metaphor (detention/expedite/search/security/variance) is unique - KEEP
-      2. Each mission explains intervention but doesn't reference chapters - NEEDS MAPPING
-      3. "Pick the one that hurts most" - good urgency, not duplicated
-   
-   C) CTA DUPLICATION:
-      - Primary: "Run the Network Leak Diagnostic"
-      - Secondary: "Model Full ROI"
-      - Both CTAs exist on homepage - MINOR overlap, acceptable
-      - Each mission has "Get a quote" - TOO MANY, reduce to 1 sticky CTA
-   
-   D) WHAT TO DELETE:
-      ✗ Individual "Get a quote" CTAs after each mission (5 duplicates)
-   
-   E) WHAT TO CONSOLIDATE:
-      ↓ Move mission → chapter mapping to shared data structure
-      ↓ Add chapter badges to each mission (Ch1/Ch2/Ch3)
-   
-   F) WHAT TO ADD:
-      + ChapterSwitcher to filter missions by chapter
-      + Chapter badge on each MissionCard
-      + Single sticky CTA bar instead of per-mission CTAs
-   
-   WHAT IT SAYS NOW:
-   - "Cut the leak one mission at a time"
-   - 5 missions: detention tax, expedite tax, search tax, security tax, variance tax
-   - Brief/deep toggle via lane store (good progressive disclosure)
-   - MissionCard shows: trigger → what breaks → intervention → outcome
-   
-   WHAT IT SHOULD SAY (Spine Integration):
-   - Each mission maps to a chapter:
-     * Detention/Security tax → Ch1 (standardization fixes timestamps/ID)
-     * Expedite/Search tax → Ch2 (control loop fixes queues/location)
-     * Variance tax → Ch3 (network consistency enables comparison)
-   - Should show "Pick your mission, see which chapter solves it"
-   
-   TOP 3 CONVERSION BLOCKERS:
-   1. No chapter mapping - visitors don't see mission → spine connection
-   2. Missing ChapterSwitcher - should filter missions by chapter
-   3. No clear "most facilities start with detention tax (Ch1)" guidance
-   
-   STATUS: Mission cards well-structured ✓, Need chapter integration
-   NEXT: Add mission → chapter tags, optional ChapterSwitcher filter
+   SOLUTIONS PAGE - With Chapter Mapping
    ═══════════════════════════════════════════════════════════════ */
 
 'use client';
@@ -62,42 +12,64 @@ import FrameShiftHero from '@/components/FrameShiftHero';
 import MissionCard from '@/components/MissionCard';
 import { useLaneStore } from '@/store/lane';
 
+type Chapter = '1' | '2' | '3';
+
 export default function SolutionsPage() {
   const lane = useLaneStore((s) => s.lane);
 
-  const missions = [
+  const missions: Array<{
+    title: string;
+    trigger: string;
+    whatBreaks: string;
+    intervention: string;
+    outcome: string;
+    chapter: Chapter;
+    chapterName: string;
+  }> = [
     {
       title: 'Stop the detention tax',
-      trigger: 'You’re paying detention and nobody trusts the timestamps.',
+      trigger: "You're paying detention and nobody trusts the timestamps.",
       whatBreaks: 'Disputes drag. Ops gets blamed. Finance treats it as a tax.',
       intervention: 'Standard check-in/out with defensible time capture and exception handling.',
       outcome: 'Fewer disputes. Clearer accountability. Negotiation leverage improves.',
+      chapter: '1',
+      chapterName: 'Standardization Band',
+    },
+    {
+      title: 'Cut the security tax',
+      trigger: 'Cargo theft, fraudulent carriers, and compliance violations are costing you millions.',
+      whatBreaks: 'Manual ID checks miss fraud. Investigations take weeks. Insurance premiums climb.',
+      intervention: 'ID scanning + carrier credentialing + tamper-evident audit trail + CTPAT/TSA compliance.',
+      outcome: '80% theft reduction, 15% insurance discount, compliant gates with forensic-grade evidence.',
+      chapter: '1',
+      chapterName: 'Standardization Band',
     },
     {
       title: 'Cut the expedite tax',
       trigger: 'Peak days turn the gate into a queue with no control loop.',
       whatBreaks: 'Drivers stack up. Dock plans drift. Everyone improvises.',
       intervention: 'Instrument the gate, route exceptions, and enforce repeatable workflows.',
-      outcome: 'More predictable turns and fewer “surprise” delays.',
+      outcome: 'More predictable turns and fewer "surprise" delays.',
+      chapter: '2',
+      chapterName: 'Yard Control Loop',
     },
     {
       title: 'Eliminate the search tax',
-      trigger: 'Your network can’t answer: “Where is the trailer right now?”',
+      trigger: "Your network can't answer: \"Where is the trailer right now?\"",
       whatBreaks: 'Teams waste hours searching and rework piles up.',
       intervention: 'Ground-truth yard state + consistent yard map + standardized moves.',
       outcome: 'Less search time and tighter yard execution.',
+      chapter: '2',
+      chapterName: 'Yard Control Loop',
     },
-    {      title: 'Cut the security tax',
-      trigger: 'Cargo theft, fraudulent carriers, and compliance violations are costing you millions.',
-      whatBreaks: 'Manual ID checks miss fraud. Investigations take weeks. Insurance premiums climb.',
-      intervention: 'ID scanning + carrier credentialing + tamper-evident audit trail + CTPAT/TSA compliance.',
-      outcome: '80% theft reduction, 15% insurance discount, compliant gates with forensic-grade evidence.',
-    },
-    {      title: 'End the variance tax',
+    {
+      title: 'End the variance tax',
       trigger: 'Every facility runs a different process and reporting is unreliable.',
-      whatBreaks: 'Leadership can’t compare performance; improvements don’t stick.',
+      whatBreaks: "Leadership can't compare performance; improvements don't stick.",
       intervention: 'One network playbook with site-specific configuration and the same measurement layer.',
       outcome: 'Comparable KPIs across the network; ROI compounds as adoption grows.',
+      chapter: '3',
+      chapterName: 'Network Effect',
     },
   ];
 
@@ -124,28 +96,35 @@ export default function SolutionsPage() {
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-black mb-3">Pick the tax you want to cut first</h2>
-          <p className="text-steel max-w-3xl">
+          <p className="text-steel max-w-3xl mb-4">
             Each tax has the same pattern: invisible cost → root cause → intervention → measurable recovery.
+          </p>
+          <p className="text-sm text-steel/70 mb-8">
+            Each mission maps to a specific chapter of the Flow State spine. See which chapter solves which problem.
           </p>
 
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
             {shown.map((m) => (
-              <MissionCard
-                key={m.title}
-                title={m.title}
-                trigger={m.trigger}
-                whatBreaks={m.whatBreaks}
-                intervention={m.intervention}
-                outcome={m.outcome}
-                cta={{ href: '/contact', label: 'Get a quote' }}
-              />
+              <div key={m.title} className="relative">
+                <div className="absolute -top-2 -right-2 z-10 px-3 py-1 rounded-full text-xs font-mono uppercase tracking-wider bg-neon/10 border border-neon/40 text-neon">
+                  Ch{m.chapter}: {m.chapterName}
+                </div>
+                <MissionCard
+                  title={m.title}
+                  trigger={m.trigger}
+                  whatBreaks={m.whatBreaks}
+                  intervention={m.intervention}
+                  outcome={m.outcome}
+                  cta={{ href: '/contact', label: 'Get a quote' }}
+                />
+              </div>
             ))}
           </div>
 
           <div className="mt-10 rounded-xl border border-neon/15 bg-carbon/40 p-6">
             <h3 className="text-xl font-bold text-neon">Proof without pretending</h3>
             <p className="text-steel mt-2">
-              We don’t publish customer logos or exact metrics here. We do provide modeled case study formats you can share
+              We don't publish customer logos or exact metrics here. We do provide modeled case study formats you can share
               internally.
             </p>
             <div className="mt-5 flex flex-col sm:flex-row gap-3">
