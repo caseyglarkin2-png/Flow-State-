@@ -127,8 +127,6 @@ import Chapter1Content from '@/components/chapters/Chapter1Content';
 import Chapter2Content from '@/components/chapters/Chapter2Content';
 import Chapter3Content from '@/components/chapters/Chapter3Content';
 import YardBuilderHook from '@/components/YardBuilderHook';
-import NetworkEffectModel from '@/components/NetworkEffectModel';
-import YardLeakSection from '@/components/YardLeakSection';
 import StickyCTABar from '@/components/StickyCTABar';
 import { calcRoiV2, getRoiV2InputsForPreset } from '@/lib/economics';
 import { X, Check, DollarSign, Warehouse } from 'lucide-react';
