@@ -68,6 +68,10 @@ import Card from '@/components/Card';
 import { ExpandableCard } from '@/components/ExpandableCard';
 import ChapterSwitcher, { type Chapter } from '@/components/ChapterSwitcher';
 import StandardizationBand from '@/components/StandardizationBand';
+import ProblemTaxonomy from '@/components/ProblemTaxonomy';
+import Chapter1Content from '@/components/chapters/Chapter1Content';
+import Chapter2Content from '@/components/chapters/Chapter2Content';
+import Chapter3Content from '@/components/chapters/Chapter3Content';
 import YardBuilderHook from '@/components/YardBuilderHook';
 import NetworkEffectModel from '@/components/NetworkEffectModel';
 import YardLeakSection from '@/components/YardLeakSection';
@@ -174,9 +178,40 @@ export default function Home() {
           CHAPTERS SWITCHER
           The spine. The IA. The mental model.
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-16 border-t border-neon/20 bg-carbon/30 sticky top-16 z-40">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="sticky top-0 z-40 bg-void/95 backdrop-blur-md border-b border-neon/20">
+        <div className="max-w-6xl mx-auto px-6 py-6">
           <ChapterSwitcher activeChapter={activeChapter} onChapterChange={setActiveChapter} />
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          CHAPTER CONTENT SECTIONS
+          Progressive disclosure of the 3-chapter narrative spine
+      ═══════════════════════════════════════════════════════════════ */}
+      {activeChapter === '1' && <Chapter1Content />}
+      {activeChapter === '2' && <Chapter2Content />}
+      {activeChapter === '3' && <Chapter3Content />}
+
+      {/* ═══════════════════════════════════════════════════════════════
+          PROBLEM TAXONOMY: 20 vs 5
+          Why base deployment solves 50% of problems (the 50% that matter)
+      ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-20 border-b border-steel/20 bg-carbon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <p className="text-neon font-mono text-sm tracking-widest mb-4 uppercase">
+              Problem Taxonomy
+            </p>
+            <h2 className="text-3xl md:text-4xl font-black mb-4 text-white">
+              Every Yard Has 20 Problems. <span className="text-neon">We Solve the 10 That Matter.</span>
+            </h2>
+            <p className="text-lg text-steel/80 max-w-3xl mx-auto">
+              5 problems are universal across all yards. 5 more are the top issues per facility. 
+              Base deployment handles those 10. The remaining 10 are finite permutations we productize over time.
+            </p>
+          </div>
+
+          <ProblemTaxonomy />
         </div>
       </section>
 
@@ -267,83 +302,25 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          YMS vs YNS COMPARISON
-          Make the category distinction clear
+          PROBLEM TAXONOMY: 20 vs 5
+          Why base deployment solves 50% of problems (the 50% that matter)
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-16 border-b border-steel/20 bg-carbon/20">
-        <div className="max-w-5xl mx-auto px-6">
+      <section className="py-20 border-b border-steel/20 bg-carbon/20">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-12">
             <p className="text-neon font-mono text-sm tracking-widest mb-4 uppercase">
-              Full Comparison
+              Problem Taxonomy
             </p>
             <h2 className="text-3xl md:text-4xl font-black mb-4 text-white">
-              What changes when you shift from site-by-site to network-level
+              Every Yard Has 20 Problems. <span className="text-neon">We Solve the 10 That Matter.</span>
             </h2>
             <p className="text-lg text-steel/80 max-w-3xl mx-auto">
-              YMS was built for single facilities. YNS was built for networks. Every capability differs.
+              5 problems are universal across all yards. 5 more are the top issues per facility. 
+              Base deployment handles those 10. The remaining 10 are finite permutations we productize over time.
             </p>
           </div>
 
-          <div className="overflow-hidden rounded-lg border border-steel/30 bg-void">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-steel/30">
-                  <th className="py-4 px-6 text-left text-steel/60 font-mono text-xs uppercase tracking-wider">
-                    Capability
-                  </th>
-                  <th className="py-4 px-6 text-center text-steel/60 font-mono text-xs uppercase tracking-wider border-l border-steel/20">
-                    Traditional YMS
-                  </th>
-                  <th className="py-4 px-6 text-center text-neon font-mono text-xs uppercase tracking-wider border-l border-neon/30 bg-neon/5">
-                    YNS (YardFlow)
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-steel/20">
-                <tr className="hover:bg-carbon/30 transition-colors">
-                  <td className="py-4 px-6 text-sm text-white font-semibold">Optimization Scope</td>
-                  <td className="py-4 px-6 text-center text-steel/70 text-sm border-l border-steel/20">Single facility</td>
-                  <td className="py-4 px-6 text-center text-neon text-sm border-l border-neon/30 bg-neon/5">Entire network</td>
-                </tr>
-                <tr className="hover:bg-carbon/30 transition-colors">
-                  <td className="py-4 px-6 text-sm text-white font-semibold">Data Sharing</td>
-                  <td className="py-4 px-6 text-center text-steel/70 text-sm border-l border-steel/20">Isolated per site</td>
-                  <td className="py-4 px-6 text-center text-neon text-sm border-l border-neon/30 bg-neon/5">Cross-site intelligence</td>
-                </tr>
-                <tr className="hover:bg-carbon/30 transition-colors">
-                  <td className="py-4 px-6 text-sm text-white font-semibold">Carrier Intelligence</td>
-                  <td className="py-4 px-6 text-center text-steel/70 text-sm border-l border-steel/20">Local history only</td>
-                  <td className="py-4 px-6 text-center text-neon text-sm border-l border-neon/30 bg-neon/5">Network benchmarking</td>
-                </tr>
-                <tr className="hover:bg-carbon/30 transition-colors">
-                  <td className="py-4 px-6 text-sm text-white font-semibold">Predictive ETA</td>
-                  <td className="py-4 px-6 text-center text-steel/70 text-sm border-l border-steel/20">Manual updates</td>
-                  <td className="py-4 px-6 text-center text-neon text-sm border-l border-neon/30 bg-neon/5">AI-powered, learns from network</td>
-                </tr>
-                <tr className="hover:bg-carbon/30 transition-colors">
-                  <td className="py-4 px-6 text-sm text-white font-semibold">ROI Pattern</td>
-                  <td className="py-4 px-6 text-center text-steel/70 text-sm border-l border-steel/20">Linear per facility</td>
-                  <td className="py-4 px-6 text-center text-neon text-sm border-l border-neon/30 bg-neon/5">Compounds with scale</td>
-                </tr>
-                <tr className="hover:bg-carbon/30 transition-colors">
-                  <td className="py-4 px-6 text-sm text-white font-semibold">Deployment Model</td>
-                  <td className="py-4 px-6 text-center text-steel/70 text-sm border-l border-steel/20">Custom per site</td>
-                  <td className="py-4 px-6 text-center text-neon text-sm border-l border-neon/30 bg-neon/5">Standardized, faster rollout</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div className="mt-8 p-6 rounded-lg border border-neon/30 bg-gradient-to-r from-neon/5 to-transparent">
-            <p className="text-white font-semibold mb-2">The Network Effect</p>
-            <p className="text-steel/80 text-sm leading-relaxed">
-              Site 1 gives you local efficiency. Site 2 adds benchmarking. Site 5+ unlocks pattern recognition. 
-              Site 10+ creates a learning flywheel where each new facility makes the entire network smarter. 
-              <Link href="/network-effect" className="text-neon hover:underline ml-1">
-                See the math →
-              </Link>
-            </p>
-          </div>
+          <ProblemTaxonomy />
         </div>
       </section>
 
