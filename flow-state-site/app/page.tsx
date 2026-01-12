@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
+import { ExpandableCard } from '@/components/ExpandableCard';
 import YardBuilderHook from '@/components/YardBuilderHook';
 import NetworkEffectModel from '@/components/NetworkEffectModel';
 import YardLeakSection from '@/components/YardLeakSection';
@@ -561,46 +562,122 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              {
-                icon: <Shield size={36} className="text-neon" />,
-                name: 'Digital Guard',
-                desc: 'Automated check-in. Driver verification in seconds. Eliminate the clipboard.',
-                stat: '70% gate labor reduction',
-              },
-              {
-                icon: <Agent size={36} className="text-neon" />,
-                name: 'Digital Comms',
-                desc: 'Direct driver messaging with real-time translation. Zero radio dependency.',
-                stat: '40+ languages supported',
-              },
-              {
-                icon: <Manifest size={36} className="text-neon" />,
-                name: 'Digital BOL',
-                desc: 'Touchless documentation. Timestamped chain of custody for every load.',
-                stat: dollarsPerFacility(cfoBaseline.paperlessSavings),
-              },
-              {
-                icon: <Cortex size={36} className="text-neon" />,
-                name: 'Digital YMS',
-                desc: 'Real-time asset tracking with AI-powered move recommendations.',
-                stat: 'Sub-5 min deployment time',
-              },
-            ].map((module, i) => (
-              <Card key={i} hover className="p-8">
-                <div className="flex items-start gap-5">
-                  <div className="p-3 rounded-lg bg-neon/10 flex-shrink-0">
-                    {module.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-2">{module.name}</h3>
-                    <p className="text-steel/80 mb-4 leading-relaxed">{module.desc}</p>
-                    <p className="text-neon font-mono text-sm font-bold">{module.stat}</p>
-                  </div>
+          <div className="space-y-4">
+            <ExpandableCard
+              id="digital-guard"
+              title="Digital Guard"
+              kicker="Automated check-in. Driver verification in seconds. Eliminate the clipboard."
+              bullets={[
+                "OCR license scan + real-time carrier verification",
+                "70% gate labor reduction (kiosk replaces manual guard)",
+                "Sub-60 second check-in time",
+                "Integrates with existing gate systems"
+              ]}
+            >
+              <div className="space-y-4">
+                <p>
+                  <strong className="text-white">What it does:</strong> Digital Guard replaces manual gate processes with automated driver check-in, carrier verification, and yard access control.
+                </p>
+                <p>
+                  Drivers scan their license at a kiosk. System cross-references against carrier database, validates credentials, and grants/denies access in under 60 seconds. No guard tower. No clipboard. No radio calls.
+                </p>
+                <p>
+                  <strong className="text-white">Why it matters:</strong> Most facilities spend 2-3 FTE per shift managing gate operations. Digital Guard drops that to 0.5 FTE (exception handling only). The ROI is immediate and measurable.
+                </p>
+                <div className="mt-6">
+                  <Link href="/product#digital-guard" className="text-neon font-semibold hover:text-white transition-colors">
+                    Full Digital Guard Spec →
+                  </Link>
                 </div>
-              </Card>
-            ))}
+              </div>
+            </ExpandableCard>
+
+            <ExpandableCard
+              id="digital-comms"
+              title="Digital Comms"
+              kicker="Direct driver messaging with real-time translation. Zero radio dependency."
+              bullets={[
+                "SMS + in-app messaging to driver phones",
+                "40+ languages with auto-translation",
+                "Eliminates radio/PA announcements",
+                "Timestamped message delivery confirmation"
+              ]}
+            >
+              <div className="space-y-4">
+                <p>
+                  <strong className="text-white">What it does:</strong> Digital Comms sends instructions directly to driver phones via SMS or YardFlow mobile app. Real-time translation for multilingual fleets.
+                </p>
+                <p>
+                  Instead of broadcasting "Truck 1234 proceed to Door 12" over a crackling PA system (that the driver may or may not hear), you send a timestamped message with GPS coordinates. Driver acknowledges receipt. You have proof of communication.
+                </p>
+                <p>
+                  <strong className="text-white">Why it matters:</strong> Miscommunication causes 30% of yard dwell variance. Digital Comms eliminates "I never got that message" disputes and cuts average wait time by 15-20 minutes.
+                </p>
+                <div className="mt-6">
+                  <Link href="/product#digital-comms" className="text-neon font-semibold hover:text-white transition-colors">
+                    Full Digital Comms Spec →
+                  </Link>
+                </div>
+              </div>
+            </ExpandableCard>
+
+            <ExpandableCard
+              id="digital-bol"
+              title="Digital BOL"
+              kicker="Touchless documentation. Timestamped chain of custody for every load."
+              bullets={[
+                "100% paperless BOL workflow",
+                `${dollarsPerFacility(cfoBaseline.paperlessSavings)} annual savings per facility`,
+                "Forensic-grade detention proof",
+                "3-second BOL capture vs 5-minute paper scan"
+              ]}
+            >
+              <div className="space-y-4">
+                <p>
+                  <strong className="text-white">What it does:</strong> Digital BOL replaces paper bills of lading with timestamped digital documents. Driver scans QR code, system captures load details, photos, and signatures electronically.
+                </p>
+                <p>
+                  Every BOL has a cryptographic timestamp, GPS coordinates, and photo proof of load condition. This creates an auditable chain of custody from gate-in to gate-out. No lost paperwork. No manual data entry. No detention disputes.
+                </p>
+                <p>
+                  <strong className="text-white">Why it matters:</strong> Paper BOLs cost $8-12 per load (labor + storage + retrieval). Digital BOL costs $0.50. At 50-100 loads/day per facility, that's {dollarsPerFacility(cfoBaseline.paperlessSavings)}/year in hard savings.
+                </p>
+                <div className="mt-6">
+                  <Link href="/product#digital-bol" className="text-neon font-semibold hover:text-white transition-colors">
+                    Full Digital BOL Spec →
+                  </Link>
+                </div>
+              </div>
+            </ExpandableCard>
+
+            <ExpandableCard
+              id="digital-yms"
+              title="Digital YMS"
+              kicker="Real-time asset tracking with AI-powered move recommendations."
+              bullets={[
+                "Live GPS tracking of every trailer",
+                "AI-powered dock assignment optimization",
+                "Sub-5 min average deployment time",
+                "WMS/TMS integration via standard APIs"
+              ]}
+            >
+              <div className="space-y-4">
+                <p>
+                  <strong className="text-white">What it does:</strong> Digital YMS orchestrates all yard moves—trailer positioning, dock assignments, driver routing—using real-time data and AI recommendations.
+                </p>
+                <p>
+                  System knows where every trailer is, what it contains, when it arrived, and what dock it needs. AI engine optimizes dock assignments to minimize deadhead moves and maximize throughput. Average deployment time drops from 45 minutes to under 5 minutes.
+                </p>
+                <p>
+                  <strong className="text-white">Why it matters:</strong> Most yards operate at 60-70% theoretical throughput because dock assignments are reactive, not optimized. Digital YMS lifts throughput to 85-90% without adding capacity.
+                </p>
+                <div className="mt-6">
+                  <Link href="/product#digital-yms" className="text-neon font-semibold hover:text-white transition-colors">
+                    Full Digital YMS Spec →
+                  </Link>
+                </div>
+              </div>
+            </ExpandableCard>
           </div>
 
           <div className="mt-12 text-center">

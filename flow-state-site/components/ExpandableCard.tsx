@@ -79,24 +79,24 @@ export function ExpandableCard({
       ref={detailsRef}
       id={id}
       data-persona={persona.join(",")}
-      className="group rounded-2xl border border-slate-800/60 bg-slate-950/40 backdrop-blur-sm transition-all"
+      className="group rounded-lg border border-steel/30 bg-carbon/30 backdrop-blur-sm transition-all hover:border-neon/40 hover:shadow-lg hover:shadow-neon/10"
       onToggle={(e) => {
         const next = (e.currentTarget as HTMLDetailsElement).open;
         setOpen(next);
         onToggle?.(next);
       }}
     >
-      <summary className="cursor-pointer list-none px-5 py-4 select-none hover:bg-slate-900/20 transition-colors">
+      <summary className="cursor-pointer list-none px-6 py-5 select-none hover:bg-carbon/50 transition-colors">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
-            <h3 className="text-base font-semibold text-slate-100">{title}</h3>
-            {kicker && <p className="mt-1 text-sm text-slate-300">{kicker}</p>}
+            <h3 className="text-xl font-bold text-white mb-1">{title}</h3>
+            {kicker && <p className="text-steel/80 leading-relaxed">{kicker}</p>}
 
             {bulletList.length > 0 && (
-              <ul className="mt-3 space-y-1 text-sm text-slate-300">
+              <ul className="mt-3 space-y-2 text-sm text-steel/90">
                 {bulletList.map((b, i) => (
                   <li key={i} className="flex gap-2">
-                    <span className="mt-1 h-1.5 w-1.5 rounded-full bg-emerald-400/80 shrink-0" />
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-neon shrink-0" />
                     <span>{b}</span>
                   </li>
                 ))}
@@ -104,15 +104,15 @@ export function ExpandableCard({
             )}
           </div>
 
-          <div className="mt-1 shrink-0 text-xs font-medium text-emerald-300/90">
-            <span className="group-open:hidden">Expand</span>
-            <span className="hidden group-open:inline">Collapse</span>
+          <div className="mt-1 shrink-0 text-xs font-bold text-neon uppercase tracking-wider">
+            <span className="group-open:hidden">+</span>
+            <span className="hidden group-open:inline">−</span>
           </div>
         </div>
       </summary>
 
-      <div className="px-5 pb-5 pt-0 text-sm text-slate-200">
-        <div className="border-t border-slate-800/60 pt-4">
+      <div className="px-6 pb-6 pt-0 text-steel/90 leading-relaxed">
+        <div className="border-t border-steel/20 pt-5">
           {children}
         </div>
       </div>
