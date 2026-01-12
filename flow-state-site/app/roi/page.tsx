@@ -279,23 +279,31 @@ export default function ROICalculatorPage() {
       <section className="pt-32 pb-16 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-8">
-            <p className="text-ember font-mono text-sm mb-4 tracking-wider uppercase">
-              {`Your ${facilities}-site network leak recovery`}
+            <p className="text-neon font-mono text-sm mb-4 tracking-wider uppercase">
+              ROI Calculator
             </p>
             <h1 className="text-5xl md:text-7xl font-black mb-6">
-              <span className="neon-glow">{formatTruckloads(scenario.capacity.yearOneIncrementalTruckloads)}</span>
-              <span className="text-white"> truckloads</span>
-              <span className="text-steel">/year unlocked</span>
+              Board-ready in 3 minutes. <br />
+              <span className="text-neon">Deep model when you're ready.</span>
             </h1>
-            <p className="text-xl text-steel max-w-2xl mx-auto">
-              Year‑1 profit impact: <span className="text-white font-semibold">{formatMoney(scenario.capacity.yearOneProfitImpact)}</span>.
-              <br />
-              <span className="text-sm text-steel/80">
-                Detention recovered. Gate labor reduced. Expedites cut. Throughput lifted.
-              </span>
-              <br />
-              <span className="text-neon font-semibold">Directional until validated with your data.</span>
+            <p className="text-xl text-steel/90 max-w-3xl mx-auto mb-8">
+              Two modes. Same engine. Quick Mode assumes network averages. Pro Mode dials in your actual labor, dwell, and detention data. Both show Year-1 savings, 5-year NPV, and cost of waiting.
             </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 max-w-4xl mx-auto text-left">
+              <div className="p-4 rounded-lg bg-neon/10 border border-neon/30">
+                <p className="text-neon font-bold mb-1">Quick Mode</p>
+                <p className="text-sm text-steel/80">Network averages. Board-ready in 3 minutes.</p>
+              </div>
+              <div className="p-4 rounded-lg bg-neon/10 border border-neon/30">
+                <p className="text-neon font-bold mb-1">Pro Mode</p>
+                <p className="text-sm text-steel/80">Site-specific inputs. Deep validation.</p>
+              </div>
+              <div className="p-4 rounded-lg bg-neon/10 border border-neon/30">
+                <p className="text-neon font-bold mb-1">Same ROI Engine</p>
+                <p className="text-sm text-steel/80">Both models use actual YardFlow economics.</p>
+              </div>
+            </div>
           </div>
 
           {/* Executive Snapshot - Always visible */}
