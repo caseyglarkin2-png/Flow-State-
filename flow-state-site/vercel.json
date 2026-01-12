@@ -3,11 +3,11 @@
   "buildCommand": "npm run build",
   "build": {
     "env": {
-      "NEXT_PUBLIC_SITE_URL": "https://yardflow-swart.vercel.app"
+      "NEXT_PUBLIC_SITE_URL": "https://flow-state-klbt.vercel.app"
     }
   },
   "env": {
-    "NEXT_PUBLIC_SITE_URL": "https://yardflow-swart.vercel.app"
+    "NEXT_PUBLIC_SITE_URL": "https://flow-state-klbt.vercel.app"
   }
 }
 
