@@ -4,6 +4,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
+import StandardizationBand from '@/components/StandardizationBand';
 import { Metrics, Agent, Confirm, Nexus, Shield, Territory, Ignite, Device, Crosshair, Velocity } from '@/components/icons/FlowIcons';
 import { Lock } from 'lucide-react';
 
@@ -12,31 +13,67 @@ export default function ProductPage() {
     <div className="min-h-screen bg-void">
       <Header />
 
-      {/* Hero Section - Reframed around solving the Network Leak */}
-      <section className="relative min-h-screen flex items-center justify-center pt-32 border-b border-neon/20">
-        <div className="max-w-6xl mx-auto px-6 text-center py-20">
-          <p className="text-ember font-mono text-sm tracking-widest mb-6 uppercase">
-            The system that eliminates the network leak
-          </p>
-          
-          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
-            Four Modules. <span className="text-neon">One Invoice.</span>
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-steel mb-6 max-w-3xl mx-auto">
-            Each module cuts a different piece of the leak. Deploy what you need. 
-            See exactly what you saved.
-          </p>
-          
-          <p className="text-lg text-steel/70 mb-12 max-w-2xl mx-auto">
-            Gate labor. Detention disputes. Trailer hunts. Expedites. Security risks. 
-            Stop paying them one module at a time.
-          </p>
+      {/* Hero Section - Network-First Visual Motif */}
+      <section className="relative pt-32 pb-20 border-b border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <p className="text-neon font-mono text-sm tracking-widest mb-6 uppercase">
+              Network-First Product Architecture
+            </p>
+            
+            <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
+              Four Modules. <span className="text-neon">Three Chapters.</span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-steel mb-6 max-w-3xl mx-auto">
+              Standardize the driver journey (Chapter 1). Enforce the control loop (Chapter 2). Unlock network intelligence (Chapter 3).
+            </p>
+          </div>
 
-          <a href="/diagnostic" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-ember text-white hover:bg-white hover:text-void hover:shadow-lg transition-all">
-            <Crosshair size={20} />
-            Run the Network Leak Diagnostic
-          </a>
+          {/* Standardization Band Visual */}
+          <div className="mb-12">
+            <StandardizationBand />
+          </div>
+
+          <div className="text-center">
+            <p className="text-steel/80 max-w-3xl mx-auto mb-8">
+              Every yard is different. But the driver journey can—and must—be identical. 
+              This standardized band (QR check-in, defensible timestamps, multilingual comms) 
+              is the foundation that makes network control possible.
+            </p>
+            <a href="/diagnostic" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg transition-all">
+              <Crosshair size={20} />
+              Run Your Network Diagnostic
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Chapter Framing */}
+      <section className="py-16 bg-carbon/30 border-b border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="p-6 rounded-lg border border-neon/40 bg-neon/5">
+              <div className="text-neon font-mono text-xs uppercase tracking-wider mb-2">Chapter 1</div>
+              <h3 className="text-xl font-bold text-white mb-3">Standardization Band</h3>
+              <p className="text-steel/90 mb-3">Digital Guard + Digital Comms create the standardized driver layer</p>
+              <p className="text-steel/70 text-sm">QR check-in, timestamps, multilingual instructions. Same across all facilities.</p>
+            </div>
+            
+            <div className="p-6 rounded-lg border border-steel/30 bg-carbon/40">
+              <div className="text-steel/60 font-mono text-xs uppercase tracking-wider mb-2">Chapter 2</div>
+              <h3 className="text-xl font-bold text-white mb-3">Yard Control Loop</h3>
+              <p className="text-steel/90 mb-3">Digital BOL + Digital YMS enforce what happens next</p>
+              <p className="text-steel/70 text-sm">Asset tracking, detention alerts, dock optimization. Control, not just visibility.</p>
+            </div>
+            
+            <div className="p-6 rounded-lg border border-steel/30 bg-carbon/40">
+              <div className="text-steel/60 font-mono text-xs uppercase tracking-wider mb-2">Chapter 3</div>
+              <h3 className="text-xl font-bold text-white mb-3">Network Effect</h3>
+              <p className="text-steel/90 mb-3">All modules feed cross-site intelligence</p>
+              <p className="text-steel/70 text-sm">Carrier benchmarks, predictive ETAs, bottleneck detection. Network-level insights.</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -46,7 +83,10 @@ export default function ProductPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Text */}
             <div>
-              <h2 className="text-5xl font-black mb-6">The Digital Guard</h2>
+              <div className="inline-block px-3 py-1 rounded bg-neon/10 border border-neon/40 mb-4">
+                <span className="text-neon font-mono text-xs uppercase tracking-wider">Chapter 1: Standardization Band</span>
+              </div>
+              <h2 className="text-5xl font-black mb-6">Digital Guard</h2>
               <p className="text-lg text-steel/90 mb-4 leading-relaxed">
                 Your biggest security risk is not knowing who is on your property. 
                 <span className="text-neon font-semibold"> Digital Guard verifies every carrier before they enter.</span>
@@ -103,9 +143,12 @@ export default function ProductPage() {
 
             {/* Text */}
             <div className="order-1 lg:order-2">
-              <h2 className="text-5xl font-black mb-6">The Orchestration Engine</h2>
+              <div className="inline-block px-3 py-1 rounded bg-steel/10 border border-steel/40 mb-4">
+                <span className="text-steel font-mono text-xs uppercase tracking-wider">Chapter 2: Control Loop</span>
+              </div>
+              <h2 className="text-5xl font-black mb-6">Digital YMS</h2>
               <p className="text-lg text-steel/90 mb-8 leading-relaxed">
-                Stop hunting. Start moving. YardFlow by FreightRoll tracks every asset's exact location. Drag-and-drop interface makes directing yard jockeys a video-game-like experience.
+                Real-time asset tracking with AI-powered dock assignments. The system doesn't just show you where trailers are—it tells you where they should go next.
               </p>
               <ul className="space-y-3 mb-8">
                 {[
@@ -132,9 +175,12 @@ export default function ProductPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Text */}
             <div>
-              <h2 className="text-5xl font-black mb-6">The Driver Experience</h2>
+              <div className="inline-block px-3 py-1 rounded bg-neon/10 border border-neon/40 mb-4">
+                <span className="text-neon font-mono text-xs uppercase tracking-wider">Chapter 1: Standardization Band</span>
+              </div>
+              <h2 className="text-5xl font-black mb-6">Digital Comms</h2>
               <p className="text-lg text-steel/90 mb-8 leading-relaxed">
-                No app required. Drivers receive SMS links to a secure web portal. Instructions are clear, translated, and timestamped.
+                Direct-to-driver messaging in 40+ languages. No radio. No PA system. No "I never got the message" disputes. SMS + app notifications with read receipts.
               </p>
               <ul className="space-y-3 mb-8">
                 {[
@@ -183,9 +229,12 @@ export default function ProductPage() {
 
             {/* Text */}
             <div>
-              <h2 className="text-5xl font-black mb-6">Security & Verification</h2>
+              <div className="inline-block px-3 py-1 rounded bg-steel/10 border border-steel/40 mb-4">
+                <span className="text-steel font-mono text-xs uppercase tracking-wider">Chapter 2: Control Loop</span>
+              </div>
+              <h2 className="text-5xl font-black mb-6">Digital BOL</h2>
               <p className="text-lg text-steel/90 mb-8 leading-relaxed">
-                Every yard is a gate. Every gate is a vulnerability. YardFlow by FreightRoll verifies carrier IDs, scans credentials, and creates an auditable access log at every entry point.
+                Touchless documentation with forensic-grade timestamps. 100% paperless BOL workflow. Photo proof of load condition. Eliminates detention disputes before they happen.
               </p>
               <ul className="space-y-3 mb-8">
                 {[

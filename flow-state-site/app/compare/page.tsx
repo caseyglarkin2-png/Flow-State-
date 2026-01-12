@@ -3,6 +3,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
 import Link from 'next/link';
+import StandardizationBand from '@/components/StandardizationBand';
+import OperatingModelComparison from '@/components/OperatingModelComparison';
 
 export default function CompareIndexPage() {
   return (
@@ -11,12 +13,39 @@ export default function CompareIndexPage() {
 
       <section className="pt-32 pb-16 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-5xl md:text-7xl font-black mb-6">
-            Compare the <span className="neon-glow">operating models</span>
-          </h1>
-          <p className="text-xl text-steel max-w-3xl">
-            This isn't feature-bingo. It's: do you have a control loop, and can you make timestamps defensible?
-          </p>
+          <div className="text-center mb-12">
+            <p className="text-neon font-mono text-xs uppercase tracking-wider mb-4">Operating Model Comparison</p>
+            <h1 className="text-5xl md:text-7xl font-black mb-6">
+              Recording vs <span className="text-neon">Enforcing</span>
+            </h1>
+            <p className="text-xl text-steel max-w-3xl mx-auto">
+              This isn't feature-bingo. It's: do you have a control loop, and can you make timestamps defensible? Network-first vs site-by-site.
+            </p>
+          </div>
+
+          {/* Standardization Band Visual */}
+          <div className="mb-12">
+            <StandardizationBand />
+          </div>
+
+          <div className="text-center">
+            <p className="text-steel/80 max-w-3xl mx-auto">
+              Standardize the driver journey band (Chapter 1), enforce the control loop (Chapter 2), unlock network intelligence (Chapter 3). Legacy approaches solve for site-level visibility. We solve for network-level control.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Operating Model Comparison */}
+      <section className="py-20 border-b border-neon/20 bg-carbon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-black mb-4 text-white">The Fundamental Difference</h2>
+            <p className="text-steel/80 max-w-2xl mx-auto">
+              Legacy YMS records events after they happen. YardFlow enforces what happens next.
+            </p>
+          </div>
+          <OperatingModelComparison />
         </div>
       </section>
 
