@@ -1,12 +1,8 @@
 import { ImageResponse } from 'next/og';
-import { SITE_METADATA, ACTIVE_VARIANT, LOGO_VARIANTS } from '@/lib/branding';
 
 export const runtime = 'edge';
 
 export async function GET() {
-  // Get active logo SVG
-  const logoSvg = LOGO_VARIANTS[ACTIVE_VARIANT].svg;
-  
   const response = new ImageResponse(
     (
       <div
@@ -116,7 +112,7 @@ export async function GET() {
             marginTop: '20px',
           }}
         >
-          {/* Active logo variant */}
+          {/* Active logo - Network variant */}
           <svg
             viewBox="0 0 32 32"
             width="32"
@@ -125,8 +121,16 @@ export async function GET() {
               fill: 'none',
               stroke: '#00B4FF',
             }}
-            dangerouslySetInnerHTML={{ __html: logoSvg.replace(/currentColor/g, '#00B4FF') }}
-          />
+          >
+            <circle cx="16" cy="16" r="3" fill="#00B4FF"/>
+            <circle cx="8" cy="8" r="2" fill="#00B4FF"/>
+            <circle cx="24" cy="8" r="2" fill="#00B4FF"/>
+            <circle cx="16" cy="26" r="2" fill="#00B4FF"/>
+            <line x1="16" y1="13" x2="9" y2="9.5" stroke="#00B4FF" strokeWidth="1.5"/>
+            <line x1="16" y1="13" x2="23" y2="9.5" stroke="#00B4FF" strokeWidth="1.5"/>
+            <line x1="16" y1="19" x2="16" y2="24" stroke="#00B4FF" strokeWidth="1.5"/>
+            <circle cx="16" cy="16" r="14.5" stroke="#00B4FF" strokeWidth="1" opacity="0.3"/>
+          </svg>
           <div
             style={{
               display: 'flex',
