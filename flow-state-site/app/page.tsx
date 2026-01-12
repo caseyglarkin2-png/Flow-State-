@@ -119,6 +119,8 @@ import Footer from '@/components/Footer';
 import Card from '@/components/Card';
 import { ExpandableCard } from '@/components/ExpandableCard';
 import ChapterSwitcher, { type Chapter } from '@/components/ChapterSwitcher';
+import HeroNetworkHook from '@/components/HeroNetworkHook';
+import ProofMetrics from '@/components/ProofMetrics';
 import StandardizationBand from '@/components/StandardizationBand';
 import ProblemTaxonomy from '@/components/ProblemTaxonomy';
 import Chapter1Content from '@/components/chapters/Chapter1Content';
@@ -171,56 +173,27 @@ export default function Home() {
         <div className="absolute inset-0 grid-background opacity-20"></div>
         
         <div className="relative z-10 max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <p className="text-neon font-mono text-sm tracking-widest mb-6 uppercase">
-              Yard Network System
-            </p>
-            
-            <h1 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-[0.95]">
-              <span className="text-white">You don't have 50 yards.</span>
-              <br />
-              <span className="text-neon drop-shadow-[0_0_30px_rgba(0,180,255,0.5)] mt-4 block">
-                You have one network.
-              </span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-steel/90 mb-10 max-w-3xl mx-auto leading-relaxed">
-              Standardize the driver journey. Unlock network control. Deploy in weeks, not quarters.
-            </p>
-          </div>
-
+          <HeroNetworkHook variant="main" showCTAs={false} />
+          
           {/* Standardization Band Visual */}
           <div className="mb-12">
             <StandardizationBand animated={true} />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
-            <div className="p-4 rounded-lg border border-steel/30 bg-carbon/40 text-center">
-              <p className="text-neon font-bold text-3xl mb-1">70%</p>
-              <p className="text-steel/80 text-sm">Gate labor reduction</p>
-            </div>
-            <div className="p-4 rounded-lg border border-steel/30 bg-carbon/40 text-center">
-              <p className="text-neon font-bold text-3xl mb-1">50%</p>
-              <p className="text-steel/80 text-sm">Dwell reduction (48→24 min)</p>
-            </div>
-            <div className="p-4 rounded-lg border border-steel/30 bg-carbon/40 text-center">
-              <p className="text-neon font-bold text-3xl mb-1">65%</p>
-              <p className="text-steel/80 text-sm">Detention recovery</p>
-            </div>
-          </div>
+          <ProofMetrics variant="hero" showDisclaimer={false} className="max-w-4xl mx-auto mb-10" />
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/contact"
+              href="/yardbuilder"
               className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all"
             >
-              Get Your Network Rollout Plan
+              Generate Yard Report
             </Link>
             <Link
               href="/roi"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-steel/40 text-steel hover:border-neon hover:text-neon transition-all"
             >
-              Run ROI in 3 Minutes
+              Model ROI in 3 Minutes
             </Link>
           </div>
         </div>
@@ -354,29 +327,6 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          PROBLEM TAXONOMY: 20 vs 5
-          Why base deployment solves 50% of problems (the 50% that matter)
-      ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-20 border-b border-steel/20 bg-carbon/20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <p className="text-neon font-mono text-sm tracking-widest mb-4 uppercase">
-              Problem Taxonomy
-            </p>
-            <h2 className="text-3xl md:text-4xl font-black mb-4 text-white">
-              Every Yard Has 20 Problems. <span className="text-neon">We Solve the 10 That Matter.</span>
-            </h2>
-            <p className="text-lg text-steel/80 max-w-3xl mx-auto">
-              5 problems are universal across all yards. 5 more are the top issues per facility. 
-              Base deployment handles those 10. The remaining 10 are finite permutations we productize over time.
-            </p>
-          </div>
-
-          <ProblemTaxonomy />
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════
           THE LEAK: HIDDEN COST INVENTORY
           Make the invisible visible before offering the solution
       ═══════════════════════════════════════════════════════════════ */}
@@ -388,25 +338,7 @@ export default function Home() {
       ═══════════════════════════════════════════════════════════════ */}
       <section className="py-12 bg-carbon/30 border-b border-steel/20">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <p className="text-3xl md:text-4xl font-black text-neon">70%</p>
-              <p className="text-steel text-sm mt-1">Gate labor reduction</p>
-            </div>
-            <div>
-              <p className="text-3xl md:text-4xl font-black text-white">65%</p>
-              <p className="text-steel text-sm mt-1">Detention recovery rate</p>
-            </div>
-            <div>
-              <p className="text-3xl md:text-4xl font-black text-white">50%</p>
-              <p className="text-steel text-sm mt-1">Dwell time reduction (48 min → 24 min avg)</p>
-            </div>
-            <div>
-              <p className="text-3xl md:text-4xl font-black text-white">8 weeks</p>
-              <p className="text-steel text-sm mt-1">Avg deployment per facility</p>
-            </div>
-          </div>
-          <p className="text-center text-steel/50 text-xs mt-6">Metrics based on Primo/Singularity simulations and validated ROI models. Individual results vary.</p>
+          <ProofMetrics variant="grid" showDisclaimer={true} />
         </div>
       </section>
 
