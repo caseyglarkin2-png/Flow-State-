@@ -1,6 +1,34 @@
 /* ═══════════════════════════════════════════════════════════════
-   AUDIT: SOLUTIONS PAGE (Mission → Chapter Mapping)
+   SOLUTIONS PAGE - REDUNDANCY REPORT (Pass 6)
    ═══════════════════════════════════════════════════════════════
+   
+   A) EXACT DUPLICATE STRINGS:
+      1. "Cut the leak" phrase duplicates YardLeakSection from homepage
+      2. Mission trigger/outcome text not found elsewhere - GOOD
+      3. "Same math. Same posture." is unique - OK
+   
+   B) CONCEPT DUPLICATION:
+      1. "Tax" metaphor (detention/expedite/search/security/variance) is unique - KEEP
+      2. Each mission explains intervention but doesn't reference chapters - NEEDS MAPPING
+      3. "Pick the one that hurts most" - good urgency, not duplicated
+   
+   C) CTA DUPLICATION:
+      - Primary: "Run the Network Leak Diagnostic"
+      - Secondary: "Model Full ROI"
+      - Both CTAs exist on homepage - MINOR overlap, acceptable
+      - Each mission has "Get a quote" - TOO MANY, reduce to 1 sticky CTA
+   
+   D) WHAT TO DELETE:
+      ✗ Individual "Get a quote" CTAs after each mission (5 duplicates)
+   
+   E) WHAT TO CONSOLIDATE:
+      ↓ Move mission → chapter mapping to shared data structure
+      ↓ Add chapter badges to each mission (Ch1/Ch2/Ch3)
+   
+   F) WHAT TO ADD:
+      + ChapterSwitcher to filter missions by chapter
+      + Chapter badge on each MissionCard
+      + Single sticky CTA bar instead of per-mission CTAs
    
    WHAT IT SAYS NOW:
    - "Cut the leak one mission at a time"

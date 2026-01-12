@@ -1,3 +1,36 @@
+/* ═══════════════════════════════════════════════════════════════
+   YARDBUILDER PAGE - REDUNDANCY REPORT (Pass 6)
+   ═══════════════════════════════════════════════════════════════
+   
+   A) EXACT DUPLICATE STRINGS:
+      1. Pain type labels ('detention', 'gate', 'labor', etc.) - unique data
+      2. "readiness in four steps" - not found elsewhere - GOOD
+      3. Focus descriptions generated dynamically - OK
+   
+   B) CONCEPT DUPLICATION:
+      1. "Defensible timestamps" explained here + Security page + Ch1
+      2. "Control loop" referenced but not explained
+      3. YardBuilder unique value prop NOT stated clearly
+   
+   C) CTA DUPLICATION:
+      - "Start the report" (primary) - unique
+      - "Or skip to ROI" (secondary) - minor overlap with homepage
+      - Export report CTA - unique value
+   
+   D) WHAT TO DELETE:
+      ✗ Nothing - this page has minimal redundancy
+   
+   E) WHAT TO CONSOLIDATE:
+      ↓ Pain type descriptions should reference chapter solutions
+      ↓ "Focus" text should pull from shared copy for consistency
+   
+   F) WHAT TO ADD:
+      + Link pain types to chapters ("detention → Ch1 solution")
+      + Preview of what report will include
+      + "Why this diagnostic matters" context block
+   
+   ═══════════════════════════════════════════════════════════════ */
+
 "use client";
 
 import React, { useMemo, useState, useEffect } from 'react';

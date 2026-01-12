@@ -1,4 +1,36 @@
 /* ═══════════════════════════════════════════════════════════════
+   ROI CALCULATOR PAGE - REDUNDANCY REPORT (Pass 6)
+   ═══════════════════════════════════════════════════════════════
+   
+   A) EXACT DUPLICATE STRINGS:
+      1. Economics metrics (70%, 65%, 50%) appear here + homepage + chapters
+      2. "Board-ready" mentioned 3× (heading, PDF export, CFO proof) - OK (reinforcement)
+      3. Network effect multiplier explained here + Singularity + Homepage
+   
+   B) CONCEPT DUPLICATION:
+      1. "Why ROI is hard to model" explained in deep mode + CFO proof section
+      2. Conservative/Base/Aggressive toggle duplicates Singularity scenario picker
+      3. Economics breakdown duplicates Chapter content (labor/dwell/detention)
+   
+   C) CTA DUPLICATION:
+      - "Export PDF" appears 2× (top + bottom) - reduce to sticky
+      - "Contact for custom model" competes with primary CTAs
+   
+   D) WHAT TO DELETE:
+      ✗ Duplicate PDF export CTAs - make ONE sticky
+      ✗ Redundant economics explanation if chapters cover it
+   
+   E) WHAT TO CONSOLIDATE:
+      ↓ Metrics source: economics.ts (already done ✓)
+      ↓ Chapter-wise breakdown should match Chapter1/2/3 content
+   
+   F) WHAT TO ADD:
+      + "See how this maps to chapters" link
+      + Validation warnings from economics.ts (already done ✓)
+      + Year-1 ramp explanation (already present)
+   
+   ═══════════════════════════════════════════════════════════════
+   
    AUDIT: ROI CALCULATOR PAGE (Board-Ready Economics)
    ═══════════════════════════════════════════════════════════════
    

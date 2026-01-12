@@ -1,4 +1,36 @@
 /* ═══════════════════════════════════════════════════════════════
+   SINGULARITY PAGE - REDUNDANCY REPORT (Pass 6)
+   ═══════════════════════════════════════════════════════════════
+   
+   A) EXACT DUPLICATE STRINGS:
+      1. Network effect formula appears here + homepage + ROI calculator
+      2. "Cross-site intelligence" appears 4× in different contexts
+      3. Metcalfe-inspired multiplier explained here + economics.ts
+   
+   B) CONCEPT DUPLICATION:
+      1. "Chapter 3" explanation repeats Chapter3Content component
+      2. "Depends on standardization" repeats Ch1 dependency
+      3. Facility count → network value curve duplicates homepage proof
+   
+   C) CTA DUPLICATION:
+      - "Model your network" CTA overlaps with ROI calculator
+      - No clear differentiation from ROI page value prop
+   
+   D) WHAT TO DELETE:
+      ✗ Redundant "this is Chapter 3" explanation - link to chapters instead
+      ✗ Duplicate standardization dependency explanation
+   
+   E) WHAT TO CONSOLIDATE:
+      ↓ Network effect formula should pull from economics.ts only
+      ↓ Scenario picker uses same presets as ROI - GOOD
+   
+   F) WHAT TO ADD:
+      + "This is Chapter 3 in action" badge at top
+      + Link to homepage for full spine context
+      + "Why network intelligence requires Ch1" callout
+   
+   ═══════════════════════════════════════════════════════════════
+   
    AUDIT: SINGULARITY PAGE (Network Intelligence Visualization)
    ═══════════════════════════════════════════════════════════════
    

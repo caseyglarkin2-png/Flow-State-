@@ -1,4 +1,36 @@
 /* ═══════════════════════════════════════════════════════════════
+   COMPARE PAGE - REDUNDANCY REPORT (Pass 6)
+   ═══════════════════════════════════════════════════════════════
+   
+   A) EXACT DUPLICATE STRINGS:
+      1. "Recording vs Enforcing" appears here + OperatingModelComparison + Ch2
+      2. "Defensible timestamps" explanation duplicates Security page + Ch1
+      3. "Network-first vs site-by-site" duplicates homepage YNS section
+   
+   B) CONCEPT DUPLICATION:
+      1. StandardizationBand visual + explanation duplicates homepage/product
+      2. Chapter 1/2/3 summary duplicates ChapterSwitcher descriptions
+      3. Operating model distinction covered here + homepage + OperatingModelComparison
+   
+   C) CTA DUPLICATION:
+      - Links to legacy-yms and spreadsheets sub-pages
+      - No primary CTA - should have "See detailed comparison" or similar
+   
+   D) WHAT TO DELETE:
+      ✗ Redundant chapter summary (link to homepage spine instead)
+      ✗ Duplicate StandardizationBand explanation
+   
+   E) WHAT TO CONSOLIDATE:
+      ↓ "Recording vs Enforcing" should be THE canonical explanation (make this the deep-dive)
+      ↓ Defensible timestamps link to Security page for full story
+   
+   F) WHAT TO ADD:
+      + Detailed feature comparison table (missing!)
+      + "Decision-grade content" - specific YardFlow vs Legacy YMS grid
+      + Economics comparison (network ROI vs per-site ROI)
+   
+   ═══════════════════════════════════════════════════════════════
+   
    AUDIT: COMPARE PAGE (Operating Model Differentiation)
    ═══════════════════════════════════════════════════════════════
    

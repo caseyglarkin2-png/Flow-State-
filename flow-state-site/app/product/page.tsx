@@ -1,6 +1,34 @@
 /* ═══════════════════════════════════════════════════════════════
-   AUDIT: PRODUCT PAGE (Module Architecture)
+   PRODUCT PAGE - REDUNDANCY REPORT (Pass 6)
    ═══════════════════════════════════════════════════════════════
+   
+   A) EXACT DUPLICATE STRINGS:
+      1. "Four Modules" heading appears 2× (hero + module section)
+      2. "Standardize the driver journey" appears in hero + chapter cards
+      3. Chapter descriptions (Ch1/2/3) duplicate content from ChapterSwitcher
+      4. StandardizationBand explanation repeats homepage text
+   
+   B) CONCEPT DUPLICATION:
+      1. "Why these modules" missing - rationale scattered across ExpandableCards
+      2. Module → Chapter mapping shown statically, should be interactive
+      3. "Network-First Product Architecture" not clearly differentiated from homepage
+   
+   C) CTA DUPLICATION:
+      - "Run Your Network Diagnostic" (1×) - OK
+      - No competing CTAs - GOOD
+   
+   D) WHAT TO DELETE:
+      ✗ Static chapter framing cards - replace with ChapterSwitcher
+      ✗ Duplicate "Four Modules" heading in module section
+   
+   E) WHAT TO CONSOLIDATE:
+      ↓ Chapter descriptions should come from shared copy.ts
+      ↓ Module details already use ExpandableCard - KEEP
+   
+   F) WHAT TO ADD:
+      + ChapterSwitcher to navigate modules by chapter
+      + "Why these 4?" rationale section
+      + Link back to homepage spine for full context
    
    WHAT IT SAYS NOW:
    - "Four Modules. Three Chapters."
