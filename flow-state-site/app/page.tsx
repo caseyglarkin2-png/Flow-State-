@@ -1,9 +1,73 @@
-import React from 'react';
+/**
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * FLOW STATE HOMEPAGE - NETWORK-FIRST NARRATIVE SPINE
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * 
+ * THREE-CHAPTER STORY ARC:
+ * 
+ * CHAPTER 1: THE STANDARDIZATION BAND (Driver Journey)
+ * - The Network Foundation
+ * - Every yard is different. But the driver journey can—and must—be identical.
+ * - QR check-in (no app), touchless timestamps, exception reason codes, multilingual instructions
+ * - This is Ground Source Truth: defensible time capture that replaces "what someone typed in"
+ * - Measurable outcomes: 70% gate labor reduction, 50% dwell reduction (48→24 min), 65% detention recovery
+ * - This layer is inevitable. Standardize this and the network wakes up.
+ * 
+ * CHAPTER 2: THE YARD CONTROL LOOP (Per-Site Execution)
+ * - Powered by the standardized driver layer
+ * - Real-time asset state, yard map, dwell anomalies, alerts, operational clarity
+ * - Not "more visibility." It's a control loop: system enforces what happens next.
+ * - Every yard has unique permutations, but they all run on the same protocol.
+ * 
+ * CHAPTER 3: THE NETWORK EFFECT (Executive Layer)
+ * - Tied directly to Chapter 1 standardized inputs
+ * - Cross-site benchmarking, predictive alerts, bottleneck detection, network-level intelligence
+ * - Singularity map: drill down from network anomaly to root cause facility
+ * - This is why we're network-first. Site-by-site optimization is the wrong game.
+ * 
+ * PROBLEM TAXONOMY:
+ * - 20 problems per yard; 5 are ubiquitous across all yards
+ * - Base deployment solves: Top 5 per yard + the 5 network-wide problems
+ * - Remaining issues: co-development path (finite permutations; we productize them over time)
+ * 
+ * OPERATING MODEL (vs Legacy YMS):
+ * - Legacy YMS: Records events after they happen
+ * - Flow State: Enforces what happens next (control loop)
+ * - Network standardization comes first (Driver Journey band), then yard permutations are solved
+ * 
+ * VISUAL MOTIF (used throughout):
+ * - Standardization Band diagram: chaos (top) → standardized driver layer (middle) → network control (bottom)
+ * - Reused on: Homepage hero, Product page, Compare page
+ * 
+ * UX PATTERN:
+ * - Chapters switcher (persistent, above fold)
+ * - Collapsible sections (SEO-friendly, content in DOM)
+ * - No mega-scroll doom. Site feels shorter without losing depth.
+ * 
+ * CONVERSION FUNNEL:
+ * - Every major section ends with: measurable outcome OR board-ready artifact CTA
+ * - Primary: "Get Your Network Rollout Plan" (contact)
+ * - Secondary: "Run ROI in 3 Minutes" (calculator)
+ * - Tertiary: "Download YardBuilder Report" (diagnostic)
+ * 
+ * ECONOMICS CONSISTENCY:
+ * - All numbers sourced from /lib/economics.ts
+ * - ROI calculator, network effect model, singularity metrics all use same math
+ * - No contradictory claims. One source of truth.
+ * 
+ * ═══════════════════════════════════════════════════════════════════════════════
+ */
+
+'use client';
+
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
 import { ExpandableCard } from '@/components/ExpandableCard';
+import ChapterSwitcher, { type Chapter } from '@/components/ChapterSwitcher';
+import StandardizationBand from '@/components/StandardizationBand';
 import YardBuilderHook from '@/components/YardBuilderHook';
 import NetworkEffectModel from '@/components/NetworkEffectModel';
 import YardLeakSection from '@/components/YardLeakSection';
@@ -24,6 +88,8 @@ import {
 } from '@/components/icons/FlowIcons';
 
 export default function Home() {
+  const [activeChapter, setActiveChapter] = useState<Chapter>('1');
+
   // Match ROI calculator defaults: 50 facilities, 5% Year-1 rollout ramp
   // This ensures homepage KPIs match what users see when they click "Build Your Model"
   const cfoBaseline = calcRoiV2({
@@ -42,58 +108,75 @@ export default function Home() {
       <StickyCTABar ctaText="Get Your Network Rollout Plan" ctaUrl="/contact" />
 
       {/* ═══════════════════════════════════════════════════════════════
-          HERO: THE SILO TRAP
-          Lead with the category problem, not the product solution
+          HERO: STANDARDIZATION BAND MOTIF
+          The visual thesis. No fluff. Network-first or nothing.
       ═══════════════════════════════════════════════════════════════ */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-32">
         <div className="absolute inset-0 grid-background opacity-20"></div>
         
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <p className="text-neon font-mono text-sm tracking-widest mb-6 uppercase">
-            Yard Network System
-          </p>
-          
-          <h1 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-[0.95]">
-            <span className="text-white">You don't have 50 yards.</span>
-            <br />
-            <span className="text-neon drop-shadow-[0_0_30px_rgba(0,180,255,0.5)] mt-4 block">
-              You have one network.
-            </span>
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-steel/90 mb-6 max-w-3xl mx-auto leading-relaxed">
-            Site-by-site yard systems are the hidden tax on your logistics margin. YardFlow is a Yard Network System: one control plane, standardized protocols, network intelligence. Deploy fast. See ROI in weeks, not quarters.
-          </p>
+        <div className="relative z-10 max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <p className="text-neon font-mono text-sm tracking-widest mb-6 uppercase">
+              Yard Network System
+            </p>
+            
+            <h1 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-[0.95]">
+              <span className="text-white">You don't have 50 yards.</span>
+              <br />
+              <span className="text-neon drop-shadow-[0_0_30px_rgba(0,180,255,0.5)] mt-4 block">
+                You have one network.
+              </span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-steel/90 mb-10 max-w-3xl mx-auto leading-relaxed">
+              Standardize the driver journey. Unlock network control. Deploy in weeks, not quarters.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10 text-left">
-            <div className="p-4 rounded-lg border border-steel/30 bg-carbon/40">
-              <p className="text-neon font-bold text-2xl mb-1">70%</p>
-              <p className="text-steel/80 text-sm">Gate labor reduction (automated carrier verification)</p>
+          {/* Standardization Band Visual */}
+          <div className="mb-12">
+            <StandardizationBand animated={true} />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-10">
+            <div className="p-4 rounded-lg border border-steel/30 bg-carbon/40 text-center">
+              <p className="text-neon font-bold text-3xl mb-1">70%</p>
+              <p className="text-steel/80 text-sm">Gate labor reduction</p>
             </div>
-            <div className="p-4 rounded-lg border border-steel/30 bg-carbon/40">
-              <p className="text-neon font-bold text-2xl mb-1">{Math.round(cfoBaseline.yearOneRoiPercent)}%</p>
-              <p className="text-steel/80 text-sm">Year-1 ROI on 5% network rollout (modeled)</p>
+            <div className="p-4 rounded-lg border border-steel/30 bg-carbon/40 text-center">
+              <p className="text-neon font-bold text-3xl mb-1">50%</p>
+              <p className="text-steel/80 text-sm">Dwell reduction (48→24 min)</p>
             </div>
-            <div className="p-4 rounded-lg border border-steel/30 bg-carbon/40">
-              <p className="text-neon font-bold text-2xl mb-1">8 weeks</p>
-              <p className="text-steel/80 text-sm">Avg deployment per facility (standardized playbooks)</p>
+            <div className="p-4 rounded-lg border border-steel/30 bg-carbon/40 text-center">
+              <p className="text-neon font-bold text-3xl mb-1">65%</p>
+              <p className="text-steel/80 text-sm">Detention recovery</p>
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-3 px-8 py-4 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all hover:scale-105"
+              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all"
             >
               Get Your Network Rollout Plan
             </Link>
             <Link
               href="/roi"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-steel/40 text-steel hover:border-neon hover:text-neon transition-all"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-steel/40 text-steel hover:border-neon hover:text-neon transition-all"
             >
               Run ROI in 3 Minutes
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          CHAPTERS SWITCHER
+          The spine. The IA. The mental model.
+      ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-16 border-t border-neon/20 bg-carbon/30 sticky top-16 z-40">
+        <div className="max-w-6xl mx-auto px-6">
+          <ChapterSwitcher activeChapter={activeChapter} onChapterChange={setActiveChapter} />
         </div>
       </section>
 
