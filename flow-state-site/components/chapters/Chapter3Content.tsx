@@ -24,7 +24,7 @@ export default function Chapter3Content() {
 
         {/* What Network Data Unlocks */}
         <div className="mt-16">
-          <h3 className="text-2xl font-bold text-white mb-8 text-center">What Cross-Site Intelligence Enables</h3>
+          <h3 className="text-2xl font-bold text-white mb-6">What Cross-Site Intelligence Enables</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="p-6 rounded-lg border border-neon/40 bg-neon/5">

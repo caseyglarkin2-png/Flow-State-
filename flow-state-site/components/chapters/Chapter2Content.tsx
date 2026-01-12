@@ -25,11 +25,11 @@ export default function Chapter2Content() {
         {/* Control Loop Detail */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white">How the Control Loop Works</h3>
+            <h3 className="text-2xl font-bold text-white mb-6">How the Control Loop Works</h3>
             
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded bg-neon flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-neon flex items-center justify-center flex-shrink-0">
                   <span className="text-void font-bold text-sm">1</span>
                 </div>
                 <div>
@@ -41,7 +41,7 @@ export default function Chapter2Content() {
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded bg-neon flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-neon flex items-center justify-center flex-shrink-0">
                   <span className="text-void font-bold text-sm">2</span>
                 </div>
                 <div>
@@ -53,7 +53,7 @@ export default function Chapter2Content() {
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded bg-neon flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-neon flex items-center justify-center flex-shrink-0">
                   <span className="text-void font-bold text-sm">3</span>
                 </div>
                 <div>
@@ -65,7 +65,7 @@ export default function Chapter2Content() {
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="w-8 h-8 rounded bg-neon flex items-center justify-center flex-shrink-0">
+                <div className="w-8 h-8 rounded-full bg-neon flex items-center justify-center flex-shrink-0">
                   <span className="text-void font-bold text-sm">4</span>
                 </div>
                 <div>
@@ -79,33 +79,33 @@ export default function Chapter2Content() {
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white">What Gets Enforced</h3>
+            <h3 className="text-2xl font-bold text-white mb-6">What Gets Enforced</h3>
             
             <div className="space-y-3">
-              <div className="p-4 rounded-lg border border-steel/30 bg-carbon/30">
+              <div className="p-6 rounded-lg border border-neon/40 bg-neon/5">
                 <p className="font-semibold text-white mb-2">Detention Thresholds</p>
-                <p className="text-steel/80 text-sm">
+                <p className="text-steel/90 text-sm">
                   Truck waiting 45 min with no dock? System auto-escalates to ops manager. Problem resolved before it's a claim.
                 </p>
               </div>
 
-              <div className="p-4 rounded-lg border border-steel/30 bg-carbon/30">
+              <div className="p-6 rounded-lg border border-neon/40 bg-neon/5">
                 <p className="font-semibold text-white mb-2">Dock Optimization</p>
-                <p className="text-steel/80 text-sm">
+                <p className="text-steel/90 text-sm">
                   Live trailers get priority docks. Drop-and-hook moves to outer spots. Cross-dock loads expedited. AI orchestrates.
                 </p>
               </div>
 
-              <div className="p-4 rounded-lg border border-steel/30 bg-carbon/30">
+              <div className="p-6 rounded-lg border border-neon/40 bg-neon/5">
                 <p className="font-semibold text-white mb-2">Safety Compliance</p>
-                <p className="text-steel/80 text-sm">
+                <p className="text-steel/90 text-sm">
                   Hazmat loads flagged on arrival. Driver routed to isolation bay. Facility manager notified. Zero manual oversight.
                 </p>
               </div>
 
-              <div className="p-4 rounded-lg border border-steel/30 bg-carbon/30">
+              <div className="p-6 rounded-lg border border-neon/40 bg-neon/5">
                 <p className="font-semibold text-white mb-2">SLA Enforcement</p>
-                <p className="text-steel/80 text-sm">
+                <p className="text-steel/90 text-sm">
                   "All live loads processed within 2 hours or detention claim approved." System enforces. Carriers trust it.
                 </p>
               </div>
@@ -114,7 +114,7 @@ export default function Chapter2Content() {
         </div>
 
         {/* Bottom Line */}
-        <div className="mt-12 bg-carbon/50 border border-neon/30 rounded-lg p-8 text-center">
+        <div className="mt-12 bg-neon/10 border border-neon/30 rounded-lg p-8 text-center">
           <p className="text-2xl font-bold text-white mb-3">
             The shift: <span className="text-ember">Reactive recording</span> → <span className="text-neon">Proactive enforcement</span>
           </p>
