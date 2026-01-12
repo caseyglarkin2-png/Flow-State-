@@ -448,6 +448,16 @@ export default function SingularityPage() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-12 w-full">
+          {/* Chapter Badge */}
+          <div className="text-center mb-6">
+            <div className="inline-block px-4 py-2 rounded-full bg-neon/10 border border-neon/40 mb-4">
+              <span className="text-neon font-mono text-xs uppercase tracking-wider">Chapter 3 in Action</span>
+            </div>
+            <p className="text-sm text-steel/80 max-w-2xl mx-auto">
+              Network intelligence is only possible when Chapter 1 (standardization) + Chapter 2 (control) are in place. This is what Chapter 3 unlocks.
+            </p>
+          </div>
+
           {/* Title */}
           <div className="text-center mb-8">
             <h1 className="text-5xl md:text-7xl font-black mb-4 tracking-tight">

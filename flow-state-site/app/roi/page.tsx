@@ -2039,6 +2039,60 @@ export default function ROICalculatorPage() {
                   </div>
                 </Card>
 
+                {/* Chapter Breakdown */}
+                <Card className="mb-8 border-neon/30">
+                  <h3 className="font-bold text-neon mb-3">Savings by Chapter</h3>
+                  <p className="text-sm text-steel/80 mb-4">
+                    Each chapter of the Flow State spine delivers specific savings. See how the 3-chapter architecture drives ROI.
+                  </p>
+                  <div className="space-y-4">
+                    <div className="p-4 rounded-lg border border-neon/20 bg-neon/5">
+                      <div className="flex items-center justify-between mb-2">
+                        <div>
+                          <span className="text-xs font-mono uppercase tracking-wider text-neon">Chapter 1</span>
+                          <h4 className="font-semibold text-white">Standardization Band</h4>
+                        </div>
+                        <span className="text-xl font-bold text-neon">{formatMoney(calculations.annualLaborSavings * calculations.yearOneRampShare)}</span>
+                      </div>
+                      <p className="text-sm text-steel/80">
+                        70% gate labor reduction from Digital Guard + Digital Comms. QR check-in, defensible timestamps, multilingual comms.
+                      </p>
+                    </div>
+
+                    <div className="p-4 rounded-lg border border-steel/20">
+                      <div className="flex items-center justify-between mb-2">
+                        <div>
+                          <span className="text-xs font-mono uppercase tracking-wider text-steel/60">Chapter 2</span>
+                          <h4 className="font-semibold text-white">Yard Control Loop</h4>
+                        </div>
+                        <span className="text-xl font-bold text-white">{formatMoney((calculations.annualDetentionSavings + calculations.throughputValue) * calculations.yearOneRampShare)}</span>
+                      </div>
+                      <p className="text-sm text-steel/80">
+                        65% detention recovery + 42% throughput increase from Digital BOL + Digital YMS. Asset tracking, dock optimization, automated moves.
+                      </p>
+                    </div>
+
+                    <div className="p-4 rounded-lg border border-steel/20">
+                      <div className="flex items-center justify-between mb-2">
+                        <div>
+                          <span className="text-xs font-mono uppercase tracking-wider text-steel/60">Chapter 3</span>
+                          <h4 className="font-semibold text-white">Network Effect</h4>
+                        </div>
+                        <span className="text-xl font-bold text-neon">{formatMoney(calculations.networkBonusSavings * calculations.yearOneRampShare)}</span>
+                      </div>
+                      <p className="text-sm text-steel/80">
+                        {calculations.networkMultiplier.toFixed(2)}x multiplier from cross-site intelligence. Carrier benchmarks, predictive ETAs, bottleneck detection.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="mt-4 pt-4 border-t border-neon/20">
+                    <div className="flex justify-between items-center">
+                      <span className="font-semibold text-white">Total Year-1 Savings</span>
+                      <span className="text-2xl font-bold text-neon">{formatMoney(calculations.yearOneGrossSavings)}</span>
+                    </div>
+                  </div>
+                </Card>
+
                 {/* Hero metrics - Deep view */}
                 <div className="grid grid-cols-2 gap-4 mb-8">
                   <Card className="text-center bg-neon/10 border-neon">
