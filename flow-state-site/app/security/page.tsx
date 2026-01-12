@@ -168,6 +168,25 @@ export default function SecurityPage() {
               See how Digital Guard + Digital BOL work together →
             </Link>
           </div>
+
+          {/* Defensible Timestamps = Defensible Dollars */}
+          <div className="mt-16 p-8 rounded-lg bg-gradient-to-br from-neon/5 to-ember/5 border-2 border-neon/30">
+            <h3 className="text-2xl font-bold text-white mb-4 text-center">
+              Defensible Timestamps = Defensible Dollars
+            </h3>
+            <p className="text-steel/90 leading-relaxed max-w-3xl mx-auto">
+              Every detention dispute, cargo theft investigation, and compliance audit comes down to one question: 
+              <span className="text-white font-semibold"> "When exactly did this happen, and can you prove it?"</span>
+              <br /><br />
+              Manual logs are hearsay. GPS alone doesn't prove check-in. Video timestamps can be manipulated. 
+              Digital Guard creates <span className="text-neon font-semibold">cryptographically signed, QR-verified timestamps</span> that 
+              withstand legal scrutiny. Every driver check-in becomes forensic-grade evidence—admissible in court, 
+              accepted by finance, and defensible to auditors.
+              <br /><br />
+              You're not just tracking time. You're <span className="text-neon font-semibold">protecting revenue, limiting liability, 
+              and creating board-ready proof</span> that your yard operations are compliant, measurable, and financially defensible.
+            </p>
+          </div>
         </div>
       </section>
 

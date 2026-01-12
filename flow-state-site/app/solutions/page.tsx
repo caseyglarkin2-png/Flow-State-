@@ -1,3 +1,29 @@
+/* ═══════════════════════════════════════════════════════════════
+   AUDIT: SOLUTIONS PAGE (Mission → Chapter Mapping)
+   ═══════════════════════════════════════════════════════════════
+   
+   WHAT IT SAYS NOW:
+   - "Cut the leak one mission at a time"
+   - 5 missions: detention tax, expedite tax, search tax, security tax, variance tax
+   - Brief/deep toggle via lane store (good progressive disclosure)
+   - MissionCard shows: trigger → what breaks → intervention → outcome
+   
+   WHAT IT SHOULD SAY (Spine Integration):
+   - Each mission maps to a chapter:
+     * Detention/Security tax → Ch1 (standardization fixes timestamps/ID)
+     * Expedite/Search tax → Ch2 (control loop fixes queues/location)
+     * Variance tax → Ch3 (network consistency enables comparison)
+   - Should show "Pick your mission, see which chapter solves it"
+   
+   TOP 3 CONVERSION BLOCKERS:
+   1. No chapter mapping - visitors don't see mission → spine connection
+   2. Missing ChapterSwitcher - should filter missions by chapter
+   3. No clear "most facilities start with detention tax (Ch1)" guidance
+   
+   STATUS: Mission cards well-structured ✓, Need chapter integration
+   NEXT: Add mission → chapter tags, optional ChapterSwitcher filter
+   ═══════════════════════════════════════════════════════════════ */
+
 'use client';
 
 import React from 'react';

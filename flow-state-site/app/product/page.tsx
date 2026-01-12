@@ -1,3 +1,27 @@
+/* ═══════════════════════════════════════════════════════════════
+   AUDIT: PRODUCT PAGE (Module Architecture)
+   ═══════════════════════════════════════════════════════════════
+   
+   WHAT IT SAYS NOW:
+   - "Four Modules. Three Chapters."
+   - Chapter framing cards present but static (no ChapterSwitcher)
+   - StandardizationBand visual in hero
+   - ExpandableCard used for module details (good progressive disclosure)
+   
+   WHAT IT SHOULD SAY (Spine Mapping):
+   - Chapter 1: Digital Guard + Digital Comms = Standardization Band
+   - Chapter 2: Digital BOL + Digital YMS = Yard Control Loop
+   - Chapter 3: All modules feed Singularity (network intelligence)
+   
+   TOP 3 CONVERSION BLOCKERS:
+   1. No ChapterSwitcher - should let users navigate Chapter 1→2→3 modules
+   2. Chapter cards are static text - need to show module groups per chapter
+   3. Missing "why these 4 modules" rationale - should tie to leak taxonomy
+   
+   STATUS: Chapter framing exists ✓, Need interactive navigation
+   NEXT: Add ChapterSwitcher, group modules by chapter
+   ═══════════════════════════════════════════════════════════════ */
+
 'use client';
 
 import React from 'react';

@@ -1,3 +1,27 @@
+/* ═══════════════════════════════════════════════════════════════
+   AUDIT: COMPARE PAGE (Operating Model Differentiation)
+   ═══════════════════════════════════════════════════════════════
+   
+   WHAT IT SAYS NOW:
+   - "Recording vs Enforcing" - control loop distinction
+   - StandardizationBand visual in hero (good tie to Chapter 1)
+   - OperatingModelComparison component shows decision-grade table
+   - Links to legacy-yms and spreadsheets deep-dive pages
+   
+   WHAT IT SHOULD SAY (Spine Integration):
+   - Chapter 1: We standardize driver journey (they don't)
+   - Chapter 2: We enforce control loop (they record events)
+   - Chapter 3: We enable network intelligence (they do site-by-site)
+   
+   TOP 3 CONVERSION BLOCKERS:
+   1. Missing "decision-grade content" - needs specific feature comparison
+   2. No direct comparison table on this page (only OperatingModelComparison)
+   3. Doesn't clearly show "network-first vs site-by-site" economics
+   
+   STATUS: Operating model distinction clear ✓, Need feature grid
+   NEXT: Add YardFlow vs Legacy YMS feature table on main compare page
+   ═══════════════════════════════════════════════════════════════ */
+
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';

@@ -1,3 +1,29 @@
+/* ═══════════════════════════════════════════════════════════════
+   AUDIT: ROI CALCULATOR PAGE (Board-Ready Economics)
+   ═══════════════════════════════════════════════════════════════
+   
+   WHAT IT SAYS NOW:
+   - Board/deep view toggle
+   - Quick/pro mode for input detail level
+   - Uses calcRoiV2 + calcScenario from economics.ts (LOCKED ✓)
+   - Conservative/Base/Aggressive presets via getQuickInputsForPreset
+   - BoardReadyExportCTA for PDF generation
+   
+   WHAT IT SHOULD SAY (Credibility):
+   - Economics consistency verified (no contradictions) ✓
+   - Validation guardrails active (validateROICredibility) ✓
+   - Display formatting with caps (formatROI, formatPayback) ✓
+   - Year-1 ramp share shows realistic rollout (5% default)
+   
+   TOP 3 CONVERSION BLOCKERS:
+   1. No chapter breakdown - should show Ch1 (70% labor) vs Ch2 (dwell/detention) vs Ch3 (network multiplier)
+   2. PDF export not prominent enough - should be sticky CTA
+   3. Variance Kills block good but buried - should be higher in flow
+   
+   STATUS: Economics LOCKED ✓, Formatting CREDIBLE ✓
+   NEXT: Add chapter-wise savings breakdown, sticky PDF CTA
+   ═══════════════════════════════════════════════════════════════ */
+
 
 'use client';
 

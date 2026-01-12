@@ -3,6 +3,16 @@
  * FLOW STATE HOMEPAGE - NETWORK-FIRST NARRATIVE SPINE
  * ═══════════════════════════════════════════════════════════════════════════════
  * 
+ * AUDIT STATUS (Pass 5):
+ * - 3-Chapter Spine: ✓ IMPLEMENTED (ChapterSwitcher on line 183)
+ * - Economics Consistency: ✓ LOCKED (uses calcRoiV2 with enterprise_50 preset)
+ * - Progressive Disclosure: ⚠️  NEEDS EXPANSION (add ExpandableCard to long sections)
+ * 
+ * CONVERSION BLOCKERS:
+ * 1. Too much density below fold - Problem Taxonomy + Narrative Bridge need collapse
+ * 2. CTA convergence weak - YardBuilder/ROI PDF should be sticky/dominant
+ * 3. Proof at Scale section needs tightening (200→40 words max)
+ * 
  * THREE-CHAPTER STORY ARC:
  * 
  * CHAPTER 1: THE STANDARDIZATION BAND (Driver Journey)

@@ -1,3 +1,27 @@
+/* ═══════════════════════════════════════════════════════════════
+   AUDIT: SINGULARITY PAGE (Network Intelligence Visualization)
+   ═══════════════════════════════════════════════════════════════
+   
+   WHAT IT SAYS NOW:
+   - Interactive network map with 50+ facilities
+   - Drill-down from network → facility → root cause
+   - Uses calcScenario + roiV2InputsFromQuickMode (economics.ts LOCKED ✓)
+   - metcalfeInspiredMultiplier visualization
+   
+   WHAT IT SHOULD SAY (Chapter 3 Focus):
+   - This IS Chapter 3 - network effect made tangible
+   - Depends on Chapter 1 standardization (all facilities same timestamps)
+   - Shows compounding value: 5 facilities → 50 facilities = exponential insight
+   
+   TOP 3 CONVERSION BLOCKERS:
+   1. Doesn't explicitly say "This is Chapter 3" - should tie to spine
+   2. Network multiplier calculation not explained (black box feel)
+   3. Missing "only possible because of standardized inputs" callout
+   
+   STATUS: Economics LOCKED ✓, Visualization compelling ✓
+   NEXT: Add chapter badge, explain network effect formula briefly
+   ═══════════════════════════════════════════════════════════════ */
+
 'use client';
 
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
