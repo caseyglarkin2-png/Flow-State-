@@ -52,9 +52,10 @@
 
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import ChapterSwitcher, { type Chapter } from '@/components/ChapterSwitcher';
 import Card from '@/components/Card';
 import StandardizationBand from '@/components/StandardizationBand';
 import { ExpandableCard } from '@/components/ExpandableCard';
@@ -62,6 +63,8 @@ import { Metrics, Agent, Confirm, Nexus, Shield, Territory, Ignite, Device, Cros
 import { Lock } from 'lucide-react';
 
 export default function ProductPage() {
+  const [activeChapter, setActiveChapter] = useState<Chapter>('1');
+  
   return (
     <div className="min-h-screen bg-void">
       <Header />
@@ -102,39 +105,20 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* Chapter Framing */}
-      <section className="py-16 bg-carbon/30 border-b border-neon/20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 rounded-lg border border-neon/40 bg-neon/5">
-              <div className="text-neon font-mono text-xs uppercase tracking-wider mb-2">Chapter 1</div>
-              <h3 className="text-xl font-bold text-white mb-3">Standardization Band</h3>
-              <p className="text-steel/90 mb-3">Digital Guard + Digital Comms create the standardized driver layer</p>
-              <p className="text-steel/70 text-sm">QR check-in, timestamps, multilingual instructions. Same across all facilities.</p>
-            </div>
-            
-            <div className="p-6 rounded-lg border border-steel/30 bg-carbon/40">
-              <div className="text-steel/60 font-mono text-xs uppercase tracking-wider mb-2">Chapter 2</div>
-              <h3 className="text-xl font-bold text-white mb-3">Yard Control Loop</h3>
-              <p className="text-steel/90 mb-3">Digital BOL + Digital YMS enforce what happens next</p>
-              <p className="text-steel/70 text-sm">Asset tracking, detention alerts, dock optimization. Control, not just visibility.</p>
-            </div>
-            
-            <div className="p-6 rounded-lg border border-steel/30 bg-carbon/40">
-              <div className="text-steel/60 font-mono text-xs uppercase tracking-wider mb-2">Chapter 3</div>
-              <h3 className="text-xl font-bold text-white mb-3">Network Effect</h3>
-              <p className="text-steel/90 mb-3">All modules feed cross-site intelligence</p>
-              <p className="text-steel/70 text-sm">Carrier benchmarks, predictive ETAs, bottleneck detection. Network-level insights.</p>
-            </div>
-          </div>
+      {/* Chapter Navigation */}
+      <section className="sticky top-0 z-40 bg-void/95 backdrop-blur-md border-b border-neon/20">
+        <div className="max-w-6xl mx-auto px-6 py-6">
+          <ChapterSwitcher activeChapter={activeChapter} onChapterChange={setActiveChapter} />
         </div>
       </section>
 
-      {/* Module Overview Cards */}
+      {/* Module Overview Cards - Filtered by Chapter */}
       <section className="py-20 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="mb-12 text-center">
-            <p className="text-neon font-mono text-sm tracking-widest mb-4 uppercase">Product Modules</p>
+            <p className="text-neon font-mono text-sm tracking-widest mb-4 uppercase">
+              Chapter {activeChapter} Modules
+            </p>
             <h2 className="text-4xl font-black mb-4">Four Modules. One Network.</h2>
             <p className="text-xl text-steel/80 max-w-3xl mx-auto">
               Each module solves a specific yard problem. Together, they create standardized data that powers network-level intelligence.
@@ -142,6 +126,9 @@ export default function ProductPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Chapter 1 Modules: Digital Guard + Digital Comms */}
+            {activeChapter === '1' && (
+              <>
             <ExpandableCard
               id="module-guard"
               title="1. Digital Guard"
@@ -201,6 +188,12 @@ export default function ProductPage() {
                 </div>
               </div>
             </ExpandableCard>
+              </>
+            )}
+
+            {/* Chapter 2 Modules: Digital BOL + Digital YMS */}
+            {activeChapter === '2' && (
+              <>
 
             <ExpandableCard
               id="module-bol"
@@ -224,10 +217,6 @@ export default function ProductPage() {
                     <li>Automated carrier billing integration</li>
                     <li>Legal-grade proof for disputes</li>
                   </ul>
-                </div>
-                <div>
-                  <p className="text-white font-semibold mb-1">Chapter:</p>
-                  <p className="text-steel/80">Control Loop</p>
                 </div>
               </div>
             </ExpandableCard>
@@ -255,12 +244,26 @@ export default function ProductPage() {
                     <li>WMS/ERP integration for JIT scheduling</li>
                   </ul>
                 </div>
-                <div>
-                  <p className="text-white font-semibold mb-1">Chapter:</p>
-                  <p className="text-steel/80">Control Loop</p>
-                </div>
               </div>
             </ExpandableCard>
+              </>
+            )}
+
+            {/* Chapter 3: All modules feed network intelligence */}
+            {activeChapter === '3' && (
+              <div className="col-span-full p-8 rounded-lg border border-neon/40 bg-neon/5">
+                <h3 className="text-2xl font-bold mb-4 text-neon">Network Intelligence Layer</h3>
+                <p className="text-steel/90 mb-4 leading-relaxed">
+                  All four modules feed into the Singularity network intelligence platform. Standardized data from Guard, Comms, BOL, and YMS creates defensible timestamps and identical workflows across your entire facility network.
+                </p>
+                <p className="text-steel/80 mb-6">
+                  This standardization unlocks cross-site carrier benchmarks, predictive ETAs, and bottleneck detection that gets smarter with every facility you add.
+                </p>
+                <a href="/singularity" className="btn-neon inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">
+                  Explore Network Effect
+                </a>
+              </div>
+            )}
           </div>
         </div>
       </section>
