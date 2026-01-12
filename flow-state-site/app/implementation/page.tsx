@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
+import { ExpandableCard } from '@/components/ExpandableCard';
 
 export default function ImplementationPage() {
   return (
@@ -66,15 +67,16 @@ export default function ImplementationPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Archetype 1: Gated/Guarded */}
-            <Card className="border-neon/20">
-              <div className="mb-4">
-                <h3 className="text-2xl font-bold text-neon mb-2">1. Gated/Guarded</h3>
-                <p className="text-steel/60 text-sm font-mono">High Security</p>
-              </div>
-              <p className="text-steel/80 mb-4 text-sm leading-relaxed">
-                Perimeter fencing, manned gate, strict access control
-              </p>
+            <ExpandableCard
+              id="archetype-1"
+              title="1. Gated/Guarded"
+              kicker="High Security"
+              defaultOpen={true}
+            >
               <div className="space-y-3 text-sm">
+                <p className="text-steel/80 leading-relaxed">
+                  Perimeter fencing, manned gate, strict access control
+                </p>
                 <div>
                   <p className="text-white font-semibold mb-1">Priority Modules:</p>
                   <p className="text-steel/80">Digital Guard (full), Digital BOL</p>
@@ -93,18 +95,19 @@ export default function ImplementationPage() {
                   <p className="text-steel/80">Pharma distribution, high-value goods, government contracts</p>
                 </div>
               </div>
-            </Card>
+            </ExpandableCard>
 
             {/* Archetype 2: Non-Gated */}
-            <Card className="border-steel/20">
-              <div className="mb-4">
-                <h3 className="text-2xl font-bold text-white mb-2">2. Non-Gated</h3>
-                <p className="text-steel/60 text-sm font-mono">Open Access</p>
-              </div>
-              <p className="text-steel/80 mb-4 text-sm leading-relaxed">
-                No physical gate, open yard, carrier self-service
-              </p>
+            <ExpandableCard
+              id="archetype-2"
+              title="2. Non-Gated"
+              kicker="Open Access"
+              defaultOpen={false}
+            >
               <div className="space-y-3 text-sm">
+                <p className="text-steel/80 leading-relaxed">
+                  No physical gate, open yard, carrier self-service
+                </p>
                 <div>
                   <p className="text-white font-semibold mb-1">Priority Modules:</p>
                   <p className="text-steel/80">Geofence + mobile check-in, Digital Comms</p>
@@ -123,18 +126,19 @@ export default function ImplementationPage() {
                   <p className="text-steel/80">Regional LTL terminals, cross-dock hubs</p>
                 </div>
               </div>
-            </Card>
+            </ExpandableCard>
 
             {/* Archetype 3: Backup-Sensitive */}
-            <Card className="border-ember/20">
-              <div className="mb-4">
-                <h3 className="text-2xl font-bold text-ember mb-2">3. Backup-Sensitive</h3>
-                <p className="text-steel/60 text-sm font-mono">Detention Risk</p>
-              </div>
-              <p className="text-steel/80 mb-4 text-sm leading-relaxed">
-                High detention exposure, frequent carrier disputes
-              </p>
+            <ExpandableCard
+              id="archetype-3"
+              title="3. Backup-Sensitive"
+              kicker="Detention Risk"
+              defaultOpen={false}
+            >
               <div className="space-y-3 text-sm">
+                <p className="text-steel/80 leading-relaxed">
+                  High detention exposure, frequent carrier disputes
+                </p>
                 <div>
                   <p className="text-white font-semibold mb-1">Priority Modules:</p>
                   <p className="text-steel/80">Digital BOL (chain-of-custody proof), Digital Guard</p>
@@ -153,18 +157,19 @@ export default function ImplementationPage() {
                   <p className="text-steel/80">Food/bev distribution, time-sensitive perishables</p>
                 </div>
               </div>
-            </Card>
+            </ExpandableCard>
 
             {/* Archetype 4: Scale-Heavy */}
-            <Card className="border-neon/20">
-              <div className="mb-4">
-                <h3 className="text-2xl font-bold text-neon mb-2">4. Scale-Heavy</h3>
-                <p className="text-steel/60 text-sm font-mono">High Throughput</p>
-              </div>
-              <p className="text-steel/80 mb-4 text-sm leading-relaxed">
-                100+ daily moves, complex dock scheduling, tight turn windows
-              </p>
+            <ExpandableCard
+              id="archetype-4"
+              title="4. Scale-Heavy"
+              kicker="High Throughput"
+              defaultOpen={false}
+            >
               <div className="space-y-3 text-sm">
+                <p className="text-steel/80 leading-relaxed">
+                  100+ daily moves, complex dock scheduling, tight turn windows
+                </p>
                 <div>
                   <p className="text-white font-semibold mb-1">Priority Modules:</p>
                   <p className="text-steel/80">Digital YMS (orchestration), Digital Comms</p>
@@ -183,18 +188,19 @@ export default function ImplementationPage() {
                   <p className="text-steel/80">Major DCs, fulfillment centers, manufacturing receiving</p>
                 </div>
               </div>
-            </Card>
+            </ExpandableCard>
 
             {/* Archetype 5: Cross-Dock */}
-            <Card className="border-steel/20">
-              <div className="mb-4">
-                <h3 className="text-2xl font-bold text-white mb-2">5. Cross-Dock</h3>
-                <p className="text-steel/60 text-sm font-mono">Fast Turns</p>
-              </div>
-              <p className="text-steel/80 mb-4 text-sm leading-relaxed">
-                &lt;2 hour dwell target, minimal staging, tight coordination
-              </p>
+            <ExpandableCard
+              id="archetype-5"
+              title="5. Cross-Dock"
+              kicker="Fast Turns"
+              defaultOpen={false}
+            >
               <div className="space-y-3 text-sm">
+                <p className="text-steel/80 leading-relaxed">
+                  &lt;2 hour dwell target, minimal staging, tight coordination
+                </p>
                 <div>
                   <p className="text-white font-semibold mb-1">Priority Modules:</p>
                   <p className="text-steel/80">Digital Comms (real-time driver instructions), Digital YMS</p>
@@ -213,18 +219,19 @@ export default function ImplementationPage() {
                   <p className="text-steel/80">LTL break-bulk, transload facilities</p>
                 </div>
               </div>
-            </Card>
+            </ExpandableCard>
 
             {/* Archetype 6: Manufacturing */}
-            <Card className="border-steel/20">
-              <div className="mb-4">
-                <h3 className="text-2xl font-bold text-white mb-2">6. Manufacturing</h3>
-                <p className="text-steel/60 text-sm font-mono">Complex Workflows</p>
-              </div>
-              <p className="text-steel/80 mb-4 text-sm leading-relaxed">
-                Just-in-time delivery, ERP integration, production scheduling dependencies
-              </p>
+            <ExpandableCard
+              id="archetype-6"
+              title="6. Manufacturing"
+              kicker="Complex Workflows"
+              defaultOpen={false}
+            >
               <div className="space-y-3 text-sm">
+                <p className="text-steel/80 leading-relaxed">
+                  Just-in-time delivery, ERP integration, production scheduling dependencies
+                </p>
                 <div>
                   <p className="text-white font-semibold mb-1">Priority Modules:</p>
                   <p className="text-steel/80">Digital YMS (orchestration + WMS/ERP integration), Digital BOL</p>
@@ -243,7 +250,7 @@ export default function ImplementationPage() {
                   <p className="text-steel/80">Automotive plants, assembly operations, raw material receiving</p>
                 </div>
               </div>
-            </Card>
+            </ExpandableCard>
           </div>
         </div>
       </section>

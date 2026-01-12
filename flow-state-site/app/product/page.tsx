@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
 import StandardizationBand from '@/components/StandardizationBand';
+import { ExpandableCard } from '@/components/ExpandableCard';
 import { Metrics, Agent, Confirm, Nexus, Shield, Territory, Ignite, Device, Crosshair, Velocity } from '@/components/icons/FlowIcons';
 import { Lock } from 'lucide-react';
 
@@ -73,6 +74,141 @@ export default function ProductPage() {
               <p className="text-steel/90 mb-3">All modules feed cross-site intelligence</p>
               <p className="text-steel/70 text-sm">Carrier benchmarks, predictive ETAs, bottleneck detection. Network-level insights.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Module Overview Cards */}
+      <section className="py-20 border-b border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="mb-12 text-center">
+            <p className="text-neon font-mono text-sm tracking-widest mb-4 uppercase">Product Modules</p>
+            <h2 className="text-4xl font-black mb-4">Four Modules. One Network.</h2>
+            <p className="text-xl text-steel/80 max-w-3xl mx-auto">
+              Each module solves a specific yard problem. Together, they create standardized data that powers network-level intelligence.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <ExpandableCard
+              id="module-guard"
+              title="1. Digital Guard"
+              bullets={[
+                'Automated carrier ID verification with OCR + photo capture',
+                'Real-time authentication against carrier database',
+                'DOT/FMCSA audit trail for liability protection'
+              ]}
+              defaultOpen={true}
+            >
+              <div className="space-y-3 text-sm">
+                <p className="text-steel/80 leading-relaxed">
+                  Your biggest security risk is not knowing who is on your property. Digital Guard verifies every carrier before they enter using self-service kiosks with OCR license scanning, photo capture, and real-time authentication.
+                </p>
+                <div>
+                  <p className="text-white font-semibold mb-1">Key Capabilities:</p>
+                  <ul className="list-disc list-inside text-steel/80 space-y-1">
+                    <li>CDL validation + English proficiency documentation</li>
+                    <li>Flagged credentials rejected at gate</li>
+                    <li>Complete entry/exit tracking</li>
+                    <li>CTPAT & TSA compliance reporting</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="text-white font-semibold mb-1">Chapter:</p>
+                  <p className="text-neon">Standardization Band</p>
+                </div>
+              </div>
+            </ExpandableCard>
+
+            <ExpandableCard
+              id="module-comms"
+              title="2. Digital Comms"
+              bullets={[
+                'Direct-to-driver messaging in 40+ languages',
+                'SMS + app notifications with read receipts',
+                'No radio, no PA system, no disputes'
+              ]}
+              defaultOpen={false}
+            >
+              <div className="space-y-3 text-sm">
+                <p className="text-steel/80 leading-relaxed">
+                  Eliminate communication breakdowns with direct-to-driver messaging. Send real-time instructions via SMS with automatic translation, ensuring every driver receives clear, documented directions.
+                </p>
+                <div>
+                  <p className="text-white font-semibold mb-1">Key Capabilities:</p>
+                  <ul className="list-disc list-inside text-steel/80 space-y-1">
+                    <li>Zero app downloads required</li>
+                    <li>Real-time navigation to dock doors</li>
+                    <li>Automatic message confirmation tracking</li>
+                    <li>Multilingual support with auto-translation</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="text-white font-semibold mb-1">Chapter:</p>
+                  <p className="text-neon">Standardization Band</p>
+                </div>
+              </div>
+            </ExpandableCard>
+
+            <ExpandableCard
+              id="module-bol"
+              title="3. Digital BOL"
+              bullets={[
+                'Touchless documentation with forensic-grade timestamps',
+                '100% paperless BOL workflow',
+                'Eliminates detention disputes before they happen'
+              ]}
+              defaultOpen={false}
+            >
+              <div className="space-y-3 text-sm">
+                <p className="text-steel/80 leading-relaxed">
+                  Replace paper processes with cryptographically-signed digital records. Photo proof of load condition, automated timestamp capture, and complete chain-of-custody documentation.
+                </p>
+                <div>
+                  <p className="text-white font-semibold mb-1">Key Capabilities:</p>
+                  <ul className="list-disc list-inside text-steel/80 space-y-1">
+                    <li>Photo documentation at every handoff</li>
+                    <li>Cryptographic timestamp audit trail</li>
+                    <li>Automated carrier billing integration</li>
+                    <li>Legal-grade proof for disputes</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="text-white font-semibold mb-1">Chapter:</p>
+                  <p className="text-steel/80">Control Loop</p>
+                </div>
+              </div>
+            </ExpandableCard>
+
+            <ExpandableCard
+              id="module-yms"
+              title="4. Digital YMS"
+              bullets={[
+                'Real-time GPS asset tracking',
+                'AI-powered dock assignments',
+                'Autonomous move execution'
+              ]}
+              defaultOpen={false}
+            >
+              <div className="space-y-3 text-sm">
+                <p className="text-steel/80 leading-relaxed">
+                  Real-time asset tracking with AI-powered dock assignments. The system doesn't just show you where trailers are—it tells you where they should go next and executes moves automatically.
+                </p>
+                <div>
+                  <p className="text-white font-semibold mb-1">Key Capabilities:</p>
+                  <ul className="list-disc list-inside text-steel/80 space-y-1">
+                    <li>Intuitive drag-and-drop yard map</li>
+                    <li>AI recommendations based on historical patterns</li>
+                    <li>Automated jockey dispatch</li>
+                    <li>WMS/ERP integration for JIT scheduling</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="text-white font-semibold mb-1">Chapter:</p>
+                  <p className="text-steel/80">Control Loop</p>
+                </div>
+              </div>
+            </ExpandableCard>
           </div>
         </div>
       </section>

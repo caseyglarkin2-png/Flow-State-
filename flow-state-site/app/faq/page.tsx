@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
+import { ExpandableCard } from '@/components/ExpandableCard';
 
 const faqs = [
   {
@@ -70,11 +71,15 @@ export default function FaqPage() {
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 gap-6">
-            {faqs.map((f) => (
-              <Card key={f.q}>
-                <h2 className="text-xl font-bold text-neon">{f.q}</h2>
-                <p className="text-steel mt-3">{f.a}</p>
-              </Card>
+            {faqs.map((f, idx) => (
+              <ExpandableCard
+                key={f.q}
+                id={`faq-${idx + 1}`}
+                title={f.q}
+                defaultOpen={idx === 0}
+              >
+                <p className="text-steel/90">{f.a}</p>
+              </ExpandableCard>
             ))}
 
             <Card className="border-neon/30">
