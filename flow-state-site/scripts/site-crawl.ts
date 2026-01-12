@@ -8,7 +8,7 @@ import { chromium, type Page } from 'playwright';
 import * as fs from 'fs';
 import * as path from 'path';
 
-const BASE_URL = 'https://flow-state-v2.vercel.app';
+const BASE_URL = 'https://flow-state-klbt.vercel.app';
 
 const ROUTES = [
   '/',

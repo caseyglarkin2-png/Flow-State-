@@ -2,7 +2,7 @@
 
 ## Mission Accomplished
 
-Successfully simplified flow-state-uqbk.vercel.app while preserving category-creation messaging and all defensible proof. Homepage now loads in under 90 seconds for first-time visitors with clear conversion path.
+Successfully simplified flow-state-klbt.vercel.app while preserving category-creation messaging and all defensible proof. Homepage now loads in under 90 seconds for first-time visitors with clear conversion path.
 
 ---
 
@@ -221,7 +221,7 @@ scripts/
 **Branch:** `main`  
 **Status:** ✅ Deployed to production
 
-**Vercel URL:** https://flow-state-uqbk.vercel.app
+**Vercel URL:** https://flow-state-klbt.vercel.app
 
 **Build Output:**
 - ✓ Compiled successfully

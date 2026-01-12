@@ -78,6 +78,6 @@ All messaging is now centralized. Change `SITE_METADATA` in `branding.ts` to upd
 
 ## Production URL
 
-**Live site:** https://flow-state-uqbk.vercel.app/
+**Live site:** https://flow-state-klbt.vercel.app/
 
 (Previously referenced wrong URL - now corrected everywhere)
