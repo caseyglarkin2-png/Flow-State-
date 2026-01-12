@@ -3,6 +3,48 @@
  * FLOW STATE HOMEPAGE - NETWORK-FIRST NARRATIVE SPINE
  * ═══════════════════════════════════════════════════════════════════════════════
  * 
+ * ┌─────────────────────────────────────────────────────────────────────────────┐
+ * │ REDUNDANCY REPORT (Pass 6 - Final Refactor)                                │
+ * └─────────────────────────────────────────────────────────────────────────────┘
+ * 
+ * A) EXACT DUPLICATE STRINGS FOUND:
+ *    1. "Problem Taxonomy" section appears TWICE (lines ~210 and ~320) - DELETE ONE
+ *    2. Metrics (70%, 65%, 50%) appear in hero AND social proof section - CONSOLIDATE  
+ *    3. "Network-First" appears in 4+ places - move to copy.ts
+ *    4. "Standardization Band" visual + explanation - appears in hero + chapters - OK (intentional)
+ *    5. CTA "Get Your Network Rollout Plan" appears 3 times - reduce to 2 (hero + footer)
+ * 
+ * B) CONCEPT DUPLICATION:
+ *    1. Network vs site-by-site explained in: YNS section + Problem Taxonomy + Chapter content
+ *       → CONSOLIDATE: Move detailed explanation to Chapter 3, keep 1-sentence version in YNS
+ *    2. "Control loop vs recording" explained in: YNS cards + Compare link + OperatingModel
+ *       → KEEP: This is the category differentiation, needs reinforcement
+ *    3. Economics (detention/dwell/labor) explained in: Hero metrics + Leak section + Chapters
+ *       → CONSOLIDATE: Show numbers in hero, detailed breakdown in chapters only
+ * 
+ * C) CTA DUPLICATION:
+ *    - Primary CTAs: "Get Rollout Plan" (contact), "Run ROI" (calculator), "Audit Yard" (yardbuilder)
+ *    - Problem: All 3 compete for attention in persona router section
+ *    - Solution: Make YardBuilder the PRIMARY (diagnostic), ROI secondary, Contact tertiary
+ *    - Sticky CTA bar should have: YardBuilder (primary) + ROI (secondary)
+ * 
+ * D) WHAT TO DELETE:
+ *    ✗ Second "Problem Taxonomy" section (lines ~320-340) - complete duplicate
+ *    ✗ Narrative Bridge section is too long - collapse to expandable
+ *    ✗ Social proof metrics duplicate hero metrics - merge into one section
+ * 
+ * E) WHAT TO CONSOLIDATE:
+ *    ↓ Metrics: Show in hero, remove duplicate aggregate section
+ *    ↓ YNS vs YMS: One card set, link to /compare for deep-dive
+ *    ↓ Leak categories: Move to YardLeakSection component, make expandable
+ * 
+ * F) WHAT TO MOVE BEHIND COLLAPSIBLES:
+ *    ▼ Narrative Bridge (physics/economics/solution) - too dense
+ *    ▼ Operating model comparison - link to /compare instead
+ *    ▼ Deep proof (Primo scale) - "Learn more" expandable
+ * 
+ * ═══════════════════════════════════════════════════════════════════════════════
+ * 
  * AUDIT STATUS (Pass 5):
  * - 3-Chapter Spine: ✓ IMPLEMENTED (ChapterSwitcher on line 183)
  * - Economics Consistency: ✓ LOCKED (uses calcRoiV2 with enterprise_50 preset)
