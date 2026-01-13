@@ -2,11 +2,12 @@
 
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { DryVan, Intermodal, Flatbed, Tanker } from '@/components/icons/FlowIcons';
 
 type Archetype = {
   slug: string;
   label: string;
-  icon: string;
+  icon: React.FC<{ size?: number; className?: string }>;
   description: string;
 };
 
@@ -14,25 +15,25 @@ const ARCHETYPES: Archetype[] = [
   {
     slug: 'dry-van-reefer',
     label: 'Dry Van & Reefer',
-    icon: '🚛',
+    icon: DryVan,
     description: 'Temperature-controlled shipments with reefer verification, detention automation, and real-time temp tracking.',
   },
   {
     slug: 'intermodal',
     label: 'Intermodal',
-    icon: '🚢',
+    icon: Intermodal,
     description: 'Chassis pool tracking, interchange accuracy, container dwell monitoring, and network-wide visibility.',
   },
   {
     slug: 'flatbed-industrial',
     label: 'Flatbed & Industrial',
-    icon: '🏗️',
+    icon: Flatbed,
     description: 'Photo capture for securement verification, weight/dimension validation, and flatbed-specific dock logic.',
   },
   {
     slug: 'tanker-hazmat',
     label: 'Tanker & Hazmat',
-    icon: '⚗️',
+    icon: Tanker,
     description: 'HAZMAT driver qualification, chain-of-custody timestamping, and compliance reporting (CTPAT/TSA).',
   },
 ];
@@ -62,7 +63,7 @@ export default function SolutionsPage() {
                 onClick={() => router.push(`/solutions/archetypes/${arch.slug}`)}
                 className="flex items-center gap-2 px-6 py-3 rounded-lg whitespace-nowrap transition-all font-bold bg-carbon/50 text-gray-300 hover:bg-neon hover:text-void hover:shadow-neon/50 hover:shadow-lg"
               >
-                <span className="text-2xl">{arch.icon}</span>
+                <arch.icon size={20} />
                 {arch.label}
               </button>
             ))}
@@ -83,7 +84,7 @@ export default function SolutionsPage() {
               className="block p-8 rounded-lg bg-carbon/30 border border-neon/10 hover:border-neon/30 hover:bg-carbon/50 transition-all group"
             >
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-4xl">{arch.icon}</span>
+                <arch.icon size={36} className="text-neon/70 group-hover:text-neon transition-colors" />
                 <h3 className="text-2xl font-black group-hover:text-neon transition-colors">{arch.label}</h3>
               </div>
               <p className="text-steel/90 mb-4">

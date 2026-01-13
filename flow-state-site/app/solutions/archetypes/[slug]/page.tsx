@@ -1,15 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Shield, Velocity, Crosshair, Confirm } from '@/components/icons/FlowIcons';
+import { archetypeMetadata } from './metadata';
 
 type Archetype = 'dry-van-reefer' | 'intermodal' | 'flatbed-industrial' | 'tanker-hazmat';
 
 interface ArchetypeConfig {
   label: string;
   icon: string;
+  description: string;
   leaks: string[];
   standardization: string[];
   instrumentation: Array<{
@@ -25,6 +28,7 @@ const archetypeData: Record<Archetype, ArchetypeConfig> = {
   'dry-van-reefer': {
     label: 'Dry Van & Reefer',
     icon: '🚛',
+    description: 'Temperature-controlled freight operations with automated reefer verification, detention automation, and real-time temp tracking for dry van and reefer yards.',
     leaks: [
       'Reefer temp verification failures at gate',
       'Detention disputes over missed dock windows',
@@ -69,6 +73,7 @@ const archetypeData: Record<Archetype, ArchetypeConfig> = {
   intermodal: {
     label: 'Intermodal',
     icon: '🚢',
+    description: 'Container and rail yard coordination with chassis pool tracking, interchange accuracy, dwell monitoring, and network-wide drayage visibility.',
     leaks: [
       'Chassis pool visibility zero—drivers hunt for chassis, demurrage piles up',
       'Interchange accuracy issues (DCLI/TRAC data mismatches)',
@@ -113,6 +118,7 @@ const archetypeData: Record<Archetype, ArchetypeConfig> = {
   'flatbed-industrial': {
     label: 'Flatbed & Industrial',
     icon: '🏗️',
+    description: 'Heavy haul and flatbed operations with photo securement verification, weight/dimension validation, and flatbed-specific dock orchestration.',
     leaks: [
       'Securement verification is visual-only (no photo capture)',
       'Load height/weight disputes at scale',
@@ -157,6 +163,7 @@ const archetypeData: Record<Archetype, ArchetypeConfig> = {
   'tanker-hazmat': {
     label: 'Tanker & Hazmat',
     icon: '⚗️',
+    description: 'Bulk liquid and hazardous material compliance with driver qualification, chain-of-custody timestamping, and CTPAT/TSA reporting automation.',
     leaks: [
       'Driver qualification verification manual (no real-time HAZMAT cert check)',
       'Chain-of-custody timestamping gaps (regulatory risk)',
@@ -203,6 +210,48 @@ const archetypeData: Record<Archetype, ArchetypeConfig> = {
 export default function ArchetypePage({ params }: { params: { slug: string } }) {
   const slug = params.slug as Archetype;
   const config = archetypeData[slug];
+  const metadata = archetypeMetadata[slug];
+
+  useEffect(() => {
+    if (metadata) {
+      document.title = metadata.title;
+      
+      // Update meta description
+      let metaDesc = document.querySelector('meta[name="description"]');
+      if (!metaDesc) {
+        metaDesc = document.createElement('meta');
+        metaDesc.setAttribute('name', 'description');
+        document.head.appendChild(metaDesc);
+      }
+      metaDesc.setAttribute('content', metadata.description);
+      
+      // Update meta keywords
+      let metaKeywords = document.querySelector('meta[name="keywords"]');
+      if (!metaKeywords) {
+        metaKeywords = document.createElement('meta');
+        metaKeywords.setAttribute('name', 'keywords');
+        document.head.appendChild(metaKeywords);
+      }
+      metaKeywords.setAttribute('content', metadata.keywords);
+      
+      // Update OG tags
+      let ogTitle = document.querySelector('meta[property="og:title"]');
+      if (!ogTitle) {
+        ogTitle = document.createElement('meta');
+        ogTitle.setAttribute('property', 'og:title');
+        document.head.appendChild(ogTitle);
+      }
+      ogTitle.setAttribute('content', metadata.title);
+      
+      let ogDesc = document.querySelector('meta[property="og:description"]');
+      if (!ogDesc) {
+        ogDesc = document.createElement('meta');
+        ogDesc.setAttribute('property', 'og:description');
+        document.head.appendChild(ogDesc);
+      }
+      ogDesc.setAttribute('content', metadata.description);
+    }
+  }, [metadata]);
 
   if (!config) {
     notFound();

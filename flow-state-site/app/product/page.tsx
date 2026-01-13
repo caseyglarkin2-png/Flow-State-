@@ -7,6 +7,7 @@ import { Metrics, Agent, Confirm, Nexus, Shield, Velocity, Crosshair } from '@/c
 import Link from 'next/link';
 import AnimatedPanel from '@/components/AnimatedPanel';
 import { ProductSection } from '@/components/products/ProductSection';
+import { DigitalGuardVisual, DigitalCommsVisual, DigitalBOLVisual, DigitalYMSVisual } from '@/components/products/ProductVisuals';
 
 const PRODUCTS = [
   {
@@ -24,6 +25,7 @@ const PRODUCTS = [
     ctaLabel: "Apply for Access",
     ctaHref: "/singularity",
     align: "left" as const,
+    visual: <DigitalGuardVisual />,
   },
   {
     title: "Digital Comms",
@@ -40,6 +42,7 @@ const PRODUCTS = [
     ctaLabel: "Apply for Access",
     ctaHref: "/singularity",
     align: "right" as const,
+    visual: <DigitalCommsVisual />,
   },
   {
     title: "Digital BOL",
@@ -56,6 +59,7 @@ const PRODUCTS = [
     ctaLabel: "See Security Details",
     ctaHref: "/resources/procurement",
     align: "left" as const,
+    visual: <DigitalBOLVisual />,
   },
   {
     title: "Digital YMS",
@@ -72,6 +76,7 @@ const PRODUCTS = [
     ctaLabel: "Request a Demo",
     ctaHref: "/singularity",
     align: "right" as const,
+    visual: <DigitalYMSVisual />,
   },
 ];
 
@@ -112,6 +117,7 @@ export default function ProductPage() {
           ctaLabel={p.ctaLabel}
           ctaHref={p.ctaHref}
           align={p.align}
+          visual={p.visual}
         />
       ))}
 

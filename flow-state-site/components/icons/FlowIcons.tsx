@@ -407,6 +407,56 @@ export const Prism: React.FC<IconProps> = ({ size = defaults.size, className }) 
 );
 
 // ═══════════════════════════════════════════════════════════════
+// ARCHETYPES - Solution category icons
+// ═══════════════════════════════════════════════════════════════
+
+// DryVan - Dry van & reefer operations
+export const DryVan: React.FC<IconProps> = ({ size = defaults.size, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+    <rect x="2" y="8" width="14" height="8" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    <path d="M16 8h3l3 4v4h-6V8z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    <circle cx="6" cy="18" r="2" stroke="currentColor" strokeWidth="1.5" />
+    <circle cx="18" cy="18" r="2" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M8 18h8M4 10h8M4 12h6" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+  </svg>
+);
+
+// Intermodal - Container & rail operations
+export const Intermodal: React.FC<IconProps> = ({ size = defaults.size, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+    <rect x="3" y="6" width="18" height="10" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    <path d="M7 6v10M12 6v10M17 6v10" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+    <path d="M3 19h18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <circle cx="6" cy="19" r="1.5" fill="currentColor" />
+    <circle cx="12" cy="19" r="1.5" fill="currentColor" />
+    <circle cx="18" cy="19" r="1.5" fill="currentColor" />
+  </svg>
+);
+
+// Flatbed - Flatbed & industrial heavy haul
+export const Flatbed: React.FC<IconProps> = ({ size = defaults.size, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+    <path d="M2 12h16l2-4h2v8h-2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <rect x="4" y="6" width="8" height="6" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    <circle cx="6" cy="18" r="2" stroke="currentColor" strokeWidth="1.5" />
+    <circle cx="18" cy="18" r="2" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M8 18h8" stroke="currentColor" strokeWidth="1.5" />
+  </svg>
+);
+
+// Tanker - Tanker & hazmat operations
+export const Tanker: React.FC<IconProps> = ({ size = defaults.size, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+    <ellipse cx="11" cy="11" rx="9" ry="5" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M2 11v2c0 2.76 4.03 5 9 5s9-2.24 9-5v-2" stroke="currentColor" strokeWidth="1.5" />
+    <circle cx="6" cy="19" r="2" stroke="currentColor" strokeWidth="1.5" />
+    <circle cx="16" cy="19" r="2" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M8 19h6" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M11 6v10" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+  </svg>
+);
+
+// ═══════════════════════════════════════════════════════════════
 // EXPORT ALL
 // ═══════════════════════════════════════════════════════════════
 
@@ -452,6 +502,11 @@ const FlowIcons = {
   Waypoint,
   Device,
   Prism,
+  // Archetypes
+  DryVan,
+  Intermodal,
+  Flatbed,
+  Tanker,
 };
 
 export default FlowIcons;
