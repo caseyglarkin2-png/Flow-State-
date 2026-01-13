@@ -126,50 +126,54 @@ export default function Home() {
       <StickyCTABar ctaText="Get Your Network Rollout Plan" ctaUrl="/contact" />
 
       {/* ═══════════════════════════════════════════════════════════════
-          HERO: THE SILO TRAP - YNS MESSAGING
+          HERO: NETWORK-FIRST CLARITY
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-32 pb-20">
+      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden pt-32 pb-20">
         <div className="absolute inset-0 grid-background opacity-20"></div>
         
-        <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
-          <p className="text-ember font-mono text-sm tracking-widest mb-8 uppercase">
-            THE SILO TRAP
+        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+          <p className="text-neon font-mono text-sm tracking-widest mb-6 uppercase">
+            Network-First Yard Automation
           </p>
           
-          <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
-            You don't have 50 yards.
+          <h1 className="text-5xl md:text-7xl font-black mb-8 leading-tight">
+            Stop managing 50 yards.<br />
+            <span className="text-neon">Start orchestrating one network.</span>
           </h1>
-          <h2 className="text-4xl md:text-6xl font-bold mb-8 text-steel/70">
-            You have one yard network.
-          </h2>
           
-          <h3 className="text-3xl md:text-5xl font-black mb-12 text-neon">
-            But your software treats them like islands.
-          </h3>
+          <p className="text-xl md:text-2xl text-steel/90 max-w-3xl mx-auto mb-10 leading-relaxed">
+            Traditional yard software treats each facility like an island. YardFlow treats your entire operation like a connected system—standardize the driver journey, automate the control loop, unlock network intelligence.
+          </p>
 
-          {/* YNS vs YMS Explanation Box */}
-          <div className="max-w-4xl mx-auto mb-12 p-8 md:p-12 rounded-lg border-2 border-ember/40 bg-ember/5">
-            <p className="text-xl md:text-2xl text-ember mb-6 leading-relaxed">
-              Your 50 yards are like leaking pipes in a plumbing system. They leak because they have holes (process gaps / tribal knowledge) and build-up (manual processes).
-            </p>
-            <p className="text-lg md:text-xl text-white leading-relaxed">
-              Traditional Yard Management Systems (YMS) fix the leaks in each "pipe." YardFlow is a Yard Network System (YNS) that enables better system flow by both fixing the leaks in each "pipe" and providing a view of the full system to optimize further.
-            </p>
-          </div>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Link
-              href="/yardbuilder"
-              className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all"
+              href="/diagnostic"
+              className="inline-flex items-center justify-center gap-2 px-10 py-5 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all hover:scale-105"
             >
-              Generate Yard Report
+              Run Your Network Diagnostic
             </Link>
             <Link
               href="/roi"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-steel/40 text-steel hover:border-neon hover:text-neon transition-all"
+              className="inline-flex items-center justify-center gap-2 px-8 py-5 rounded-lg font-semibold border-2 border-steel/40 text-steel hover:border-neon hover:text-neon transition-all"
             >
               Model ROI in 3 Minutes
             </Link>
+          </div>
+
+          {/* Value Props */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto text-left">
+            <div className="p-5 rounded-lg bg-carbon/30 border border-neon/10">
+              <p className="text-neon font-bold text-3xl mb-2">70%</p>
+              <p className="text-sm text-steel/90">Gate labor reduction with self-service kiosks</p>
+            </div>
+            <div className="p-5 rounded-lg bg-carbon/30 border border-neon/10">
+              <p className="text-neon font-bold text-3xl mb-2">50%</p>
+              <p className="text-sm text-steel/90">Dwell time reduction (48→24 min avg)</p>
+            </div>
+            <div className="p-5 rounded-lg bg-carbon/30 border border-neon/10">
+              <p className="text-neon font-bold text-3xl mb-2">65%</p>
+              <p className="text-sm text-steel/90">Detention recovery with automated timestamping</p>
+            </div>
           </div>
         </div>
       </section>
