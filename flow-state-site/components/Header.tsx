@@ -45,9 +45,7 @@ export default function Header() {
         {/* Desktop Menu */}
         <div className="hidden lg:flex items-center gap-6">
           {/* YNS - Featured link */}
-          <Link href="/yns" className="text-sm text-neon hover:text-white transition-colors font-semibold">
-            YNS
-          </Link>
+
 
           {/* Product - Direct link */}
           <Link href="/product" className="text-sm text-steel hover:text-neon transition-colors">
@@ -244,7 +242,7 @@ export default function Header() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-carbon border-t border-neon/20 py-4 px-6 space-y-4 max-h-[80vh] overflow-y-auto">
-          <Link href="/yns" className="block text-neon hover:text-white transition-colors font-semibold">YNS (Yard Network System)</Link>
+
           <Link href="/product" className="block text-steel hover:text-neon transition-colors font-medium">Product</Link>
           
           <div className="border-t border-neon/10 pt-4">

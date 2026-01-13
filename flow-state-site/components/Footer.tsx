@@ -37,7 +37,6 @@ export default function Footer() {
             <h3 className="font-semibold mb-4 text-neon">Solutions</h3>
             <ul className="space-y-2 text-sm text-steel">
               <li><Link href="/solutions" className="hover:text-neon transition-colors">Yard Orchestration</Link></li>
-              <li><Link href="/security" className="hover:text-neon transition-colors">Identity & Cargo Security</Link></li>
               <li><Link href="/singularity" className="hover:text-neon transition-colors">Network Intelligence</Link></li>
               <li><Link href="/case-studies" className="hover:text-neon transition-colors">Case Studies</Link></li>
             </ul>
@@ -50,6 +49,7 @@ export default function Footer() {
               <li><Link href="/resources/guides" className="hover:text-neon transition-colors">Guides</Link></li>
               <li><Link href="/resources/field-notes" className="hover:text-neon transition-colors">Field Notes</Link></li>
               <li><Link href="/resources/simulations" className="hover:text-neon transition-colors">Simulations</Link></li>
+              <li><Link href="/resources/procurement" className="hover:text-neon transition-colors">Procurement</Link></li>
               <li><Link href="/docs/economics-methodology" className="hover:text-neon transition-colors">Methodology</Link></li>
             </ul>
           </div>

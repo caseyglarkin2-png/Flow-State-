@@ -2297,7 +2297,7 @@ export default function ROICalculatorPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
-                  href="/yns"
+                  href="/compare"
                   className="px-6 py-3 rounded-lg bg-neon text-void font-semibold hover:bg-white transition-all"
                 >
                   Learn About YNS →
