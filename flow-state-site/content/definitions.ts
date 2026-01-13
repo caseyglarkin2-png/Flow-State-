@@ -106,5 +106,5 @@ export const YNS_PILLARS = [
 ] as const;
 
 export const METHODOLOGY_LINK = '/docs/economics-methodology';
-export const SECURITY_LINK = '/security';
+export const SECURITY_LINK = '/resources/procurement';
 export const YNS_FRAMEWORK_LINK = '/yns';

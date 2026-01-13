@@ -32,7 +32,7 @@ export const PERSONA_CTAS = {
   },
   security: {
     label: 'View Security Evidence',
-    href: '/security',
+    href: '/resources/procurement',
     description: 'Evidence vault. Procurement-ready proof.',
     icon: 'Shield',
   },

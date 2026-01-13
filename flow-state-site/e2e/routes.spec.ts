@@ -8,7 +8,7 @@ const REQUIRED_ROUTES = [
   '/product',
   '/solutions',
   '/risk',
-  '/security',
+  '/resources/procurement',
   '/roi',
   '/yardbuilder',
   '/qualify',

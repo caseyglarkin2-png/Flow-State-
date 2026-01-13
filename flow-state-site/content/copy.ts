@@ -207,7 +207,7 @@ export const CTAS = {
       label: "Evidence Vault",
       shortLabel: "Procurement Docs",
       description: "Security posture, compliance, integration specs",
-      href: "/security",
+      href: "/resources/procurement",
     },
   },
 } as const;

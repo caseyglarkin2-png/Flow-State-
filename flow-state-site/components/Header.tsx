@@ -82,7 +82,7 @@ export default function Header() {
                   <span className="font-medium text-white">Yard Orchestration</span>
                   <span className="block text-xs text-steel/70">Gate automation, dwell reduction, throughput</span>
                 </Link>
-                <Link href="/security" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                <Link href="/resources/procurement" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
                   <span className="font-medium text-white">Identity & Cargo Security</span>
                   <span className="block text-xs text-steel/70">ID verification, audit trails, compliance</span>
                 </Link>
@@ -179,7 +179,7 @@ export default function Header() {
             
             {companyOpen && (
               <div className="absolute top-full right-0 mt-2 w-56 bg-carbon border border-neon/20 rounded-lg shadow-lg py-2 z-50">
-                <Link href="/security" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                <Link href="/resources/procurement" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
                   <span className="font-medium text-white flex items-center gap-2">
                     <Shield size={14} className="text-neon" /> Evidence Vault
                   </span>
@@ -248,7 +248,7 @@ export default function Header() {
           <div className="border-t border-neon/10 pt-4">
             <p className="text-xs text-steel/60 font-mono mb-2 uppercase">Solutions</p>
             <Link href="/solutions" className="block text-steel hover:text-neon transition-colors py-1">Yard Orchestration</Link>
-            <Link href="/security" className="block text-steel hover:text-neon transition-colors py-1">Identity & Cargo Security</Link>
+            <Link href="/resources/procurement" className="block text-steel hover:text-neon transition-colors py-1">Identity & Cargo Security</Link>
             <Link href="/singularity" className="block text-steel hover:text-neon transition-colors py-1">Network Intelligence</Link>
           </div>
 
@@ -267,7 +267,7 @@ export default function Header() {
 
           <div className="border-t border-neon/10 pt-4">
             <p className="text-xs text-steel/60 font-mono mb-2 uppercase">Company</p>
-            <Link href="/security" className="block text-steel hover:text-neon transition-colors py-1">Evidence Vault</Link>
+            <Link href="/resources/procurement" className="block text-steel hover:text-neon transition-colors py-1">Evidence Vault</Link>
             <Link href="/implementation" className="block text-steel hover:text-neon transition-colors py-1">Implementation</Link>
             <Link href="/integrations" className="block text-steel hover:text-neon transition-colors py-1">Integrations</Link>
             <Link href="/pricing" className="block text-steel hover:text-neon transition-colors py-1">Pricing</Link>

@@ -18,7 +18,7 @@ const ROUTES = [
   '/roi',
   '/network-effect',
   '/diagnostic',
-  '/security',
+  '/resources/procurement',
   '/integrations',
   '/implementation',
   '/contact',

@@ -59,7 +59,7 @@ const checklistItems: ChecklistItem[] = [
   {
     question: 'Security posture?',
     answer: 'SOC 2 Type II in progress. AWS-hosted. No PII in yard data. See Trust Center for full security documentation.',
-    link: '/security',
+    link: '/resources/procurement',
     linkLabel: 'View Trust Center',
   },
   {

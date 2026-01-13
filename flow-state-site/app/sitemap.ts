@@ -23,7 +23,7 @@ const routes = [
   '/privacy',
   '/terms',
   '/about',
-  '/security',
+  '/resources/procurement',
   '/case-studies',
   '/case-studies/primo-network',
 ];

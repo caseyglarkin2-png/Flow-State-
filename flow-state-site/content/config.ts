@@ -13,7 +13,7 @@ export const ROUTES = {
   roi: '/roi',
   implementation: '/implementation',
   pricing: '/pricing',
-  security: '/security',
+  security: '/resources/procurement',
   integrations: '/integrations',
   solutions: '/solutions',
   product: '/product',
