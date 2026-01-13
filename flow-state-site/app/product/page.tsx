@@ -169,6 +169,180 @@ export default function ProductPage() {
         </div>
       </section>
 
+      {/* Module 1: Digital Guard */}
+      <section className="py-24 border-b border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Text */}
+            <div>
+              <div className="inline-block px-3 py-1 rounded bg-neon/10 border border-neon/40 mb-4">
+                <span className="text-neon font-mono text-xs uppercase tracking-wider">Chapter 1: Standardization Band</span>
+              </div>
+              <h2 className="text-5xl font-black mb-6">Digital Guard</h2>
+              <p className="text-lg text-steel/90 mb-4 leading-relaxed">
+                Your biggest security risk is not knowing who is on your property. 
+                <span className="text-neon font-semibold"> Digital Guard verifies every carrier before they enter.</span>
+              </p>
+              <p className="text-steel/80 mb-8">
+                Self-service kiosks with OCR license scanning, photo capture, and real-time authentication. 
+                Reject unauthorized drivers instantly. Track every entry and exit.
+              </p>
+              <ul className="space-y-3 mb-8">
+                {[
+                  'Automated carrier ID verification (OCR + photo)',
+                  'CDL validation + English proficiency documentation',
+                  'Real-time driver authentication against carrier database',
+                  'Flagged credentials rejected at gate',
+                  'DOT/FMCSA audit trail for shipper liability protection',
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3">
+                    <Confirm size={20} className="text-neon flex-shrink-0" />
+                    <span className="text-steel/80">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link href="/singularity" className="btn-neon inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">
+                Apply for Access
+              </Link>
+            </div>
+
+            {/* Visual Placeholder */}
+            <div className="glass-card aspect-video flex items-center justify-center p-12">
+              <p className="text-white text-center text-xl font-semibold">
+                Animated Image of a gate with a kiosk
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Module 2: Digital YMS */}
+      <section className="py-24 bg-carbon/50 border-b border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Visual Placeholder */}
+            <div className="glass-card aspect-video flex items-center justify-center p-12 order-2 lg:order-1">
+              <p className="text-white text-center text-xl font-semibold">
+                Animated Image of a yard like below
+              </p>
+            </div>
+
+            {/* Text */}
+            <div className="order-1 lg:order-2">
+              <div className="inline-block px-3 py-1 rounded bg-steel/10 border border-steel/40 mb-4">
+                <span className="text-steel font-mono text-xs uppercase tracking-wider">Chapter 2: Control Loop</span>
+              </div>
+              <h2 className="text-5xl font-black mb-6">Digital YMS</h2>
+              <p className="text-lg text-steel/90 mb-8 leading-relaxed">
+                Real-time asset tracking with AI-powered dock assignments. The system doesn't just show you where trailers are—it tells you where they should go next.
+              </p>
+              <ul className="space-y-3 mb-8">
+                {[
+                  'Real-time GPS tracking',
+                  'Intuitive drag-and-drop moves',
+                  'AI-powered recommendations',
+                  'Autonomous move execution',
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3">
+                    <Confirm size={20} className="text-neon flex-shrink-0" />
+                    <span className="text-steel/80">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link href="/singularity" className="btn-neon inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">
+                Apply for Access
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Module 3: Digital Comms */}
+      <section className="py-24 border-b border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Text */}
+            <div>
+              <div className="inline-block px-3 py-1 rounded bg-neon/10 border border-neon/40 mb-4">
+                <span className="text-neon font-mono text-xs uppercase tracking-wider">Chapter 1: Standardization Band</span>
+              </div>
+              <h2 className="text-5xl font-black mb-6">Digital Comms</h2>
+              <p className="text-lg text-steel/90 mb-8 leading-relaxed">
+                Direct-to-driver messaging in 40+ languages. No radio. No PA system. No "I never got the message" disputes. SMS + app notifications with read receipts.
+              </p>
+              <ul className="space-y-3 mb-8">
+                {[
+                  'SMS-based instructions',
+                  'Multi-language support',
+                  'Zero app downloads',
+                  'Real-time navigation',
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3">
+                    <Confirm size={20} className="text-neon flex-shrink-0" />
+                    <span className="text-steel/80">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link href="/singularity" className="btn-neon inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">
+                Apply for Access
+              </Link>
+            </div>
+
+            {/* Visual Placeholder */}
+            <div className="glass-card aspect-video flex items-center justify-center p-12">
+              <p className="text-white text-center text-xl font-semibold">
+                Animated Image of a chain of messages on mobile / PC
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Module 4: Digital BOL */}
+      <section className="py-24 border-b border-neon/20 bg-gradient-to-b from-void to-carbon/30">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Visual Placeholder */}
+            <div className="glass-card aspect-video flex items-center justify-center p-12">
+              <p className="text-white text-center text-xl font-semibold">
+                Animation of documents flying around various nodes within a supply chain
+              </p>
+            </div>
+
+            {/* Text */}
+            <div>
+              <div className="inline-block px-3 py-1 rounded bg-steel/10 border border-steel/40 mb-4">
+                <span className="text-steel font-mono text-xs uppercase tracking-wider">Chapter 2: Control Loop</span>
+              </div>
+              <h2 className="text-5xl font-black mb-6">Digital BOL</h2>
+              <p className="text-lg text-steel/90 mb-8 leading-relaxed">
+                Touchless documentation with forensic-grade timestamps. 100% paperless BOL workflow. Photo proof of load condition. Eliminates detention disputes before they happen.
+              </p>
+              <ul className="space-y-3 mb-8">
+                {[
+                  'ID scanning + verification at gate',
+                  'Biometric authentication options',
+                  'Carrier credentialing database',
+                  'Cryptographic timestamp audit trail',
+                  'CTPAT & TSA compliance reporting',
+                ].map((item, i) => (
+                  <li key={i} className="flex gap-3">
+                    <Confirm size={20} className="text-neon flex-shrink-0" />
+                    <span className="text-steel/80">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-steel/70 text-sm mb-6">
+                <strong className="text-ember">Security savings:</strong> Theft prevention, insurance premium reduction, compliance cost avoidance, investigation elimination.
+              </p>
+              <Link href="/resources/procurement" className="btn-neon inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">
+                See Security Details
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Grid */}
       <section className="py-24 bg-carbon/50 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
