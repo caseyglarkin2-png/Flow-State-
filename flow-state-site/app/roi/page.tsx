@@ -2266,13 +2266,6 @@ export default function ROICalculatorPage() {
         </div>
       </section>
 
-      {/* Variance Kills Block */}
-      <section className="py-16 border-t border-steel/20">
-        <div className="max-w-4xl mx-auto px-6">
-          <VarianceKillsBlock />
-        </div>
-      </section>
-
       {/* CFO Proof Checklist */}
       <section className="py-16 bg-carbon/30 border-t border-steel/20">
         <div className="max-w-4xl mx-auto px-6">
@@ -2286,10 +2279,8 @@ export default function ROICalculatorPage() {
 
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-6">
-          <NextSteps title="Next best step" />
-          
           {/* Post-Calculation CTAs */}
-          <div className="mt-12 text-center">
+          <div className="text-center">
             <div className="max-w-2xl mx-auto bg-neon/5 border border-neon/20 rounded-lg p-8">
               <h3 className="text-2xl font-bold mb-4">Ready to see this in action?</h3>
               <p className="text-steel/80 mb-6">
