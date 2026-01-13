@@ -112,73 +112,49 @@
 
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Card from '@/components/Card';
-import { ExpandableCard } from '@/components/ExpandableCard';
-import ChapterSwitcher, { type Chapter } from '@/components/ChapterSwitcher';
-import HeroNetworkHook from '@/components/HeroNetworkHook';
-import ProofMetrics from '@/components/ProofMetrics';
-import StandardizationBand from '@/components/StandardizationBand';
-import ProblemTaxonomy from '@/components/ProblemTaxonomy';
-import Chapter1Content from '@/components/chapters/Chapter1Content';
-import Chapter2Content from '@/components/chapters/Chapter2Content';
-import Chapter3Content from '@/components/chapters/Chapter3Content';
-import YardBuilderHook from '@/components/YardBuilderHook';
 import StickyCTABar from '@/components/StickyCTABar';
-import { calcRoiV2, getRoiV2InputsForPreset } from '@/lib/economics';
-import { X, Check, DollarSign, Warehouse } from 'lucide-react';
-import {
-  Agent,
-  Cortex,
-  Ignite,
-  Shield,
-  Manifest,
-  FlowArrow,
-  Metrics,
-  Velocity,
-  Timeline,
-  Crosshair,
-} from '@/components/icons/FlowIcons';
 
 export default function Home() {
-  const [activeChapter, setActiveChapter] = useState<Chapter>('1');
-
-  // Match ROI calculator defaults: 50 facilities, 5% Year-1 rollout ramp
-  // This ensures homepage KPIs match what users see when they click "Build Your Model"
-  const cfoBaseline = calcRoiV2({
-    ...getRoiV2InputsForPreset('enterprise_50', 'expected'),
-    yearOneRampShare: 0.05,
-  });
-
-  const dollarsPerFacility = (annual: number) => {
-    const per = cfoBaseline.totalFacilities > 0 ? annual / cfoBaseline.totalFacilities : 0;
-    return `$${Math.round(per).toLocaleString()}/site (modeled)`;
-  };
-
   return (
     <div className="min-h-screen bg-void">
       <Header />
       <StickyCTABar ctaText="Get Your Network Rollout Plan" ctaUrl="/contact" />
 
       {/* ═══════════════════════════════════════════════════════════════
-          HERO: STANDARDIZATION BAND MOTIF
-          The visual thesis. No fluff. Network-first or nothing.
+          HERO: THE SILO TRAP - YNS MESSAGING
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-32">
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-32 pb-20">
         <div className="absolute inset-0 grid-background opacity-20"></div>
         
-        <div className="relative z-10 max-w-6xl mx-auto px-6">
-          <HeroNetworkHook variant="main" showCTAs={false} />
+        <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+          <p className="text-ember font-mono text-sm tracking-widest mb-8 uppercase">
+            THE SILO TRAP
+          </p>
           
-          {/* Standardization Band Visual */}
-          <div className="mb-12">
-            <StandardizationBand animated={true} />
-          </div>
+          <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
+            You don't have 50 yards.
+          </h1>
+          <h2 className="text-4xl md:text-6xl font-bold mb-8 text-steel/70">
+            You have one yard network.
+          </h2>
+          
+          <h3 className="text-3xl md:text-5xl font-black mb-12 text-neon">
+            But your software treats them like islands.
+          </h3>
 
-          <ProofMetrics variant="hero" showDisclaimer={false} className="max-w-4xl mx-auto mb-10" />
+          {/* YNS vs YMS Explanation Box */}
+          <div className="max-w-4xl mx-auto mb-12 p-8 md:p-12 rounded-lg border-2 border-ember/40 bg-ember/5">
+            <p className="text-xl md:text-2xl text-ember mb-6 leading-relaxed">
+              Your 50 yards are like leaking pipes in a plumbing system. They leak because they have holes (process gaps / tribal knowledge) and build-up (manual processes).
+            </p>
+            <p className="text-lg md:text-xl text-white leading-relaxed">
+              Traditional Yard Management Systems (YMS) fix the leaks in each "pipe." YardFlow is a Yard Network System (YNS) that enables better system flow by both fixing the leaks in each "pipe" and providing a view of the full system to optimize further.
+            </p>
+          </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -198,50 +174,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          CHAPTERS SWITCHER
-          The spine. The IA. The mental model.
-      ═══════════════════════════════════════════════════════════════ */}
-      <section className="sticky top-0 z-40 bg-void/95 backdrop-blur-md border-b border-neon/20">
-        <div className="max-w-6xl mx-auto px-6 py-6">
-          <ChapterSwitcher activeChapter={activeChapter} onChapterChange={setActiveChapter} />
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════
-          CHAPTER CONTENT SECTIONS
-          Progressive disclosure of the 3-chapter narrative spine
-      ═══════════════════════════════════════════════════════════════ */}
-      {activeChapter === '1' && <Chapter1Content />}
-      {activeChapter === '2' && <Chapter2Content />}
-      {activeChapter === '3' && <Chapter3Content />}
-
-      {/* ═══════════════════════════════════════════════════════════════
-          PROBLEM TAXONOMY: 20 vs 5
-          Why base deployment solves 50% of problems (the 50% that matter)
-      ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-20 border-b border-steel/20 bg-carbon/20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <p className="text-neon font-mono text-sm tracking-widest mb-4 uppercase">
-              Problem Taxonomy
-            </p>
-            <h2 className="text-3xl md:text-4xl font-black mb-4 text-white">
-              Every Yard Has 20 Problems. <span className="text-neon">We Solve the 10 That Matter.</span>
-            </h2>
-            <p className="text-lg text-steel/80 max-w-3xl mx-auto">
-              5 problems are universal across all yards. 5 more are the top issues per facility. 
-              Base deployment handles those 10. The remaining 10 are finite permutations we productize over time.
-            </p>
-          </div>
-
-          <ProblemTaxonomy />
-        </div>
-      </section>
-
-
-
-      {/* ═══════════════════════════════════════════════════════════════
-          FINAL CTA: ASSUME THE SALE
+          FINAL CTA
       ═══════════════════════════════════════════════════════════════ */}
       <section className="py-24 border-t border-neon/20 bg-gradient-to-b from-void to-carbon/50">
         <div className="max-w-4xl mx-auto px-6 text-center">
