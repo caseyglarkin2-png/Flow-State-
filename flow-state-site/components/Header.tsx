@@ -77,19 +77,35 @@ export default function Header() {
             </button>
             
             {solutionsOpen && (
-              <div className="absolute top-full left-0 mt-2 w-64 bg-carbon border border-neon/20 rounded-lg shadow-lg py-2 z-50">
-                <Link href="/solutions" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  <span className="font-medium text-white">Yard Orchestration</span>
-                  <span className="block text-xs text-steel/70">Gate automation, dwell reduction, throughput</span>
+              <div className="absolute top-full left-0 mt-2 w-72 bg-carbon border border-neon/20 rounded-lg shadow-lg py-2 z-50">
+                <Link href="/solutions" className="block px-4 py-3 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors border-b border-steel/10">
+                  <span className="font-bold text-white">Solutions Overview</span>
+                  <span className="block text-xs text-steel/70 mt-1">Archetype-based yard orchestration</span>
                 </Link>
-                <Link href="/resources/procurement" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  <span className="font-medium text-white">Identity & Cargo Security</span>
-                  <span className="block text-xs text-steel/70">ID verification, audit trails, compliance</span>
-                </Link>
-                <Link href="/singularity" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  <span className="font-medium text-white">Network Intelligence</span>
-                  <span className="block text-xs text-steel/70">Multi-site optimization, network effects</span>
-                </Link>
+                
+                <div className="py-2">
+                  <p className="px-4 py-2 text-xs font-semibold text-steel/60 uppercase tracking-wider">By Archetype</p>
+                  <Link href="/solutions/archetypes/dry-van-reefer" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                    <span className="font-medium text-white flex items-center gap-2">
+                      <span>🚛</span> Dry Van & Reefer
+                    </span>
+                  </Link>
+                  <Link href="/solutions/archetypes/intermodal" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                    <span className="font-medium text-white flex items-center gap-2">
+                      <span>🚢</span> Intermodal
+                    </span>
+                  </Link>
+                  <Link href="/solutions/archetypes/flatbed-industrial" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                    <span className="font-medium text-white flex items-center gap-2">
+                      <span>🏗️</span> Flatbed & Industrial
+                    </span>
+                  </Link>
+                  <Link href="/solutions/archetypes/tanker-hazmat" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
+                    <span className="font-medium text-white flex items-center gap-2">
+                      <span>⚗️</span> Tanker & Hazmat
+                    </span>
+                  </Link>
+                </div>
               </div>
             )}
           </div>

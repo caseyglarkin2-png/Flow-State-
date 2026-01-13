@@ -6,261 +6,124 @@ import Footer from '@/components/Footer';
 import { Metrics, Agent, Confirm, Nexus, Shield, Velocity, Crosshair } from '@/components/icons/FlowIcons';
 import Link from 'next/link';
 import AnimatedPanel from '@/components/AnimatedPanel';
+import { ProductSection } from '@/components/products/ProductSection';
+
+const PRODUCTS = [
+  {
+    title: "Digital Guard",
+    eyebrow: "Module 1",
+    description:
+      "Verify every carrier before they enter. Self-service kiosks with OCR, photo capture, and real-time authentication so the yard stops being a blind spot.",
+    bullets: [
+      "Automated carrier ID verification (OCR + photo)",
+      "CDL validation + English proficiency documentation",
+      "Real-time driver authentication against carrier database",
+      "Flagged credentials rejected at gate",
+      "DOT/FMCSA audit trail for shipper liability protection",
+    ],
+    ctaLabel: "Apply for Access",
+    ctaHref: "/singularity",
+    align: "left" as const,
+  },
+  {
+    title: "Digital Comms",
+    eyebrow: "Module 2",
+    description:
+      "Direct driver messaging at the lane level. No 'I never got the message' excuses. Disputes shrink when receipts exist.",
+    bullets: [
+      "Lane-based instructions and notifications",
+      "Multi-language support (40+ languages)",
+      "Read receipts and message history",
+      "Fewer yard walk-ups, fewer interruptions",
+      "Real-time dock assignment coordination",
+    ],
+    ctaLabel: "Apply for Access",
+    ctaHref: "/singularity",
+    align: "right" as const,
+  },
+  {
+    title: "Digital BOL",
+    eyebrow: "Module 3",
+    description:
+      "Touchless documentation with forensic-grade timestamps. Photo proof of load condition so detention disputes die young.",
+    bullets: [
+      "Gate verification and ID scanning",
+      "Condition capture with photo evidence",
+      "Cryptographic timestamp trail",
+      "CTPAT & TSA compliance reporting",
+      "Network-wide BOL signature collection",
+    ],
+    ctaLabel: "See Security Details",
+    ctaHref: "/resources/procurement",
+    align: "left" as const,
+  },
+  {
+    title: "Digital YMS",
+    eyebrow: "Module 4",
+    description:
+      "One place to store, search, and prove what happened. When the yard is a courtroom, this is your exhibit binder.",
+    bullets: [
+      "Real-time yard visualization and asset tracking",
+      "Dwell anomaly detection and alerts",
+      "Network-wide predictive intelligence",
+      "Faster dispute resolution and fewer chargebacks",
+      "Operational clarity for dispatchers and yard managers",
+    ],
+    ctaLabel: "Request a Demo",
+    ctaHref: "/singularity",
+    align: "right" as const,
+  },
+];
 
 export default function ProductPage() {
-  
   return (
     <div className="min-h-screen bg-void">
       <Header />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 border-b border-neon/20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-neon font-mono text-sm tracking-widest mb-6 uppercase">
-              Network-First Product Architecture
-            </p>
-            
-            <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
-              Four Modules. <span className="text-neon">One Network.</span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-steel mb-12 max-w-3xl mx-auto">
-              Standardize the driver journey. Enforce the control loop. Unlock network intelligence.
-            </p>
-            <Link href="/diagnostic" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg transition-all">
-              <Crosshair size={20} />
-              Run Your Network Diagnostic
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Module 1: Digital Guard */}
-      <section className="py-24 border-b border-neon/20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Text */}
-            <div>
-              <h2 className="text-5xl font-black mb-6">Digital Guard</h2>
-              <p className="text-lg text-steel/90 mb-4 leading-relaxed">
-                Your biggest security risk is not knowing who is on your property. 
-                <span className="text-neon font-semibold"> Digital Guard verifies every carrier before they enter.</span>
-              </p>
-              <p className="text-steel/80 mb-8">
-                Self-service kiosks with OCR license scanning, photo capture, and real-time authentication. 
-                Reject unauthorized drivers instantly. Track every entry and exit.
-              </p>
-              <ul className="space-y-3 mb-8">
-                {[
-                  'Automated carrier ID verification (OCR + photo)',
-                  'CDL validation + English proficiency documentation',
-                  'Real-time driver authentication against carrier database',
-                  'Flagged credentials rejected at gate',
-                  'DOT/FMCSA audit trail for shipper liability protection',
-                ].map((item, i) => (
-                  <li key={i} className="flex gap-3">
-                    <Confirm size={20} className="text-neon flex-shrink-0" />
-                    <span className="text-steel/80">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link href="/singularity" className="btn-neon inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">
-                Apply for Access
-              </Link>
-            </div>
-
-            {/* Digital Guard Animation */}
-            <AnimatedPanel
-              title="Gate Kiosk Verification"
-              description="OCR license scan, photo capture, and real-time driver authentication sequence"
-              posterSrc="/images/digital-guard-preview.png"
-              aspectRatio="video"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Module 2: Digital Comms */}
-      <section className="py-24 bg-carbon/50 border-b border-neon/20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Digital Comms Animation */}
-            <div className="order-2 lg:order-1">
-              <AnimatedPanel
-                title="Multi-Language Messaging"
-                description="SMS coordination and dock assignment automation in 40+ languages"
-                posterSrc="/images/digital-comms-preview.png"
-                aspectRatio="video"
-              />
-            </div>
-
-            {/* Text */}
-            <div className="order-1 lg:order-2">
-              <h2 className="text-5xl font-black mb-6">Digital Comms</h2>
-              <p className="text-lg text-steel/90 mb-8 leading-relaxed">
-                Direct-to-driver messaging in 40+ languages. No radio. No PA system. No "I never got the message" disputes. SMS + app notifications with read receipts.
-              </p>
-              <ul className="space-y-3 mb-8">
-                {[
-                  'SMS-based instructions',
-                  'Multi-language support',
-                  'Zero app downloads',
-                  'Real-time navigation',
-                ].map((item, i) => (
-                  <li key={i} className="flex gap-3">
-                    <Confirm size={20} className="text-neon flex-shrink-0" />
-                    <span className="text-steel/80">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link href="/singularity" className="btn-neon inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">
-                Apply for Access
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Module 3: Digital BOL */}
-      <section className="py-24 border-b border-neon/20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Text */}
-            <div>
-              <h2 className="text-5xl font-black mb-6">Digital BOL</h2>
-              <p className="text-lg text-steel/90 mb-8 leading-relaxed">
-                Touchless documentation with forensic-grade timestamps. 100% paperless BOL workflow. Photo proof of load condition. Eliminates detention disputes before they happen.
-              </p>
-              <ul className="space-y-3 mb-8">
-                {[
-                  'ID scanning + verification at gate',
-                  'Biometric authentication options',
-                  'Carrier credentialing database',
-                  'Cryptographic timestamp audit trail',
-                  'CTPAT & TSA compliance reporting',
-                ].map((item, i) => (
-                  <li key={i} className="flex gap-3">
-                    <Confirm size={20} className="text-neon flex-shrink-0" />
-                    <span className="text-steel/80">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <p className="text-steel/70 text-sm mb-6">
-                <strong className="text-ember">Security savings:</strong> Theft prevention, insurance premium reduction, compliance cost avoidance, investigation elimination.
-              </p>
-              <Link href="/resources/procurement" className="btn-neon inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">
-                See Security Details
-              </Link>
-            </div>
-
-            {/* Digital BOL Animation */}
-            <AnimatedPanel
-              title="Document Orchestration"
-              description="Network-wide BOL signature collection and compliance audit trail"
-              posterSrc="/images/digital-bol-preview.png"
-              aspectRatio="video"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Module 4: Digital YMS */}
-      <section className="py-24 bg-gradient-to-b from-void to-carbon/30 border-b border-neon/20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Digital YMS Animation */}
-            <AnimatedPanel
-              title="Yard Visualization"
-              description="Real-time yard orchestration with network-wide predictive intelligence"
-              posterSrc="/images/digital-yms-preview.png"
-              aspectRatio="video"
-            />
-
-            {/* Text */}
-            <div>
-              <h2 className="text-5xl font-black mb-6">Digital YMS</h2>
-              <p className="text-lg text-steel/90 mb-8 leading-relaxed">
-                Real-time asset tracking with AI-powered dock assignments. The system doesn't just show you where trailers are—it tells you where they should go next.
-              </p>
-              <ul className="space-y-3 mb-8">
-                {[
-                  'Real-time GPS tracking',
-                  'Intuitive drag-and-drop moves',
-                  'AI-powered recommendations',
-                  'Autonomous move execution',
-                ].map((item, i) => (
-                  <li key={i} className="flex gap-3">
-                    <Confirm size={20} className="text-neon flex-shrink-0" />
-                    <span className="text-steel/80">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link href="/singularity" className="btn-neon inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all">
-                Apply for Access
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Grid */}
-      <section className="py-24 bg-carbon/50 border-b border-neon/20">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-5xl font-black mb-12">Why YardFlow by FreightRoll?</h2>
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <p className="text-neon font-mono text-sm tracking-widest mb-6 uppercase">
+            Network-First Product Architecture
+          </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                icon: <Velocity size={40} />,
-                title: 'Lightning Fast',
-                desc: 'Reduce yard dwell time by 50% with optimized workflows.',
-              },
-              {
-                icon: <Crosshair size={40} />,
-                title: 'Precision Tracking',
-                desc: 'Know exactly where every asset is, every moment.',
-              },
-              {
-                icon: <Shield size={40} />,
-                title: 'Enterprise Security',
-                desc: 'Bank-grade encryption and compliance-ready architecture.',
-              },
-              {
-                icon: <Agent size={40} />,
-                title: 'AI-Powered',
-                desc: 'Intelligent move recommendations learn from your patterns.',
-              },
-              {
-                icon: <Metrics size={40} />,
-                title: 'Real-Time Analytics',
-                desc: 'Live dashboards with actionable operational insights.',
-              },
-              {
-                icon: <Nexus size={40} />,
-                title: 'Global Scale',
-                desc: 'Deploy across multi-site networks with unified control.',
-              },
-            ].map((feature, i) => (
-              <div key={i} className="p-6 rounded-lg border border-steel/30 bg-carbon/40 hover:border-steel/50 transition-all">
-                <div className="text-neon mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-bold mb-3 text-neon">{feature.title}</h3>
-                <p className="text-steel/80">{feature.desc}</p>
-              </div>
-            ))}
-          </div>
+          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
+            Four Modules. <span className="text-neon">One Network.</span>
+          </h1>
+          
+          <p className="text-xl md:text-2xl text-steel mb-12 max-w-3xl mx-auto">
+            Standardize the driver journey. Enforce the control loop. Unlock network intelligence.
+          </p>
+          <Link href="/diagnostic" className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-bold bg-neon text-void hover:shadow-lg transition-all">
+            <Crosshair size={20} />
+            Run Your Network Diagnostic
+          </Link>
         </div>
       </section>
+
+      {/* Product Sections with Animations */}
+      {PRODUCTS.map((p) => (
+        <ProductSection
+          key={p.title}
+          title={p.title}
+          eyebrow={p.eyebrow}
+          description={p.description}
+          bullets={p.bullets}
+          ctaLabel={p.ctaLabel}
+          ctaHref={p.ctaHref}
+          align={p.align}
+        />
+      ))}
 
       {/* CTA Section */}
       <section className="py-24 border-t border-neon/20">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h2 className="text-5xl font-black mb-8">Ready to Transform Your Yard?</h2>
-          <p className="text-xl text-steel/90 mb-4">Only 3 Founding Member spots remaining.</p>
-          <p className="text-lg text-neon font-semibold mb-12">Applications close when filled.</p>
-          <Link href="/singularity" className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all">
-            <Crosshair size={20} className="text-void" />
-            Apply for Membership
+          <p className="text-xl text-steel/90 mb-12">
+            Book a call. We'll map your network, show you the rollout plan, and hand you the board-ready ROI model.
+          </p>
+          <Link href="/contact" className="inline-flex items-center gap-2 px-10 py-5 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all hover:scale-105">
+            Get Your Network Rollout Plan
           </Link>
         </div>
       </section>
