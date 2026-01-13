@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Metrics, Agent, Confirm, Nexus, Shield, Velocity, Crosshair } from '@/components/icons/FlowIcons';
 import Link from 'next/link';
+import AnimatedPanel from '@/components/AnimatedPanel';
 
 export default function ProductPage() {
   
@@ -69,19 +70,13 @@ export default function ProductPage() {
               </Link>
             </div>
 
-            {/* Visual Placeholder */}
-            <div className="glass-card aspect-video flex items-center justify-center p-12 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-neon/5 to-ember/5 animate-pulse" />
-              <div className="relative text-center">
-                <div className="w-16 h-16 mx-auto mb-4 border-4 border-neon/30 border-t-neon rounded-full animate-spin" />
-                <p className="text-steel/60 text-sm font-mono uppercase tracking-wider mb-2">
-                  Animation Loading
-                </p>
-                <p className="text-steel/40 text-xs">
-                  Gate kiosk verification sequence
-                </p>
-              </div>
-            </div>
+            {/* Digital Guard Animation */}
+            <AnimatedPanel
+              title="Gate Kiosk Verification"
+              description="OCR license scan, photo capture, and real-time driver authentication sequence"
+              posterSrc="/images/digital-guard-preview.png"
+              aspectRatio="video"
+            />
           </div>
         </div>
       </section>
@@ -90,18 +85,14 @@ export default function ProductPage() {
       <section className="py-24 bg-carbon/50 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Visual Placeholder */}
-            <div className="glass-card aspect-video flex items-center justify-center p-12 order-2 lg:order-1 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-neon/5 to-ember/5 animate-pulse" />
-              <div className="relative text-center">
-                <div className="w-16 h-16 mx-auto mb-4 border-4 border-neon/30 border-t-neon rounded-full animate-spin" />
-                <p className="text-steel/60 text-sm font-mono uppercase tracking-wider mb-2">
-                  Animation Loading
-                </p>
-                <p className="text-steel/40 text-xs">
-                  Multi-language messaging flow
-                </p>
-              </div>
+            {/* Digital Comms Animation */}
+            <div className="order-2 lg:order-1">
+              <AnimatedPanel
+                title="Multi-Language Messaging"
+                description="SMS coordination and dock assignment automation in 40+ languages"
+                posterSrc="/images/digital-comms-preview.png"
+                aspectRatio="video"
+              />
             </div>
 
             {/* Text */}
@@ -163,19 +154,13 @@ export default function ProductPage() {
               </Link>
             </div>
 
-            {/* Visual Placeholder */}
-            <div className="glass-card aspect-video flex items-center justify-center p-12 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-neon/5 to-ember/5 animate-pulse" />
-              <div className="relative text-center">
-                <div className="w-16 h-16 mx-auto mb-4 border-4 border-neon/30 border-t-neon rounded-full animate-spin" />
-                <p className="text-steel/60 text-sm font-mono uppercase tracking-wider mb-2">
-                  Animation Loading
-                </p>
-                <p className="text-steel/40 text-xs">
-                  Document orchestration network
-                </p>
-              </div>
-            </div>
+            {/* Digital BOL Animation */}
+            <AnimatedPanel
+              title="Document Orchestration"
+              description="Network-wide BOL signature collection and compliance audit trail"
+              posterSrc="/images/digital-bol-preview.png"
+              aspectRatio="video"
+            />
           </div>
         </div>
       </section>
@@ -184,19 +169,13 @@ export default function ProductPage() {
       <section className="py-24 bg-gradient-to-b from-void to-carbon/30 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Visual Placeholder */}
-            <div className="glass-card aspect-video flex items-center justify-center p-12 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-neon/5 to-ember/5 animate-pulse" />
-              <div className="relative text-center">
-                <div className="w-16 h-16 mx-auto mb-4 border-4 border-neon/30 border-t-neon rounded-full animate-spin" />
-                <p className="text-steel/60 text-sm font-mono uppercase tracking-wider mb-2">
-                  Animation Loading
-                </p>
-                <p className="text-steel/40 text-xs">
-                  Real-time yard visualization
-                </p>
-              </div>
-            </div>
+            {/* Digital YMS Animation */}
+            <AnimatedPanel
+              title="Yard Visualization"
+              description="Real-time yard orchestration with network-wide predictive intelligence"
+              posterSrc="/images/digital-yms-preview.png"
+              aspectRatio="video"
+            />
 
             {/* Text */}
             <div>

@@ -117,6 +117,7 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyCTABar from '@/components/StickyCTABar';
+import StandardizationMap from '@/components/StandardizationMap';
 
 export default function Home() {
   return (
@@ -172,6 +173,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          STANDARDIZATION MAP - INSERTED AFTER HERO
+      ═══════════════════════════════════════════════════════════════ */}
+      <StandardizationMap />
 
       {/* ═══════════════════════════════════════════════════════════════
           FINAL CTA
