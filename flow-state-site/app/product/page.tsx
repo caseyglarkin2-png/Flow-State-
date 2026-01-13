@@ -3,9 +3,6 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Card from '@/components/Card';
-import StandardizationBand from '@/components/StandardizationBand';
-import { ExpandableCard } from '@/components/ExpandableCard';
 import { Metrics, Agent, Confirm, Nexus, Shield, Velocity, Crosshair } from '@/components/icons/FlowIcons';
 import Link from 'next/link';
 
@@ -73,10 +70,17 @@ export default function ProductPage() {
             </div>
 
             {/* Visual Placeholder */}
-            <div className="glass-card aspect-video flex items-center justify-center p-12">
-              <p className="text-white text-center text-xl font-semibold">
-                Animated Image of a gate with a kiosk
-              </p>
+            <div className="glass-card aspect-video flex items-center justify-center p-12 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-neon/5 to-ember/5 animate-pulse" />
+              <div className="relative text-center">
+                <div className="w-16 h-16 mx-auto mb-4 border-4 border-neon/30 border-t-neon rounded-full animate-spin" />
+                <p className="text-steel/60 text-sm font-mono uppercase tracking-wider mb-2">
+                  Animation Loading
+                </p>
+                <p className="text-steel/40 text-xs">
+                  Gate kiosk verification sequence
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -87,10 +91,17 @@ export default function ProductPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Visual Placeholder */}
-            <div className="glass-card aspect-video flex items-center justify-center p-12 order-2 lg:order-1">
-              <p className="text-white text-center text-xl font-semibold">
-                Animated Image of a chain of messages on mobile / PC
-              </p>
+            <div className="glass-card aspect-video flex items-center justify-center p-12 order-2 lg:order-1 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-neon/5 to-ember/5 animate-pulse" />
+              <div className="relative text-center">
+                <div className="w-16 h-16 mx-auto mb-4 border-4 border-neon/30 border-t-neon rounded-full animate-spin" />
+                <p className="text-steel/60 text-sm font-mono uppercase tracking-wider mb-2">
+                  Animation Loading
+                </p>
+                <p className="text-steel/40 text-xs">
+                  Multi-language messaging flow
+                </p>
+              </div>
             </div>
 
             {/* Text */}
@@ -153,10 +164,17 @@ export default function ProductPage() {
             </div>
 
             {/* Visual Placeholder */}
-            <div className="glass-card aspect-video flex items-center justify-center p-12">
-              <p className="text-white text-center text-xl font-semibold">
-                Animation of documents flying around various nodes within a supply chain
-              </p>
+            <div className="glass-card aspect-video flex items-center justify-center p-12 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-neon/5 to-ember/5 animate-pulse" />
+              <div className="relative text-center">
+                <div className="w-16 h-16 mx-auto mb-4 border-4 border-neon/30 border-t-neon rounded-full animate-spin" />
+                <p className="text-steel/60 text-sm font-mono uppercase tracking-wider mb-2">
+                  Animation Loading
+                </p>
+                <p className="text-steel/40 text-xs">
+                  Document orchestration network
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -167,10 +185,17 @@ export default function ProductPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Visual Placeholder */}
-            <div className="glass-card aspect-video flex items-center justify-center p-12">
-              <p className="text-white text-center text-xl font-semibold">
-                Animated Image of a yard like below
-              </p>
+            <div className="glass-card aspect-video flex items-center justify-center p-12 relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-neon/5 to-ember/5 animate-pulse" />
+              <div className="relative text-center">
+                <div className="w-16 h-16 mx-auto mb-4 border-4 border-neon/30 border-t-neon rounded-full animate-spin" />
+                <p className="text-steel/60 text-sm font-mono uppercase tracking-wider mb-2">
+                  Animation Loading
+                </p>
+                <p className="text-steel/40 text-xs">
+                  Real-time yard visualization
+                </p>
+              </div>
             </div>
 
             {/* Text */}
@@ -238,11 +263,11 @@ export default function ProductPage() {
                 desc: 'Deploy across multi-site networks with unified control.',
               },
             ].map((feature, i) => (
-              <Card key={i} hover>
+              <div key={i} className="p-6 rounded-lg border border-steel/30 bg-carbon/40 hover:border-steel/50 transition-all">
                 <div className="text-neon mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-bold mb-3 text-neon">{feature.title}</h3>
                 <p className="text-steel/80">{feature.desc}</p>
-              </Card>
+              </div>
             ))}
           </div>
         </div>

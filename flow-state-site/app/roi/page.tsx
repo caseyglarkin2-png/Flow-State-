@@ -2039,18 +2039,18 @@ export default function ROICalculatorPage() {
                   </div>
                 </Card>
 
-                {/* Chapter Breakdown */}
+                {/* Module Layer Breakdown */}
                 <Card className="mb-8 border-neon/30">
-                  <h3 className="font-bold text-neon mb-3">Savings by Chapter</h3>
+                  <h3 className="font-bold text-neon mb-3">Savings by Module Layer</h3>
                   <p className="text-sm text-steel/80 mb-4">
-                    Each chapter of the Flow State spine delivers specific savings. See how the 3-chapter architecture drives ROI.
+                    Each layer of the network-first architecture delivers specific savings. See how foundation, execution, and intelligence work together.
                   </p>
                   <div className="space-y-4">
                     <div className="p-4 rounded-lg border border-neon/20 bg-neon/5">
                       <div className="flex items-center justify-between mb-2">
                         <div>
-                          <span className="text-xs font-mono uppercase tracking-wider text-neon">Chapter 1</span>
-                          <h4 className="font-semibold text-white">Standardization Band</h4>
+                          <span className="text-xs font-mono uppercase tracking-wider text-neon">Foundation Layer</span>
+                          <h4 className="font-semibold text-white">Driver Journey Standardization</h4>
                         </div>
                         <span className="text-xl font-bold text-neon">{formatMoney(calculations.annualLaborSavings * calculations.yearOneRampShare)}</span>
                       </div>
@@ -2062,7 +2062,7 @@ export default function ROICalculatorPage() {
                     <div className="p-4 rounded-lg border border-steel/20">
                       <div className="flex items-center justify-between mb-2">
                         <div>
-                          <span className="text-xs font-mono uppercase tracking-wider text-steel/60">Chapter 2</span>
+                          <span className="text-xs font-mono uppercase tracking-wider text-steel/60">Execution Layer</span>
                           <h4 className="font-semibold text-white">Yard Control Loop</h4>
                         </div>
                         <span className="text-xl font-bold text-white">{formatMoney((calculations.annualDetentionSavings + calculations.throughputValue) * calculations.yearOneRampShare)}</span>
@@ -2075,8 +2075,8 @@ export default function ROICalculatorPage() {
                     <div className="p-4 rounded-lg border border-steel/20">
                       <div className="flex items-center justify-between mb-2">
                         <div>
-                          <span className="text-xs font-mono uppercase tracking-wider text-steel/60">Chapter 3</span>
-                          <h4 className="font-semibold text-white">Network Effect</h4>
+                          <span className="text-xs font-mono uppercase tracking-wider text-steel/60">Intelligence Layer</span>
+                          <h4 className="font-semibold text-white">Network Orchestration</h4>
                         </div>
                         <span className="text-xl font-bold text-neon">{formatMoney(calculations.networkBonusSavings * calculations.yearOneRampShare)}</span>
                       </div>

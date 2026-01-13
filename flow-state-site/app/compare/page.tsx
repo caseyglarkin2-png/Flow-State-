@@ -86,7 +86,7 @@ export default function CompareIndexPage() {
 
           <div className="text-center">
             <p className="text-steel/80 max-w-3xl mx-auto">
-              Standardize the driver journey band (Chapter 1), enforce the control loop (Chapter 2), unlock network intelligence (Chapter 3). Legacy approaches solve for site-level visibility. We solve for network-level control.
+              Standardize the driver journey. Enforce the control loop. Unlock network intelligence. Legacy approaches solve for site-level visibility. We solve for network-level control.
             </p>
           </div>
         </div>

@@ -12,8 +12,6 @@ import FrameShiftHero from '@/components/FrameShiftHero';
 import MissionCard from '@/components/MissionCard';
 import { useLaneStore } from '@/store/lane';
 
-type Chapter = '1' | '2' | '3';
-
 export default function SolutionsPage() {
   const lane = useLaneStore((s) => s.lane);
 
@@ -23,8 +21,7 @@ export default function SolutionsPage() {
     whatBreaks: string;
     intervention: string;
     outcome: string;
-    chapter: Chapter;
-    chapterName: string;
+    layer: string;
   }> = [
     {
       title: 'Stop the detention tax',
@@ -32,8 +29,7 @@ export default function SolutionsPage() {
       whatBreaks: 'Disputes drag. Ops gets blamed. Finance treats it as a tax.',
       intervention: 'Standard check-in/out with defensible time capture and exception handling.',
       outcome: 'Fewer disputes. Clearer accountability. Negotiation leverage improves.',
-      chapter: '1',
-      chapterName: 'Standardization Band',
+      layer: 'Foundation: Driver Journey',
     },
     {
       title: 'Cut the security tax',
@@ -41,8 +37,7 @@ export default function SolutionsPage() {
       whatBreaks: 'Manual ID checks miss fraud. Investigations take weeks. Insurance premiums climb.',
       intervention: 'ID scanning + carrier credentialing + tamper-evident audit trail + CTPAT/TSA compliance.',
       outcome: '80% theft reduction, 15% insurance discount, compliant gates with forensic-grade evidence.',
-      chapter: '1',
-      chapterName: 'Standardization Band',
+      layer: 'Foundation: Driver Journey',
     },
     {
       title: 'Cut the expedite tax',
@@ -50,8 +45,7 @@ export default function SolutionsPage() {
       whatBreaks: 'Drivers stack up. Dock plans drift. Everyone improvises.',
       intervention: 'Instrument the gate, route exceptions, and enforce repeatable workflows.',
       outcome: 'More predictable turns and fewer "surprise" delays.',
-      chapter: '2',
-      chapterName: 'Yard Control Loop',
+      layer: 'Execution: Yard Operations',
     },
     {
       title: 'Eliminate the search tax',
@@ -59,8 +53,7 @@ export default function SolutionsPage() {
       whatBreaks: 'Teams waste hours searching and rework piles up.',
       intervention: 'Ground-truth yard state + consistent yard map + standardized moves.',
       outcome: 'Less search time and tighter yard execution.',
-      chapter: '2',
-      chapterName: 'Yard Control Loop',
+      layer: 'Execution: Yard Operations',
     },
     {
       title: 'End the variance tax',
@@ -68,8 +61,7 @@ export default function SolutionsPage() {
       whatBreaks: "Leadership can't compare performance; improvements don't stick.",
       intervention: 'One network playbook with site-specific configuration and the same measurement layer.',
       outcome: 'Comparable KPIs across the network; ROI compounds as adoption grows.',
-      chapter: '3',
-      chapterName: 'Network Effect',
+      layer: 'Intelligence: Network Orchestration',
     },
   ];
 
@@ -100,14 +92,14 @@ export default function SolutionsPage() {
             Each tax has the same pattern: invisible cost → root cause → intervention → measurable recovery.
           </p>
           <p className="text-sm text-steel/70 mb-8">
-            Each mission maps to a specific chapter of the Flow State spine. See which chapter solves which problem.
+            Each mission maps to a specific layer of the YardFlow architecture. See which layer solves which problem.
           </p>
 
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
             {shown.map((m) => (
               <div key={m.title} className="relative">
                 <div className="absolute -top-2 -right-2 z-10 px-3 py-1 rounded-full text-xs font-mono uppercase tracking-wider bg-neon/10 border border-neon/40 text-neon">
-                  Ch{m.chapter}: {m.chapterName}
+                  {m.layer}
                 </div>
                 <MissionCard
                   title={m.title}

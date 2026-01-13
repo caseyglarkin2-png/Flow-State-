@@ -27,35 +27,51 @@ export const HERO_HEADLINES = {
 } as const;
 
 // ═══════════════════════════════════════════════════════════════
-// 3-CHAPTER SPINE (The Narrative Backbone)
-// Used on: Homepage, Product, Solutions, ROI, Singularity, Compare
+// CORE POSITIONING (Unified YNS Messaging)
+// Single source of truth for category positioning
 // ═══════════════════════════════════════════════════════════════
 
-export const SPINE_CHAPTERS = {
-  chapter1: {
-    number: "1",
-    title: "Standardization Band",
-    subtitle: "Driver Journey",
+export const CORE_POSITIONING = {
+  hero: {
+    problem: "You don't have 50 yards. You have one yard network.",
+    breakdown: "But your software treats them like islands.",
+  },
+  category: {
+    yms: "YMS optimizes sites.",
+    yns: "YNS orchestrates networks.",
+    ymsLong: "Traditional Yard Management Systems (YMS) treat each facility as an island.",
+    ynsLong: "YardFlow's Yard Network System (YNS) enables network-wide orchestration with standardized protocols and shared intelligence.",
+  },
+  tagline: "Yard Network System (YNS)",
+} as const;
+
+// ═══════════════════════════════════════════════════════════════
+// MODULE LAYERS (Network-First Architecture)
+// Used on: Product, Solutions, ROI, Singularity
+// ═══════════════════════════════════════════════════════════════
+
+export const MODULE_LAYERS = {
+  foundation: {
+    title: "Driver Journey Standardization",
+    subtitle: "Foundation Layer",
     shortDescription: "QR check-in, timestamps, reason codes. Network foundation.",
     fullDescription: "Every yard is different. But the driver journey can—and must—be identical. QR check-in (no app), touchless timestamps, exception reason codes, multilingual instructions. This is Ground Source Truth: defensible time capture that replaces 'what someone typed in'.",
     outcome: "70% gate labor reduction, 50% dwell reduction (48→24 min), 65% detention recovery",
     modules: ["Digital Guard", "Digital Comms"],
   },
-  chapter2: {
-    number: "2",
+  execution: {
     title: "Yard Control Loop",
-    subtitle: "Per-Site Execution",
+    subtitle: "Execution Layer",
     shortDescription: "Asset tracking, dwell alerts, operational clarity.",
     fullDescription: "Powered by the standardized driver layer. Real-time asset state, yard map, dwell anomalies, alerts, operational clarity. Not 'more visibility.' It's a control loop: system enforces what happens next.",
     outcome: "Control enforcement, not just visibility",
     modules: ["Digital BOL", "Digital YMS"],
   },
-  chapter3: {
-    number: "3",
-    title: "Network Effect",
-    subtitle: "Executive Layer",
+  intelligence: {
+    title: "Network Intelligence",
+    subtitle: "Intelligence Layer",
     shortDescription: "Cross-site intelligence, predictions, bottlenecks.",
-    fullDescription: "Tied directly to Chapter 1 standardized inputs. Cross-site benchmarking, predictive alerts, bottleneck detection, network-level intelligence. Singularity map: drill down from network anomaly to root cause facility.",
+    fullDescription: "Built on standardized inputs across all facilities. Cross-site benchmarking, predictive alerts, bottleneck detection, network-level intelligence. Singularity map: drill down from network anomaly to root cause facility.",
     outcome: "Compounding intelligence with every facility added",
     modules: ["Singularity"],
   },

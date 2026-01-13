@@ -1,13 +1,12 @@
 /**
- * SPINE OVERVIEW - 3-Chapter Summary Component
+ * SPINE OVERVIEW - Module Layers Summary Component
  * 
- * Shows high-level spine overview without interactive switching.
- * Use ChapterSwitcher for full interactive navigation.
+ * Shows high-level module layer overview.
  * Imports from copy.ts for consistency.
  */
 
 import React from 'react';
-import { SPINE_CHAPTERS } from '@/content/copy';
+import { MODULE_LAYERS } from '@/content/copy';
 
 type SpineOverviewProps = {
   variant?: 'cards' | 'compact';
@@ -21,23 +20,23 @@ export default function SpineOverview({
   className = ''
 }: SpineOverviewProps) {
   
-  const chapters = [
-    SPINE_CHAPTERS.chapter1,
-    SPINE_CHAPTERS.chapter2,
-    SPINE_CHAPTERS.chapter3,
+  const layers = [
+    { number: '1', ...MODULE_LAYERS.foundation },
+    { number: '2', ...MODULE_LAYERS.execution },
+    { number: '3', ...MODULE_LAYERS.intelligence },
   ];
 
   if (variant === 'compact') {
     return (
       <div className={`space-y-3 ${className}`}>
-        {chapters.map((chapter) => (
-          <div key={chapter.number} className="flex items-start gap-3">
+        {layers.map((layer) => (
+          <div key={layer.number} className="flex items-start gap-3">
             <div className="flex-shrink-0 w-8 h-8 rounded-full bg-neon/10 border border-neon/30 flex items-center justify-center">
-              <span className="text-neon font-bold text-sm">{chapter.number}</span>
+              <span className="text-neon font-bold text-sm">{layer.number}</span>
             </div>
             <div>
-              <h4 className="text-white font-bold">{chapter.title}</h4>
-              <p className="text-steel/80 text-sm">{chapter.shortDescription}</p>
+              <h4 className="text-white font-bold">{layer.title}</h4>
+              <p className="text-steel/80 text-sm">{layer.shortDescription}</p>
             </div>
           </div>
         ))}
@@ -47,9 +46,9 @@ export default function SpineOverview({
 
   return (
     <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 ${className}`}>
-      {chapters.map((chapter, index) => (
+      {layers.map((layer, index) => (
         <div 
-          key={chapter.number}
+          key={layer.number}
           className={`p-6 rounded-lg border-2 ${
             index === 0 
               ? 'border-neon/40 bg-neon/5' 
@@ -59,16 +58,16 @@ export default function SpineOverview({
           <div className={`font-mono text-xs uppercase tracking-wider mb-2 ${
             index === 0 ? 'text-neon' : 'text-steel/60'
           }`}>
-            Chapter {chapter.number}
+            {layer.subtitle}
           </div>
-          <h3 className="text-xl font-bold text-white mb-3">{chapter.title}</h3>
-          <p className="text-steel/90 mb-3">{chapter.fullDescription.split('.')[0]}.</p>
+          <h3 className="text-xl font-bold text-white mb-3">{layer.title}</h3>
+          <p className="text-steel/90 mb-3">{layer.fullDescription.split('.')[0]}.</p>
           
-          {showModules && chapter.modules.length > 0 && (
+          {showModules && layer.modules && layer.modules.length > 0 && (
             <div className="mt-4 pt-4 border-t border-steel/20">
               <p className="text-xs text-steel/60 mb-2">Modules:</p>
               <div className="flex flex-wrap gap-2">
-                {chapter.modules.map((module) => (
+                {layer.modules.map((module) => (
                   <span 
                     key={module}
                     className="text-xs px-2 py-1 rounded bg-carbon/60 text-steel/80 border border-steel/20"
