@@ -79,7 +79,7 @@ export async function GET() {
               gap: '14px',
             }}
           >
-            {/* Network logo */}
+            {/* Network logo - matches lib/branding.ts ACTIVE_VARIANT */}
             <svg
               viewBox="0 0 32 32"
               width="40"
@@ -88,12 +88,10 @@ export async function GET() {
               <circle cx="16" cy="16" r="3" fill="#00B4FF"/>
               <circle cx="8" cy="8" r="2" fill="#00B4FF"/>
               <circle cx="24" cy="8" r="2" fill="#00B4FF"/>
-              <circle cx="8" cy="24" r="2" fill="#00B4FF"/>
-              <circle cx="24" cy="24" r="2" fill="#00B4FF"/>
+              <circle cx="16" cy="26" r="2" fill="#00B4FF"/>
               <line x1="16" y1="13" x2="9" y2="9.5" stroke="#00B4FF" strokeWidth="1.5"/>
               <line x1="16" y1="13" x2="23" y2="9.5" stroke="#00B4FF" strokeWidth="1.5"/>
-              <line x1="16" y1="19" x2="9" y2="22.5" stroke="#00B4FF" strokeWidth="1.5"/>
-              <line x1="16" y1="19" x2="23" y2="22.5" stroke="#00B4FF" strokeWidth="1.5"/>
+              <line x1="16" y1="19" x2="16" y2="24" stroke="#00B4FF" strokeWidth="1.5"/>
               <circle cx="16" cy="16" r="14.5" stroke="#00B4FF" strokeWidth="1" opacity="0.3"/>
             </svg>
             <div
@@ -108,6 +106,7 @@ export async function GET() {
                   fontWeight: 700,
                   color: '#FFFFFF',
                   lineHeight: 1,
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
                 }}
               >
                 YardFlow
@@ -117,9 +116,10 @@ export async function GET() {
                   fontSize: 12,
                   color: '#64748B',
                   letterSpacing: '0.05em',
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
                 }}
               >
-                powered by FreightRoll
+                by FreightRoll
               </span>
             </div>
           </div>
@@ -154,6 +154,7 @@ export async function GET() {
                   textTransform: 'uppercase',
                   letterSpacing: '0.2em',
                   fontWeight: 600,
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
                 }}
               >
                 Yard Network System
@@ -175,6 +176,7 @@ export async function GET() {
                   color: '#FFFFFF',
                   letterSpacing: '-0.03em',
                   lineHeight: 1,
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
                 }}
               >
                 Variance Is The Villain.
@@ -187,6 +189,7 @@ export async function GET() {
                   letterSpacing: '-0.03em',
                   lineHeight: 1,
                   textShadow: '0 0 60px rgba(0, 180, 255, 0.4)',
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
                 }}
               >
                 Control Is The Hero.
@@ -200,6 +203,7 @@ export async function GET() {
                 color: '#94A3B8',
                 maxWidth: '700px',
                 lineHeight: 1.4,
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
               }}
             >
               Deterministic yard operations that eliminate chaos and create synthetic capacity across your network.
@@ -228,6 +232,7 @@ export async function GET() {
                   fontSize: 36,
                   fontWeight: 800,
                   color: '#FFFFFF',
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
                 }}
               >
                 50%
@@ -238,6 +243,7 @@ export async function GET() {
                   color: '#64748B',
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
                 }}
               >
                 Turn Time Reduction
@@ -255,6 +261,7 @@ export async function GET() {
                   fontSize: 36,
                   fontWeight: 800,
                   color: '#FFFFFF',
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
                 }}
               >
                 2x
@@ -265,6 +272,7 @@ export async function GET() {
                   color: '#64748B',
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
                 }}
               >
                 Synthetic Capacity
@@ -282,6 +290,7 @@ export async function GET() {
                   fontSize: 36,
                   fontWeight: 800,
                   color: '#FFFFFF',
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
                 }}
               >
                 Zero
@@ -292,6 +301,7 @@ export async function GET() {
                   color: '#64748B',
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
                 }}
               >
                 Ghost Count
@@ -309,6 +319,7 @@ export async function GET() {
                   fontSize: 36,
                   fontWeight: 800,
                   color: '#00B4FF',
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
                 }}
               >
                 $120K
@@ -319,6 +330,7 @@ export async function GET() {
                   color: '#64748B',
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
+                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
                 }}
               >
                 Gate Labor Eliminated
