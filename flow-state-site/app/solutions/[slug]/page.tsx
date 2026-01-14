@@ -6,15 +6,15 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 type PageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return (Object.keys(solutionPages) as SolutionSlug[]).map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }: PageProps) {
-  const slug = params.slug;
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = await params;
   if (!isSolutionSlug(slug)) return {};
   const cfg = solutionPages[slug];
   return {
@@ -318,8 +318,8 @@ function renderModule(moduleId: SolutionModuleId, slug: SolutionSlug) {
   }
 }
 
-export default function SolutionPersonaPage({ params }: PageProps) {
-  const slugParam = params.slug;
+export default async function SolutionPersonaPage({ params }: PageProps) {
+  const { slug: slugParam } = await params;
   if (!isSolutionSlug(slugParam)) notFound();
 
   const slug = slugParam as SolutionSlug;
