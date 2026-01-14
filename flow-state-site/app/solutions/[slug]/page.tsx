@@ -86,7 +86,7 @@ export default async function SolutionPersonaPage({ params }: PageProps) {
             <div>
               {/* Variance Thesis */}
               <Section id="variance-thesis" title={cfg.varianceThesis.title}>
-                <p className="text-lg text-steel leading-8 max-w-[72ch]">
+                <p className="text-xl text-steel leading-9 max-w-[72ch]">
                   {cfg.varianceThesis.body}
                 </p>
               </Section>
@@ -97,7 +97,7 @@ export default async function SolutionPersonaPage({ params }: PageProps) {
                   {cfg.viscosity.bullets.map((b) => (
                     <div key={b.title} className="rounded-2xl border border-neon/20 bg-carbon/50 p-5">
                       <h3 className="text-base font-semibold text-white">{b.title}</h3>
-                      <p className="mt-2 text-sm text-steel leading-relaxed">{b.body}</p>
+                      <p className="mt-2 text-[15px] text-steel leading-relaxed">{b.body}</p>
                     </div>
                   ))}
                 </div>
@@ -123,7 +123,7 @@ export default async function SolutionPersonaPage({ params }: PageProps) {
                   {cfg.solution.features.map((f) => (
                     <div key={f.name} className="rounded-2xl border border-neon/20 bg-carbon/50 p-5">
                       <h3 className="text-base font-semibold text-white">{f.name}</h3>
-                      <p className="mt-2 text-sm text-steel leading-relaxed">{f.description}</p>
+                      <p className="mt-2 text-[15px] text-steel leading-relaxed">{f.description}</p>
                     </div>
                   ))}
                 </div>
@@ -135,7 +135,7 @@ export default async function SolutionPersonaPage({ params }: PageProps) {
                     {cfg.solution.outcomeBullets.map((b) => (
                       <li key={b} className="flex gap-3 text-steel">
                         <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-neon/70" />
-                        <span className="leading-relaxed">{b}</span>
+                        <span className="text-[15px] leading-relaxed">{b}</span>
                       </li>
                     ))}
                   </ul>

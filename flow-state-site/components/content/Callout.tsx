@@ -76,7 +76,7 @@ export default function Callout({
               {title}
             </p>
           )}
-          <div className="text-steel leading-relaxed text-sm space-y-2">
+          <div className="text-steel leading-relaxed text-[15px] space-y-2">
             {children}
           </div>
         </div>
