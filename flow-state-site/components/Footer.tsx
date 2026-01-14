@@ -24,7 +24,6 @@ export default function Footer() {
               <li><Link href="/product" className="hover:text-neon transition-colors">Overview</Link></li>
               <li><Link href="/roi" className="hover:text-neon transition-colors">ROI Calculator</Link></li>
               <li><Link href="/yardbuilder" className="hover:text-neon transition-colors">YardBuilder</Link></li>
-              <li><Link href="/diagnostic" className="hover:text-neon transition-colors">Diagnostic</Link></li>
             </ul>
           </div>
 
@@ -32,11 +31,11 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-neon text-sm uppercase tracking-wider">Solutions</h3>
             <ul className="space-y-2 text-sm text-steel">
-              <li><Link href="/solutions" className="hover:text-neon transition-colors">All Solutions</Link></li>
+              <li><Link href="/solutions" className="hover:text-neon transition-colors">Solutions Overview</Link></li>
               <li><Link href="/solutions/dry-van" className="hover:text-neon transition-colors">Dry Van</Link></li>
               <li><Link href="/solutions/reefer" className="hover:text-neon transition-colors">Reefer</Link></li>
               <li><Link href="/solutions/flatbed" className="hover:text-neon transition-colors">Flatbed</Link></li>
-              <li><Link href="/singularity" className="hover:text-neon transition-colors">Network Intelligence</Link></li>
+              <li><Link href="/case-studies" className="hover:text-neon transition-colors">Case Studies</Link></li>
             </ul>
           </div>
 
@@ -47,7 +46,7 @@ export default function Footer() {
               <li><Link href="/resources/guides" className="hover:text-neon transition-colors">Guides</Link></li>
               <li><Link href="/resources/field-notes" className="hover:text-neon transition-colors">Field Notes</Link></li>
               <li><Link href="/resources/simulations" className="hover:text-neon transition-colors">Simulations</Link></li>
-              <li><Link href="/docs" className="hover:text-neon transition-colors">Documentation</Link></li>
+              <li><Link href="/docs/economics-methodology" className="hover:text-neon transition-colors">Economics Methodology</Link></li>
             </ul>
           </div>
 
@@ -55,14 +54,15 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-neon text-sm uppercase tracking-wider">Company</h3>
             <ul className="space-y-2 text-sm text-steel">
-              <li><Link href="/about" className="hover:text-neon transition-colors">About</Link></li>
-              <li><Link href="/pricing" className="hover:text-neon transition-colors">Pricing</Link></li>
+              <li><Link href="/resources/procurement" className="hover:text-neon transition-colors">Evidence Vault</Link></li>
               <li><Link href="/implementation" className="hover:text-neon transition-colors">Implementation</Link></li>
               <li><Link href="/integrations" className="hover:text-neon transition-colors">Integrations</Link></li>
+              <li><Link href="/pricing" className="hover:text-neon transition-colors">Pricing</Link></li>
+              <li><Link href="/about" className="hover:text-neon transition-colors">About</Link></li>
               <li><Link href="/faq" className="hover:text-neon transition-colors">FAQ</Link></li>
               <li><Link href="/press" className="hover:text-neon transition-colors">Press</Link></li>
               <li><Link href="/status" className="hover:text-neon transition-colors">Status</Link></li>
-              <li><Link href="/contact" className="hover:text-neon transition-colors">Contact</Link></li>
+              <li><Link href="/changelog" className="hover:text-neon transition-colors">Changelog</Link></li>
             </ul>
           </div>
         </div>
