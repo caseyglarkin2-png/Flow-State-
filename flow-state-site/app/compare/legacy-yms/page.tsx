@@ -51,13 +51,13 @@ export default function CompareLegacyYmsPage() {
             <div className="mt-5 flex flex-col sm:flex-row gap-3">
               <a
                 href="/contact"
-                className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
               >
                 Talk to an operator
               </a>
               <a
                 href="/roi"
-                className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
               >
                 Model ROI
               </a>

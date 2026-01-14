@@ -24,14 +24,14 @@ export default function FrameShiftHero({ title, reframe, proof, primaryCta, seco
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <a
                 href={primaryCta.href}
-                className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
               >
                 {primaryCta.label}
               </a>
               {secondaryCta ? (
                 <a
                   href={secondaryCta.href}
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
                 >
                   {secondaryCta.label}
                 </a>

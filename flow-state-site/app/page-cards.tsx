@@ -85,14 +85,14 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/diagnostic"
-              className="group inline-flex items-center gap-3 px-8 py-4 rounded-lg font-bold text-lg bg-ember text-white hover:bg-white hover:text-void transition-all hover:scale-105"
+              className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg bg-ember text-white hover:bg-white hover:text-void transition-all hover:scale-105"
             >
               <Crosshair size={22} />
               Run the Network Leak Diagnostic
             </Link>
             <Link
               href="/yns"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all"
             >
               YMS vs YNS: See the Difference
             </Link>
@@ -312,7 +312,7 @@ export default function Home() {
 
               <Link
                 href="/diagnostic"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold bg-ember text-white hover:bg-white hover:text-void transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold bg-ember text-white hover:bg-white hover:text-void transition-all"
               >
                 <Crosshair size={18} />
                 Run the Network Leak Diagnostic
@@ -473,7 +473,7 @@ export default function Home() {
                   <div className="flex items-center justify-center">
                     <Link
                       href="/case-studies/primo-network"
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold border border-neon text-neon hover:bg-neon hover:text-void transition-all"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold border border-neon text-neon hover:bg-neon hover:text-void transition-all"
                     >
                       <FlowArrow size={18} />
                       Read Full Case
@@ -607,7 +607,7 @@ export default function Home() {
                   </p>
                   <Link
                     href="/roi"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold bg-neon text-void hover:bg-white transition-all"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold bg-neon text-void hover:bg-white transition-all"
                   >
                     <Metrics size={18} />
                     Build Your Model
@@ -621,7 +621,7 @@ export default function Home() {
                   </p>
                   <Link
                     href="/security"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
                   >
                     <Shield size={18} />
                     View Trust Center
@@ -708,14 +708,14 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-3 px-10 py-5 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white transition-all hover:scale-105"
+              className="inline-flex items-center gap-3 px-10 py-5 rounded-xl font-bold text-lg bg-neon text-void hover:bg-white transition-all hover:scale-105"
             >
               <Velocity size={22} className="text-void" />
               Apply for Membership
             </Link>
             <Link
               href="/pricing"
-              className="inline-flex items-center gap-2 px-8 py-5 rounded-lg font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
+              className="inline-flex items-center gap-2 px-8 py-5 rounded-xl font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
             >
               View Pricing
             </Link>

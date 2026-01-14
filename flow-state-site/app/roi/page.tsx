@@ -365,7 +365,7 @@ export default function ROICalculatorPage() {
                 onClick={() => setView('board')}
                 className={
                   view === 'board'
-                    ? 'px-3 py-2 rounded-lg bg-neon text-void font-semibold'
+                    ? 'px-3 py-2 rounded-xl bg-neon text-void font-semibold'
                     : 'px-3 py-2 rounded-lg border border-steel/30 text-white hover:border-neon/40 transition-colors'
                 }
               >
@@ -376,7 +376,7 @@ export default function ROICalculatorPage() {
                 onClick={() => setView('deep')}
                 className={
                   view === 'deep'
-                    ? 'px-3 py-2 rounded-lg bg-neon text-void font-semibold'
+                    ? 'px-3 py-2 rounded-xl bg-neon text-void font-semibold'
                     : 'px-3 py-2 rounded-lg border border-steel/30 text-white hover:border-neon/40 transition-colors'
                 }
               >
@@ -422,7 +422,7 @@ export default function ROICalculatorPage() {
                       return 'quick';
                     });
                   }}
-                  className="text-sm px-3 py-2 rounded-lg border border-steel/30 hover:border-neon/40 transition-colors"
+                  className="text-sm px-3 py-2 rounded-xl border border-steel/30 hover:border-neon/40 transition-colors"
                 >
                   {mode === 'quick' ? 'View assumptions' : 'Back to summary'}
                 </button>
@@ -442,7 +442,7 @@ export default function ROICalculatorPage() {
                           <button
                             key={key}
                             onClick={() => applyPreset(key as keyof typeof modelingPresets)}
-                            className={`px-3 py-3 rounded-lg text-sm font-medium transition-all ${
+                            className={`px-3 py-3 rounded-xl text-sm font-medium transition-all ${
                               trucksPerDay === preset.trucksPerDay && detentionCost === preset.detentionCost
                                 ? 'bg-neon/20 border-2 border-neon text-neon'
                                 : 'bg-carbon border border-steel/30 text-steel hover:border-neon/50 hover:text-white'
@@ -468,7 +468,7 @@ export default function ROICalculatorPage() {
                           <button
                             key={key}
                             onClick={() => applyScenario(key as keyof typeof scenarios)}
-                            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                            className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
                               facilities === s.facilities
                                 ? 'bg-neon/20 border border-neon text-neon'
                                 : 'bg-night-light border border-steel/30 text-steel hover:border-neon/50 hover:text-white'
@@ -508,7 +508,7 @@ export default function ROICalculatorPage() {
                     {/* Year-1 realization */}
                     <div>
                       <label className="flex justify-between mb-3">
-                        <span className="text-steel">Year‑1 Realization (rollout ramp)</span>
+                        <span className="text-steel">Year-1 Realization (rollout ramp)</span>
                         <span className="text-neon font-bold">{Math.round(yearOneRampShare * 100)}%</span>
                       </label>
                       <input
@@ -734,7 +734,7 @@ export default function ROICalculatorPage() {
                           <p className="text-xs text-steel/60 mt-1">Applies to all tiers</p>
                         </div>
                         <div>
-                          <label className="text-sm text-steel">Year-1 Ramp (0–1)</label>
+                          <label className="text-sm text-steel">Year-1 Ramp (0-1)</label>
                           <input
                             type="number"
                             step="0.05"
@@ -910,7 +910,7 @@ export default function ROICalculatorPage() {
                         <summary className="cursor-pointer text-neon">Paper assumptions</summary>
                         <div className="mt-4">
                           <p className="text-xs text-steel/70 mb-4">
-                            Models the cost of printing + storing shipment paperwork. “Phase‑1 saved %” represents the portion eliminated in the first rollout.
+                            Models the cost of printing + storing shipment paperwork. “Phase-1 saved %” represents the portion eliminated in the first rollout.
                           </p>
                           <div className="grid grid-cols-2 gap-4">
                           <div>
@@ -976,7 +976,7 @@ export default function ROICalculatorPage() {
                             />
                           </div>
                           <div>
-                            <label className="text-sm text-steel">Outbound % (0–1)</label>
+                            <label className="text-sm text-steel">Outbound % (0-1)</label>
                             <input
                               type="number"
                               min={0}
@@ -993,7 +993,7 @@ export default function ROICalculatorPage() {
                             />
                           </div>
                           <div>
-                            <label className="text-sm text-steel">Phase-1 Saved % (0–1)</label>
+                            <label className="text-sm text-steel">Phase-1 Saved % (0-1)</label>
                             <input
                               type="number"
                               min={0}
@@ -1017,12 +1017,12 @@ export default function ROICalculatorPage() {
                         <summary className="cursor-pointer text-neon">Detention assumptions</summary>
                         <div className="mt-4">
                           <p className="text-xs text-steel/70 mb-4">
-                            Converts detention spend into an implied claim count, then into $/shipment savings. Bucket shares (15–30 min vs 30+ min)
+                            Converts detention spend into an implied claim count, then into $/shipment savings. Bucket shares (15-30 min vs 30+ min)
                             follow the reference model; adjust if you have claims history.
                           </p>
                           <div className="grid grid-cols-2 gap-4">
                           <div>
-                            <label className="text-sm text-steel">Detention Budget % of Transport (0–1)</label>
+                            <label className="text-sm text-steel">Detention Budget % of Transport (0-1)</label>
                             <input
                               type="number"
                               min={0}
@@ -1077,7 +1077,7 @@ export default function ROICalculatorPage() {
                             />
                           </div>
                           <div>
-                            <label className="text-sm text-steel">Claim Shares (15–30 / 30+)</label>
+                            <label className="text-sm text-steel">Claim Shares (15-30 / 30+)</label>
                             <div className="grid grid-cols-2 gap-2 mt-2">
                               <input
                                 type="number"
@@ -1199,7 +1199,7 @@ export default function ROICalculatorPage() {
                             </div>
                           </div>
                           <div>
-                            <label className="text-sm text-steel">Realized % (0–1)</label>
+                            <label className="text-sm text-steel">Realized % (0-1)</label>
                             <input
                               type="number"
                               min={0}
@@ -1506,7 +1506,7 @@ export default function ROICalculatorPage() {
                               className="w-full mt-2 bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
                             />
                             <p className="text-xs text-steel/70 mt-2">
-                              Typical range: $5k–$15k. Illustrative example: ~$8k × 260 facilities.
+                              Typical range: $5k-$15k. Illustrative example: ~$8k × 260 facilities.
                             </p>
                           </div>
                           <div>
@@ -1622,11 +1622,11 @@ export default function ROICalculatorPage() {
                     {/* Key Decision Metrics */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                       <div className="text-center p-3 rounded-lg bg-void/50">
-                        <p className="text-xs text-steel uppercase tracking-wider">Year‑1 Truckloads</p>
+                        <p className="text-xs text-steel uppercase tracking-wider">Year-1 Truckloads</p>
                         <p className="text-2xl font-black neon-glow">{formatTruckloads(scenario.capacity.yearOneIncrementalTruckloads)}</p>
                       </div>
                       <div className="text-center p-3 rounded-lg bg-void/50">
-                        <p className="text-xs text-steel uppercase tracking-wider">Year‑1 Profit Impact</p>
+                        <p className="text-xs text-steel uppercase tracking-wider">Year-1 Profit Impact</p>
                         <p className="text-2xl font-black">{formatMoney(scenario.capacity.yearOneProfitImpact)}</p>
                         <p className="text-xs text-steel/70 mt-1">
                           {formatMoney(profitPerTruckload)}/truckload × {formatTruckloads(scenario.capacity.yearOneIncrementalTruckloads)}
@@ -1654,7 +1654,7 @@ export default function ROICalculatorPage() {
                         </thead>
                         <tbody className="divide-y divide-steel/10">
                           <tr>
-                            <td className="px-4 py-2 text-white">Year‑1 Realized Savings</td>
+                            <td className="px-4 py-2 text-white">Year-1 Realized Savings</td>
                             <td className="px-4 py-2 text-right font-bold text-neon">{formatMoney(cfoMetrics.yearOneGrossSavings)}</td>
                             <td className="px-4 py-2 text-steel text-xs hidden md:table-cell">Ramped value across rollout year</td>
                           </tr>
@@ -1955,12 +1955,12 @@ export default function ROICalculatorPage() {
                   <h3 className="font-bold text-neon mb-3">Board-ready summary</h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                     <div>
-                      <p className="text-steel">Year‑1 realization</p>
+                      <p className="text-steel">Year-1 realization</p>
                       <p className="text-white font-semibold">{Math.round(calculations.yearOneRampShare * 100)}%</p>
                       <p className="text-xs text-steel/70 mt-1">Gross savings recognized in Year 1</p>
                     </div>
                     <div>
-                      <p className="text-steel">Year‑1 gross savings</p>
+                      <p className="text-steel">Year-1 gross savings</p>
                       <p className="text-white font-semibold">{formatMoney(calculations.yearOneGrossSavings)}</p>
                       <p className="text-xs text-steel/70 mt-1">Before subscription + implementation</p>
                     </div>
@@ -2035,7 +2035,7 @@ export default function ROICalculatorPage() {
                 {/* Hero metrics - Deep view */}
                 <div className="grid grid-cols-2 gap-4 mb-8">
                   <Card className="text-center bg-neon/10 border-neon">
-                    <p className="text-sm text-steel mb-2">Year‑1 Realized Savings</p>
+                    <p className="text-sm text-steel mb-2">Year-1 Realized Savings</p>
                     <p className="text-4xl font-black neon-glow">{formatMoney(calculations.yearOneGrossSavings)}</p>
                   </Card>
                   <Card className="text-center bg-neon/10 border-neon">
@@ -2190,13 +2190,13 @@ export default function ROICalculatorPage() {
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
             >
               Get a custom analysis
             </a>
             <a
               href="/singularity"
-              className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
+              className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
             >
               <Metrics size={20} className="text-void" />
               Founding Member Program
@@ -2220,7 +2220,7 @@ export default function ROICalculatorPage() {
         <div className="max-w-6xl mx-auto px-6">
           {/* Post-Calculation CTAs */}
           <div className="text-center">
-            <div className="max-w-2xl mx-auto bg-neon/5 border border-neon/20 rounded-lg p-8">
+            <div className="max-w-2xl mx-auto bg-neon/5 border border-neon/20 rounded-xl p-8">
               <h3 className="text-2xl font-bold mb-4">Ready to see this in action?</h3>
               <p className="text-steel/80 mb-6">
                 You've built the financial case. Now see how the system works across your network.
@@ -2228,13 +2228,13 @@ export default function ROICalculatorPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
                   href="/compare"
-                  className="px-6 py-3 rounded-lg bg-neon text-void font-semibold hover:bg-white transition-all"
+                  className="px-6 py-3 rounded-xl bg-neon text-void font-semibold hover:bg-white transition-all"
                 >
                   Learn About YNS →
                 </a>
                 <a 
                   href="/singularity"
-                  className="px-6 py-3 rounded-lg border-2 border-neon text-neon font-semibold hover:bg-neon hover:text-void transition-all"
+                  className="px-6 py-3 rounded-xl border-2 border-neon text-neon font-semibold hover:bg-neon hover:text-void transition-all"
                 >
                   Apply for Membership
                 </a>

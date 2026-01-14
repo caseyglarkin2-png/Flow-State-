@@ -86,7 +86,7 @@ export default function Header() {
             </button>
             
             {solutionsOpen && (
-              <div className="absolute top-full left-0 mt-2 w-72 bg-carbon border border-neon/20 rounded-lg shadow-lg py-2 z-50">
+              <div className="absolute top-full left-0 mt-2 w-72 bg-carbon border border-neon/20 rounded-xl shadow-lg py-2 z-50">
                 <Link 
                   href="/solutions" 
                   className={`block px-4 py-3 text-sm hover:text-neon hover:bg-neon/5 transition-colors border-b border-steel/10 ${
@@ -164,7 +164,7 @@ export default function Header() {
             </button>
             
             {resourcesOpen && (
-              <div className="absolute top-full left-0 mt-2 w-56 bg-carbon border border-neon/20 rounded-lg shadow-lg py-2 z-50">
+              <div className="absolute top-full left-0 mt-2 w-56 bg-carbon border border-neon/20 rounded-xl shadow-lg py-2 z-50">
                 <Link href="/resources/guides" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
                   <span className="font-medium text-white">Guides</span>
                   <span className="block text-xs text-steel/70">Deep dives on yard operations</span>
@@ -213,7 +213,7 @@ export default function Header() {
             </button>
             
             {companyOpen && (
-              <div className="absolute top-full right-0 mt-2 w-56 bg-carbon border border-neon/20 rounded-lg shadow-lg py-2 z-50">
+              <div className="absolute top-full right-0 mt-2 w-56 bg-carbon border border-neon/20 rounded-xl shadow-lg py-2 z-50">
                 <Link href="/resources/procurement" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
                   <span className="font-medium text-white flex items-center gap-2">
                     <Shield size={14} className="text-neon" /> Evidence Vault
@@ -252,7 +252,7 @@ export default function Header() {
 
         {/* Right Actions */}
         <div className="flex items-center gap-3">
-          <Link href="/contact?intent=qualify" className="px-4 py-2 text-sm font-semibold bg-neon text-void rounded-lg hover:shadow-lg hover:shadow-neon/50 transition-all flex items-center gap-1">
+          <Link href="/contact?intent=qualify" className="px-4 py-2 text-sm font-semibold bg-neon text-void rounded-xl hover:shadow-lg hover:shadow-neon/50 transition-all flex items-center gap-1">
             <Velocity size={16} className="text-void" />
             Request Access
           </Link>

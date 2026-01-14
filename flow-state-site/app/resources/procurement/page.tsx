@@ -52,11 +52,11 @@ export default function SecurityPage() {
           
           {/* Download/Forward Actions */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all">
+            <button className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all">
               <Shield size={20} />
               Download Trust Packet (PDF)
             </button>
-            <Link href="#evidence-vault" className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-steel/40 text-steel hover:border-neon hover:text-neon transition-all">
+            <Link href="#evidence-vault" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold border-2 border-steel/40 text-steel hover:border-neon hover:text-neon transition-all">
               Explore Evidence Vault
             </Link>
           </div>
@@ -249,7 +249,7 @@ export default function SecurityPage() {
               <a
                 key={link.label}
                 href={link.href}
-                className="px-4 py-2 rounded-lg text-sm font-medium border border-steel/30 text-steel hover:border-neon hover:text-neon transition-colors"
+                className="px-4 py-2 rounded-xl text-sm font-medium border border-steel/30 text-steel hover:border-neon hover:text-neon transition-colors"
               >
                 {link.label}
               </a>
@@ -957,14 +957,14 @@ export default function SecurityPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-bold bg-neon text-void hover:bg-white transition-all"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold bg-neon text-void hover:bg-white transition-all"
             >
               <Shield size={20} className="text-void" />
               Request Security Package
             </Link>
             <a
               href="mailto:security@freightroll.com"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
             >
               security@freightroll.com
             </a>

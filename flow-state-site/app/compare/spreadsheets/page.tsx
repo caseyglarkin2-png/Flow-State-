@@ -50,7 +50,7 @@ export default function CompareSpreadsheetsPage() {
             </p>
             <a
               href="/yardbuilder"
-              className="mt-5 inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
+              className="mt-5 inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
             >
               Generate Yard Readiness Report
             </a>

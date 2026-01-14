@@ -38,7 +38,7 @@ export default function MissionCard({ title, trigger, whatBreaks, intervention, 
         <div className="mt-6">
           <a
             href={cta.href}
-            className="inline-flex items-center justify-center px-5 py-3 rounded-lg font-semibold bg-neon text-void"
+            className="inline-flex items-center justify-center px-5 py-3 rounded-xl font-semibold bg-neon text-void"
           >
             {cta.label}
           </a>

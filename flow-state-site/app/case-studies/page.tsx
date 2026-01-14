@@ -57,7 +57,7 @@ export default function CaseStudiesIndexPage() {
               <div className="mt-6">
                 <Link
                   href={`/case-studies/${cs.slug}`}
-                  className="inline-flex items-center justify-center px-5 py-3 rounded-lg font-semibold bg-neon text-void"
+                  className="inline-flex items-center justify-center px-5 py-3 rounded-xl font-semibold bg-neon text-void"
                 >
                   Read case study
                 </Link>
@@ -71,12 +71,12 @@ export default function CaseStudiesIndexPage() {
               Share your network size and operating reality. We’ll respond with a modeled ROI narrative and a rollout plan.
             </p>
             <div className="mt-6 flex gap-3 flex-col sm:flex-row">
-              <Link href="/roi" className="inline-flex items-center justify-center px-5 py-3 rounded-lg bg-neon text-void font-semibold">
+              <Link href="/roi" className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-neon text-void font-semibold">
                 Model ROI
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center px-5 py-3 rounded-lg border border-steel/30 text-white hover:border-neon/40 transition-colors font-semibold"
+                className="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-steel/30 text-white hover:border-neon/40 transition-colors font-semibold"
               >
                 Get a quote
               </Link>

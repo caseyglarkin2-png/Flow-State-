@@ -13,7 +13,7 @@ export default function AboutPage() {
       <section className="pt-32 pb-16 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           {/* Rebrand Notice */}
-          <div className="mb-8 inline-block px-4 py-2 rounded-lg bg-neon/10 border border-neon/30">
+          <div className="mb-8 inline-block px-4 py-2 rounded-xl bg-neon/10 border border-neon/30">
             <p className="text-neon font-mono text-sm">
               <span className="font-bold">FreightRoll → YardFlow by FreightRoll</span> · Same team. Sharper product. Bigger vision.
             </p>
@@ -112,19 +112,19 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/diagnostic"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-bold bg-ember text-white hover:bg-white hover:text-void transition-all"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold bg-neon text-void hover:bg-white hover:text-void transition-all"
             >
               Run the Network Leak Diagnostic
             </a>
             <a
               href="/roi"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
             >
               Build ROI Model
             </a>
             <a
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
             >
               Contact Us
             </a>

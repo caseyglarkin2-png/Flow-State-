@@ -30,7 +30,7 @@ export default function ChangelogPage() {
             </p>
             <a
               href="mailto:contact@freightroll.com?subject=Changelog%20request"
-              className="mt-5 inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
+              className="mt-5 inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
             >
               Request changelog
             </a>

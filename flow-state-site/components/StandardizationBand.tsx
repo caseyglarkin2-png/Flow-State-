@@ -74,7 +74,7 @@ export default function StandardizationBand({ animated = true, compact = false }
 
       {/* Standardization Band */}
       <div className={`mb-4 transition-all duration-1000 ${phase === 'standardized' ? 'scale-105 opacity-100' : 'scale-100 opacity-60'}`}>
-        <div className="bg-gradient-to-r from-neon/20 via-neon/30 to-neon/20 border-2 border-neon rounded-lg p-3">
+        <div className="bg-gradient-to-r from-neon/20 via-neon/30 to-neon/20 border-2 border-neon rounded-xl p-3">
           <div className="flex items-center justify-between gap-2">
             <div className="text-neon font-mono text-xs font-bold tracking-wider">
               {standardLayer.label}
@@ -102,7 +102,7 @@ export default function StandardizationBand({ animated = true, compact = false }
         {facilities.map((facility, i) => (
           <div key={i} className="flex flex-col items-center">
             <div 
-              className="w-full bg-gradient-to-b from-neon/10 to-carbon/50 border border-neon/40 rounded-lg flex items-center justify-center text-center p-2 transition-all duration-500"
+              className="w-full bg-gradient-to-b from-neon/10 to-carbon/50 border border-neon/40 rounded-xl flex items-center justify-center text-center p-2 transition-all duration-500"
               style={{ height: `${compact ? 60 : 80}px` }}
             >
               <div>

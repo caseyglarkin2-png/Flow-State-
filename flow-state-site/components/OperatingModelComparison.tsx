@@ -129,7 +129,7 @@ export default function OperatingModelComparison() {
       </div>
 
       {/* The Shift */}
-      <div className="bg-carbon/50 border border-neon/30 rounded-lg p-8 text-center">
+      <div className="bg-carbon/50 border border-neon/30 rounded-xl p-8 text-center">
         <div className="flex items-center justify-center gap-6 mb-4">
           <span className="text-ember font-bold">Record Events</span>
           <ArrowRight className="text-neon" size={32} />

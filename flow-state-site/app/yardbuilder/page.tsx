@@ -195,7 +195,7 @@ export default function YardBuilderPage() {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full bg-carbon border border-steel/20 rounded-lg px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
+                        className="w-full bg-carbon border border-steel/20 rounded-xl px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
                         placeholder="Your name"
                       />
                     </div>
@@ -206,7 +206,7 @@ export default function YardBuilderPage() {
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full bg-carbon border border-steel/20 rounded-lg px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
+                        className="w-full bg-carbon border border-steel/20 rounded-xl px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
                         placeholder="you@company.com"
                       />
                     </div>
@@ -217,7 +217,7 @@ export default function YardBuilderPage() {
                         required
                         value={formData.company}
                         onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                        className="w-full bg-carbon border border-steel/20 rounded-lg px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
+                        className="w-full bg-carbon border border-steel/20 rounded-xl px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
                         placeholder="Company name"
                       />
                     </div>
@@ -227,7 +227,7 @@ export default function YardBuilderPage() {
                         type="text"
                         value={formData.role}
                         onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                        className="w-full bg-carbon border border-steel/20 rounded-lg px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
+                        className="w-full bg-carbon border border-steel/20 rounded-xl px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
                         placeholder="Your title"
                       />
                     </div>
@@ -245,7 +245,7 @@ export default function YardBuilderPage() {
                         required
                         value={formData.facilityCount}
                         onChange={(e) => setFormData({ ...formData, facilityCount: e.target.value })}
-                        className="w-full bg-carbon border border-steel/20 rounded-lg px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
+                        className="w-full bg-carbon border border-steel/20 rounded-xl px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
                       >
                         <option value="">Select...</option>
                         <option value="1">1 facility</option>
@@ -261,7 +261,7 @@ export default function YardBuilderPage() {
                         required
                         value={formData.facilityType}
                         onChange={(e) => setFormData({ ...formData, facilityType: e.target.value as FacilityType })}
-                        className="w-full bg-carbon border border-steel/20 rounded-lg px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
+                        className="w-full bg-carbon border border-steel/20 rounded-xl px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
                       >
                         <option value="">Select...</option>
                         <option value="dc">Distribution Center</option>
@@ -277,7 +277,7 @@ export default function YardBuilderPage() {
                         required
                         value={formData.primaryPain}
                         onChange={(e) => setFormData({ ...formData, primaryPain: e.target.value as Pain })}
-                        className="w-full bg-carbon border border-steel/20 rounded-lg px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
+                        className="w-full bg-carbon border border-steel/20 rounded-xl px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
                       >
                         <option value="">Select...</option>
                         <option value="detention">Detention & Dwell Costs</option>
@@ -292,7 +292,7 @@ export default function YardBuilderPage() {
                       <select
                         value={formData.timeline}
                         onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
-                        className="w-full bg-carbon border border-steel/20 rounded-lg px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
+                        className="w-full bg-carbon border border-steel/20 rounded-xl px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
                       >
                         <option value="">Select...</option>
                         <option value="immediate">Immediate (0-3 months)</option>
@@ -309,7 +309,7 @@ export default function YardBuilderPage() {
                       value={formData.notes}
                       onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                       rows={3}
-                      className="w-full bg-carbon border border-steel/20 rounded-lg px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors resize-none"
+                      className="w-full bg-carbon border border-steel/20 rounded-xl px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors resize-none"
                       placeholder="Any specific challenges, goals, or questions you'd like us to address..."
                     />
                   </div>

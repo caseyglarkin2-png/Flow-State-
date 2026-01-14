@@ -31,7 +31,7 @@ export default function RiskPage() {
             <div className="mb-6 flex justify-center">
               <ShieldAlert size={64} className="text-ember" />
             </div>
-            <h1 className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl mb-6">
+            <h1 className="text-5xl font-black text-white md:text-7xl mb-6">
               The $30B Problem: Cargo Theft & Fraud
             </h1>
             <p className="text-xl text-steel max-w-3xl mx-auto mb-8">
@@ -42,13 +42,13 @@ export default function RiskPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
                 href="/contact" 
-                className="inline-flex items-center justify-center px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:bg-neon/90 transition-all"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-semibold bg-neon text-void hover:bg-neon/90 transition-all"
               >
                 Request Security Assessment
               </a>
               <a 
                 href="/roi" 
-                className="inline-flex items-center justify-center px-8 py-4 rounded-lg font-semibold border-2 border-steel/30 text-white hover:border-neon/40 transition-all"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-semibold border-2 border-steel/30 text-white hover:border-neon/40 transition-all"
               >
                 Calculate Security Savings
               </a>
@@ -70,7 +70,7 @@ export default function RiskPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               {
-                stat: '$15B–$30B',
+                stat: '$15B-$30B',
                 label: 'Annual cargo theft losses globally',
                 source: 'Industry estimates (FBI, TT Club)',
               },
@@ -85,7 +85,7 @@ export default function RiskPage() {
                 source: 'ID verification audits',
               },
               {
-                stat: '$15K–$50K',
+                stat: '$15K-$50K',
                 label: 'Average investigation cost per incident',
                 source: 'Plus cargo value and delays',
               },
@@ -266,22 +266,22 @@ export default function RiskPage() {
             {[
               {
                 title: 'Prevented Losses',
-                amount: '$200K–$600K',
+                amount: '$200K-$600K',
                 detail: '80% reduction in theft incidents',
               },
               {
                 title: 'Insurance Savings Potential',
-                amount: '$30K–$100K',
+                amount: '$30K-$100K',
                 detail: 'Potential premium reduction (verify with carrier)',
               },
               {
                 title: 'Investigation Savings',
-                amount: '$30K–$150K',
+                amount: '$30K-$150K',
                 detail: 'Fewer incidents + faster resolution',
               },
               {
                 title: 'Compliance Fines Avoided',
-                amount: '$50K–$500K',
+                amount: '$50K-$500K',
                 detail: 'CTPAT violations prevented',
               },
             ].map((saving, i) => (
@@ -297,14 +297,14 @@ export default function RiskPage() {
             <Card className="bg-neon/5 border-2 border-neon">
               <div className="text-center">
                 <p className="text-steel mb-2">Total Annual Security Savings</p>
-                <p className="text-5xl font-bold text-neon mb-4">$310K–$1.35M</p>
+                <p className="text-5xl font-bold text-neon mb-4">$310K-$1.35M</p>
                 <p className="text-steel/80 text-sm mb-6">
                   Conservative estimates based on industry data. Your actual savings depend on facility count, 
                   current incident rate, and cargo values.
                 </p>
                 <a 
                   href="/roi" 
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:bg-neon/90 transition-all"
+                  className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-semibold bg-neon text-void hover:bg-neon/90 transition-all"
                 >
                   Calculate Your Security Savings
                 </a>
@@ -397,13 +397,13 @@ export default function RiskPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
                   href="/contact" 
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-lg font-semibold bg-neon text-void hover:bg-neon/90 transition-all"
+                  className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-semibold bg-neon text-void hover:bg-neon/90 transition-all"
                 >
                   Request Security Assessment
                 </a>
                 <a 
                   href="/product" 
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-lg font-semibold border-2 border-steel/30 text-white hover:border-neon/40 transition-all"
+                  className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-semibold border-2 border-steel/30 text-white hover:border-neon/40 transition-all"
                 >
                   See Security Module Details
                 </a>

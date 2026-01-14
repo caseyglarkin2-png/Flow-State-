@@ -133,21 +133,21 @@ function QualifyContent({ intent }: QualifyContentProps) {
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4">
             <a
               href="/roi"
-              className="inline-flex flex-col items-center justify-center px-6 py-4 rounded-lg font-semibold border-2 border-steel/30 text-white hover:border-neon/40 transition-all text-center"
+              className="inline-flex flex-col items-center justify-center px-6 py-4 rounded-xl font-semibold border-2 border-steel/30 text-white hover:border-neon/40 transition-all text-center"
             >
               <DollarSign size={24} className="text-neon mb-2" />
               <span>Calculate ROI</span>
             </a>
             <a
               href="/yardbuilder"
-              className="inline-flex flex-col items-center justify-center px-6 py-4 rounded-lg font-semibold border-2 border-steel/30 text-white hover:border-neon/40 transition-all text-center"
+              className="inline-flex flex-col items-center justify-center px-6 py-4 rounded-xl font-semibold border-2 border-steel/30 text-white hover:border-neon/40 transition-all text-center"
             >
               <Warehouse size={24} className="text-neon mb-2" />
               <span>Yard Audit</span>
             </a>
             <a
               href="/contact"
-              className="inline-flex flex-col items-center justify-center px-6 py-4 rounded-lg font-semibold border-2 border-steel/30 text-white hover:border-neon/40 transition-all text-center"
+              className="inline-flex flex-col items-center justify-center px-6 py-4 rounded-xl font-semibold border-2 border-steel/30 text-white hover:border-neon/40 transition-all text-center"
             >
               <Users size={24} className="text-neon mb-2" />
               <span>Book Demo</span>

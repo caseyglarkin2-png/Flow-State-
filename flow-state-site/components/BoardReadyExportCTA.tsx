@@ -176,7 +176,7 @@ export default function BoardReadyExportCTA({
           type="button"
           onClick={generate}
           disabled={Boolean(disabledReason)}
-          className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold bg-neon text-void disabled:opacity-50 disabled:cursor-not-allowed"
+          className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-neon text-void disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {disabledReason || 'Export PDF'}
         </button>
@@ -186,14 +186,14 @@ export default function BoardReadyExportCTA({
             type="button"
             onClick={emailToFinance}
             disabled={Boolean(emailDisabledReason)}
-            className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {emailDisabledReason || 'Email to finance'}
           </button>
         ) : (
         <a
           href="/contact"
-          className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
+          className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
         >
           Send to finance / procurement
         </a>

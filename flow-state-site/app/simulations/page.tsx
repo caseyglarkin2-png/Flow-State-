@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Activity, Network, ChevronRight, Zap, TrendingUp } from 'lucide-react';
 import Card from '@/components/Card';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Simulations - YardFlow by FreightRoll',
@@ -10,11 +12,13 @@ export const metadata: Metadata = {
 
 export default function SimulationsPage() {
   return (
-    <main className="min-h-screen bg-void">
+    <>
+      <Header />
+      <main className="min-h-screen bg-void pt-32">
       {/* Hero */}
       <section className="border-b border-steel/20 bg-gradient-to-b from-carbon to-void py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold text-white sm:text-5xl">
+          <h1 className="text-5xl font-black text-white md:text-7xl">
             Simulations
           </h1>
           <p className="mt-4 max-w-3xl text-lg text-steel">
@@ -89,7 +93,7 @@ export default function SimulationsPage() {
               
               <Link
                 href="/singularity"
-                className="mt-6 inline-flex items-center gap-2 rounded-lg border border-neon/40 bg-neon/5 px-6 py-3 font-semibold text-neon transition-all hover:bg-neon/10"
+                className="mt-6 inline-flex items-center gap-2 rounded-xl border border-neon/40 bg-neon/5 px-6 py-3 font-semibold text-neon transition-all hover:bg-neon/10"
               >
                 Explore Network Intelligence
                 <ChevronRight className="h-5 w-5" />
@@ -200,7 +204,7 @@ export default function SimulationsPage() {
               
               <Link
                 href="/singularity"
-                className="mt-6 inline-flex items-center gap-2 rounded-lg border border-ember/40 bg-ember/5 px-6 py-3 font-semibold text-ember transition-all hover:bg-ember/10"
+                className="mt-6 inline-flex items-center gap-2 rounded-xl border border-ember/40 bg-ember/5 px-6 py-3 font-semibold text-ember transition-all hover:bg-ember/10"
               >
                 Explore Singularity Simulation
                 <ChevronRight className="h-5 w-5" />
@@ -270,7 +274,7 @@ export default function SimulationsPage() {
           </p>
           <Link
             href="/roi"
-            className="mt-6 inline-flex items-center gap-2 rounded-lg bg-neon px-6 py-3 font-semibold text-void transition-all hover:bg-neon/90"
+            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-semibold text-void transition-all hover:bg-neon/90"
           >
             Calculate Your ROI
             <ChevronRight className="h-5 w-5" />
@@ -278,5 +282,7 @@ export default function SimulationsPage() {
         </div>
       </section>
     </main>
+    <Footer />
+    </>
   );
 }

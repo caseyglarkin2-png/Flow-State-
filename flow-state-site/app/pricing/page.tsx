@@ -34,7 +34,7 @@ export default function PricingPage() {
             <Card>
               <h2 className="text-2xl font-bold mb-3 text-neon">Subscription</h2>
               <p className="text-steel mb-4">
-                <span className="text-white font-semibold">$5,000–$15,000</span> per facility per year.
+                <span className="text-white font-semibold">$5,000-$15,000</span> per facility per year.
               </p>
               <p className="text-sm text-steel/80">
                 Illustrative example: <span className="text-white">$8,000</span>/facility/year across <span className="text-white">100</span> facilities is
@@ -47,7 +47,7 @@ export default function PricingPage() {
                     trackEvent('pricing_cta_click', { cta: 'get_quote' });
                     trackEvent('quote_requested', { source: 'pricing' });
                   }}
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
                 >
                   Get a quote
                 </a>
@@ -59,7 +59,7 @@ export default function PricingPage() {
                     trackEvent('pricing_demo_click', { source: 'pricing', calendlyUrl });
                     trackEvent('demo_booked', { source: 'pricing', calendlyUrl });
                   }}
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
+                  className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
                 >
                   Book a demo
                 </a>
@@ -157,7 +157,7 @@ export default function PricingPage() {
                 <a
                   href="/roi"
                   onClick={() => trackEvent('pricing_cta_click', { cta: 'roi_calculator' })}
-                  className="btn-neon-fill inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
+                  className="btn-neon-fill inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
                 >
                   Open ROI Calculator
                 </a>

@@ -82,7 +82,7 @@ export default function StandardizationMap() {
         <div className="md:hidden mb-4">
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="w-full btn-neon flex items-center justify-between px-6 py-4 rounded-lg font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all"
+            className="w-full btn-neon flex items-center justify-between px-6 py-4 rounded-xl font-semibold border-2 border-neon text-neon hover:bg-neon hover:text-void transition-all"
           >
             <span>{isExpanded ? 'Hide' : 'Show'} Standardization Map</span>
             <svg
@@ -103,7 +103,7 @@ export default function StandardizationMap() {
             <div className="inline-flex p-1 bg-void rounded-lg border border-steel/30">
               <button
                 onClick={() => setView('chaos')}
-                className={`px-6 py-3 rounded-lg font-semibold transition-all ${
+                className={`px-6 py-3 rounded-xl font-semibold transition-all ${
                   view === 'chaos'
                     ? 'bg-ember/20 text-ember border border-ember/40'
                     : 'text-steel/60 hover:text-steel'

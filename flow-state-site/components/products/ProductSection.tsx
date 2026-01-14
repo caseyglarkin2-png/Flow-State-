@@ -85,7 +85,7 @@ export function ProductSection({
             <div className="mt-8">
               <Link
                 href={ctaHref}
-                className="inline-flex items-center justify-center rounded-lg border border-neon/40 bg-neon/10 px-5 py-3 text-sm font-bold text-neon hover:bg-neon hover:text-void transition-all"
+                className="inline-flex items-center justify-center rounded-xl border border-neon/40 bg-neon/10 px-5 py-3 text-sm font-bold text-neon hover:bg-neon hover:text-void transition-all"
               >
                 {ctaLabel}
               </Link>

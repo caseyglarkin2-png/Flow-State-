@@ -25,7 +25,7 @@ export const DigitalGuardVisual: React.FC<{ className?: string }> = ({ className
     <div className="absolute inset-0 flex items-center justify-center">
       <div className="relative w-64 h-40">
         {/* Gate frame */}
-        <div className="absolute inset-0 border-2 border-neon/40 rounded-lg" />
+        <div className="absolute inset-0 border-2 border-neon/40 rounded-xl" />
         
         {/* ID Card scanning animation */}
         <motion.div 
@@ -101,7 +101,7 @@ export const DigitalCommsVisual: React.FC<{ className?: string }> = ({ className
           {/* Messages */}
           <div className="p-2 space-y-2">
             <motion.div 
-              className="w-3/4 p-2 bg-neon/10 rounded-lg rounded-bl-none text-[8px] text-steel/80"
+              className="w-3/4 p-2 bg-neon/10 rounded-xl rounded-bl-none text-[8px] text-steel/80"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: 0.5 }}
@@ -119,7 +119,7 @@ export const DigitalCommsVisual: React.FC<{ className?: string }> = ({ className
             </motion.div>
             
             <motion.div 
-              className="w-3/4 p-2 bg-neon/10 rounded-lg rounded-bl-none text-[8px] text-steel/80"
+              className="w-3/4 p-2 bg-neon/10 rounded-xl rounded-bl-none text-[8px] text-steel/80"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: 2 }}

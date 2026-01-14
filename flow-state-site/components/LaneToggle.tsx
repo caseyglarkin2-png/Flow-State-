@@ -26,7 +26,7 @@ function LaneButton({
       onClick={() => onSelect(lane)}
       className={
         active
-          ? 'px-3 py-2 rounded-lg bg-neon text-void font-semibold'
+          ? 'px-3 py-2 rounded-xl bg-neon text-void font-semibold'
           : 'px-3 py-2 rounded-lg border border-steel/30 text-white hover:border-neon/40 transition-colors'
       }
     >

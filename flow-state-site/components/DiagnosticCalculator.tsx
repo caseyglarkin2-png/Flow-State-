@@ -459,14 +459,14 @@ export default function DiagnosticCalculator() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href={`/roi?${roiParams}`}
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white transition-all hover:scale-105"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg bg-neon text-void hover:bg-white transition-all hover:scale-105"
           >
             <Metrics size={22} />
             Run Board-Ready ROI Model
           </Link>
           <button
             onClick={exportAssumptions}
-            className="inline-flex items-center gap-2 px-6 py-4 rounded-lg font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
+            className="inline-flex items-center gap-2 px-6 py-4 rounded-xl font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
           >
             <FileJson size={20} />
             Export Assumptions (JSON)
@@ -558,7 +558,7 @@ export default function DiagnosticCalculator() {
         <button
           onClick={handleBack}
           disabled={step === 0}
-          className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
+          className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all ${
             step === 0 
               ? 'text-steel/40 cursor-not-allowed' 
               : 'text-white hover:text-neon'
@@ -570,7 +570,7 @@ export default function DiagnosticCalculator() {
         
         <button
           onClick={handleNext}
-          className="inline-flex items-center gap-2 px-8 py-3 rounded-lg font-bold bg-neon text-void hover:bg-white transition-all"
+          className="inline-flex items-center gap-2 px-8 py-3 rounded-xl font-bold bg-neon text-void hover:bg-white transition-all"
         >
           {step === questions.length - 1 ? 'See Results' : 'Next'}
           <ChevronRight size={20} />

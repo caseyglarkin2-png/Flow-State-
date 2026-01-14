@@ -99,7 +99,7 @@ export default function ProductPage() {
           <p className="text-xl md:text-2xl text-steel mb-12 max-w-3xl mx-auto">
             Standardize the driver journey. Enforce the control loop. Unlock network intelligence.
           </p>
-          <Link href="/diagnostic" className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-bold bg-neon text-void hover:shadow-lg transition-all">
+          <Link href="/diagnostic" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold bg-neon text-void hover:shadow-lg transition-all">
             <Crosshair size={20} />
             Run Your Network Diagnostic
           </Link>
@@ -128,7 +128,7 @@ export default function ProductPage() {
           <p className="text-xl text-steel/90 mb-12">
             Book a call. We'll map your network, show you the rollout plan, and hand you the board-ready ROI model.
           </p>
-          <Link href="/contact" className="inline-flex items-center gap-2 px-10 py-5 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all hover:scale-105">
+          <Link href="/contact" className="inline-flex items-center gap-2 px-10 py-5 rounded-xl font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all hover:scale-105">
             Get Your Network Rollout Plan
           </Link>
         </div>

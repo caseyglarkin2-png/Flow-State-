@@ -85,7 +85,7 @@ export default function EvidenceVaultDrawer() {
               <Dialog.Close asChild>
                 <button
                   type="button"
-                  className="px-3 py-2 rounded-lg border border-steel/25 text-white hover:border-neon/40 transition-colors"
+                  className="px-3 py-2 rounded-xl border border-steel/25 text-white hover:border-neon/40 transition-colors"
                   aria-label="Close"
                 >
                   Close
@@ -140,14 +140,14 @@ export default function EvidenceVaultDrawer() {
               <div className="mt-3 flex flex-col gap-2">
                 <Link
                   href="/yardbuilder"
-                  className="inline-flex items-center justify-center px-4 py-2 rounded-lg font-semibold bg-neon text-void"
+                  className="inline-flex items-center justify-center px-4 py-2 rounded-xl font-semibold bg-neon text-void"
                   onClick={() => setOpen(false)}
                 >
                   Generate Yard Report
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center px-4 py-2 rounded-lg border border-steel/30 text-white hover:border-neon/40 transition-colors"
+                  className="inline-flex items-center justify-center px-4 py-2 rounded-xl border border-steel/30 text-white hover:border-neon/40 transition-colors"
                   onClick={() => setOpen(false)}
                 >
                   Book Demo / Get Quote

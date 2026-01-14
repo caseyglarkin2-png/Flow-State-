@@ -34,7 +34,7 @@ export default function StatusPage() {
             <p className="text-steel">Email us and we’ll respond with the appropriate details for your evaluation.</p>
             <a
               href="mailto:status@freightroll.com?subject=Status%20request"
-              className="mt-5 inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
+              className="mt-5 inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
             >
               Request status details
             </a>

@@ -46,13 +46,13 @@ export default function HeroNetworkHook({
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             href={CTAS.primary.yardbuilder.href}
-            className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all"
+            className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all"
           >
             {CTAS.primary.yardbuilder.label}
           </Link>
           <Link
             href={CTAS.secondary.roi.href}
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-semibold border-2 border-steel/40 text-steel hover:border-neon hover:text-neon transition-all"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold border-2 border-steel/40 text-steel hover:border-neon hover:text-neon transition-all"
           >
             {CTAS.secondary.roi.label}
           </Link>

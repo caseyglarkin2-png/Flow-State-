@@ -9,7 +9,7 @@ export function DigitalGuardVisual() {
     <div className="relative w-full h-64 rounded-lg bg-gradient-to-br from-carbon via-carbon/80 to-neon/10 border border-neon/20 overflow-hidden">
       {/* Gate Scanner Animation */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-32 h-40 border-2 border-neon/40 rounded-lg relative overflow-hidden">
+        <div className="w-32 h-40 border-2 border-neon/40 rounded-xl relative overflow-hidden">
           {/* Scanning line */}
           <div className="absolute w-full h-0.5 bg-neon/60 animate-scan" />
           
@@ -35,13 +35,13 @@ export function DigitalCommsVisual() {
     <div className="relative w-full h-64 rounded-lg bg-gradient-to-br from-carbon via-carbon/80 to-ember/10 border border-ember/20 overflow-hidden">
       {/* Message bubbles */}
       <div className="absolute inset-4 flex flex-col justify-center gap-3">
-        <div className="self-start px-3 py-2 bg-ember/20 rounded-lg rounded-bl-none max-w-[70%] animate-fadeIn1">
+        <div className="self-start px-3 py-2 bg-ember/20 rounded-xl rounded-bl-none max-w-[70%] animate-fadeIn1">
           <div className="text-xs text-steel/80">Dock 7 ready</div>
         </div>
-        <div className="self-end px-3 py-2 bg-neon/20 rounded-lg rounded-br-none max-w-[70%] animate-fadeIn2">
+        <div className="self-end px-3 py-2 bg-neon/20 rounded-xl rounded-br-none max-w-[70%] animate-fadeIn2">
           <div className="text-xs text-steel/80">En route - 2 min</div>
         </div>
-        <div className="self-start px-3 py-2 bg-ember/20 rounded-lg rounded-bl-none max-w-[70%] animate-fadeIn3">
+        <div className="self-start px-3 py-2 bg-ember/20 rounded-xl rounded-bl-none max-w-[70%] animate-fadeIn3">
           <div className="text-xs text-steel/80">Confirmed ✓</div>
         </div>
       </div>

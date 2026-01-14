@@ -140,14 +140,14 @@ export default function YardLeakSection() {
           <div className="inline-flex flex-col sm:flex-row gap-4">
             <Link
               href="/diagnostic"
-              className="group inline-flex items-center gap-3 px-8 py-4 rounded-lg font-bold text-lg bg-ember text-white hover:bg-white hover:text-ember transition-all hover:scale-105"
+              className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg bg-ember text-white hover:bg-white hover:text-ember transition-all hover:scale-105"
             >
               <Timeline size={22} />
               Run the Network Leak Diagnostic
             </Link>
             <Link
               href="/roi"
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
             >
               <Velocity size={20} />
               Skip to Full ROI Calculator

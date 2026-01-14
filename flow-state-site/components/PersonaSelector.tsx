@@ -25,7 +25,7 @@ export default function PersonaSelector({ className }: Props) {
       <select
         value={persona ?? 'none'}
         onChange={(e) => onChange(e.target.value as Persona | 'none')}
-        className="bg-carbon border border-steel/20 rounded-lg px-3 py-2 text-sm text-white"
+        className="bg-carbon border border-steel/20 rounded-xl px-3 py-2 text-sm text-white"
       >
         <option value="none">Persona: Auto</option>
         {PERSONAS.map((p) => (

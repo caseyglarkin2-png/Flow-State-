@@ -53,7 +53,7 @@ export default function YardBuilderHook() {
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
                 placeholder="Acme Logistics"
-                className="w-full px-4 py-3 rounded-lg bg-void border border-steel/30 text-white placeholder-steel/50 focus:border-neon focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-void border border-steel/30 text-white placeholder-steel/50 focus:border-neon focus:outline-none transition-colors"
               />
             </div>
             <div>
@@ -66,7 +66,7 @@ export default function YardBuilderHook() {
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 placeholder="123 Industrial Blvd, City, State"
-                className="w-full px-4 py-3 rounded-lg bg-void border border-steel/30 text-white placeholder-steel/50 focus:border-neon focus:outline-none transition-colors"
+                className="w-full px-4 py-3 rounded-xl bg-void border border-steel/30 text-white placeholder-steel/50 focus:border-neon focus:outline-none transition-colors"
                 onKeyDown={(e) => e.key === 'Enter' && handleGenerate()}
               />
             </div>
@@ -75,7 +75,7 @@ export default function YardBuilderHook() {
           <button
             onClick={handleGenerate}
             disabled={!address.trim() || isGenerating}
-            className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full inline-flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-lg bg-neon text-void hover:bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isGenerating ? (
               <>
@@ -189,14 +189,14 @@ export default function YardBuilderHook() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Link
               href={`/yardbuilder?address=${encodeURIComponent(address)}&company=${encodeURIComponent(companyName)}`}
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-lg font-bold bg-neon text-void hover:bg-white transition-all"
+              className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-bold bg-neon text-void hover:bg-white transition-all"
             >
               <FlowArrow size={18} className="text-void" />
               Customize Full Report
             </Link>
             <Link
               href={`/roi?facilities=1&trucksPerDay=${preview.docks * 8}`}
-              className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-lg font-semibold border border-neon text-neon hover:bg-neon hover:text-void transition-all"
+              className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-semibold border border-neon text-neon hover:bg-neon hover:text-void transition-all"
             >
               <Metrics size={18} />
               Build ROI Model

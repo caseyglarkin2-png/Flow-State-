@@ -127,7 +127,7 @@ export default function ProblemTaxonomy() {
       </div>
 
       {/* Bottom Line */}
-      <div className="bg-neon/10 border border-neon/30 rounded-lg p-6 text-center">
+      <div className="bg-neon/10 border border-neon/30 rounded-xl p-6 text-center">
         <p className="text-white font-semibold text-lg mb-2">
           Base deployment solves 10 of 20 problems (50%). The 10 that matter most.
         </p>

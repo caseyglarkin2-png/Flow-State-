@@ -49,7 +49,7 @@ export default function NextSteps({ title = 'Next best step', className, persona
                   }}
                   className={
                     active
-                      ? 'px-3 py-2 rounded-lg bg-neon text-void font-semibold'
+                      ? 'px-3 py-2 rounded-xl bg-neon text-void font-semibold'
                       : 'px-3 py-2 rounded-lg border border-steel/30 text-white hover:border-neon/40 transition-colors'
                   }
                 >
@@ -67,7 +67,7 @@ export default function NextSteps({ title = 'Next best step', className, persona
               <Link
                 href={steps.primary.href}
                 onClick={() => trackEvent('next_step_clicked', { persona: effectivePersona, kind: 'primary', href: steps.primary.href })}
-                className="mt-2 inline-flex items-center justify-center w-full px-6 py-3 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
+                className="mt-2 inline-flex items-center justify-center w-full px-6 py-3 rounded-xl font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
               >
                 {steps.primary.label}
               </Link>
@@ -78,7 +78,7 @@ export default function NextSteps({ title = 'Next best step', className, persona
               <Link
                 href={steps.secondary.href}
                 onClick={() => trackEvent('next_step_clicked', { persona: effectivePersona, kind: 'secondary', href: steps.secondary.href })}
-                className="mt-2 inline-flex items-center justify-center w-full px-6 py-3 rounded-lg font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
+                className="mt-2 inline-flex items-center justify-center w-full px-6 py-3 rounded-xl font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
               >
                 {steps.secondary.label}
               </Link>

@@ -108,7 +108,7 @@ export default function Chapter1Content() {
                 </p>
               </div>
 
-              <div className="bg-neon/10 border border-neon/30 rounded-lg p-6">
+              <div className="bg-neon/10 border border-neon/30 rounded-xl p-6">
                 <p className="text-steel/90 leading-relaxed">
                   <strong className="text-white">The Foundation:</strong> Every yard has unique workflows (cross-dock vs manufacturing, 
                   hazmat vs dry goods, guarded vs unguarded gates). But the driver experience can be identical across all facilities.

@@ -47,7 +47,7 @@ export default function StickyCTABar({
             </div>
             <Link
               href={ctaUrl}
-              className="flex-shrink-0 w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg font-bold text-base bg-neon text-void hover:bg-white hover:text-void transition-all hover:scale-105"
+              className="flex-shrink-0 w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-base bg-neon text-void hover:bg-white hover:text-void transition-all hover:scale-105"
             >
               {ctaText}
             </Link>

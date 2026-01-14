@@ -71,13 +71,13 @@ export default function DiagnosticPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
                 href="/product"
-                className="px-6 py-3 rounded-lg bg-neon text-void font-semibold hover:bg-white transition-all"
+                className="px-6 py-3 rounded-xl bg-neon text-void font-semibold hover:bg-white transition-all"
               >
                 Explore the Product →
               </a>
               <a 
                 href="/roi"
-                className="px-6 py-3 rounded-lg border-2 border-neon text-neon font-semibold hover:bg-neon hover:text-void transition-all"
+                className="px-6 py-3 rounded-xl border-2 border-neon text-neon font-semibold hover:bg-neon hover:text-void transition-all"
               >
                 Build ROI Model
               </a>

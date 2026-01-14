@@ -74,7 +74,7 @@ export default function Chapter3Content() {
         </div>
 
         {/* The Singularity Tie-In */}
-        <div className="mt-12 bg-gradient-to-r from-neon/10 to-transparent border border-neon/30 rounded-lg p-8">
+        <div className="mt-12 bg-gradient-to-r from-neon/10 to-transparent border border-neon/30 rounded-xl p-8">
           <h3 className="text-2xl font-bold text-white mb-4">The Singularity Point</h3>
           <p className="text-steel/90 mb-4 leading-relaxed">
             At network scale, every yard becomes a data generator for every other yard. 

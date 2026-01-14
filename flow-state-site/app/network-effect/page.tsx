@@ -50,7 +50,7 @@ function AssumptionsDrawer({
       <Dialog.Trigger asChild>
         <button
           type="button"
-          className="px-4 py-2 rounded-lg border border-steel/25 text-white hover:border-neon/40 transition-colors"
+          className="px-4 py-2 rounded-xl border border-steel/25 text-white hover:border-neon/40 transition-colors"
         >
           Assumptions ({scenario})
         </button>
@@ -71,7 +71,7 @@ function AssumptionsDrawer({
             <Dialog.Close asChild>
               <button
                 type="button"
-                className="px-3 py-2 rounded-lg border border-steel/25 text-white hover:border-neon/40 transition-colors"
+                className="px-3 py-2 rounded-xl border border-steel/25 text-white hover:border-neon/40 transition-colors"
                 aria-label="Close"
               >
                 Close
@@ -100,7 +100,7 @@ function AssumptionsDrawer({
                 </div>
               </div>
               <p className="text-xs text-steel/70 mt-4">
-                Year‑1 ramp is modeled separately (realistic adoption) and does not change the network formula.
+                Year-1 ramp is modeled separately (realistic adoption) and does not change the network formula.
               </p>
               <p className="text-xs text-steel/70 mt-4">
                 Base savings / facility is computed from the same ROI engine used on /roi (steady-state base savings, before network bonus).
@@ -113,7 +113,7 @@ function AssumptionsDrawer({
                 <li>Standardized yard playbooks (same exceptions, same timestamps)</li>
                 <li>Faster onboarding per additional site (less reinventing)</li>
                 <li>Reduced dwell/detention variability (fewer surprise days)</li>
-                <li>Labor leverage (less manual gate work, fewer ad‑hoc calls)</li>
+                <li>Labor leverage (less manual gate work, fewer ad-hoc calls)</li>
                 <li>Throughput lift (more turns with the same footprint)</li>
               </ul>
             </div>
@@ -316,14 +316,14 @@ export default function NetworkEffectPage() {
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
             <Link
               href={roiHref}
-              className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
               onClick={() => trackEvent('network_scenario_run', { action: 'cta_run_roi' })}
             >
               Run your network scenario
             </Link>
             <Link
               href={implHref}
-              className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
               onClick={() => trackEvent('implementation_cta_click', { action: 'cta_get_rollout_plan_page', href: implHref })}
             >
               Get rollout plan
@@ -437,7 +437,7 @@ export default function NetworkEffectPage() {
                   </div>
                 </div>
                 <div className="rounded-lg border border-neon/10 bg-carbon/40 p-4">
-                  <div className="text-sm text-steel">Year‑1 realized value</div>
+                  <div className="text-sm text-steel">Year-1 realized value</div>
                   <div className="text-3xl font-black neon-glow">{formatMoney(modeled.yearOne)}</div>
                 </div>
               </div>
@@ -493,7 +493,7 @@ export default function NetworkEffectPage() {
                 {
                   stage: '1 facility (Crawl)',
                   ops: 'Prove one repeatable workflow with defensible timestamps. Stop improvising exceptions.',
-                  fin: 'Validate a base savings line item. Establish baseline vs post‑flow deltas.',
+                  fin: 'Validate a base savings line item. Establish baseline vs post-flow deltas.',
                 },
                 {
                   stage: '5 facilities (Walk)',
@@ -502,7 +502,7 @@ export default function NetworkEffectPage() {
                 },
                 {
                   stage: '25 facilities (Run)',
-                  ops: 'Onboarding accelerates. You stop re‑learning the same lessons.',
+                  ops: 'Onboarding accelerates. You stop re-learning the same lessons.',
                   fin: 'Network bonus becomes visible: less variability, better throughput consistency.',
                 },
                 {
@@ -529,14 +529,14 @@ export default function NetworkEffectPage() {
       {/* E) Primo-style rollout narrative template (anonymized) */}
       <section className="py-16 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-4xl font-bold mb-6">Primo‑style rollout narrative template (anonymized)</h2>
+          <h2 className="text-4xl font-bold mb-6">Primo-style rollout narrative template (anonymized)</h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <Card>
               <h3 className="text-xl font-bold text-neon mb-3">Phase 1: Pilot</h3>
               <ul className="text-steel space-y-2 list-disc pl-5">
                 <li>Pick a site with clear ownership and measurable pain.</li>
                 <li>Ship a workflow (not a dashboard).</li>
-                <li>Capture baseline → post‑flow deltas.</li>
+                <li>Capture baseline → post-flow deltas.</li>
               </ul>
             </Card>
             <Card>
@@ -570,19 +570,19 @@ export default function NetworkEffectPage() {
             <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
               <Link
                 href={roiHref}
-                className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
               >
                 Run your network scenario
               </Link>
               <Link
                 href={implHref}
-                className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
               >
                 Get rollout plan
               </Link>
               <Link
                 href={ROUTES.security}
-                className="inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
               >
                 Loop in IT
               </Link>
@@ -590,7 +590,7 @@ export default function NetworkEffectPage() {
 
             {/* G) Evidence Vault drawer is global via AppChrome; we reinforce the intent here. */}
             <p className="text-xs text-steel/70 mt-5">
-              Evidence Vault (bottom‑right) contains forwardable artifacts: proof, trust, buying.
+              Evidence Vault (bottom-right) contains forwardable artifacts: proof, trust, buying.
             </p>
           </div>
         </div>

@@ -5,6 +5,8 @@ import { FlowArrow, Velocity, Shield } from '@/components/icons/FlowIcons';
 import Card from '@/components/Card';
 import LeadForm from '@/components/LeadForm';
 import NextSteps from '@/components/NextSteps';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'Book a Call | YardFlow by FreightRoll',
@@ -22,11 +24,13 @@ export default async function ContactPage({ searchParams }: Props) {
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/';
 
   return (
-    <main className="min-h-screen bg-void pt-32 pb-24">
+    <>
+      <Header />
+      <main className="min-h-screen bg-void pt-32 pb-24">
       {/* Hero */}
       <section className="pb-16 border-b border-neon/20">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-6xl font-black mb-6">
+          <h1 className="text-5xl md:text-7xl font-black mb-6">
             30 minutes. Network audit + rollout plan.
           </h1>
           <p className="text-xl text-steel/90 max-w-2xl mx-auto leading-relaxed">
@@ -124,5 +128,7 @@ export default async function ContactPage({ searchParams }: Props) {
         </div>
       </section>
     </main>
+    <Footer />
+    </>
   );
 }

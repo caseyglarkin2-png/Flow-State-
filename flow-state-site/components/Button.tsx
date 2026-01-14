@@ -18,7 +18,7 @@ export default function Button({
   icon,
   ...props 
 }: ButtonProps) {
-  const baseStyles = 'font-semibold rounded-lg transition-all duration-300 flex items-center gap-2 justify-center';
+  const baseStyles = 'font-semibold rounded-xl transition-all duration-300 flex items-center gap-2 justify-center';
   
   const sizeStyles = {
     sm: 'px-4 py-2 text-sm',

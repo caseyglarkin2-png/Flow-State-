@@ -40,13 +40,13 @@ export default function ImplementationPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all"
             >
               Get Your Network Rollout Plan
             </a>
             <a
               href="#archetypes"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-lg font-semibold border-2 border-steel/40 text-steel hover:border-neon hover:text-neon transition-all"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-xl font-semibold border-2 border-steel/40 text-steel hover:border-neon hover:text-neon transition-all"
             >
               Download Yard Archetypes Deck
             </a>
@@ -358,13 +358,13 @@ export default function ImplementationPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/contact"
-              className="inline-flex items-center justify-center px-10 py-5 rounded-lg font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all"
+              className="inline-flex items-center justify-center px-10 py-5 rounded-xl font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all"
             >
               Get Your Network Rollout Plan
             </a>
             <a
               href="#archetypes"
-              className="inline-flex items-center justify-center px-8 py-5 rounded-lg font-semibold border border-steel/40 text-steel hover:border-neon hover:text-neon transition-all"
+              className="inline-flex items-center justify-center px-8 py-5 rounded-xl font-semibold border border-steel/40 text-steel hover:border-neon hover:text-neon transition-all"
             >
               Download Archetypes Deck
             </a>

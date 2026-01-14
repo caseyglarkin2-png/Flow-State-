@@ -114,7 +114,7 @@ export default function Chapter2Content() {
         </div>
 
         {/* Bottom Line */}
-        <div className="mt-12 bg-neon/10 border border-neon/30 rounded-lg p-8 text-center">
+        <div className="mt-12 bg-neon/10 border border-neon/30 rounded-xl p-8 text-center">
           <p className="text-2xl font-bold text-white mb-3">
             The shift: <span className="text-ember">Reactive recording</span> → <span className="text-neon">Proactive enforcement</span>
           </p>
