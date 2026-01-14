@@ -1,10 +1,14 @@
-import { notFound } from 'next/navigation';
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import { ChevronLeft, Clock, Users, CheckCircle2 } from 'lucide-react';
-import { Shield, Velocity } from '@/components/icons/FlowIcons';
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import {
+  GuideHero,
+  GuideAudienceSection,
+  GuideContentSection,
+  GuideTOC,
+  GuideCTA,
+} from "@/components/guides";
 
 const guidesContent: Record<string, {
   title: string;
@@ -100,7 +104,7 @@ const guidesContent: Record<string, {
 </ul>
 
 <div class="callout callout-note">
-<strong>Integration Consideration:</strong> Some YMS platforms support connections to third-party ID verification services. Evaluate whether your security requirements warrant real-time validation against state or federal databases.
+<strong>YardFlow's Digital Guard Module:</strong> Automated credential capture with real-time validation against authoritative databases. Configurable security levels based on your risk profile.
 </div>
 
 <h3>Layer 2: Carrier Screening</h3>
@@ -121,6 +125,15 @@ const guidesContent: Record<string, {
 </ul>
 
 <p>The key is creating a consistent, automated process that removes human error and provides visibility into every gate event.</p>
+
+<div class="callout callout-results">
+<strong>How YardFlow Helps:</strong>
+<ul>
+<li><strong>Digital Guard:</strong> Automated ID capture and carrier screening at every gate event</li>
+<li><strong>Digital Comms:</strong> Real-time alerts and escalation workflows when issues are flagged</li>
+<li><strong>Evidence Vault:</strong> Immutable audit trails for compliance and investigation</li>
+</ul>
+</div>
 </section>
 
 <section id="process-integration">
@@ -171,7 +184,7 @@ const guidesContent: Record<string, {
 
 <div class="callout callout-results">
 <strong>What We've Observed:</strong>
-<p>Facilities implementing comprehensive gate automation with ID verification and carrier screening typically report reduced security incidents and faster investigation resolution. Specific outcomes depend on baseline processes and implementation quality.</p>
+<p>Facilities implementing Digital Guard with ID verification and carrier screening typically report reduced security incidents and faster investigation resolution. Specific outcomes depend on baseline processes and implementation quality.</p>
 </div>
 </section>
 
@@ -366,6 +379,11 @@ const guidesContent: Record<string, {
 </ul>
 
 <p>Our ROI calculator includes network effect modeling in Pro Mode. Build scenarios with your facility count and rollout timeline to see projected network value.</p>
+
+<div class="callout callout-results">
+<strong>YardFlow Network Advantage:</strong>
+<p>YardFlow is built for multi-site from the ground up. Carrier intelligence, configuration templates, and operational learning propagate across your entire network automatically.</p>
+</div>
 </section>
     `,
   },
@@ -543,7 +561,7 @@ const guidesContent: Record<string, {
 <li>Ongoing training and documentation</li>
 </ul>
 
-<p>YardFlow's Evidence Vault feature is specifically designed to support compliance documentation requirements. Contact us for a walkthrough.</p>
+<p>YardFlow's Evidence Vault feature is specifically designed to support compliance documentation requirements—immutable audit trails, exportable reports, and timestamp integrity for any investigation.</p>
 </section>
     `,
   },
@@ -574,142 +592,40 @@ export async function generateStaticParams() {
 export default async function GuidePage({ params }: Props) {
   const { slug } = await params;
   const guide = guidesContent[slug];
-  
+
   if (!guide) {
     notFound();
   }
-  
+
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-void pt-32 pb-24">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid lg:grid-cols-[1fr_280px] gap-12">
-          {/* Main Content */}
-          <div>
-            {/* Header */}
-            <Link href="/resources" className="text-sm text-neon hover:text-neon/80 mb-6 inline-block">
-              ← Back to Resources
-            </Link>
-            
-            <div className="flex items-center gap-2 mb-4">
-              <span className="px-2.5 py-1 rounded-full bg-neon/10 border border-neon/20 text-neon text-xs uppercase tracking-wider">Guide</span>
-            </div>
-            <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-4">{guide.title}</h1>
-            <p className="text-xl text-steel leading-relaxed mb-6 max-w-[72ch]">{guide.subtitle}</p>
-            
-            <div className="flex flex-wrap items-center gap-4 text-sm text-steel mb-8 pb-8 border-b border-neon/10">
-              <span className="flex items-center gap-1.5">
-                <Clock className="w-4 h-4 text-neon/70" /> {guide.readTime}
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Users className="w-4 h-4 text-neon/70" /> {guide.audience.join(' • ')}
-              </span>
-              <span>Updated {new Date(guide.updatedDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
-            </div>
+      <main className="min-h-screen bg-void">
+        {/* Premium Hero */}
+        <GuideHero
+          title={guide.title}
+          subtitle={guide.subtitle}
+          readTime={guide.readTime}
+          audience={guide.audience}
+          updatedDate={guide.updatedDate}
+        />
 
-            {/* Who This Is For */}
-            <div className="grid md:grid-cols-2 gap-6 mb-12 p-6 rounded-2xl bg-carbon/50 border border-neon/20">
-              <div>
-                <h4 className="flex items-center gap-2 font-semibold text-neon mb-3 text-sm uppercase tracking-wider">
-                  <CheckCircle2 className="w-4 h-4" /> Who This Is For
-                </h4>
-                <ul className="space-y-2.5 text-[15px] text-steel">
-                  {guide.whoThisIsFor.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 leading-relaxed">
-                      <span className="text-neon mt-0.5 text-xs">→</span> {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h4 className="flex items-center gap-2 font-semibold text-steel/70 mb-3 text-sm uppercase tracking-wider">
-                  <Shield size={16} className="text-steel/70" /> Who This Is Not For
-                </h4>
-                <ul className="space-y-2.5 text-[15px] text-steel/70">
-                  {guide.whoThisIsNotFor.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 leading-relaxed">
-                      <span className="mt-0.5 text-xs">•</span> {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+        {/* Audience Section */}
+        <GuideAudienceSection
+          whoThisIsFor={guide.whoThisIsFor}
+          whoThisIsNotFor={guide.whoThisIsNotFor}
+        />
 
-            {/* Article Content */}
-            <article 
-              className="prose prose-lg prose-invert max-w-none
-                prose-headings:text-white prose-headings:font-semibold prose-headings:tracking-tight
-                prose-h2:text-2xl prose-h2:mt-0 prose-h2:mb-6 prose-h2:scroll-mt-24 prose-h2:flex prose-h2:items-center prose-h2:gap-3
-                prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-neon
-                prose-p:text-[#B8B8B8] prose-p:leading-8 prose-p:text-[17px] prose-p:mb-5 prose-p:max-w-[65ch]
-                prose-a:text-neon prose-a:no-underline hover:prose-a:text-neon/80
-                prose-strong:text-white prose-strong:font-semibold
-                prose-ul:text-[#B8B8B8] prose-ul:my-4 prose-li:text-[#B8B8B8] prose-li:my-2 prose-li:leading-7 prose-li:text-[16px] prose-ol:text-[#B8B8B8]
-                [&_section]:mb-8 [&_section]:p-8 [&_section]:rounded-2xl [&_section]:bg-carbon/40 [&_section]:border [&_section]:border-neon/10
-                [&_.callout]:my-6 [&_.callout]:p-5 [&_.callout]:rounded-xl [&_.callout]:border
-                [&_.callout-data]:bg-neon/5 [&_.callout-data]:border-neon/20
-                [&_.callout-note]:bg-void/50 [&_.callout-note]:border-neon/20
-                [&_.callout-results]:bg-void/50 [&_.callout-results]:border-neon/20
-                [&_.callout_strong]:text-white [&_.callout-source]:text-xs [&_.callout-source]:text-steel/60 [&_.callout-source]:mt-3 [&_.callout-source]:block
-                [&_.checklist]:list-none [&_.checklist]:pl-0 [&_.checklist_li]:pl-0 [&_.checklist_li]:flex [&_.checklist_li]:items-start [&_.checklist_li]:gap-2"
-              dangerouslySetInnerHTML={{ __html: guide.content }}
-            />
+        {/* Main Content */}
+        <GuideContentSection htmlContent={guide.content} />
 
-            {/* Footer CTA */}
-            <div className="mt-16 p-8 rounded-2xl bg-carbon/50 border border-neon/20">
-              <div className="flex items-start gap-6">
-                <div className="rounded-xl bg-neon/10 p-3">
-                  <Velocity size={28} className="text-neon" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-white mb-2">Ready to see this in action?</h3>
-                  <p className="text-steel mb-6">Request a walkthrough of how YardFlow handles these scenarios.</p>
-                  <Link 
-                    href="/contact?intent=guide" 
-                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-neon text-void font-medium rounded-xl hover:bg-neon/90 transition"
-                  >
-                    Request Demo
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* CTA */}
+        <GuideCTA />
 
-          {/* Sidebar - Table of Contents */}
-          <aside className="hidden lg:block">
-            <div className="sticky top-32">
-              <h4 className="text-xs uppercase tracking-wider text-steel/60 mb-4">In This Guide</h4>
-              <nav className="space-y-1">
-                {guide.tableOfContents.map((item) => (
-                  <a 
-                    key={item.id} 
-                    href={`#${item.id}`}
-                    className="block text-sm text-steel hover:text-neon transition-colors py-1.5 border-l-2 border-transparent hover:border-neon pl-3"
-                  >
-                    {item.title}
-                  </a>
-                ))}
-              </nav>
-
-              <div className="mt-8 p-4 rounded-2xl bg-carbon/50 border border-neon/20">
-                <h4 className="font-semibold text-sm mb-3 text-white">Related Resources</h4>
-                <Link href="/security" className="block text-sm text-neon hover:text-neon/80 mb-2">
-                  Evidence Vault →
-                </Link>
-                <Link href="/roi" className="block text-sm text-neon hover:text-neon/80 mb-2">
-                  ROI Calculator →
-                </Link>
-                <Link href="/case-studies" className="block text-sm text-neon hover:text-neon/80">
-                  Case Studies →
-                </Link>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </main>
-    <Footer />
+        {/* Sticky TOC */}
+        <GuideTOC items={guide.tableOfContents} />
+      </main>
+      <Footer />
     </>
   );
 }
