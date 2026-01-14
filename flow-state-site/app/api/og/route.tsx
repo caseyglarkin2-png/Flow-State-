@@ -3,6 +3,19 @@ import { ImageResponse } from 'next/og';
 export const runtime = 'edge';
 
 export async function GET() {
+  // Load Inter font for proper branding
+  const interSemiBold = fetch(
+    new URL('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff', import.meta.url)
+  ).then((res) => res.arrayBuffer());
+
+  const interBold = fetch(
+    new URL('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuGKYAZ9hiA.woff', import.meta.url)
+  ).then((res) => res.arrayBuffer());
+
+  const interBlack = fetch(
+    new URL('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZ9hiA.woff', import.meta.url)
+  ).then((res) => res.arrayBuffer());
+
   const response = new ImageResponse(
     (
       <div
@@ -106,7 +119,7 @@ export async function GET() {
                   fontWeight: 700,
                   color: '#FFFFFF',
                   lineHeight: 1,
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
+                  fontFamily: 'Inter',
                 }}
               >
                 YardFlow
@@ -116,7 +129,7 @@ export async function GET() {
                   fontSize: 12,
                   color: '#64748B',
                   letterSpacing: '0.05em',
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
+                  fontFamily: 'Inter',
                 }}
               >
                 by FreightRoll
@@ -154,7 +167,7 @@ export async function GET() {
                   textTransform: 'uppercase',
                   letterSpacing: '0.2em',
                   fontWeight: 600,
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
+                  fontFamily: 'Inter',
                 }}
               >
                 Yard Network System
@@ -176,7 +189,7 @@ export async function GET() {
                   color: '#FFFFFF',
                   letterSpacing: '-0.03em',
                   lineHeight: 1,
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
+                  fontFamily: 'Inter',
                 }}
               >
                 Variance Is The Villain.
@@ -189,7 +202,7 @@ export async function GET() {
                   letterSpacing: '-0.03em',
                   lineHeight: 1,
                   textShadow: '0 0 60px rgba(0, 180, 255, 0.4)',
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
+                  fontFamily: 'Inter',
                 }}
               >
                 Control Is The Hero.
@@ -203,7 +216,7 @@ export async function GET() {
                 color: '#94A3B8',
                 maxWidth: '700px',
                 lineHeight: 1.4,
-                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
+                fontFamily: 'Inter',
               }}
             >
               Deterministic yard operations that eliminate chaos and create synthetic capacity across your network.
@@ -232,7 +245,7 @@ export async function GET() {
                   fontSize: 36,
                   fontWeight: 800,
                   color: '#FFFFFF',
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
+                  fontFamily: 'Inter',
                 }}
               >
                 50%
@@ -243,7 +256,7 @@ export async function GET() {
                   color: '#64748B',
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
+                  fontFamily: 'Inter',
                 }}
               >
                 Turn Time Reduction
@@ -261,7 +274,7 @@ export async function GET() {
                   fontSize: 36,
                   fontWeight: 800,
                   color: '#FFFFFF',
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
+                  fontFamily: 'Inter',
                 }}
               >
                 2x
@@ -272,7 +285,7 @@ export async function GET() {
                   color: '#64748B',
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
+                  fontFamily: 'Inter',
                 }}
               >
                 Synthetic Capacity
@@ -290,7 +303,7 @@ export async function GET() {
                   fontSize: 36,
                   fontWeight: 800,
                   color: '#FFFFFF',
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
+                  fontFamily: 'Inter',
                 }}
               >
                 Zero
@@ -301,7 +314,7 @@ export async function GET() {
                   color: '#64748B',
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
+                  fontFamily: 'Inter',
                 }}
               >
                 Ghost Count
@@ -319,7 +332,7 @@ export async function GET() {
                   fontSize: 36,
                   fontWeight: 800,
                   color: '#00B4FF',
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
+                  fontFamily: 'Inter',
                 }}
               >
                 $120K
@@ -330,7 +343,7 @@ export async function GET() {
                   color: '#64748B',
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
-                  fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif',
+                  fontFamily: 'Inter',
                 }}
               >
                 Gate Labor Eliminated
@@ -343,6 +356,26 @@ export async function GET() {
     {
       width: 1200,
       height: 630,
+      fonts: [
+        {
+          name: 'Inter',
+          data: await interSemiBold,
+          weight: 600,
+          style: 'normal',
+        },
+        {
+          name: 'Inter',
+          data: await interBold,
+          weight: 700,
+          style: 'normal',
+        },
+        {
+          name: 'Inter',
+          data: await interBlack,
+          weight: 900,
+          style: 'normal',
+        },
+      ],
     }
   );
 
