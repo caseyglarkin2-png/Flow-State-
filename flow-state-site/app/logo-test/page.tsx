@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { LOGO_VARIANTS, ACTIVE_VARIANT } from '@/lib/branding';
+import { LOGO_VARIANTS, DEFAULT_VARIANT, getActiveVariant } from '@/lib/branding';
 
 export const metadata = {
   title: 'Logo Variants - Internal Testing',
@@ -8,16 +8,18 @@ export const metadata = {
 };
 
 export default function LogoTestPage() {
+  const activeVariant = getActiveVariant();
+  
   return (
     <div className="min-h-screen bg-void p-12">
       <div className="max-w-6xl mx-auto">
         <div className="mb-12">
           <h1 className="text-4xl font-black text-white mb-4">Logo Variant Testing</h1>
           <p className="text-steel mb-2">
-            Current active variant: <span className="text-neon font-mono">{ACTIVE_VARIANT}</span>
+            Current active variant: <span className="text-neon font-mono">{activeVariant}</span>
           </p>
           <p className="text-steel/70 text-sm">
-            To change: Edit <code className="text-neon bg-carbon px-2 py-1 rounded">lib/branding.ts</code> line 13
+            To change: Set <code className="text-neon bg-carbon px-2 py-1 rounded">NEXT_PUBLIC_LOGO_VARIANT</code> env var or edit <code className="text-neon bg-carbon px-2 py-1 rounded">lib/branding.ts</code> DEFAULT_VARIANT
           </p>
         </div>
 
@@ -26,8 +28,8 @@ export default function LogoTestPage() {
             <div 
               key={key}
               className={`p-8 rounded-lg border-2 transition-all ${
-                key === ACTIVE_VARIANT 
-                  ? 'border-neon bg-neon/10' 
+                key === activeVariant 
+                  ? 'border-neon bg-neon/10'
                   : 'border-steel/30 bg-carbon/30'
               }`}
             >
@@ -48,7 +50,7 @@ export default function LogoTestPage() {
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     <h2 className="text-2xl font-bold text-white capitalize">{key}</h2>
-                    {key === ACTIVE_VARIANT && (
+                    {key === activeVariant && (
                       <span className="px-2 py-1 text-xs font-bold bg-neon text-void rounded">ACTIVE</span>
                     )}
                   </div>

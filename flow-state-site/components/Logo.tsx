@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { getActiveLogo } from '@/lib/branding';
+import { BrandLogo } from '@/components/BrandLogo';
 
 interface LogoProps {
   size?: number;
@@ -9,27 +9,12 @@ interface LogoProps {
 }
 
 /**
- * Modular Logo Component
+ * Legacy Logo export for backward compatibility
+ * Use <BrandLogo /> directly in new code
  * 
  * Automatically uses the active logo variant from lib/branding.ts
- * Change ACTIVE_VARIANT in branding.ts to switch logos site-wide
+ * Change DEFAULT_VARIANT in branding.ts to switch logos site-wide
  */
 export default function Logo({ size = 24, className = '' }: LogoProps) {
-  const logo = getActiveLogo();
-  
-  return (
-    <svg
-      viewBox="0 0 32 32"
-      width={size}
-      height={size}
-      className={`text-neon ${className}`}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-label="YardFlow logo"
-      dangerouslySetInnerHTML={{ __html: logo.svg }}
-    />
-  );
+  return <BrandLogo size={size} className={className} showWordmark={false} />;
 }

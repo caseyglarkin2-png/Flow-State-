@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og';
+import { getActiveLogo, SITE_METADATA } from '@/lib/branding';
 
 export const runtime = 'edge';
 
@@ -15,6 +16,9 @@ export async function GET() {
   const interBlack = fetch(
     new URL('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZ9hiA.woff', import.meta.url)
   ).then((res) => res.arrayBuffer());
+
+  // Get the active logo (micro version for OG)
+  const logoMark = getActiveLogo(20);
 
   const response = new ImageResponse(
     (
@@ -92,20 +96,18 @@ export async function GET() {
               gap: '14px',
             }}
           >
-            {/* Network logo - matches lib/branding.ts ACTIVE_VARIANT */}
+            {/* Active logo from branding.ts */}
             <svg
               viewBox="0 0 32 32"
               width="40"
               height="40"
+              fill="none"
+              stroke="#00B4FF"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              <circle cx="16" cy="16" r="3" fill="#00B4FF"/>
-              <circle cx="8" cy="8" r="2" fill="#00B4FF"/>
-              <circle cx="24" cy="8" r="2" fill="#00B4FF"/>
-              <circle cx="16" cy="26" r="2" fill="#00B4FF"/>
-              <line x1="16" y1="13" x2="9" y2="9.5" stroke="#00B4FF" strokeWidth="1.5"/>
-              <line x1="16" y1="13" x2="23" y2="9.5" stroke="#00B4FF" strokeWidth="1.5"/>
-              <line x1="16" y1="19" x2="16" y2="24" stroke="#00B4FF" strokeWidth="1.5"/>
-              <circle cx="16" cy="16" r="14.5" stroke="#00B4FF" strokeWidth="1" opacity="0.3"/>
+              <g dangerouslySetInnerHTML={{ __html: logoMark.svg }} />
             </svg>
             <div
               style={{
@@ -132,7 +134,7 @@ export async function GET() {
                   fontFamily: 'Inter',
                 }}
               >
-                by FreightRoll
+                {SITE_METADATA.originLine}
               </span>
             </div>
           </div>
@@ -170,7 +172,7 @@ export async function GET() {
                   fontFamily: 'Inter',
                 }}
               >
-                Yard Network System
+                {SITE_METADATA.tagline.replace('.', '').toUpperCase()}
               </span>
             </div>
 
@@ -207,6 +209,19 @@ export async function GET() {
               >
                 Control Is The Hero.
               </span>
+              <span
+                style={{
+                  fontSize: 72,
+                  fontWeight: 900,
+                  color: '#00B4FF',
+                  letterSpacing: '-0.03em',
+                  lineHeight: 1,
+                  textShadow: '0 0 60px rgba(0, 180, 255, 0.4)',
+                  fontFamily: 'Inter',
+                }}
+              >
+                Control Is The Hero.
+              </span>
             </div>
 
             {/* Subtitle */}
@@ -219,7 +234,7 @@ export async function GET() {
                 fontFamily: 'Inter',
               }}
             >
-              Deterministic yard operations that eliminate chaos and create synthetic capacity across your network.
+              {SITE_METADATA.ogDescription}
             </span>
           </div>
 
