@@ -88,10 +88,10 @@ export default function SimulationsPage() {
               </div>
               
               <Link
-                href="/singularity/primo"
+                href="/singularity"
                 className="mt-6 inline-flex items-center gap-2 rounded-lg border border-neon/40 bg-neon/5 px-6 py-3 font-semibold text-neon transition-all hover:bg-neon/10"
               >
-                Explore Primo Simulation
+                Explore Network Intelligence
                 <ChevronRight className="h-5 w-5" />
               </Link>
             </div>

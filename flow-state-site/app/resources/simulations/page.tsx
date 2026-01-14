@@ -11,15 +11,15 @@ export const metadata = {
 
 const simulations = [
   {
-    title: 'Primo Singularity Simulation',
-    description: 'Model the economics of becoming the first YardFlow node in your region. Calculate network-effect premiums and first-mover advantages.',
-    path: '/simulations',
+    title: 'Network Intelligence Simulator',
+    description: 'Visualize how network effects compound across your facility footprint. See how adding nodes creates exponential intelligence value.',
+    path: '/singularity',
     color: 'neon',
     icon: Ignite,
     features: [
       'Network effect multiplier modeling',
-      'Regional market timing analysis',
-      'Competitive positioning scenarios',
+      'Cross-facility intelligence',
+      'Scalability visualization',
     ],
   },
   {

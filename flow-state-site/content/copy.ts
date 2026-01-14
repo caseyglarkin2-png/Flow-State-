@@ -217,7 +217,7 @@ export const CTAS = {
 // ═══════════════════════════════════════════════════════════════
 
 export const PROOF = {
-  scale: "Primo scale deployment: 50 facilities, 12,500 trucks/day, $47M annual detention recovery modeled.",
+  scale: "Enterprise scale deployment: 50 facilities, 12,500 trucks/day, $47M annual detention recovery modeled.",
   credibility: "Metrics based on Primo/Singularity simulations and validated ROI models. Individual results vary.",
   noInventedMetrics: "Same math. Same posture. No invented metrics.",
   boardReady: "Board-ready artifacts: YardBuilder report, ROI PDF, Evidence Vault link.",

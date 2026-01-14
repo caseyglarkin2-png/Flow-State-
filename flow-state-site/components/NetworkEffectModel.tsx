@@ -261,7 +261,7 @@ export default function NetworkEffectModel() {
             
             {/* Node count indicator */}
             {nodes > 30 && (
-              <text x="300" y="185" fontSize="12" fill="#888" textAnchor="middle">
+              <text x="300" y="185" fontSize="12" fill="#A0A0A0" textAnchor="middle">
                 Showing 30 of {nodes} nodes
               </text>
             )}
@@ -294,7 +294,7 @@ export default function NetworkEffectModel() {
           { label: 'Pilot', value: 1 },
           { label: 'Regional', value: 10 },
           { label: 'Enterprise', value: 50 },
-          { label: 'Primo Scale', value: 260 },
+          { label: 'Enterprise Max', value: 260 },
         ].map((preset) => (
           <button
             key={preset.label}

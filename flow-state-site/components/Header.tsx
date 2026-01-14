@@ -175,7 +175,7 @@ export default function Header() {
                 </Link>
                 <Link href="/resources/simulations" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
                   <span className="font-medium text-white">Simulations</span>
-                  <span className="block text-xs text-steel/70">Primo & Singularity models</span>
+                  <span className="block text-xs text-steel/70">Interactive ROI & network models</span>
                 </Link>
                 <div className="border-t border-neon/10 my-2"></div>
                 <Link href="/docs/economics-methodology" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">

@@ -1,283 +1,364 @@
-/* ═══════════════════════════════════════════════════════════════
-   YARDBUILDER PAGE - REDUNDANCY REPORT (Pass 6)
-   ═══════════════════════════════════════════════════════════════
-   
-   A) EXACT DUPLICATE STRINGS:
-      1. Pain type labels ('detention', 'gate', 'labor', etc.) - unique data
-      2. "readiness in four steps" - not found elsewhere - GOOD
-      3. Focus descriptions generated dynamically - OK
-   
-   B) CONCEPT DUPLICATION:
-      1. "Defensible timestamps" explained here + Security page + Ch1
-      2. "Control loop" referenced but not explained
-      3. YardBuilder unique value prop NOT stated clearly
-   
-   C) CTA DUPLICATION:
-      - "Start the report" (primary) - unique
-      - "Or skip to ROI" (secondary) - minor overlap with homepage
-      - Export report CTA - unique value
-   
-   D) WHAT TO DELETE:
-      ✗ Nothing - this page has minimal redundancy
-   
-   E) WHAT TO CONSOLIDATE:
-      ↓ Pain type descriptions should reference chapter solutions
-      ↓ "Focus" text should pull from shared copy for consistency
-   
-   F) WHAT TO ADD:
-      + Link pain types to chapters ("detention → Ch1 solution")
-      + Preview of what report will include
-      + "Why this diagnostic matters" context block
-   
-   ═══════════════════════════════════════════════════════════════ */
-
 "use client";
 
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { analytics } from '@/lib/analytics';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
-import FrameShiftHero from '@/components/FrameShiftHero';
-import BoardReadyExportCTA from '@/components/BoardReadyExportCTA';
-import { trackEvent } from '@/lib/analytics';
-import { useLaneStore } from '@/store/lane';
+import { Velocity, Ignite, FlowArrow, Metrics, Cortex } from '@/components/icons/FlowIcons';
+import { MapPin, Building2, Users, CheckCircle2, ArrowRight } from 'lucide-react';
 
+type FacilityType = 'dc' | 'plant' | 'cross-dock' | 'terminal' | 'yard';
 type Pain = 'detention' | 'gate' | 'labor' | 'visibility' | 'throughput';
-type GateStyle = 'guard' | 'kiosk' | 'mixed';
 
 export default function YardBuilderPage() {
   useEffect(() => {
     analytics.viewYardBuilder();
   }, []);
 
-  const lane = useLaneStore((s) => s.lane);
-  const [step, setStep] = useState(1);
-  const [company, setCompany] = useState('');
-  const [facilityCount, setFacilityCount] = useState(10);
-  const [shipmentsPerDay, setShipmentsPerDay] = useState(250);
-  const [gateStyle, setGateStyle] = useState<GateStyle>('guard');
-  const [pain, setPain] = useState<Pain>('detention');
+  const [formState, setFormState] = useState<'form' | 'submitting' | 'success'>('form');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    role: '',
+    facilityCount: '',
+    facilityType: '' as FacilityType | '',
+    primaryPain: '' as Pain | '',
+    timeline: '',
+    notes: '',
+  });
 
-  const preview = useMemo(() => {
-    const annualShipments = Math.max(0, shipmentsPerDay) * 365 * Math.max(1, facilityCount);
-    const focus =
-      pain === 'detention'
-        ? 'Defensible timestamps + exception workflow'
-        : pain === 'gate'
-          ? 'Gate control loop + standard check-in/out'
-          : pain === 'labor'
-            ? 'Repeatable execution + less manual handling'
-            : pain === 'visibility'
-              ? 'Ground-truth yard state (not just dots)'
-              : 'Throughput stabilization + fewer surprises';
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormState('submitting');
+    
+    try {
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          source: 'yardbuilder',
+          intent: 'digital-twin-request',
+        }),
+      });
+      
+      if (response.ok) {
+        setFormState('success');
+        analytics.track('digital_twin_requested', { company: formData.company });
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setFormState('form');
+      alert('There was an error submitting your request. Please try again.');
+    }
+  };
 
-    return {
-      annualShipments,
-      focus,
-      nextSteps: [
-        'Confirm your current check-in/out flow and exception reasons',
-        'Identify one pilot facility with clear ownership',
-        'Define the KPI you want to make defensible (dwell, detention, labor, throughput)',
-      ],
-    };
-  }, [facilityCount, shipmentsPerDay, pain]);
+  const deliverables = [
+    {
+      icon: MapPin,
+      title: 'Satellite Facility Mapping',
+      description: 'We analyze your facility layout using satellite imagery and your operational data.',
+    },
+    {
+      icon: Metrics,
+      title: 'Asset Inventory',
+      description: 'Complete count of docks, gates, parking spots, and yard zones.',
+    },
+    {
+      icon: Cortex,
+      title: 'Workflow Analysis',
+      description: 'Current state process mapping with bottleneck identification.',
+    },
+    {
+      icon: Velocity,
+      title: 'Optimization Roadmap',
+      description: 'Prioritized recommendations for yard automation and efficiency gains.',
+    },
+  ];
 
-  function next() {
-    setStep((s) => {
-      const ns = Math.min(4, s + 1);
-      trackEvent('yardbuilder_step_completed', { step: s, nextStep: ns, lane });
-      return ns;
-    });
-  }
-
-  function back() {
-    setStep((s) => Math.max(1, s - 1));
-  }
+  const process = [
+    { step: '1', title: 'Submit Request', description: 'Tell us about your facility and operational challenges.' },
+    { step: '2', title: 'Discovery Call', description: 'Brief call to understand your specific requirements.' },
+    { step: '3', title: 'Analysis & Build', description: 'We build your digital twin using satellite + operational data.' },
+    { step: '4', title: 'Delivery', description: 'Walkthrough of your digital twin with actionable recommendations.' },
+  ];
 
   return (
     <div className="min-h-screen bg-void">
       <Header />
 
-      <FrameShiftHero
-        title={
-          <>
-            YardBuilder: <span className="neon-glow">readiness</span> in four steps.
-          </>
-        }
-        reframe={<>Map your yard, name the bottleneck, estimate stakes, and export a report your exec team can forward.</>}
-        proof={<>Micro‑reward at each step. You get a preview before we ask for an email.</>}
-        primaryCta={{ href: '#builder', label: 'Start the report' }}
-        secondaryCta={{ href: '/roi', label: 'Or skip to ROI' }}
-      />
-
-      <section id="builder" className="py-16 border-b border-neon/20">
+      {/* Hero */}
+      <section className="pt-32 pb-16 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <div>
-              <h2 className="text-2xl font-bold mb-6 neon-glow">Step {step} of 4</h2>
+          <div className="max-w-3xl">
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neon/10 border border-neon/20 text-neon text-sm mb-6">
+              <Ignite size={14} /> Founding Member Program
+            </span>
+            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-6">
+              Request a <span className="neon-glow">Digital Twin</span> of Your Yard
+            </h1>
+            <p className="text-xl text-[#B8B8B8] leading-relaxed mb-8">
+              Let our team build a complete digital model of your facility—asset inventory, workflow mapping, and optimization roadmap. No software required on your end.
+            </p>
+            <a 
+              href="#request-form"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-neon text-void font-semibold rounded-xl hover:bg-white transition-all"
+            >
+              Request Your Digital Twin <ArrowRight size={18} />
+            </a>
+          </div>
+        </div>
+      </section>
 
-              <div className="space-y-5">
-                <Card>
-                  <h3 className="text-lg font-bold text-neon">1) Context</h3>
-                  <div className="mt-4 grid grid-cols-1 gap-3">
-                    <input
-                      value={company}
-                      onChange={(e) => setCompany(e.target.value)}
-                      placeholder="Company (optional until export)"
-                      className="bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
-                    />
-                    <label className="text-sm text-steel">Facilities</label>
-                    <input
-                      type="number"
-                      min={1}
-                      value={facilityCount}
-                      onChange={(e) => setFacilityCount(Number(e.target.value))}
-                      className="bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
-                    />
-                    <label className="text-sm text-steel">Shipments/day (per facility)</label>
-                    <input
-                      type="number"
-                      min={0}
-                      value={shipmentsPerDay}
-                      onChange={(e) => setShipmentsPerDay(Number(e.target.value))}
-                      className="bg-carbon border border-steel/20 rounded-md px-3 py-2 text-white"
-                    />
-                  </div>
-                </Card>
-
-                <Card>
-                  <h3 className="text-lg font-bold text-neon">2) Gate style</h3>
-                  <div className="mt-3 grid grid-cols-3 gap-2">
-                    {([
-                      { value: 'guard', label: 'Guard' },
-                      { value: 'kiosk', label: 'Kiosk' },
-                      { value: 'mixed', label: 'Mixed' },
-                    ] as const).map((opt) => (
-                      <button
-                        key={opt.value}
-                        type="button"
-                        onClick={() => setGateStyle(opt.value)}
-                        className={`px-3 py-2 rounded-lg border text-sm font-semibold transition-colors ${
-                          gateStyle === opt.value
-                            ? 'border-neon text-white bg-void/30'
-                            : 'border-steel/25 text-steel hover:border-neon/40'
-                        }`}
-                      >
-                        {opt.label}
-                      </button>
-                    ))}
-                  </div>
-                </Card>
-
-                <Card>
-                  <h3 className="text-lg font-bold text-neon">3) What hurts most?</h3>
-                  <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {([
-                      { value: 'detention', label: 'Detention' },
-                      { value: 'gate', label: 'Gate throughput' },
-                      { value: 'labor', label: 'Labor waste' },
-                      { value: 'visibility', label: 'Visibility gaps' },
-                      { value: 'throughput', label: 'Throughput variance' },
-                    ] as const).map((opt) => (
-                      <button
-                        key={opt.value}
-                        type="button"
-                        onClick={() => setPain(opt.value)}
-                        className={`px-3 py-2 rounded-lg border text-sm font-semibold transition-colors ${
-                          pain === opt.value
-                            ? 'border-neon text-white bg-void/30'
-                            : 'border-steel/25 text-steel hover:border-neon/40'
-                        }`}
-                      >
-                        {opt.label}
-                      </button>
-                    ))}
-                  </div>
-                </Card>
-
-                <div className="flex gap-3">
-                  <button
-                    type="button"
-                    onClick={back}
-                    disabled={step === 1}
-                    className="px-4 py-2 rounded-lg border border-steel/30 text-white disabled:opacity-50"
-                  >
-                    Back
-                  </button>
-                  <button
-                    type="button"
-                    onClick={next}
-                    disabled={step === 4}
-                    className="px-4 py-2 rounded-lg font-semibold bg-neon text-void disabled:opacity-50"
-                  >
-                    Next
-                  </button>
+      {/* What You Get */}
+      <section className="py-16 border-b border-neon/10">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-2xl font-semibold tracking-tight text-white mb-3">What's Included</h2>
+          <p className="text-steel mb-10 max-w-2xl">Every digital twin includes comprehensive facility analysis delivered by our operations team.</p>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {deliverables.map((item) => (
+              <Card key={item.title} className="border-neon/10">
+                <div className="w-10 h-10 rounded-lg bg-neon/10 flex items-center justify-center mb-4">
+                  <item.icon size={20} className="text-neon" />
                 </div>
-              </div>
-            </div>
-
-            <div>
-              <Card className="border-neon/25">
-                <h3 className="text-xl font-bold text-neon">Preview (before email)</h3>
-                <div className="mt-4 space-y-2 text-steel">
-                  <div className="flex justify-between">
-                    <span>Annual shipments (modeled)</span>
-                    <span className="text-white font-semibold">{Math.round(preview.annualShipments).toLocaleString()}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Focus</span>
-                    <span className="text-white font-semibold">{preview.focus}</span>
-                  </div>
-                </div>
-                <div className="mt-5">
-                  <div className="text-sm text-neon font-semibold">Recommended next steps</div>
-                  <ul className="mt-2 list-disc pl-5 text-sm text-steel space-y-1">
-                    {preview.nextSteps.map((s) => (
-                      <li key={s}>{s}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="mt-6">
-                  <BoardReadyExportCTA
-                    endpoint="/api/pdf/yardbuilder"
-                    eventName="pdf_generated_yardbuilder"
-                    buildPayload={(lead) => ({
-                      lead,
-                      inputs: {
-                        company: company || lead.company,
-                        facilityCount,
-                        shipmentsPerDay,
-                        gateStyle,
-                        pain,
-                      },
-                    })}
-                    title="Export Yard Readiness PDF"
-                    subtitle="Forwardable artifact for ops + finance. Modeled guidance; results vary."
-                  />
-                </div>
-
-                {/* Next Step CTAs */}
-                <div className="mt-8 pt-6 border-t border-neon/10">
-                  <p className="text-steel/70 text-sm mb-4">Now that you've mapped your facility...</p>
-                  <div className="flex flex-col sm:flex-row gap-3">
-                    <a 
-                      href="/roi"
-                      className="flex-1 px-6 py-3 rounded-lg bg-neon text-void font-semibold text-center hover:bg-white transition-all"
-                    >
-                      Build ROI Model →
-                    </a>
-                    <a 
-                      href="/singularity"
-                      className="flex-1 px-6 py-3 rounded-lg border-2 border-neon text-neon font-semibold text-center hover:bg-neon hover:text-void transition-all"
-                    >
-                      Apply for Access
-                    </a>
-                  </div>
-                </div>
+                <h3 className="font-semibold text-white mb-2">{item.title}</h3>
+                <p className="text-steel text-sm leading-relaxed">{item.description}</p>
               </Card>
-            </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-16 border-b border-neon/10">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-2xl font-semibold tracking-tight text-white mb-10">How It Works</h2>
+          
+          <div className="grid md:grid-cols-4 gap-6">
+            {process.map((item, idx) => (
+              <div key={item.step} className="relative">
+                {idx < process.length - 1 && (
+                  <div className="hidden md:block absolute top-6 left-full w-full h-px bg-neon/20 -translate-x-1/2" />
+                )}
+                <div className="w-12 h-12 rounded-full bg-neon/10 border border-neon/30 flex items-center justify-center text-neon font-bold mb-4">
+                  {item.step}
+                </div>
+                <h3 className="font-semibold text-white mb-2">{item.title}</h3>
+                <p className="text-steel text-sm leading-relaxed">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Request Form */}
+      <section id="request-form" className="py-16 scroll-mt-24">
+        <div className="max-w-3xl mx-auto px-6">
+          {formState === 'success' ? (
+            <Card className="border-neon/30 text-center py-12">
+              <div className="w-16 h-16 rounded-full bg-neon/10 flex items-center justify-center mx-auto mb-6">
+                <CheckCircle2 size={32} className="text-neon" />
+              </div>
+              <h2 className="text-2xl font-semibold text-white mb-4">Request Received</h2>
+              <p className="text-steel mb-6 max-w-md mx-auto">
+                Thank you for your interest in YardFlow. Our team will reach out within 2 business days to schedule a discovery call.
+              </p>
+              <a 
+                href="/roi"
+                className="inline-flex items-center gap-2 text-neon hover:text-neon/80 transition-colors"
+              >
+                Explore ROI Calculator while you wait <FlowArrow size={14} />
+              </a>
+            </Card>
+          ) : (
+            <>
+              <div className="text-center mb-10">
+                <h2 className="text-2xl font-semibold tracking-tight text-white mb-3">Request Your Digital Twin</h2>
+                <p className="text-steel">Tell us about your facility and we'll build a customized digital model.</p>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <Card className="border-neon/20">
+                  <h3 className="font-semibold text-neon mb-4 flex items-center gap-2">
+                    <Users size={18} /> Contact Information
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm text-steel mb-1.5">Name *</label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="w-full bg-carbon border border-steel/20 rounded-lg px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
+                        placeholder="Your name"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-steel mb-1.5">Work Email *</label>
+                      <input
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="w-full bg-carbon border border-steel/20 rounded-lg px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
+                        placeholder="you@company.com"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-steel mb-1.5">Company *</label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.company}
+                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                        className="w-full bg-carbon border border-steel/20 rounded-lg px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
+                        placeholder="Company name"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-steel mb-1.5">Role</label>
+                      <input
+                        type="text"
+                        value={formData.role}
+                        onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                        className="w-full bg-carbon border border-steel/20 rounded-lg px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
+                        placeholder="Your title"
+                      />
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="border-neon/20">
+                  <h3 className="font-semibold text-neon mb-4 flex items-center gap-2">
+                    <Building2 size={18} /> Facility Details
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm text-steel mb-1.5">Number of Facilities *</label>
+                      <select
+                        required
+                        value={formData.facilityCount}
+                        onChange={(e) => setFormData({ ...formData, facilityCount: e.target.value })}
+                        className="w-full bg-carbon border border-steel/20 rounded-lg px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
+                      >
+                        <option value="">Select...</option>
+                        <option value="1">1 facility</option>
+                        <option value="2-5">2-5 facilities</option>
+                        <option value="6-15">6-15 facilities</option>
+                        <option value="16-50">16-50 facilities</option>
+                        <option value="50+">50+ facilities</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm text-steel mb-1.5">Primary Facility Type *</label>
+                      <select
+                        required
+                        value={formData.facilityType}
+                        onChange={(e) => setFormData({ ...formData, facilityType: e.target.value as FacilityType })}
+                        className="w-full bg-carbon border border-steel/20 rounded-lg px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
+                      >
+                        <option value="">Select...</option>
+                        <option value="dc">Distribution Center</option>
+                        <option value="plant">Manufacturing Plant</option>
+                        <option value="cross-dock">Cross-Dock</option>
+                        <option value="terminal">Terminal</option>
+                        <option value="yard">Dedicated Yard</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm text-steel mb-1.5">Primary Challenge *</label>
+                      <select
+                        required
+                        value={formData.primaryPain}
+                        onChange={(e) => setFormData({ ...formData, primaryPain: e.target.value as Pain })}
+                        className="w-full bg-carbon border border-steel/20 rounded-lg px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
+                      >
+                        <option value="">Select...</option>
+                        <option value="detention">Detention & Dwell Costs</option>
+                        <option value="gate">Gate Throughput</option>
+                        <option value="labor">Labor Efficiency</option>
+                        <option value="visibility">Real-Time Visibility</option>
+                        <option value="throughput">Throughput Variance</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm text-steel mb-1.5">Timeline</label>
+                      <select
+                        value={formData.timeline}
+                        onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+                        className="w-full bg-carbon border border-steel/20 rounded-lg px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors"
+                      >
+                        <option value="">Select...</option>
+                        <option value="immediate">Immediate (0-3 months)</option>
+                        <option value="near-term">Near-term (3-6 months)</option>
+                        <option value="planning">Planning phase (6-12 months)</option>
+                        <option value="exploring">Just exploring</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-4">
+                    <label className="block text-sm text-steel mb-1.5">Additional Context</label>
+                    <textarea
+                      value={formData.notes}
+                      onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                      rows={3}
+                      className="w-full bg-carbon border border-steel/20 rounded-lg px-4 py-2.5 text-white focus:border-neon/50 focus:outline-none transition-colors resize-none"
+                      placeholder="Any specific challenges, goals, or questions you'd like us to address..."
+                    />
+                  </div>
+                </Card>
+
+                <button
+                  type="submit"
+                  disabled={formState === 'submitting'}
+                  className="w-full py-4 bg-neon text-void font-semibold rounded-xl hover:bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  {formState === 'submitting' ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-void/30 border-t-void rounded-full animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    <>
+                      Request Digital Twin <ArrowRight size={18} />
+                    </>
+                  )}
+                </button>
+
+                <p className="text-center text-steel/60 text-sm">
+                  By submitting, you agree to our <a href="/privacy" className="text-neon hover:underline">Privacy Policy</a>.
+                </p>
+              </form>
+            </>
+          )}
+        </div>
+      </section>
+
+      {/* Alternative CTAs */}
+      <section className="py-16 border-t border-neon/10">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-6">
+            <Card className="border-neon/20">
+              <h3 className="font-semibold text-white mb-2">Not ready for a digital twin?</h3>
+              <p className="text-steel text-sm mb-4">Use our self-service ROI calculator to estimate savings potential.</p>
+              <a href="/roi" className="inline-flex items-center gap-1 text-neon text-sm hover:text-neon/80 transition-colors">
+                ROI Calculator <FlowArrow size={12} />
+              </a>
+            </Card>
+            <Card className="border-neon/20">
+              <h3 className="font-semibold text-white mb-2">Quick diagnostic?</h3>
+              <p className="text-steel text-sm mb-4">Calculate your network leak in 2 minutes with our diagnostic tool.</p>
+              <a href="/diagnostic" className="inline-flex items-center gap-1 text-neon text-sm hover:text-neon/80 transition-colors">
+                Network Leak Calculator <FlowArrow size={12} />
+              </a>
+            </Card>
           </div>
         </div>
       </section>

@@ -638,20 +638,21 @@ export default async function GuidePage({ params }: Props) {
 
             {/* Article Content */}
             <article 
-              className="prose prose-lg prose-invert max-w-[72ch]
+              className="prose prose-lg prose-invert max-w-none
                 prose-headings:text-white prose-headings:font-semibold prose-headings:tracking-tight
-                prose-h2:text-2xl prose-h2:mt-14 prose-h2:mb-5 prose-h2:scroll-mt-24
-                prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-4 
-                prose-p:text-steel prose-p:leading-8 prose-p:text-[17px] prose-p:mb-5
+                prose-h2:text-2xl prose-h2:mt-0 prose-h2:mb-6 prose-h2:scroll-mt-24 prose-h2:flex prose-h2:items-center prose-h2:gap-3
+                prose-h3:text-lg prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-neon
+                prose-p:text-[#B8B8B8] prose-p:leading-8 prose-p:text-[17px] prose-p:mb-5 prose-p:max-w-[65ch]
                 prose-a:text-neon prose-a:no-underline hover:prose-a:text-neon/80
-                prose-strong:text-white 
-                prose-ul:text-steel prose-li:text-steel prose-li:my-3 prose-li:leading-7 prose-li:text-[16px] prose-ol:text-steel
-                [&_.callout]:my-8 [&_.callout]:p-6 [&_.callout]:rounded-2xl [&_.callout]:border
+                prose-strong:text-white prose-strong:font-semibold
+                prose-ul:text-[#B8B8B8] prose-ul:my-4 prose-li:text-[#B8B8B8] prose-li:my-2 prose-li:leading-7 prose-li:text-[16px] prose-ol:text-[#B8B8B8]
+                [&_section]:mb-8 [&_section]:p-8 [&_section]:rounded-2xl [&_section]:bg-carbon/40 [&_section]:border [&_section]:border-neon/10
+                [&_.callout]:my-6 [&_.callout]:p-5 [&_.callout]:rounded-xl [&_.callout]:border
                 [&_.callout-data]:bg-neon/5 [&_.callout-data]:border-neon/20
-                [&_.callout-note]:bg-carbon/50 [&_.callout-note]:border-neon/20
-                [&_.callout-results]:bg-carbon/50 [&_.callout-results]:border-neon/20
-                [&_.callout_strong]:text-white [&_.callout-source]:text-xs [&_.callout-source]:text-steel/60 [&_.callout-source]:mt-2
-                [&_.checklist]:list-none [&_.checklist]:pl-0 [&_.checklist_li]:pl-0"
+                [&_.callout-note]:bg-void/50 [&_.callout-note]:border-neon/20
+                [&_.callout-results]:bg-void/50 [&_.callout-results]:border-neon/20
+                [&_.callout_strong]:text-white [&_.callout-source]:text-xs [&_.callout-source]:text-steel/60 [&_.callout-source]:mt-3 [&_.callout-source]:block
+                [&_.checklist]:list-none [&_.checklist]:pl-0 [&_.checklist_li]:pl-0 [&_.checklist_li]:flex [&_.checklist_li]:items-start [&_.checklist_li]:gap-2"
               dangerouslySetInnerHTML={{ __html: guide.content }}
             />
 
