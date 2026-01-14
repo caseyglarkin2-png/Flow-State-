@@ -596,7 +596,7 @@ export default async function GuidePage({ params }: Props) {
               <span className="px-2.5 py-1 rounded-full bg-neon/10 border border-neon/20 text-neon text-xs uppercase tracking-wider">Guide</span>
             </div>
             <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4">{guide.title}</h1>
-            <p className="text-lg text-steel mb-6">{guide.subtitle}</p>
+            <p className="text-xl text-steel leading-relaxed mb-6 max-w-[72ch]">{guide.subtitle}</p>
             
             <div className="flex flex-wrap items-center gap-4 text-sm text-steel mb-8 pb-8 border-b border-neon/10">
               <span className="flex items-center gap-1.5">
@@ -614,9 +614,9 @@ export default async function GuidePage({ params }: Props) {
                 <h4 className="flex items-center gap-2 font-semibold text-neon mb-3 text-sm uppercase tracking-wider">
                   <CheckCircle2 className="w-4 h-4" /> Who This Is For
                 </h4>
-                <ul className="space-y-2 text-sm text-steel">
+                <ul className="space-y-2.5 text-[15px] text-steel">
                   {guide.whoThisIsFor.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2">
+                    <li key={i} className="flex items-start gap-2 leading-relaxed">
                       <span className="text-neon mt-0.5 text-xs">→</span> {item}
                     </li>
                   ))}
@@ -626,9 +626,9 @@ export default async function GuidePage({ params }: Props) {
                 <h4 className="flex items-center gap-2 font-semibold text-steel/70 mb-3 text-sm uppercase tracking-wider">
                   <Shield size={16} className="text-steel/70" /> Who This Is Not For
                 </h4>
-                <ul className="space-y-2 text-sm text-steel/70">
+                <ul className="space-y-2.5 text-[15px] text-steel/70">
                   {guide.whoThisIsNotFor.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2">
+                    <li key={i} className="flex items-start gap-2 leading-relaxed">
                       <span className="mt-0.5 text-xs">•</span> {item}
                     </li>
                   ))}
@@ -638,15 +638,15 @@ export default async function GuidePage({ params }: Props) {
 
             {/* Article Content */}
             <article 
-              className="prose prose-lg prose-invert max-w-none 
+              className="prose prose-lg prose-invert max-w-[72ch]
                 prose-headings:text-white prose-headings:font-semibold prose-headings:tracking-tight
-                prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h2:scroll-mt-24
-                prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 
-                prose-p:text-steel prose-p:leading-relaxed 
+                prose-h2:text-2xl prose-h2:mt-14 prose-h2:mb-5 prose-h2:scroll-mt-24
+                prose-h3:text-xl prose-h3:mt-10 prose-h3:mb-4 
+                prose-p:text-steel prose-p:leading-8 prose-p:text-[17px] prose-p:mb-5
                 prose-a:text-neon prose-a:no-underline hover:prose-a:text-neon/80
                 prose-strong:text-white 
-                prose-ul:text-steel prose-li:text-steel prose-li:my-2 prose-ol:text-steel
-                [&_.callout]:my-6 [&_.callout]:p-5 [&_.callout]:rounded-2xl [&_.callout]:border
+                prose-ul:text-steel prose-li:text-steel prose-li:my-3 prose-li:leading-7 prose-li:text-[16px] prose-ol:text-steel
+                [&_.callout]:my-8 [&_.callout]:p-6 [&_.callout]:rounded-2xl [&_.callout]:border
                 [&_.callout-data]:bg-neon/5 [&_.callout-data]:border-neon/20
                 [&_.callout-note]:bg-carbon/50 [&_.callout-note]:border-neon/20
                 [&_.callout-results]:bg-carbon/50 [&_.callout-results]:border-neon/20

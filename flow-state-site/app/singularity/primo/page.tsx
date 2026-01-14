@@ -13,7 +13,7 @@ export default function YardBuilderPage() {
   useEffect(() => {
     setMounted(true);
     
-    import('@/components/yardbuilder/YardBuilderAI')
+    import('@/src/components/yardbuilder/YardBuilderAI')
       .then((mod) => {
         setComponent(() => mod.default);
       })
