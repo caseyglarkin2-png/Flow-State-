@@ -549,3 +549,56 @@ export const solutionNav = (Object.keys(solutionPages) as SolutionSlug[]).map((s
 export function isSolutionSlug(value: string): value is SolutionSlug {
   return value in solutionPages;
 }
+
+/**
+ * Validate a solution page config for required fields
+ * Throws loudly in development if required fields are missing
+ */
+export function validateSolutionConfig(slug: SolutionSlug): void {
+  const cfg = solutionPages[slug];
+  const errors: string[] = [];
+
+  // Check required top-level fields
+  if (!cfg.slug) errors.push(`Missing: slug`);
+  if (!cfg.navLabel) errors.push(`Missing: navLabel`);
+  if (!cfg.personaName) errors.push(`Missing: personaName`);
+  if (!cfg.seo?.title) errors.push(`Missing: seo.title`);
+  if (!cfg.seo?.description) errors.push(`Missing: seo.description`);
+  if (!cfg.defaultModuleOrder?.length) errors.push(`Missing: defaultModuleOrder`);
+
+  // Check hero section
+  if (!cfg.hero?.kicker) errors.push(`Missing: hero.kicker`);
+  if (!cfg.hero?.headline) errors.push(`Missing: hero.headline`);
+  if (!cfg.hero?.subhead) errors.push(`Missing: hero.subhead`);
+  if (!cfg.hero?.primaryCta?.label || !cfg.hero?.primaryCta?.href) {
+    errors.push(`Missing: hero.primaryCta (label or href)`);
+  }
+
+  // Check other sections exist
+  if (!cfg.viscosity?.title || !cfg.viscosity?.bullets?.length) {
+    errors.push(`Missing or empty: viscosity section`);
+  }
+  if (!cfg.standardizeFirst?.title || !cfg.standardizeFirst?.bullets?.length) {
+    errors.push(`Missing or empty: standardizeFirst section`);
+  }
+  if (!cfg.solution?.title || !cfg.solution?.features?.length) {
+    errors.push(`Missing or empty: solution section`);
+  }
+  if (!cfg.proof?.title || !cfg.proof?.bullets?.length) {
+    errors.push(`Missing or empty: proof section`);
+  }
+  if (!cfg.roi?.title) errors.push(`Missing: roi.title`);
+  if (!cfg.integrations?.title || !cfg.integrations?.badges?.length) {
+    errors.push(`Missing or empty: integrations section`);
+  }
+  if (!cfg.related?.title || !cfg.related?.links?.length) {
+    errors.push(`Missing or empty: related section`);
+  }
+  if (!cfg.cta?.title) errors.push(`Missing: cta.title`);
+
+  if (errors.length > 0 && process.env.NODE_ENV === 'development') {
+    console.warn(
+      `⚠️  Solution config validation failed for "${slug}":\n${errors.map((e) => `  - ${e}`).join('\n')}`
+    );
+  }
+}
