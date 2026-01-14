@@ -344,70 +344,9 @@ export default function ROICalculatorPage() {
               Board-ready in 3 minutes. <br />
               <span className="text-neon">Deep model when you're ready.</span>
             </h1>
-            <p className="text-xl text-steel/90 max-w-3xl mx-auto mb-8">
-              Two modes. Same engine. Quick Mode assumes network averages. Pro Mode dials in your actual labor, dwell, and detention data. Both show Year-1 savings, 5-year NPV, and cost of waiting.
+            <p className="text-xl text-steel/90 max-w-3xl mx-auto">
+              Two modes. Same engine. Quick Mode assumes network averages. Pro Mode dials in your actual labor, dwell, and detention data.
             </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 max-w-4xl mx-auto text-left">
-              <div className="p-4 rounded-lg bg-neon/10 border border-neon/30">
-                <p className="text-neon font-bold mb-1">Quick Mode</p>
-                <p className="text-sm text-steel/80">Network averages. Board-ready in 3 minutes.</p>
-              </div>
-              <div className="p-4 rounded-lg bg-neon/10 border border-neon/30">
-                <p className="text-neon font-bold mb-1">Pro Mode</p>
-                <p className="text-sm text-steel/80">Site-specific inputs. Deep validation.</p>
-              </div>
-              <div className="p-4 rounded-lg bg-neon/10 border border-neon/30">
-                <p className="text-neon font-bold mb-1">Same ROI Engine</p>
-                <p className="text-sm text-steel/80">Both models use actual YardFlow economics.</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Executive Snapshot - Always visible */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-            <div className="glass-card p-4 text-center border border-neon/30">
-              <p className="text-xs text-steel uppercase tracking-wider mb-1">Year‑1 Profit Impact</p>
-              <p className="text-3xl font-black neon-glow">{formatMoney(scenario.capacity.yearOneProfitImpact)}</p>
-              <p className="text-xs text-steel/70 mt-1">
-                {formatMoney(profitPerTruckload)}/truckload × {formatTruckloads(scenario.capacity.yearOneIncrementalTruckloads)}
-              </p>
-            </div>
-            <div className="glass-card p-4 text-center">
-              <p className="text-xs text-steel uppercase tracking-wider mb-1">Year‑1 Realized Savings</p>
-              <p className="text-3xl font-black">{formatMoney(cfoMetrics.yearOneGrossSavings)}</p>
-            </div>
-            <div className="glass-card p-4 text-center">
-              <p className="text-xs text-steel uppercase tracking-wider mb-1">5-Year NPV</p>
-              <p className="text-3xl font-black text-neon">{formatMoney(cfoMetrics.fiveYearNPV)}</p>
-            </div>
-            <div className="glass-card p-4 text-center border border-ember/30">
-              <p className="text-xs text-steel uppercase tracking-wider mb-1">90-Day Delay Cost</p>
-              <p className="text-3xl font-black text-ember">{formatMoney(cfoMetrics.costOfDelay90Days)}</p>
-              <p className="text-xs text-ember/70 mt-1">leak continues</p>
-            </div>
-          </div>
-
-          {/* Paperless Value Callout */}
-          <div className="mt-8 max-w-3xl mx-auto">
-            <div className="glass-card p-6 border border-neon/40 bg-gradient-to-br from-neon/10 to-transparent">
-              <div className="flex items-start gap-4">
-                <Manifest size={32} className="text-neon mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="text-xl font-bold text-neon mb-2">What’s Included in This Model</h3>
-                  <p className="text-steel text-sm leading-relaxed">
-                    This board-ready view includes <strong className="text-white">labor</strong>, <strong className="text-white">detention</strong>,
-                    <strong className="text-white"> paper</strong>, and <strong className="text-white">throughput</strong> assumptions,
-                    plus an explicit <strong className="text-white">annual subscription</strong> and <strong className="text-white">implementation</strong> cost basis.
-                  </p>
-                  <p className="text-steel text-sm leading-relaxed mt-2">
-                    Year‑1 modeled: <strong className="text-white">{formatMoney(calculations.paperlessSavings * calculations.yearOneRampShare)}</strong> paper savings,
-                    <strong className="text-white"> {formatMoney(calculations.throughputValue * calculations.yearOneRampShare)}</strong> throughput value,
-                    and <strong className="text-white">{formatMoney(calculations.annualSubscription)}</strong> subscription.
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
