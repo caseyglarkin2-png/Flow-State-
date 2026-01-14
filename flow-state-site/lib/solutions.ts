@@ -111,8 +111,8 @@ const DEFAULT_MODULE_ORDER: SolutionModuleId[] = [
   "cta",
 ];
 
-const START_YOUR_MAP = { label: "Start Your Map", href: "/start-your-map" };
-const REQUEST_DEMO = { label: "Request Demo", href: "/demo" };
+const START_YOUR_MAP = { label: "Start Your Map", href: "/yardbuilder" };
+const REQUEST_DEMO = { label: "Request Demo", href: "/contact" };
 
 export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
   "dry-van": {
@@ -162,14 +162,16 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
     solution: {
       title: "The YardFlow Solution",
       features: [
-        { name: "Digital Guard", description: "App-less driver check-in, credential capture, and automated entry routing." },
-        { name: "Automated Dwell Management", description: "Dwell aging + prioritization logic to protect throughput and reduce detention." },
-        { name: "Ground Truth Map", description: "A live digital twin of the yard, slots, assets, and exceptions." },
+        { name: "Digital Guard", description: "App-less driver check-in with OCR, credential capture, and automated entry routing. No clipboard. No guesswork." },
+        { name: "Digital Comms", description: "Lane-level messaging with read receipts. Drivers know exactly where to go. Disputes die when receipts exist." },
+        { name: "Digital BOL", description: "Photo evidence and timestamps at every touchpoint. Detention disputes resolved before they start." },
+        { name: "Digital YMS", description: "Live yard map with dwell aging, FIFO enforcement, and real-time asset visibility across the network." },
       ],
       outcomeBullets: [
         "Compress turn time and reduce queue volatility.",
         "Create synthetic capacity without adding doors.",
         "Replace variance with a repeatable operating system.",
+        "Network-wide visibility into dwell and throughput patterns.",
       ],
     },
     proof: {
@@ -256,14 +258,16 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
     solution: {
       title: "The YardFlow Solution",
       features: [
-        { name: "Live Telemetry + Aging Alerts", description: "Fuel and temperature monitored continuously with visible exception states." },
-        { name: "Digital Compliance Logs", description: "Immutable evidence packets that make audits boring." },
-        { name: "Energy Management", description: "Monitor shore power usage to cut diesel burn and risk." },
+        { name: "Digital Guard", description: "Verify reefer credentials, capture fuel levels, and log setpoint at check-in. Compliance starts at the gate." },
+        { name: "Digital Comms", description: "Alert drivers to temperature exceptions and shore power availability in real time. No silent failures." },
+        { name: "Digital BOL", description: "Timestamped condition capture at ingress and egress. Evidence-grade documentation for cold chain integrity." },
+        { name: "Digital YMS", description: "Live telemetry integration, dwell aging alerts, and energy management visibility across the network." },
       ],
       outcomeBullets: [
         "Reduce load-loss exposure by surfacing exceptions in real time.",
         "Make audits simple with automated evidence capture.",
         "Protect product, brand, and margin simultaneously.",
+        "Network-wide cold chain visibility and compliance tracking.",
       ],
     },
     proof: {
@@ -347,14 +351,16 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
     solution: {
       title: "The YardFlow Solution",
       features: [
-        { name: "Dynamic Zoning", description: "Paint operational zones on the map and route drivers accordingly." },
-        { name: "Structured Verification", description: "Standardized check-in and handling steps for irregular freight." },
-        { name: "Exception Workflow Engine", description: "Plan non-standard moves with visibility and constraints." },
+        { name: "Digital Guard", description: "Structured verification for irregular freight. Safety checklists enforced at check-in, not improvised on the lot." },
+        { name: "Digital Comms", description: "Turn-by-turn routing to designated zones. Drivers know where oversized loads belong before they move." },
+        { name: "Digital BOL", description: "Photo documentation of load condition and securement. Evidence captured before the trailer leaves." },
+        { name: "Digital YMS", description: "Dynamic zoning with real-time lot visualization. Track every piece of equipment across the open yard." },
       ],
       outcomeBullets: [
         "Reduce incident exposure by eliminating chaos behaviors.",
         "Increase throughput by cutting rework and confusion.",
         "Make the open lot predictable across shifts and sites.",
+        "Network-wide safety metrics and zone compliance tracking.",
       ],
     },
     proof: {
@@ -437,14 +443,16 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
     solution: {
       title: "The YardFlow Solution",
       features: [
-        { name: "Ground Truth Visibility", description: "Inventory location and state become reliable across parties." },
-        { name: "Sequencing + Cutoff Alignment", description: "Move the right box at the right time with fewer rehandles." },
-        { name: "Driver Workflow Routing", description: "Reduce search time with deterministic instructions." },
+        { name: "Digital Guard", description: "Verify dray drivers and chassis compatibility at check-in. Stop search-and-rescue before it starts." },
+        { name: "Digital Comms", description: "Deterministic routing to row and stack. No radio chatter. No hunting for containers." },
+        { name: "Digital BOL", description: "Handoff documentation with cryptographic timestamps. Mode transfers become auditable events." },
+        { name: "Digital YMS", description: "Ground truth inventory with sequencing logic aligned to rail and ocean cutoffs. Fewer rehandles." },
       ],
       outcomeBullets: [
         "Reduce rehandles and shuffle overhead.",
         "Increase driver turns and predictability.",
         "Turn the terminal into a synchronized execution layer.",
+        "Network-wide container and chassis visibility.",
       ],
     },
     proof: {
@@ -527,14 +535,16 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
     solution: {
       title: "The YardFlow Solution",
       features: [
-        { name: "Pre-Gate Verification", description: "Verify credentials and documents before the driver enters the yard." },
-        { name: "Workflow Interlocks", description: "Enforce grounding, bonding, and checklist steps as system gates." },
-        { name: "Telemetry-Backed Documentation", description: "Tie events and volumes to evidence-grade documentation." },
+        { name: "Digital Guard", description: "Pre-gate credential verification with hazmat endorsement checks. Catch compliance failures before the driver enters." },
+        { name: "Digital Comms", description: "Workflow interlocks for grounding, bonding, and loading steps. Safety checklists enforced in sequence." },
+        { name: "Digital BOL", description: "Telemetry-backed documentation with volume capture and timestamps. Evidence-grade records for every load." },
+        { name: "Digital YMS", description: "Rack sequencing with real-time visibility into queue depth and wait times across the terminal." },
       ],
       outcomeBullets: [
         "Prevent rejected-at-rack events by catching issues early.",
         "Reduce compliance exposure and operational delay.",
         "Make billing and documentation defensible by design.",
+        "Network-wide visibility into rack utilization and throughput.",
       ],
     },
     proof: {

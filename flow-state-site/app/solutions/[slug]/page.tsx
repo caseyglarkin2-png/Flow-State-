@@ -58,9 +58,16 @@ export default async function SolutionPersonaPage({ params }: PageProps) {
     },
   ];
 
-  // Map solution features to modules
+  // Map solution features to modules - always use the 4 canonical modules
+  const moduleIdMap: Record<string, "guard" | "comms" | "bol" | "yms"> = {
+    "Digital Guard": "guard",
+    "Digital Comms": "comms",
+    "Digital BOL": "bol",
+    "Digital YMS": "yms",
+  };
+
   const modules = cfg.solution.features.map((f, i) => ({
-    id: (["guard", "comms", "bol", "yms"] as const)[i % 4],
+    id: moduleIdMap[f.name] || (["guard", "comms", "bol", "yms"] as const)[i % 4],
     name: f.name,
     enforces: [f.description],
     prevents: cfg.solution.outcomeBullets[i] || "Operational variance",

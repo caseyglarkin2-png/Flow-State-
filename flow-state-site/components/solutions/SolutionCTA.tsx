@@ -15,7 +15,7 @@ type SolutionCTAProps = {
 export function SolutionCTA({
   headline = "Ready to eliminate variance?",
   subhead = "See how YardFlow standardizes operations for your mode. Run your numbers. Schedule a demo.",
-  primaryCta = { label: "Schedule Demo", href: "/contact" },
+  primaryCta = { label: "Request Demo", href: "/contact" },
   secondaryCta = { label: "Calculate Your ROI", href: "/roi" },
 }: SolutionCTAProps) {
   return (
