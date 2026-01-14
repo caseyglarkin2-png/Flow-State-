@@ -62,6 +62,15 @@ export default function SolutionsOverviewPage() {
                       </div>
                     </div>
 
+                    {/* KPI Chips */}
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {cfg.kpis.map((kpi) => (
+                        <span key={kpi} className="px-2.5 py-1 rounded-full bg-neon/10 border border-neon/20 text-neon text-xs">
+                          {kpi}
+                        </span>
+                      ))}
+                    </div>
+
                     <div className="mt-4 flex items-center justify-between">
                       <span className="text-xs text-steel/70">Explore this persona</span>
                       <span className="text-sm text-neon">→</span>

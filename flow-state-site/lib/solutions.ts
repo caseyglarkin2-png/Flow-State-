@@ -93,6 +93,9 @@ export interface SolutionPageConfig {
     primaryCta: { label: string; href: string };
     secondaryCta?: { label: string; href: string };
   };
+
+  /** Key KPIs that move for this persona */
+  kpis: string[];
 }
 
 const DEFAULT_MODULE_ORDER: SolutionModuleId[] = [
@@ -205,6 +208,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       primaryCta: START_YOUR_MAP,
       secondaryCta: REQUEST_DEMO,
     },
+    kpis: ["Gate Time", "Dwell Time", "Detention Cost"],
   },
 
   "reefer": {
@@ -297,6 +301,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       primaryCta: START_YOUR_MAP,
       secondaryCta: REQUEST_DEMO,
     },
+    kpis: ["Spoilage Rate", "Dwell Alerts", "Compliance Score"],
   },
 
   "flatbed": {
@@ -386,6 +391,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       primaryCta: START_YOUR_MAP,
       secondaryCta: REQUEST_DEMO,
     },
+    kpis: ["Safety Incidents", "Rework Rate", "Zone Compliance"],
   },
 
   "intermodal": {
@@ -475,6 +481,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       primaryCta: START_YOUR_MAP,
       secondaryCta: REQUEST_DEMO,
     },
+    kpis: ["Turns/Day", "Chassis Dwell", "Rehandle Rate"],
   },
 
   "tanker": {
@@ -564,6 +571,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       primaryCta: START_YOUR_MAP,
       secondaryCta: REQUEST_DEMO,
     },
+    kpis: ["Rejection Rate", "Pre-Check Pass %", "Load Time"],
   },
 };
 
