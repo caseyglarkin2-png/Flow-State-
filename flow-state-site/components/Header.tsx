@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from '@/components/Logo';
 import { FlowArrow, Ignite, Velocity, Shield, DryVan, Intermodal, Flatbed, Tanker } from '@/components/icons/FlowIcons';
+import { solutionNav } from '@/lib/solutions';
 
 export default function Header() {
   const pathname = usePathname();
@@ -93,59 +94,26 @@ export default function Header() {
                   }`}
                 >
                   <span className="font-bold text-white">Solutions Overview</span>
-                  <span className="block text-xs text-steel/70 mt-1">Archetype-based yard orchestration</span>
+                  <span className="block text-xs text-steel/70 mt-1">Five operational archetypes</span>
                 </Link>
                 
                 <div className="py-2">
                   <p className="px-4 py-2 text-xs font-semibold text-steel/60 uppercase tracking-wider">By Archetype</p>
-                  <Link 
-                    href="/solutions/archetypes/dry-van-reefer" 
-                    className={`block px-4 py-2 text-sm hover:text-neon hover:bg-neon/5 transition-colors ${
-                      pathname === '/solutions/archetypes/dry-van-reefer' ? 'bg-neon/10' : ''
-                    }`}
-                  >
-                    <span className={`font-medium flex items-center gap-2 ${
-                      pathname === '/solutions/archetypes/dry-van-reefer' ? 'text-neon' : 'text-white'
-                    }`}>
-                      <DryVan size={16} className="text-neon/70" /> Dry Van & Reefer
-                    </span>
-                  </Link>
-                  <Link 
-                    href="/solutions/archetypes/intermodal" 
-                    className={`block px-4 py-2 text-sm hover:text-neon hover:bg-neon/5 transition-colors ${
-                      pathname === '/solutions/archetypes/intermodal' ? 'bg-neon/10' : ''
-                    }`}
-                  >
-                    <span className={`font-medium flex items-center gap-2 ${
-                      pathname === '/solutions/archetypes/intermodal' ? 'text-neon' : 'text-white'
-                    }`}>
-                      <Intermodal size={16} className="text-neon/70" /> Intermodal
-                    </span>
-                  </Link>
-                  <Link 
-                    href="/solutions/archetypes/flatbed-industrial" 
-                    className={`block px-4 py-2 text-sm hover:text-neon hover:bg-neon/5 transition-colors ${
-                      pathname === '/solutions/archetypes/flatbed-industrial' ? 'bg-neon/10' : ''
-                    }`}
-                  >
-                    <span className={`font-medium flex items-center gap-2 ${
-                      pathname === '/solutions/archetypes/flatbed-industrial' ? 'text-neon' : 'text-white'
-                    }`}>
-                      <Flatbed size={16} className="text-neon/70" /> Flatbed & Industrial
-                    </span>
-                  </Link>
-                  <Link 
-                    href="/solutions/archetypes/tanker-hazmat" 
-                    className={`block px-4 py-2 text-sm hover:text-neon hover:bg-neon/5 transition-colors ${
-                      pathname === '/solutions/archetypes/tanker-hazmat' ? 'bg-neon/10' : ''
-                    }`}
-                  >
-                    <span className={`font-medium flex items-center gap-2 ${
-                      pathname === '/solutions/archetypes/tanker-hazmat' ? 'text-neon' : 'text-white'
-                    }`}>
-                      <Tanker size={16} className="text-neon/70" /> Tanker & Hazmat
-                    </span>
-                  </Link>
+                  {solutionNav.map((item) => (
+                    <Link 
+                      key={item.slug}
+                      href={item.href} 
+                      className={`block px-4 py-2 text-sm hover:text-neon hover:bg-neon/5 transition-colors ${
+                        pathname === item.href ? 'bg-neon/10' : ''
+                      }`}
+                    >
+                      <span className={`font-medium ${
+                        pathname === item.href ? 'text-neon' : 'text-white'
+                      }`}>
+                        {item.label}
+                      </span>
+                    </Link>
+                  ))}
                 </div>
               </div>
             )}
@@ -341,42 +309,17 @@ export default function Header() {
             
             {mobileSolutionsOpen && (
               <div className="ml-4 mt-2 space-y-1 border-l-2 border-neon/20 pl-4">
-                <Link 
-                  href="/solutions/archetypes/dry-van-reefer" 
-                  className={`flex items-center gap-2 py-1 text-sm transition-colors ${
-                    pathname === '/solutions/archetypes/dry-van-reefer' ? 'text-neon font-semibold' : 'text-steel hover:text-neon'
-                  }`}
-                >
-                  <DryVan size={14} className="text-neon/70" />
-                  Dry Van & Reefer
-                </Link>
-                <Link 
-                  href="/solutions/archetypes/intermodal" 
-                  className={`flex items-center gap-2 py-1 text-sm transition-colors ${
-                    pathname === '/solutions/archetypes/intermodal' ? 'text-neon font-semibold' : 'text-steel hover:text-neon'
-                  }`}
-                >
-                  <Intermodal size={14} className="text-neon/70" />
-                  Intermodal
-                </Link>
-                <Link 
-                  href="/solutions/archetypes/flatbed-industrial" 
-                  className={`flex items-center gap-2 py-1 text-sm transition-colors ${
-                    pathname === '/solutions/archetypes/flatbed-industrial' ? 'text-neon font-semibold' : 'text-steel hover:text-neon'
-                  }`}
-                >
-                  <Flatbed size={14} className="text-neon/70" />
-                  Flatbed & Industrial
-                </Link>
-                <Link 
-                  href="/solutions/archetypes/tanker-hazmat" 
-                  className={`flex items-center gap-2 py-1 text-sm transition-colors ${
-                    pathname === '/solutions/archetypes/tanker-hazmat' ? 'text-neon font-semibold' : 'text-steel hover:text-neon'
-                  }`}
-                >
-                  <Tanker size={14} className="text-neon/70" />
-                  Tanker & Hazmat
-                </Link>
+                {solutionNav.map((item) => (
+                  <Link 
+                    key={item.slug}
+                    href={item.href} 
+                    className={`block py-1 text-sm transition-colors ${
+                      pathname === item.href ? 'text-neon font-semibold' : 'text-steel hover:text-neon'
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
               </div>
             )}
           </div>

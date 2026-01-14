@@ -1,6 +1,8 @@
 // /app/solutions/page.tsx
 import Link from "next/link";
 import { solutionNav, solutionPages } from "@/lib/solutions";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export const metadata = {
   title: "Solutions | YardFlow",
@@ -9,8 +11,10 @@ export const metadata = {
 
 export default function SolutionsOverviewPage() {
   return (
-    <main className="min-h-screen bg-black">
-      <div className="mx-auto max-w-6xl px-6 pt-20 pb-10">
+    <>
+      <Header />
+      <main className="min-h-screen bg-black">
+        <div className="mx-auto max-w-6xl px-6 pt-20 pb-10">
         <p className="text-xs uppercase tracking-[0.25em] text-cyan-300/70">Solutions</p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white md:text-5xl">
           Standardize the Yard. Reduce Variance.
@@ -47,7 +51,9 @@ export default function SolutionsOverviewPage() {
             );
           })}
         </div>
-      </div>
-    </main>
+        </div>
+      </main>
+      <Footer />
+    </>
   );
 }

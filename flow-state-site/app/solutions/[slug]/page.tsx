@@ -2,6 +2,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { solutionPages, isSolutionSlug, type SolutionSlug, type SolutionModuleId } from "@/lib/solutions";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 type PageProps = {
   params: { slug: string };
@@ -310,11 +312,15 @@ export default function SolutionPersonaPage({ params }: PageProps) {
   const cfg = solutionPages[slug];
 
   return (
-    <main className="min-h-screen bg-black">
-      {/* Render modules in canonical order */}
-      {cfg.defaultModuleOrder.map((m) => (
-        <div key={m}>{renderModule(m, slug)}</div>
-      ))}
-    </main>
+    <>
+      <Header />
+      <main className="min-h-screen bg-black">
+        {/* Render modules in canonical order */}
+        {cfg.defaultModuleOrder.map((m) => (
+          <div key={m}>{renderModule(m, slug)}</div>
+        ))}
+      </main>
+      <Footer />
+    </>
   );
 }
