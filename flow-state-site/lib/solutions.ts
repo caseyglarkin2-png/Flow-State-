@@ -4,6 +4,7 @@ export type SolutionSlug = "dry-van" | "reefer" | "flatbed" | "intermodal" | "ta
 
 export type SolutionModuleId =
   | "hero"
+  | "varianceThesis"
   | "viscosity"
   | "standardizeFirst"
   | "solution"
@@ -38,6 +39,11 @@ export interface SolutionPageConfig {
     primaryCta: { label: string; href: string };
     secondaryCta?: { label: string; href: string };
     visualNote?: string;
+  };
+
+  varianceThesis: {
+    title: string;
+    body: string;
   };
 
   viscosity: {
@@ -91,6 +97,7 @@ export interface SolutionPageConfig {
 
 const DEFAULT_MODULE_ORDER: SolutionModuleId[] = [
   "hero",
+  "varianceThesis",
   "viscosity",
   "standardizeFirst",
   "solution",
@@ -124,6 +131,10 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       secondaryCta: REQUEST_DEMO,
       visualNote:
         "Split-screen simulation: Chaos vs Flow. Show gate queue collapse when YardFlow toggles on.",
+    },
+    varianceThesis: {
+      title: "The Variance Problem",
+      body: "Cheap is nice. Predictable is scalable. When trucking markets swing, the winners are the operators with standardized execution and stable unit economics. Your yard is where volatility becomes a P&L event: detention, rehandles, labor spikes, missed cutoffs. Standards reduce exposure.",
     },
     viscosity: {
       title: "The Viscosity Problem",
@@ -215,6 +226,10 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       secondaryCta: REQUEST_DEMO,
       visualNote: "Thermal yard view: reefers color-coded by risk state and dwell age.",
     },
+    varianceThesis: {
+      title: "The Variance Problem",
+      body: "Cold chain risk is variance with a lawsuit. Spoilage happens in the dark—fuel drops, setpoints drift, and you find out after the damage. The winners standardize telemetry, make exceptions loud, and treat compliance not as friction but as a competitive advantage.",
+    },
     viscosity: {
       title: "The Viscosity Problem",
       bullets: [
@@ -301,6 +316,10 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       primaryCta: START_YOUR_MAP,
       secondaryCta: REQUEST_DEMO,
     },
+    varianceThesis: {
+      title: "The Variance Problem",
+      body: "Open-lot entropy kills safety and throughput simultaneously. Non-standard loads blow up schedules and create rework. When the yard improvises, safety exposure increases. The winners define zones, standardize complex workflows, and turn exceptions into planned flows.",
+    },
     viscosity: {
       title: "The Viscosity Problem",
       bullets: [
@@ -386,6 +405,10 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       primaryCta: START_YOUR_MAP,
       secondaryCta: REQUEST_DEMO,
     },
+    varianceThesis: {
+      title: "The Variance Problem",
+      body: "Most terminal delays are coordination failures disguised as capacity problems. Containers disappear once they move. Chassis dislocation kills driver turns. Shuffle rehandles burn labor and time. The winners make inventory visible and standardize the events that synchronize parties across rail, ocean, and drayage.",
+    },
     viscosity: {
       title: "The Viscosity Problem",
       bullets: [
@@ -470,6 +493,10 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       subhead: "Pre-gate verification and standardized interlocks for zero-error operations.",
       primaryCta: START_YOUR_MAP,
       secondaryCta: REQUEST_DEMO,
+    },
+    varianceThesis: {
+      title: "The Variance Problem",
+      body: "Zero-error operations are built from upstream verification, not downstream heroics. A missing wash cert becomes a rejected load and a wasted day. Manual checks are too fragile for hazmat. Compatibility failures cause rack delays and exposure. Compliance becomes cheap when it is automated and standardized.",
     },
     viscosity: {
       title: "The Viscosity Problem",

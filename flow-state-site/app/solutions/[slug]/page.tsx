@@ -76,6 +76,18 @@ function Hero({ slug }: { slug: SolutionSlug }) {
   );
 }
 
+function VarianceThesis({ slug }: { slug: SolutionSlug }) {
+  const { varianceThesis } = solutionPages[slug];
+  return (
+    <SectionWrap id="variance-thesis">
+      <div className="max-w-3xl">
+        <h2 className="text-2xl font-semibold text-white">{varianceThesis.title}</h2>
+        <p className="mt-4 text-lg text-steel leading-relaxed">{varianceThesis.body}</p>
+      </div>
+    </SectionWrap>
+  );
+}
+
 function Viscosity({ slug }: { slug: SolutionSlug }) {
   const { viscosity } = solutionPages[slug];
   return (
@@ -283,6 +295,8 @@ function renderModule(moduleId: SolutionModuleId, slug: SolutionSlug) {
   switch (moduleId) {
     case "hero":
       return <Hero slug={slug} />;
+    case "varianceThesis":
+      return <VarianceThesis slug={slug} />;
     case "viscosity":
       return <Viscosity slug={slug} />;
     case "standardizeFirst":
