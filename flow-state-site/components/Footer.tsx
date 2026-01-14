@@ -2,61 +2,58 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { BrandLogo } from '@/components/BrandLogo';
+import { SITE_METADATA } from '@/lib/branding';
 
 export default function Footer() {
   return (
     <footer className="bg-carbon border-t border-neon/20 py-16">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12 mb-12">
-          {/* Brand */}
-          <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-7 h-7 flex items-center justify-center">
-                <Image src="/favicon.svg" alt="YardFlow by FreightRoll" width={28} height={28} className="w-7 h-7" />
-              </div>
-              <span className="font-bold text-neon">YARDFLOW</span>
-            </div>
-            <p className="text-steel text-sm mb-2">Industrial fluidity. Yard orchestration. Ground source truth.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 md:gap-12 mb-12">
+          {/* Brand Column */}
+          <div className="col-span-1 lg:col-span-2">
+            <BrandLogo size={32} showWordmark={true} showOriginLine={true} className="mb-4" />
+            <p className="text-steel text-sm mb-2">{SITE_METADATA.tagline}</p>
             <p className="text-steel/60 text-xs">A FreightRoll product</p>
           </div>
 
           {/* Product */}
           <div>
-            <h3 className="font-semibold mb-4 text-neon">Product</h3>
+            <h3 className="font-semibold mb-4 text-neon text-sm uppercase tracking-wider">Product</h3>
             <ul className="space-y-2 text-sm text-steel">
               <li><Link href="/product" className="hover:text-neon transition-colors">Overview</Link></li>
               <li><Link href="/roi" className="hover:text-neon transition-colors">ROI Calculator</Link></li>
               <li><Link href="/yardbuilder" className="hover:text-neon transition-colors">YardBuilder</Link></li>
-              <li><Link href="/diagnostic" className="hover:text-neon transition-colors">Yard Tax Calculator</Link></li>
+              <li><Link href="/diagnostic" className="hover:text-neon transition-colors">Diagnostic</Link></li>
             </ul>
           </div>
 
           {/* Solutions */}
           <div>
-            <h3 className="font-semibold mb-4 text-neon">Solutions</h3>
+            <h3 className="font-semibold mb-4 text-neon text-sm uppercase tracking-wider">Solutions</h3>
             <ul className="space-y-2 text-sm text-steel">
-              <li><Link href="/solutions" className="hover:text-neon transition-colors">Yard Orchestration</Link></li>
+              <li><Link href="/solutions" className="hover:text-neon transition-colors">All Solutions</Link></li>
+              <li><Link href="/solutions/dry-van" className="hover:text-neon transition-colors">Dry Van</Link></li>
+              <li><Link href="/solutions/reefer" className="hover:text-neon transition-colors">Reefer</Link></li>
+              <li><Link href="/solutions/flatbed" className="hover:text-neon transition-colors">Flatbed</Link></li>
               <li><Link href="/singularity" className="hover:text-neon transition-colors">Network Intelligence</Link></li>
-              <li><Link href="/case-studies" className="hover:text-neon transition-colors">Case Studies</Link></li>
             </ul>
           </div>
 
           {/* Resources */}
           <div>
-            <h3 className="font-semibold mb-4 text-neon">Resources</h3>
+            <h3 className="font-semibold mb-4 text-neon text-sm uppercase tracking-wider">Resources</h3>
             <ul className="space-y-2 text-sm text-steel">
               <li><Link href="/resources/guides" className="hover:text-neon transition-colors">Guides</Link></li>
               <li><Link href="/resources/field-notes" className="hover:text-neon transition-colors">Field Notes</Link></li>
               <li><Link href="/resources/simulations" className="hover:text-neon transition-colors">Simulations</Link></li>
-              <li><Link href="/resources/procurement" className="hover:text-neon transition-colors">Procurement</Link></li>
-              <li><Link href="/docs/economics-methodology" className="hover:text-neon transition-colors">Methodology</Link></li>
+              <li><Link href="/docs" className="hover:text-neon transition-colors">Documentation</Link></li>
             </ul>
           </div>
 
           {/* Company */}
           <div>
-            <h3 className="font-semibold mb-4 text-neon">Company</h3>
+            <h3 className="font-semibold mb-4 text-neon text-sm uppercase tracking-wider">Company</h3>
             <ul className="space-y-2 text-sm text-steel">
               <li><Link href="/about" className="hover:text-neon transition-colors">About</Link></li>
               <li><Link href="/pricing" className="hover:text-neon transition-colors">Pricing</Link></li>
@@ -65,7 +62,6 @@ export default function Footer() {
               <li><Link href="/faq" className="hover:text-neon transition-colors">FAQ</Link></li>
               <li><Link href="/press" className="hover:text-neon transition-colors">Press</Link></li>
               <li><Link href="/status" className="hover:text-neon transition-colors">Status</Link></li>
-              <li><Link href="/changelog" className="hover:text-neon transition-colors">Changelog</Link></li>
               <li><Link href="/contact" className="hover:text-neon transition-colors">Contact</Link></li>
             </ul>
           </div>
