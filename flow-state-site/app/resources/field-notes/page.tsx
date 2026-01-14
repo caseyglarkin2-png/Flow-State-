@@ -33,10 +33,10 @@ export default function FieldNotesIndexPage() {
       <main className="min-h-screen bg-void pt-32 pb-24">
       <div className="max-w-6xl mx-auto px-6">
         <div className="mb-12">
-          <Link href="/resources" className="text-neon hover:underline text-sm mb-4 inline-block">
+          <Link href="/resources" className="text-sm text-neon hover:text-neon/80 mb-4 inline-block">
             ← Back to Resources
           </Link>
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">Field Notes</h1>
+          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4">Field Notes</h1>
           <p className="text-steel text-lg max-w-3xl">
             Operational patterns and insights from our network. Real observations, anonymized data, 
             and lessons learned from yards across the industry.
@@ -48,18 +48,18 @@ export default function FieldNotesIndexPage() {
             <Link 
               key={note.slug}
               href={`/resources/field-notes/${note.slug}`}
-              className="group block p-6 rounded-xl border border-amber-500/20 bg-carbon hover:border-amber-500/50 transition-all"
+              className="group block p-6 rounded-2xl border border-neon/20 bg-carbon/50 hover:border-neon/40 hover:bg-carbon/70 transition"
             >
               <div className="flex items-start justify-between mb-3">
-                <h3 className="text-lg font-semibold group-hover:text-amber-400 transition-colors">
+                <h3 className="text-lg font-semibold text-white group-hover:text-neon transition-colors">
                   {note.title}
                 </h3>
-                <span className="text-xs text-steel/60 font-mono">{note.readTime}</span>
+                <span className="text-xs text-steel/60">{note.readTime}</span>
               </div>
-              <p className="text-steel text-sm mb-3">{note.description}</p>
+              <p className="text-steel text-sm mb-4">{note.description}</p>
               <div className="flex flex-wrap gap-2">
                 {note.audience.map((a) => (
-                  <span key={a} className="text-xs px-2 py-1 rounded-full bg-amber-500/10 text-amber-400/80">
+                  <span key={a} className="text-xs px-2.5 py-1 rounded-full bg-neon/10 border border-neon/20 text-neon">
                     {a}
                   </span>
                 ))}
@@ -68,18 +68,24 @@ export default function FieldNotesIndexPage() {
           ))}
         </div>
 
-        <div className="p-8 rounded-xl border border-amber-500/20 bg-amber-500/5 text-center">
-          <Velocity size={32} className="text-amber-400 mx-auto mb-4" />
-          <h3 className="text-xl font-bold mb-2">More Field Notes Coming</h3>
-          <p className="text-steel mb-6 max-w-md mx-auto">
-            Join the network to access our full research library and contribute your own operational insights.
-          </p>
-          <Link 
-            href="/contact?intent=research" 
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-500 text-void font-semibold rounded-lg hover:bg-amber-400 transition-colors"
-          >
-            Request Access
-          </Link>
+        <div className="p-8 rounded-2xl border border-neon/20 bg-carbon/50">
+          <div className="flex items-start gap-6">
+            <div className="rounded-xl bg-neon/10 p-3">
+              <Velocity size={28} className="text-neon" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-xl font-semibold text-white mb-2">More Field Notes Coming</h3>
+              <p className="text-steel mb-6 max-w-2xl">
+                Join the network to access our full research library and contribute your own operational insights.
+              </p>
+              <Link 
+                href="/contact?intent=research" 
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-neon text-void font-medium rounded-xl hover:bg-neon/90 transition"
+              >
+                Request Access
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </main>

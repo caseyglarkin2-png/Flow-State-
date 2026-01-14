@@ -147,23 +147,23 @@ export default async function FieldNotePage({ params }: Props) {
       <main className="min-h-screen bg-void pt-32 pb-24">
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}
-        <Link href="/resources/field-notes" className="inline-flex items-center gap-2 text-amber-400 hover:underline mb-6">
-          <ChevronLeft className="w-4 h-4" /> Back to Field Notes
+        <Link href="/resources/field-notes" className="text-sm text-neon hover:text-neon/80 mb-6 inline-block">
+          ← Back to Field Notes
         </Link>
         
         <div className="flex items-center gap-2 mb-4">
-          <span className="px-2.5 py-1 rounded bg-amber-500/20 text-amber-400 text-xs font-mono uppercase">Field Note</span>
+          <span className="px-2.5 py-1 rounded-full bg-neon/10 border border-neon/20 text-neon text-xs uppercase tracking-wider">Field Note</span>
         </div>
         
-        <h1 className="text-3xl md:text-4xl font-bold mb-3">{note.title}</h1>
-        <p className="text-xl text-steel mb-6">{note.subtitle}</p>
+        <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4">{note.title}</h1>
+        <p className="text-lg text-steel mb-6">{note.subtitle}</p>
         
-        <div className="flex flex-wrap items-center gap-4 text-sm text-steel mb-12">
-          <span className="flex items-center gap-1">
-            <Clock className="w-4 h-4" /> {note.readTime}
+        <div className="flex flex-wrap items-center gap-4 text-sm text-steel mb-12 pb-8 border-b border-neon/10">
+          <span className="flex items-center gap-1.5">
+            <Clock className="w-4 h-4 text-neon/70" /> {note.readTime}
           </span>
-          <span className="flex items-center gap-1">
-            <Users className="w-4 h-4" /> {note.audience.join(' • ')}
+          <span className="flex items-center gap-1.5">
+            <Users className="w-4 h-4 text-neon/70" /> {note.audience.join(' • ')}
           </span>
           <span>Updated {new Date(note.updatedDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
         </div>
@@ -171,29 +171,35 @@ export default async function FieldNotePage({ params }: Props) {
         {/* Content */}
         <article 
           className="prose prose-lg prose-invert max-w-none 
-            prose-headings:text-white prose-headings:font-bold 
-            prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
-            prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3 
+            prose-headings:text-white prose-headings:font-semibold prose-headings:tracking-tight
+            prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4
+            prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 
             prose-p:text-steel prose-p:leading-relaxed 
-            prose-a:text-amber-400 prose-a:no-underline hover:prose-a:underline 
+            prose-a:text-neon prose-a:no-underline hover:prose-a:text-neon/80
             prose-strong:text-white 
-            prose-ul:text-steel prose-li:text-steel"
+            prose-ul:text-steel prose-li:text-steel prose-li:my-2"
           dangerouslySetInnerHTML={{ __html: note.content }}
         />
 
         {/* Footer CTA */}
-        <div className="mt-16 p-8 rounded-xl bg-amber-500/5 border border-amber-500/20 text-center">
-          <Velocity size={32} className="text-amber-400 mx-auto mb-4" />
-          <h3 className="text-xl font-bold mb-3">Want the Full Research?</h3>
-          <p className="text-steel mb-6 max-w-md mx-auto">
-            Network members get access to detailed breakdowns, facility-specific comparisons, and custom analysis.
-          </p>
-          <Link 
-            href="/contact?intent=research" 
-            className="inline-flex items-center gap-2 px-6 py-3 bg-amber-500 text-void font-semibold rounded-lg hover:bg-amber-400 transition-colors"
-          >
-            Request Access
-          </Link>
+        <div className="mt-16 p-8 rounded-2xl bg-carbon/50 border border-neon/20">
+          <div className="flex items-start gap-6">
+            <div className="rounded-xl bg-neon/10 p-3">
+              <Velocity size={28} className="text-neon" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-xl font-semibold text-white mb-2">Want the Full Research?</h3>
+              <p className="text-steel mb-6">
+                Network members get access to detailed breakdowns, facility-specific comparisons, and custom analysis.
+              </p>
+              <Link 
+                href="/contact?intent=research" 
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-neon text-void font-medium rounded-xl hover:bg-neon/90 transition"
+              >
+                Request Access
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </main>

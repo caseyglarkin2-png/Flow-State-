@@ -588,46 +588,48 @@ export default async function GuidePage({ params }: Props) {
           {/* Main Content */}
           <div>
             {/* Header */}
-            <Link href="/resources" className="inline-flex items-center gap-2 text-neon hover:underline mb-6">
-              <ChevronLeft className="w-4 h-4" /> Back to Resources
+            <Link href="/resources" className="text-sm text-neon hover:text-neon/80 mb-6 inline-block">
+              ← Back to Resources
             </Link>
             
-            <span className="text-neon font-mono text-sm uppercase tracking-wider">Guide</span>
-            <h1 className="text-3xl md:text-4xl font-bold mt-2 mb-3">{guide.title}</h1>
-            <p className="text-xl text-steel mb-6">{guide.subtitle}</p>
+            <div className="flex items-center gap-2 mb-4">
+              <span className="px-2.5 py-1 rounded-full bg-neon/10 border border-neon/20 text-neon text-xs uppercase tracking-wider">Guide</span>
+            </div>
+            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4">{guide.title}</h1>
+            <p className="text-lg text-steel mb-6">{guide.subtitle}</p>
             
-            <div className="flex flex-wrap items-center gap-4 text-sm text-steel mb-8">
-              <span className="flex items-center gap-1">
-                <Clock className="w-4 h-4" /> {guide.readTime}
+            <div className="flex flex-wrap items-center gap-4 text-sm text-steel mb-8 pb-8 border-b border-neon/10">
+              <span className="flex items-center gap-1.5">
+                <Clock className="w-4 h-4 text-neon/70" /> {guide.readTime}
               </span>
-              <span className="flex items-center gap-1">
-                <Users className="w-4 h-4" /> {guide.audience.join(' • ')}
+              <span className="flex items-center gap-1.5">
+                <Users className="w-4 h-4 text-neon/70" /> {guide.audience.join(' • ')}
               </span>
               <span>Updated {new Date(guide.updatedDate).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
             </div>
 
             {/* Who This Is For */}
-            <div className="grid md:grid-cols-2 gap-6 mb-12 p-6 rounded-xl bg-carbon border border-neon/20">
+            <div className="grid md:grid-cols-2 gap-6 mb-12 p-6 rounded-2xl bg-carbon/50 border border-neon/20">
               <div>
-                <h4 className="flex items-center gap-2 font-semibold text-neon mb-3">
-                  <CheckCircle2 className="w-5 h-5" /> Who This Is For
+                <h4 className="flex items-center gap-2 font-semibold text-neon mb-3 text-sm uppercase tracking-wider">
+                  <CheckCircle2 className="w-4 h-4" /> Who This Is For
                 </h4>
                 <ul className="space-y-2 text-sm text-steel">
                   {guide.whoThisIsFor.map((item, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <span className="text-neon mt-1">•</span> {item}
+                      <span className="text-neon mt-0.5 text-xs">→</span> {item}
                     </li>
                   ))}
                 </ul>
               </div>
               <div>
-                <h4 className="flex items-center gap-2 font-semibold text-steel/60 mb-3">
-                  <Shield size={20} className="text-steel/60" /> Who This Is Not For
+                <h4 className="flex items-center gap-2 font-semibold text-steel/70 mb-3 text-sm uppercase tracking-wider">
+                  <Shield size={16} className="text-steel/70" /> Who This Is Not For
                 </h4>
-                <ul className="space-y-2 text-sm text-steel/60">
+                <ul className="space-y-2 text-sm text-steel/70">
                   {guide.whoThisIsNotFor.map((item, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <span className="mt-1">•</span> {item}
+                      <span className="mt-0.5 text-xs">•</span> {item}
                     </li>
                   ))}
                 </ul>
@@ -637,61 +639,68 @@ export default async function GuidePage({ params }: Props) {
             {/* Article Content */}
             <article 
               className="prose prose-lg prose-invert max-w-none 
-                prose-headings:text-white prose-headings:font-bold 
+                prose-headings:text-white prose-headings:font-semibold prose-headings:tracking-tight
                 prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h2:scroll-mt-24
                 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 
                 prose-p:text-steel prose-p:leading-relaxed 
-                prose-a:text-neon prose-a:no-underline hover:prose-a:underline 
+                prose-a:text-neon prose-a:no-underline hover:prose-a:text-neon/80
                 prose-strong:text-white 
-                prose-ul:text-steel prose-li:text-steel prose-ol:text-steel
-                [&_.callout]:my-6 [&_.callout]:p-5 [&_.callout]:rounded-lg [&_.callout]:border
-                [&_.callout-data]:bg-neon/5 [&_.callout-data]:border-neon/30
-                [&_.callout-note]:bg-amber-500/5 [&_.callout-note]:border-amber-500/30
-                [&_.callout-results]:bg-purple-500/5 [&_.callout-results]:border-purple-500/30
+                prose-ul:text-steel prose-li:text-steel prose-li:my-2 prose-ol:text-steel
+                [&_.callout]:my-6 [&_.callout]:p-5 [&_.callout]:rounded-2xl [&_.callout]:border
+                [&_.callout-data]:bg-neon/5 [&_.callout-data]:border-neon/20
+                [&_.callout-note]:bg-carbon/50 [&_.callout-note]:border-neon/20
+                [&_.callout-results]:bg-carbon/50 [&_.callout-results]:border-neon/20
                 [&_.callout_strong]:text-white [&_.callout-source]:text-xs [&_.callout-source]:text-steel/60 [&_.callout-source]:mt-2
                 [&_.checklist]:list-none [&_.checklist]:pl-0 [&_.checklist_li]:pl-0"
               dangerouslySetInnerHTML={{ __html: guide.content }}
             />
 
             {/* Footer CTA */}
-            <div className="mt-16 p-8 rounded-xl bg-gradient-to-br from-neon/5 to-transparent border border-neon/30 text-center">
-              <h3 className="text-xl font-bold mb-3">Ready to see this in action?</h3>
-              <p className="text-steel mb-6">Request a walkthrough of how YardFlow handles these scenarios.</p>
-              <Link 
-                href="/contact?intent=guide" 
-                className="inline-flex items-center gap-2 px-6 py-3 bg-neon text-void font-semibold rounded-lg hover:shadow-lg hover:shadow-neon/50 transition-all"
-              >
-                <Velocity size={16} /> Request Demo
-              </Link>
+            <div className="mt-16 p-8 rounded-2xl bg-carbon/50 border border-neon/20">
+              <div className="flex items-start gap-6">
+                <div className="rounded-xl bg-neon/10 p-3">
+                  <Velocity size={28} className="text-neon" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-white mb-2">Ready to see this in action?</h3>
+                  <p className="text-steel mb-6">Request a walkthrough of how YardFlow handles these scenarios.</p>
+                  <Link 
+                    href="/contact?intent=guide" 
+                    className="inline-flex items-center gap-2 px-5 py-2.5 bg-neon text-void font-medium rounded-xl hover:bg-neon/90 transition"
+                  >
+                    Request Demo
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Sidebar - Table of Contents */}
           <aside className="hidden lg:block">
             <div className="sticky top-32">
-              <h4 className="text-xs font-mono uppercase text-steel/60 mb-4">In This Guide</h4>
-              <nav className="space-y-2">
+              <h4 className="text-xs uppercase tracking-wider text-steel/60 mb-4">In This Guide</h4>
+              <nav className="space-y-1">
                 {guide.tableOfContents.map((item) => (
                   <a 
                     key={item.id} 
                     href={`#${item.id}`}
-                    className="block text-sm text-steel hover:text-neon transition-colors py-1 border-l-2 border-transparent hover:border-neon pl-3"
+                    className="block text-sm text-steel hover:text-neon transition-colors py-1.5 border-l-2 border-transparent hover:border-neon pl-3"
                   >
                     {item.title}
                   </a>
                 ))}
               </nav>
 
-              <div className="mt-8 p-4 rounded-lg bg-carbon border border-neon/20">
-                <h4 className="font-semibold text-sm mb-2">Related Resources</h4>
-                <Link href="/security" className="block text-sm text-neon hover:underline">
-                  Evidence Vault
+              <div className="mt-8 p-4 rounded-2xl bg-carbon/50 border border-neon/20">
+                <h4 className="font-semibold text-sm mb-3 text-white">Related Resources</h4>
+                <Link href="/security" className="block text-sm text-neon hover:text-neon/80 mb-2">
+                  Evidence Vault →
                 </Link>
-                <Link href="/roi" className="block text-sm text-neon hover:underline mt-1">
-                  ROI Calculator
+                <Link href="/roi" className="block text-sm text-neon hover:text-neon/80 mb-2">
+                  ROI Calculator →
                 </Link>
-                <Link href="/case-studies" className="block text-sm text-neon hover:underline mt-1">
-                  Case Studies
+                <Link href="/case-studies" className="block text-sm text-neon hover:text-neon/80">
+                  Case Studies →
                 </Link>
               </div>
             </div>
