@@ -31,10 +31,11 @@ export function GuideHero({
   updatedDate,
   backLink = { label: "← Back to Resources", href: "/resources" },
 }: GuideHeroProps) {
-  const formattedDate = new Date(updatedDate).toLocaleDateString("en-US", {
-    month: "short",
-    year: "numeric",
-  });
+  // Parse date and format as "Jan 2026"
+  const date = new Date(updatedDate + "T00:00:00");
+  const month = date.toLocaleDateString("en-US", { month: "short" });
+  const year = date.getFullYear();
+  const formattedDate = `${month} ${year}`;
 
   return (
     <section className="relative overflow-hidden pt-32 pb-16">

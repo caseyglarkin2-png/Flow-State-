@@ -11,152 +11,318 @@ export async function GET() {
           width: '100%',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
           backgroundColor: '#050505',
-          backgroundImage: 'radial-gradient(circle at 25px 25px, rgba(0, 180, 255, 0.03) 2%, transparent 0%), radial-gradient(circle at 75px 75px, rgba(0, 180, 255, 0.03) 2%, transparent 0%)',
-          backgroundSize: '100px 100px',
-          padding: '60px',
+          padding: '0',
+          position: 'relative',
+          overflow: 'hidden',
         }}
       >
-        {/* Top Label */}
+        {/* Grid background pattern */}
         <div
           style={{
-            display: 'flex',
-            fontSize: 14,
-            color: '#FF2A00',
-            textTransform: 'uppercase',
-            letterSpacing: '0.15em',
-            fontFamily: 'monospace',
-            marginBottom: '30px',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: `
+              linear-gradient(rgba(0, 180, 255, 0.03) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0, 180, 255, 0.03) 1px, transparent 1px)
+            `,
+            backgroundSize: '40px 40px',
           }}
-        >
-          THE SILO TRAP
-        </div>
+        />
+        
+        {/* Neon glow orb - top right */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '-100px',
+            right: '-100px',
+            width: '400px',
+            height: '400px',
+            background: 'radial-gradient(circle, rgba(0, 180, 255, 0.15) 0%, transparent 70%)',
+            borderRadius: '50%',
+          }}
+        />
+        
+        {/* Ember glow orb - bottom left */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '-150px',
+            left: '-100px',
+            width: '350px',
+            height: '350px',
+            background: 'radial-gradient(circle, rgba(255, 42, 0, 0.1) 0%, transparent 70%)',
+            borderRadius: '50%',
+          }}
+        />
 
-        {/* Main Headline */}
+        {/* Main content container */}
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center',
-            textAlign: 'center',
-            marginBottom: '40px',
+            justifyContent: 'space-between',
+            height: '100%',
+            padding: '60px 70px',
+            position: 'relative',
+            zIndex: 1,
           }}
         >
+          {/* Top section - Logo */}
           <div
             style={{
               display: 'flex',
-              fontSize: 64,
-              fontWeight: 900,
-              color: '#FFFFFF',
-              letterSpacing: '-0.03em',
-              lineHeight: 1,
-              marginBottom: '20px',
+              alignItems: 'center',
+              gap: '14px',
             }}
           >
-            You don't have 50 yards.
+            {/* Network logo */}
+            <svg
+              viewBox="0 0 32 32"
+              width="40"
+              height="40"
+            >
+              <circle cx="16" cy="16" r="3" fill="#00B4FF"/>
+              <circle cx="8" cy="8" r="2" fill="#00B4FF"/>
+              <circle cx="24" cy="8" r="2" fill="#00B4FF"/>
+              <circle cx="8" cy="24" r="2" fill="#00B4FF"/>
+              <circle cx="24" cy="24" r="2" fill="#00B4FF"/>
+              <line x1="16" y1="13" x2="9" y2="9.5" stroke="#00B4FF" strokeWidth="1.5"/>
+              <line x1="16" y1="13" x2="23" y2="9.5" stroke="#00B4FF" strokeWidth="1.5"/>
+              <line x1="16" y1="19" x2="9" y2="22.5" stroke="#00B4FF" strokeWidth="1.5"/>
+              <line x1="16" y1="19" x2="23" y2="22.5" stroke="#00B4FF" strokeWidth="1.5"/>
+              <circle cx="16" cy="16" r="14.5" stroke="#00B4FF" strokeWidth="1" opacity="0.3"/>
+            </svg>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <span
+                style={{
+                  fontSize: 28,
+                  fontWeight: 700,
+                  color: '#FFFFFF',
+                  lineHeight: 1,
+                }}
+              >
+                YardFlow
+              </span>
+              <span
+                style={{
+                  fontSize: 12,
+                  color: '#64748B',
+                  letterSpacing: '0.05em',
+                }}
+              >
+                powered by FreightRoll
+              </span>
+            </div>
           </div>
-          
-          <div
-            style={{
-              display: 'flex',
-              fontSize: 48,
-              fontWeight: 700,
-              color: '#94A3B8',
-              letterSpacing: '-0.02em',
-              lineHeight: 1,
-              marginBottom: '30px',
-            }}
-          >
-            You have one yard network.
-          </div>
-          
-          <div
-            style={{
-              display: 'flex',
-              fontSize: 52,
-              fontWeight: 900,
-              color: '#00B4FF',
-              letterSpacing: '-0.02em',
-              lineHeight: 1.2,
-              textAlign: 'center',
-              textShadow: '0 0 40px rgba(0, 180, 255, 0.5)',
-            }}
-          >
-            But your software treats them like islands.
-          </div>
-        </div>
 
-        {/* Subheading */}
-        <div
-          style={{
-            display: 'flex',
-            fontSize: 22,
-            color: '#94A3B8',
-            textAlign: 'center',
-            maxWidth: '900px',
-            lineHeight: 1.4,
-            marginBottom: '40px',
-          }}
-        >
-          YardFlow is a <span style={{ color: '#00B4FF', fontWeight: 600 }}>Yard Network System (YNS)</span>: orchestrating assets, intelligence, and security across your entire network.
-        </div>
-
-        {/* Footer Branding */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            marginTop: '20px',
-          }}
-        >
-          {/* Active logo - Network variant */}
-          <svg
-            viewBox="0 0 32 32"
-            width="32"
-            height="32"
-            style={{
-              fill: 'none',
-              stroke: '#00B4FF',
-            }}
-          >
-            <circle cx="16" cy="16" r="3" fill="#00B4FF"/>
-            <circle cx="8" cy="8" r="2" fill="#00B4FF"/>
-            <circle cx="24" cy="8" r="2" fill="#00B4FF"/>
-            <circle cx="16" cy="26" r="2" fill="#00B4FF"/>
-            <line x1="16" y1="13" x2="9" y2="9.5" stroke="#00B4FF" strokeWidth="1.5"/>
-            <line x1="16" y1="13" x2="23" y2="9.5" stroke="#00B4FF" strokeWidth="1.5"/>
-            <line x1="16" y1="19" x2="16" y2="24" stroke="#00B4FF" strokeWidth="1.5"/>
-            <circle cx="16" cy="16" r="14.5" stroke="#00B4FF" strokeWidth="1" opacity="0.3"/>
-          </svg>
+          {/* Middle section - Main message */}
           <div
             style={{
               display: 'flex',
               flexDirection: 'column',
+              gap: '24px',
+            }}
+          >
+            {/* Eyebrow */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '10px',
+              }}
+            >
+              <div
+                style={{
+                  width: '40px',
+                  height: '2px',
+                  background: '#00B4FF',
+                }}
+              />
+              <span
+                style={{
+                  fontSize: 14,
+                  color: '#00B4FF',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.2em',
+                  fontWeight: 600,
+                }}
+              >
+                Yard Network System
+              </span>
+            </div>
+
+            {/* Main headline */}
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '8px',
+              }}
+            >
+              <span
+                style={{
+                  fontSize: 72,
+                  fontWeight: 900,
+                  color: '#FFFFFF',
+                  letterSpacing: '-0.03em',
+                  lineHeight: 1,
+                }}
+              >
+                One Network.
+              </span>
+              <span
+                style={{
+                  fontSize: 72,
+                  fontWeight: 900,
+                  color: '#00B4FF',
+                  letterSpacing: '-0.03em',
+                  lineHeight: 1,
+                  textShadow: '0 0 60px rgba(0, 180, 255, 0.4)',
+                }}
+              >
+                Total Visibility.
+              </span>
+            </div>
+
+            {/* Subtitle */}
+            <span
+              style={{
+                fontSize: 24,
+                color: '#94A3B8',
+                maxWidth: '700px',
+                lineHeight: 1.4,
+              }}
+            >
+              Real-time orchestration of assets, intelligence, and security across every yard in your network.
+            </span>
+          </div>
+
+          {/* Bottom section - Stats bar */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '60px',
+              paddingTop: '30px',
+              borderTop: '1px solid rgba(0, 180, 255, 0.2)',
             }}
           >
             <div
               style={{
-                fontSize: 24,
-                fontWeight: 700,
-                color: '#FFFFFF',
-                lineHeight: 1,
-                marginBottom: '4px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '4px',
               }}
             >
-              YardFlow
+              <span
+                style={{
+                  fontSize: 36,
+                  fontWeight: 800,
+                  color: '#FFFFFF',
+                }}
+              >
+                40%
+              </span>
+              <span
+                style={{
+                  fontSize: 13,
+                  color: '#64748B',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                }}
+              >
+                Dwell Reduction
+              </span>
             </div>
             <div
               style={{
-                fontSize: 11,
-                color: '#64748B',
-                letterSpacing: '0.05em',
-                lineHeight: 1,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '4px',
               }}
             >
-              powered by FreightRoll
+              <span
+                style={{
+                  fontSize: 36,
+                  fontWeight: 800,
+                  color: '#FFFFFF',
+                }}
+              >
+                2.3x
+              </span>
+              <span
+                style={{
+                  fontSize: 13,
+                  color: '#64748B',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                }}
+              >
+                Gate Throughput
+              </span>
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '4px',
+              }}
+            >
+              <span
+                style={{
+                  fontSize: 36,
+                  fontWeight: 800,
+                  color: '#FFFFFF',
+                }}
+              >
+                90%
+              </span>
+              <span
+                style={{
+                  fontSize: 13,
+                  color: '#64748B',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                }}
+              >
+                Faster Investigation
+              </span>
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '4px',
+              }}
+            >
+              <span
+                style={{
+                  fontSize: 36,
+                  fontWeight: 800,
+                  color: '#00B4FF',
+                }}
+              >
+                $1.2M
+              </span>
+              <span
+                style={{
+                  fontSize: 13,
+                  color: '#64748B',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.1em',
+                }}
+              >
+                Avg Annual Savings
+              </span>
             </div>
           </div>
         </div>
