@@ -177,7 +177,7 @@ export async function GET() {
                   lineHeight: 1,
                 }}
               >
-                One Network.
+                Variance Is The Villain.
               </span>
               <span
                 style={{
@@ -189,7 +189,7 @@ export async function GET() {
                   textShadow: '0 0 60px rgba(0, 180, 255, 0.4)',
                 }}
               >
-                Total Visibility.
+                Control Is The Hero.
               </span>
             </div>
 
@@ -202,7 +202,7 @@ export async function GET() {
                 lineHeight: 1.4,
               }}
             >
-              Real-time orchestration of assets, intelligence, and security across every yard in your network.
+              Deterministic yard operations that eliminate chaos and create synthetic capacity across your network.
             </span>
           </div>
 
@@ -230,7 +230,7 @@ export async function GET() {
                   color: '#FFFFFF',
                 }}
               >
-                40%
+                50%
               </span>
               <span
                 style={{
@@ -240,7 +240,7 @@ export async function GET() {
                   letterSpacing: '0.1em',
                 }}
               >
-                Dwell Reduction
+                Turn Time Reduction
               </span>
             </div>
             <div
@@ -257,7 +257,7 @@ export async function GET() {
                   color: '#FFFFFF',
                 }}
               >
-                2.3x
+                2x
               </span>
               <span
                 style={{
@@ -267,7 +267,7 @@ export async function GET() {
                   letterSpacing: '0.1em',
                 }}
               >
-                Gate Throughput
+                Synthetic Capacity
               </span>
             </div>
             <div
@@ -284,7 +284,7 @@ export async function GET() {
                   color: '#FFFFFF',
                 }}
               >
-                90%
+                Zero
               </span>
               <span
                 style={{
@@ -294,7 +294,7 @@ export async function GET() {
                   letterSpacing: '0.1em',
                 }}
               >
-                Faster Investigation
+                Ghost Count
               </span>
             </div>
             <div
@@ -311,7 +311,7 @@ export async function GET() {
                   color: '#00B4FF',
                 }}
               >
-                $1.2M
+                $120K
               </span>
               <span
                 style={{
@@ -321,7 +321,7 @@ export async function GET() {
                   letterSpacing: '0.1em',
                 }}
               >
-                Avg Annual Savings
+                Gate Labor Eliminated
               </span>
             </div>
           </div>
