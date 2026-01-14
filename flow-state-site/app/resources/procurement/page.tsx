@@ -180,7 +180,7 @@ export default function SecurityPage() {
               <br /><br />
               Manual logs are hearsay. GPS alone doesn't prove check-in. Video timestamps can be manipulated. 
               Digital Guard creates <span className="text-neon font-semibold">cryptographically signed, QR-verified timestamps</span> that 
-              withstand legal scrutiny. Every driver check-in becomes forensic-grade evidence—admissible in court, 
+              withstand legal scrutiny. Every driver check-in becomes forensic-grade evidence. Admissible in court, 
               accepted by finance, and defensible to auditors.
               <br /><br />
               You're not just tracking time. You're <span className="text-neon font-semibold">protecting revenue, limiting liability, 

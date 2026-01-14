@@ -102,7 +102,7 @@ export default function YardBuilderPage() {
               Request a <span className="neon-glow">Digital Twin</span> of Your Yard
             </h1>
             <p className="text-xl text-[#B8B8B8] leading-relaxed mb-8">
-              Let our team build a complete digital model of your facility—asset inventory, workflow mapping, and optimization roadmap. No software required on your end.
+              Let our team build a complete digital model of your facility: asset inventory, workflow mapping, and optimization roadmap. No software required on your end.
             </p>
             <a 
               href="#request-form"

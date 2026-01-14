@@ -59,7 +59,7 @@
  * 
  * CHAPTER 1: THE STANDARDIZATION BAND (Driver Journey)
  * - The Network Foundation
- * - Every yard is different. But the driver journey can—and must—be identical.
+ * - Every yard is different. But the driver journey must be identical.
  * - QR check-in (no app), touchless timestamps, exception reason codes, multilingual instructions
  * - This is Ground Source Truth: defensible time capture that replaces "what someone typed in"
  * - Measurable outcomes: 70% gate labor reduction, 50% dwell reduction (48→24 min), 65% detention recovery
@@ -142,7 +142,7 @@ export default function Home() {
           </h1>
           
           <p className="text-xl md:text-2xl text-steel/90 max-w-3xl mx-auto mb-10 leading-relaxed">
-            Traditional yard software treats each facility like an island. YardFlow treats your entire operation like a connected system—standardize the driver journey, automate the control loop, unlock network intelligence.
+            Traditional yard software treats each facility like an island. YardFlow treats your entire operation like a connected system. Standardize the driver journey. Automate the control loop. Unlock network intelligence.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">

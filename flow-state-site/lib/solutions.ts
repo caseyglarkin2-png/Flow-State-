@@ -232,7 +232,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
     },
     varianceThesis: {
       title: "The Variance Problem",
-      body: "Cold chain risk is variance with a lawsuit. Spoilage happens in the dark—fuel drops, setpoints drift, and you find out after the damage. The winners standardize telemetry, make exceptions loud, and treat compliance not as friction but as a competitive advantage.",
+      body: "Cold chain risk is variance with a lawsuit. Spoilage happens in the dark. Fuel drops. Setpoints drift. You find out after the damage. The winners standardize telemetry, make exceptions loud, and treat compliance as competitive advantage.",
     },
     viscosity: {
       title: "The Viscosity Problem",

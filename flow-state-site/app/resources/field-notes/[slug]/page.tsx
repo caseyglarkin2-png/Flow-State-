@@ -43,7 +43,7 @@ const fieldNotes: Record<string, FieldNote> = {
     audience: ['Operations', 'Site Managers'],
     
     executiveSummary: [
-      'Gate time has an outsized impact on overall dwell—fast gates create a virtuous cycle that reduces cascading delays.',
+      'Gate time has an outsized impact on overall dwell. Fast gates create a virtuous cycle that reduces cascading delays.',
       'Visibility alone doesn\'t improve efficiency. The difference is having clear escalation triggers and empowered staff.',
       'Appointment compliance is a leading indicator: 80%+ compliance correlates with 15-25% lower dwell times.',
     ],
@@ -87,7 +87,7 @@ const fieldNotes: Record<string, FieldNote> = {
     },
     
     implications: [
-      'Invest in gate automation before yard optimization—the upstream benefits compound.',
+      'Invest in gate automation before yard optimization. The upstream benefits compound.',
       'Visibility systems need action frameworks to deliver value.',
       'Appointment compliance programs should precede or accompany automation.',
       'Carrier education and consistency may deliver faster results than technology alone.',
@@ -140,7 +140,7 @@ const fieldNotes: Record<string, FieldNote> = {
       {
         title: 'Cross-Docks',
         body: 'Manual check-in: 5-10 minutes. Automated: 1.5-3 minutes. Peak throughput improves from 6-10 to 20-30 trucks/hour/gate.',
-        insight: 'Cross-docks benefit most from speed—the entire operation depends on fast turns.',
+        insight: 'Cross-docks benefit most from speed. The entire operation depends on fast turns.',
       },
     ],
     

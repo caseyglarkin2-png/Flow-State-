@@ -55,7 +55,7 @@ export const MODULE_LAYERS = {
     title: "Driver Journey Standardization",
     subtitle: "Foundation Layer",
     shortDescription: "QR check-in, timestamps, reason codes. Network foundation.",
-    fullDescription: "Every yard is different. But the driver journey can—and must—be identical. QR check-in (no app), touchless timestamps, exception reason codes, multilingual instructions. This is Ground Source Truth: defensible time capture that replaces 'what someone typed in'.",
+    fullDescription: "Every yard is different. But the driver journey must be identical. QR check-in (no app), touchless timestamps, exception reason codes, multilingual instructions. This is Ground Source Truth: defensible time capture that replaces 'what someone typed in'.",
     outcome: "70% gate labor reduction, 50% dwell reduction (48→24 min), 65% detention recovery",
     modules: ["Digital Guard", "Digital Comms"],
   },
