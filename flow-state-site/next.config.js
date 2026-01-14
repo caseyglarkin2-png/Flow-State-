@@ -62,6 +62,53 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Old archetype routes -> new canonical routes
+      {
+        source: "/solutions/archetypes/dry-van-reefer",
+        destination: "/solutions/dry-van",
+        permanent: true,
+      },
+      {
+        source: "/solutions/archetypes/dry-van-reefer/",
+        destination: "/solutions/dry-van",
+        permanent: true,
+      },
+      {
+        source: "/solutions/archetypes/intermodal",
+        destination: "/solutions/intermodal",
+        permanent: true,
+      },
+      {
+        source: "/solutions/archetypes/intermodal/",
+        destination: "/solutions/intermodal",
+        permanent: true,
+      },
+      {
+        source: "/solutions/archetypes/flatbed-industrial",
+        destination: "/solutions/flatbed",
+        permanent: true,
+      },
+      {
+        source: "/solutions/archetypes/flatbed-industrial/",
+        destination: "/solutions/flatbed",
+        permanent: true,
+      },
+      {
+        source: "/solutions/archetypes/tanker-hazmat",
+        destination: "/solutions/tanker",
+        permanent: true,
+      },
+      {
+        source: "/solutions/archetypes/tanker-hazmat/",
+        destination: "/solutions/tanker",
+        permanent: true,
+      },
+      // catch-all if you had other variants
+      {
+        source: "/solutions/archetypes/:path*",
+        destination: "/solutions",
+        permanent: true,
+      },
       // Blog to Resources redirects
       {
         source: '/blog/',
