@@ -595,7 +595,7 @@ export default async function GuidePage({ params }: Props) {
             <div className="flex items-center gap-2 mb-4">
               <span className="px-2.5 py-1 rounded-full bg-neon/10 border border-neon/20 text-neon text-xs uppercase tracking-wider">Guide</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4">{guide.title}</h1>
+            <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-4">{guide.title}</h1>
             <p className="text-xl text-steel leading-relaxed mb-6 max-w-[72ch]">{guide.subtitle}</p>
             
             <div className="flex flex-wrap items-center gap-4 text-sm text-steel mb-8 pb-8 border-b border-neon/10">

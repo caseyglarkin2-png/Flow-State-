@@ -36,7 +36,7 @@ export default function FieldNotesIndexPage() {
           <Link href="/resources" className="text-sm text-neon hover:text-neon/80 mb-4 inline-block">
             ← Back to Resources
           </Link>
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4">Field Notes</h1>
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-4">Field Notes</h1>
           <p className="text-steel text-lg max-w-3xl">
             Operational patterns and insights from our network. Real observations, anonymized data, 
             and lessons learned from yards across the industry.

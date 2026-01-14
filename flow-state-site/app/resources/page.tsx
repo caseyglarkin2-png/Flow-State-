@@ -79,7 +79,7 @@ export default function ResourcesPage() {
         {/* Hero */}
         <div className="mb-16">
           <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Resource Library</p>
-          <h1 className="mt-3 text-4xl md:text-5xl font-semibold tracking-tight text-white mb-6">
+          <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
             Operational Intelligence for <span className="text-neon">Yard Leaders</span>
           </h1>
           <p className="text-steel text-lg max-w-3xl">
@@ -214,7 +214,7 @@ export default function ResourcesPage() {
               <FlowArrow size={28} className="text-neon" />
             </div>
             <div className="flex-1">
-              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-white mb-4">Need something specific?</h2>
+              <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-white mb-4">Need something specific?</h2>
               <p className="text-steel mb-8 max-w-2xl">
                 We build custom ROI models and operational assessments for enterprise teams. 
                 Tell us about your yard challenges.

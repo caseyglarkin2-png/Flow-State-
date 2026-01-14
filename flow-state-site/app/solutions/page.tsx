@@ -18,7 +18,7 @@ export default function SolutionsOverviewPage() {
         {/* Hero Section */}
         <div className="mx-auto max-w-6xl px-6 pt-32 pb-12">
           <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Yard Network System</p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white md:text-5xl">
+          <h1 className="mt-3 text-5xl font-black tracking-tight text-white md:text-7xl">
             Standardize the Yard. Kill Variance.
           </h1>
           <p className="mt-4 max-w-2xl text-xl text-steel leading-relaxed">
@@ -32,7 +32,7 @@ export default function SolutionsOverviewPage() {
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div>
                 <p className="text-xs uppercase tracking-[0.25em] text-ember/70 mb-3">The Problem</p>
-                <h2 className="text-3xl font-semibold tracking-tight text-white mb-4">
+                <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
                   The Volatility Tax
                 </h2>
                 <p className="text-lg text-steel leading-relaxed mb-6">
@@ -64,7 +64,7 @@ export default function SolutionsOverviewPage() {
         <section className="border-t border-neon/10 py-16 bg-carbon/20">
           <div className="mx-auto max-w-6xl px-6">
             <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">By Operating Context</p>
-            <h2 className="text-3xl font-semibold tracking-tight text-white mb-4">
+            <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
               Five Archetypes. Same Standards.
             </h2>
             <p className="text-lg text-steel mb-10 max-w-2xl">
@@ -125,7 +125,7 @@ export default function SolutionsOverviewPage() {
         <section className="border-t border-neon/10 py-16">
           <div className="mx-auto max-w-6xl px-6">
             <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Core Standards</p>
-            <h2 className="text-3xl font-semibold tracking-tight text-white mb-4">
+            <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
               Standards That Apply Everywhere
             </h2>
             <p className="text-lg text-steel mb-10 max-w-2xl">
@@ -177,7 +177,7 @@ export default function SolutionsOverviewPage() {
         {/* CTA */}
         <section className="border-t border-neon/10 py-20">
           <div className="mx-auto max-w-4xl px-6 text-center">
-            <h2 className="text-3xl font-semibold tracking-tight text-white mb-4">
+            <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
               Stop Paying the Volatility Tax
             </h2>
             <p className="text-lg text-steel mb-8 max-w-2xl mx-auto">

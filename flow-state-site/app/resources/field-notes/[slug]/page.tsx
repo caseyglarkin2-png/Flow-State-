@@ -244,7 +244,7 @@ export default async function FieldNotePage({ params }: Props) {
               </span>
             </div>
             
-            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4">
+            <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-4">
               {note.title}
             </h1>
             <p className="text-lg text-steel leading-relaxed max-w-[72ch] mb-6">

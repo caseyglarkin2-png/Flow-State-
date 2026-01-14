@@ -98,7 +98,7 @@ export default function YardBuilderPage() {
             <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neon/10 border border-neon/20 text-neon text-sm mb-6">
               <Ignite size={14} /> Founding Member Program
             </span>
-            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-6">
+            <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
               Request a <span className="neon-glow">Digital Twin</span> of Your Yard
             </h1>
             <p className="text-xl text-[#B8B8B8] leading-relaxed mb-8">

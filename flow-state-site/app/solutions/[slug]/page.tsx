@@ -56,7 +56,7 @@ export default async function SolutionPersonaPage({ params }: PageProps) {
           </div>
 
           <p className="mt-8 text-xs uppercase tracking-[0.25em] text-neon/70">{cfg.hero.kicker}</p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white md:text-5xl">
+          <h1 className="mt-3 text-5xl font-black tracking-tight text-white md:text-7xl">
             {cfg.hero.headline}
           </h1>
           <p className="mt-4 max-w-[72ch] text-lg text-steel leading-relaxed">{cfg.hero.subhead}</p>

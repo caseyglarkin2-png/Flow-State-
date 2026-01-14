@@ -58,7 +58,7 @@ export default function SimulationsPage() {
           <Link href="/resources" className="text-sm text-neon hover:text-neon/80 mb-4 inline-block">
             ← Back to Resources
           </Link>
-          <h1 className="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4">Simulations & Tools</h1>
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-4">Simulations & Tools</h1>
           <p className="text-steel text-lg max-w-3xl">
             Interactive models for planning, business case building, and understanding yard economics. 
             Run scenarios with your own data to see projected outcomes.
