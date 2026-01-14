@@ -1,6 +1,7 @@
-import { LOGO_VARIANTS, type LogoVariant } from '@/lib/branding';
+import { LOGO_VARIANTS, type LogoVariant, getActiveVariant } from '@/lib/branding';
 
 export default function LogoPreview() {
+  const activeVariant = getActiveVariant();
   const variants = Object.entries(LOGO_VARIANTS) as Array<[LogoVariant, { svg: string; description: string }]>;
 
   return (
@@ -24,7 +25,7 @@ export default function LogoPreview() {
           YardFlow Logo Variants
         </h1>
         <p style={{ fontSize: '1.25rem', color: '#94A3B8', marginBottom: '3rem' }}>
-          Pick your favorite for the public rebrand launch
+          Current active: <code style={{ color: '#00FFA3', background: 'rgba(0, 0, 0, 0.3)', padding: '0.25rem 0.5rem', borderRadius: '0.25rem' }}>{activeVariant}</code>
         </p>
 
         <div style={{
@@ -36,8 +37,8 @@ export default function LogoPreview() {
             <div
               key={key}
               style={{
-                background: 'linear-gradient(135deg, rgba(0, 255, 163, 0.05) 0%, rgba(0, 212, 170, 0.05) 100%)',
-                border: '1px solid rgba(0, 255, 163, 0.2)',
+                background: key === activeVariant ? 'rgba(0, 255, 163, 0.08)' : 'linear-gradient(135deg, rgba(0, 255, 163, 0.05) 0%, rgba(0, 212, 170, 0.05) 100%)',
+                border: key === activeVariant ? '1px solid rgba(0, 255, 163, 0.8)' : '1px solid rgba(0, 255, 163, 0.2)',
                 borderRadius: '1rem',
                 padding: '2rem',
                 transition: 'all 0.3s ease'
@@ -95,7 +96,7 @@ export default function LogoPreview() {
                 {variant.description}
               </p>
 
-              {key === 'network' && (
+              {key === activeVariant && (
                 <div style={{
                   marginTop: '1rem',
                   padding: '0.75rem',
@@ -134,15 +135,22 @@ export default function LogoPreview() {
               borderRadius: '0.25rem',
               color: '#00FFA3',
               fontFamily: 'monospace'
-            }}>lib/branding.ts</code> line 13 and change{' '}
+            }}>lib/branding.ts</code> and change{' '}
             <code style={{
               background: 'rgba(0, 0, 0, 0.3)',
               padding: '0.25rem 0.5rem',
               borderRadius: '0.25rem',
               color: '#00FFA3',
               fontFamily: 'monospace'
-            }}>ACTIVE_VARIANT</code> to your preferred variant name.
-            Logo updates everywhere automatically (header, OG images, etc).
+            }}>DEFAULT_VARIANT</code>, or set{' '}
+            <code style={{
+              background: 'rgba(0, 0, 0, 0.3)',
+              padding: '0.25rem 0.5rem',
+              borderRadius: '0.25rem',
+              color: '#00FFA3',
+              fontFamily: 'monospace'
+            }}>NEXT_PUBLIC_LOGO_VARIANT</code> env var.
+            Logo updates everywhere automatically (header, footer, OG images, etc).
           </p>
         </div>
       </div>
