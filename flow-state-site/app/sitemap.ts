@@ -5,7 +5,6 @@ const routes = [
   '/',
   '/product',
   '/solutions',
-  '/yns',
   '/yardbuilder',
   '/singularity',
   '/roi',

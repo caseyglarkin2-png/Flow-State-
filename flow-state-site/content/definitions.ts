@@ -107,4 +107,4 @@ export const YNS_PILLARS = [
 
 export const METHODOLOGY_LINK = '/docs/economics-methodology';
 export const SECURITY_LINK = '/resources/procurement';
-export const YNS_FRAMEWORK_LINK = '/yns';
+export const YNS_FRAMEWORK_LINK = '/solutions'; // YNS framework now integrated into Solutions page

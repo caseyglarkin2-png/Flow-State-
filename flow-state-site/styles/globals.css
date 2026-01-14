@@ -82,6 +82,34 @@
   100% { box-shadow: 0 0 0 0 rgba(0, 180, 255, 0); }
 }
 
+/* Scanner line for Digital Guard */
+@keyframes scan {
+  0%, 100% { top: 0; }
+  50% { top: 100%; }
+}
+
+/* Staggered fade-ins for Comms */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-scan {
+  animation: scan 2s ease-in-out infinite;
+}
+
+.animate-fadeIn1 {
+  animation: fadeInUp 0.5s ease-out 0.1s both;
+}
+
+.animate-fadeIn2 {
+  animation: fadeInUp 0.5s ease-out 0.4s both;
+}
+
+.animate-fadeIn3 {
+  animation: fadeInUp 0.5s ease-out 0.7s both;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

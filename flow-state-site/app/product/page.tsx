@@ -7,7 +7,7 @@ import { Metrics, Agent, Confirm, Nexus, Shield, Velocity, Crosshair } from '@/c
 import Link from 'next/link';
 import AnimatedPanel from '@/components/AnimatedPanel';
 import { ProductSection } from '@/components/products/ProductSection';
-import { DigitalGuardVisual, DigitalCommsVisual, DigitalBOLVisual, DigitalYMSVisual } from '@/components/products/ProductVisuals';
+import { DigitalGuardVisual, DigitalCommsVisual, DigitalBOLVisual, DigitalYMSVisual } from '@/components/products/ProductVisualsLite';
 
 const PRODUCTS = [
   {
