@@ -66,6 +66,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.55.0",
+    "@resvg/resvg-js": "^2.6.2",
     "@types/node": "^25.0.3",
     "@types/papaparse": "^5.5.2",
     "eslint": "^9.18.0",
@@ -73,6 +74,7 @@
     "eslint-config-prettier": "^10.1.8",
     "posthog-js": "^1.315.0",
     "prettier": "^3.7.4",
+    "satori": "^0.18.3",
     "sharp": "^0.34.5",
     "ts-node": "^10.9.2",
     "tsx": "^4.21.0"
