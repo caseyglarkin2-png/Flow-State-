@@ -162,19 +162,31 @@ export default function Home() {
           </div>
           <p className="mt-3 text-sm text-steel/70">{PRIMARY_CTA.microcopy}</p>
 
-          {/* Value Props */}
+          {/* Value Props - Upgraded KPI Cards */}
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
-            <div className="p-5 rounded-xl border border-neon/20 bg-carbon/50">
-              <p className="text-neon font-bold text-3xl mb-2">70%</p>
-              <p className="text-sm text-steel">Gate labor reduction with self-service kiosks</p>
+            <div className="group relative p-6 rounded-2xl border border-neon/20 bg-gradient-to-br from-carbon/80 to-carbon/40 hover:border-neon/40 transition-all duration-300">
+              <div className="absolute inset-0 rounded-2xl bg-neon/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative">
+                <p className="text-neon font-black text-4xl md:text-5xl tracking-tight">70%</p>
+                <p className="text-xs uppercase tracking-[0.15em] text-neon/70 mt-1 mb-2">Gate Labor</p>
+                <p className="text-sm text-steel leading-relaxed">Self-service kiosks replace manual check-in. Same throughput, fewer FTEs.</p>
+              </div>
             </div>
-            <div className="p-5 rounded-xl border border-neon/20 bg-carbon/50">
-              <p className="text-neon font-bold text-3xl mb-2">50%</p>
-              <p className="text-sm text-steel">Dwell time reduction (48→24 min avg)</p>
+            <div className="group relative p-6 rounded-2xl border border-neon/20 bg-gradient-to-br from-carbon/80 to-carbon/40 hover:border-neon/40 transition-all duration-300">
+              <div className="absolute inset-0 rounded-2xl bg-neon/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative">
+                <p className="text-neon font-black text-4xl md:text-5xl tracking-tight">50%</p>
+                <p className="text-xs uppercase tracking-[0.15em] text-neon/70 mt-1 mb-2">Dwell Time</p>
+                <p className="text-sm text-steel leading-relaxed">48→24 min average. FIFO enforcement + real-time yard visibility.</p>
+              </div>
             </div>
-            <div className="p-5 rounded-xl border border-neon/20 bg-carbon/50">
-              <p className="text-neon font-bold text-3xl mb-2">65%</p>
-              <p className="text-sm text-steel">Detention recovery with automated timestamps</p>
+            <div className="group relative p-6 rounded-2xl border border-neon/20 bg-gradient-to-br from-carbon/80 to-carbon/40 hover:border-neon/40 transition-all duration-300">
+              <div className="absolute inset-0 rounded-2xl bg-neon/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative">
+                <p className="text-neon font-black text-4xl md:text-5xl tracking-tight">65%</p>
+                <p className="text-xs uppercase tracking-[0.15em] text-neon/70 mt-1 mb-2">Detention Recovery</p>
+                <p className="text-sm text-steel leading-relaxed">Automated timestamps kill disputes. Proof wins chargebacks.</p>
+              </div>
             </div>
           </div>
         </div>
