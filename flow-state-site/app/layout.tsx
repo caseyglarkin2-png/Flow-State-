@@ -29,13 +29,13 @@ export const metadata = {
   publisher: 'FreightRoll',
   icons: {
     icon: [
-      { url: '/favicon.ico?v=2', sizes: '32x32' },
-      { url: '/favicon.svg?v=2', type: 'image/svg+xml' },
-      { url: '/favicon-16x16.png?v=2', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png?v=2', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.ico?v=3', sizes: '32x32' },
+      { url: '/favicon.svg?v=3', type: 'image/svg+xml' },
+      { url: '/favicon-16x16.png?v=3', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png?v=3', sizes: '32x32', type: 'image/png' },
     ],
     apple: [
-      { url: '/apple-touch-icon.png?v=2', sizes: '180x180', type: 'image/png' },
+      { url: '/apple-touch-icon.png?v=3', sizes: '180x180', type: 'image/png' },
     ],
   },
   manifest: '/site.webmanifest',
@@ -59,7 +59,7 @@ export const metadata = {
     locale: 'en_US',
     images: [
       {
-        url: `${siteUrl}/og.png`,
+        url: `${siteUrl}/og.png?v=3`,
         width: 1200,
         height: 630,
         alt: 'YardFlow by FreightRoll - Yard Network System (YNS)',
@@ -70,7 +70,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: SITE_METADATA.ogTitle,
     description: SITE_METADATA.ogDescription,
-    images: [`${siteUrl}/og.png`],
+    images: [`${siteUrl}/og.png?v=3`],
     creator: '@freightroll',
   },
   alternates: {
