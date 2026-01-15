@@ -128,40 +128,40 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════
           HERO: NETWORK-FIRST CLARITY
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden pt-32 pb-20">
+      <section className="relative pt-32 pb-12 overflow-hidden">
         <div className="absolute inset-0 grid-background opacity-20"></div>
         
-        <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-6">
+        <div className="relative z-10 max-w-6xl mx-auto px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">
             Yard Network System
           </p>
           
-          <h1 className="text-5xl md:text-7xl font-black mb-8 leading-tight tracking-tight">
+          <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
             Standardize the Yard.<br />
             <span className="text-neon">Kill Variance.</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-steel max-w-3xl mx-auto mb-10 leading-relaxed">
+          <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
             Cheap is nice. Predictable is scalable. When trucking markets swing, the winners have standardized execution and stable unit economics.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+          <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/diagnostic"
-              className="inline-flex items-center justify-center gap-2 px-10 py-5 rounded-xl font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all hover:scale-105"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium bg-neon text-void hover:bg-white transition"
             >
               Run Network Diagnostic
             </Link>
             <Link
               href="/roi"
-              className="inline-flex items-center justify-center gap-2 px-8 py-5 rounded-xl font-semibold border border-neon/30 bg-carbon/50 text-white hover:border-neon/50 transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium border border-neon/30 bg-carbon/50 text-white hover:border-neon/50 transition"
             >
               Model ROI in 3 Minutes
             </Link>
           </div>
 
           {/* Value Props */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto text-left">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
             <div className="p-5 rounded-xl border border-neon/20 bg-carbon/50">
               <p className="text-neon font-bold text-3xl mb-2">70%</p>
               <p className="text-sm text-steel">Gate labor reduction with self-service kiosks</p>
@@ -186,17 +186,17 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════
           FINAL CTA
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="border-t border-neon/10 py-20">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Next Step</p>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">
+      <section className="py-20">
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Next Step</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
             Stop Paying the Volatility Tax
           </h2>
-          <p className="text-lg text-steel mb-8 max-w-2xl mx-auto">
+          <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl">
             Run the diagnostic. See where variance costs you. Get the playbook to fix it.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition"
