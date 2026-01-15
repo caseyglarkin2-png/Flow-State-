@@ -43,7 +43,7 @@ export default function Header() {
           </div>
           <div className="flex flex-col">
             <span className="font-bold text-lg tracking-tight neon-glow-hover leading-none">YardFlow</span>
-            <span className="text-[10px] text-steel/60 tracking-wider leading-none mt-0.5">powered by FreightRoll</span>
+            <span className="text-[10px] text-steel/60 tracking-wider leading-none mt-0.5">by FreightRoll</span>
           </div>
         </Link>
 

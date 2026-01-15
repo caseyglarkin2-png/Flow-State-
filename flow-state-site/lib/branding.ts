@@ -111,9 +111,28 @@ export function getActiveVariant(): LogoVariant {
   return DEFAULT_VARIANT;
 }
 
-export const SITE_METADATA = {
-  title: 'YardFlow | Yard Network System (YNS)',
+// ═══════════════════════════════════════════════════════════════════════════════
+// CANONICAL BRAND LOCKUP - Single source of truth
+// ═══════════════════════════════════════════════════════════════════════════════
+
+export const BRAND = {
+  /** Product name standalone */
+  productName: 'YardFlow',
+  /** Parent company name */
+  parentName: 'FreightRoll',
+  /** Primary lockup for UI (header, footer, nav) */
+  lockup: 'YardFlow by FreightRoll',
+  /** Secondary line under logo mark */
   originLine: 'by FreightRoll',
+  /** Legal fine print (footer only, max once per page) */
+  legal: 'YardFlow is a FreightRoll product.',
+  /** Copyright line */
+  copyright: '© 2026 YardFlow by FreightRoll. All rights reserved.',
+} as const;
+
+export const SITE_METADATA = {
+  title: 'YardFlow by FreightRoll | Yard Network System (YNS)',
+  originLine: BRAND.originLine,
   ogTitle: "You don't have 50 yards. You have one yard network.",
   ogDescription: 'Stop the Variance Tax. YardFlow standardizes the gate + yard into a deterministic protocol—reducing viscosity and turning chaos into controllable flow.',
   tagline: 'Industrial Fluidity.',
