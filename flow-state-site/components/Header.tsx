@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import Logo from '@/components/Logo';
 import { FlowArrow, Ignite, Velocity, Shield, DryVan, Intermodal, Flatbed, Tanker } from '@/components/icons/FlowIcons';
 import { solutionNav } from '@/lib/solutions';
+import { PRIMARY_CTA } from '@/lib/cta';
 
 export default function Header() {
   const pathname = usePathname();
@@ -29,7 +30,7 @@ export default function Header() {
           <Ignite size={16} className="text-neon" />
           Founding Member Program:
         </span>
-        <Link href="/contact?intent=qualify" className="text-neon font-semibold hover:underline inline-flex items-center gap-1 ml-1">
+        <Link href={PRIMARY_CTA.href} className="text-neon font-semibold hover:underline inline-flex items-center gap-1 ml-1">
           Apply now <FlowArrow size={12} className="text-neon" />
         </Link>
       </div>
@@ -252,9 +253,9 @@ export default function Header() {
 
         {/* Right Actions */}
         <div className="flex items-center gap-3">
-          <Link href="/contact?intent=qualify" className="px-4 py-2 text-sm font-semibold bg-neon text-void rounded-xl hover:shadow-lg hover:shadow-neon/50 transition-all flex items-center gap-1">
+          <Link href={PRIMARY_CTA.href} className="px-4 py-2 text-sm font-semibold bg-neon text-void rounded-xl hover:shadow-lg hover:shadow-neon/50 transition-all flex items-center gap-1" aria-label={PRIMARY_CTA.ariaLabel}>
             <Velocity size={16} className="text-void" />
-            Request Access
+            {PRIMARY_CTA.label}
           </Link>
           
           {/* Mobile Menu Button */}

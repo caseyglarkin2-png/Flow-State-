@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/motion/AnimatedSection";
 import { ArrowRight, Calendar } from "lucide-react";
+import { PRIMARY_CTA, SECONDARY_CTA } from "@/lib/cta";
 
 type SolutionCTAProps = {
   headline?: string;
@@ -14,9 +15,9 @@ type SolutionCTAProps = {
 
 export function SolutionCTA({
   headline = "Ready to eliminate variance?",
-  subhead = "See how YardFlow standardizes operations for your mode. Run your numbers. Schedule a demo.",
-  primaryCta = { label: "Request Demo", href: "/contact" },
-  secondaryCta = { label: "Calculate Your ROI", href: "/roi" },
+  subhead = "See how YardFlow standardizes operations for your mode. Run your numbers. Apply for access.",
+  primaryCta = { label: PRIMARY_CTA.label, href: PRIMARY_CTA.href },
+  secondaryCta = { label: SECONDARY_CTA.label, href: SECONDARY_CTA.href },
 }: SolutionCTAProps) {
   return (
     <AnimatedSection className="py-24 relative overflow-hidden">

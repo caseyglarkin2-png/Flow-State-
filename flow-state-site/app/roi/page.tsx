@@ -2184,17 +2184,17 @@ export default function ROICalculatorPage() {
 
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="/contact"
+              href="/contact?intent=qualify"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
             >
               Get a custom analysis
             </a>
             <a
-              href="/singularity"
+              href="/contact?intent=qualify"
               className="btn-neon-fill inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
             >
               <Metrics size={20} className="text-void" />
-              Founding Member Program
+              Apply for Access
             </a>
           </div>
         </div>
@@ -2228,10 +2228,10 @@ export default function ROICalculatorPage() {
                   Learn About YNS →
                 </a>
                 <a 
-                  href="/singularity"
+                  href="/contact?intent=qualify"
                   className="px-6 py-3 rounded-xl border-2 border-neon text-neon font-semibold hover:bg-neon hover:text-void transition-all"
                 >
-                  Apply for Membership
+                  Apply for Access
                 </a>
               </div>
             </div>

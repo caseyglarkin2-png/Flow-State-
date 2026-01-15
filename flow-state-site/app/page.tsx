@@ -118,12 +118,13 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyCTABar from '@/components/StickyCTABar';
 import StandardizationMap from '@/components/StandardizationMap';
+import { PRIMARY_CTA, SECONDARY_CTA, TERTIARY_CTA } from '@/lib/cta';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-void">
       <Header />
-      <StickyCTABar ctaText="Get Your Network Rollout Plan" ctaUrl="/contact" />
+      <StickyCTABar ctaText={PRIMARY_CTA.label} ctaUrl={PRIMARY_CTA.href} />
 
       {/* ═══════════════════════════════════════════════════════════════
           HERO: NETWORK-FIRST CLARITY
@@ -147,18 +148,19 @@ export default function Home() {
 
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
-              href="/diagnostic"
+              href={PRIMARY_CTA.href}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium bg-neon text-void hover:bg-white transition"
             >
-              Run Network Diagnostic
+              {PRIMARY_CTA.label}
             </Link>
             <Link
-              href="/roi"
+              href={SECONDARY_CTA.href}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium border border-neon/30 bg-carbon/50 text-white hover:border-neon/50 transition"
             >
-              Model ROI in 3 Minutes
+              {SECONDARY_CTA.label}
             </Link>
           </div>
+          <p className="mt-3 text-sm text-steel/70">{PRIMARY_CTA.microcopy}</p>
 
           {/* Value Props */}
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
@@ -198,16 +200,16 @@ export default function Home() {
           
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
-              href="/contact"
+              href={PRIMARY_CTA.href}
               className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition"
             >
-              Get Your Network Rollout Plan
+              {PRIMARY_CTA.label}
             </Link>
             <Link
-              href="/roi"
+              href={SECONDARY_CTA.href}
               className="inline-flex items-center gap-2 rounded-xl border border-neon/30 bg-carbon/50 px-6 py-3 font-medium text-white hover:border-neon/50 transition"
             >
-              Model ROI in 3 Minutes
+              {SECONDARY_CTA.label}
             </Link>
           </div>
         </div>

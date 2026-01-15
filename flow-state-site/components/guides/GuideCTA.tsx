@@ -59,20 +59,20 @@ export function GuideCTA({
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Link
-            href="/contact"
+            href="/contact?intent=qualify"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-neon text-void font-semibold hover:bg-neon/90 transition-colors group"
           >
-            <span>Request Demo</span>
+            <span>Apply for Access</span>
             <ArrowRight
               size={18}
               className="transition-transform group-hover:translate-x-1"
             />
           </Link>
           <Link
-            href="/yardbuilder"
+            href="/roi"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-transparent border-2 border-neon/50 text-neon font-semibold hover:bg-neon/10 hover:border-neon transition-colors"
           >
-            Start Your Map
+            Run ROI
           </Link>
         </motion.div>
       </motion.div>

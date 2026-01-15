@@ -9,8 +9,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Book a Call | YardFlow by FreightRoll',
-  description: '30 minutes. Network audit + rollout plan. Zero fluff.',
+  title: 'Founding Member Audit | YardFlow by FreightRoll',
+  description: 'Founding Member Audit: 30 minutes. Network audit + rollout plan. Zero fluff.',
 };
 
 type Props = {
@@ -21,7 +21,6 @@ export default async function ContactPage({ searchParams }: Props) {
   const params = await searchParams;
   const intent = params?.intent;
   const isQualify = intent === 'qualify';
-  const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/';
 
   return (
     <>
@@ -30,9 +29,9 @@ export default async function ContactPage({ searchParams }: Props) {
       {/* Hero */}
       <section className="pb-12">
         <div className="max-w-6xl mx-auto px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Network Audit</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Founding Member Program</p>
           <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
-            30 Minutes. Zero Fluff.
+            Founding Member Audit:<br className="hidden md:block" /> 30 Minutes. Zero Fluff.
           </h1>
           <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
             We map your facilities to archetypes, show the deployment sequence, and hand you a board-ready ROI model. That's it.

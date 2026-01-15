@@ -66,17 +66,17 @@ export default function DiagnosticPage() {
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Next Step</p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
-            See the Full Picture
+            If the Variance Tax is Real
           </h2>
           <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl">
-            {DIAGNOSTIC_CTA_TEXT}
+            If your Variance Tax is measurable and the ROI pencils, apply for access to join the Founding Member cohort. Co-development slots for Reefer, Flatbed, Cross-Dock.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
-              href="/product"
+              href="/contact?intent=qualify"
               className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-white transition"
             >
-              Explore the Product
+              Apply for Access
             </Link>
             <Link
               href="/roi"
@@ -85,6 +85,7 @@ export default function DiagnosticPage() {
               {CANON_TERMS.viewFullROI}
             </Link>
           </div>
+          <p className="mt-3 text-sm text-steel/70">See if you qualify for the Founding Member Program.</p>
         </div>
       </section>
 

@@ -40,16 +40,16 @@ export const BRAND = {
       href: '/roi',
     },
     secondary: {
-      label: 'Get Yard Report',
-      href: '/yardbuilder',
+      label: 'Run ROI',
+      href: '/roi',
     },
     contact: {
-      label: 'Request Demo',
-      href: '/contact',
+      label: 'Apply for Access',
+      href: '/contact?intent=qualify',
     },
     qualify: {
       label: 'Apply for Founding Membership',
-      href: '/qualify?intent=founding',
+      href: '/contact?intent=qualify',
     },
   },
 

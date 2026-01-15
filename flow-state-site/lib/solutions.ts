@@ -112,7 +112,7 @@ const DEFAULT_MODULE_ORDER: SolutionModuleId[] = [
 ];
 
 const START_YOUR_MAP = { label: "Start Your Map", href: "/yardbuilder" };
-const REQUEST_DEMO = { label: "Request Demo", href: "/contact" };
+const APPLY_FOR_ACCESS = { label: "Apply for Access", href: "/contact?intent=qualify" };
 
 export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
   "dry-van": {
@@ -131,7 +131,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       subhead:
         "Standardize the yard so cost becomes predictable. Then watch throughput go up and surprises go down.",
       primaryCta: START_YOUR_MAP,
-      secondaryCta: REQUEST_DEMO,
+      secondaryCta: APPLY_FOR_ACCESS,
       visualNote:
         "Split-screen simulation: Chaos vs Flow. Show gate queue collapse when YardFlow toggles on.",
     },
@@ -208,7 +208,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       body:
         "Stop guessing. Build the map, see the constraints, and standardize the flow so costs become predictable and throughput becomes boringly reliable.",
       primaryCta: START_YOUR_MAP,
-      secondaryCta: REQUEST_DEMO,
+      secondaryCta: APPLY_FOR_ACCESS,
     },
     kpis: ["Gate Time", "Dwell Time", "Detention Cost"],
   },
@@ -229,7 +229,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       subhead:
         "Real-time telemetry, dwell alerts, and compliance capture so exceptions stop being silent.",
       primaryCta: START_YOUR_MAP,
-      secondaryCta: REQUEST_DEMO,
+      secondaryCta: APPLY_FOR_ACCESS,
       visualNote: "Thermal yard view: reefers color-coded by risk state and dwell age.",
     },
     varianceThesis: {
@@ -303,7 +303,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       body:
         "Map the yard, connect signals, and make deviations obvious before the load becomes an incident report.",
       primaryCta: START_YOUR_MAP,
-      secondaryCta: REQUEST_DEMO,
+      secondaryCta: APPLY_FOR_ACCESS,
     },
     kpis: ["Spoilage Rate", "Dwell Alerts", "Compliance Score"],
   },
@@ -323,7 +323,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       headline: "Secure the Load. Protect the Driver.",
       subhead: "Dynamic zoning and verification workflows designed for irregular freight and high liability.",
       primaryCta: START_YOUR_MAP,
-      secondaryCta: REQUEST_DEMO,
+      secondaryCta: APPLY_FOR_ACCESS,
     },
     varianceThesis: {
       title: "The Variance Problem",
@@ -395,7 +395,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       body:
         "Map the lot, define zones, and standardize the complex steps so performance improves without adding risk.",
       primaryCta: START_YOUR_MAP,
-      secondaryCta: REQUEST_DEMO,
+      secondaryCta: APPLY_FOR_ACCESS,
     },
     kpis: ["Safety Incidents", "Rework Rate", "Zone Compliance"],
   },
@@ -415,7 +415,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       headline: "Orchestrate the Handoff. Eliminate the Shuffle.",
       subhead: "Standardize handoffs as events and make inventory visible across the terminal.",
       primaryCta: START_YOUR_MAP,
-      secondaryCta: REQUEST_DEMO,
+      secondaryCta: APPLY_FOR_ACCESS,
     },
     varianceThesis: {
       title: "The Variance Problem",
@@ -487,7 +487,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       body:
         "Map it, standardize the events, and eliminate the shuffle. When everyone shares ground truth, flow follows.",
       primaryCta: START_YOUR_MAP,
-      secondaryCta: REQUEST_DEMO,
+      secondaryCta: APPLY_FOR_ACCESS,
     },
     kpis: ["Turns/Day", "Chassis Dwell", "Rehandle Rate"],
   },
@@ -507,7 +507,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       headline: "Precision is Safety. Visibility is Compliance.",
       subhead: "Pre-gate verification and standardized interlocks for zero-error operations.",
       primaryCta: START_YOUR_MAP,
-      secondaryCta: REQUEST_DEMO,
+      secondaryCta: APPLY_FOR_ACCESS,
     },
     varianceThesis: {
       title: "The Variance Problem",
@@ -579,7 +579,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       body:
         "Map the facility and standardize verification upstream. Precision becomes default, not dependent on who is working the gate.",
       primaryCta: START_YOUR_MAP,
-      secondaryCta: REQUEST_DEMO,
+      secondaryCta: APPLY_FOR_ACCESS,
     },
     kpis: ["Rejection Rate", "Pre-Check Pass %", "Load Time"],
   },

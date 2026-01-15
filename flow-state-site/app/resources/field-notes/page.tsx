@@ -228,10 +228,10 @@ export default function FieldNotesIndexPage() {
 
                 <motion.div variants={itemVariants}>
                   <Link
-                    href="/contact"
+                    href="/contact?intent=qualify"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-neon text-void font-semibold rounded-lg hover:bg-neon/90 transition-colors group"
                   >
-                    <span>Request Demo</span>
+                    <span>Apply for Access</span>
                     <ArrowRight
                       size={18}
                       className="transition-transform group-hover:translate-x-1"

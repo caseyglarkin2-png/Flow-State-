@@ -6,10 +6,9 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { trackEvent } from '@/lib/analytics';
 import { MODULES, type ModuleId, ICON_SIZES } from '@/lib/modules';
+import { PRIMARY_CTA, SECONDARY_CTA, FOUNDING_MEMBER } from '@/lib/cta';
 
 export default function PricingPage() {
-  const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/';
-
   return (
     <div className="min-h-screen bg-void">
       <Header />
@@ -17,7 +16,7 @@ export default function PricingPage() {
       {/* Hero */}
       <section className="pt-32 pb-12">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Cut the Variance Tax</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Reduce the Variance Tax</p>
           <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
             Transparent Pricing
           </h1>
@@ -41,23 +40,22 @@ export default function PricingPage() {
                 </p>
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
-                <a
-                  href="/contact"
-                  onClick={() => trackEvent('pricing_cta_click', { cta: 'get_quote' })}
+                <Link
+                  href={PRIMARY_CTA.href}
+                  onClick={() => trackEvent('pricing_cta_click', { cta: 'apply_access' })}
                   className="inline-flex items-center justify-center rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition"
                 >
-                  Get a Quote
-                </a>
-                <a
-                  href={calendlyUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={() => trackEvent('pricing_demo_click', { source: 'pricing' })}
+                  {PRIMARY_CTA.label}
+                </Link>
+                <Link
+                  href={SECONDARY_CTA.href}
+                  onClick={() => trackEvent('pricing_cta_click', { cta: 'run_roi' })}
                   className="inline-flex items-center justify-center rounded-xl border border-neon/30 px-6 py-3 font-medium text-white hover:border-neon/50 transition"
                 >
-                  Book a Demo
-                </a>
+                  {SECONDARY_CTA.label}
+                </Link>
               </div>
+              <p className="mt-3 text-xs text-steel/70">{PRIMARY_CTA.microcopy}</p>
             </div>
 
             <div className="rounded-2xl border border-neon/20 bg-carbon/50 p-8">

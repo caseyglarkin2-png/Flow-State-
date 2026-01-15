@@ -1,20 +1,20 @@
 /**
- * Centralized CTA configuration
- * Prevents drift and ensures consistent conversion paths
+ * Centralized CTA configuration (DEPRECATED - use /lib/cta.ts instead)
+ * Kept for backward compatibility
  */
 
 export const PRIMARY_CTA = {
-  label: 'Run Variance Tax Diagnostic',
-  href: '/diagnostic',
-  description: 'See exactly what your network is costing you',
-  icon: 'Crosshair',
+  label: 'Apply for Access',
+  href: '/contact?intent=qualify',
+  description: 'See if you qualify for the Founding Member Program',
+  icon: 'Velocity',
 } as const;
 
 export const SECONDARY_CTA = {
-  label: 'See Network Effect Simulation',
-  href: '/singularity',
-  description: 'Watch ROI compound with scale',
-  icon: 'Nexus',
+  label: 'Run ROI',
+  href: '/roi',
+  description: 'Board-ready in 3 minutes',
+  icon: 'Metrics',
 } as const;
 
 export const PERSONA_CTAS = {
