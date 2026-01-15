@@ -76,7 +76,7 @@ export default function RiskPage() {
             The $30B Problem Starts at the Gate
           </h1>
           <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
-            Cargo theft costs the industry $15B-$30B globally. Most incidents start at the gate. Fraudulent carriers, fake credentials, unauthorized access—preventable if you verify identity before granting access.
+            Cargo theft costs the industry $15B to $30B globally. Most incidents start at the gate. Fraudulent carriers, fake credentials, unauthorized access: all preventable if you verify identity before granting access.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
@@ -155,7 +155,7 @@ export default function RiskPage() {
                 CTPAT & TSA Ready
               </h2>
               <p className="mt-4 text-[17px] text-steel leading-8">
-                Compliance isn't just about passing audits—it's about reducing insurance premiums, winning contracts, and defending claims.
+                Compliance isn't just about passing audits. It's about reducing insurance premiums, winning contracts, and defending claims.
               </p>
               <p className="mt-4 text-[17px] text-steel leading-8">
                 YardFlow produces the audit trail these programs require without manual documentation effort.

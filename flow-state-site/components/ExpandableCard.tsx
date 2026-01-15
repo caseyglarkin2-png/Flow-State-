@@ -11,6 +11,7 @@ type ExpandableCardProps = {
   children: React.ReactNode;
   onToggle?: (open: boolean) => void; // analytics hook
   persona?: string[]; // ["CFO", "Ops", "Security", "IT"]
+  icon?: React.ReactNode; // optional icon to display next to title
 };
 
 export function ExpandableCard({
@@ -21,7 +22,8 @@ export function ExpandableCard({
   defaultOpen = false,
   children,
   onToggle,
-  persona = []
+  persona = [],
+  icon
 }: ExpandableCardProps) {
   const detailsRef = useRef<HTMLDetailsElement | null>(null);
   const [open, setOpen] = useState(defaultOpen);
@@ -89,8 +91,17 @@ export function ExpandableCard({
       <summary className="cursor-pointer list-none px-6 py-5 select-none hover:bg-carbon/50 transition-colors">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1">
-            <h3 className="text-xl font-bold text-white mb-1">{title}</h3>
-            {kicker && <p className="text-steel/80 leading-relaxed">{kicker}</p>}
+            <div className="flex items-center gap-3">
+              {icon && (
+                <div className="shrink-0 p-2 rounded-lg bg-neon/10 border border-neon/20 text-neon">
+                  {icon}
+                </div>
+              )}
+              <div>
+                <h3 className="text-xl font-bold text-white mb-1">{title}</h3>
+                {kicker && <p className="text-steel/80 leading-relaxed">{kicker}</p>}
+              </div>
+            </div>
 
             {bulletList.length > 0 && (
               <ul className="mt-3 space-y-2 text-sm text-steel/90">

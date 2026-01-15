@@ -96,7 +96,7 @@ export default function FaqPage() {
             Send Your Questions
           </h2>
           <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl">
-            Security, privacy, implementation, integrations—we respond with procurement-ready answers.
+            Security, privacy, implementation, integrations. We respond with procurement-ready answers.
           </p>
           <Link
             href="/contact"

@@ -3,10 +3,11 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { ExpandableCard } from '@/components/ExpandableCard';
+import { ARCHETYPES, type ArchetypeId, ICON_SIZES } from '@/lib/modules';
 
 const archetypes = [
   {
-    id: 'gated-guarded',
+    id: 'gated-guarded' as ArchetypeId,
     title: 'Gated/Guarded',
     kicker: 'High Security',
     desc: 'Perimeter fencing, manned gate, strict access control.',
@@ -17,59 +18,59 @@ const archetypes = [
     examples: 'Pharma distribution, high-value goods, government contracts',
   },
   {
-    id: 'non-gated',
+    id: 'non-gated' as ArchetypeId,
     title: 'Non-Gated',
-    kicker: 'Open Campus',
-    desc: 'Open lot, no physical gate, spot-based check-in.',
-    modules: 'Digital Guard (lite), Lane Planner',
-    checkin: 'Mobile/tablet at designated spots',
+    kicker: 'Open Access',
+    desc: 'No physical gate, open yard, carrier self-service.',
+    modules: 'Geofence + mobile check-in, Digital Comms',
+    checkin: 'Mobile app (driver self-check-in)',
     timeline: '3–4 weeks',
-    timelineNote: 'Fastest rollout',
-    examples: 'Retail DCs, regional distributors',
+    timelineNote: 'Lighter infrastructure',
+    examples: 'Regional LTL terminals, cross-dock hubs',
   },
   {
-    id: 'backup-sensitive',
+    id: 'backup-sensitive' as ArchetypeId,
     title: 'Backup-Sensitive',
-    kicker: 'Throughput Critical',
-    desc: 'Frequent backup, detention costs, seasonal surges.',
-    modules: 'Lane Planner (priority), Real-Time Visibility',
-    checkin: 'Pre-scheduled slots, dynamic rebalancing',
-    timeline: '4–5 weeks',
-    timelineNote: 'Calendar integration required',
-    examples: 'High-volume DCs, cross-docks, retail peak season',
+    kicker: 'Detention Risk',
+    desc: 'High detention exposure, frequent carrier disputes.',
+    modules: 'Digital BOL (chain-of-custody proof), Digital Guard',
+    checkin: 'Kiosk + mobile (redundant timestamp capture)',
+    timeline: '5–6 weeks',
+    timelineNote: 'Forensic-grade proof setup',
+    examples: 'Food/bev distribution, time-sensitive perishables',
   },
   {
-    id: 'scale-heavy',
-    title: 'Scale Heavy',
-    kicker: 'High Volume',
-    desc: '200+ trucks/day, multiple gates, complex staging.',
-    modules: 'Full YNS Suite',
-    checkin: 'Multi-gate orchestration',
-    timeline: '6–8 weeks',
-    timelineNote: 'Phased rollout recommended',
-    examples: 'Mega-DCs, Amazon-scale facilities',
+    id: 'scale-heavy' as ArchetypeId,
+    title: 'Scale-Heavy',
+    kicker: 'High Throughput',
+    desc: '100+ daily moves, complex dock scheduling, tight turn windows.',
+    modules: 'Digital YMS (orchestration), Digital Comms',
+    checkin: 'Hybrid (kiosk + mobile + ALPR)',
+    timeline: '7–8 weeks',
+    timelineNote: 'AI training + dock integration',
+    examples: 'Major DCs, fulfillment centers, manufacturing receiving',
   },
   {
-    id: 'cross-dock',
+    id: 'cross-dock' as ArchetypeId,
     title: 'Cross-Dock',
     kicker: 'Fast Turns',
-    desc: 'Minimal dwell, dock-to-dock flow, tight SLAs.',
-    modules: 'Digital BOL, Lane Planner',
-    checkin: 'Automated dock assignment',
-    timeline: '3–4 weeks',
-    timelineNote: 'WMS integration helpful',
-    examples: 'LTL terminals, transload facilities',
+    desc: 'Under 2-hour dwell target, minimal staging, tight coordination.',
+    modules: 'Digital Comms (real-time driver instructions), Digital YMS',
+    checkin: 'Mobile app (speed priority)',
+    timeline: '4–5 weeks',
+    timelineNote: 'Real-time comms critical',
+    examples: 'LTL break-bulk, transload facilities',
   },
   {
-    id: 'manufacturing',
+    id: 'manufacturing' as ArchetypeId,
     title: 'Manufacturing',
-    kicker: 'JIT Sensitive',
-    desc: 'JIT delivery, line-down risk, supplier scheduling.',
-    modules: 'Lane Planner, Supplier Portal',
-    checkin: 'Supplier-facing scheduling',
-    timeline: '5–6 weeks',
-    timelineNote: 'ERP integration common',
-    examples: 'Auto plants, assembly facilities, chemical processing',
+    kicker: 'Complex Workflows',
+    desc: 'Just-in-time delivery, ERP integration, production scheduling dependencies.',
+    modules: 'Digital YMS (orchestration + WMS/ERP integration), Digital BOL',
+    checkin: 'Kiosk + ERP pre-validation',
+    timeline: '8–10 weeks',
+    timelineNote: 'Custom integration work',
+    examples: 'Automotive plants, assembly facilities, material receiving',
   },
 ];
 
@@ -119,36 +120,41 @@ export default function ImplementationPage() {
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {archetypes.map((a, idx) => (
-              <ExpandableCard
-                key={a.id}
-                id={`archetype-${idx + 1}`}
-                title={a.title}
-                kicker={a.kicker}
-                defaultOpen={idx === 0}
-              >
-                <div className="space-y-3 text-sm">
-                  <p className="text-steel leading-relaxed">{a.desc}</p>
-                  <div>
-                    <p className="text-white font-semibold mb-1">Priority Modules</p>
-                    <p className="text-steel">{a.modules}</p>
+            {archetypes.map((a, idx) => {
+              const archetypeData = ARCHETYPES[a.id];
+              const ArchetypeIcon = archetypeData?.icon;
+              return (
+                <ExpandableCard
+                  key={a.id}
+                  id={a.id}
+                  title={`${idx + 1}. ${a.title}`}
+                  kicker={a.kicker}
+                  defaultOpen={idx === 0}
+                  icon={ArchetypeIcon && <ArchetypeIcon size={ICON_SIZES.md} />}
+                >
+                  <div className="space-y-3 text-sm">
+                    <p className="text-steel leading-relaxed">{a.desc}</p>
+                    <div>
+                      <p className="text-white font-semibold mb-1">Priority Modules:</p>
+                      <p className="text-steel">{a.modules}</p>
+                    </div>
+                    <div>
+                      <p className="text-white font-semibold mb-1">Check-in:</p>
+                      <p className="text-steel">{a.checkin}</p>
+                    </div>
+                    <div>
+                      <p className="text-white font-semibold mb-1">Timeline:</p>
+                      <p className="text-neon font-bold">{a.timeline}</p>
+                      <p className="text-steel/60 text-xs">({a.timelineNote})</p>
+                    </div>
+                    <div>
+                      <p className="text-white font-semibold mb-1">Examples:</p>
+                      <p className="text-steel">{a.examples}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-white font-semibold mb-1">Check-in</p>
-                    <p className="text-steel">{a.checkin}</p>
-                  </div>
-                  <div>
-                    <p className="text-white font-semibold mb-1">Timeline</p>
-                    <p className="text-neon font-bold">{a.timeline}</p>
-                    <p className="text-steel/60 text-xs">{a.timelineNote}</p>
-                  </div>
-                  <div>
-                    <p className="text-white font-semibold mb-1">Examples</p>
-                    <p className="text-steel">{a.examples}</p>
-                  </div>
-                </div>
-              </ExpandableCard>
-            ))}
+                </ExpandableCard>
+              );
+            })}
           </div>
         </div>
       </section>

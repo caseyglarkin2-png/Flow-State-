@@ -2,6 +2,8 @@
 
 import { motion, type Variants } from "framer-motion";
 import { Layers, Scan, Database, FileText, Shield, Cpu } from "lucide-react";
+import Link from "next/link";
+import { getModuleByName, ICON_SIZES } from "@/lib/modules";
 
 type TechLayer = {
   number: number;
@@ -131,12 +133,34 @@ export function GuideTechLayersSection({
               <h4 className="text-lg font-bold text-white">{yardflowCallout.title}</h4>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
-              {yardflowCallout.items.map((item, i) => (
-                <div key={i} className="p-4 rounded-lg bg-void/50 border border-neon/20">
-                  <p className="text-sm font-semibold text-neon mb-2">{item.module}</p>
-                  <p className="text-sm text-steel/70">{item.description}</p>
-                </div>
-              ))}
+              {yardflowCallout.items.map((item, i) => {
+                const moduleData = getModuleByName(item.module);
+                const ModuleIcon = moduleData?.icon;
+                
+                if (moduleData) {
+                  return (
+                    <Link
+                      key={i}
+                      href={moduleData.route}
+                      aria-label={`View ${moduleData.name} product page`}
+                      className="group p-4 rounded-lg bg-void/50 border border-neon/20 hover:border-neon/40 hover:bg-void/70 transition-all focus:outline-none focus:ring-2 focus:ring-neon/50"
+                    >
+                      <div className="flex items-center gap-2 mb-2">
+                        {ModuleIcon && <ModuleIcon size={ICON_SIZES.sm} className="text-neon/70 group-hover:text-neon transition-colors" />}
+                        <p className="text-sm font-semibold text-neon group-hover:text-white transition-colors">{item.module}</p>
+                      </div>
+                      <p className="text-sm text-steel/70">{item.description}</p>
+                    </Link>
+                  );
+                }
+                
+                return (
+                  <div key={i} className="p-4 rounded-lg bg-void/50 border border-neon/20">
+                    <p className="text-sm font-semibold text-neon mb-2">{item.module}</p>
+                    <p className="text-sm text-steel/70">{item.description}</p>
+                  </div>
+                );
+              })}
             </div>
           </motion.div>
         )}

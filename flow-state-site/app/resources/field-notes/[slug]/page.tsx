@@ -71,7 +71,7 @@ const fieldNotes: Record<string, FieldNote> = {
       {
         headline: "Visibility ≠ Efficiency",
         detail:
-          "Some facilities with sophisticated real-time visibility systems still showed poor dwell metrics. Others with simpler setups outperformed. Visibility only helps when it's connected to action—high performers had clear escalation triggers.",
+          "Some facilities with sophisticated real-time visibility systems still showed poor dwell metrics. Others with simpler setups outperformed. Visibility only helps when it's connected to action. High performers had clear escalation triggers.",
       },
       {
         headline: "Appointment Compliance Is a Leading Indicator",
@@ -184,7 +184,7 @@ const fieldNotes: Record<string, FieldNote> = {
       {
         headline: "Cross-Docks",
         detail:
-          "Manual check-in: 5-10 minutes. Automated: 1.5-3 minutes. Peak throughput improves from 6-10 to 20-30 trucks/hour/gate. Cross-docks benefit most from speed—the entire operation depends on fast turns.",
+          "Manual check-in: 5-10 minutes. Automated: 1.5-3 minutes. Peak throughput improves from 6-10 to 20-30 trucks/hour/gate. Cross-docks benefit most from speed. The entire operation depends on fast turns.",
       },
     ],
 

@@ -49,7 +49,7 @@ const guidesContent: Record<string, GuideData> = {
         eyebrow: "The Challenge",
         title: "The Scale of the Problem",
         intro:
-          "Cargo theft costs logistics operators billions annually. Theft techniques grow more sophisticated every quarter—and manual gate processes remain the weakest link.",
+          "Cargo theft costs logistics operators billions annually. Theft techniques grow more sophisticated every quarter, and manual gate processes remain the weakest link.",
         stats: [
           {
             icon: "dollar" as const,
@@ -154,7 +154,7 @@ const guidesContent: Record<string, GuideData> = {
         eyebrow: "Defense Architecture",
         title: "Technology Layers for Defense",
         intro:
-          "Effective security requires layered defense. Each technology layer reinforces the others—no single point of failure.",
+          "Effective security requires layered defense. Each technology layer reinforces the others. No single point of failure.",
         layers: [
           {
             number: 1,
@@ -402,7 +402,7 @@ const guidesContent: Record<string, GuideData> = {
         eyebrow: "Foundational Concept",
         title: "What Are Network Effects?",
         intro:
-          "Network effects occur when the value of a system increases disproportionately as more participants join. In telecommunications, each new phone makes the entire network more valuable. The same principle applies to yard automation—at scale.",
+          "Network effects occur when the value of a system increases disproportionately as more participants join. In telecommunications, each new phone makes the entire network more valuable. The same principle applies to yard automation, at scale.",
         stats: [
           {
             icon: "users" as const,
@@ -508,7 +508,7 @@ const guidesContent: Record<string, GuideData> = {
         eyebrow: "Financial Model",
         title: "Quantifying Network Value",
         intro:
-          "Conservative multipliers based on production deployments. We don't inflate projections—these ranges represent what we actually see.",
+          "Conservative multipliers based on production deployments. We don't inflate projections. These ranges represent what we actually see.",
         layers: [
           {
             number: 1,
@@ -720,14 +720,14 @@ const guidesContent: Record<string, GuideData> = {
             source: "RFP analysis",
           },
         ],
-        body: "C-TPAT members skip to the front of the CBP line. Fewer inspections, faster processing, and access to customers who won't work with non-certified partners. TSA programs unlock Known Shipper status and certified cargo screening. The question isn't whether to certify—it's how fast you can get there.",
+        body: "C-TPAT members skip to the front of the CBP line. Fewer inspections, faster processing, and access to customers who won't work with non-certified partners. TSA programs unlock Known Shipper status and certified cargo screening. The question isn't whether to certify, it's how fast you can get there.",
       },
       vulnerabilities: {
         id: "key-requirements",
         eyebrow: "Compliance Framework",
         title: "Key Requirements",
         intro:
-          "Both programs demand documented, repeatable security procedures. Auditors don't want promises—they want evidence. These are the three pillars they'll scrutinize.",
+          "Both programs demand documented, repeatable security procedures. Auditors don't want promises. They want evidence. These are the three pillars they'll scrutinize.",
         categories: [
           {
             title: "Physical Security",
@@ -793,7 +793,7 @@ const guidesContent: Record<string, GuideData> = {
         eyebrow: "Business Impact",
         title: "Operational Implications",
         intro:
-          "Non-certified operations pay the tax every day—more inspections, lost customers, higher insurance. Here's what the gap actually costs.",
+          "Non-certified operations pay the tax every day: more inspections, lost customers, higher insurance. Here's what the gap actually costs.",
         layers: [
           {
             number: 1,

@@ -2,6 +2,8 @@
 
 import { motion, type Variants } from "framer-motion";
 import { Cpu, BarChart3 } from "lucide-react";
+import Link from "next/link";
+import { getModuleByName, ICON_SIZES } from "@/lib/modules";
 
 type Module = {
   name: string;
@@ -67,15 +69,38 @@ export function YardFlowConnectionSection({
             </div>
 
             <ul className="space-y-4">
-              {modules.map((mod, idx) => (
-                <li
-                  key={idx}
-                  className="p-4 rounded-lg bg-void/50 border border-neon/10 hover:border-neon/30 transition-colors"
-                >
-                  <h4 className="text-white font-semibold mb-1">{mod.name}</h4>
-                  <p className="text-steel/70 text-sm">{mod.description}</p>
-                </li>
-              ))}
+              {modules.map((mod, idx) => {
+                const moduleData = getModuleByName(mod.name);
+                const ModuleIcon = moduleData?.icon;
+                
+                if (moduleData) {
+                  return (
+                    <li key={idx}>
+                      <Link
+                        href={moduleData.route}
+                        aria-label={`View ${moduleData.name} product page`}
+                        className="group block p-4 rounded-lg bg-void/50 border border-neon/10 hover:border-neon/30 hover:bg-void/70 transition-all focus:outline-none focus:ring-2 focus:ring-neon/50"
+                      >
+                        <div className="flex items-center gap-2 mb-1">
+                          {ModuleIcon && <ModuleIcon size={ICON_SIZES.sm} className="text-neon/70 group-hover:text-neon transition-colors" />}
+                          <h4 className="text-white font-semibold group-hover:text-neon transition-colors">{mod.name}</h4>
+                        </div>
+                        <p className="text-steel/70 text-sm">{mod.description}</p>
+                      </Link>
+                    </li>
+                  );
+                }
+                
+                return (
+                  <li
+                    key={idx}
+                    className="p-4 rounded-lg bg-void/50 border border-neon/10"
+                  >
+                    <h4 className="text-white font-semibold mb-1">{mod.name}</h4>
+                    <p className="text-steel/70 text-sm">{mod.description}</p>
+                  </li>
+                );
+              })}
             </ul>
           </motion.div>
 

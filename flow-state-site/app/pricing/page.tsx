@@ -5,6 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { trackEvent } from '@/lib/analytics';
+import { MODULES, type ModuleId, ICON_SIZES } from '@/lib/modules';
 
 export default function PricingPage() {
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/';
@@ -16,12 +17,12 @@ export default function PricingPage() {
       {/* Hero */}
       <section className="pt-32 pb-12">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Stop the Variance Tax</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Cut the Variance Tax</p>
           <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
             Transparent Pricing
           </h1>
           <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
-            Facility-based pricing. The subscription costs less than the variance it eliminates. No hidden fees. No per-transaction charges.
+            Pricing is simple because the goal is simple: reduce the Variance Tax and give your network a predictable operating rhythm. No hidden fees. No per-transaction charges.
           </p>
         </div>
       </section>
@@ -81,17 +82,24 @@ export default function PricingPage() {
           </p>
 
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {[
-              { title: "Digital Guard", body: "Carrier verification, ID capture, credential validation at every gate." },
-              { title: "Digital Comms", body: "Lane-level driver messaging. Read receipts. No more excuses." },
-              { title: "Digital BOL", body: "Touchless documentation with forensic-grade timestamps." },
-              { title: "Digital YMS", body: "Real-time yard visibility. Dwell alerts. Network intelligence." },
-            ].map((item) => (
-              <div key={item.title} className="rounded-xl border border-neon/10 bg-carbon/50 p-5">
-                <div className="text-sm font-semibold text-white mb-2">{item.title}</div>
-                <p className="text-xs text-steel leading-relaxed">{item.body}</p>
-              </div>
-            ))}
+            {(['digital-guard', 'digital-comms', 'digital-bol', 'digital-yms'] as ModuleId[]).map((moduleId) => {
+              const mod = MODULES[moduleId];
+              const ModuleIcon = mod.icon;
+              return (
+                <Link 
+                  key={mod.id} 
+                  href={mod.route}
+                  aria-label={`View ${mod.name} product page`}
+                  className="group rounded-xl border border-neon/10 bg-carbon/50 p-5 hover:border-neon/30 hover:bg-carbon/70 transition-all focus:outline-none focus:ring-2 focus:ring-neon/50"
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <ModuleIcon size={ICON_SIZES.sm} className="text-neon/70 group-hover:text-neon transition-colors" />
+                    <div className="text-sm font-semibold text-white group-hover:text-neon transition-colors">{mod.name}</div>
+                  </div>
+                  <p className="text-xs text-steel leading-relaxed">{mod.description}</p>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
