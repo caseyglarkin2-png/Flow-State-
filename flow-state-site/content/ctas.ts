@@ -4,7 +4,7 @@
  */
 
 export const PRIMARY_CTA = {
-  label: 'Run Network Leak Diagnostic',
+  label: 'Run Variance Tax Diagnostic',
   href: '/diagnostic',
   description: 'See exactly what your network is costing you',
   icon: 'Crosshair',

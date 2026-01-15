@@ -152,7 +152,7 @@ const fieldNotes: Record<string, FieldNote> = {
         label: "Gate Throughput Benchmarks",
       },
       { href: "/solutions/dry-van", label: "Dry Van Solutions" },
-      { href: "/diagnostic", label: "Network Leak Calculator" },
+      { href: "/diagnostic", label: "Variance Tax Calculator" },
     ],
   },
 

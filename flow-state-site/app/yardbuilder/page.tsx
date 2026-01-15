@@ -352,9 +352,9 @@ export default function YardBuilderPage() {
             </Card>
             <Card className="border-neon/20">
               <h3 className="font-semibold text-white mb-2">Quick diagnostic?</h3>
-              <p className="text-steel text-sm mb-4">Calculate your network leak in 2 minutes with our diagnostic tool.</p>
+              <p className="text-steel text-sm mb-4">Calculate your Variance Tax in 2 minutes with our diagnostic tool.</p>
               <a href="/diagnostic" className="inline-flex items-center gap-1 text-neon text-sm hover:text-neon/80 transition-colors">
-                Network Leak Calculator <FlowArrow size={12} />
+                Variance Tax Calculator <FlowArrow size={12} />
               </a>
             </Card>
           </div>

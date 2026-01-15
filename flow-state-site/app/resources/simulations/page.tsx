@@ -23,13 +23,13 @@ const simulations = [
     ],
   },
   {
-    title: 'Network Leak Calculator',
-    description: 'Quantify hidden operational costs from manual processes, detention, and dwell. The "leak" you may not know you\'re paying.',
+    title: 'Variance Tax Calculator',
+    description: 'Quantify hidden operational costs from manual processes, detention, and dwell. The Variance Tax you may not know you\'re paying.',
     path: '/diagnostic',
     color: 'neon',
     icon: Velocity,
     features: [
-      'Nine-component cost breakdown',
+      'Eight cost category breakdown',
       'Industry benchmarking',
       'Savings projection',
     ],

@@ -61,8 +61,8 @@ const simulations = [
   },
   {
     slug: 'yard-tax-calculator',
-    title: 'Network Leak Calculator',
-    description: 'Quantify hidden costs from manual processes, detention, dwell. The leak you may not know.',
+    title: 'Variance Tax Calculator',
+    description: 'Quantify hidden costs from manual processes, detention, dwell. The Variance Tax you may not know.',
     path: '/diagnostic',
     Icon: Velocity,
   },

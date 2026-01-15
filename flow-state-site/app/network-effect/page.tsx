@@ -342,13 +342,13 @@ export default function NetworkEffectPage() {
         </div>
       </section>
 
-      {/* B) The villain - reframed around network leak compound cost */}
+      {/* B) The villain - reframed around Variance Tax compound cost */}
       <section className="py-16 border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
           <Card>
             <h2 className="text-2xl font-bold text-ember mb-3">The compounding cost of waiting</h2>
             <p className="text-steel">
-              A pilot that never scales means you pay the network leak at every other facility. Forever. 
+              A pilot that never scales means you pay the Variance Tax at every other facility. Forever. 
               The learning cost repeats. The friction compounds. The network advantage never arrives.
             </p>
             <p className="text-steel mt-4">
@@ -358,7 +358,7 @@ export default function NetworkEffectPage() {
           <Card>
             <h2 className="text-2xl font-bold text-neon mb-3">What stopping at one site costs</h2>
             <p className="text-steel">
-              Stopping at a single facility leaves the network bonus near zero. The leak keeps compounding at every other site.
+              Stopping at a single facility leaves the network bonus near zero. The Variance Tax keeps compounding at every other site.
             </p>
             <div className="mt-5 rounded-lg border border-neon/10 bg-carbon/40 p-4">
               <div className="text-sm text-steel">Network bonus at 1 facility</div>

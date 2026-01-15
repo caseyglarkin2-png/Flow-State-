@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ChevronLeft } from 'lucide-react';
+import { CANON_TERMS, METHODOLOGY_INTRO_PARAGRAPH, VARIANCE_TAX_CATEGORIES } from '@/lib/varianceTax';
 
 export const metadata: Metadata = {
   title: 'Economics Methodology | YardFlow by FreightRoll',
-  description: 'Transparent methodology behind YardFlow ROI calculations: network leak modeling, network effects, and economics validation.',
+  description: 'Transparent methodology behind YardFlow ROI calculations: Variance Tax modeling, network effects, and economics validation.',
 };
 
 export default function EconomicsMethodologyPage() {
@@ -52,52 +53,19 @@ export default function EconomicsMethodologyPage() {
 
             {/* Network Leak Categories */}
             <section className="mb-12">
-              <h2 className="mb-4 text-2xl font-bold text-white">Network Leak: Eight Cost Categories</h2>
+              <h2 className="mb-4 text-2xl font-bold text-white">{CANON_TERMS.categoriesHeading}</h2>
               <div className="space-y-6 text-steel">
                 <p>
-                  The "Network Leak" represents invisible operational costs buried in your P&L. We model eight distinct categories:
+                  {METHODOLOGY_INTRO_PARAGRAPH}
                 </p>
                 
                 <div className="grid gap-4 md:grid-cols-2">
-                  <div className="rounded-lg border border-steel/20 bg-carbon/30 p-4">
-                    <h3 className="mb-2 font-semibold text-white">1. Detention & Disputes</h3>
-                    <p className="text-sm">$50-200 per occurrence. Based on industry avg detention rate of 8-15% of loads, avg dwell time 45-90 min.</p>
-                  </div>
-                  
-                  <div className="rounded-lg border border-steel/20 bg-carbon/30 p-4">
-                    <h3 className="mb-2 font-semibold text-white">2. Missed Cutoffs & Expedites</h3>
-                    <p className="text-sm">$500-2,000 per event. Modeled from premium freight rates and opportunity cost of delayed shipments.</p>
-                  </div>
-                  
-                  <div className="rounded-lg border border-steel/20 bg-carbon/30 p-4">
-                    <h3 className="mb-2 font-semibold text-white">3. OT & Labor Volatility</h3>
-                    <p className="text-sm">$15-45/hr premium. Calculated from unpredictable arrivals requiring staffing buffers or rush scheduling.</p>
-                  </div>
-                  
-                  <div className="rounded-lg border border-steel/20 bg-carbon/30 p-4">
-                    <h3 className="mb-2 font-semibold text-white">4. Trailer Hunt Time</h3>
-                    <p className="text-sm">8-15 min per move. Productivity loss from manual searches, radio calls, and yard walks.</p>
-                  </div>
-                  
-                  <div className="rounded-lg border border-steel/20 bg-carbon/30 p-4">
-                    <h3 className="mb-2 font-semibold text-white">5. OTIF Chargebacks</h3>
-                    <p className="text-sm">$100-500 per miss. Penalties from retail customers when root cause cannot be proven defensibly.</p>
-                  </div>
-                  
-                  <div className="rounded-lg border border-steel/20 bg-carbon/30 p-4">
-                    <h3 className="mb-2 font-semibold text-white">6. Overflow Yards & 3PL Surge</h3>
-                    <p className="text-sm">$200-800 per trailer/day. Cost of external storage when throughput constraint appears (but isn't real).</p>
-                  </div>
-                  
-                  <div className="rounded-lg border border-steel/20 bg-carbon/30 p-4">
-                    <h3 className="mb-2 font-semibold text-white">7. Safety & Claims Exposure</h3>
-                    <p className="text-sm">$5K-50K per claim. Incidents from poor visibility, geofencing gaps, and ad-hoc coordination.</p>
-                  </div>
-                  
-                  <div className="rounded-lg border border-steel/20 bg-carbon/30 p-4">
-                    <h3 className="mb-2 font-semibold text-white">8. Working Capital Buffers</h3>
-                    <p className="text-sm">3-7% tied capital. Extra inventory and trailer pools held "just in case" due to flow unpredictability.</p>
-                  </div>
+                  {VARIANCE_TAX_CATEGORIES.map((category) => (
+                    <div key={category.id} className="rounded-lg border border-steel/20 bg-carbon/30 p-4">
+                      <h3 className="mb-2 font-semibold text-white">{category.id}. {category.name}</h3>
+                      <p className="text-sm">{category.description}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </section>
@@ -202,7 +170,7 @@ export default function EconomicsMethodologyPage() {
                 >
                   <h3 className="mb-2 font-semibold text-white">60-Second Diagnostic</h3>
                   <p className="text-sm text-steel">
-                    Answer 9 questions to calculate your specific network leak across all eight categories.
+                    Answer 9 questions to calculate your specific Variance Tax across all eight categories.
                   </p>
                 </Link>
 
