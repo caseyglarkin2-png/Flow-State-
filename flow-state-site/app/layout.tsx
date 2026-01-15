@@ -27,6 +27,18 @@ export const metadata = {
   authors: [{ name: 'YardFlow by FreightRoll', url: siteUrl }],
   creator: 'YardFlow by FreightRoll',
   publisher: 'FreightRoll',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+  manifest: '/site.webmanifest',
   robots: {
     index: true,
     follow: true,
@@ -42,12 +54,12 @@ export const metadata = {
     title: SITE_METADATA.ogTitle,
     description: SITE_METADATA.ogDescription,
     url: siteUrl,
-    siteName: 'YardFlow',
+    siteName: 'YardFlow by FreightRoll',
     type: 'website',
     locale: 'en_US',
     images: [
       {
-        url: `${siteUrl}/api/og`,
+        url: `${siteUrl}/og.png`,
         width: 1200,
         height: 630,
         alt: 'YardFlow by FreightRoll - Yard Network System (YNS)',
@@ -58,7 +70,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: SITE_METADATA.ogTitle,
     description: SITE_METADATA.ogDescription,
-    images: [`${siteUrl}/api/og`],
+    images: [`${siteUrl}/og.png`],
     creator: '@freightroll',
   },
   alternates: {
@@ -169,15 +181,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        {/* Favicons - comprehensive browser support */}
-        <link rel="icon" href="/favicon.ico" sizes="32x32" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#00B4FF" />
         <meta name="msapplication-TileColor" content="#050505" />
       </head>
