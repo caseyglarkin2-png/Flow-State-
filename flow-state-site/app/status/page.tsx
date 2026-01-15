@@ -8,12 +8,13 @@ export default function StatusPage() {
     <div className="min-h-screen bg-void">
       <Header />
 
-      <section className="pt-32 pb-16 border-b border-neon/20">
+      <section className="pt-32 pb-12">
         <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-5xl md:text-7xl font-black mb-6">
-            Service <span className="neon-glow">status</span>
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">System Health</p>
+          <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
+            Service Status
           </h1>
-          <p className="text-xl text-steel max-w-3xl">
+          <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
             We provide incident communication and uptime details directly to customers and prospects during evaluation.
           </p>
         </div>

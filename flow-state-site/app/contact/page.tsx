@@ -28,13 +28,13 @@ export default async function ContactPage({ searchParams }: Props) {
       <Header />
       <main className="min-h-screen bg-void pt-32 pb-24">
       {/* Hero */}
-      <section className="pb-16 border-b border-neon/10">
+      <section className="pb-12">
         <div className="max-w-6xl mx-auto px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Network Audit</p>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Network Audit</p>
+          <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
             30 Minutes. Zero Fluff.
           </h1>
-          <p className="text-xl text-steel max-w-2xl leading-relaxed">
+          <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
             We map your facilities to archetypes, show the deployment sequence, and hand you a board-ready ROI model. That's it.
           </p>
         </div>

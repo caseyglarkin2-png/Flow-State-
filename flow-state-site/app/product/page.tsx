@@ -86,20 +86,18 @@ export default function ProductPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 border-b border-neon/10">
+      <section className="relative pt-32 pb-12">
         <div className="max-w-6xl mx-auto px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">
             Product Architecture
           </p>
-          
-          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight">
+          <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
             Four Modules. One Protocol.
           </h1>
-          
-          <p className="text-xl text-steel mb-8 max-w-2xl leading-relaxed">
+          <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
             Standardize the driver journey. Enforce the control loop. Every yard runs the same playbook. Every event is typed. Every timestamp is defensible.
           </p>
-          <Link href="/diagnostic" className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition">
+          <Link href="/diagnostic" className="mt-8 inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition">
             Run Network Diagnostic
           </Link>
         </div>
@@ -121,16 +119,16 @@ export default function ProductPage() {
       ))}
 
       {/* CTA Section */}
-      <section className="border-t border-neon/10 py-20">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Next Step</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+      <section className="py-20">
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Next Step</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
             Stop the Variance Tax
           </h2>
-          <p className="text-lg text-steel mb-8 max-w-2xl mx-auto">
+          <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl">
             Run the diagnostic. See where variance costs you. Get the playbook to fix it.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap gap-4">
             <Link href="/contact" className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition">
               Get Your Network Rollout Plan
             </Link>

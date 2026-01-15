@@ -14,13 +14,13 @@ export default function PricingPage() {
       <Header />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 border-b border-neon/10">
+      <section className="pt-32 pb-12">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-ember/70 mb-3">Stop the Variance Tax</p>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Stop the Variance Tax</p>
+          <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
             Transparent Pricing
           </h1>
-          <p className="text-xl text-steel max-w-2xl leading-relaxed">
+          <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
             Facility-based pricing. The subscription costs less than the variance it eliminates. No hidden fees. No per-transaction charges.
           </p>
         </div>
@@ -72,11 +72,11 @@ export default function PricingPage() {
       </section>
 
       {/* What's Included */}
-      <section className="border-t border-neon/10 py-16 bg-carbon/20">
+      <section className="py-16 bg-carbon/20">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">What You Get</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">Full Platform. No Surprises.</h2>
-          <p className="text-lg text-steel mb-10 max-w-2xl">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">What You Get</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">Full Platform. No Surprises.</h2>
+          <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl mb-10">
             One subscription. All modules. Network-wide standardization out of the box.
           </p>
 
@@ -97,13 +97,13 @@ export default function PricingPage() {
       </section>
 
       {/* Implementation Scope */}
-      <section className="border-t border-neon/10 py-16">
+      <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
-              <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Turnkey Deployment</p>
-              <h2 className="text-3xl font-bold tracking-tight text-white mb-4">Implementation Scope</h2>
-              <p className="text-lg text-steel leading-relaxed mb-6">
+              <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Turnkey Deployment</p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">Implementation Scope</h2>
+              <p className="mt-4 text-[17px] text-steel leading-8 mb-6">
                 We don't hand you software and walk away. We deploy, configure, train, and measure.
               </p>
               <ul className="space-y-3 text-steel">
@@ -145,10 +145,10 @@ export default function PricingPage() {
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-neon/10 py-16 bg-carbon/20">
+      <section className="py-16 bg-carbon/20">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Common Questions</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-10">Pricing FAQ</h2>
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Common Questions</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white mb-10">Pricing FAQ</h2>
           
           <div className="grid gap-6 md:grid-cols-2">
             <div className="rounded-xl border border-neon/10 bg-carbon/50 p-5">
@@ -180,16 +180,16 @@ export default function PricingPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-neon/10 py-20">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Next Step</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+      <section className="py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Next Step</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
             Model Your Network ROI
           </h2>
-          <p className="text-lg text-steel mb-8 max-w-2xl mx-auto">
+          <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl">
             Run your scenario in the ROI Calculator. Adjust facilities, volume, and assumptions. See the payback.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/roi"
               onClick={() => trackEvent('pricing_cta_click', { cta: 'roi_calculator' })}

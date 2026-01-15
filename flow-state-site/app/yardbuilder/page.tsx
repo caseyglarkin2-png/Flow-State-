@@ -92,18 +92,18 @@ export default function YardBuilderPage() {
       <Header />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 border-b border-neon/10">
+      <section className="pt-32 pb-12">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Founding Member Program</p>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Founding Member Program</p>
+          <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
             Request a Digital Twin of Your Yard
           </h1>
-          <p className="text-xl text-steel max-w-2xl leading-relaxed mb-8">
+          <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
             Complete digital model of your facility: asset inventory, workflow mapping, optimization roadmap. No software required on your end.
           </p>
           <a 
             href="#request-form"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-neon text-void font-semibold rounded-xl hover:bg-white transition-all"
+            className="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-neon text-void font-semibold rounded-xl hover:bg-white transition-all"
           >
             Request Your Digital Twin <ArrowRight size={18} />
           </a>

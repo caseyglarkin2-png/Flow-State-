@@ -11,17 +11,13 @@ export default function AboutPage() {
       <Header />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 border-b border-neon/10">
+      <section className="pt-32 pb-12">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="mb-6 inline-block px-4 py-2 rounded-xl bg-neon/10 border border-neon/30">
-            <p className="text-neon text-sm font-medium">
-              FreightRoll → YardFlow by FreightRoll
-            </p>
-          </div>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">FreightRoll → YardFlow</p>
+          <h1 className="mt-3 text-5xl font-black tracking-tight text-white md:text-7xl">
             Same Team. Sharper Product.
           </h1>
-          <p className="text-xl text-steel max-w-2xl leading-relaxed">
+          <p className="mt-4 max-w-2xl text-xl text-steel leading-relaxed">
             We built the simulations first. Then we wrote the software. Now we're standardizing yards at scale.
           </p>
         </div>
@@ -30,9 +26,11 @@ export default function AboutPage() {
       {/* Heritage */}
       <section className="border-t border-neon/10 py-16">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Origin Story</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">The FreightRoll Heritage</h2>
-          <p className="text-lg text-steel mb-10 max-w-2xl">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Origin Story</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
+            The FreightRoll Heritage
+          </h2>
+          <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl mb-10">
             We didn't start with code. We started with math. Thousands of simulations before a single production deployment.
           </p>
 
@@ -65,13 +63,13 @@ export default function AboutPage() {
       </section>
 
       {/* The Rebrand */}
-      <section className="border-t border-neon/10 py-16 bg-carbon/20">
+      <section className="py-16 bg-carbon/20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
-              <p className="text-xs uppercase tracking-[0.25em] text-ember/70 mb-3">Why the Rename</p>
-              <h2 className="text-3xl font-bold tracking-tight text-white mb-4">FreightRoll → YardFlow</h2>
-              <p className="text-[17px] text-steel leading-8 mb-4">
+              <p className="text-xs uppercase tracking-[0.25em] text-ember/70">Why the Rename</p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">FreightRoll → YardFlow</h2>
+              <p className="mt-4 text-[17px] text-steel leading-8">
                 <span className="text-white font-medium">FreightRoll</span> started with yard execution and carrier coordination. We proved the economics with Primo and Singularity simulations.
               </p>
               <p className="text-[17px] text-steel leading-8 mb-4">
@@ -116,11 +114,11 @@ export default function AboutPage() {
       </section>
 
       {/* Who It's For */}
-      <section className="border-t border-neon/10 py-16">
+      <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Target Operators</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">Who It's For</h2>
-          <p className="text-lg text-steel mb-10 max-w-2xl">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Target Operators</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">Who It's For</h2>
+          <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl mb-10">
             Enterprise shippers with 10+ facilities. Operators who see variance as a P&L problem, not a scheduling nuisance.
           </p>
 
@@ -141,10 +139,10 @@ export default function AboutPage() {
       </section>
 
       {/* Principles */}
-      <section className="border-t border-neon/10 py-16 bg-carbon/20">
+      <section className="py-16 bg-carbon/20">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">How We Build</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-10">Operating Principles</h2>
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">How We Build</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white mb-10">Operating Principles</h2>
           
           <div className="grid gap-6 md:grid-cols-3">
             <div className="rounded-xl border border-neon/10 bg-carbon/50 p-5">
@@ -170,16 +168,16 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-neon/10 py-20">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Next Step</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+      <section className="py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Next Step</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
             See the Simulations in Action
           </h2>
-          <p className="text-lg text-steel mb-8 max-w-2xl mx-auto">
+          <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl">
             Run the network diagnostic. See where variance costs you. Get the playbook to fix it.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/diagnostic"
               className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition"

@@ -10,12 +10,13 @@ export default function PrivacyPage() {
     <div className="min-h-screen bg-void">
       <Header />
 
-      <section className="pt-32 pb-16 border-b border-neon/20">
+      <section className="pt-32 pb-12">
         <div className="max-w-5xl mx-auto px-6">
-          <h1 className="text-4xl md:text-6xl font-black mb-4">
-            Privacy <span className="neon-glow">Policy</span>
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Legal</p>
+          <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
+            Privacy Policy
           </h1>
-          <p className="text-steel">Last updated: Jan 1, 2026</p>
+          <p className="mt-4 text-steel">Last updated: Jan 1, 2026</p>
         </div>
       </section>
 

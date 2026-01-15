@@ -69,16 +69,16 @@ export default function RiskPage() {
       <Header />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 border-b border-neon/10">
+      <section className="pt-32 pb-12">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-ember/70 mb-3">Cargo Security</p>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Cargo Security</p>
+          <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
             The $30B Problem Starts at the Gate
           </h1>
-          <p className="text-xl text-steel max-w-2xl leading-relaxed mb-10">
+          <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
             Cargo theft costs the industry $15B-$30B globally. Most incidents start at the gate. Fraudulent carriers, fake credentials, unauthorized access—preventable if you verify identity before granting access.
           </p>
-          <div className="flex flex-wrap gap-4">
+          <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-white transition"
@@ -96,11 +96,11 @@ export default function RiskPage() {
       </section>
 
       {/* Threat Landscape */}
-      <section className="border-t border-neon/10 py-16">
+      <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-ember/70 mb-3">The Threat</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">What You're Up Against</h2>
-          <p className="text-lg text-steel mb-10 max-w-2xl leading-relaxed">
+          <p className="text-xs uppercase tracking-[0.25em] text-ember/70">The Threat</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">What You're Up Against</h2>
+          <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl mb-10">
             Cargo theft is organized, sophisticated, and targeting your gate. Manual verification doesn't scale.
           </p>
 
@@ -121,11 +121,11 @@ export default function RiskPage() {
       </section>
 
       {/* Control Layer */}
-      <section className="border-t border-neon/10 py-16 bg-carbon/20">
+      <section className="py-16 bg-carbon/20">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">The Control Layer</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">How YardFlow Stops It</h2>
-          <p className="text-lg text-steel mb-10 max-w-2xl leading-relaxed">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">The Control Layer</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">How YardFlow Stops It</h2>
+          <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl mb-10">
             Multi-layered verification. System-enforced access. Every decision defensible.
           </p>
 

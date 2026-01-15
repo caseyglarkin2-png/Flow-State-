@@ -76,20 +76,20 @@ export default function ResourcesPage() {
         <div className="mx-auto max-w-6xl px-6">
           {/* Hero */}
           <section className="mb-16">
-            <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Resource Library</p>
-            <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+            <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Resource Library</p>
+            <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
               Operational Intel for Yard Leaders
             </h1>
-            <p className="text-xl text-steel max-w-2xl leading-relaxed">
+            <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
               No fluff. No theory. Actionable frameworks from operators who've reduced dwell, cut theft exposure, and scaled yard operations.
             </p>
           </section>
 
           {/* Guides */}
-          <section className="border-t border-neon/10 py-16">
-            <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Guides</p>
-            <h2 className="text-3xl font-bold tracking-tight text-white mb-4">Deep-Dive Frameworks</h2>
-            <p className="text-lg text-steel mb-10 max-w-2xl">Specific operational challenges. Structured solutions.</p>
+          <section className="py-16">
+            <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Guides</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">Deep-Dive Frameworks</h2>
+            <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl mb-10">Specific operational challenges. Structured solutions.</p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {guides.map((g) => (
@@ -113,10 +113,10 @@ export default function ResourcesPage() {
           </section>
 
           {/* Field Notes */}
-          <section className="border-t border-neon/10 py-16">
-            <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Field Notes</p>
-            <h2 className="text-3xl font-bold tracking-tight text-white mb-4">From the Network</h2>
-            <p className="text-lg text-steel mb-10 max-w-2xl">Anonymized patterns. Real data. What moves the needle.</p>
+          <section className="py-16">
+            <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Field Notes</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">From the Network</h2>
+            <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl mb-10">Anonymized patterns. Real data. What moves the needle.</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {fieldNotes.map((fn) => (
@@ -134,10 +134,10 @@ export default function ResourcesPage() {
           </section>
 
           {/* Interactive Tools */}
-          <section className="border-t border-neon/10 py-16">
-            <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Interactive Tools</p>
-            <h2 className="text-3xl font-bold tracking-tight text-white mb-4">Simulations & Calculators</h2>
-            <p className="text-lg text-steel mb-10 max-w-2xl">Model your network. See the numbers.</p>
+          <section className="py-16">
+            <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Interactive Tools</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">Simulations & Calculators</h2>
+            <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl mb-10">Model your network. See the numbers.</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {simulations.map((s) => (

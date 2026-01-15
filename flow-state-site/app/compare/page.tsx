@@ -11,13 +11,13 @@ export default function CompareIndexPage() {
       <Header />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 border-b border-neon/10">
+      <section className="pt-32 pb-12">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Operating Model</p>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Operating Model</p>
+          <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
             Recording vs Enforcing
           </h1>
-          <p className="text-xl text-steel max-w-2xl leading-relaxed mb-10">
+          <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed mb-10">
             This isn't feature-bingo. It's: do you have a control loop, and can you make timestamps defensible?
           </p>
 
@@ -26,11 +26,11 @@ export default function CompareIndexPage() {
       </section>
 
       {/* Operating Model Comparison */}
-      <section className="border-t border-neon/10 py-16 bg-carbon/20">
+      <section className="py-16 bg-carbon/20">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">The Difference</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">Legacy Records. YardFlow Enforces.</h2>
-          <p className="text-lg text-steel mb-10 max-w-2xl leading-relaxed">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">The Difference</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">Legacy Records. YardFlow Enforces.</h2>
+          <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl mb-10">
             Legacy YMS records events after they happen. YardFlow enforces what happens next.
           </p>
           <OperatingModelComparison />
@@ -65,16 +65,16 @@ export default function CompareIndexPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-neon/10 py-16 bg-carbon/20">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Next Step</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+      <section className="py-16 bg-carbon/20">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Next Step</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
             Get Board-Ready Artifacts
           </h2>
-          <p className="text-lg text-steel mb-8 max-w-xl mx-auto leading-relaxed">
+          <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl">
             YardBuilder report or ROI PDF. Designed to forward internally.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/yardbuilder"
               className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-white transition"

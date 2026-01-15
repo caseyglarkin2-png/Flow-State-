@@ -8,12 +8,13 @@ export default function ChangelogPage() {
     <div className="min-h-screen bg-void">
       <Header />
 
-      <section className="pt-32 pb-16 border-b border-neon/20">
+      <section className="pt-32 pb-12">
         <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-5xl md:text-7xl font-black mb-6">
-            Change<span className="neon-glow">log</span>
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Product Updates</p>
+          <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
+            Changelog
           </h1>
-          <p className="text-xl text-steel max-w-3xl">
+          <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
             We share detailed release notes with customers (including rollout notes and operational impact). Public
             changelog is available on request.
           </p>

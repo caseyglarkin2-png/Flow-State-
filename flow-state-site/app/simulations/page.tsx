@@ -16,12 +16,13 @@ export default function SimulationsPage() {
       <Header />
       <main className="min-h-screen bg-void pt-32">
       {/* Hero */}
-      <section className="border-b border-steel/20 bg-gradient-to-b from-carbon to-void py-20">
+      <section className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-5xl font-black text-white md:text-7xl">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Research Foundation</p>
+          <h1 className="mt-3 text-5xl font-black tracking-tight text-white md:text-7xl">
             Simulations
           </h1>
-          <p className="mt-4 max-w-3xl text-lg text-steel">
+          <p className="mt-4 max-w-2xl text-xl text-steel leading-relaxed">
             Before building YardFlow, FreightRoll ran thousands of simulations to understand yard dynamics and network effects. Primo modeled individual facilities. Singularity modeled enterprise networks. Both validated the economics that power YardFlow today.
           </p>
         </div>

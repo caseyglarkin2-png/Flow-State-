@@ -17,16 +17,16 @@ export default function DiagnosticPage() {
       <Header />
 
       {/* Hero */}
-      <section className="pt-32 pb-12 border-b border-neon/10">
+      <section className="pt-32 pb-12">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-ember/70 mb-3">60-Second Assessment</p>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">60-Second Assessment</p>
+          <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
             Find the Leak.
           </h1>
-          <p className="text-xl text-steel max-w-2xl leading-relaxed">
+          <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
             9 questions. Your hidden yard costs. Top leak drivers. Cost of delay. Instantly.
           </p>
-          <p className="text-sm text-steel/50 mt-4">No forms. No sales call. Just numbers.</p>
+          <p className="mt-2 text-sm text-steel/50">No forms. No sales call. Just numbers.</p>
         </div>
       </section>
 
@@ -56,16 +56,16 @@ export default function DiagnosticPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-neon/10 py-16">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Next Step</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+      <section className="py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Next Step</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
             See the Full Picture
           </h2>
-          <p className="text-lg text-steel mb-8 max-w-xl mx-auto leading-relaxed">
+          <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl">
             This diagnostic shows single-site costs. See how YNS reduces leak across your entire network.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/product"
               className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-white transition"

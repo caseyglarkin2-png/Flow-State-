@@ -302,14 +302,14 @@ export default function NetworkEffectPage() {
       <Header />
 
       {/* Hook + reframe */}
-      <section className="pt-32 pb-16 border-b border-neon/10">
+      <section className="pt-32 pb-12">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-ember/70 mb-3">After You Stop the Bleeding</p>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">After You Stop the Bleeding</p>
+          <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
             Cut the Leak at One Site.<br />
             <span className="text-neon">Watch It Compound.</span>
           </h1>
-          <p className="text-xl text-steel max-w-3xl">
+          <p className="mt-4 text-xl text-steel max-w-3xl leading-relaxed">
             Each facility you instrument eliminates local friction. But when you connect them, 
             the savings multiply: standardized playbooks, faster rollouts, network-wide visibility.
           </p>

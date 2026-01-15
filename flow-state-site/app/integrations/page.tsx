@@ -9,13 +9,13 @@ export default function IntegrationsPage() {
       <Header />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 border-b border-neon/10">
+      <section className="pt-32 pb-12">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Integrations</p>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Integrations</p>
+          <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
             Fit Into Enterprise Reality.
           </h1>
-          <p className="text-xl text-steel max-w-2xl leading-relaxed">
+          <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
             Partial data. Mixed systems. Operational nuance. We integrate around the workflow, not the other way around.
           </p>
         </div>
@@ -52,18 +52,18 @@ export default function IntegrationsPage() {
       </section>
 
       {/* Data Model */}
-      <section className="border-t border-neon/10 py-16 bg-carbon/20">
+      <section className="py-16 bg-carbon/20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
-              <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Data Model</p>
-              <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+              <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Data Model</p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
                 Ground Source Truth
               </h2>
-              <p className="text-lg text-steel leading-relaxed mb-4">
+              <p className="mt-4 text-[17px] text-steel leading-8">
                 We normalize to an operational truth layer: facilities, visits, assets, timestamps, and exception reasons.
               </p>
-              <p className="text-lg text-steel leading-relaxed">
+              <p className="mt-4 text-[17px] text-steel leading-8">
                 That makes network-level analytics possible without fragile one-off mappings. Your data stays yours. We just make it usable.
               </p>
             </div>

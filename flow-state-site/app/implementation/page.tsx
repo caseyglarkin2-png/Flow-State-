@@ -79,14 +79,14 @@ export default function ImplementationPage() {
       <Header />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 border-b border-neon/10">
+      <section className="pt-32 pb-12">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Implementation</p>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Implementation</p>
+          <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
             Site 40 Deploys in 3 Weeks.<br />
             <span className="text-neon">Site 1 Took 8.</span>
           </h1>
-          <p className="text-xl text-steel max-w-2xl leading-relaxed mb-10">
+          <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed mb-10">
             We mapped 6 yard archetypes. Each has a different workflow + config. You get a rollout plan that sequences deployment, resource requirements, and expected ROI curve.
           </p>
 
@@ -108,13 +108,13 @@ export default function ImplementationPage() {
       </section>
 
       {/* Archetypes */}
-      <section className="border-t border-neon/10 py-16">
+      <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Yard Archetypes</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Yard Archetypes</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
             Your Facilities Aren't Identical. Neither Is the Rollout.
           </h2>
-          <p className="text-lg text-steel mb-10 max-w-2xl leading-relaxed">
+          <p className="mt-4 text-[17px] text-steel leading-8 mb-10 max-w-2xl">
             Each archetype has different module prioritization, integration requirements, and deployment timeline.
           </p>
 
@@ -154,10 +154,10 @@ export default function ImplementationPage() {
       </section>
 
       {/* Process */}
-      <section className="border-t border-neon/10 py-16 bg-carbon/20">
+      <section className="py-16 bg-carbon/20">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">The Process</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-10">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">The Process</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white mb-10">
             How Rollout Works
           </h2>
 
@@ -179,10 +179,10 @@ export default function ImplementationPage() {
       </section>
 
       {/* What You Get */}
-      <section className="border-t border-neon/10 py-16">
+      <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Deliverables</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-10">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Deliverables</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white mb-10">
             What You Get at Each Phase
           </h2>
 
@@ -228,16 +228,16 @@ export default function ImplementationPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-neon/10 py-20">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Next Step</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+      <section className="py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Next Step</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
             Get Your Network Rollout Plan
           </h2>
-          <p className="text-lg text-steel mb-8 max-w-2xl mx-auto">
+          <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl">
             30 minutes. Facility audit. Archetype mapping. Sequenced deployment plan.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-white transition"
