@@ -94,18 +94,42 @@ User sees logo → Header/Footer loads → Renders from BrandLogo.tsx
 
 ## What Was Fixed Today
 
-### Issue #1: OG Image Duplicate Headline ✅ FIXED
-**Problem**: "Control Is The Hero." appeared twice in OG image  
-**Location**: `/app/api/og/route.tsx` lines 207-228  
-**Fix**: Removed duplicate span, kept clean single line  
-**Verification**: `grep "Control Is The Hero" app/api/og/route.tsx` → 1 result ✓
+### Issue #1: Brand Relationship Standardization ✅ FIXED
+**Problem**: Multiple brand lockup formats across site ("powered by", "by FreightRoll", "A FreightRoll product")  
+**Solution**: Standardized to single canonical lockup  
+**Changes**:
+- Added `BRAND` constant to `lib/branding.ts` as single source of truth
+- Updated Header: "powered by FreightRoll" → "by FreightRoll"
+- Removed duplicate footer text (copyright line has lockup)
+- Updated all metadata: authors, creator, OG tags
+- **Commits**: `68f3088`, `b26d1ed`
 
-### Issue #2: Brand System Incomplete ✅ VERIFIED COMPLETE
-**Status**: Already fixed in previous sessions  
-- Logo centralized ✓
-- Metadata centralized ✓
-- Footer navigation synced ✓
-- All builds successful ✓
+### Issue #2: Favicon Branding ✅ FIXED
+**Problem**: Favicons used old branding ("Flow State"), wrong design
+**Solution**: Updated to correct `flow_micro` variant + proper color
+**Changes**:
+- favicon.svg now uses `flow_micro` design (simplified node structure, no outer ring)
+- Color changed to YardFlow Blue (#2563eb)
+- Regenerated all formats: .ico, .png (16/32/48/180/192/512)
+- Updated manifest.json for PWA support
+- **Commit**: `58af666`
+
+### Issue #3: OG Image Typography ✅ FIXED
+**Problem**: OG image used system fonts instead of Inter
+**Solution**: Generated with Satori + proper font loading
+**Changes**:
+- Uses Inter font weights (600, 700, 800) from Google Fonts
+- Created `scripts/generate-og-inter.js` for future regeneration
+- OG image now matches site typography exactly
+- **Commit**: `6338e98`
+
+### Issue #4: Slack/Social Unfurls ✅ FIXED
+**Problem**: Slack showed old/cached OG image
+**Solution**: Switched to static /og.png for reliability
+**Changes**:
+- OG meta tags point to `/og.png` instead of `/api/og`
+- Added proper icon metadata config in `app/layout.tsx`
+- **Commit**: `ab80a79`
 
 ---
 
@@ -114,11 +138,12 @@ User sees logo → Header/Footer loads → Renders from BrandLogo.tsx
 ### Before Clicking "Deploy"
 - [x] Build successful: `npm run build` passes
 - [x] Zero TypeScript errors
-- [x] All 57 pages compile
-- [x] Logo displays correctly (flow_v2 active)
-- [x] OG image: No duplicate text, clean rendering
+- [x] All pages compile
+- [x] Brand standardized: "YardFlow by FreightRoll" everywhere
+- [x] Favicon: flow_micro with YardFlow Blue (#2563eb)
+- [x] OG image: Inter font, correct lockup, social-ready
 - [x] Metadata: Using SITE_METADATA from lib/branding.ts
-- [x] Navigation: Header and Footer match
+- [x] Navigation: Header and Footer synced
 
 ### Deploy Command
 ```bash
@@ -127,12 +152,13 @@ npm run build && vercel deploy --prod
 ```
 
 ### Post-Deploy Verification (5 minutes)
-1. Visit https://yardflow.ai - should look good
-2. Share on LinkedIn - OG image should show (1200x630)
-3. Check favicon - should show flow_v2 logo
-4. Visit /logo-preview - should show flow_v2 as active variant
+1. Visit https://flow-state-klbt.vercel.app - brand looks professional
+2. Share on Slack - new OG image shows with Inter font
+3. Check favicon - flow_micro design, YardFlow Blue color
+4. Visit browser dev tools (F12) - check `<meta og:*>` tags
+5. Test on mobile - apple-touch-icon displays correctly
 
-**Expected result**: Everything loads, no errors, brand looks professional
+**Expected result**: All brand assets consistent, professional appearance
 
 ---
 
@@ -141,11 +167,11 @@ npm run build && vercel deploy --prod
 ### Scenario 1: "I want to change the logo"
 **Solution**: Edit `lib/branding.ts`, line 3
 ```tsx
-DEFAULT_VARIANT: 'flow_v2'  // Change to: 'flow', 'nexus', 'signal', etc.
+DEFAULT_VARIANT: 'flow_v2'  // Change to: 'flow', 'flow_micro', 'nexus', 'signal', etc.
 ```
 **Then**: `npm run build && vercel deploy --prod`  
 **Time**: 5 minutes  
-**Affected**: Everywhere (Header, Footer, OG, Favicon)
+**Affected**: Everywhere (Header, Footer, OG image - NOT favicon, it's flow_micro only)
 
 ### Scenario 2: "I want to update the social message"
 **Solution**: Edit `lib/branding.ts`, lines 95-110

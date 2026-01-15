@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="YardFlow by FreightRoll">
   <title>YardFlow by FreightRoll</title>
-  <!-- Minimal network-effect mark for small sizes -->
-  <circle cx="16" cy="16" r="12" fill="none" stroke="#00B4FF" stroke-width="1.6" stroke-opacity="0.35" />
-  <path
-    d="M16 16 L16 8 M16 16 L24 19 M16 16 L8 19"
-    fill="none"
-    stroke="#00B4FF"
-    stroke-width="2"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    stroke-opacity="0.9"
-  />
-  <circle cx="16" cy="8" r="2.1" fill="#00B4FF" />
-  <circle cx="24" cy="19" r="2.1" fill="#00B4FF" />
-  <circle cx="8" cy="19" r="2.1" fill="#00B4FF" />
-  <circle cx="16" cy="16" r="2.8" fill="#00B4FF" />
+  <!-- flow_micro: Simplified node structure without outer ring -->
+  <!-- YardFlow Blue: #2563eb -->
+  <path d="M12 24 C15 24, 16 22, 18 20" stroke="#2563eb" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M18 28 C18 24, 18 22, 18 20" stroke="#2563eb" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M18 20 C20 18, 22 18, 26 22" stroke="#2563eb" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <circle cx="12" cy="24" r="2" fill="#2563eb"/>
+  <circle cx="18" cy="28" r="2" fill="#2563eb"/>
+  <circle cx="26" cy="22" r="2" fill="#2563eb"/>
+  <circle cx="18" cy="20" r="2.25" fill="#2563eb"/>
 </svg>
