@@ -146,18 +146,18 @@ export default function RiskPage() {
       </section>
 
       {/* Compliance */}
-      <section className="border-t border-neon/10 py-16">
+      <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             <div>
-              <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Compliance</p>
-              <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+              <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Compliance</p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
                 CTPAT & TSA Ready
               </h2>
-              <p className="text-lg text-steel leading-relaxed mb-4">
+              <p className="mt-4 text-[17px] text-steel leading-8">
                 Compliance isn't just about passing audits—it's about reducing insurance premiums, winning contracts, and defending claims.
               </p>
-              <p className="text-lg text-steel leading-relaxed">
+              <p className="mt-4 text-[17px] text-steel leading-8">
                 YardFlow produces the audit trail these programs require without manual documentation effort.
               </p>
             </div>
@@ -176,16 +176,16 @@ export default function RiskPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-neon/10 py-20">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Next Step</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+      <section className="py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Next Step</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
             Get a Security Assessment
           </h2>
-          <p className="text-lg text-steel mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl">
             We'll audit your current gate security, identify control gaps, and model the ROI on theft prevention.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-white transition"

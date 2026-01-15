@@ -45,7 +45,7 @@ export default function CaseStudiesIndexPage() {
       </section>
 
       {/* Cases Grid */}
-      <section className="border-t border-neon/10 py-16">
+      <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {CASES.map((cs) => (
@@ -90,16 +90,16 @@ export default function CaseStudiesIndexPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-neon/10 py-16 bg-carbon/20">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Next Step</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+      <section className="py-16 bg-carbon/20">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Next Step</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
             See Your Numbers
           </h2>
-          <p className="text-lg text-steel mb-8 max-w-xl mx-auto leading-relaxed">
+          <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl">
             Run the diagnostic. Build the ROI model. Get the board-ready artifact.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap gap-4">
             <Link
               href="/diagnostic"
               className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-white transition"

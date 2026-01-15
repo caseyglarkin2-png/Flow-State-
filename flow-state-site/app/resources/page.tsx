@@ -157,16 +157,16 @@ export default function ResourcesPage() {
           </section>
 
           {/* Procurement */}
-          <section className="border-t border-neon/10 py-16">
+          <section className="py-16">
             <div className="rounded-2xl border border-neon/20 bg-carbon/50 p-8">
-              <p className="text-xs uppercase tracking-[0.25em] text-ember/70 mb-3">Procurement Resources</p>
-              <h2 className="text-2xl font-bold tracking-tight text-white mb-4">Evidence Vault</h2>
-              <p className="text-lg text-steel mb-6 max-w-2xl leading-relaxed">
+              <p className="text-xs uppercase tracking-[0.25em] text-ember/70">Procurement Resources</p>
+              <h2 className="mt-3 text-2xl font-bold tracking-tight text-white">Evidence Vault</h2>
+              <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl">
                 Security posture. Compliance documentation. DPAs. SOC 2 roadmap. Everything procurement needs.
               </p>
               <Link
                 href="/resources/procurement"
-                className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-white transition"
+                className="mt-6 inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-white transition"
               >
                 Open Evidence Vault
               </Link>

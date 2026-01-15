@@ -27,7 +27,7 @@ export default function PricingPage() {
       </section>
 
       {/* Pricing Cards */}
-      <section className="border-t border-neon/10 py-16">
+      <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid lg:grid-cols-2 gap-8">
             <div className="rounded-2xl border border-neon/20 bg-carbon/50 p-8">

@@ -146,7 +146,7 @@ export default function GuidesIndexPage() {
         </section>
 
         {/* Guides Grid */}
-        <section className="py-20 border-t border-neon/10">
+        <section className="py-20">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
               className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"

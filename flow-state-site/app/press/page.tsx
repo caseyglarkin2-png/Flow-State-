@@ -22,7 +22,7 @@ export default function PressPage() {
       </section>
 
       {/* Assets */}
-      <section className="border-t border-neon/10 py-16">
+      <section className="py-16">
         <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="rounded-2xl border border-neon/20 bg-carbon/50 p-6">
             <p className="text-xs uppercase tracking-[0.1em] text-neon/70 font-semibold mb-2">Copy</p>
@@ -51,13 +51,13 @@ export default function PressPage() {
       </section>
 
       {/* Accuracy Note */}
-      <section className="border-t border-neon/10 py-16 bg-carbon/20">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-ember/70 mb-3">Accuracy</p>
-          <h2 className="text-2xl font-bold tracking-tight text-white mb-4">
+      <section className="py-16 bg-carbon/20">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-ember/70">Accuracy</p>
+          <h2 className="mt-3 text-2xl font-bold tracking-tight text-white">
             No Unverified Claims
           </h2>
-          <p className="text-lg text-steel max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl">
             We don't publish customer logos, compliance attestations, or performance metrics unless explicitly approved and verifiable. For validation materials, use the Evidence Vault or contact us.
           </p>
         </div>

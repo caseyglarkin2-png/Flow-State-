@@ -27,18 +27,18 @@ export default function SolutionsOverviewPage() {
         </div>
 
         {/* The Volatility Tax */}
-        <section className="border-t border-neon/10 py-16">
+        <section className="py-16">
           <div className="mx-auto max-w-6xl px-6">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div>
-                <p className="text-xs uppercase tracking-[0.25em] text-ember/70 mb-3">The Problem</p>
-                <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+                <p className="text-xs uppercase tracking-[0.25em] text-ember/70">The Problem</p>
+                <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
                   The Volatility Tax
                 </h2>
-                <p className="text-lg text-steel leading-relaxed mb-6">
+                <p className="mt-4 text-[17px] text-steel leading-8">
                   Your yard is where trucking market swings become P&L events. Detention spikes. Labor scrambles. Missed cutoffs. Carrier penalties. Every manual process is a variance generator.
                 </p>
-                <p className="text-[17px] text-steel leading-8">
+                <p className="mt-4 text-[17px] text-steel leading-8">
                   Most operators accept this as the cost of doing business. They optimize around the chaos instead of eliminating it. That works until spot rates flip, volume surges, or your best shift lead quits.
                 </p>
                 <p className="text-[17px] text-steel leading-8 mt-4">
@@ -61,13 +61,13 @@ export default function SolutionsOverviewPage() {
         </section>
 
         {/* Archetypes Grid */}
-        <section className="border-t border-neon/10 py-16 bg-carbon/20">
+        <section className="py-16 bg-carbon/20">
           <div className="mx-auto max-w-6xl px-6">
-            <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">By Operating Context</p>
-            <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+            <p className="text-xs uppercase tracking-[0.25em] text-neon/70">By Operating Context</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
               Five Archetypes. Same Standards.
             </h2>
-            <p className="text-lg text-steel mb-10 max-w-2xl">
+            <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl mb-10">
               Pick your context. The constraints differ. The playbook stays consistent.
             </p>
 
@@ -122,13 +122,13 @@ export default function SolutionsOverviewPage() {
         </section>
 
         {/* Standards that Apply Everywhere */}
-        <section className="border-t border-neon/10 py-16">
+        <section className="py-16">
           <div className="mx-auto max-w-6xl px-6">
-            <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Core Standards</p>
-            <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+            <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Core Standards</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
               Standards That Apply Everywhere
             </h2>
-            <p className="text-lg text-steel mb-10 max-w-2xl">
+            <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl mb-10">
               Regardless of archetype, YardFlow enforces the same foundation.
             </p>
 
@@ -150,7 +150,7 @@ export default function SolutionsOverviewPage() {
         </section>
 
         {/* What Procurement Needs */}
-        <section className="border-t border-neon/10 py-16 bg-carbon/20">
+        <section className="py-16 bg-carbon/20">
           <div className="mx-auto max-w-6xl px-6">
             <div className="rounded-2xl border border-neon/20 bg-void/50 p-8">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -175,15 +175,15 @@ export default function SolutionsOverviewPage() {
         </section>
 
         {/* CTA */}
-        <section className="border-t border-neon/10 py-20">
-          <div className="mx-auto max-w-4xl px-6 text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+        <section className="py-20">
+          <div className="mx-auto max-w-6xl px-6">
+            <h2 className="text-3xl font-bold tracking-tight text-white">
               Stop Paying the Volatility Tax
             </h2>
-            <p className="text-lg text-steel mb-8 max-w-2xl mx-auto">
+            <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl">
               Run the diagnostic. See where variance costs you. Get the playbook to fix it.
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 href="/diagnostic"
                 className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition"

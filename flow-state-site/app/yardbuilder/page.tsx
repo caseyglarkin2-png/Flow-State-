@@ -111,11 +111,11 @@ export default function YardBuilderPage() {
       </section>
 
       {/* What You Get */}
-      <section className="border-t border-neon/10 py-16">
+      <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Deliverables</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">What's Included</h2>
-          <p className="text-lg text-steel mb-10 max-w-2xl leading-relaxed">Comprehensive facility analysis delivered by our operations team.</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Deliverables</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">What's Included</h2>
+          <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl mb-10">Comprehensive facility analysis delivered by our operations team.</p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {deliverables.map((item) => (
@@ -132,10 +132,10 @@ export default function YardBuilderPage() {
       </section>
 
       {/* How It Works */}
-      <section className="border-t border-neon/10 py-16">
+      <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Process</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-10">How It Works</h2>
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Process</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white mb-10">How It Works</h2>
           
           <div className="grid md:grid-cols-4 gap-6">
             {process.map((item, idx) => (
@@ -340,7 +340,7 @@ export default function YardBuilderPage() {
       </section>
 
       {/* Alternative CTAs */}
-      <section className="py-16 border-t border-neon/10">
+      <section className="py-16">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-6">
             <Card className="border-neon/20">

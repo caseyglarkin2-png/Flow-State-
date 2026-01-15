@@ -38,7 +38,7 @@ export default function CompareIndexPage() {
       </section>
 
       {/* Comparison Links */}
-      <section className="border-t border-neon/10 py-16">
+      <section className="py-16">
         <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="rounded-2xl border border-neon/20 bg-carbon/50 p-6">
             <p className="text-xs uppercase tracking-[0.1em] text-neon/70 font-semibold mb-2">Deep Dive</p>

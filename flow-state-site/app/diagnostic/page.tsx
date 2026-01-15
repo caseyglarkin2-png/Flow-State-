@@ -31,18 +31,18 @@ export default function DiagnosticPage() {
       </section>
 
       {/* Diagnostic Calculator */}
-      <section className="border-t border-neon/10 py-16">
+      <section className="py-16">
         <div className="mx-auto max-w-4xl px-6">
           <DiagnosticCalculator />
         </div>
       </section>
 
       {/* Methodology Note */}
-      <section className="border-t border-neon/10 py-12 bg-carbon/20">
+      <section className="py-12 bg-carbon/20">
         <div className="mx-auto max-w-4xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Methodology</p>
-          <h3 className="text-lg font-bold text-white mb-4">How We Calculate Your Network Leak</h3>
-          <p className="text-steel text-sm leading-relaxed mb-4">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Methodology</p>
+          <h3 className="mt-3 text-lg font-bold text-white">How We Calculate Your Network Leak</h3>
+          <p className="mt-4 text-steel text-sm leading-relaxed">
             Industry benchmarks + your operational inputs = modeled hidden costs. Detention rates assume $75/occurrence based on dwell time thresholds. OT calculations use $45/hr loaded cost. Exception handling assumes 15 min extra per exception load. All outputs are estimates.
           </p>
           <p className="text-steel/50 text-xs">

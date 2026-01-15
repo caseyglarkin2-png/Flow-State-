@@ -99,7 +99,7 @@ function QualifyContent({ intent }: QualifyContentProps) {
       </section>
 
       {/* Main Content */}
-      <section className="border-t border-neon/10 py-16">
+      <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* What You Get */}

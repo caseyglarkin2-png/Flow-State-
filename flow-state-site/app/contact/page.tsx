@@ -63,8 +63,8 @@ export default async function ContactPage({ searchParams }: Props) {
 
             {/* What Happens Next */}
             <div>
-              <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">The Call</p>
-              <h2 className="text-2xl font-bold tracking-tight text-white mb-6">What Happens Next</h2>
+              <p className="text-xs uppercase tracking-[0.25em] text-neon/70">The Call</p>
+              <h2 className="mt-3 text-2xl font-bold tracking-tight text-white mb-6">What Happens Next</h2>
               <div className="space-y-4">
                 <div className="rounded-xl border border-neon/20 bg-carbon/50 p-4 flex gap-4">
                   <div className="flex-shrink-0 w-8 h-8 rounded-full bg-neon/10 flex items-center justify-center font-bold text-neon text-sm">
@@ -111,7 +111,7 @@ export default async function ContactPage({ searchParams }: Props) {
       </section>
 
       {/* Alternative Contact */}
-      <section className="py-12 border-t border-neon/10">
+      <section className="py-12">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <h3 className="text-lg font-semibold mb-4">Other Ways to Reach Us</h3>
           <div className="flex flex-wrap justify-center gap-6 text-sm">

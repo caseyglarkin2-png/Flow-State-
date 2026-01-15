@@ -24,7 +24,7 @@ export default function AboutPage() {
       </section>
 
       {/* Heritage */}
-      <section className="border-t border-neon/10 py-16">
+      <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Origin Story</p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">

@@ -71,7 +71,7 @@ export default function FaqPage() {
       </section>
 
       {/* FAQ Grid */}
-      <section className="border-t border-neon/10 py-16">
+      <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {faqs.map((f, idx) => (
@@ -89,18 +89,18 @@ export default function FaqPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-neon/10 py-16 bg-carbon/20">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <p className="text-xs uppercase tracking-[0.25em] text-ember/70 mb-3">Still Blocked?</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+      <section className="py-16 bg-carbon/20">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-ember/70">Still Blocked?</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
             Send Your Questions
           </h2>
-          <p className="text-lg text-steel mb-8 max-w-xl mx-auto leading-relaxed">
+          <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl">
             Security, privacy, implementation, integrations—we respond with procurement-ready answers.
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-neon text-void hover:bg-white transition-all"
+            className="mt-8 inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-white transition"
           >
             Contact Sales
           </Link>
