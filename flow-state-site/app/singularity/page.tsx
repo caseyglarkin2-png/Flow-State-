@@ -450,21 +450,19 @@ export default function SingularityPage() {
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-12 w-full">
           {/* Network Intelligence Layer */}
           <div className="text-center mb-6">
-            <div className="inline-block px-4 py-2 rounded-full bg-neon/10 border border-neon/40 mb-4">
-              <span className="text-neon font-mono text-xs uppercase tracking-wider">Network Intelligence Layer</span>
-            </div>
-            <p className="text-sm text-steel/80 max-w-2xl mx-auto">
+            <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Network Intelligence Layer</p>
+            <p className="text-sm text-steel max-w-2xl mx-auto">
               Network intelligence is only possible when driver journey standardization and control loop enforcement are in place across all facilities.
             </p>
           </div>
 
           {/* Title */}
           <div className="text-center mb-8">
-            <h1 className="text-5xl md:text-7xl font-black mb-4 tracking-tight">
-              The <span className="neon-glow">Logistics Singularity</span>
+            <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-4">
+              The Logistics Singularity
             </h1>
-            <p className="text-xl text-steel max-w-3xl mx-auto">
-              Watch what happens when every facility in your network achieves YardFlow by FreightRoll.
+            <p className="text-xl text-steel max-w-2xl mx-auto leading-relaxed">
+              Every facility on YardFlow. Every timestamp defensible. Every pattern visible.
               <br />
               <span className="text-neon font-semibold">This is the point of no return.</span>
             </p>

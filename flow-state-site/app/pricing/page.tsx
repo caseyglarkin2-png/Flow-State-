@@ -3,8 +3,7 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Card from '@/components/Card';
-import NextSteps from '@/components/NextSteps';
+import Link from 'next/link';
 import { trackEvent } from '@/lib/analytics';
 
 export default function PricingPage() {
@@ -14,162 +13,197 @@ export default function PricingPage() {
     <div className="min-h-screen bg-void">
       <Header />
 
-      <section className="pt-32 pb-16 border-b border-neon/20">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-ember font-mono text-sm mb-4 tracking-wider uppercase">
-            Cost to cut the network leak
-          </p>
-          <h1 className="text-5xl md:text-7xl font-black mb-6">
-            Transparent <span className="neon-glow">Pricing</span>
+      {/* Hero */}
+      <section className="pt-32 pb-16 border-b border-neon/10">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-ember/70 mb-3">Stop the Variance Tax</p>
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+            Transparent Pricing
           </h1>
-          <p className="text-xl text-steel max-w-3xl mx-auto">
-            Simple, facility-based pricing. The subscription costs less than the network leak it eliminates.
+          <p className="text-xl text-steel max-w-2xl leading-relaxed">
+            Facility-based pricing. The subscription costs less than the variance it eliminates. No hidden fees. No per-transaction charges.
           </p>
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card>
-              <h2 className="text-2xl font-bold mb-3 text-neon">Subscription</h2>
-              <p className="text-steel mb-4">
-                <span className="text-white font-semibold">$5,000-$15,000</span> per facility per year.
-              </p>
-              <p className="text-sm text-steel/80">
-                Illustrative example: <span className="text-white">$8,000</span>/facility/year across <span className="text-white">100</span> facilities is
-                ~<span className="text-white">$800k</span>/year.
-              </p>
-              <div className="mt-6 flex flex-col sm:flex-row gap-3">
+      {/* Pricing Cards */}
+      <section className="border-t border-neon/10 py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid lg:grid-cols-2 gap-8">
+            <div className="rounded-2xl border border-neon/20 bg-carbon/50 p-8">
+              <p className="text-xs uppercase tracking-[0.1em] text-neon/70 font-semibold mb-2">Annual Subscription</p>
+              <h2 className="text-3xl font-bold text-white mb-2">$5,000–$15,000</h2>
+              <p className="text-steel mb-6">Per facility per year. Price depends on volume, complexity, and network size.</p>
+              <div className="rounded-lg border border-neon/10 bg-carbon/30 p-4 mb-6">
+                <p className="text-sm text-steel">
+                  Example: <span className="text-white font-semibold">$8,000</span>/facility × <span className="text-white font-semibold">100</span> facilities = <span className="text-neon font-semibold">$800K</span>/year
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-3">
                 <a
                   href="/contact"
-                  onClick={() => {
-                    trackEvent('pricing_cta_click', { cta: 'get_quote' });
-                    trackEvent('quote_requested', { source: 'pricing' });
-                  }}
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
+                  onClick={() => trackEvent('pricing_cta_click', { cta: 'get_quote' })}
+                  className="inline-flex items-center justify-center rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition"
                 >
-                  Get a quote
+                  Get a Quote
                 </a>
                 <a
                   href={calendlyUrl}
                   target="_blank"
                   rel="noreferrer"
-                  onClick={() => {
-                    trackEvent('pricing_demo_click', { source: 'pricing', calendlyUrl });
-                    trackEvent('demo_booked', { source: 'pricing', calendlyUrl });
-                  }}
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold border border-steel/30 text-white hover:border-neon/40 transition-colors"
+                  onClick={() => trackEvent('pricing_demo_click', { source: 'pricing' })}
+                  className="inline-flex items-center justify-center rounded-xl border border-neon/30 px-6 py-3 font-medium text-white hover:border-neon/50 transition"
                 >
-                  Book a demo
+                  Book a Demo
                 </a>
               </div>
-            </Card>
+            </div>
 
-            <Card>
-              <h2 className="text-2xl font-bold mb-3 text-neon">Implementation</h2>
-              <p className="text-steel mb-4">
-                <span className="text-white font-semibold">$2,500</span> per facility (one-time).
+            <div className="rounded-2xl border border-neon/20 bg-carbon/50 p-8">
+              <p className="text-xs uppercase tracking-[0.1em] text-neon/70 font-semibold mb-2">Implementation</p>
+              <h2 className="text-3xl font-bold text-white mb-2">$2,500</h2>
+              <p className="text-steel mb-6">Per facility (one-time). Includes rollout planning, configuration, and go-live support.</p>
+              <p className="text-[15px] text-steel leading-relaxed">
+                No surprises. Flat rate per site. Scales with your network. Typical enterprise rollout is staged, starting with pilot sites.
               </p>
-              <p className="text-sm text-steel/80">
-                Upfront implementation is modeled per facility across the applicant network.
-              </p>
-            </Card>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-            <Card>
-              <h3 className="text-xl font-bold text-neon mb-3">What’s included</h3>
-              <ul className="text-steel space-y-2 list-disc pl-5">
-                <li>Network-wide standard check-in/out workflows</li>
-                <li>Real-time ground-truth visibility for operations</li>
-                <li>Operational reporting and ROI measurement</li>
-                <li>Admin controls and facility onboarding tools</li>
-              </ul>
-              <p className="text-xs text-steel/70 mt-4">
-                Contract terms and support SLAs vary by enterprise requirements.
-              </p>
-            </Card>
-
-            <Card>
-              <h3 className="text-xl font-bold text-neon mb-3">Implementation scope</h3>
-              <ul className="text-steel space-y-2 list-disc pl-5">
-                <li>Facility rollout planning and enablement</li>
-                <li>Configuration per facility and go-live support</li>
-                <li>Process design for gate, yard, and dock teams</li>
-                <li>Success metrics and executive reporting setup</li>
-              </ul>
-              <p className="text-xs text-steel/70 mt-4">
-                Typical enterprise rollout is staged, starting with pilot sites.
-              </p>
-            </Card>
-          </div>
-
-          <div className="mt-10">
-            <Card className="border-neon/30">
-              <h3 className="text-xl font-bold text-neon mb-3">Add-ons</h3>
-              <ul className="text-steel space-y-2 list-disc pl-5">
-                <li>Enterprise integrations (TMS/WMS/YMS), SSO (roadmap), and custom reporting</li>
-                <li>Premium support / accelerated rollout</li>
-                <li>Hardware / on-site enablement (if required)</li>
-              </ul>
-            </Card>
-          </div>
-
-          <div className="mt-10">
-            <Card>
-              <h3 className="text-xl font-bold text-neon mb-3">Pricing FAQ</h3>
-              <div className="space-y-4 text-steel">
-                <div>
-                  <p className="font-semibold text-white">Why is pricing per facility?</p>
-                  <p className="text-sm text-steel/80">
-                    Implementation and operational value are realized at the facility edge. Per-facility pricing keeps the model
-                    transparent and aligns incentives toward full-network standardization.
-                  </p>
-                </div>
-                <div>
-                  <p className="font-semibold text-white">What contract term is assumed?</p>
-                  <p className="text-sm text-steel/80">
-                    Pricing is annual per facility. Enterprise terms and rollout schedules are finalized during procurement.
-                  </p>
-                </div>
-                <div>
-                  <p className="font-semibold text-white">Can we pilot before rolling out?</p>
-                  <p className="text-sm text-steel/80">
-                    Yes, pilots are encouraged. The ROI compounds as adoption expands across the network.
-                  </p>
-                </div>
-              </div>
-            </Card>
-          </div>
-
-          <div className="mt-10">
-            <Card className="border-neon/30">
-              <h3 className="text-xl font-bold text-neon mb-3">Why full-network adoption wins</h3>
-              <p className="text-steel">
-                Pricing is per facility, but operational leverage compounds across the network. Standardized check-in/out,
-                shared ground-truth, and consistent execution turn each additional facility into incremental ROI.
-              </p>
-              <p className="text-steel mt-4">
-                Run your network scenario in the ROI Calculator and adjust pricing directly in Pro Mode.
-              </p>
-              <div className="mt-6">
-                <a
-                  href="/roi"
-                  onClick={() => trackEvent('pricing_cta_click', { cta: 'roi_calculator' })}
-                  className="btn-neon-fill inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
-                >
-                  Open ROI Calculator
-                </a>
-              </div>
-            </Card>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <NextSteps title="Next best step" personaOverride="procurement" />
+      {/* What's Included */}
+      <section className="border-t border-neon/10 py-16 bg-carbon/20">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">What You Get</p>
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">Full Platform. No Surprises.</h2>
+          <p className="text-lg text-steel mb-10 max-w-2xl">
+            One subscription. All modules. Network-wide standardization out of the box.
+          </p>
+
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              { title: "Digital Guard", body: "Carrier verification, ID capture, credential validation at every gate." },
+              { title: "Digital Comms", body: "Lane-level driver messaging. Read receipts. No more excuses." },
+              { title: "Digital BOL", body: "Touchless documentation with forensic-grade timestamps." },
+              { title: "Digital YMS", body: "Real-time yard visibility. Dwell alerts. Network intelligence." },
+            ].map((item) => (
+              <div key={item.title} className="rounded-xl border border-neon/10 bg-carbon/50 p-5">
+                <div className="text-sm font-semibold text-white mb-2">{item.title}</div>
+                <p className="text-xs text-steel leading-relaxed">{item.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Implementation Scope */}
+      <section className="border-t border-neon/10 py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div>
+              <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Turnkey Deployment</p>
+              <h2 className="text-3xl font-bold tracking-tight text-white mb-4">Implementation Scope</h2>
+              <p className="text-lg text-steel leading-relaxed mb-6">
+                We don't hand you software and walk away. We deploy, configure, train, and measure.
+              </p>
+              <ul className="space-y-3 text-steel">
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1">→</span>
+                  <span>Facility rollout planning and enablement</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1">→</span>
+                  <span>Configuration per facility and go-live support</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1">→</span>
+                  <span>Process design for gate, yard, and dock teams</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1">→</span>
+                  <span>Success metrics and executive reporting setup</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1">→</span>
+                  <span>Training and change management</span>
+                </li>
+              </ul>
+            </div>
+            <div className="rounded-2xl border border-neon/20 bg-neon/5 p-6">
+              <p className="text-xs uppercase tracking-[0.1em] text-neon/70 font-semibold mb-2">Add-Ons Available</p>
+              <h3 className="text-xl font-bold text-white mb-4">Enterprise Extras</h3>
+              <ul className="space-y-2 text-steel text-[15px]">
+                <li>• TMS/WMS integrations (API or file-based)</li>
+                <li>• SSO and enterprise auth (roadmap)</li>
+                <li>• Custom reporting and dashboards</li>
+                <li>• Premium support / accelerated rollout</li>
+                <li>• Hardware / on-site enablement</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="border-t border-neon/10 py-16 bg-carbon/20">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Common Questions</p>
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-10">Pricing FAQ</h2>
+          
+          <div className="grid gap-6 md:grid-cols-2">
+            <div className="rounded-xl border border-neon/10 bg-carbon/50 p-5">
+              <p className="font-semibold text-white mb-2">Why is pricing per facility?</p>
+              <p className="text-sm text-steel leading-relaxed">
+                Implementation and operational value are realized at the facility edge. Per-facility pricing keeps the model transparent and aligns incentives toward full-network standardization.
+              </p>
+            </div>
+            <div className="rounded-xl border border-neon/10 bg-carbon/50 p-5">
+              <p className="font-semibold text-white mb-2">What contract term is assumed?</p>
+              <p className="text-sm text-steel leading-relaxed">
+                Pricing is annual per facility. Enterprise terms and rollout schedules are finalized during procurement.
+              </p>
+            </div>
+            <div className="rounded-xl border border-neon/10 bg-carbon/50 p-5">
+              <p className="font-semibold text-white mb-2">Can we pilot before rolling out?</p>
+              <p className="text-sm text-steel leading-relaxed">
+                Yes, pilots are encouraged. The ROI compounds as adoption expands across the network. Start with 2-3 sites, prove the math, then scale.
+              </p>
+            </div>
+            <div className="rounded-xl border border-neon/10 bg-carbon/50 p-5">
+              <p className="font-semibold text-white mb-2">Why does full-network adoption win?</p>
+              <p className="text-sm text-steel leading-relaxed">
+                Pricing is per facility, but operational leverage compounds across the network. Standardized execution turns each additional facility into incremental ROI.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="border-t border-neon/10 py-20">
+        <div className="mx-auto max-w-4xl px-6 text-center">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Next Step</p>
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+            Model Your Network ROI
+          </h2>
+          <p className="text-lg text-steel mb-8 max-w-2xl mx-auto">
+            Run your scenario in the ROI Calculator. Adjust facilities, volume, and assumptions. See the payback.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href="/roi"
+              onClick={() => trackEvent('pricing_cta_click', { cta: 'roi_calculator' })}
+              className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition"
+            >
+              Open ROI Calculator
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-xl border border-neon/30 bg-carbon/50 px-6 py-3 font-medium text-white hover:border-neon/50 transition"
+            >
+              Get Your Network Rollout Plan
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -132,17 +132,17 @@ export default function Home() {
         <div className="absolute inset-0 grid-background opacity-20"></div>
         
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <p className="text-neon font-mono text-sm tracking-widest mb-6 uppercase">
-            Network-First Yard Automation
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-6">
+            Yard Network System
           </p>
           
-          <h1 className="text-5xl md:text-7xl font-black mb-8 leading-tight">
-            Stop managing 50 yards.<br />
-            <span className="text-neon">Start orchestrating one network.</span>
+          <h1 className="text-5xl md:text-7xl font-black mb-8 leading-tight tracking-tight">
+            Standardize the Yard.<br />
+            <span className="text-neon">Kill Variance.</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-steel/90 max-w-3xl mx-auto mb-10 leading-relaxed">
-            Traditional yard software treats each facility like an island. YardFlow treats your entire operation like a connected system. Standardize the driver journey. Automate the control loop. Unlock network intelligence.
+          <p className="text-xl md:text-2xl text-steel max-w-3xl mx-auto mb-10 leading-relaxed">
+            Cheap is nice. Predictable is scalable. When trucking markets swing, the winners have standardized execution and stable unit economics.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -150,11 +150,11 @@ export default function Home() {
               href="/diagnostic"
               className="inline-flex items-center justify-center gap-2 px-10 py-5 rounded-xl font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all hover:scale-105"
             >
-              Run Your Network Diagnostic
+              Run Network Diagnostic
             </Link>
             <Link
               href="/roi"
-              className="inline-flex items-center justify-center gap-2 px-8 py-5 rounded-xl font-semibold border-2 border-steel/40 text-steel hover:border-neon hover:text-neon transition-all"
+              className="inline-flex items-center justify-center gap-2 px-8 py-5 rounded-xl font-semibold border border-neon/30 bg-carbon/50 text-white hover:border-neon/50 transition-all"
             >
               Model ROI in 3 Minutes
             </Link>
@@ -162,17 +162,17 @@ export default function Home() {
 
           {/* Value Props */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto text-left">
-            <div className="p-5 rounded-lg bg-carbon/30 border border-neon/10">
+            <div className="p-5 rounded-xl border border-neon/20 bg-carbon/50">
               <p className="text-neon font-bold text-3xl mb-2">70%</p>
-              <p className="text-sm text-steel/90">Gate labor reduction with self-service kiosks</p>
+              <p className="text-sm text-steel">Gate labor reduction with self-service kiosks</p>
             </div>
-            <div className="p-5 rounded-lg bg-carbon/30 border border-neon/10">
+            <div className="p-5 rounded-xl border border-neon/20 bg-carbon/50">
               <p className="text-neon font-bold text-3xl mb-2">50%</p>
-              <p className="text-sm text-steel/90">Dwell time reduction (48→24 min avg)</p>
+              <p className="text-sm text-steel">Dwell time reduction (48→24 min avg)</p>
             </div>
-            <div className="p-5 rounded-lg bg-carbon/30 border border-neon/10">
+            <div className="p-5 rounded-xl border border-neon/20 bg-carbon/50">
               <p className="text-neon font-bold text-3xl mb-2">65%</p>
-              <p className="text-sm text-steel/90">Detention recovery with automated timestamping</p>
+              <p className="text-sm text-steel">Detention recovery with automated timestamps</p>
             </div>
           </div>
         </div>
@@ -186,27 +186,28 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════
           FINAL CTA
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-24 border-t border-neon/20 bg-gradient-to-b from-void to-carbon/50">
+      <section className="border-t border-neon/10 py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-black mb-6">
-            Ready to stop managing yards and start orchestrating networks?
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Next Step</p>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">
+            Stop Paying the Volatility Tax
           </h2>
-          <p className="text-xl text-steel/80 mb-10 max-w-2xl mx-auto">
-            Book a call. We'll map your network, show you the rollout plan, and hand you the board-ready ROI model. 30 minutes. Zero fluff.
+          <p className="text-lg text-steel mb-8 max-w-2xl mx-auto">
+            Run the diagnostic. See where variance costs you. Get the playbook to fix it.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-3 px-10 py-5 rounded-xl font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all hover:scale-105"
+              className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition"
             >
               Get Your Network Rollout Plan
             </Link>
             <Link
               href="/roi"
-              className="inline-flex items-center gap-2 px-8 py-5 rounded-xl font-semibold border border-steel/40 text-steel hover:border-neon hover:text-neon transition-all"
+              className="inline-flex items-center gap-2 rounded-xl border border-neon/30 bg-carbon/50 px-6 py-3 font-medium text-white hover:border-neon/50 transition"
             >
-              Run ROI First
+              Model ROI in 3 Minutes
             </Link>
           </div>
         </div>

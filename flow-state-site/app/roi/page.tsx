@@ -333,21 +333,16 @@ export default function ROICalculatorPage() {
     <div className="min-h-screen bg-void">
       <Header />
 
-      {/* Hero - CFO Focused, connects to Network Leak */}
-      <section className="pt-32 pb-16 border-b border-neon/20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-8">
-            <p className="text-neon font-mono text-sm mb-4 tracking-wider uppercase">
-              ROI Calculator
-            </p>
-            <h1 className="text-5xl md:text-7xl font-black mb-6">
-              Board-ready in 3 minutes. <br />
-              <span className="text-neon">Deep model when you're ready.</span>
-            </h1>
-            <p className="text-xl text-steel/90 max-w-3xl mx-auto">
-              Two modes. Same engine. Quick Mode assumes network averages. Pro Mode dials in your actual labor, dwell, and detention data.
-            </p>
-          </div>
+      {/* Hero */}
+      <section className="pt-32 pb-16 border-b border-neon/10">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">ROI Calculator</p>
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+            Board-Ready in 3 Minutes.
+          </h1>
+          <p className="text-xl text-steel max-w-2xl leading-relaxed">
+            Quick Mode assumes network averages. Pro Mode dials in your actual labor, dwell, and detention data. Same engine. Same credibility.
+          </p>
         </div>
       </section>
 

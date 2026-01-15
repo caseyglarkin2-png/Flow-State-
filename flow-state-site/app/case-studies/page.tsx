@@ -4,26 +4,25 @@ import React from 'react';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Card from '@/components/Card';
 
 const CASES = [
   {
     slug: 'primo-network',
     title: 'Primo: Network Standardization at Scale',
-    subtitle: 'Modeled enterprise scenario showing how 50-facility networks achieve 1.4x network effect multiplier.',
-    badge: 'Modeled example',
+    subtitle: 'Modeled 50-facility scenario. 1.4x network effect multiplier. Standardization driving economics.',
+    badge: 'Modeled',
   },
   {
     slug: 'regional-3pl',
-    title: 'Regional 3PL: From Manual Gates to Ground Truth',
-    subtitle: '12-facility regional network eliminates detention disputes with defensible timestamps.',
-    badge: 'Modeled example',
+    title: 'Regional 3PL: Manual Gates → Ground Truth',
+    subtitle: '12-facility network. Detention disputes eliminated. Defensible timestamps as the foundation.',
+    badge: 'Modeled',
   },
   {
     slug: 'cold-chain-security',
     title: 'Cold Chain: Cargo Security at the Gate',
-    subtitle: 'Temperature-sensitive logistics network reduces theft incidents 80% with ID verification.',
-    badge: 'Modeled example',
+    subtitle: 'Temperature-sensitive logistics. 80% theft incident reduction. ID verification + audit trails.',
+    badge: 'Modeled',
   },
 ];
 
@@ -32,56 +31,88 @@ export default function CaseStudiesIndexPage() {
     <div className="min-h-screen bg-void">
       <Header />
 
-      <section className="pt-32 pb-16 border-b border-neon/20">
-        <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-5xl md:text-7xl font-black mb-6">
-            Case <span className="neon-glow">Studies</span>
+      {/* Hero */}
+      <section className="pt-32 pb-16 border-b border-neon/10">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Case Studies</p>
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+            Numbers. Timelines. Outcomes.
           </h1>
-          <p className="text-xl text-steel max-w-3xl">
-            Short narratives, rollout timelines, and measurable outcomes. Where numbers are modeled, we label them.
+          <p className="text-xl text-steel max-w-2xl leading-relaxed">
+            Short narratives and measurable results. Where numbers are modeled, we label them.
           </p>
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-          {CASES.map((cs) => (
-            <Card key={cs.slug}>
-              <div className="flex items-center justify-between gap-4">
-                <h2 className="text-2xl font-bold text-white">{cs.title}</h2>
-                <span className="text-xs px-2 py-1 rounded-full border border-neon/20 text-steel">
-                  {cs.badge}
-                </span>
-              </div>
-              <p className="text-steel mt-3">{cs.subtitle}</p>
-              <div className="mt-6">
+      {/* Cases Grid */}
+      <section className="border-t border-neon/10 py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {CASES.map((cs) => (
+              <div key={cs.slug} className="rounded-2xl border border-neon/20 bg-carbon/50 p-6">
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <h2 className="text-xl font-bold text-white">{cs.title}</h2>
+                  <span className="text-xs px-2 py-1 rounded-full border border-neon/20 text-steel shrink-0">
+                    {cs.badge}
+                  </span>
+                </div>
+                <p className="text-steel text-[15px] leading-relaxed mb-6">{cs.subtitle}</p>
                 <Link
                   href={`/case-studies/${cs.slug}`}
-                  className="inline-flex items-center justify-center px-5 py-3 rounded-xl font-semibold bg-neon text-void"
+                  className="inline-flex items-center gap-2 rounded-xl bg-neon px-5 py-2.5 font-medium text-void hover:bg-white transition"
                 >
-                  Read case study
+                  Read Case Study
                 </Link>
               </div>
-            </Card>
-          ))}
+            ))}
 
-          <Card className="border-neon/20">
-            <h2 className="text-2xl font-bold text-neon">Want a tailored one?</h2>
-            <p className="text-steel mt-3">
-              Share your network size and operating reality. We’ll respond with a modeled ROI narrative and a rollout plan.
-            </p>
-            <div className="mt-6 flex gap-3 flex-col sm:flex-row">
-              <Link href="/roi" className="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-neon text-void font-semibold">
-                Model ROI
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-steel/30 text-white hover:border-neon/40 transition-colors font-semibold"
-              >
-                Get a quote
-              </Link>
+            {/* Custom CTA */}
+            <div className="rounded-2xl border border-neon/20 bg-neon/5 p-6">
+              <p className="text-xs uppercase tracking-[0.1em] text-neon/70 font-semibold mb-2">Custom Scenario</p>
+              <h2 className="text-xl font-bold text-white mb-3">Want a Tailored One?</h2>
+              <p className="text-steel text-[15px] leading-relaxed mb-6">
+                Share your network size and operating reality. We respond with a modeled ROI narrative and rollout plan.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/roi" className="inline-flex items-center gap-2 rounded-xl bg-neon px-5 py-2.5 font-medium text-void hover:bg-white transition">
+                  Model ROI
+                </Link>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 rounded-xl border border-neon/30 bg-carbon/50 px-5 py-2.5 font-medium text-white hover:border-neon/50 transition"
+                >
+                  Request Custom Case
+                </Link>
+              </div>
             </div>
-          </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="border-t border-neon/10 py-16 bg-carbon/20">
+        <div className="mx-auto max-w-4xl px-6 text-center">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Next Step</p>
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+            See Your Numbers
+          </h2>
+          <p className="text-lg text-steel mb-8 max-w-xl mx-auto leading-relaxed">
+            Run the diagnostic. Build the ROI model. Get the board-ready artifact.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href="/diagnostic"
+              className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-white transition"
+            >
+              Run Network Diagnostic
+            </Link>
+            <Link
+              href="/roi"
+              className="inline-flex items-center gap-2 rounded-xl border border-neon/30 bg-carbon/50 px-6 py-3 font-medium text-white hover:border-neon/50 transition"
+            >
+              Build ROI Model
+            </Link>
+          </div>
         </div>
       </section>
 

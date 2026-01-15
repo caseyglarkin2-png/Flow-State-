@@ -86,54 +86,51 @@ function QualifyContent({ intent }: QualifyContentProps) {
       <Header />
 
       {/* Hero */}
-      <section className="border-b border-steel/20 bg-gradient-to-b from-carbon to-void py-20">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-6 flex justify-center">
-            <div className="rounded-full bg-neon/10 p-4">
-              <Icon size={48} className="text-neon" />
-            </div>
-          </div>
-          <h1 className="text-center text-4xl font-bold text-white sm:text-5xl lg:text-6xl mb-6">
+      <section className="pt-32 pb-16 border-b border-neon/10">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Qualification</p>
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
             {config.title}
           </h1>
-          <p className="mx-auto max-w-3xl text-center text-xl text-steel">
+          <p className="text-xl text-steel max-w-2xl leading-relaxed">
             {config.subtitle}
           </p>
         </div>
       </section>
 
       {/* Main Content */}
-      <section className="py-16">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <section className="border-t border-neon/10 py-16">
+        <div className="mx-auto max-w-6xl px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* What You Get */}
-            <Card>
-              <h2 className="text-2xl font-bold text-neon mb-6">What You Get</h2>
-              <ul className="space-y-4">
+            <div className="rounded-2xl border border-neon/20 bg-carbon/50 p-6">
+              <p className="text-xs uppercase tracking-[0.1em] text-neon/70 font-semibold mb-2">Deliverables</p>
+              <h2 className="text-xl font-bold text-white mb-6">What You Get</h2>
+              <ul className="space-y-3">
                 {config.bullets.map((bullet, index) => (
                   <li key={index} className="flex items-start gap-3">
                     <span className="text-neon mt-1">→</span>
-                    <span className="text-steel">{bullet}</span>
+                    <span className="text-steel text-[15px] leading-relaxed">{bullet}</span>
                   </li>
                 ))}
               </ul>
-            </Card>
+            </div>
 
             {/* Lead Form */}
-            <Card>
+            <div className="rounded-2xl border border-neon/20 bg-carbon/50 p-6">
               <LeadForm
                 leadType={config.leadType}
                 title={config.formTitle}
                 subtitle={config.formSubtitle}
               />
-            </Card>
+            </div>
           </div>
 
           {/* Alternative CTAs */}
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4">
             <a
               href="/roi"
-              className="inline-flex flex-col items-center justify-center px-6 py-4 rounded-xl font-semibold border-2 border-steel/30 text-white hover:border-neon/40 transition-all text-center"
+              className="inline-flex flex-col items-center justify-center px-6 py-4 rounded-xl font-semibold border border-neon/20 bg-carbon/50 text-white hover:border-neon/40 transition-all text-center"
             >
               <DollarSign size={24} className="text-neon mb-2" />
               <span>Calculate ROI</span>

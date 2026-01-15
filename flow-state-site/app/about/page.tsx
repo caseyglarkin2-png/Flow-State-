@@ -3,134 +3,199 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Card from '@/components/Card';
+import Link from 'next/link';
 
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-void">
       <Header />
 
-      <section className="pt-32 pb-16 border-b border-neon/20">
-        <div className="max-w-6xl mx-auto px-6">
-          {/* Rebrand Notice */}
-          <div className="mb-8 inline-block px-4 py-2 rounded-xl bg-neon/10 border border-neon/30">
-            <p className="text-neon font-mono text-sm">
-              <span className="font-bold">FreightRoll → YardFlow by FreightRoll</span> · Same team. Sharper product. Bigger vision.
+      {/* Hero */}
+      <section className="pt-32 pb-16 border-b border-neon/10">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="mb-6 inline-block px-4 py-2 rounded-xl bg-neon/10 border border-neon/30">
+            <p className="text-neon text-sm font-medium">
+              FreightRoll → YardFlow by FreightRoll
             </p>
           </div>
-          
-          <h1 className="text-5xl md:text-7xl font-black mb-6">
-            About <span className="neon-glow">YardFlow by FreightRoll</span>
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+            Same Team. Sharper Product.
           </h1>
-          <p className="text-xl text-steel max-w-3xl mb-4">
-            We're the team behind FreightRoll, now operating as <span className="text-white font-semibold">YardFlow by FreightRoll</span>.
-          </p>
-          <p className="text-xl text-steel max-w-3xl">
-            Same obsession with yard orchestration and cargo security. Evolved into a platform that turns every facility into an intelligent, secure network node.
+          <p className="text-xl text-steel max-w-2xl leading-relaxed">
+            We built the simulations first. Then we wrote the software. Now we're standardizing yards at scale.
           </p>
         </div>
       </section>
 
-      <section className="py-16 border-b border-steel/20">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-white mb-6">The FreightRoll Heritage</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card>
-              <h3 className="text-xl font-bold text-neon mb-3">2020-2022: FreightRoll Research</h3>
-              <p className="text-steel mb-3">
-                Built <strong className="text-white">Primo</strong> (single-facility simulator) and <strong className="text-white">Singularity</strong> (enterprise network simulator).
+      {/* Heritage */}
+      <section className="border-t border-neon/10 py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Origin Story</p>
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">The FreightRoll Heritage</h2>
+          <p className="text-lg text-steel mb-10 max-w-2xl">
+            We didn't start with code. We started with math. Thousands of simulations before a single production deployment.
+          </p>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="rounded-2xl border border-neon/20 bg-carbon/50 p-6">
+              <p className="text-xs uppercase tracking-[0.1em] text-neon/70 font-semibold mb-2">2020–2022</p>
+              <h3 className="text-xl font-bold text-white mb-3">Research Phase</h3>
+              <p className="text-steel text-[15px] leading-relaxed">
+                Built <span className="text-white font-medium">Primo</span> (single-facility simulator) and <span className="text-white font-medium">Singularity</span> (enterprise network simulator). Ran thousands of scenarios to model yard dynamics, detention costs, labor allocation, and network effects.
               </p>
-              <p className="text-steel text-sm">
-                Ran thousands of simulations to model yard dynamics, detention costs, labor allocation, and network effects before writing production code.
-              </p>
-            </Card>
+            </div>
             
-            <Card>
-              <h3 className="text-xl font-bold text-neon mb-3">2023: FreightRoll 1.0</h3>
-              <p className="text-steel mb-3">
-                Launched FreightRoll as a yard execution platform focused on check-in/check-out automation and carrier coordination.
+            <div className="rounded-2xl border border-neon/20 bg-carbon/50 p-6">
+              <p className="text-xs uppercase tracking-[0.1em] text-neon/70 font-semibold mb-2">2023</p>
+              <h3 className="text-xl font-bold text-white mb-3">FreightRoll 1.0</h3>
+              <p className="text-steel text-[15px] leading-relaxed">
+                Launched FreightRoll as a yard execution platform. Check-in/out automation. Carrier coordination. Validated core ROI assumptions: 40-60% cycle time reduction, $200K-$800K detention savings per facility.
               </p>
-              <p className="text-steel text-sm">
-                Validated core ROI assumptions: 40-60% cycle time reduction, $200K-$800K detention savings per facility.
-              </p>
-            </Card>
+            </div>
             
-            <Card>
-              <h3 className="text-xl font-bold text-neon mb-3">2024: YardFlow by FreightRoll</h3>
-              <p className="text-steel mb-3">
-                Expanded into full platform: added cargo security (ID verification, tamper-evident audit), network orchestration, and enterprise-scale deployment.
+            <div className="rounded-2xl border border-neon/20 bg-carbon/50 p-6">
+              <p className="text-xs uppercase tracking-[0.1em] text-neon/70 font-semibold mb-2">2024+</p>
+              <h3 className="text-xl font-bold text-white mb-3">YardFlow by FreightRoll</h3>
+              <p className="text-steel text-[15px] leading-relaxed">
+                Full platform expansion. Cargo security (ID verification, tamper-evident audit). Network orchestration. Enterprise-scale deployment. Same economic engine. Bigger vision.
               </p>
-              <p className="text-steel text-sm">
-                YardFlow is FreightRoll's flagship product, built on the same economic engine with expanded capabilities.
-              </p>
-            </Card>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Card>
-            <h2 className="text-2xl font-bold text-neon mb-3">Why the rebrand?</h2>
-            <p className="text-steel mb-3">
-              <strong className="text-white">FreightRoll</strong> started with yard execution and carrier coordination. We proved the economics with Primo and Singularity simulations.
-            </p>
-            <p className="text-steel mb-3">
-              <strong className="text-white">YardFlow by FreightRoll</strong> is the full platform vision: every facility becomes an intelligent, secure node in a connected network. Cargo security, network orchestration, enterprise deployment at scale.
-            </p>
-            <p className="text-neon font-semibold text-sm">
-              New name. Same team. Same simulations. Bigger platform.
-            </p>
-          </Card>
-
-          <Card>
-            <h2 className="text-2xl font-bold text-neon mb-3">What we optimize</h2>
-            <ul className="text-steel space-y-2 list-disc pl-5">
-              <li>Check-in / check-out throughput</li>
-              <li>Detention reduction with defensible timestamps</li>
-              <li>Cargo theft prevention and ID verification</li>
-              <li>CTPAT/TSA compliance and audit trails</li>
-              <li>Gate labor automation and repeatable execution</li>
-              <li>Network-wide standardization and velocity</li>
-            </ul>
-          </Card>
-
-          <Card className="md:col-span-2">
-            <h2 className="text-2xl font-bold text-neon mb-3">Who it’s for</h2>
-            <p className="text-steel max-w-4xl">
-              Enterprise shippers, cold-chain networks, 3PLs, and multi-site operators with complex yards and high
-              consequences. If you manage a network, the ROI compounds.
-            </p>
-          </Card>
+      {/* The Rebrand */}
+      <section className="border-t border-neon/10 py-16 bg-carbon/20">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div>
+              <p className="text-xs uppercase tracking-[0.25em] text-ember/70 mb-3">Why the Rename</p>
+              <h2 className="text-3xl font-bold tracking-tight text-white mb-4">FreightRoll → YardFlow</h2>
+              <p className="text-[17px] text-steel leading-8 mb-4">
+                <span className="text-white font-medium">FreightRoll</span> started with yard execution and carrier coordination. We proved the economics with Primo and Singularity simulations.
+              </p>
+              <p className="text-[17px] text-steel leading-8 mb-4">
+                <span className="text-white font-medium">YardFlow by FreightRoll</span> is the full platform vision: every facility becomes an intelligent, secure node in a connected network. Cargo security. Network orchestration. Enterprise deployment at scale.
+              </p>
+              <p className="text-neon font-semibold">
+                New name. Same team. Same simulations. Bigger platform.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-neon/20 bg-neon/5 p-6">
+              <p className="text-xs uppercase tracking-[0.1em] text-neon/70 font-semibold mb-2">What We Optimize</p>
+              <h3 className="text-xl font-bold text-white mb-4">The Variance Tax</h3>
+              <ul className="space-y-2 text-steel text-[15px]">
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1">→</span>
+                  <span>Check-in / check-out throughput</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1">→</span>
+                  <span>Detention reduction with defensible timestamps</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1">→</span>
+                  <span>Cargo theft prevention and ID verification</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1">→</span>
+                  <span>CTPAT/TSA compliance and audit trails</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1">→</span>
+                  <span>Gate labor automation and repeatable execution</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1">→</span>
+                  <span>Network-wide standardization and velocity</span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
-      {/* Next Steps CTA */}
-      <section className="py-16 border-t border-neon/20">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Ready to explore?</h2>
-          <p className="text-steel mb-8">See how YardFlow can transform your yard operations.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
+
+      {/* Who It's For */}
+      <section className="border-t border-neon/10 py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Target Operators</p>
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">Who It's For</h2>
+          <p className="text-lg text-steel mb-10 max-w-2xl">
+            Enterprise shippers with 10+ facilities. Operators who see variance as a P&L problem, not a scheduling nuisance.
+          </p>
+
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              { title: "VPs Logistics", body: "Multi-site operators running 50-500 yard moves per day. You want network standardization, not more dashboards." },
+              { title: "CFOs", body: "You're tired of detention invoices that can't be defended. You want board-ready metrics that prove the investment." },
+              { title: "Security Directors", body: "You need CTPAT compliance, ID verification, and audit trails that hold up in court." },
+              { title: "Ops Managers", body: "You're running the yard. You need drivers to know where to go without radio calls and yard walks." },
+            ].map((item) => (
+              <div key={item.title} className="rounded-xl border border-neon/10 bg-carbon/50 p-5">
+                <div className="text-sm font-semibold text-white mb-2">{item.title}</div>
+                <p className="text-xs text-steel leading-relaxed">{item.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Principles */}
+      <section className="border-t border-neon/10 py-16 bg-carbon/20">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">How We Build</p>
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-10">Operating Principles</h2>
+          
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="rounded-xl border border-neon/10 bg-carbon/50 p-5">
+              <p className="font-semibold text-white mb-2">Simulations First</p>
+              <p className="text-sm text-steel leading-relaxed">
+                We model before we build. Every feature has an economic thesis. No feature ships without ROI validation.
+              </p>
+            </div>
+            <div className="rounded-xl border border-neon/10 bg-carbon/50 p-5">
+              <p className="font-semibold text-white mb-2">Standards Over Features</p>
+              <p className="text-sm text-steel leading-relaxed">
+                The driver journey must be identical across every yard. Permutations come second. Standardization comes first.
+              </p>
+            </div>
+            <div className="rounded-xl border border-neon/10 bg-carbon/50 p-5">
+              <p className="font-semibold text-white mb-2">Control, Not Recording</p>
+              <p className="text-sm text-steel leading-relaxed">
+                Legacy YMS records what happened. YardFlow enforces what happens next. The system is the control loop.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="border-t border-neon/10 py-20">
+        <div className="mx-auto max-w-4xl px-6 text-center">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Next Step</p>
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+            See the Simulations in Action
+          </h2>
+          <p className="text-lg text-steel mb-8 max-w-2xl mx-auto">
+            Run the network diagnostic. See where variance costs you. Get the playbook to fix it.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
               href="/diagnostic"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold bg-neon text-void hover:bg-white hover:text-void transition-all"
+              className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition"
             >
-              Run the Network Leak Diagnostic
-            </a>
-            <a
-              href="/roi"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
+              Run Network Diagnostic
+            </Link>
+            <Link
+              href="/singularity"
+              className="inline-flex items-center gap-2 rounded-xl border border-neon/30 bg-carbon/50 px-6 py-3 font-medium text-white hover:border-neon/50 transition"
             >
-              Build ROI Model
-            </a>
-            <a
-              href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
-            >
-              Contact Us
-            </a>
+              View Singularity Simulator
+            </Link>
           </div>
         </div>
       </section>
+
       <Footer />
     </div>
   );

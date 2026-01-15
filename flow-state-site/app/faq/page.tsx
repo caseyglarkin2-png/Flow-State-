@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Card from '@/components/Card';
 import { ExpandableCard } from '@/components/ExpandableCard';
+import Link from 'next/link';
 
 const faqs = [
   {
     q: 'What is YardFlow by FreightRoll, in one sentence?',
-    a: 'YardFlow by FreightRoll is a yard orchestration control loop: standardized workflows that produce defensible timestamps and network-level operational truth.',
+    a: 'A yard orchestration control loop: standardized workflows that produce defensible timestamps and network-level operational truth.',
   },
   {
     q: 'Do you support pilots?',
@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     q: 'How do you handle security and vendor reviews?',
-    a: 'We support security questionnaires during procurement and can provide formal documents (policies, DPAs, etc.) as part of the evaluation. See the Security & Trust page for posture and roadmap.',
+    a: 'We support security questionnaires during procurement and provide formal documents (policies, DPAs, etc.) as part of the evaluation. See the Security & Trust page for posture and roadmap.',
   },
   {
     q: 'Do you require integrations to start?',
@@ -57,20 +57,23 @@ export default function FaqPage() {
     <div className="min-h-screen bg-void">
       <Header />
 
-      <section className="pt-32 pb-16 border-b border-neon/20">
-        <div className="max-w-6xl mx-auto px-6">
-          <h1 className="text-5xl md:text-7xl font-black mb-6">
-            FAQ for <span className="neon-glow">buyers</span>
+      {/* Hero */}
+      <section className="pt-32 pb-16 border-b border-neon/10">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Buyer FAQ</p>
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+            Short Answers. Forward Internally.
           </h1>
-          <p className="text-xl text-steel max-w-3xl">
-            Short answers you can forward internally. If you want procurement artifacts, open the Evidence Vault.
+          <p className="text-xl text-steel max-w-2xl leading-relaxed">
+            The questions procurement asks. The answers that unblock deals. Need artifacts? Open the Evidence Vault.
           </p>
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 gap-6">
+      {/* FAQ Grid */}
+      <section className="border-t border-neon/10 py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {faqs.map((f, idx) => (
               <ExpandableCard
                 key={f.q}
@@ -78,24 +81,29 @@ export default function FaqPage() {
                 title={f.q}
                 defaultOpen={idx === 0}
               >
-                <p className="text-steel/90">{f.a}</p>
+                <p className="text-steel leading-relaxed">{f.a}</p>
               </ExpandableCard>
             ))}
-
-            <Card className="border-neon/30">
-              <h2 className="text-xl font-bold text-neon">Still have a blocker?</h2>
-              <p className="text-steel mt-3">
-                Send your questions (security, privacy, implementation, integrations) and we’ll respond with a procurement-ready
-                answer.
-              </p>
-              <a
-                href="/contact"
-                className="mt-5 inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-neon text-void hover:shadow-lg hover:shadow-neon/50 transition-all"
-              >
-                Contact sales
-              </a>
-            </Card>
           </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="border-t border-neon/10 py-16 bg-carbon/20">
+        <div className="mx-auto max-w-4xl px-6 text-center">
+          <p className="text-xs uppercase tracking-[0.25em] text-ember/70 mb-3">Still Blocked?</p>
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+            Send Your Questions
+          </h2>
+          <p className="text-lg text-steel mb-8 max-w-xl mx-auto leading-relaxed">
+            Security, privacy, implementation, integrations—we respond with procurement-ready answers.
+          </p>
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-neon text-void hover:bg-white transition-all"
+          >
+            Contact Sales
+          </Link>
         </div>
       </section>
 

@@ -28,13 +28,14 @@ export default async function ContactPage({ searchParams }: Props) {
       <Header />
       <main className="min-h-screen bg-void pt-32 pb-24">
       {/* Hero */}
-      <section className="pb-16 border-b border-neon/20">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-5xl md:text-7xl font-black mb-6">
-            30 minutes. Network audit + rollout plan.
+      <section className="pb-16 border-b border-neon/10">
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Network Audit</p>
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+            30 Minutes. Zero Fluff.
           </h1>
-          <p className="text-xl text-steel/90 max-w-2xl mx-auto leading-relaxed">
-            We'll map your facilities to archetypes, show you the deployment sequence, and hand you the board-ready ROI model. Zero fluff. Zero pitch. Just the plan.
+          <p className="text-xl text-steel max-w-2xl leading-relaxed">
+            We map your facilities to archetypes, show the deployment sequence, and hand you a board-ready ROI model. That's it.
           </p>
         </div>
       </section>
@@ -62,38 +63,39 @@ export default async function ContactPage({ searchParams }: Props) {
 
             {/* What Happens Next */}
             <div>
-              <h2 className="text-2xl font-bold mb-6">What Happens Next</h2>
-              <div className="space-y-6">
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full border-2 border-neon flex items-center justify-center font-bold text-neon">
+              <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">The Call</p>
+              <h2 className="text-2xl font-bold tracking-tight text-white mb-6">What Happens Next</h2>
+              <div className="space-y-4">
+                <div className="rounded-xl border border-neon/20 bg-carbon/50 p-4 flex gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-neon/10 flex items-center justify-center font-bold text-neon text-sm">
                     1
                   </div>
                   <div>
                     <h3 className="font-semibold text-white mb-1">Network Audit (15 min)</h3>
-                    <p className="text-steel text-sm">
-                      We review your facility mix, throughput, current pain points. Map each facility to a yard archetype.
+                    <p className="text-steel text-sm leading-relaxed">
+                      Facility mix. Throughput. Pain points. Each facility mapped to a yard archetype.
                     </p>
                   </div>
                 </div>
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full border-2 border-neon flex items-center justify-center font-bold text-neon">
+                <div className="rounded-xl border border-neon/20 bg-carbon/50 p-4 flex gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-neon/10 flex items-center justify-center font-bold text-neon text-sm">
                     2
                   </div>
                   <div>
                     <h3 className="font-semibold text-white mb-1">Rollout Plan (10 min)</h3>
-                    <p className="text-steel text-sm">
-                      We show you the deployment sequence, timeline, and resource requirements. Which facilities first. Which modules. Expected ROI curve.
+                    <p className="text-steel text-sm leading-relaxed">
+                      Deployment sequence. Timeline. Resource requirements. Which facilities first. Expected ROI curve.
                     </p>
                   </div>
                 </div>
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full border-2 border-neon flex items-center justify-center font-bold text-neon">
+                <div className="rounded-xl border border-neon/20 bg-carbon/50 p-4 flex gap-4">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-neon/10 flex items-center justify-center font-bold text-neon text-sm">
                     3
                   </div>
                   <div>
                     <h3 className="font-semibold text-white mb-1">Board-Ready ROI (5 min)</h3>
-                    <p className="text-steel text-sm">
-                      We export the ROI model with your assumptions. PDF for finance review. Next steps if assumptions validate.
+                    <p className="text-steel text-sm leading-relaxed">
+                      PDF export with your assumptions. Ready for finance review. Next steps if assumptions validate.
                     </p>
                   </div>
                 </div>

@@ -92,52 +92,50 @@ export default function YardBuilderPage() {
       <Header />
 
       {/* Hero */}
-      <section className="pt-32 pb-16 border-b border-neon/20">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neon/10 border border-neon/20 text-neon text-sm mb-6">
-              <Ignite size={14} /> Founding Member Program
-            </span>
-            <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
-              Request a <span className="neon-glow">Digital Twin</span> of Your Yard
-            </h1>
-            <p className="text-xl text-[#B8B8B8] leading-relaxed mb-8">
-              Let our team build a complete digital model of your facility: asset inventory, workflow mapping, and optimization roadmap. No software required on your end.
-            </p>
-            <a 
-              href="#request-form"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-neon text-void font-semibold rounded-xl hover:bg-white transition-all"
-            >
-              Request Your Digital Twin <ArrowRight size={18} />
-            </a>
-          </div>
+      <section className="pt-32 pb-16 border-b border-neon/10">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Founding Member Program</p>
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-6">
+            Request a Digital Twin of Your Yard
+          </h1>
+          <p className="text-xl text-steel max-w-2xl leading-relaxed mb-8">
+            Complete digital model of your facility: asset inventory, workflow mapping, optimization roadmap. No software required on your end.
+          </p>
+          <a 
+            href="#request-form"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-neon text-void font-semibold rounded-xl hover:bg-white transition-all"
+          >
+            Request Your Digital Twin <ArrowRight size={18} />
+          </a>
         </div>
       </section>
 
       {/* What You Get */}
-      <section className="py-16 border-b border-neon/10">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-2xl font-semibold tracking-tight text-white mb-3">What's Included</h2>
-          <p className="text-steel mb-10 max-w-2xl">Every digital twin includes comprehensive facility analysis delivered by our operations team.</p>
+      <section className="border-t border-neon/10 py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Deliverables</p>
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">What's Included</h2>
+          <p className="text-lg text-steel mb-10 max-w-2xl leading-relaxed">Comprehensive facility analysis delivered by our operations team.</p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {deliverables.map((item) => (
-              <Card key={item.title} className="border-neon/10">
+              <div key={item.title} className="rounded-xl border border-neon/10 bg-carbon/50 p-5">
                 <div className="w-10 h-10 rounded-lg bg-neon/10 flex items-center justify-center mb-4">
                   <item.icon size={20} className="text-neon" />
                 </div>
                 <h3 className="font-semibold text-white mb-2">{item.title}</h3>
                 <p className="text-steel text-sm leading-relaxed">{item.description}</p>
-              </Card>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* How It Works */}
-      <section className="py-16 border-b border-neon/10">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-2xl font-semibold tracking-tight text-white mb-10">How It Works</h2>
+      <section className="border-t border-neon/10 py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Process</p>
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-10">How It Works</h2>
           
           <div className="grid md:grid-cols-4 gap-6">
             {process.map((item, idx) => (

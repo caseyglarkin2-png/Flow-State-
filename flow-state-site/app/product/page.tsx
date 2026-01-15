@@ -14,7 +14,7 @@ const PRODUCTS = [
     title: "Digital Guard",
     eyebrow: "Module 1",
     description:
-      "Verify every carrier before they enter. Self-service kiosks with OCR, photo capture, and real-time authentication so the yard stops being a blind spot.",
+      "Verify every carrier before they enter. Kiosks with OCR, photo capture, and real-time authentication. The yard stops being a blind spot.",
     bullets: [
       "Automated carrier ID verification (OCR + photo)",
       "CDL validation + English proficiency documentation",
@@ -22,8 +22,8 @@ const PRODUCTS = [
       "Flagged credentials rejected at gate",
       "DOT/FMCSA audit trail for shipper liability protection",
     ],
-    ctaLabel: "Apply for Access",
-    ctaHref: "/singularity",
+    ctaLabel: "View Evidence Vault",
+    ctaHref: "/security",
     align: "left" as const,
     visual: <DigitalGuardVisual />,
   },
@@ -31,7 +31,7 @@ const PRODUCTS = [
     title: "Digital Comms",
     eyebrow: "Module 2",
     description:
-      "Direct driver messaging at the lane level. No 'I never got the message' excuses. Disputes shrink when receipts exist.",
+      "Lane-level driver messaging. No more 'I never got the message' excuses. Disputes shrink when receipts exist.",
     bullets: [
       "Lane-based instructions and notifications",
       "Multi-language support (40+ languages)",
@@ -48,7 +48,7 @@ const PRODUCTS = [
     title: "Digital BOL",
     eyebrow: "Module 3",
     description:
-      "Touchless documentation with forensic-grade timestamps. Photo proof of load condition so detention disputes die young.",
+      "Touchless documentation. Forensic-grade timestamps. Photo proof of load condition. Detention disputes die young.",
     bullets: [
       "Gate verification and ID scanning",
       "Condition capture with photo evidence",
@@ -65,7 +65,7 @@ const PRODUCTS = [
     title: "Digital YMS",
     eyebrow: "Module 4",
     description:
-      "One place to store, search, and prove what happened. When the yard is a courtroom, this is your exhibit binder.",
+      "One place to store, search, and prove what happened. When the yard becomes a courtroom, this is your exhibit binder.",
     bullets: [
       "Real-time yard visualization and asset tracking",
       "Dwell anomaly detection and alerts",
@@ -86,22 +86,21 @@ export default function ProductPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 border-b border-neon/20">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <p className="text-neon font-mono text-sm tracking-widest mb-6 uppercase">
-            Network-First Product Architecture
+      <section className="relative pt-32 pb-16 border-b border-neon/10">
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">
+            Product Architecture
           </p>
           
-          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
-            Four Modules. <span className="text-neon">One Network.</span>
+          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight">
+            Four Modules. One Protocol.
           </h1>
           
-          <p className="text-xl md:text-2xl text-steel mb-12 max-w-3xl mx-auto">
-            Standardize the driver journey. Enforce the control loop. Unlock network intelligence.
+          <p className="text-xl text-steel mb-8 max-w-2xl leading-relaxed">
+            Standardize the driver journey. Enforce the control loop. Every yard runs the same playbook. Every event is typed. Every timestamp is defensible.
           </p>
-          <Link href="/diagnostic" className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold bg-neon text-void hover:shadow-lg transition-all">
-            <Crosshair size={20} />
-            Run Your Network Diagnostic
+          <Link href="/diagnostic" className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition">
+            Run Network Diagnostic
           </Link>
         </div>
       </section>
@@ -122,15 +121,23 @@ export default function ProductPage() {
       ))}
 
       {/* CTA Section */}
-      <section className="py-24 border-t border-neon/20">
+      <section className="border-t border-neon/10 py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-5xl font-black mb-8">Ready to Transform Your Yard?</h2>
-          <p className="text-xl text-steel/90 mb-12">
-            Book a call. We'll map your network, show you the rollout plan, and hand you the board-ready ROI model.
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-3">Next Step</p>
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+            Stop the Variance Tax
+          </h2>
+          <p className="text-lg text-steel mb-8 max-w-2xl mx-auto">
+            Run the diagnostic. See where variance costs you. Get the playbook to fix it.
           </p>
-          <Link href="/contact" className="inline-flex items-center gap-2 px-10 py-5 rounded-xl font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all hover:scale-105">
-            Get Your Network Rollout Plan
-          </Link>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/contact" className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition">
+              Get Your Network Rollout Plan
+            </Link>
+            <Link href="/roi" className="inline-flex items-center gap-2 rounded-xl border border-neon/30 bg-carbon/50 px-6 py-3 font-medium text-white hover:border-neon/50 transition">
+              Model ROI in 3 Minutes
+            </Link>
+          </div>
         </div>
       </section>
 
