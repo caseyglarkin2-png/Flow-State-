@@ -276,7 +276,7 @@ async function generateOG() {
                           fontWeight: 400,
                           maxWidth: '750px',
                         },
-                        children: "Stop the Variance Tax. You don't have 50 yards—you have one yard network.",
+                        children: "Stop the Variance Tax. YardFlow standardizes the gate + yard into a deterministic protocol—reducing viscosity and turning chaos into controllable flow.",
                       },
                     },
                   ],
