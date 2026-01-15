@@ -3,7 +3,55 @@ import { getActiveLogo, SITE_METADATA } from '@/lib/branding';
 
 export const runtime = 'edge';
 
-export async function GET() {
+// Map of page-specific content
+const PAGE_CONTENT: Record<string, { headline?: string; subtitle?: string; tagline?: string }> = {
+  'solutions/dry-van': {
+    headline: 'Standardize Dry Van Operations',
+    subtitle: 'Eliminate detention variance and unlock network scaling for your dry fleet.',
+    tagline: 'Variance Elimination.'
+  },
+  'solutions/reefer': {
+    headline: 'Control Reefer Temperature Variance',
+    subtitle: 'Real-time temperature monitoring and automated route optimization for perishables.',
+    tagline: 'Cold Chain Control.'
+  },
+  'solutions/flatbed': {
+    headline: 'Optimize Flatbed Load Coordination',
+    subtitle: 'Reduce load variance and improve equipment utilization across your flatbed operation.',
+    tagline: 'Load Optimization.'
+  },
+  'solutions/dedicated': {
+    headline: 'Lock Dedicated Fleet Economics',
+    subtitle: 'Eliminate variance in dedicated operations with standardized protocols and real-time coordination.',
+    tagline: 'Fleet Control.'
+  },
+  'solutions/intermodal': {
+    headline: 'Standardize Intermodal Coordination',
+    subtitle: 'Reduce handoff variance and improve efficiency across modal transitions.',
+    tagline: 'Intermodal Excellence.'
+  },
+  'guide/cargo-theft-prevention': {
+    headline: 'Prevent Cargo Theft',
+    subtitle: 'Comprehensive security protocols and real-time monitoring to protect high-value loads.',
+    tagline: 'Security First.'
+  },
+  'guide/network-effect-yard-automation': {
+    headline: 'Unlock Network Effect ROI',
+    subtitle: 'How Metcalfe\'s Law applies to logistics yards and drives exponential value creation.',
+    tagline: 'Network Scaling.'
+  },
+  'guide/ctpat-tsa-compliance': {
+    headline: 'Achieve CTPAT Compliance',
+    subtitle: 'Automated security compliance and TSA requirements management for regulated operations.',
+    tagline: 'Compliance Ready.'
+  },
+};
+
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const pageKey = searchParams.get('page') || 'default';
+  const pageContent = PAGE_CONTENT[pageKey];
+
   // Load Inter font for proper branding
   const interSemiBold = fetch(
     new URL('https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff', import.meta.url)
@@ -172,7 +220,7 @@ export async function GET() {
                   fontFamily: 'Inter',
                 }}
               >
-                {SITE_METADATA.tagline.replace('.', '').toUpperCase()}
+                {(pageContent?.tagline || SITE_METADATA.tagline).replace('.', '').toUpperCase()}
               </span>
             </div>
 
@@ -184,44 +232,51 @@ export async function GET() {
                 gap: '8px',
               }}
             >
-              <span
-                style={{
-                  fontSize: 72,
-                  fontWeight: 900,
-                  color: '#FFFFFF',
-                  letterSpacing: '-0.03em',
-                  lineHeight: 1,
-                  fontFamily: 'Inter',
-                }}
-              >
-                Variance Is The Villain.
-              </span>
-              <span
-                style={{
-                  fontSize: 72,
-                  fontWeight: 900,
-                  color: '#00B4FF',
-                  letterSpacing: '-0.03em',
-                  lineHeight: 1,
-                  textShadow: '0 0 60px rgba(0, 180, 255, 0.4)',
-                  fontFamily: 'Inter',
-                }}
-              >
-                Control Is The Hero.
-              </span>
-              <span
-                style={{
-                  fontSize: 72,
-                  fontWeight: 900,
-                  color: '#00B4FF',
-                  letterSpacing: '-0.03em',
-                  lineHeight: 1,
-                  textShadow: '0 0 60px rgba(0, 180, 255, 0.4)',
-                  fontFamily: 'Inter',
-                }}
-              >
-                Control Is The Hero.
-              </span>
+              {pageContent ? (
+                // Page-specific headline (single line)
+                <span
+                  style={{
+                    fontSize: 72,
+                    fontWeight: 900,
+                    color: '#00B4FF',
+                    letterSpacing: '-0.03em',
+                    lineHeight: 1,
+                    textShadow: '0 0 60px rgba(0, 180, 255, 0.4)',
+                    fontFamily: 'Inter',
+                  }}
+                >
+                  {pageContent.headline}
+                </span>
+              ) : (
+                // Default headline (dual line)
+                <>
+                  <span
+                    style={{
+                      fontSize: 72,
+                      fontWeight: 900,
+                      color: '#FFFFFF',
+                      letterSpacing: '-0.03em',
+                      lineHeight: 1,
+                      fontFamily: 'Inter',
+                    }}
+                  >
+                    Variance Is The Villain.
+                  </span>
+                  <span
+                    style={{
+                      fontSize: 72,
+                      fontWeight: 900,
+                      color: '#00B4FF',
+                      letterSpacing: '-0.03em',
+                      lineHeight: 1,
+                      textShadow: '0 0 60px rgba(0, 180, 255, 0.4)',
+                      fontFamily: 'Inter',
+                    }}
+                  >
+                    Control Is The Hero.
+                  </span>
+                </>
+              )}
             </div>
 
             {/* Subtitle */}
@@ -234,7 +289,7 @@ export async function GET() {
                 fontFamily: 'Inter',
               }}
             >
-              {SITE_METADATA.ogDescription}
+              {pageContent?.subtitle || SITE_METADATA.ogDescription}
             </span>
           </div>
 

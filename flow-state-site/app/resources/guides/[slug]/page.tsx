@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { siteUrl } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import {
@@ -1054,6 +1055,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${guide.meta.title} | Guides | YardFlow`,
     description: guide.meta.subtitle,
+    openGraph: {
+      title: `${guide.meta.title} | YardFlow Guides`,
+      description: guide.meta.subtitle,
+      type: 'article',
+      images: [
+        {
+          url: `${siteUrl}/api/og?page=guide/${slug}`,
+          width: 1200,
+          height: 630,
+          alt: guide.meta.title,
+        },
+      ],
+    },
   };
 }
 

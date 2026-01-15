@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: `${siteUrl}/og.png`,
+        url: `${siteUrl}/api/og`,
         width: 1200,
         height: 630,
         alt: 'YardFlow by FreightRoll YardBuilder Tool',

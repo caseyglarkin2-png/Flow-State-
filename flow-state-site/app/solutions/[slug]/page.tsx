@@ -1,6 +1,7 @@
 // /app/solutions/[slug]/page.tsx
 import { notFound } from "next/navigation";
 import { solutionPages, isSolutionSlug, type SolutionSlug } from "@/lib/solutions";
+import { siteUrl } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import {
@@ -30,6 +31,19 @@ export async function generateMetadata({ params }: PageProps) {
   return {
     title: cfg.seo.title,
     description: cfg.seo.description,
+    openGraph: {
+      title: cfg.seo.title,
+      description: cfg.seo.description,
+      type: 'website',
+      images: [
+        {
+          url: `${siteUrl}/api/og?page=solutions/${slug}`,
+          width: 1200,
+          height: 630,
+          alt: cfg.seo.title,
+        },
+      ],
+    },
   };
 }
 
