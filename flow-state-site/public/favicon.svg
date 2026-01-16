@@ -2,12 +2,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="YardFlow by FreightRoll">
   <title>YardFlow by FreightRoll</title>
   <!-- flow_micro: Simplified node structure without outer ring -->
-  <!-- YardFlow Blue: #2563eb - Scaled to fill viewBox for visibility in small sizes -->
-  <path d="M4 24 C8 24, 10 21, 14 17" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-  <path d="M14 30 C14 24, 14 21, 14 17" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-  <path d="M14 17 C18 13, 22 13, 28 18" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-  <circle cx="4" cy="24" r="2.5" fill="#2563eb"/>
-  <circle cx="14" cy="30" r="2.5" fill="#2563eb"/>
-  <circle cx="28" cy="18" r="2.5" fill="#2563eb"/>
-  <circle cx="14" cy="17" r="3" fill="#2563eb"/>
+  <!-- Neon: #00B4FF - Site accent color, Scaled to fill viewBox for visibility in small sizes -->
+  <path d="M4 24 C8 24, 10 21, 14 17" stroke="#00B4FF" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <path d="M14 30 C14 24, 14 21, 14 17" stroke="#00B4FF" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <path d="M14 17 C18 13, 22 13, 28 18" stroke="#00B4FF" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <circle cx="4" cy="24" r="2.5" fill="#00B4FF"/>
+  <circle cx="14" cy="30" r="2.5" fill="#00B4FF"/>
+  <circle cx="28" cy="18" r="2.5" fill="#00B4FF"/>
+  <circle cx="14" cy="17" r="3" fill="#00B4FF"/>
 </svg>
