@@ -4,20 +4,24 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { AnimatedSection } from "@/components/motion/AnimatedSection";
 import { ArrowRight, Calendar } from "lucide-react";
-import { PRIMARY_CTA, SECONDARY_CTA } from "@/lib/cta";
+import { BRAND } from "@/config/brand";
 
 type SolutionCTAProps = {
   headline?: string;
   subhead?: string;
   primaryCta?: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
+  tertiaryCta?: { label: string; href: string };
+  showTertiary?: boolean;
 };
 
 export function SolutionCTA({
   headline = "Ready to eliminate variance?",
-  subhead = "See how YardFlow standardizes operations for your mode. Run your numbers. Apply for access.",
-  primaryCta = { label: PRIMARY_CTA.label, href: PRIMARY_CTA.href },
-  secondaryCta = { label: SECONDARY_CTA.label, href: SECONDARY_CTA.href },
+  subhead = "Book a Network Audit to identify pilot sites, or apply for the Co-Development Program to influence the roadmap.",
+  primaryCta = { label: BRAND.ctas.primary.label, href: BRAND.ctas.primary.href },
+  secondaryCta = { label: BRAND.ctas.secondary.label, href: BRAND.ctas.secondary.href },
+  tertiaryCta = { label: BRAND.ctas.tertiary.label, href: BRAND.ctas.tertiary.href },
+  showTertiary = true,
 }: SolutionCTAProps) {
   return (
     <AnimatedSection className="py-24 relative overflow-hidden">
@@ -55,6 +59,14 @@ export function SolutionCTA({
               {secondaryCta.label}
               <ArrowRight className="h-5 w-5" />
             </Link>
+            {showTertiary && (
+              <Link
+                href={tertiaryCta.href}
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 text-base font-medium text-steel/80 hover:text-neon transition-all underline"
+              >
+                {tertiaryCta.label}
+              </Link>
+            )}
           </div>
         </motion.div>
       </div>

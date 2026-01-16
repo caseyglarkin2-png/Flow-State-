@@ -4,6 +4,9 @@ import { solutionNav, solutionPages } from "@/lib/solutions";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CompareStrip } from "@/components/content";
+import { BRAND } from "@/config/brand";
+import CTAGroup from "@/components/CTAGroup";
+import CoDevCallout from "@/components/CoDevCallout";
 
 export const metadata = {
   title: "Solutions | YardFlow",
@@ -174,28 +177,27 @@ export default function SolutionsOverviewPage() {
           </div>
         </section>
 
+        {/* Co-Development Callout */}
+        <section className="py-12 bg-carbon/30 border-y border-neon/20">
+          <div className="max-w-5xl mx-auto px-6">
+            <CoDevCallout 
+              title="Complex Operations? Consider Co-Development"
+              description="Multi-site operators with unique mode requirements (reefer staging, flatbed securement, intermodal coordination): co-develop features tailored to your operational reality. Influence the roadmap and get priority access."
+            />
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="py-20">
           <div className="mx-auto max-w-6xl px-6">
             <h2 className="text-3xl font-bold tracking-tight text-white">
-              Stop Paying the Volatility Tax
+              Ready to Eliminate Yard Variance?
             </h2>
             <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl">
-              Run the diagnostic. See where variance costs you. Get the playbook to fix it.
+              Book a Network Audit to identify high-impact pilot sites, or explore the Co-Development Program for advanced features.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                href="/diagnostic"
-                className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition"
-              >
-                Run Network Diagnostic
-              </Link>
-              <Link
-                href="/roi"
-                className="inline-flex items-center gap-2 rounded-xl border border-neon/30 bg-carbon/50 px-6 py-3 font-medium text-white hover:border-neon/50 transition"
-              >
-                Model ROI in 3 Minutes
-              </Link>
+            <div className="mt-8">
+              <CTAGroup />
             </div>
           </div>
         </section>

@@ -8,6 +8,9 @@ import Link from 'next/link';
 import AnimatedPanel from '@/components/AnimatedPanel';
 import { ProductSection } from '@/components/products/ProductSection';
 import { DigitalGuardVisual, DigitalCommsVisual, DigitalBOLVisual, DigitalYMSVisual } from '@/components/products/ProductVisualsLite';
+import { BRAND } from '@/config/brand';
+import CTAGroup from '@/components/CTAGroup';
+import CoDevCallout from '@/components/CoDevCallout';
 
 const PRODUCTS = [
   {
@@ -118,23 +121,28 @@ export default function ProductPage() {
         />
       ))}
 
+      {/* Co-Development Callout */}
+      <section className="py-12 bg-carbon/30 border-y border-neon/20">
+        <div className="max-w-5xl mx-auto px-6">
+          <CoDevCallout 
+            title="Beyond Base Deployment: Advanced Features"
+            description="Multi-site operators with complex needs: Co-develop vision-based RTLS, AI yard orchestration, or machine vision gate systems. Influence the roadmap and get priority access to cutting-edge modules."
+          />
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-6">
           <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Next Step</p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">
-            Stop the Variance Tax
+            Ready to Standardize Your Yard Network?
           </h2>
           <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl">
-            Run the diagnostic. See where variance costs you. Get the playbook to fix it.
+            Book a Network Audit to identify pilot sites, or explore the Co-Development Program for advanced features.
           </p>
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition">
-              Get Your Network Rollout Plan
-            </Link>
-            <Link href="/roi" className="inline-flex items-center gap-2 rounded-xl border border-neon/30 bg-carbon/50 px-6 py-3 font-medium text-white hover:border-neon/50 transition">
-              Model ROI in 3 Minutes
-            </Link>
+          <div className="mt-8">
+            <CTAGroup />
           </div>
         </div>
       </section>

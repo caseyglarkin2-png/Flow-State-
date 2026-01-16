@@ -216,6 +216,12 @@ export default function Header() {
             
             {companyOpen && (
               <div className="absolute top-full right-0 mt-2 w-56 bg-carbon border border-neon/20 rounded-xl shadow-lg py-2 z-50">
+                <Link href="/co-development" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors border-b border-neon/10">
+                  <span className="font-medium text-white flex items-center gap-2">
+                    <Ignite size={14} className="text-neon" /> Co-Development
+                  </span>
+                  <span className="block text-xs text-steel/70">Build features with us</span>
+                </Link>
                 <Link href="/resources/procurement" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
                   <span className="font-medium text-white flex items-center gap-2">
                     <Shield size={14} className="text-neon" /> Evidence Vault
