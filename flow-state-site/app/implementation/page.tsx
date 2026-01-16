@@ -184,6 +184,38 @@ export default function ImplementationPage() {
         </div>
       </section>
 
+      {/* Co-Development Callout */}
+      <section className="py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="rounded-2xl border border-neon/20 bg-gradient-to-br from-neon/5 to-ember/5 p-8 md:p-12">
+            <div className="flex items-start gap-4">
+              <div className="rounded-lg bg-neon/10 p-3 flex-shrink-0">
+                <svg className="w-6 h-6 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <h2 className="text-2xl font-bold text-white mb-3">
+                  Need Features Beyond the Base Platform?
+                </h2>
+                <p className="text-[17px] text-steel leading-8 mb-6">
+                  Complex multi-site rollouts often reveal advanced workflow needs: custom integrations with proprietary WMS/TMS systems, mode-specific automation (reefer temp tracking, flatbed securement vision, intermodal container choreography), or network-level analytics tailored to your operations.
+                </p>
+                <p className="text-sm text-steel/70 mb-6">
+                  Multi-site operators with &gt;20 facilities: co-develop features with us, influence our roadmap, and deploy custom capabilities ahead of the market.
+                </p>
+                <Link
+                  href="/co-development"
+                  className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-white transition"
+                >
+                  Explore Co-Development
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* What You Get */}
       <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">

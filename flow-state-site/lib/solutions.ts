@@ -201,6 +201,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
         { label: "Field Notes: Dwell Time Patterns", href: "/resources/field-notes/dwell-time-patterns/", note: "What actually moves the needle." },
         { label: "Field Notes: Gate Throughput Benchmarks", href: "/resources/field-notes/gate-throughput-benchmarks/", note: "Know your baseline." },
         { label: "Simulations", href: "/simulations/", note: "Before vs after, from three perspectives." },
+        { label: "Co-Development: Auto-Staging Algorithms", href: "/co-development", note: "High-velocity cross-docks: AI-driven trailer staging for sub-2-hour turns." },
       ],
     },
     cta: {
@@ -296,6 +297,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
         { label: "Field Notes: Dwell Time Patterns", href: "/resources/field-notes/dwell-time-patterns/" },
         { label: "Simulations", href: "/simulations/" },
         { label: "Network Leak Diagnostic", href: "/diagnostic/" },
+        { label: "Co-Development: Temp Compliance Automation", href: "/co-development", note: "Continuous reefer monitoring + predictive spoilage alerts with vision RTLS." },
       ],
     },
     cta: {
@@ -388,6 +390,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       links: [
         { label: "Simulations", href: "/simulations/" },
         { label: "Network Leak Diagnostic", href: "/diagnostic/" },
+        { label: "Co-Development: Securement Vision AI", href: "/co-development", note: "Machine vision for load verification + compliance documentation." },
       ],
     },
     cta: {
@@ -480,6 +483,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       links: [
         { label: "Field Notes: Gate Throughput Benchmarks", href: "/resources/field-notes/gate-throughput-benchmarks/" },
         { label: "Simulations", href: "/simulations/" },
+        { label: "Co-Development: Container Choreography AI", href: "/co-development", note: "Rail/ocean/drayage handoff orchestration + modal transfer sequencing." },
       ],
     },
     cta: {
@@ -572,6 +576,7 @@ export const solutionPages: Record<SolutionSlug, SolutionPageConfig> = {
       links: [
         { label: "Network Leak Diagnostic", href: "/diagnostic/" },
         { label: "Simulations", href: "/simulations/" },
+        { label: "Co-Development: Hazmat Compliance Automation", href: "/co-development", note: "Credential verification + workflow interlocks + compliance audit trails." },
       ],
     },
     cta: {

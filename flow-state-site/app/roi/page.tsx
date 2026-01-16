@@ -2172,6 +2172,40 @@ export default function ROICalculatorPage() {
         </div>
       </section>
 
+      {/* Co-Development Callout (high ROI signals advanced feature opportunity) */}
+      {calculations.yearOneGrossSavings >= 1000000 && (
+        <section className="py-16 bg-carbon/20">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="rounded-2xl border border-neon/20 bg-gradient-to-br from-neon/5 to-ember/5 p-8 md:p-12">
+              <div className="flex items-start gap-4">
+                <div className="rounded-lg bg-neon/10 p-3 flex-shrink-0">
+                  <svg className="w-6 h-6 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h2 className="text-2xl font-bold text-white mb-3">
+                    High ROI = Advanced Feature Opportunity
+                  </h2>
+                  <p className="text-[17px] text-steel leading-8 mb-6">
+                    Multi-million dollar annual ROI signals network-scale opportunity. Co-develop advanced features with us: vision RTLS for trailer tracking, AI orchestration for dock scheduling, predictive analytics for dwell management, machine vision for securement verification.
+                  </p>
+                  <p className="text-sm text-steel/70 mb-6">
+                    Multi-site operators with &gt;50 facilities: influence our roadmap, get custom features built to your workflow, and deploy ahead of the market.
+                  </p>
+                  <a
+                    href="/co-development"
+                    className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-white transition"
+                  >
+                    Explore Co-Development
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* CTA */}
       <section className="py-16 bg-gradient-to-br from-neon/10 to-transparent border-t border-neon/20">
         <div className="max-w-4xl mx-auto px-6 text-center">

@@ -185,6 +185,87 @@ export default function PricingPage() {
         </div>
       </section>
 
+      {/* Co-Development Economics */}
+      <section className="py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Advanced Features</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white mb-4">Co-Development Pricing</h2>
+          <p className="text-[17px] text-steel leading-8 max-w-3xl mb-10">
+            Multi-site operators with &gt;50 facilities can co-develop custom features with us. Build advanced capabilities tailored to your workflows, influence our roadmap, and deploy ahead of the market.
+          </p>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            <div className="rounded-2xl border border-neon/20 bg-gradient-to-br from-neon/5 to-ember/5 p-8">
+              <div className="flex items-start gap-3 mb-6">
+                <div className="rounded-lg bg-neon/10 p-3 flex-shrink-0">
+                  <svg className="w-6 h-6 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-2">Partner Pricing Framework</h3>
+                  <p className="text-steel text-sm leading-relaxed">
+                    Co-development partners get custom features built to their workflow in exchange for strategic partnership: committed network rollout, early adoption, and co-marketing rights.
+                  </p>
+                </div>
+              </div>
+              <ul className="space-y-3 text-steel text-sm">
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1">→</span>
+                  <span>No upfront development fees for qualified partners</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1">→</span>
+                  <span>Standard per-facility pricing applies across your network</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1">→</span>
+                  <span>Custom features deployed to your facilities first</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1">→</span>
+                  <span>IP ownership: YardFlow retains platform rights, you own operational know-how</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="rounded-2xl border border-neon/20 bg-carbon/50 p-8">
+              <h3 className="text-xl font-bold text-white mb-4">What Gets Co-Developed</h3>
+              <ul className="space-y-3 text-steel text-sm">
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1 font-bold">•</span>
+                  <span><strong className="text-white">Vision RTLS:</strong> Real-time trailer tracking via camera infrastructure</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1 font-bold">•</span>
+                  <span><strong className="text-white">AI Orchestration:</strong> Dock scheduling, dwell prediction, load sequencing</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1 font-bold">•</span>
+                  <span><strong className="text-white">Mode-Specific Automation:</strong> Reefer temp tracking, flatbed securement vision, intermodal choreography</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1 font-bold">•</span>
+                  <span><strong className="text-white">Custom Integrations:</strong> Proprietary WMS/TMS/ERP connectors, legacy system bridges</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-neon mt-1 font-bold">•</span>
+                  <span><strong className="text-white">Network Analytics:</strong> Cross-facility insights, dwell benchmarking, predictive alerts</span>
+                </li>
+              </ul>
+              <div className="mt-6 pt-6 border-t border-neon/10">
+                <Link
+                  href="/co-development"
+                  className="inline-flex items-center gap-2 text-neon hover:text-white transition font-medium"
+                >
+                  Learn More About Co-Development →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-20">
         <div className="mx-auto max-w-6xl px-6">

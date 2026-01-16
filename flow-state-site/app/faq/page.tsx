@@ -4,7 +4,11 @@ import Footer from '@/components/Footer';
 import { ExpandableCard } from '@/components/ExpandableCard';
 import Link from 'next/link';
 
-const faqs = [
+const faqs: Array<{
+  q: string;
+  a: string;
+  category?: string;
+}> = [
   {
     q: 'What is YardFlow by FreightRoll, in one sentence?',
     a: 'A yard orchestration control loop: standardized workflows that produce defensible timestamps and network-level operational truth.',
@@ -37,7 +41,32 @@ const faqs = [
     q: 'Where can I get a board-ready artifact?',
     a: 'Use YardBuilder to generate a readiness PDF, or export your ROI summary as a PDF for internal forwarding.',
   },
-] as const;
+  {
+    q: 'What is the Co-Development Program?',
+    a: 'Multi-site operators (>50 facilities) can co-develop custom features with us: vision RTLS, AI orchestration, mode-specific automation, or custom integrations. You influence our roadmap, we build to your workflow, and you deploy ahead of the market.',
+    category: 'Co-Development',
+  },
+  {
+    q: 'Who qualifies for co-development?',
+    a: 'Multi-site operators with >50 facilities, committed network rollout plans, and strategic partnership appetite. We prioritize partners who can validate features at scale and participate in co-marketing.',
+    category: 'Co-Development',
+  },
+  {
+    q: 'What does co-development cost?',
+    a: 'No upfront development fees for qualified partners. Standard per-facility pricing applies across your network. We retain platform IP; you own operational know-how and deploy custom features first.',
+    category: 'Co-Development',
+  },
+  {
+    q: 'How long does co-development take?',
+    a: 'Typical custom feature: 8-16 weeks from scoping to pilot deployment. Timeline depends on complexity, integration requirements, and testing cycles. We use a 3-phase framework: Discovery → Build → Deploy.',
+    category: 'Co-Development',
+  },
+  {
+    q: 'What features can be co-developed?',
+    a: 'Examples: vision RTLS for real-time trailer tracking, AI dock scheduling, reefer temperature compliance automation, flatbed securement vision, intermodal container choreography, proprietary WMS/TMS integrations, network-level analytics dashboards.',
+    category: 'Co-Development',
+  },
+];
 
 export default function FaqPage() {
   const jsonLd = {
@@ -73,8 +102,8 @@ export default function FaqPage() {
       {/* FAQ Grid */}
       <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {faqs.map((f, idx) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            {faqs.filter((f) => !f.category).map((f, idx) => (
               <ExpandableCard
                 key={f.q}
                 id={`faq-${idx + 1}`}
@@ -84,6 +113,33 @@ export default function FaqPage() {
                 <p className="text-steel leading-relaxed">{f.a}</p>
               </ExpandableCard>
             ))}
+          </div>
+
+          {/* Co-Development Section */}
+          <div className="pt-12 border-t border-neon/20">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="rounded-lg bg-neon/10 p-2">
+                <svg className="w-5 h-5 text-neon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h2 className="text-2xl font-bold text-white">Co-Development Program</h2>
+            </div>
+            <p className="text-steel mb-8 max-w-3xl">
+              Build custom features with us. Multi-site operators with &gt;50 facilities can influence our roadmap and deploy advanced capabilities ahead of the market.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {faqs.filter((f) => f.category === 'Co-Development').map((f, idx) => (
+                <ExpandableCard
+                  key={f.q}
+                  id={`codev-faq-${idx + 1}`}
+                  title={f.q}
+                  defaultOpen={idx === 0}
+                >
+                  <p className="text-steel leading-relaxed">{f.a}</p>
+                </ExpandableCard>
+              ))}
+            </div>
           </div>
         </div>
       </section>
