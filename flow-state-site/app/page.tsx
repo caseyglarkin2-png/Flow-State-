@@ -118,6 +118,10 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyCTABar from '@/components/StickyCTABar';
 import StandardizationMap from '@/components/StandardizationMap';
+import ProofStrip from '@/components/ProofStrip';
+import CTAGroup from '@/components/CTAGroup';
+import ClaimsFootnote from '@/components/ClaimsFootnote';
+import { BRAND } from '@/config/brand';
 import { PRIMARY_CTA, SECONDARY_CTA, TERTIARY_CTA } from '@/lib/cta';
 
 export default function Home() {
@@ -148,19 +152,24 @@ export default function Home() {
 
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
-              href={PRIMARY_CTA.href}
+              href={BRAND.ctas.primary.href}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium bg-neon text-void hover:bg-white transition"
             >
-              {PRIMARY_CTA.label}
+              {BRAND.ctas.primary.label}
             </Link>
             <Link
-              href={SECONDARY_CTA.href}
+              href={BRAND.ctas.secondary.href}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium border border-neon/30 bg-carbon/50 text-white hover:border-neon/50 transition"
             >
-              {SECONDARY_CTA.label}
+              {BRAND.ctas.secondary.label}
+            </Link>
+            <Link
+              href={BRAND.ctas.tertiary.href}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-steel/80 hover:text-neon transition underline"
+            >
+              {BRAND.ctas.tertiary.label}
             </Link>
           </div>
-          <p className="mt-3 text-sm text-steel/70">{PRIMARY_CTA.microcopy}</p>
 
           {/* Value Props - Upgraded KPI Cards */}
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
@@ -189,8 +198,13 @@ export default function Home() {
               </div>
             </div>
           </div>
+          
+          <ClaimsFootnote className="text-center mx-auto mt-6" />
         </div>
       </section>
+
+      {/* Proof Strip */}
+      <ProofStrip />
 
       {/* ═══════════════════════════════════════════════════════════════
           STANDARDIZATION MAP - INSERTED AFTER HERO
@@ -207,22 +221,11 @@ export default function Home() {
             Stop Paying the Volatility Tax
           </h2>
           <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl">
-            Run the diagnostic. See where variance costs you. Get the playbook to fix it.
+            Book a Network Audit to identify high-impact sites, or apply for the Co-Development Program to influence the roadmap.
           </p>
           
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link
-              href={PRIMARY_CTA.href}
-              className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition"
-            >
-              {PRIMARY_CTA.label}
-            </Link>
-            <Link
-              href={SECONDARY_CTA.href}
-              className="inline-flex items-center gap-2 rounded-xl border border-neon/30 bg-carbon/50 px-6 py-3 font-medium text-white hover:border-neon/50 transition"
-            >
-              {SECONDARY_CTA.label}
-            </Link>
+          <div className="mt-8">
+            <CTAGroup />
           </div>
         </div>
       </section>

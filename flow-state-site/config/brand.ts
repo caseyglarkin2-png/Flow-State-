@@ -33,16 +33,28 @@ export const BRAND = {
     calendly: process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/freightroll',
   },
 
-  // Primary CTAs and their destinations
+  // Proof points (credibility anchors)
+  proof: {
+    drivers: '200K+', // Single source of truth - update here when numbers change
+    label: 'drivers',
+    tagline: 'Built by FreightRoll',
+  },
+
+  // Primary CTAs and their destinations (STANDARDIZED for go-live)
   ctas: {
     primary: {
+      label: 'Book a Network Audit',
+      href: '/contact?intent=audit',
+    },
+    secondary: {
+      label: 'Apply for Co-Development',
+      href: '/co-development',
+    },
+    tertiary: {
       label: 'Calculate ROI',
       href: '/roi',
     },
-    secondary: {
-      label: 'Run ROI',
-      href: '/roi',
-    },
+    // Legacy/alternative CTAs (keep for backward compat)
     contact: {
       label: 'Apply for Access',
       href: '/contact?intent=qualify',

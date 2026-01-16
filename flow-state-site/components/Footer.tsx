@@ -4,11 +4,33 @@ import React from 'react';
 import Link from 'next/link';
 import { BrandLogo } from '@/components/BrandLogo';
 import { SITE_METADATA } from '@/lib/branding';
+import { BRAND } from '@/config/brand';
 
 export default function Footer() {
   return (
     <footer className="bg-carbon border-t border-neon/20 py-16">
       <div className="max-w-7xl mx-auto px-6">
+        {/* CTA Section */}
+        <div className="mb-16 p-8 rounded-xl bg-gradient-to-br from-neon/5 to-ember/5 border border-neon/30 text-center">
+          <h3 className="text-2xl font-black text-white mb-3">Ready to Standardize Your Network?</h3>
+          <p className="text-steel/80 mb-6 max-w-2xl mx-auto">
+            Book a Network Audit to identify pilot sites, or apply for the Co-Development Program.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link 
+              href={BRAND.ctas.primary.href}
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-lg bg-neon text-void hover:bg-white hover:text-void transition-all"
+            >
+              {BRAND.ctas.primary.label}
+            </Link>
+            <Link 
+              href={BRAND.ctas.secondary.href}
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-lg border-2 border-steel/40 text-steel hover:border-neon hover:text-neon transition-all"
+            >
+              {BRAND.ctas.secondary.label}
+            </Link>
+          </div>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 md:gap-12 mb-12">
           {/* Brand Column */}
           <div className="col-span-1 lg:col-span-2">
@@ -53,6 +75,7 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold mb-4 text-neon text-sm uppercase tracking-wider">Company</h3>
             <ul className="space-y-2 text-sm text-steel">
+              <li><Link href="/co-development" className="hover:text-neon transition-colors">Co-Development</Link></li>
               <li><Link href="/resources/procurement" className="hover:text-neon transition-colors">Evidence Vault</Link></li>
               <li><Link href="/implementation" className="hover:text-neon transition-colors">Implementation</Link></li>
               <li><Link href="/integrations" className="hover:text-neon transition-colors">Integrations</Link></li>

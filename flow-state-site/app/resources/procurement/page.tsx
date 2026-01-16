@@ -122,7 +122,7 @@ export default function SecurityPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
-                  <span className="text-steel/90">Blockchain-backed BOL verification</span>
+                  <span className="text-steel/90">Cryptographically signed BOL verification</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
@@ -136,8 +136,8 @@ export default function SecurityPage() {
               <Agent size={32} className="text-ember mb-4" />
               <h3 className="text-2xl font-bold text-white mb-3">Driver Qualification Compliance</h3>
               <p className="text-steel/80 mb-4">
-                Secretary Duffy's proposed rules make shippers liable for driver qualifications. Unqualified drivers hauling 50,000 lb loads is your legal exposure. 
-                <span className="block mt-2 text-white font-semibold">Digital Guard documents compliance.</span>
+                Proposed regulatory changes may expand shipper liability for driver qualifications. Unqualified drivers hauling 50,000 lb loads creates audit and dispute exposure. 
+                <span className="block mt-2 text-white font-semibold">Digital Guard creates documentation-ready records.</span>
               </p>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">
@@ -146,15 +146,15 @@ export default function SecurityPage() {
                 </li>
                 <li className="flex items-start gap-2">
                   <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
-                  <span className="text-steel/90">Legal requirement: read road signs (English) for 50K+ lbs</span>
+                  <span className="text-steel/90">Supports DOT/FMCSA requirement: English proficiency for vehicles 50K+ lbs</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
-                  <span className="text-steel/90">Shipper liability shield: documented driver qualification</span>
+                  <span className="text-steel/90">Reduces audit and dispute exposure with documented driver checks</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <Confirm size={16} className="text-neon flex-shrink-0 mt-0.5" />
-                  <span className="text-steel/90">Audit-ready proof for DOT/FMCSA compliance</span>
+                  <span className="text-steel/90">Audit-ready records for DOT/FMCSA compliance reviews</span>
                 </li>
               </ul>
             </Card>
@@ -162,7 +162,7 @@ export default function SecurityPage() {
 
           <div className="text-center">
             <p className="text-steel/60 text-sm mb-4">
-              Secretary Duffy's proposed regulations shift liability to shippers. Digital Guard gives you documented proof of compliance.
+              Proposed regulations may expand shipper compliance obligations. Digital Guard creates documentation-ready records to support audit readiness.
             </p>
             <Link href="/product" className="inline-flex items-center gap-2 text-neon hover:underline font-semibold">
               See how Digital Guard + Digital BOL work together →
@@ -179,12 +179,11 @@ export default function SecurityPage() {
               <span className="text-white font-semibold"> "When exactly did this happen, and can you prove it?"</span>
               <br /><br />
               Manual logs are hearsay. GPS alone doesn't prove check-in. Video timestamps can be manipulated. 
-              Digital Guard creates <span className="text-neon font-semibold">cryptographically signed, QR-verified timestamps</span> that 
-              withstand legal scrutiny. Every driver check-in becomes forensic-grade evidence. Admissible in court, 
-              accepted by finance, and defensible to auditors.
+              Digital Guard creates <span className="text-neon font-semibold">cryptographically signed, QR-verified timestamps</span> designed for 
+              dispute resolution. Every driver check-in becomes defensible evidence that supports financial and compliance reviews.
               <br /><br />
-              You're not just tracking time. You're <span className="text-neon font-semibold">protecting revenue, limiting liability, 
-              and creating board-ready proof</span> that your yard operations are compliant, measurable, and financially defensible.
+              You're not just tracking time. You're <span className="text-neon font-semibold">protecting revenue, reducing audit exposure, 
+              and creating documentation-ready proof</span> that your yard operations are measurable and defensible.
             </p>
           </div>
         </div>

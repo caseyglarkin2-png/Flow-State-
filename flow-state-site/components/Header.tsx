@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import Logo from '@/components/Logo';
 import { FlowArrow, Ignite, Velocity, Shield, DryVan, Intermodal, Flatbed, Tanker } from '@/components/icons/FlowIcons';
 import { solutionNav } from '@/lib/solutions';
+import { BRAND } from '@/config/brand';
 import { PRIMARY_CTA } from '@/lib/cta';
 
 export default function Header() {
@@ -24,14 +25,14 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 w-full z-50 bg-void/80 backdrop-blur-md border-b border-neon/20">
-      {/* Founding Member Banner */}
+      {/* Co-Development Banner */}
       <div className="bg-neon/10 border-b border-neon/20 py-2 px-4 text-center text-sm">
         <span className="text-steel inline-flex items-center gap-2">
           <Ignite size={16} className="text-neon" />
-          Founding Member Program:
+          Co-Development Program:
         </span>
-        <Link href={PRIMARY_CTA.href} className="text-neon font-semibold hover:underline inline-flex items-center gap-1 ml-1">
-          Apply now <FlowArrow size={12} className="text-neon" />
+        <Link href={BRAND.ctas.secondary.href} className="text-neon font-semibold hover:underline inline-flex items-center gap-1 ml-1">
+          {BRAND.ctas.secondary.label} <FlowArrow size={12} className="text-neon" />
         </Link>
       </div>
 
