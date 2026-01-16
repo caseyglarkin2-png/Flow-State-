@@ -109,7 +109,7 @@ User sees logo → Header/Footer loads → Renders from BrandLogo.tsx
 **Solution**: Updated to correct `flow_micro` variant + proper color
 **Changes**:
 - favicon.svg now uses `flow_micro` design (simplified node structure, no outer ring)
-- Color changed to YardFlow Blue (#2563eb)
+- Color changed to Neon (#00B4FF) - site accent color
 - Regenerated all formats: .ico, .png (16/32/48/180/192/512)
 - Updated manifest.json for PWA support
 - **Commit**: `58af666`
@@ -140,7 +140,7 @@ User sees logo → Header/Footer loads → Renders from BrandLogo.tsx
 - [x] Zero TypeScript errors
 - [x] All pages compile
 - [x] Brand standardized: "YardFlow by FreightRoll" everywhere
-- [x] Favicon: flow_micro with YardFlow Blue (#2563eb)
+- [x] Favicon: flow_micro with Neon (#00B4FF)
 - [x] OG image: Inter font, correct lockup, social-ready
 - [x] Metadata: Using SITE_METADATA from lib/branding.ts
 - [x] Navigation: Header and Footer synced
