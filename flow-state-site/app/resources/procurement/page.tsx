@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
+import EvidenceTimeline, { SAMPLE_TIMELINE } from '@/components/EvidenceTimeline';
 import { Lock } from 'lucide-react';
 import {
   Shield,
@@ -189,7 +190,21 @@ export default function SecurityPage() {
         </div>
       </section>
 
-      {/* Data Security (Secondary) */}
+      {/* Evidence Vault - Interactive Proof */}
+      <section id="evidence-vault" className="py-20 bg-carbon/30 border-b border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="mb-12">
+            <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-4">Proof You Can Forward</p>
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Evidence Vault: Every Event, Every Timestamp, Every Proof
+            </h2>
+            <p className="text-[17px] text-steel leading-8 max-w-3xl">
+              This is your audit trail. Every carrier check-in. Every exception. Every resolution. Defensible timestamps. Cryptographic signatures. Ready for disputes, audits, and compliance reviews.
+            </p>
+          </div>
+          <EvidenceTimeline events={SAMPLE_TIMELINE} />
+        </div>
+      </section>
       <section className="py-16 bg-void border-b border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl font-black mb-2">Data Security & IT Compliance</h2>

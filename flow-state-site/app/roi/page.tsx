@@ -68,6 +68,7 @@ import BoardReadyExportCTA from '@/components/BoardReadyExportCTA';
 import NextSteps from '@/components/NextSteps';
 import CFOProofChecklist from '@/components/CFOProofChecklist';
 import VarianceKillsBlock from '@/components/VarianceKillsBlock';
+import EvidenceTimeline, { SAMPLE_TIMELINE } from '@/components/EvidenceTimeline';
 import { FlowArrow, Metrics, Velocity, Config, Timeline, Caution, Agent, Manifest, Nexus } from '@/components/icons/FlowIcons';
 import { calcRoiV1, calcRoiV2, defaultRoiV2Inputs, roiV2InputsFromQuickMode } from '@/lib/roi/calc';
 import type { RoiV2Inputs } from '@/lib/roi/types';
@@ -2231,6 +2232,22 @@ export default function ROICalculatorPage() {
               Apply for Access
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* Evidence Timeline - Proof of Operations */}
+      <section className="py-20 bg-gradient-to-b from-carbon/20 to-void border-b border-neon/20">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="mb-12">
+            <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-4">How Proof Works</p>
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Your ROI Isn't Theoretical—It's Auditable
+            </h2>
+            <p className="text-[17px] text-steel leading-8 max-w-3xl">
+              Every metric you modeled above has an evidence trail. Check-in → Exception → Resolution → Cryptographic lock. When the board asks "prove it," this is your audit trail.
+            </p>
+          </div>
+          <EvidenceTimeline events={SAMPLE_TIMELINE} />
         </div>
       </section>
 

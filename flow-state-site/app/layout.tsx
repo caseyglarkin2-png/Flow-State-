@@ -4,6 +4,7 @@ import { Inter, JetBrains_Mono } from 'next/font/google';
 import Script from 'next/script';
 import AppChrome from '@/components/AppChrome';
 import AnalyticsProvider from '@/components/AnalyticsProvider';
+import { ReducedMotionProvider } from '@/components/motion/ReducedMotion';
 import { siteUrl } from '@/lib/site';
 import { SITE_METADATA } from '@/lib/branding';
 
@@ -185,10 +186,20 @@ export default function RootLayout({
         <meta name="msapplication-TileColor" content="#050505" />
       </head>
       <body className="bg-void text-white font-sans">
-        <AnalyticsProvider>
-          {children}
-          <AppChrome />
-        </AnalyticsProvider>
+        {/* Skip to main content */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-6 focus:py-3 focus:rounded-lg focus:bg-neon focus:text-void focus:font-semibold focus:ring-4 focus:ring-neon/50"
+        >
+          Skip to main content
+        </a>
+
+        <ReducedMotionProvider>
+          <AnalyticsProvider>
+            {children}
+            <AppChrome />
+          </AnalyticsProvider>
+        </ReducedMotionProvider>
       </body>
       <Script
         id="structured-data"

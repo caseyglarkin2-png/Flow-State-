@@ -421,6 +421,20 @@ export const DryVan: React.FC<IconProps> = ({ size = defaults.size, className })
   </svg>
 );
 
+// Reefer - Temperature controlled operations
+export const Reefer: React.FC<IconProps> = ({ size = defaults.size, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+    <rect x="2" y="8" width="14" height="8" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    <path d="M16 8h3l3 4v4h-6V8z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    <circle cx="6" cy="18" r="2" stroke="currentColor" strokeWidth="1.5" />
+    <circle cx="18" cy="18" r="2" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M8 18h8" stroke="currentColor" strokeWidth="1.5" />
+    {/* Cooling unit indicator */}
+    <rect x="3" y="9" width="3" height="3" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+    <path d="M4.5 10.5v1" stroke="currentColor" strokeWidth="0.5" opacity="0.6" />
+  </svg>
+);
+
 // Intermodal - Container & rail operations
 export const Intermodal: React.FC<IconProps> = ({ size = defaults.size, className }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>

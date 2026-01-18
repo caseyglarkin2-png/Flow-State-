@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import StandardizationBand from '@/components/StandardizationBand';
 import OperatingModelComparison from '@/components/OperatingModelComparison';
+import BeforeAfterToggle from '@/components/BeforeAfterToggle';
 
 export default function CompareIndexPage() {
   return (
@@ -34,6 +35,49 @@ export default function CompareIndexPage() {
             Legacy YMS records events after they happen. YardFlow enforces what happens next.
           </p>
           <OperatingModelComparison />
+        </div>
+      </section>
+
+      {/* Interactive Before/After */}
+      <section className="py-20">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-4">Operational Reality</p>
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+            What Changes When You Standardize
+          </h2>
+          <p className="text-[17px] text-steel leading-8 max-w-3xl mb-12">
+            Same four modules. Same operating model. Different outcomes. Compare the operational metrics before and after YardFlow deployment.
+          </p>
+
+          <BeforeAfterToggle
+            content={{
+              before: {
+                title: "Before: Ad-Hoc Operations",
+                description: "Each yard runs its own playbook. Drivers get inconsistent instructions. Detentions are disputes waiting to happen.",
+                metrics: [
+                  { label: 'Gate Dwell', value: '18-30 min', negative: true },
+                  { label: 'Avg Dwell Time', value: '48-72 hours', negative: true },
+                  { label: 'Detention Cost/Carrier', value: '35-45%', negative: true },
+                  { label: 'BOL Disputes', value: '22-34%', negative: true },
+                  { label: 'Detention Recovery', value: '35%', negative: true },
+                  { label: 'Manual Gate Processes', value: '100%', negative: true },
+                ],
+              },
+              after: {
+                title: "After: Standardized & Enforced",
+                description: "Same check-in at every site. Digital enforcement replaces radio calls. Timestamps are defensible. Disputes shrink.",
+                metrics: [
+                  { label: 'Gate Dwell', value: '6-8 min', positive: true },
+                  { label: 'Avg Dwell Time', value: '24-36 hours', positive: true },
+                  { label: 'Detention Cost/Carrier', value: '8-12%', positive: true },
+                  { label: 'BOL Disputes', value: '4-7%', positive: true },
+                  { label: 'Detention Recovery', value: '65%', positive: true },
+                  { label: 'Automated Gate Processes', value: '85%', positive: true },
+                ],
+              },
+            }}
+            mode="side-by-side"
+          />
         </div>
       </section>
 

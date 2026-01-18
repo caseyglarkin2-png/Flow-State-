@@ -7,6 +7,7 @@ import { CompareStrip } from "@/components/content";
 import { BRAND } from "@/config/brand";
 import CTAGroup from "@/components/CTAGroup";
 import CoDevCallout from "@/components/CoDevCallout";
+import MicroCaseStudy from "@/components/MicroCaseStudy";
 
 export const metadata = {
   title: "Solutions | YardFlow",
@@ -148,6 +149,54 @@ export default function SolutionsOverviewPage() {
                   <p className="text-xs text-steel leading-relaxed">{item.body}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Real-World Impact */}
+        <section className="py-20 bg-carbon/20 border-y border-neon/20">
+          <div className="mx-auto max-w-6xl px-6">
+            <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-4">Proof by Archetype</p>
+            <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+              Standardization Delivers Measurable Outcomes
+            </h2>
+            <p className="text-[17px] text-steel leading-8 max-w-3xl mb-12">
+              Same modules, different constraints. We standardize the driver journey, not the context. Here's what that means for operations.
+            </p>
+
+            <div className="grid gap-8 md:grid-cols-2">
+              <MicroCaseStudy
+                title="Dry Van: Gate Labor Efficiency"
+                archetype="Dry Van Operations"
+                baseline={{ metric: "Gate Staff", value: "6 FTE/site", problem: "Manual check-in requires 6 FTE per shift" }}
+                intervention={{ module: "Digital Guard", action: "Automated check-in + FIFO enforcement + Real-time dock assignment" }}
+                outcome={{ metric: "Optimized Staff", value: "2 FTE/site", improvement: "67% reduction" }}
+                evidenceLink="/resources/procurement#dry-van-evidence"
+              />
+              <MicroCaseStudy
+                title="Reefer: Rejection Rate Collapse"
+                archetype="Reefer Operations"
+                baseline={{ metric: "Rejections", value: "12%", problem: "Temperature alerts ignored, no condition capture" }}
+                intervention={{ module: "Digital BOL", action: "Pre-arrival validation + Temperature alerts + Cryptographic BOL lock" }}
+                outcome={{ metric: "Defect Rate", value: "2%", improvement: "83% improvement" }}
+                evidenceLink="/resources/procurement#reefer-evidence"
+              />
+              <MicroCaseStudy
+                title="Flatbed: Tarping Cycle Time"
+                archetype="Flatbed Operations"
+                baseline={{ metric: "Avg Tarp Time", value: "40 min", problem: "Manual verification, driver coordination delays" }}
+                intervention={{ module: "Digital Comms", action: "Pre-dock weight verification + Photo evidence + Dispatcher loop" }}
+                outcome={{ metric: "Optimized Cycle", value: "8 min", improvement: "80% reduction" }}
+                evidenceLink="/resources/procurement#flatbed-evidence"
+              />
+              <MicroCaseStudy
+                title="Intermodal: Demurrage Elimination"
+                archetype="Intermodal Operations"
+                baseline={{ metric: "Demurrage Cost", value: "$24K/mo", problem: "Manual rail coordination, dwell on rails" }}
+                intervention={{ module: "Digital YMS", action: "Automated rail alerts + Checkpoint notifications + Live positioning" }}
+                outcome={{ metric: "Optimized Costs", value: "$3.8K/mo", improvement: "84% savings" }}
+                evidenceLink="/resources/procurement#intermodal-evidence"
+              />
             </div>
           </div>
         </section>
