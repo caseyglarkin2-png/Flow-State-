@@ -150,9 +150,57 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          SECTION 4: OUTCOMES - The Math
+          SECTION 4: STANDARDS - 10 Common Denominators
       ═══════════════════════════════════════════════════════════════ */}
       <section className="py-20 bg-carbon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            <div className="text-center mb-12">
+              <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-2">The Framework</p>
+              <h2 className="text-4xl md:text-5xl font-bold text-white">
+                10 Common Denominators
+              </h2>
+              <p className="mt-4 text-steel max-w-2xl mx-auto text-lg">
+                Every yard event, every facility, same protocol. This is what standardization looks like.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+              {[
+                { num: '01', standard: 'Identity Verification', desc: 'Digital Guard validates every driver entry' },
+                { num: '02', standard: 'Instruction Protocol', desc: 'Comms sends identical messages network-wide' },
+                { num: '03', standard: 'Condition Capture', desc: 'BOL locks proof at every handoff' },
+                { num: '04', standard: 'Positioning Logic', desc: 'YMS assigns doors via algorithm, not radio' },
+                { num: '05', standard: 'Timestamp Precision', desc: 'Every event logged to the second' },
+                { num: '06', standard: 'Exception Routing', desc: 'Alerts escalate via defined SLA paths' },
+                { num: '07', standard: 'Evidence Trail', desc: 'Immutable audit log for every transaction' },
+                { num: '08', standard: 'Network Learning', desc: 'Data aggregates across all facilities' },
+                { num: '09', standard: 'Predictable Throughput', desc: 'Capacity becomes calculable, not guessed' },
+                { num: '10', standard: 'Compounding Returns', desc: 'Each site multiplies network efficiency' },
+              ].map((item, idx) => (
+                <motion.div 
+                  key={idx} 
+                  variants={staggerItem}
+                  className="flex items-start gap-4 p-4 rounded-lg border border-neon/10 bg-void/50 hover:border-neon/30 transition-colors"
+                >
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-neon/10 border border-neon/30 flex items-center justify-center">
+                    <span className="text-neon font-bold text-sm">{item.num}</span>
+                  </div>
+                  <div>
+                    <h3 className="text-white font-semibold mb-1">{item.standard}</h3>
+                    <p className="text-steel/70 text-sm">{item.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          SECTION 5: OUTCOMES - The Math
+      ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-20 border-y border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <div className="text-center mb-12">
@@ -197,9 +245,9 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          SECTION 5: TRUST ANCHORS - Proof
+          SECTION 6: EVIDENCE VAULT - Artifacts & Timestamps
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-20">
+      <section className="py-20 bg-carbon/20">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <div className="text-center mb-12">
@@ -211,14 +259,80 @@ export default function Home() {
             </div>
 
             <ProofStrip />
+
+            {/* Sample Evidence Artifacts */}
+            <div className="mt-12 grid md:grid-cols-3 gap-6">
+              <motion.div variants={staggerItem} className="p-6 rounded-xl border border-neon/20 bg-void/80">
+                <div className="flex items-center gap-2 mb-3">
+                  <Shield size={20} className="text-neon" />
+                  <h3 className="text-white font-semibold">Digital Guard Log</h3>
+                </div>
+                <div className="space-y-2 text-sm font-mono">
+                  <div className="flex justify-between text-steel/70">
+                    <span>Check-in:</span>
+                    <span className="text-neon">14:23:17 UTC</span>
+                  </div>
+                  <div className="flex justify-between text-steel/70">
+                    <span>Driver ID:</span>
+                    <span className="text-white">Verified ✓</span>
+                  </div>
+                  <div className="flex justify-between text-steel/70">
+                    <span>Door Assigned:</span>
+                    <span className="text-white">Bay 12</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div variants={staggerItem} className="p-6 rounded-xl border border-neon/20 bg-void/80">
+                <div className="flex items-center gap-2 mb-3">
+                  <Velocity size={20} className="text-neon" />
+                  <h3 className="text-white font-semibold">Dwell Alert</h3>
+                </div>
+                <div className="space-y-2 text-sm font-mono">
+                  <div className="flex justify-between text-steel/70">
+                    <span>Threshold:</span>
+                    <span className="text-ember">2.0 hrs</span>
+                  </div>
+                  <div className="flex justify-between text-steel/70">
+                    <span>Alert Sent:</span>
+                    <span className="text-neon">16:23:19 UTC</span>
+                  </div>
+                  <div className="flex justify-between text-steel/70">
+                    <span>Resolved:</span>
+                    <span className="text-white">16:45:02 UTC</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div variants={staggerItem} className="p-6 rounded-xl border border-neon/20 bg-void/80">
+                <div className="flex items-center gap-2 mb-3">
+                  <Crosshair size={20} className="text-neon" />
+                  <h3 className="text-white font-semibold">BOL Snapshot</h3>
+                </div>
+                <div className="space-y-2 text-sm font-mono">
+                  <div className="flex justify-between text-steel/70">
+                    <span>Capture:</span>
+                    <span className="text-neon">17:02:44 UTC</span>
+                  </div>
+                  <div className="flex justify-between text-steel/70">
+                    <span>Signature:</span>
+                    <span className="text-white">Cryptographic ✓</span>
+                  </div>
+                  <div className="flex justify-between text-steel/70">
+                    <span>Immutable:</span>
+                    <span className="text-white">Blockchain</span>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          SECTION 6: CO-DEVELOPMENT - Scarcity + Roadmap
+          SECTION 7: CO-DEVELOPMENT - Scarcity + Roadmap
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-20 bg-carbon/20 border-y border-neon/20">
+      <section className="py-20 border-y border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           <CoDevCallout 
             title="Early Adopters Lock In Better Pricing"
@@ -228,9 +342,9 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          SECTION 7: FINAL CTA + Close
+          SECTION 8: FINAL CTA + Close
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-20">
+      <section className="py-20 bg-gradient-to-b from-carbon/20 to-void">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <div className="text-center">
