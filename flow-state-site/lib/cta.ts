@@ -3,25 +3,27 @@
  * UNIFIED CTA SYSTEM - Single Source of Truth
  * ═══════════════════════════════════════════════════════════════════════════════
  * 
- * Strategy:
- * - PRIMARY: "Apply for Access" → co-development cohort (Founding Member Program)
- * - SECONDARY: "Run ROI" → self-serve proof step
- * - TERTIARY: "Quantify Variance Tax" → diagnostic for top-of-funnel
+ * Strategy (UPDATED - MATCHES BRAND CONFIG):
+ * - PRIMARY: "See If You Qualify" → Co-Development Program qualification
+ * - SECONDARY: "Calculate ROI" → self-serve proof step
+ * - TERTIARY: "View Evidence Vault" → procurement/proof artifacts
  * 
- * Do NOT use: "Request Demo", "Book a Demo", "Get a Quote" as primary CTAs.
- * These feel commodity. "Apply for Access" signals selectivity and partnership.
+ * PROGRAM NAME: "Co-Development Program" (with "Founding Partner Pricing" as supporting copy)
+ * 
+ * Do NOT use: "Request Demo", "Book a Demo", "Founding Member", "Apply for Access"
+ * These create naming confusion. Use BRAND config values consistently.
  */
 
 export const PRIMARY_CTA = {
-  label: 'Apply for Access',
+  label: 'See If You Qualify',
   href: '/contact?intent=qualify',
-  ariaLabel: 'Apply for Founding Member Program access',
-  microcopy: 'See if you qualify for the Founding Member Program.',
+  ariaLabel: 'See if you qualify for the Co-Development Program',
+  microcopy: 'Founding Partner pricing. Limited spots.',
   icon: 'Velocity',
 } as const;
 
 export const SECONDARY_CTA = {
-  label: 'Run ROI',
+  label: 'Calculate ROI',
   href: '/roi',
   ariaLabel: 'Calculate your ROI with our interactive model',
   microcopy: 'Board-ready in 3 minutes.',

@@ -25,14 +25,14 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 w-full z-50 bg-void/80 backdrop-blur-md border-b border-neon/20">
-      {/* Co-Development Banner */}
+      {/* Co-Development Program Banner */}
       <div className="bg-neon/10 border-b border-neon/20 py-2 px-4 text-center text-sm">
         <span className="text-steel inline-flex items-center gap-2">
           <Ignite size={16} className="text-neon" />
-          Co-Development Program:
+          {BRAND.program.name}:
         </span>
-        <Link href={BRAND.ctas.secondary.href} className="text-neon font-semibold hover:underline inline-flex items-center gap-1 ml-1">
-          {BRAND.ctas.secondary.label} <FlowArrow size={12} className="text-neon" />
+        <Link href="/co-development" className="text-neon font-semibold hover:underline inline-flex items-center gap-1 ml-1">
+          {BRAND.program.tagline} <FlowArrow size={12} className="text-neon" />
         </Link>
       </div>
 

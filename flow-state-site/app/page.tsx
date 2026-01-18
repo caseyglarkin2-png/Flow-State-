@@ -30,6 +30,7 @@ import EvidenceTimeline, { SAMPLE_TIMELINE } from '@/components/EvidenceTimeline
 import ArchetypeEpisode from '@/components/ArchetypeEpisode';
 import MicroCaseStudy, { SAMPLE_CASE_STUDY } from '@/components/MicroCaseStudy';
 import ProofStrip from '@/components/ProofStrip';
+import DemoStepper from '@/components/DemoStepper';
 import CTAGroup from '@/components/CTAGroup';
 import ClaimsFootnote from '@/components/ClaimsFootnote';
 import { BRAND } from '@/config/brand';
@@ -55,11 +56,16 @@ export default function Home() {
         
         <div className="relative z-10 max-w-6xl mx-auto px-6">
           <motion.div variants={fadeIn} initial="hidden" animate="visible">
-            {/* Status indicator */}
-            <div className="flex items-center justify-center gap-6 mb-6">
-              <StatusPulse status="active" label="System Live" size="md" />
-              <span className="text-steel/50">|</span>
-              <span className="text-steel/70 text-sm font-mono">200K+ drivers | 58 facilities</span>
+            {/* Status indicator + Built by FreightRoll */}
+            <div className="flex flex-col items-center justify-center gap-4 mb-6">
+              <div className="flex items-center gap-6">
+                <StatusPulse status="active" label="System Live" size="md" />
+                <span className="text-steel/50">|</span>
+                <span className="text-steel/70 text-sm font-mono">{BRAND.proof.tagline}</span>
+              </div>
+              <div className="text-steel/60 text-sm">
+                {BRAND.proof.drivers} drivers | {BRAND.proof.facilities} facilities | {BRAND.proof.systems} live systems
+              </div>
             </div>
 
             {/* Headline */}
@@ -85,18 +91,33 @@ export default function Home() {
                 {BRAND.ctas.primary.label}
               </Link>
               <Link
-                href={BRAND.ctas.tertiary.href}
+                href={BRAND.ctas.secondary.href}
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-lg border-2 border-neon/30 bg-carbon/50 text-white hover:border-neon/50 transition-all"
               >
-                {BRAND.ctas.tertiary.label}
+                {BRAND.ctas.secondary.label}
               </Link>
             </div>
           </motion.div>
+        </div>
+      </section>
 
-          {/* Persona Router - Fast Self-ID */}
-          <div className="mt-16">
-            <PersonaRouterHero />
+      {/* ═══════════════════════════════════════════════════════════════
+          PROOF-OF-FLOW DEMO: How It Works in 15 Seconds
+      ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-16 border-b border-neon/20">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-2">See It In Action</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              This Is How It Works
+            </h2>
+            <p className="text-steel text-lg max-w-2xl mx-auto">
+              QR scan → gate opens → driver gets drop rules → system enforces compliance. 
+              <span className="text-white font-semibold"> Instant. Automated. Auditable.</span>
+            </p>
           </div>
+
+          <DemoStepper />
         </div>
       </section>
 
@@ -112,7 +133,20 @@ export default function Home() {
             </h2>
           </div>
 
-          <BeforeAfterToggle content={SAMPLE_BEFORE_AFTER} />
+          <BeforeAfterToggle content={SAMPLE_BEFORE_AFTER} mode="side-by-side" />
+        </div>
+      </section>
+
+      {/* Persona Router moved lower */}
+      <section className="py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-2">Fast Self-Identification</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              Find Your Archetype
+            </h2>
+          </div>
+          <PersonaRouterHero />
         </div>
       </section>
 

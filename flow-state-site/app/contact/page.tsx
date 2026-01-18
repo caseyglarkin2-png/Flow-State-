@@ -29,9 +29,9 @@ export default async function ContactPage({ searchParams }: Props) {
       {/* Hero */}
       <section className="pb-12">
         <div className="max-w-6xl mx-auto px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Founding Member Program</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Co-Development Program</p>
           <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
-            Founding Member Audit:<br className="hidden md:block" /> 30 Minutes. Zero Fluff.
+            See If You Qualify
           </h1>
           <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
             We map your facilities to archetypes, show the deployment sequence, and hand you a board-ready ROI model. That's it.

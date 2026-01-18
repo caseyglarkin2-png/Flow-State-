@@ -47,7 +47,7 @@ export default function SecurityPage() {
             </div>
             <div className="p-4 rounded-lg bg-ember/10 border border-ember/30">
               <p className="text-ember font-bold mb-1">Driver Qualification</p>
-              <p className="text-sm text-steel/80">DOT/FMCSA audit trail for shipper liability</p>
+              <p className="text-sm text-steel/80">Documented compliance with DOT/FMCSA standards</p>
             </div>
           </div>
           
@@ -137,8 +137,8 @@ export default function SecurityPage() {
               <Agent size={32} className="text-ember mb-4" />
               <h3 className="text-2xl font-bold text-white mb-3">Driver Qualification Compliance</h3>
               <p className="text-steel/80 mb-4">
-                Proposed regulatory changes may expand shipper liability for driver qualifications. Unqualified drivers hauling 50,000 lb loads creates audit and dispute exposure. 
-                <span className="block mt-2 text-white font-semibold">Digital Guard creates documentation-ready records.</span>
+                Regulatory frameworks continue to evolve around carrier qualification standards. Documented driver verification for vehicles 50K+ lbs reduces audit and dispute exposure. 
+                <span className="block mt-2 text-white font-semibold">Digital Guard creates audit-ready records.</span>
               </p>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start gap-2">

@@ -38,31 +38,34 @@ export const BRAND = {
     drivers: '200K+', // Single source of truth - update here when numbers change
     label: 'drivers',
     tagline: 'Built by FreightRoll',
+    facilities: '58', // Active deployment sites
+    systems: '42', // Live systems
   },
 
-  // Primary CTAs and their destinations (STANDARDIZED for go-live)
+  // Primary CTAs and their destinations (STANDARDIZED - USE THESE EVERYWHERE)
   ctas: {
     primary: {
-      label: 'Book a Network Audit',
-      href: '/contact?intent=audit',
+      label: 'See If You Qualify',
+      href: '/contact?intent=qualify',
+      description: 'Primary conversion action - qualification form',
     },
     secondary: {
-      label: 'Apply for Co-Development',
-      href: '/co-development',
-    },
-    tertiary: {
       label: 'Calculate ROI',
       href: '/roi',
+      description: 'Board-ready economics calculator',
     },
-    // Legacy/alternative CTAs (keep for backward compat)
-    contact: {
-      label: 'Apply for Access',
-      href: '/contact?intent=qualify',
+    tertiary: {
+      label: 'View Evidence Vault',
+      href: '/resources/procurement',
+      description: 'Procurement resources and proof artifacts',
     },
-    qualify: {
-      label: 'Apply for Founding Membership',
-      href: '/contact?intent=qualify',
-    },
+  },
+
+  // Program naming (UNIFIED - use consistently)
+  program: {
+    name: 'Co-Development Program',
+    tagline: 'Founding Partner Pricing',
+    description: 'Limited spots for operators who want roadmap control and legacy pricing.',
   },
 
   // Taglines and positioning

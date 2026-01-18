@@ -12,6 +12,8 @@ import { BRAND } from '@/config/brand';
 import CTAGroup from '@/components/CTAGroup';
 import CoDevCallout from '@/components/CoDevCallout';
 import ArchetypeEpisode from '@/components/ArchetypeEpisode';
+import SuitePersonaMap from '@/components/SuitePersonaMap';
+import DemoStepper from '@/components/DemoStepper';
 
 const PRODUCTS = [
   {
@@ -24,7 +26,7 @@ const PRODUCTS = [
       "CDL validation + English proficiency documentation",
       "Real-time driver authentication against carrier database",
       "Flagged credentials rejected at gate",
-      "DOT/FMCSA audit trail for shipper liability protection",
+      "Reduces audit and dispute exposure with documented driver checks",
     ],
     ctaLabel: "View Evidence Vault",
     ctaHref: "/security",
@@ -93,16 +95,25 @@ export default function ProductPage() {
       <section className="relative pt-32 pb-12">
         <div className="max-w-6xl mx-auto px-6">
           <p className="text-xs uppercase tracking-[0.25em] text-neon/70">
-            Product Architecture
+            YardFlow Standardization Suite
           </p>
           <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
-            Four Modules. One Protocol.
+            One Suite. Four Modules.<br />
+            <span className="text-neon">One Standard.</span>
           </h1>
           <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
-            Standardize the driver journey. Enforce the control loop. Every yard runs the same playbook. Every event is typed. Every timestamp is defensible.
+            Standardization only works when access control, communications, documentation, and yard management operate as one integrated system. <span className="text-white font-semibold">YardFlow is delivered as a bundle to prevent fragmentation.</span>
           </p>
-          <Link href="/diagnostic" className="mt-8 inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition">
-            Run Network Diagnostic
+          
+          {/* Bundling Callout */}
+          <div className="mt-6 p-4 rounded-xl border-2 border-neon/20 bg-neon/5 max-w-3xl">
+            <p className="text-sm text-steel leading-relaxed">
+              <span className="text-neon font-semibold">Why bundled?</span> Picking modules à la carte creates operational gaps. Gate automation without yard visibility creates blind spots. Communications without BOL verification creates disputes. The suite works because every module reinforces the others.
+            </p>
+          </div>
+
+          <Link href="/contact?intent=qualify" className="mt-8 inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition">
+            {BRAND.ctas.primary.label}
           </Link>
         </div>
       </section>
@@ -122,15 +133,38 @@ export default function ProductPage() {
         />
       ))}
 
+      {/* Suite → Persona Map */}
+      <section className="py-20 border-y border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <SuitePersonaMap />
+        </div>
+      </section>
+
+      {/* How It Works Demo */}
+      <section className="py-16 bg-carbon/20">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-2">See The Flow</p>
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Driver Journey in 15 Seconds
+            </h2>
+            <p className="text-steel max-w-2xl mx-auto">
+              QR scan → instant verification → SMS drop rules → automated enforcement. Same flow, every time, every yard.
+            </p>
+          </div>
+          <DemoStepper />
+        </div>
+      </section>
+
       {/* Archetype Episodes - Proof by Persona */}
       <section className="py-20 bg-carbon/20 border-y border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">How It Works Across Operations</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Suite Deployment Across Archetypes</p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-white mb-4">
-            Four Modules. Five Archetypes. One Standard.
+            Same Suite. Different Operational Contexts.
           </h2>
           <p className="text-[17px] text-steel leading-8 max-w-3xl mb-12">
-            Same modules, different constraints. Dry van enforcement is different from reefer, flatbed is different from intermodal. We standardize the flow, not the context.
+            All four modules deploy together. Dry van operations optimize for throughput. Reefer adds temperature compliance. Flatbed adds securement validation. Intermodal adds rail coordination. <span className="text-white font-semibold">One suite adapts to your context.</span>
           </p>
           
           <div className="grid gap-8 md:grid-cols-2">

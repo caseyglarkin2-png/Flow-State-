@@ -9,8 +9,8 @@ import { BRAND, getBrandedTitle } from '@/config/brand';
 import { Shield, DollarSign, Warehouse, Users } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: getBrandedTitle('Qualify for Founding Membership'),
-  description: 'Join the network-first revolution. Apply for Founding Member status and lock in preferential terms.',
+  title: getBrandedTitle('See If You Qualify'),
+  description: 'Co-Development Program: Founding partner pricing and roadmap influence. Limited spots.',
 };
 
 interface QualifyContentProps {
@@ -20,15 +20,15 @@ interface QualifyContentProps {
 const INTENT_CONFIG = {
   founding: {
     icon: Users,
-    title: 'Apply for Founding Membership',
-    subtitle: 'Join the network-first revolution. Limited spots for multi-facility operators.',
+    title: 'See If You Qualify',
+    subtitle: 'Co-Development Program. Founding partner pricing. Limited spots for multi-facility operators.',
     bullets: [
-      'Lock in founding member pricing (never increases)',
+      'Lock in founding partner pricing (legacy rates)',
       'Priority implementation queue (30-day deployment SLA)',
       'Direct influence on roadmap priorities',
       'Quarterly executive briefings + network benchmarks',
     ],
-    formTitle: 'Founding Member Application',
+    formTitle: 'Co-Development Program Application',
     formSubtitle: 'Tell us about your network and we\'ll evaluate your fit.',
     leadType: 'founding' as const,
   },
