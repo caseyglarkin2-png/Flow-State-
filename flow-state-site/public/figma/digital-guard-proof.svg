@@ -1,0 +1,46 @@
+<svg viewBox="0 0 1024 576" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="guard-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a3d33;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d5448;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="576" fill="url(#guard-grad)"/>
+  
+  <!-- Title -->
+  <text x="512" y="80" font-size="48" font-weight="bold" text-anchor="middle" fill="#00b4ff">
+    DIGITAL GUARD
+  </text>
+  <text x="512" y="130" font-size="24" text-anchor="middle" fill="#888888">
+    Automated Carrier Verification
+  </text>
+  
+  <!-- Gate Kiosk -->
+  <g transform="translate(150, 200)">
+    <rect width="160" height="220" fill="#1a1a2e" stroke="#00b4ff" stroke-width="3" rx="12"/>
+    <rect width="140" height="120" x="10" y="40" fill="#000" stroke="#00b4ff" stroke-width="2" rx="8"/>
+    <text x="80" y="110" font-size="16" text-anchor="middle" fill="#00b4ff" font-weight="bold">CDL SCAN</text>
+    <rect width="140" height="50" x="10" y="170" fill="#00b4ff" rx="4"/>
+    <text x="80" y="200" font-size="14" text-anchor="middle" fill="#000" font-weight="bold">VERIFY</text>
+  </g>
+  
+  <!-- Checkmarks -->
+  <g opacity="0.9">
+    <text x="380" y="280" font-size="20" fill="#00ff88">✓ Driver identity verified</text>
+    <text x="380" y="330" font-size="20" fill="#00ff88">✓ CDL valid + current</text>
+    <text x="380" y="380" font-size="20" fill="#00ff88">✓ Carrier authorization confirmed</text>
+    <text x="380" y="430" font-size="20" fill="#00ff88">✓ Audit trail created</text>
+  </g>
+  
+  <!-- Flow indicator -->
+  <g opacity="0.4">
+    <path d="M 700 250 L 850 250" stroke="#00b4ff" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+    <text x="775" y="235" font-size="14" text-anchor="middle" fill="#888888">Gate Opens</text>
+  </g>
+  
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <polygon points="0 0, 10 3, 0 6" fill="#00b4ff"/>
+    </marker>
+  </defs>
+</svg>

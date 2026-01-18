@@ -14,6 +14,87 @@ import CoDevCallout from '@/components/CoDevCallout';
 import ArchetypeEpisode from '@/components/ArchetypeEpisode';
 import SuitePersonaMap from '@/components/SuitePersonaMap';
 import DemoStepper from '@/components/DemoStepper';
+import CapabilitySlice from '@/components/sections/CapabilitySlice';
+import ProofMedia from '@/components/media/ProofMedia';
+
+const CAPABILITY_MODULES = [
+  {
+    headline: "Digital Guard",
+    subhead: "Verify every carrier before they enter",
+    description:
+      "Kiosks with OCR, photo capture, and real-time authentication. The yard stops being a blind spot.",
+    bullets: [
+      { text: "Automated carrier ID verification (OCR + photo)" },
+      { text: "CDL validation + English proficiency documentation" },
+      { text: "Real-time driver authentication against carrier database" },
+      { text: "Flagged credentials rejected at gate" },
+      { text: "Reduces audit and dispute exposure with documented driver checks" },
+    ],
+    mediaImage: "/figma/digital-guard-proof.svg",
+    mediaAlt: "Digital Guard kiosk with verification UI",
+    mediaType: "desktop" as const,
+    kpiLabel: "Verification Success",
+    kpiValue: "99.8%",
+    align: "left" as const,
+  },
+  {
+    headline: "Digital Comms",
+    subhead: "Lane-level driver messaging with read receipts",
+    description:
+      "No more 'I never got the message' excuses. Disputes shrink when receipts exist.",
+    bullets: [
+      { text: "Lane-based instructions and notifications" },
+      { text: "Multi-language support (40+ languages)" },
+      { text: "Read receipts and message history" },
+      { text: "Fewer yard walk-ups, fewer interruptions" },
+      { text: "Real-time dock assignment coordination" },
+    ],
+    mediaImage: "/figma/digital-comms-proof.svg",
+    mediaAlt: "Driver phones showing lane assignments and alerts",
+    mediaType: "desktop" as const,
+    kpiLabel: "Message Delivery",
+    kpiValue: "98%",
+    align: "right" as const,
+  },
+  {
+    headline: "Digital BOL",
+    subhead: "Touchless documentation with forensic timestamps",
+    description:
+      "Photo proof of load condition. Cryptographic signatures. Detention disputes die young.",
+    bullets: [
+      { text: "Gate verification and ID scanning" },
+      { text: "Condition capture with photo evidence" },
+      { text: "Cryptographic timestamp trail" },
+      { text: "CTPAT & TSA compliance reporting" },
+      { text: "Network-wide BOL signature collection" },
+    ],
+    mediaImage: "/figma/digital-bol-proof.svg",
+    mediaAlt: "Digital BOL with timestamp chain and crypto seal",
+    mediaType: "desktop" as const,
+    kpiLabel: "Dispute Reduction",
+    kpiValue: "73%",
+    align: "left" as const,
+  },
+  {
+    headline: "Digital YMS",
+    subhead: "Real-time yard visibility and predictive intelligence",
+    description:
+      "One place to store, search, and prove what happened. When the yard becomes a courtroom, this is your exhibit binder.",
+    bullets: [
+      { text: "Real-time yard visualization and asset tracking" },
+      { text: "Dwell anomaly detection and alerts" },
+      { text: "Network-wide predictive intelligence" },
+      { text: "Faster dispute resolution and fewer chargebacks" },
+      { text: "Operational clarity for dispatchers and yard managers" },
+    ],
+    mediaImage: "/figma/digital-yms-proof.svg",
+    mediaAlt: "YMS dashboard with lane visualization and KPIs",
+    mediaType: "desktop" as const,
+    kpiLabel: "Asset Utilization",
+    kpiValue: "94%",
+    align: "right" as const,
+  },
+];
 
 const PRODUCTS = [
   {
@@ -118,18 +199,20 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* Product Sections with Animations */}
-      {PRODUCTS.map((p) => (
-        <ProductSection
-          key={p.title}
-          title={p.title}
-          eyebrow={p.eyebrow}
-          description={p.description}
-          bullets={p.bullets}
-          ctaLabel={p.ctaLabel}
-          ctaHref={p.ctaHref}
-          align={p.align}
-          visual={p.visual}
+      {/* Product Capability Modules with Proof Media */}
+      {CAPABILITY_MODULES.map((module, idx) => (
+        <CapabilitySlice
+          key={module.headline}
+          headline={module.headline}
+          subhead={module.subhead}
+          bullets={module.bullets}
+          mediaImage={module.mediaImage}
+          mediaAlt={module.mediaAlt}
+          mediaType={module.mediaType}
+          kpiLabel={module.kpiLabel}
+          kpiValue={module.kpiValue}
+          align={module.align}
+          variant={idx % 2 === 0 ? 'primary' : 'secondary'}
         />
       ))}
 
