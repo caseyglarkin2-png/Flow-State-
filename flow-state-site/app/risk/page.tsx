@@ -71,25 +71,25 @@ export default function RiskPage() {
       {/* Hero */}
       <section className="pt-32 pb-12">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Cargo Security</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Identity Variance</p>
           <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
             The $30B Problem Starts at the Gate
           </h1>
           <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
-            Cargo theft costs the industry $15B to $30B globally. Most incidents start at the gate. Fraudulent carriers, fake credentials, unauthorized access: all preventable if you verify identity before granting access.
+            Cargo theft costs the industry $15B–$30B annually. Identity variance—fraudulent carriers, fake credentials, unauthorized access—is where most incidents start. <span className="text-white font-semibold">Digital Guard solves this by verifying every driver before yard entry.</span> It's the first module in the YardFlow standardization suite, and it's the gate to every other module's effectiveness.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
-              href="/contact"
+              href="/contact?intent=audit"
               className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-white transition"
             >
-              Request Security Assessment
+              Book a Network Audit
             </Link>
             <Link
-              href="/roi"
+              href="/product"
               className="inline-flex items-center gap-2 rounded-xl border border-neon/30 bg-carbon/50 px-6 py-3 font-medium text-white hover:border-neon/50 transition"
             >
-              Calculate Security Savings
+              See Full Standardization Suite
             </Link>
           </div>
         </div>
@@ -98,10 +98,10 @@ export default function RiskPage() {
       {/* Threat Landscape */}
       <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-ember/70">The Threat</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">What You're Up Against</h2>
+          <p className="text-xs uppercase tracking-[0.25em] text-ember/70">Identity Variance Sources</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">Four Ways Identity Fails at Your Gate</h2>
           <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl mb-10">
-            Cargo theft is organized, sophisticated, and targeting your gate. Manual verification doesn't scale.
+            Identity variance happens when you don't verify WHO is driving, WHAT carrier they represent, or if they're AUTHORIZED to pick up this load. Every gap is a theft risk.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -123,10 +123,10 @@ export default function RiskPage() {
       {/* Control Layer */}
       <section className="py-16 bg-carbon/20">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">The Control Layer</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">How YardFlow Stops It</h2>
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Digital Guard: Identity Verification Module</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">How Identity Standardization Works</h2>
           <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl mb-10">
-            Multi-layered verification. System-enforced access. Every decision defensible.
+            Digital Guard is the first of four integrated modules. It verifies who's driving, validates carrier authorization, and creates a timestamp-sealed record. Once identity is standardized, Comms knows it's sending instructions to a verified driver. BOL knows it's capturing a verified load. YMS knows it's tracking a verified event. Each module depends on the previous one.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

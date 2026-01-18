@@ -16,12 +16,12 @@ export default function PricingPage() {
       {/* Hero */}
       <section className="pt-32 pb-12">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Reduce the Variance Tax</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">One Suite. No À La Carte.</p>
           <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
-            Transparent Pricing
+            One Price. Full Platform.
           </h1>
           <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
-            Pricing is simple because the goal is simple: reduce the Variance Tax and give your network a predictable operating rhythm. No hidden fees. No per-transaction charges.
+            YardFlow bundles all four modules: Digital Guard, Digital Comms, Digital BOL, and Digital YMS. No picking modules à la carte. Standardization only works when <span className="text-white font-semibold">all four sources of variance are controlled simultaneously.</span> Transparent per-facility pricing. No hidden fees. No per-transaction charges.
           </p>
         </div>
       </section>
@@ -73,31 +73,41 @@ export default function PricingPage() {
       {/* What's Included */}
       <section className="py-16 bg-carbon/20">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">What You Get</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">Full Platform. No Surprises.</h2>
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Variance Control Framework</p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight text-white">Four Sources of Variance. One Integrated Price.</h2>
           <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl mb-10">
-            One subscription. All modules. Network-wide standardization out of the box.
+            Picking modules à la carte creates operational gaps. Guard without Comms = no coordinated flow. Comms without BOL = disputes. BOL without YMS = no learning. All four deploy together to standardize your yard network. No modular pricing. No upsell trap.
           </p>
 
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {(['digital-guard', 'digital-comms', 'digital-bol', 'digital-yms'] as ModuleId[]).map((moduleId) => {
-              const mod = MODULES[moduleId];
-              const ModuleIcon = mod.icon;
-              return (
-                <Link 
-                  key={mod.id} 
-                  href={mod.route}
-                  aria-label={`View ${mod.name} product page`}
-                  className="group rounded-xl border border-neon/10 bg-carbon/50 p-5 hover:border-neon/30 hover:bg-carbon/70 transition-all focus:outline-none focus:ring-2 focus:ring-neon/50"
-                >
-                  <div className="flex items-center gap-2 mb-2">
-                    <ModuleIcon size={ICON_SIZES.sm} className="text-neon/70 group-hover:text-neon transition-colors" />
-                    <div className="text-sm font-semibold text-white group-hover:text-neon transition-colors">{mod.name}</div>
-                  </div>
-                  <p className="text-xs text-steel leading-relaxed">{mod.description}</p>
-                </Link>
-              );
-            })}
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                variance: 'Identity Variance',
+                module: 'Digital Guard',
+                benefit: 'Verified check-in. Secure gate access. No fraudulent carriers.',
+              },
+              {
+                variance: 'Instruction Variance',
+                module: 'Digital Comms',
+                benefit: 'Read receipts. Coordinated dock flow. No radio chaos.',
+              },
+              {
+                variance: 'Condition Variance',
+                module: 'Digital BOL',
+                benefit: 'Cryptographic proof. Zero disputes. Court-admissible evidence.',
+              },
+              {
+                variance: 'Positioning Variance',
+                module: 'Digital YMS',
+                benefit: 'Real-time visibility. Predictable dwell. Network intelligence.',
+              },
+            ].map((item, idx) => (
+              <div key={idx} className="rounded-xl border border-neon/20 bg-carbon/50 p-5">
+                <p className="text-xs uppercase tracking-[0.15em] text-ember/70 font-semibold mb-2">{item.variance}</p>
+                <p className="text-sm font-semibold text-neon mb-3">{item.module}</p>
+                <p className="text-xs text-steel leading-relaxed">{item.benefit}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

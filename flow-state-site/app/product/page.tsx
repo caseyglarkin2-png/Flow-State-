@@ -3,7 +3,7 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Metrics, Agent, Confirm, Nexus, Shield, Velocity, Crosshair, DryVan, Reefer, Flatbed, Intermodal, CheckCircle } from '@/components/icons/FlowIcons';
+import { Metrics, Agent, Confirm, Nexus, Shield, Velocity, Crosshair, DryVan, Reefer, Flatbed, Intermodal } from '@/components/icons/FlowIcons';
 import Link from 'next/link';
 import AnimatedPanel from '@/components/AnimatedPanel';
 import { ProductSection } from '@/components/products/ProductSection';
@@ -16,7 +16,7 @@ import SuitePersonaMap from '@/components/SuitePersonaMap';
 import DemoStepper from '@/components/DemoStepper';
 import CapabilitySlice from '@/components/sections/CapabilitySlice';
 import ProofMedia from '@/components/media/ProofMedia';
-import BeforeAfterToggle from '@/components/BeforeAfterToggle';
+import BeforeAfterToggle, { SAMPLE_BEFORE_AFTER } from '@/components/BeforeAfterToggle';
 import { motion } from 'framer-motion';
 import { fadeIn, staggerContainer, staggerItem } from '@/lib/motion-presets';
 
@@ -204,7 +204,7 @@ export default function ProductPage() {
             </div>
             <div className="flex justify-center">
               <div className="w-full max-w-4xl">
-                <BeforeAfterToggle />
+                <BeforeAfterToggle content={SAMPLE_BEFORE_AFTER} />
               </div>
             </div>
           </motion.div>
@@ -355,7 +355,7 @@ export default function ProductPage() {
                   metric: 'Detention Recovery',
                   impact: '2-4%',
                   outcome: 'Shipper penalties eliminated',
-                  icon: <CheckCircle size={32} className="text-neon" />
+                  icon: <Confirm size={32} className="text-neon" />
                 },
                 {
                   metric: 'Labor Optimization',
