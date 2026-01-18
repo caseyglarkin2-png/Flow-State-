@@ -65,13 +65,13 @@ export default function CTAGroup({
         {BRAND.ctas.secondary.label}
       </Link>
 
-      {/* Tertiary CTA */}
+      {/* Utility CTA (ROI) */}
       {showTertiary && (
         <Link 
-          href={BRAND.ctas.tertiary.href}
+          href={BRAND.ctas.utility.roi.href}
           className="inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-medium text-base text-steel/80 hover:text-neon transition-all underline"
         >
-          {BRAND.ctas.tertiary.label}
+          {BRAND.ctas.utility.roi.label}
         </Link>
       )}
     </div>

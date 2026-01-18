@@ -8,6 +8,8 @@ import { BRAND } from "@/config/brand";
 import CTAGroup from "@/components/CTAGroup";
 import CoDevCallout from "@/components/CoDevCallout";
 import MicroCaseStudy from "@/components/MicroCaseStudy";
+import NarrativeLadder from "@/components/NarrativeLadder";
+import DriverJourney from "@/components/DriverJourney";
 
 export const metadata = {
   title: "Solutions | YardFlow",
@@ -28,6 +30,12 @@ export default function SolutionsOverviewPage() {
           <p className="mt-4 max-w-2xl text-xl text-steel leading-relaxed">
             Cheap is nice. Predictable is scalable. When trucking markets swing, the winners have standardized execution and stable unit economics.
           </p>
+          <div className="mt-10">
+            <NarrativeLadder mode="compact" />
+          </div>
+          <div className="mt-10">
+            <DriverJourney mode="compact" />
+          </div>
         </div>
 
         {/* The Volatility Tax */}

@@ -69,14 +69,14 @@ export default function DiagnosticPage() {
             If the Variance Tax is Real
           </h2>
           <p className="mt-4 text-[17px] text-steel leading-8 max-w-2xl">
-            If your Variance Tax is measurable and the ROI pencils, apply for access to join the Founding Member cohort. Co-development slots for Reefer, Flatbed, Cross-Dock.
+            If your Variance Tax is measurable and the ROI pencils, apply to the Co-Development Program. Cohort slots available for Reefer, Flatbed, and Cross-Dock.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link
-              href="/contact?intent=qualify"
+              href="/co-development"
               className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-white transition"
             >
-              Apply for Access
+              Apply for Co-Development
             </Link>
             <Link
               href="/roi"
@@ -85,7 +85,7 @@ export default function DiagnosticPage() {
               {CANON_TERMS.viewFullROI}
             </Link>
           </div>
-          <p className="mt-3 text-sm text-steel/70">See if you qualify for the Founding Member Program.</p>
+          <p className="mt-3 text-sm text-steel/70">Co-Development Program: roadmap influence + founding partner pricing.</p>
         </div>
       </section>
 

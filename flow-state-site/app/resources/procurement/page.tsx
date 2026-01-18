@@ -163,7 +163,7 @@ export default function SecurityPage() {
 
           <div className="text-center">
             <p className="text-steel/60 text-sm mb-4">
-              Proposed regulations may expand shipper compliance obligations. Digital Guard creates documentation-ready records to support audit readiness.
+              Regulatory enforcement and scrutiny continue to increase. Digital Guard creates audit-grade documentation to support compliance reviews and audit readiness.
             </p>
             <Link href="/product" className="inline-flex items-center gap-2 text-neon hover:underline font-semibold">
               See how Digital Guard + Digital BOL work together →

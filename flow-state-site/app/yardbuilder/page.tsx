@@ -94,7 +94,7 @@ export default function YardBuilderPage() {
       {/* Hero */}
       <section className="pt-32 pb-12">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Founding Member Program</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Co-Development Program</p>
           <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
             Request a Digital Twin of Your Yard
           </h1>

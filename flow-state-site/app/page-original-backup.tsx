@@ -122,7 +122,7 @@ import ProofStrip from '@/components/ProofStrip';
 import CTAGroup from '@/components/CTAGroup';
 import ClaimsFootnote from '@/components/ClaimsFootnote';
 import { BRAND } from '@/config/brand';
-import { PRIMARY_CTA, SECONDARY_CTA, TERTIARY_CTA } from '@/lib/cta';
+import { PRIMARY_CTA, SECONDARY_CTA, UTILITY_CTA_ROI } from '@/lib/cta';
 
 export default function Home() {
   return (
@@ -164,10 +164,10 @@ export default function Home() {
               {BRAND.ctas.secondary.label}
             </Link>
             <Link
-              href={BRAND.ctas.tertiary.href}
+              href={BRAND.ctas.utility.roi.href}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium text-steel/80 hover:text-neon transition underline"
             >
-              {BRAND.ctas.tertiary.label}
+              {BRAND.ctas.utility.roi.label}
             </Link>
           </div>
 

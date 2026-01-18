@@ -264,6 +264,9 @@ export default function Header() {
             <Velocity size={16} className="text-void" />
             {PRIMARY_CTA.label}
           </Link>
+          <Link href="/co-development" className="hidden md:inline-flex px-4 py-2 text-sm font-semibold border border-neon/30 text-white rounded-xl hover:border-neon/50 transition-all" aria-label="Apply for Co-Development">
+            Apply for Co-Development
+          </Link>
           
           {/* Mobile Menu Button */}
           <button 

@@ -9,8 +9,8 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Founding Member Audit | YardFlow by FreightRoll',
-  description: 'Founding Member Audit: 30 minutes. Network audit + rollout plan. Zero fluff.',
+  title: 'Book a Network Audit | YardFlow by FreightRoll',
+  description: 'Network audit: map facilities to archetypes, scope pilot sites, and outline rollout with board-ready ROI.',
 };
 
 type Props = {
@@ -29,9 +29,9 @@ export default async function ContactPage({ searchParams }: Props) {
       {/* Hero */}
       <section className="pb-12">
         <div className="max-w-6xl mx-auto px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Co-Development Program</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Network Audit</p>
           <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
-            See If You Qualify
+            Book a Network Audit
           </h1>
           <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
             We map your facilities to archetypes, show the deployment sequence, and hand you a board-ready ROI model. That's it.

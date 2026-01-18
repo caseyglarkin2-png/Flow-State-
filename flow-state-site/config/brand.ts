@@ -45,19 +45,26 @@ export const BRAND = {
   // Primary CTAs and their destinations (STANDARDIZED - USE THESE EVERYWHERE)
   ctas: {
     primary: {
-      label: 'See If You Qualify',
-      href: '/contact?intent=qualify',
-      description: 'Primary conversion action - qualification form',
+      label: 'Book a Network Audit',
+      href: '/contact?intent=audit',
+      description: 'Primary conversion action - discovery call',
     },
     secondary: {
-      label: 'Calculate ROI',
-      href: '/roi',
-      description: 'Board-ready economics calculator',
+      label: 'Apply for Co-Development',
+      href: '/co-development',
+      description: 'Join the co-development program for roadmap influence',
     },
-    tertiary: {
-      label: 'View Evidence Vault',
-      href: '/resources/procurement',
-      description: 'Procurement resources and proof artifacts',
+    utility: {
+      roi: {
+        label: 'Run ROI',
+        href: '/roi',
+        description: 'Board-ready economics calculator',
+      },
+      simulation: {
+        label: 'Launch Simulation',
+        href: '/simulations',
+        description: 'Interactive variance/network models',
+      },
     },
   },
 
@@ -73,6 +80,40 @@ export const BRAND = {
     hero: 'Cut dwell. Recover detention. Unlock capacity. Secure the gate.',
     subhero: 'Yard orchestration software for enterprise logistics networks.',
     elevator: 'YardFlow by FreightRoll builds yard orchestration software for enterprise logistics networks. We focus on repeatable workflows that produce defensible timestamps and operational truth.',
+  },
+
+  // Unified narrative framework (6-step song sheet)
+  narrative: {
+    step1: {
+      title: 'The Yard Is the Constraint',
+      hook: 'Every freight network has a black hole. The yard.',
+      description: 'Uncertainty compounds into detention, lost capacity, and operational noise. The yard is where throughput dies.',
+    },
+    step2: {
+      title: 'Standardize the Event Stream',
+      hook: '10 common denominators across every yard.',
+      description: 'Check-in, authorization, dock assignment, drop rules, enforcement, exceptions, compliance, departure, evidence. Standards create predictability.',
+    },
+    step3: {
+      title: 'Variance Is a Tax',
+      hook: 'Every manual handoff creates financial noise.',
+      description: 'Random queue times, missing trailers, detention disputes. Variance kills margin. Predictability compounds.',
+    },
+    step4: {
+      title: 'Throughput Is the Primary Metric',
+      hook: 'Synthetic capacity → operating margin.',
+      description: 'Standards unlock latent throughput. Dwell reduction = detention recovery = capacity without capex. CFO math, not IT project.',
+    },
+    step5: {
+      title: 'Network Intelligence Compounds',
+      hook: 'Standardization enables cross-site learning.',
+      description: 'One site proves ROI. Multi-site rollout compounds. Network intelligence only works after standardization.',
+    },
+    step6: {
+      title: 'Co-Development Is the Path',
+      hook: 'Founding partners get roadmap control + legacy pricing.',
+      description: 'Limited spots for operators who want to influence the product roadmap and lock in founding partner rates.',
+    },
   },
 
   // Value propositions (three pillars)

@@ -231,7 +231,7 @@ export default function FieldNotesIndexPage() {
                     href="/contact?intent=qualify"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-neon text-void font-semibold rounded-lg hover:bg-neon/90 transition-colors group"
                   >
-                    <span>Apply for Access</span>
+                    <span>Apply for Co-Development</span>
                     <ArrowRight
                       size={18}
                       className="transition-transform group-hover:translate-x-1"

@@ -30,7 +30,8 @@ import EvidenceTimeline, { SAMPLE_TIMELINE } from '@/components/EvidenceTimeline
 import ArchetypeEpisode from '@/components/ArchetypeEpisode';
 import MicroCaseStudy, { SAMPLE_CASE_STUDY } from '@/components/MicroCaseStudy';
 import ProofStrip from '@/components/ProofStrip';
-import DemoStepper from '@/components/DemoStepper';
+import DriverJourney from '@/components/DriverJourney';
+import NarrativeLadder from '@/components/NarrativeLadder';
 import CTAGroup from '@/components/CTAGroup';
 import ClaimsFootnote from '@/components/ClaimsFootnote';
 import { BRAND } from '@/config/brand';
@@ -102,23 +103,10 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          PROOF-OF-FLOW DEMO: How It Works in 15 Seconds
+          DRIVER JOURNEY: Before vs After (Scrollytelling)
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-16 border-b border-neon/20">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-2">See It In Action</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              This Is How It Works
-            </h2>
-            <p className="text-steel text-lg max-w-2xl mx-auto">
-              QR scan → gate opens → driver gets drop rules → system enforces compliance. 
-              <span className="text-white font-semibold"> Instant. Automated. Auditable.</span>
-            </p>
-          </div>
-
-          <DemoStepper />
-        </div>
+      <section className="py-0">
+        <DriverJourney mode="scrollytelling" />
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
@@ -147,6 +135,24 @@ export default function Home() {
             </h2>
           </div>
           <PersonaRouterHero />
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          NARRATIVE LADDER: Unified 6-Step Framework
+      ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-16 border-t border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-2">The Song Sheet</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              One Narrative. Every Page.
+            </h2>
+            <p className="mt-4 text-steel max-w-3xl mx-auto">
+              The yard is the constraint. Standardize the event stream. Kill variance. Measure throughput. Roll out standards network-wide. Co-develop with operators.
+            </p>
+          </div>
+          <NarrativeLadder mode="full" />
         </div>
       </section>
 

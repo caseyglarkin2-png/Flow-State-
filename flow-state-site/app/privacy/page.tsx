@@ -26,7 +26,7 @@ export default function PrivacyPage() {
             <div className="space-y-6 text-steel leading-relaxed">
               <p>
                 This Privacy Policy explains how YardFlow by FreightRoll collects and uses information when you visit our website
-                or apply for the Founding Member program.
+                or apply for the Co-Development Program.
               </p>
 
               <div>

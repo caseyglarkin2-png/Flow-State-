@@ -3,38 +3,46 @@
  * UNIFIED CTA SYSTEM - Single Source of Truth
  * ═══════════════════════════════════════════════════════════════════════════════
  * 
- * Strategy (UPDATED - MATCHES BRAND CONFIG):
- * - PRIMARY: "See If You Qualify" → Co-Development Program qualification
- * - SECONDARY: "Calculate ROI" → self-serve proof step
- * - TERTIARY: "View Evidence Vault" → procurement/proof artifacts
+ * Strategy (UPDATED 2026 - UNIFIED NARRATIVE):
+ * - PRIMARY: "Book a Network Audit" → Discovery call, high-intent conversion
+ * - SECONDARY: "Apply for Co-Development" → Program enrollment, roadmap influence
+ * - UTILITY: "Run ROI" | "Launch Simulation" → Self-serve proof tools
  * 
- * PROGRAM NAME: "Co-Development Program" (with "Founding Partner Pricing" as supporting copy)
+ * PROGRAM NAME: "Co-Development Program" (ONLY - no "Founding Member" variants)
  * 
- * Do NOT use: "Request Demo", "Book a Demo", "Founding Member", "Apply for Access"
+ * Do NOT use: "See If You Qualify", "Founding Member", "Apply for Access", "Request Demo"
  * These create naming confusion. Use BRAND config values consistently.
  */
 
 export const PRIMARY_CTA = {
-  label: 'See If You Qualify',
-  href: '/contact?intent=qualify',
-  ariaLabel: 'See if you qualify for the Co-Development Program',
-  microcopy: 'Founding Partner pricing. Limited spots.',
+  label: 'Book a Network Audit',
+  href: '/contact?intent=audit',
+  ariaLabel: 'Book a network audit discovery call',
+  microcopy: 'Identify 1–2 pilot sites. Scope co-development opportunities.',
   icon: 'Velocity',
 } as const;
 
 export const SECONDARY_CTA = {
-  label: 'Calculate ROI',
+  label: 'Apply for Co-Development',
+  href: '/co-development',
+  ariaLabel: 'Apply for the Co-Development Program',
+  microcopy: 'Roadmap influence. Founding partner pricing. Limited spots.',
+  icon: 'Ignite',
+} as const;
+
+export const UTILITY_CTA_ROI = {
+  label: 'Run ROI',
   href: '/roi',
-  ariaLabel: 'Calculate your ROI with our interactive model',
+  ariaLabel: 'Run the ROI calculator',
   microcopy: 'Board-ready in 3 minutes.',
   icon: 'Metrics',
 } as const;
 
-export const TERTIARY_CTA = {
-  label: 'Quantify Variance Tax',
-  href: '/diagnostic',
-  ariaLabel: 'Run the Variance Tax diagnostic calculator',
-  microcopy: '60-second assessment. No forms.',
+export const UTILITY_CTA_SIMULATION = {
+  label: 'Launch Simulation',
+  href: '/simulations',
+  ariaLabel: 'Launch interactive simulations',
+  microcopy: 'Network intelligence, variance tax, or ROI pro mode.',
   icon: 'Crosshair',
 } as const;
 
@@ -63,7 +71,7 @@ export function getCTA(intent: 'apply' | 'roi' | 'diagnostic' = 'apply') {
     case 'roi':
       return SECONDARY_CTA;
     case 'diagnostic':
-      return TERTIARY_CTA;
+      return UTILITY_CTA_SIMULATION;
     default:
       return PRIMARY_CTA;
   }
@@ -76,7 +84,7 @@ export const CTA_PLACEMENT = {
   homepage: {
     primary: PRIMARY_CTA,
     secondary: SECONDARY_CTA,
-    tertiary: TERTIARY_CTA,
+    utility: UTILITY_CTA_ROI,
   },
   product: {
     primary: PRIMARY_CTA,
@@ -85,6 +93,7 @@ export const CTA_PLACEMENT = {
   solutions: {
     primary: PRIMARY_CTA,
     secondary: SECONDARY_CTA,
+    utility: UTILITY_CTA_ROI,
   },
   pricing: {
     primary: PRIMARY_CTA,

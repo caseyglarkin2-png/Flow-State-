@@ -596,23 +596,23 @@ export default function SingularityPage() {
         </div>
       </section>
 
-      {/* Founding Member Program */}
+      {/* Co-Development Program */}
       <section className="py-20 md:py-24 bg-gradient-to-br from-neon/10 to-transparent border-t border-neon/20">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <div className="inline-block px-4 py-2 rounded-full border border-neon/50 text-neon text-sm font-semibold mb-8">
             <span className="inline-flex items-center gap-2">
               <Ignite size={16} />
-              FOUNDING MEMBER PROGRAM
+              CO-DEVELOPMENT PROGRAM
             </span>
           </div>
 
           <h2 className="text-4xl md:text-5xl font-black mb-6">
-            Founding Members
+            Co-Development Partners
           </h2>
 
           <p className="text-lg md:text-xl text-steel mb-8 max-w-2xl mx-auto">
-            We're building the network with a select cohort of forward-thinking enterprises. 
-            Founding members get priority deployment, direct product input, and <span className="text-neon font-semibold">preferred pricing terms</span>.
+            We're building the network with a select cohort of forward-thinking enterprises.
+            Co-Development partners get priority deployment, direct product input, and <span className="text-neon font-semibold">founding partner pricing</span>.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">

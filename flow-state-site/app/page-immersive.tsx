@@ -85,10 +85,10 @@ export default function Home() {
                 {BRAND.ctas.primary.label}
               </Link>
               <Link
-                href={BRAND.ctas.tertiary.href}
+                href={BRAND.ctas.utility.roi.href}
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-lg border-2 border-neon/30 bg-carbon/50 text-white hover:border-neon/50 transition-all"
               >
-                {BRAND.ctas.tertiary.label}
+                {BRAND.ctas.utility.roi.label}
               </Link>
             </div>
           </motion.div>

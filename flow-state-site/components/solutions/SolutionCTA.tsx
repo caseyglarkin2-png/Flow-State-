@@ -20,7 +20,7 @@ export function SolutionCTA({
   subhead = "Book a Network Audit to identify pilot sites, or apply for the Co-Development Program to influence the roadmap.",
   primaryCta = { label: BRAND.ctas.primary.label, href: BRAND.ctas.primary.href },
   secondaryCta = { label: BRAND.ctas.secondary.label, href: BRAND.ctas.secondary.href },
-  tertiaryCta = { label: BRAND.ctas.tertiary.label, href: BRAND.ctas.tertiary.href },
+  tertiaryCta = { label: BRAND.ctas.utility.roi.label, href: BRAND.ctas.utility.roi.href },
   showTertiary = true,
 }: SolutionCTAProps) {
   return (
