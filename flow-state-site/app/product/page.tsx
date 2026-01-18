@@ -3,7 +3,7 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Metrics, Agent, Confirm, Nexus, Shield, Velocity, Crosshair, DryVan, Reefer, Flatbed, Intermodal } from '@/components/icons/FlowIcons';
+import { Metrics, Agent, Confirm, Nexus, Shield, Velocity, Crosshair, DryVan, Reefer, Flatbed, Intermodal, CheckCircle } from '@/components/icons/FlowIcons';
 import Link from 'next/link';
 import AnimatedPanel from '@/components/AnimatedPanel';
 import { ProductSection } from '@/components/products/ProductSection';
@@ -16,6 +16,9 @@ import SuitePersonaMap from '@/components/SuitePersonaMap';
 import DemoStepper from '@/components/DemoStepper';
 import CapabilitySlice from '@/components/sections/CapabilitySlice';
 import ProofMedia from '@/components/media/ProofMedia';
+import BeforeAfterToggle from '@/components/BeforeAfterToggle';
+import { motion } from 'framer-motion';
+import { fadeIn, staggerContainer, staggerItem } from '@/lib/motion-presets';
 
 const CAPABILITY_MODULES = [
   {
@@ -172,34 +175,139 @@ export default function ProductPage() {
     <div className="min-h-screen bg-void">
       <Header />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-12">
+      {/* HERO: The Unified Message */}
+      <section className="relative pt-32 pb-16">
         <div className="max-w-6xl mx-auto px-6">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">
-            YardFlow Standardization Suite
-          </p>
-          <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
-            One Suite. Four Modules.<br />
-            <span className="text-neon">One Standard.</span>
-          </h1>
-          <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
-            Standardization only works when access control, communications, documentation, and yard management operate as one integrated system. <span className="text-white font-semibold">YardFlow is delivered as a bundle to prevent fragmentation.</span>
-          </p>
-          
-          {/* Bundling Callout */}
-          <div className="mt-6 p-4 rounded-xl border-2 border-neon/20 bg-neon/5 max-w-3xl">
-            <p className="text-sm text-steel leading-relaxed">
-              <span className="text-neon font-semibold">Why bundled?</span> Picking modules à la carte creates operational gaps. Gate automation without yard visibility creates blind spots. Communications without BOL verification creates disputes. The suite works because every module reinforces the others.
+          <motion.div variants={staggerContainer} initial="hidden" animate="visible">
+            <p className="text-xs uppercase tracking-[0.25em] text-neon/70">
+              Standardization Suite
             </p>
-          </div>
-
-          <Link href="/contact?intent=qualify" className="mt-8 inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-neon/90 transition">
-            {BRAND.ctas.primary.label}
-          </Link>
+            <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
+              Yards Create Variance.<br />
+              <span className="text-neon">Standards Kill It.</span>
+            </h1>
+            <p className="mt-4 text-xl text-steel max-w-3xl leading-relaxed">
+              Every yard has 10 common denominators: check-in, authorization, dock assignment, drop rules, enforcement, exceptions, compliance, departure, evidence, and recovery. When those are standardized, throughput compounds. When they're manual, variance compounds. <span className="text-white font-semibold">YardFlow orchestrates all 10 as one system.</span>
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      {/* Product Capability Modules with Proof Media */}
+      {/* PROBLEM: Before vs After Visceral */}
+      <section className="py-20 bg-carbon/20 border-y border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            <div className="text-center mb-12">
+              <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-2">The Context</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-white">Chaos vs. Standards</h2>
+              <p className="mt-4 text-steel max-w-2xl mx-auto">Toggle to see the operational delta. This is what standardization solves.</p>
+            </div>
+            <div className="flex justify-center">
+              <div className="w-full max-w-4xl">
+                <BeforeAfterToggle />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* TAXONOMY: 4 Sources of Variance = 4 Modules */}
+      <section className="py-20">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            <div className="text-center mb-16">
+              <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-2">How It Works</p>
+              <h2 className="text-4xl font-bold text-white">Four Sources of Variance.<br />Four Modules. One Flow.</h2>
+              <p className="mt-4 text-steel max-w-3xl mx-auto text-lg">Each module solves a specific variance type. Together, they create a predictable yard network.</p>
+            </div>
+
+            {/* Variance Taxonomy Grid */}
+            <div className="grid md:grid-cols-4 gap-6 mb-16">
+              {[
+                {
+                  variance: 'Identity Variance',
+                  problem: 'Who is this driver? Carrier authorization unclear.',
+                  solution: 'Digital Guard',
+                  icon: <Shield size={32} className="text-neon" />,
+                  outcome: 'Verified check-in = gate security'
+                },
+                {
+                  variance: 'Instruction Variance',
+                  problem: 'Where do they go? Message gets lost in radio static.',
+                  solution: 'Digital Comms',
+                  icon: <Velocity size={32} className="text-neon" />,
+                  outcome: 'Read receipts = no surprises'
+                },
+                {
+                  variance: 'Condition Variance',
+                  problem: 'What loaded? Trailer state disputed at delivery.',
+                  solution: 'Digital BOL',
+                  icon: <Confirm size={32} className="text-neon" />,
+                  outcome: 'Cryptographic proof = zero disputes'
+                },
+                {
+                  variance: 'Positioning Variance',
+                  problem: 'Where is it? Manual tracking creates blind spots.',
+                  solution: 'Digital YMS',
+                  icon: <Crosshair size={32} className="text-neon" />,
+                  outcome: 'Real-time visibility = predictable dwell'
+                },
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  variants={staggerItem}
+                  className="p-6 rounded-xl border border-neon/20 bg-carbon/30 hover:bg-carbon/50 hover:border-neon/40 transition"
+                >
+                  <div className="flex justify-center mb-4">{item.icon}</div>
+                  <p className="text-xs uppercase tracking-[0.15em] text-ember/70 font-semibold mb-2">{item.variance}</p>
+                  <p className="text-sm text-steel mb-4">{item.problem}</p>
+                  <div className="py-3 px-3 rounded bg-neon/10 border border-neon/20 mb-4">
+                    <p className="text-center font-semibold text-neon text-sm">{item.solution}</p>
+                  </div>
+                  <p className="text-xs text-steel/70 italic text-center">{item.outcome}</p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Flow Visualization */}
+            <div className="p-8 rounded-2xl border-2 border-neon/20 bg-carbon/30">
+              <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-4 text-center">The Integration</p>
+              <div className="flex flex-wrap justify-center items-center gap-4">
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-full bg-neon/20 border-2 border-neon flex items-center justify-center">
+                    <Shield size={24} className="text-neon" />
+                  </div>
+                  <p className="mt-2 text-xs font-bold text-white text-center">Guard</p>
+                </div>
+                <div className="text-neon font-bold text-2xl">→</div>
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-full bg-neon/20 border-2 border-neon flex items-center justify-center">
+                    <Velocity size={24} className="text-neon" />
+                  </div>
+                  <p className="mt-2 text-xs font-bold text-white text-center">Comms</p>
+                </div>
+                <div className="text-neon font-bold text-2xl">→</div>
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-full bg-neon/20 border-2 border-neon flex items-center justify-center">
+                    <Confirm size={24} className="text-neon" />
+                  </div>
+                  <p className="mt-2 text-xs font-bold text-white text-center">BOL</p>
+                </div>
+                <div className="text-neon font-bold text-2xl">→</div>
+                <div className="flex flex-col items-center">
+                  <div className="w-16 h-16 rounded-full bg-neon/20 border-2 border-neon flex items-center justify-center">
+                    <Crosshair size={24} className="text-neon" />
+                  </div>
+                  <p className="mt-2 text-xs font-bold text-white text-center">YMS</p>
+                </div>
+              </div>
+              <p className="text-center text-steel text-sm mt-6">Guard verifies identity → Comms sends verified driver to dock → BOL captures verification → YMS records and learns from each standardized event</p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* DETAILED: Capability Deep Dives */}
       {CAPABILITY_MODULES.map((module, idx) => (
         <CapabilitySlice
           key={module.headline}
@@ -223,8 +331,53 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* How It Works Demo */}
-      <section className="py-16 bg-carbon/20">
+      {/* OUTCOMES: What This Means for Your P&L */}
+      <section className="py-20 bg-carbon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-2">The CFO Conversation</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Standardization Converts to Unit Economics
+            </h2>
+            <p className="text-steel max-w-3xl text-lg mb-12">
+              Variance isn't random—it's a tax on margin. Every percent of dwell reduction on a $4K/day facility = $40 synthetic capacity. Every 2% detention reduction = $8K annual recovery per tractor. Network standardization compounds these across 10, 50, 500 sites.
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  metric: 'Dwell Reduction',
+                  impact: '6-12%',
+                  outcome: 'Synthetic capacity without capex',
+                  icon: <Crosshair size={32} className="text-neon" />
+                },
+                {
+                  metric: 'Detention Recovery',
+                  impact: '2-4%',
+                  outcome: 'Shipper penalties eliminated',
+                  icon: <CheckCircle size={32} className="text-neon" />
+                },
+                {
+                  metric: 'Labor Optimization',
+                  impact: '8-15%',
+                  outcome: 'Fewer manual interventions per shift',
+                  icon: <Velocity size={32} className="text-neon" />
+                },
+              ].map((item, idx) => (
+                <motion.div key={idx} variants={staggerItem} className="p-6 rounded-xl border border-neon/20 bg-carbon/50">
+                  <div className="flex justify-center mb-4">{item.icon}</div>
+                  <p className="text-center text-neon font-bold text-3xl mb-2">{item.impact}</p>
+                  <p className="text-center text-steel font-semibold text-sm mb-3">{item.metric}</p>
+                  <p className="text-center text-steel/70 text-xs">{item.outcome}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* PROOF: How It Works Demo */}
+      <section className="py-16">
         <div className="max-w-4xl mx-auto px-6">
           <div className="text-center mb-12">
             <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-2">See The Flow</p>
@@ -239,7 +392,7 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* Archetype Episodes - Proof by Persona */}
+      {/* CONTEXT: Archetype Episodes - Proof by Persona */}
       <section className="py-20 bg-carbon/20 border-y border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Suite Deployment Across Archetypes</p>
@@ -324,6 +477,51 @@ export default function ProductPage() {
               link="/solutions/intermodal"
             />
           </div>
+        </div>
+      </section>
+
+      {/* NETWORK EFFECT: Why 4 Standardized Sites > 1 Perfect Site */}
+      <section className="py-20 border-y border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            <div className="text-center mb-12">
+              <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-2">The Multiplier</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-white">Network Standardization Compounds</h2>
+              <p className="mt-4 text-steel max-w-2xl mx-auto text-lg">One site proves ROI. Multi-site standardization creates network intelligence that's impossible at a single facility.</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <motion.div variants={staggerItem} className="p-8 rounded-xl border border-neon/20 bg-carbon/30">
+                <p className="text-xs uppercase tracking-[0.15em] text-steel/70 font-semibold mb-4">Site 1 (Pilot)</p>
+                <p className="text-sm text-steel mb-4">Proves concept: 8% dwell reduction, 2.3% detention recovery.</p>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-steel/70">Proof Points Created</span>
+                    <span className="text-neon font-semibold">4</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-steel/70">Data Patterns</span>
+                    <span className="text-neon font-semibold">Single Context</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div variants={staggerItem} className="p-8 rounded-xl border border-neon/20 bg-carbon/30">
+                <p className="text-xs uppercase tracking-[0.15em] text-neon/70 font-semibold mb-4">4 Sites (Network)</p>
+                <p className="text-sm text-steel mb-4">Cross-context learning: What works in dry van shapes reefer strategy. Intermodal insights improve flatbed.</p>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-steel/70">Proof Points Created</span>
+                    <span className="text-neon font-semibold">16</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-steel/70">Data Patterns</span>
+                    <span className="text-neon font-semibold">4x Intelligence</span>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
