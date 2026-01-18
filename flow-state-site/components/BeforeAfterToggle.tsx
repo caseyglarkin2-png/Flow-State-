@@ -9,6 +9,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { fadeIn } from '@/lib/motion-presets';
+import Image from 'next/image';
 
 export interface BeforeAfterContent {
   before: {
@@ -152,6 +153,17 @@ export const SAMPLE_BEFORE_AFTER: BeforeAfterContent = {
       { label: 'Avg Dwell', value: '48 min', negative: true },
       { label: 'Detention Recovery', value: '35%', negative: true },
     ],
+    visual: (
+      <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-ember/30 bg-carbon">
+        <Image
+          src="/figma/yard-chaos.svg"
+          alt="Yard chaos: manual processes, high dwell, low recovery"
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
+    ),
   },
   after: {
     title: 'After: Standardized Execution',
@@ -161,5 +173,16 @@ export const SAMPLE_BEFORE_AFTER: BeforeAfterContent = {
       { label: 'Avg Dwell', value: '24 min', positive: true },
       { label: 'Detention Recovery', value: '65%', positive: true },
     ],
+    visual: (
+      <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-neon/30 bg-carbon">
+        <Image
+          src="/figma/digital-guard-proof.svg"
+          alt="Digital Guard: verified check-in, automated enforcement"
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
+    ),
   },
 };

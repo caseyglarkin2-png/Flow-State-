@@ -71,8 +71,8 @@ export const BRAND = {
   // Program naming (UNIFIED - use consistently)
   program: {
     name: 'Co-Development Program',
-    tagline: 'Founding Partner Pricing',
-    description: 'Limited spots for operators who want roadmap control and legacy pricing.',
+    tagline: 'Early Adopter Pricing',
+    description: 'Limited spots for operators who want roadmap control and early adopter rates.',
   },
 
   // Taglines and positioning
@@ -111,8 +111,8 @@ export const BRAND = {
     },
     step6: {
       title: 'Co-Development Is the Path',
-      hook: 'Founding partners get roadmap control + legacy pricing.',
-      description: 'Limited spots for operators who want to influence the product roadmap and lock in founding partner rates.',
+      hook: 'Early adopters get roadmap control + early adopter pricing.',
+      description: 'Limited spots for operators who want to influence the product roadmap and lock in early adopter rates.',
     },
   },
 

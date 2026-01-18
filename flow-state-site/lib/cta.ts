@@ -26,7 +26,7 @@ export const SECONDARY_CTA = {
   label: 'Apply for Co-Development',
   href: '/co-development',
   ariaLabel: 'Apply for the Co-Development Program',
-  microcopy: 'Roadmap influence. Founding partner pricing. Limited spots.',
+  microcopy: 'Roadmap influence. Early adopter pricing. Limited spots.',
   icon: 'Ignite',
 } as const;
 
@@ -50,7 +50,7 @@ export const UTILITY_CTA_SIMULATION = {
  * Founding Member Program callout content
  */
 export const FOUNDING_MEMBER = {
-  eyebrow: 'Founding Member Program',
+  eyebrow: 'Co-Development Program',
   headline: 'Co-Development Cohort',
   bullets: [
     'Priority roadmap influence (Reefer, Flatbed, Cross-Dock)',
