@@ -120,6 +120,10 @@ Extract reusable design patterns from the FreightRoll Figma prototype and weave 
 | **Feature: "Compliance Automation"** | Capability Slice | Audit trail screenshot | `/resources/procurement` | CapabilitySlice | compliance-audit-trail.png |
 | **Proof: "Evidence Vault"** | Proof Media | Cryptographic trail UI | `/resources/procurement` | ProofMedia | evidence-vault-ui.png |
 | **Proof: "Network Intelligence"** | Proof Media | Multi-site dashboard | `/singularity` | ProofMedia | network-intelligence-map.png |
+| **Flow: "QR Scan / Gate"** | DemoStepper frame | Identity variance → deterministic gate | `/product` Driver Journey | DemoStepper | proof/driver-qr-scan.svg |
+| **Flow: "SMS Drop Rules"** | DemoStepper frame | Instruction variance → read receipts | `/product` Driver Journey | DemoStepper | proof/sms-drop-rules.svg |
+| **Flow: "Enforcement Alert"** | DemoStepper frame | Positioning variance → enforcement | `/product` Driver Journey | DemoStepper | proof/enforcement-alert.svg |
+| **Flow: "Digital BOL"** | DemoStepper frame | Evidence trail | `/product` Driver Journey | DemoStepper | proof/bol-proof.svg |
 | **Stats: "Network Scale"** | KPI Chips | Drivers, facilities, systems live | `/` | KPIChips | N/A (data-driven) |
 | **Stats: "Operational Impact"** | KPI Chips | Dwell, detention, labor metrics | `/solutions` | KPIChips | N/A (data-driven) |
 | **Solutions: "Dry Van Playbook"** | Hero Slice + Capability | Archetype-specific hero + 2-3 capabilities | `/solutions/dry-van` | HeroSlice + CapabilitySlice | dry-van-hero.png |

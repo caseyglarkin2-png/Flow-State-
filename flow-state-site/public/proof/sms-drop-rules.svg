@@ -1,0 +1,41 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">SMS Drop Rules</title>
+  <desc id="desc">Driver receives lane assignment and drop rules with read receipts.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop stop-color="#06121f" offset="0%" />
+      <stop stop-color="#0c1f30" offset="100%" />
+    </linearGradient>
+    <linearGradient id="panel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop stop-color="#0b2c42" offset="0%" />
+      <stop stop-color="#0f3750" offset="100%" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <rect x="140" y="120" width="1320" height="660" rx="28" fill="url(#panel)" stroke="#0cf" stroke-width="2" opacity="0.9" />
+  <text x="800" y="200" text-anchor="middle" fill="#0cf" font-family="'Inter', 'Segoe UI', sans-serif" font-size="46" font-weight="800">DIGITAL COMMS</text>
+  <text x="800" y="248" text-anchor="middle" fill="#9bd6ff" font-family="'Inter', 'Segoe UI', sans-serif" font-size="22" font-weight="600">Lane-level messaging with read receipts</text>
+
+  <!-- Phone frame -->
+  <rect x="500" y="290" width="220" height="440" rx="32" fill="#06121f" stroke="#0cf" stroke-width="3" />
+  <rect x="520" y="320" width="180" height="80" rx="14" fill="#0d2233" stroke="#0cf" stroke-width="2" />
+  <text x="610" y="368" text-anchor="middle" fill="#9bd6ff" font-family="'Inter', 'Segoe UI', sans-serif" font-size="16" font-weight="700">Lane 12 • Dock B</text>
+
+  <rect x="520" y="420" width="180" height="120" rx="14" fill="#0d2233" stroke="#0cf" stroke-width="2" />
+  <text x="535" y="450" fill="#8af7c8" font-family="'Inter', 'Segoe UI', sans-serif" font-size="14" font-weight="700">Drop Rules</text>
+  <text x="535" y="474" fill="#9bd6ff" font-family="'Inter', 'Segoe UI', sans-serif" font-size="13">• Park at cone A3</text>
+  <text x="535" y="494" fill="#9bd6ff" font-family="'Inter', 'Segoe UI', sans-serif" font-size="13">• Chock wheels</text>
+  <text x="535" y="514" fill="#9bd6ff" font-family="'Inter', 'Segoe UI', sans-serif" font-size="13">• Wait for green light</text>
+
+  <rect x="520" y="560" width="180" height="60" rx="14" fill="#0d2233" stroke="#0cf" stroke-width="2" />
+  <text x="535" y="590" fill="#8af7c8" font-family="'Inter', 'Segoe UI', sans-serif" font-size="13" font-weight="700">Read receipt: Yes ✓</text>
+
+  <!-- Messages list -->
+  <g fill="#9bd6ff" font-family="'Inter', 'Segoe UI', sans-serif" font-size="18" font-weight="600">
+    <text x="770" y="360">✓ Driver received lane assignment</text>
+    <text x="770" y="400">✓ Drop rules acknowledged</text>
+    <text x="770" y="440">✓ Read receipt captured</text>
+    <text x="770" y="480">✓ Exception route available</text>
+    <text x="770" y="520">✓ Audit trail updated</text>
+  </g>
+</svg>

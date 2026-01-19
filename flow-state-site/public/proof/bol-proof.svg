@@ -1,0 +1,45 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Digital BOL Evidence</title>
+  <desc id="desc">Cryptographic signature with condition photos and timestamps.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop stop-color="#07111d" offset="0%" />
+      <stop stop-color="#0b1f30" offset="100%" />
+    </linearGradient>
+    <linearGradient id="panel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop stop-color="#0b2c42" offset="0%" />
+      <stop stop-color="#0f3750" offset="100%" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <rect x="140" y="120" width="1320" height="660" rx="28" fill="url(#panel)" stroke="#0cf" stroke-width="2" opacity="0.9" />
+  <text x="800" y="200" text-anchor="middle" fill="#0cf" font-family="'Inter', 'Segoe UI', sans-serif" font-size="46" font-weight="800">DIGITAL BOL</text>
+  <text x="800" y="248" text-anchor="middle" fill="#9bd6ff" font-family="'Inter', 'Segoe UI', sans-serif" font-size="22" font-weight="600">Forensic timestamps + cryptographic signature</text>
+
+  <!-- BOL card -->
+  <rect x="430" y="300" width="360" height="320" rx="18" fill="#0d2233" stroke="#0cf" stroke-width="2" />
+  <text x="450" y="340" fill="#9bd6ff" font-family="'Inter', 'Segoe UI', sans-serif" font-size="16" font-weight="700">Bill of Lading</text>
+  <g fill="#8af7c8" font-family="'Inter', 'Segoe UI', sans-serif" font-size="14" font-weight="700">
+    <text x="450" y="372">✓ Load condition photos attached</text>
+    <text x="450" y="402">✓ Driver identity bound to signature</text>
+    <text x="450" y="432">✓ Timestamp: 17:02:44 UTC</text>
+    <text x="450" y="462">✓ Hash: 0xA93C...91F2</text>
+  </g>
+
+  <!-- Signature block -->
+  <rect x="450" y="490" width="320" height="90" rx="10" fill="#0f2b3f" stroke="#0cf" stroke-width="1.5" />
+  <text x="470" y="520" fill="#9bd6ff" font-family="'Inter', 'Segoe UI', sans-serif" font-size="14" font-weight="700">Cryptographic Signature</text>
+  <text x="470" y="545" fill="#8af7c8" font-family="'Inter', 'Segoe UI', sans-serif" font-size="13" font-weight="600">Verifier: FreightRoll Key v2 • Status: VALID</text>
+
+  <!-- Artifact list -->
+  <g fill="#9bd6ff" font-family="'Inter', 'Segoe UI', sans-serif" font-size="18" font-weight="600">
+    <text x="850" y="360">Evidence bundle</text>
+    <text x="850" y="400">• Condition photos (ingress & egress)</text>
+    <text x="850" y="432">• Driver + carrier binding</text>
+    <text x="850" y="464">• Cryptographic seal</text>
+    <text x="850" y="496">• Immutable audit log</text>
+  </g>
+
+  <!-- Footer note -->
+  <text x="800" y="640" text-anchor="middle" fill="#9bd6ff" font-family="'Inter', 'Segoe UI', sans-serif" font-size="16" font-weight="600">Disputes resolved with defensible proof, not recollection.</text>
+</svg>
