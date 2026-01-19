@@ -27,8 +27,6 @@ import StickyCTABar from '@/components/StickyCTABar';
 import SystemGrid from '@/components/SystemGrid';
 import StatusPulse from '@/components/StatusPulse';
 import ProofMedia from '@/components/media/ProofMedia';
-import FacilityCountSlider from '@/components/FacilityCountSlider';
-import CoDevCallout from '@/components/CoDevCallout';
 import ROIModuleSection from '@/components/ROIModuleSection';
 import { BRAND } from '@/config/brand';
 import { motion } from 'framer-motion';
@@ -393,41 +391,7 @@ export default function Home() {
               </Link>
             </div>
 
-            {/* Interactive facility scaling */}
-            <FacilityCountSlider />
 
-            {/* Network outcomes */}
-            <div className="mt-16 grid md:grid-cols-3 gap-6">
-              <motion.div variants={staggerItem} className="p-8 rounded-xl border border-neon/20 bg-void/50">
-                <div className="flex justify-center mb-4">
-                  <Crosshair size={40} className="text-neon" />
-                </div>
-                <p className="text-center text-neon font-bold text-3xl mb-2">6-12%</p>
-                <p className="text-center text-steel font-semibold mb-3">Dwell Reduction</p>
-                <p className="text-center text-steel/70 text-sm">Synthetic capacity without CapEx</p>
-                <p className="mt-3 text-xs text-steel/60 italic text-center">Illustrative. Results vary by facility layout and appointment discipline.</p>
-              </motion.div>
-
-              <motion.div variants={staggerItem} className="p-8 rounded-xl border border-neon/20 bg-void/50">
-                <div className="flex justify-center mb-4">
-                  <Shield size={40} className="text-neon" />
-                </div>
-                <p className="text-center text-neon font-bold text-3xl mb-2">2-4%</p>
-                <p className="text-center text-steel font-semibold mb-3">Detention Recovery</p>
-                <p className="text-center text-steel/70 text-sm">Shipper penalties eliminated</p>
-                <p className="mt-3 text-xs text-steel/60 italic text-center">Illustrative. Dispute resolution varies by contract terms.</p>
-              </motion.div>
-
-              <motion.div variants={staggerItem} className="p-8 rounded-xl border border-neon/20 bg-void/50">
-                <div className="flex justify-center mb-4">
-                  <Velocity size={40} className="text-neon" />
-                </div>
-                <p className="text-center text-neon font-bold text-3xl mb-2">8-15%</p>
-                <p className="text-center text-steel font-semibold mb-3">Labor Optimization</p>
-                <p className="text-center text-steel/70 text-sm">Fewer manual interventions</p>
-                <p className="mt-3 text-xs text-steel/60 italic text-center">Illustrative. Depends on baseline staffing and facility complexity.</p>
-              </motion.div>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -436,33 +400,6 @@ export default function Home() {
           STEP 6: BELIEVE - ROI Calculator (now dedicated module)
       ═══════════════════════════════════════════════════════════════ */}
       <ROIModuleSection />
-
-      {/* ═══════════════════════════════════════════════════════════════
-          STEP 7: ACTION - Book Network Audit + Co-Development
-      ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-24 border-y border-neon/20">
-        <div className="max-w-5xl mx-auto px-6">
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <div className="text-center mb-12">
-              <p className="text-xs uppercase tracking-[0.3em] text-neon/70 mb-4">The Network Advantage</p>
-              <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
-                Your Siloed Facilities<br />Become Network Intelligence
-              </h2>
-              <p className="text-xl text-steel max-w-3xl mx-auto leading-relaxed mb-8">
-                <span className="text-white font-semibold">Here's what changes when you standardize for the network:</span> Every facility becomes a data source. Cross-facility learning compounds automatically. Variance bands tighten across your entire footprint. Throughput becomes calculable, not chaotic.
-              </p>
-              <p className="text-lg text-steel/90 max-w-2xl mx-auto">
-                Multi-facility operators in the Co-Development Program get more than early adopter pricing. They get roadmap influence, pilot support, and network intelligence that compounds with every site you add.
-              </p>
-            </div>
-            
-            <CoDevCallout 
-              title="Early Adopters Get Network Economics"
-              description="Join the Co-Development Program. Influence roadmap priorities. Deploy across your network with dedicated support. Lock in early adopter rates before general availability. Limited spots for qualified operators."
-            />
-          </motion.div>
-        </div>
-      </section>
 
       {/* Final CTA */}
       <section className="py-24 bg-gradient-to-b from-carbon/20 to-void">
