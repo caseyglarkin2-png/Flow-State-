@@ -1,16 +1,20 @@
 /**
- * YARDFLOW HOMEPAGE - CONVERSION SPINE
+ * YARDFLOW HOMEPAGE - PROOF-FIRST CONVERSION SPINE
  * 
- * PRIMARY OBJECTIVE: "Predictable throughput is the product."
+ * CANONICAL 7-STEP LADDER (THE VARIANCE TAX whitepaper):
+ * 1. HERO: "First Yard Network System (YNS)" + 1-line value + primary CTA
+ * 2. PROBLEM: Variance Tax (yard = control valve)
+ * 3. PROTOCOL: standardized driver journey (same flow, every yard)
+ * 4. EVIDENCE: Ground Source Truth + chain-of-custody artifact
+ * 5. MULTIPLIER: network compounding (scale to 260+ and beyond)
+ * 6. BELIEVE: ROI calc + Singularity simulation as "proof engine"
+ * 7. ACTION: Book Network Audit + Apply for Co-Development
  * 
- * NARRATIVE FLOW (in order):
- * 1. Hero: What it is + Primary CTA
- * 2. The Constraint: Why yards are the bottleneck
- * 3. Before/After: Visceral proof (with media)
- * 4. Outcomes: What happens when variance dies (KPI chips)
- * 5. Evidence: Trust anchors (proof strip + artifacts)
- * 6. Co-Development: Scarcity + roadmap control
- * 7. Final CTA + close
+ * PROOF CHOREOGRAPHY:
+ * - Protocol: kiosk-demo.mp4, two-way-comms.mp4
+ * - Evidence: chain-of-custody-kiosk.mp4
+ * - Network: FacilityCountSlider (1 → 260 → 500)
+ * - Believe: ROI + Singularity (lazy-loaded)
  */
 
 'use client';
@@ -22,14 +26,21 @@ import Footer from '@/components/Footer';
 import StickyCTABar from '@/components/StickyCTABar';
 import SystemGrid from '@/components/SystemGrid';
 import StatusPulse from '@/components/StatusPulse';
-import BeforeAfterToggle, { SAMPLE_BEFORE_AFTER } from '@/components/BeforeAfterToggle';
-import ProofStrip from '@/components/ProofStrip';
+import ProofMedia from '@/components/media/ProofMedia';
+import FacilityCountSlider from '@/components/FacilityCountSlider';
 import CoDevCallout from '@/components/CoDevCallout';
 import BelieveSection from '@/components/BelieveSection';
 import { BRAND } from '@/config/brand';
 import { motion } from 'framer-motion';
 import { fadeIn, staggerContainer, staggerItem } from '@/lib/motion-presets';
 import { Metrics, Velocity, Shield, Crosshair } from '@/components/icons/FlowIcons';
+import { 
+  YardChaosAnimation, 
+  DigitalGuardAnimation, 
+  NetworkCompoundingAnimation, 
+  ChainOfCustodyAnimation,
+  BeforeAfterFlowAnimation 
+} from '@/components/animations';
 
 export default function Home() {
   return (
@@ -38,15 +49,15 @@ export default function Home() {
       <StickyCTABar ctaText={BRAND.ctas.primary.label} ctaUrl={BRAND.ctas.primary.href} />
 
       {/* ═══════════════════════════════════════════════════════════════
-          SECTION 1: HERO - CLEAR VALUE PROP
+          STEP 1: HERO - First Yard Network System (YNS)
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="relative pt-32 pb-16 overflow-hidden">
+      <section className="relative pt-32 pb-24 overflow-hidden">
         <SystemGrid opacity={0.12} pulsing={true} />
         
-        <div className="relative z-10 max-w-6xl mx-auto px-6">
+        <div className="relative z-10 max-w-5xl mx-auto px-6">
           <motion.div variants={fadeIn} initial="hidden" animate="visible">
             {/* Credibility markers */}
-            <div className="flex flex-col items-center justify-center gap-4 mb-8">
+            <div className="flex flex-col items-center justify-center gap-4 mb-12">
               <div className="flex items-center gap-6">
                 <StatusPulse status="active" label="System Live" size="md" />
                 <span className="text-steel/50">|</span>
@@ -57,30 +68,29 @@ export default function Home() {
               </div>
             </div>
 
-            {/* One-liner frame */}
-            <p className="text-xs uppercase tracking-[0.25em] text-neon/70 text-center">
+            {/* Brand frame */}
+            <p className="text-xs uppercase tracking-[0.3em] text-neon/70 text-center mb-3">
               YardFlow by FreightRoll
             </p>
-            <div className="mt-2 text-center text-sm text-steel/80 font-mono">
-              The first Yard Network System (YNS). Not a YMS. A standardized operating protocol for deterministic throughput.
-            </div>
             
-            <h1 className="mt-4 text-6xl md:text-8xl font-black tracking-tight text-white text-center">
-              Predictable<br />
-              <span className="text-neon">Throughput</span>
-              <br />
-              is the Product.
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white text-center leading-[1.1]">
+              The First<br />
+              <span className="text-neon">Yard Network System</span>
             </h1>
             
-            <p className="mt-6 text-xl text-steel max-w-3xl leading-relaxed mx-auto text-center">
-              Variance is margin you never recover. <span className="text-white font-semibold">YardFlow standardizes yard events across your network, killing variance and unlocking predictable capacity.</span> When every driver journey is identical, your throughput compounds.
+            <p className="mt-8 text-xl md:text-2xl text-steel/90 max-w-3xl leading-relaxed mx-auto text-center">
+              Not a YMS. A <span className="text-white font-bold">standardized operating protocol</span> that turns high-variance execution into deterministic control.
             </p>
 
-            {/* Primary CTA only (secondary goes later) */}
-            <div className="mt-10 flex justify-center">
+            <p className="mt-6 text-lg text-steel max-w-2xl mx-auto text-center">
+              The yard is the control valve for the supply chain network. When every driver journey is identical across 260+ facilities, throughput becomes predictable.
+            </p>
+
+            {/* Primary CTA */}
+            <div className="mt-12 flex justify-center">
               <Link
                 href={BRAND.ctas.primary.href}
-                className="inline-flex items-center gap-2 px-10 py-4 rounded-xl font-bold text-lg bg-neon text-void hover:bg-white transition-all shadow-lg shadow-neon/20"
+                className="inline-flex items-center gap-2 px-12 py-5 rounded-xl font-bold text-xl bg-neon text-void hover:bg-white transition-all shadow-lg shadow-neon/20"
               >
                 {BRAND.ctas.primary.label}
               </Link>
@@ -90,27 +100,30 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          SECTION 2: THE CONSTRAINT - Why Yards Matter
+          STEP 2: PROBLEM - Variance Tax (yard = control valve)
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-20 border-y border-neon/20">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="py-24 border-y border-ember/20">
+        <div className="max-w-5xl mx-auto px-6">
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <p className="text-xs uppercase tracking-[0.25em] text-ember/70 mb-2">The Bottleneck</p>
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                  The Yard is Where Throughput Dies
-                </h2>
-                <p className="text-[17px] text-steel leading-8 mb-6">
-                  Every freight network has a black hole. Manual check-in. Random queues. Trailers that disappear. Dwell that spikes into detention. The yard consumes margin that never comes back.
-                </p>
-                <p className="text-[17px] text-steel leading-8">
-                  Most operators optimize *around* this chaos instead of eliminating it. Standards do the opposite: they make the yard predictable, so your P&L becomes predictable.
-                </p>
-              </div>
-              <div className="rounded-2xl border border-ember/20 bg-ember/5 p-8">
-                <p className="text-xs uppercase tracking-[0.1em] text-ember/70 font-semibold mb-4">Typical Network Reality</p>
-                <ul className="space-y-3 text-steel text-sm">
+            <div className="text-center mb-16">
+              <p className="text-xs uppercase tracking-[0.3em] text-ember/70 mb-4">The Control Valve</p>
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
+                The Yard is Where<br />Throughput Dies
+              </h2>
+              <p className="text-xl text-steel max-w-3xl mx-auto leading-relaxed">
+                Manual check-in. Random queues. Trailers that disappear. Dwell that spikes into detention. <span className="text-white font-semibold">The yard consumes margin that never comes back.</span>
+              </p>
+            </div>
+
+            {/* Variance Tax visualization */}
+            <div className="mb-16">
+              <YardChaosAnimation />
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="p-8 rounded-2xl border border-ember/20 bg-ember/5">
+                <h3 className="text-xl font-bold text-white mb-4">Typical Network Reality</h3>
+                <ul className="space-y-3 text-steel">
                   <li className="flex items-start gap-3">
                     <span className="text-ember font-bold mt-1">×</span>
                     <span>Gate time varies 3-5x depending on who's working</span>
@@ -129,152 +142,136 @@ export default function Home() {
                   </li>
                 </ul>
               </div>
+
+              <div className="p-8 rounded-2xl border border-neon/20 bg-neon/5">
+                <h3 className="text-xl font-bold text-white mb-4">The Fix: Protocol {'>'} Process</h3>
+                <p className="text-steel leading-relaxed mb-4">
+                  The problem isn't your carriers. It's the lack of a standard protocol.
+                </p>
+                <p className="text-steel leading-relaxed">
+                  <span className="text-white font-semibold">YardFlow enforces the same driver journey at every facility.</span> Same steps. Same sequence. Same proof requirements. Variance dies. Throughput becomes calculable.
+                </p>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          SECTION 3: BEFORE/AFTER - Proof
+          STEP 3: PROTOCOL - Standardized Driver Journey
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-20">
+      <section className="py-24 bg-carbon/20">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <div className="text-center mb-12">
-              <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-2">The Delta</p>
-              <h2 className="text-4xl md:text-5xl font-bold text-white">
-                Feel the Difference
+            <div className="text-center mb-16">
+              <p className="text-xs uppercase tracking-[0.3em] text-neon/70 mb-4">Ground Source Truth</p>
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
+                Same Flow.<br />Every Yard.
               </h2>
-              <p className="mt-4 text-steel max-w-2xl mx-auto text-lg">Toggle below. This is what standards solve.</p>
-            </div>
-
-            <BeforeAfterToggle content={SAMPLE_BEFORE_AFTER} mode="side-by-side" />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════
-          SECTION 4: STANDARDS - 10 Common Denominators
-      ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-20 bg-carbon/20">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <div className="text-center mb-12">
-              <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-2">The Framework</p>
-              <h2 className="text-4xl md:text-5xl font-bold text-white">
-                10 Common Denominators
-              </h2>
-              <p className="mt-4 text-steel max-w-2xl mx-auto text-lg">
-                Every yard event, every facility, same protocol. This is what standardization looks like.
+              <p className="text-xl text-steel max-w-3xl mx-auto leading-relaxed">
+                The protocol is the product. <span className="text-white font-semibold">Four modules, one driver journey, zero variance.</span>
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-              {[
-                { num: '01', standard: 'Identity Verification', desc: 'Digital Guard validates every driver entry' },
-                { num: '02', standard: 'Instruction Protocol', desc: 'Comms sends identical messages network-wide' },
-                { num: '03', standard: 'Condition Capture', desc: 'BOL locks proof at every handoff' },
-                { num: '04', standard: 'Positioning Logic', desc: 'YMS assigns doors via algorithm, not radio' },
-                { num: '05', standard: 'Timestamp Precision', desc: 'Every event logged to the second' },
-                { num: '06', standard: 'Exception Routing', desc: 'Alerts escalate via defined SLA paths' },
-                { num: '07', standard: 'Evidence Trail', desc: 'Immutable audit log for every transaction' },
-                { num: '08', standard: 'Network Learning', desc: 'Data aggregates across all facilities' },
-                { num: '09', standard: 'Predictable Throughput', desc: 'Capacity becomes calculable, not guessed' },
-                { num: '10', standard: 'Compounding Returns', desc: 'Each site multiplies network efficiency' },
-              ].map((item, idx) => (
-                <motion.div 
-                  key={idx} 
-                  variants={staggerItem}
-                  className="flex items-start gap-4 p-4 rounded-lg border border-neon/10 bg-void/50 hover:border-neon/30 transition-colors"
-                >
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-neon/10 border border-neon/30 flex items-center justify-center">
-                    <span className="text-neon font-bold text-sm">{item.num}</span>
-                  </div>
-                  <div>
-                    <h3 className="text-white font-semibold mb-1">{item.standard}</h3>
-                    <p className="text-steel/70 text-sm">{item.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
+            {/* Protocol proof: Digital Guard verification flow */}
+            <div className="mb-16">
+              <DigitalGuardAnimation />
+            </div>
+
+            {/* Protocol modules grid */}
+            <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+              <motion.div variants={staggerItem} className="p-8 rounded-xl border border-neon/20 bg-void/50">
+                <div className="flex items-center gap-3 mb-4">
+                  <Shield size={32} className="text-neon" />
+                  <h3 className="text-xl font-bold text-white">Digital Guard</h3>
+                </div>
+                <p className="text-steel leading-relaxed">
+                  QR-based driver ID verification. Lane assignment via algorithm. Instruction delivery via SMS.
+                </p>
+              </motion.div>
+
+              <motion.div variants={staggerItem} className="p-8 rounded-xl border border-neon/20 bg-void/50">
+                <div className="flex items-center gap-3 mb-4">
+                  <Velocity size={32} className="text-neon" />
+                  <h3 className="text-xl font-bold text-white">Digital Comms</h3>
+                </div>
+                <p className="text-steel leading-relaxed">
+                  Two-way messaging with proof-of-receipt. Escalation rules. Automated dwell alerts.
+                </p>
+              </motion.div>
+
+              <motion.div variants={staggerItem} className="p-8 rounded-xl border border-neon/20 bg-void/50">
+                <div className="flex items-center gap-3 mb-4">
+                  <Crosshair size={32} className="text-neon" />
+                  <h3 className="text-xl font-bold text-white">Digital BOL</h3>
+                </div>
+                <p className="text-steel leading-relaxed">
+                  Touchless documentation. Cryptographic timestamps. Photo proof of load condition.
+                </p>
+              </motion.div>
+
+              <motion.div variants={staggerItem} className="p-8 rounded-xl border border-neon/20 bg-void/50">
+                <div className="flex items-center gap-3 mb-4">
+                  <Metrics size={32} className="text-neon" />
+                  <h3 className="text-xl font-bold text-white">Digital YMS</h3>
+                </div>
+                <p className="text-steel leading-relaxed">
+                  Real-time yard visualization. Dwell anomaly detection. Predictive intelligence across the network.
+                </p>
+              </motion.div>
+            </div>
+
+            {/* Two-way comms proof */}
+            <div className="mt-16 max-w-4xl mx-auto">
+              <ProofMedia
+                type="phone"
+                videoPath="/proof/two-way-comms.mp4"
+                alt="Two-way driver communications with proof-of-receipt"
+                caption="Enforcement through comms: every message logged, every response timestamped."
+                autoplay={true}
+                loop={true}
+              />
+            </div>
+
+            {/* Before/After transformation */}
+            <div className="mt-16">
+              <BeforeAfterFlowAnimation />
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          SECTION 5: OUTCOMES - The Math
+          STEP 4: EVIDENCE - Ground Source Truth + Chain-of-Custody
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-20 border-y border-neon/20">
+      <section className="py-24 border-y border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <div className="text-center mb-12">
-              <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-2">Unit Economics</p>
-              <h2 className="text-4xl md:text-5xl font-bold text-white">
-                What Happens When Variance Dies
+            <div className="text-center mb-16">
+              <p className="text-xs uppercase tracking-[0.3em] text-neon/70 mb-4">Every Event. Every Handoff.</p>
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
+                Audit-Grade<br />from Day One
               </h2>
-              <p className="mt-4 text-steel max-w-2xl mx-auto text-lg">These aren't aspirational. They're what 58 facilities have achieved.</p>
+              <p className="text-xl text-steel max-w-3xl mx-auto leading-relaxed">
+                We do not deal in projected savings. <span className="text-white font-semibold">We deal in Ground Source Truth.</span> Every decision is timestamped. Every dispute is defensible.
+              </p>
             </div>
 
+            {/* Chain-of-custody proof */}
+            <div className="mb-12">
+              <ChainOfCustodyAnimation />
+            </div>
+
+            {/* Evidence artifacts grid */}
             <div className="grid md:grid-cols-3 gap-6">
-              {[
-                {
-                  metric: 'Dwell Reduction',
-                  impact: '6-12%',
-                  meaning: 'Synthetic capacity without CapEx',
-                  icon: <Crosshair size={40} className="text-neon" />
-                },
-                {
-                  metric: 'Detention Recovery',
-                  impact: '2-4%',
-                  meaning: 'Shipper penalties eliminated',
-                  icon: <Shield size={40} className="text-neon" />
-                },
-                {
-                  metric: 'Labor Optimization',
-                  impact: '8-15%',
-                  meaning: 'Fewer manual interventions',
-                  icon: <Velocity size={40} className="text-neon" />
-                },
-              ].map((item, idx) => (
-                <motion.div key={idx} variants={staggerItem} className="p-8 rounded-xl border border-neon/20 bg-carbon/50">
-                  <div className="flex justify-center mb-4">{item.icon}</div>
-                  <p className="text-center text-neon font-bold text-4xl mb-2">{item.impact}</p>
-                  <p className="text-center text-steel font-semibold mb-3">{item.metric}</p>
-                  <p className="text-center text-steel/70 text-sm">{item.meaning}</p>
-                  <p className="mt-3 text-xs text-steel/60 italic text-center">Illustrative examples. Results vary by facility layout, appointment discipline, inbound mix.</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════════
-          SECTION 6: EVIDENCE VAULT - Artifacts & Timestamps
-      ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-20 bg-carbon/20">
-        <div className="max-w-6xl mx-auto px-6">
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <div className="text-center mb-12">
-              <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-2">Built on Evidence</p>
-              <h2 className="text-3xl md:text-4xl font-bold text-white">
-                Audit-Grade from Day One
-              </h2>
-              <p className="mt-4 text-steel max-w-2xl mx-auto text-lg">Every event is timestamped. Every decision is defensible. Disputes disappear when you own the proof.</p>
-            </div>
-
-            <ProofStrip />
-
-            {/* Sample Evidence Artifacts */}
-            <div className="mt-12 grid md:grid-cols-3 gap-6">
               <motion.div variants={staggerItem} className="p-6 rounded-xl border border-neon/20 bg-void/80">
                 <div className="flex items-center gap-2 mb-3">
                   <Shield size={20} className="text-neon" />
-                  <h3 className="text-white font-semibold">Digital Guard Log</h3>
+                  <h3 className="text-white font-semibold">Driver Check-In</h3>
                 </div>
                 <div className="space-y-2 text-sm font-mono">
                   <div className="flex justify-between text-steel/70">
-                    <span>Check-in:</span>
+                    <span>Timestamp:</span>
                     <span className="text-neon">14:23:17 UTC</span>
                   </div>
                   <div className="flex justify-between text-steel/70">
@@ -282,7 +279,7 @@ export default function Home() {
                     <span className="text-white">Verified ✓</span>
                   </div>
                   <div className="flex justify-between text-steel/70">
-                    <span>Door Assigned:</span>
+                    <span>Lane:</span>
                     <span className="text-white">Bay 12</span>
                   </div>
                 </div>
@@ -312,7 +309,7 @@ export default function Home() {
               <motion.div variants={staggerItem} className="p-6 rounded-xl border border-neon/20 bg-void/80">
                 <div className="flex items-center gap-2 mb-3">
                   <Crosshair size={20} className="text-neon" />
-                  <h3 className="text-white font-semibold">BOL Snapshot</h3>
+                  <h3 className="text-white font-semibold">BOL Signature</h3>
                 </div>
                 <div className="space-y-2 text-sm font-mono">
                   <div className="flex justify-between text-steel/70">
@@ -321,7 +318,7 @@ export default function Home() {
                   </div>
                   <div className="flex justify-between text-steel/70">
                     <span>Signature:</span>
-                    <span className="text-white">Cryptographic ✓</span>
+                    <span className="text-white">Crypto ✓</span>
                   </div>
                   <div className="flex justify-between text-steel/70">
                     <span>Immutable:</span>
@@ -335,47 +332,105 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          SECTION 6.5: PROOF ENGINES - ROI Calculator + Singularity
+          STEP 5: MULTIPLIER - Network Compounding (1 → 260 → 500)
       ═══════════════════════════════════════════════════════════════ */}
-      <BelieveSection />
-
-      {/* ═══════════════════════════════════════════════════════════════
-          SECTION 7: CO-DEVELOPMENT - Scarcity + Roadmap
-      ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-20 border-y border-neon/20">
+      <section className="py-24 bg-carbon/20">
         <div className="max-w-6xl mx-auto px-6">
-          <CoDevCallout 
-            title="Early Adopters Lock In Better Pricing"
-            description="Multi-facility operators: join the Co-Development Program. Influence the product roadmap. Get early access to new modules. Lock in early adopter pricing. Limited spots."
-          />
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            <div className="text-center mb-16">
+              <p className="text-xs uppercase tracking-[0.3em] text-neon/70 mb-4">Enterprise Scale</p>
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
+                Network Intelligence<br />Compounds Automatically
+              </h2>
+              <p className="text-xl text-steel max-w-3xl mx-auto leading-relaxed">
+                <span className="text-white font-semibold">Yards are a network, not snowflakes.</span> Every facility adds proof points. Every driver journey tightens variance bands. Scale from 1 to 260 to 500+.
+              </p>
+            </div>
+
+            {/* Network compounding visualization */}
+            <div className="mb-16">
+              <NetworkCompoundingAnimation />
+            </div>
+
+            {/* Interactive facility scaling */}
+            <FacilityCountSlider />
+
+            {/* Network outcomes */}
+            <div className="mt-16 grid md:grid-cols-3 gap-6">
+              <motion.div variants={staggerItem} className="p-8 rounded-xl border border-neon/20 bg-void/50">
+                <div className="flex justify-center mb-4">
+                  <Crosshair size={40} className="text-neon" />
+                </div>
+                <p className="text-center text-neon font-bold text-3xl mb-2">6-12%</p>
+                <p className="text-center text-steel font-semibold mb-3">Dwell Reduction</p>
+                <p className="text-center text-steel/70 text-sm">Synthetic capacity without CapEx</p>
+                <p className="mt-3 text-xs text-steel/60 italic text-center">Illustrative. Results vary by facility layout and appointment discipline.</p>
+              </motion.div>
+
+              <motion.div variants={staggerItem} className="p-8 rounded-xl border border-neon/20 bg-void/50">
+                <div className="flex justify-center mb-4">
+                  <Shield size={40} className="text-neon" />
+                </div>
+                <p className="text-center text-neon font-bold text-3xl mb-2">2-4%</p>
+                <p className="text-center text-steel font-semibold mb-3">Detention Recovery</p>
+                <p className="text-center text-steel/70 text-sm">Shipper penalties eliminated</p>
+                <p className="mt-3 text-xs text-steel/60 italic text-center">Illustrative. Dispute resolution varies by contract terms.</p>
+              </motion.div>
+
+              <motion.div variants={staggerItem} className="p-8 rounded-xl border border-neon/20 bg-void/50">
+                <div className="flex justify-center mb-4">
+                  <Velocity size={40} className="text-neon" />
+                </div>
+                <p className="text-center text-neon font-bold text-3xl mb-2">8-15%</p>
+                <p className="text-center text-steel font-semibold mb-3">Labor Optimization</p>
+                <p className="text-center text-steel/70 text-sm">Fewer manual interventions</p>
+                <p className="mt-3 text-xs text-steel/60 italic text-center">Illustrative. Depends on baseline staffing and facility complexity.</p>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          SECTION 8: FINAL CTA + Close
+          STEP 6: BELIEVE - ROI Calculator + Singularity Simulation
       ═══════════════════════════════════════════════════════════════ */}
-      <section className="py-20 bg-gradient-to-b from-carbon/20 to-void">
-        <div className="max-w-6xl mx-auto px-6">
+      <BelieveSection />
+
+      {/* ═══════════════════════════════════════════════════════════════
+          STEP 7: ACTION - Book Network Audit + Co-Development
+      ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-24 border-y border-neon/20">
+        <div className="max-w-5xl mx-auto px-6">
+          <CoDevCallout 
+            title="Early Adopters Lock In Better Economics"
+            description="Multi-facility operators: join the Co-Development Program. Influence product roadmap. Get early access to new modules. Lock in early adopter pricing. Limited spots."
+          />
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 bg-gradient-to-b from-carbon/20 to-void">
+        <div className="max-w-5xl mx-auto px-6">
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             <div className="text-center">
-              <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-4">Next Step</p>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              <p className="text-xs uppercase tracking-[0.3em] text-neon/70 mb-6">Next Step</p>
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
                 Ready to Standardize?
               </h2>
-              <p className="text-steel max-w-2xl mx-auto text-lg mb-10">
+              <p className="text-xl text-steel max-w-2xl mx-auto mb-12 leading-relaxed">
                 Book a Network Audit. 30 minutes. We'll identify your pilot sites and map out your rollout.
               </p>
               
-              <div className="flex flex-wrap gap-4 justify-center">
+              <div className="flex flex-wrap gap-6 justify-center">
                 <Link
                   href={BRAND.ctas.primary.href}
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-lg bg-neon text-void hover:bg-white transition-all shadow-lg shadow-neon/20"
+                  className="inline-flex items-center gap-2 px-10 py-5 rounded-xl font-bold text-xl bg-neon text-void hover:bg-white transition-all shadow-lg shadow-neon/20"
                 >
                   {BRAND.ctas.primary.label}
                 </Link>
                 <Link
                   href={BRAND.ctas.secondary.href}
-                  className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-lg border-2 border-neon/30 bg-carbon/50 text-white hover:border-neon/50 transition-all"
+                  className="inline-flex items-center gap-2 px-10 py-5 rounded-xl font-semibold text-xl border-2 border-neon/30 bg-carbon/50 text-white hover:border-neon/50 transition-all"
                 >
                   {BRAND.ctas.secondary.label}
                 </Link>
