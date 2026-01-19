@@ -342,7 +342,7 @@ export default function Home() {
                 Network Intelligence<br />Compounds Automatically
               </h2>
               <p className="text-xl text-steel max-w-3xl mx-auto leading-relaxed">
-                <span className="text-white font-semibold">Yards are a network, not snowflakes.</span> Every facility adds proof points. Every driver journey tightens variance bands. Scale from 1 to 260 to 500+.
+                <span className="text-white font-semibold">Yards are a network, not snowflakes.</span> Every facility adds proof points. Every driver journey tightens variance bands. Scale across your network.
               </p>
             </div>
 

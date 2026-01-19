@@ -52,21 +52,6 @@ function ProofEngine({ title, description, poster, href, icon, cta }: ProofEngin
             {description}
           </p>
 
-          {/* Poster Preview */}
-          <div className="relative aspect-video rounded-xl overflow-hidden border border-neon/20 bg-carbon/50 mb-4">
-            <img
-              src={poster}
-              alt={`${title} preview`}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-            {/* Overlay Play Button */}
-            <div className="absolute inset-0 flex items-center justify-center bg-void/60 transition-opacity duration-300 group-hover:bg-void/40">
-              <div className="w-16 h-16 rounded-full bg-neon text-void flex items-center justify-center text-2xl font-black transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-neon/50">
-                ▶
-              </div>
-            </div>
-          </div>
-
           {/* CTA */}
           <div className="flex items-center justify-between">
             <span className="text-neon font-semibold text-sm">{cta}</span>
@@ -121,7 +106,7 @@ export default function BelieveSection({ className = '' }: BelieveSectionProps) 
 
             <ProofEngine
               title="Singularity Simulation"
-              description="Watch facilities converge from chaos to flow. Interactive simulation visualizes network effect across all facilities. Based on actual Primo deployment. Standards kill variance. Flow follows."
+              description="Watch facilities converge from chaos to flow. Interactive simulation visualizes network effect across your entire footprint. Based on actual enterprise deployments. Standards kill variance. Flow follows."
               poster="/proof/machine-vision.png"
               href="/singularity"
               icon={<Crosshair size={24} />}
