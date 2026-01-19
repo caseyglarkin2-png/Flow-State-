@@ -36,7 +36,7 @@ import {
   YardChaosAnimation, 
   DigitalGuardAnimation, 
   ChainOfCustodyAnimation,
-  BeforeAfterFlowAnimation 
+  ProtocolRollupAnimation
 } from '@/components/animations';
 
 export default function Home() {
@@ -177,44 +177,72 @@ export default function Home() {
 
             {/* Protocol modules grid */}
             <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-              <motion.div variants={staggerItem} className="p-8 rounded-xl border border-neon/20 bg-void/50">
-                <div className="flex items-center gap-3 mb-4">
-                  <Shield size={32} className="text-neon" />
-                  <h3 className="text-xl font-bold text-white">Digital Guard</h3>
-                </div>
-                <p className="text-steel leading-relaxed">
-                  QR-based driver ID verification. Lane assignment via algorithm. Instruction delivery via SMS.
-                </p>
+              <motion.div variants={staggerItem}>
+                <Link href="/product" className="group block">
+                  <div className="p-8 rounded-xl border border-neon/20 bg-void/50 transition-all duration-300 hover:border-neon/50 hover:shadow-lg hover:shadow-neon/20">
+                    <div className="flex items-center gap-3 mb-4">
+                      <Shield size={32} className="text-neon" />
+                      <h3 className="text-xl font-bold text-white">Digital Guard</h3>
+                    </div>
+                    <p className="text-steel leading-relaxed">
+                      QR-based driver ID verification. Lane assignment via algorithm. Instruction delivery via SMS.
+                    </p>
+                    <p className="text-neon text-sm font-semibold mt-4 flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                      Learn more →
+                    </p>
+                  </div>
+                </Link>
               </motion.div>
 
-              <motion.div variants={staggerItem} className="p-8 rounded-xl border border-neon/20 bg-void/50">
-                <div className="flex items-center gap-3 mb-4">
-                  <Velocity size={32} className="text-neon" />
-                  <h3 className="text-xl font-bold text-white">Digital Comms</h3>
-                </div>
-                <p className="text-steel leading-relaxed">
-                  Two-way messaging with proof-of-receipt. Escalation rules. Automated dwell alerts.
-                </p>
+              <motion.div variants={staggerItem}>
+                <Link href="/product" className="group block">
+                  <div className="p-8 rounded-xl border border-neon/20 bg-void/50 transition-all duration-300 hover:border-neon/50 hover:shadow-lg hover:shadow-neon/20">
+                    <div className="flex items-center gap-3 mb-4">
+                      <Velocity size={32} className="text-neon" />
+                      <h3 className="text-xl font-bold text-white">Digital Comms</h3>
+                    </div>
+                    <p className="text-steel leading-relaxed">
+                      Two-way messaging with proof-of-receipt. Escalation rules. Automated dwell alerts.
+                    </p>
+                    <p className="text-neon text-sm font-semibold mt-4 flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                      Learn more →
+                    </p>
+                  </div>
+                </Link>
               </motion.div>
 
-              <motion.div variants={staggerItem} className="p-8 rounded-xl border border-neon/20 bg-void/50">
-                <div className="flex items-center gap-3 mb-4">
-                  <Crosshair size={32} className="text-neon" />
-                  <h3 className="text-xl font-bold text-white">Digital BOL</h3>
-                </div>
-                <p className="text-steel leading-relaxed">
-                  Touchless documentation. Cryptographic timestamps. Photo proof of load condition.
-                </p>
+              <motion.div variants={staggerItem}>
+                <Link href="/product" className="group block">
+                  <div className="p-8 rounded-xl border border-neon/20 bg-void/50 transition-all duration-300 hover:border-neon/50 hover:shadow-lg hover:shadow-neon/20">
+                    <div className="flex items-center gap-3 mb-4">
+                      <Crosshair size={32} className="text-neon" />
+                      <h3 className="text-xl font-bold text-white">Digital BOL</h3>
+                    </div>
+                    <p className="text-steel leading-relaxed">
+                      Touchless documentation. Cryptographic timestamps. Photo proof of load condition.
+                    </p>
+                    <p className="text-neon text-sm font-semibold mt-4 flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                      Learn more →
+                    </p>
+                  </div>
+                </Link>
               </motion.div>
 
-              <motion.div variants={staggerItem} className="p-8 rounded-xl border border-neon/20 bg-void/50">
-                <div className="flex items-center gap-3 mb-4">
-                  <Metrics size={32} className="text-neon" />
-                  <h3 className="text-xl font-bold text-white">Digital YMS</h3>
-                </div>
-                <p className="text-steel leading-relaxed">
-                  Real-time yard visualization. Dwell anomaly detection. Predictive intelligence across the network.
-                </p>
+              <motion.div variants={staggerItem}>
+                <Link href="/product" className="group block">
+                  <div className="p-8 rounded-xl border border-neon/20 bg-void/50 transition-all duration-300 hover:border-neon/50 hover:shadow-lg hover:shadow-neon/20">
+                    <div className="flex items-center gap-3 mb-4">
+                      <Metrics size={32} className="text-neon" />
+                      <h3 className="text-xl font-bold text-white">Digital YMS</h3>
+                    </div>
+                    <p className="text-steel leading-relaxed">
+                      Real-time yard visualization. Dwell anomaly detection. Predictive intelligence across the network.
+                    </p>
+                    <p className="text-neon text-sm font-semibold mt-4 flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                      Learn more →
+                    </p>
+                  </div>
+                </Link>
               </motion.div>
             </div>
 
@@ -230,9 +258,9 @@ export default function Home() {
               />
             </div>
 
-            {/* Before/After transformation */}
+            {/* Before/After transformation - showing protocol rollup */}
             <div className="mt-16">
-              <BeforeAfterFlowAnimation />
+              <ProtocolRollupAnimation />
             </div>
           </motion.div>
         </div>

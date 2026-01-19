@@ -11,3 +11,4 @@ export { default as DigitalGuardAnimation } from './DigitalGuardAnimation';
 export { default as NetworkCompoundingAnimation } from './NetworkCompoundingAnimation';
 export { default as ChainOfCustodyAnimation } from './ChainOfCustodyAnimation';
 export { default as BeforeAfterFlowAnimation } from './BeforeAfterFlowAnimation';
+export { default as ProtocolRollupAnimation } from './ProtocolRollupAnimation';
