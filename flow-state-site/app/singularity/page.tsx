@@ -352,6 +352,7 @@ export default function SingularityPage() {
       if (activated >= TOTAL_FACILITIES) {
         clearInterval(activationInterval);
         setPhase('flow');
+        // Don't stop - let it continue showing improvement
         return;
       }
 
@@ -366,18 +367,28 @@ export default function SingularityPage() {
     return () => clearInterval(activationInterval);
   }, [isSimulating, phase, modeled.beta, modeled.tau]);
 
-  // Accumulate savings - throttled updates
+  // Accumulate savings - continues improving even at full deployment
   useEffect(() => {
     if (!isSimulating || phase === 'chaos') return;
 
     const savingsInterval = setInterval(() => {
-      const networkEffect = Math.pow(activeFacilities, 1.4);
+      // At full deployment (flow phase), show continuous improvement from learning
+      const currentFacilities = Math.max(1, activeFacilities);
+      const networkEffect = phase === 'flow' 
+        ? Math.pow(TOTAL_FACILITIES, 1.4) * 1.2 // 20% boost for full network learning
+        : Math.pow(currentFacilities, 1.4);
+      
       setTotalSavings(prev => prev + Math.round(networkEffect * 650));
-      setTrucksProcessed(prev => prev + Math.round(activeFacilities * 1.8));
+      setTrucksProcessed(prev => prev + Math.round(currentFacilities * 1.8));
+      
+      // In flow phase, show improving velocity from tighter variance bands
+      if (phase === 'flow' && networkVelocity < 120) {
+        setNetworkVelocity(prev => Math.min(120, prev + 0.5));
+      }
     }, 150);
 
     return () => clearInterval(savingsInterval);
-  }, [isSimulating, phase, activeFacilities]);
+  }, [isSimulating, phase, activeFacilities, networkVelocity]);
 
   // Generate data packets - limited
   useEffect(() => {
