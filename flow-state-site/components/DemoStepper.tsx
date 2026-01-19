@@ -14,6 +14,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { slideUp, fadeIn } from '@/lib/motion-presets';
 import { FlowArrow } from '@/components/icons/FlowIcons';
+import EvidenceArtifactPreview, { EvidenceArtifact } from '@/components/EvidenceArtifactPreview';
 
 export interface DemoStep {
   title: string;
@@ -21,6 +22,7 @@ export interface DemoStep {
   image?: string; // Path to image in /public/
   video?: string; // Path to video in /public/
   caption?: string;
+  artifact?: EvidenceArtifact; // Evidence artifact for Ground Source Truth sidebar
 }
 
 interface DemoStepperProps {
@@ -34,24 +36,60 @@ const DEFAULT_STEPS: DemoStep[] = [
     description: 'No app required. Kiosk instantly verifies credentials, checks BOL, captures photo.',
     video: '/proof/driver-qr-scan.mp4',
     caption: '~2.4 seconds average',
+    artifact: {
+      timestamp: '2026-01-19T14:32:18.427Z',
+      event: 'Driver Check-In',
+      verification: 'verified',
+      driver: 'J. Smith',
+      carrier: 'ACME Transport',
+      trailer: 'TRL-8492',
+      proof: 'Photo + CDL scan',
+      signature: '0x8f4a2b9c1d5e6f7a',
+    },
   },
   {
     title: 'System assigns drop location',
     description: 'Real-time yard visibility. Driver receives SMS with lane assignment and drop rules.',
     video: '/proof/two-way-comms.mp4',
     caption: 'Automated dock assignment',
+    artifact: {
+      timestamp: '2026-01-19T14:34:05.192Z',
+      event: 'Lane Assignment',
+      verification: 'verified',
+      driver: 'J. Smith',
+      trailer: 'TRL-8492',
+      proof: 'SMS receipt + read confirmation',
+      signature: '0x3a7f2c9e8b1d4f6c',
+    },
   },
   {
     title: 'Enforcement at every step',
     description: 'System tracks compliance. Alerts fire if driver deviates. Timestamps lock automatically.',
     image: '/proof/real-time-alerts.png',
     caption: 'Audit-ready by design',
+    artifact: {
+      timestamp: '2026-01-19T15:12:33.841Z',
+      event: 'Dwell Alert',
+      verification: 'flagged',
+      trailer: 'TRL-8492',
+      proof: 'System timestamp variance detected',
+      signature: '0x9c2e5a7b3f1d8c4e',
+    },
   },
   {
     title: 'Complete evidence trail',
     description: 'Every event captured. BOL signed cryptographically. Detention proof is defensible.',
     video: '/proof/Smart-bol-kiosk.mp4',
     caption: 'Evidence Vault ready',
+    artifact: {
+      timestamp: '2026-01-19T15:45:17.265Z',
+      event: 'BOL Signature',
+      verification: 'verified',
+      driver: 'J. Smith',
+      trailer: 'TRL-8492',
+      proof: 'Digital signature + photo + timestamp',
+      signature: '0x5d8f3a2c7b9e1f4a',
+    },
   },
 ];
 
@@ -93,17 +131,19 @@ export default function DemoStepper({
         ))}
       </div>
 
-      {/* Content Area */}
-      <div className="relative min-h-[400px] rounded-2xl border border-neon/20 bg-gradient-to-br from-carbon/80 to-carbon/40 p-6 md:p-8 overflow-hidden">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentStep}
-            variants={fadeIn}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            className="space-y-6"
-          >
+      {/* Content Area: Two-column layout with Evidence Artifact sidebar */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Main Demo Content (2/3 width on desktop) */}
+        <div className="lg:col-span-2 relative min-h-[400px] rounded-2xl border border-neon/20 bg-gradient-to-br from-carbon/80 to-carbon/40 p-6 md:p-8 overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentStep}
+              variants={fadeIn}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              className="space-y-6"
+            >
             {/* Image/Video placeholder */}
             {(currentStepData.image || currentStepData.video) && (
               <div className="relative aspect-video w-full rounded-lg border border-neon/10 bg-carbon/50 overflow-hidden">
@@ -149,11 +189,11 @@ export default function DemoStepper({
                 </p>
               )}
             </div>
-          </motion.div>
-        </AnimatePresence>
+            </motion.div>
+          </AnimatePresence>
 
-        {/* Navigation */}
-        <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">
+          {/* Navigation */}
+          <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between">
           <button
             onClick={handlePrev}
             disabled={currentStep === 0}
@@ -175,13 +215,36 @@ export default function DemoStepper({
             <span className="text-sm font-medium">Next</span>
             <FlowArrow size={12} />
           </button>
+          </div>
+        </div>
+
+        {/* Evidence Artifact Sidebar (1/3 width on desktop) */}
+        <div className="lg:col-span-1">
+          <div className="sticky top-24">
+            <p className="text-xs uppercase tracking-[0.15em] text-neon/70 font-semibold mb-4">
+              Ground Source Truth
+            </p>
+            <AnimatePresence mode="wait">
+              {currentStepData.artifact && (
+                <motion.div
+                  key={currentStep}
+                  variants={fadeIn}
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
+                >
+                  <EvidenceArtifactPreview artifact={currentStepData.artifact} />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
 
       {/* Mobile swipe hint */}
       <div className="mt-4 text-center">
         <p className="text-xs text-steel/50">
-          Use arrows or tap dots to navigate
+          Use arrows or tap dots to navigate · Evidence artifacts show defensible timestamps
         </p>
       </div>
     </div>

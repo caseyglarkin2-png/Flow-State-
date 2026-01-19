@@ -4,12 +4,18 @@
  * Purpose: Product screenshot/phone UI positioned as evidence (not brand showcase)
  * Paired with text explaining what user is seeing + why it matters
  * 
+ * Features:
+ * - IntersectionObserver lazy loading for videos
+ * - Poster images for videos
+ * - Conditional rendering (video/image)
+ * - Auto-pause when out of viewport (performance optimization)
+ * 
  * Usage: Product capabilities, Evidence vault, Network intelligence, Procurement proof
  */
 
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { fadeIn } from '@/lib/motion-presets';
@@ -30,6 +36,7 @@ interface ProofMediaProps {
   className?: string;
   autoplay?: boolean;
   loop?: boolean;
+  poster?: string; // Poster image for video
 }
 
 export default function ProofMedia({
@@ -42,7 +49,41 @@ export default function ProofMedia({
   className = '',
   autoplay = true,
   loop = true,
+  poster,
 }: ProofMediaProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  // IntersectionObserver for lazy video loading and auto-pause
+  useEffect(() => {
+    if (!videoRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsInView(entry.isIntersecting);
+          
+          if (entry.isIntersecting && autoplay) {
+            videoRef.current?.play().catch(() => {
+              // Autoplay prevented by browser, ignore
+            });
+          } else {
+            videoRef.current?.pause();
+          }
+        });
+      },
+      {
+        threshold: 0.5, // Trigger when 50% visible
+        rootMargin: '50px', // Start loading slightly before visible
+      }
+    );
+
+    observer.observe(videoRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [autoplay]);
   const containerClasses = {
     phone: 'aspect-[9/16] max-w-sm',
     desktop: 'aspect-video max-w-2xl',
@@ -58,12 +99,15 @@ export default function ProofMedia({
       <div className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-neon/20 shadow-2xl shadow-neon/10 bg-carbon">
         {videoPath ? (
           <video
+            ref={videoRef}
             src={videoPath}
-            autoPlay={autoplay}
             loop={loop}
             muted
             playsInline
+            poster={poster}
+            preload="metadata"
             className="w-full h-full object-cover"
+            aria-label={alt}
           />
         ) : imagePath ? (
           <Image
@@ -72,9 +116,18 @@ export default function ProofMedia({
             fill
             className="object-cover"
             quality={90}
-            priority={false}
+            loading="lazy"
           />
-        ) : null}
+        ) : (
+          // Placeholder when asset missing
+          <div className="w-full h-full bg-carbon/50 border-2 border-ember/30 rounded-xl flex items-center justify-center p-6">
+            <div className="text-center">
+              <p className="text-ember font-mono text-sm mb-2">⚠ Proof Asset Missing</p>
+              <p className="text-steel/70 text-xs font-mono">Expected: {videoPath || imagePath}</p>
+              <p className="text-steel/50 text-xs mt-2">Add to /public/proof/</p>
+            </div>
+          </div>
+        )}
 
         {/* Phone frame (optional) */}
         {type === 'phone' && (

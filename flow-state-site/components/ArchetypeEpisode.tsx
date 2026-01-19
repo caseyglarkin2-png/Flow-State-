@@ -19,6 +19,7 @@ export interface ArchetypeEpisodeProps {
   metrics: Array<{ label: string; value: string }>;
   flowSteps: Array<{ step: string; description: string }>;
   link: string;
+  proofImage?: string; // Archetype-specific proof visual
   className?: string;
 }
 
@@ -30,6 +31,7 @@ export default function ArchetypeEpisode({
   metrics,
   flowSteps,
   link,
+  proofImage,
   className = '',
 }: ArchetypeEpisodeProps) {
   return (
@@ -63,6 +65,18 @@ export default function ArchetypeEpisode({
         <p className="text-xs uppercase tracking-wider text-neon/70 mb-1">Standardize First</p>
         <p className="text-sm text-steel leading-relaxed">{standardize}</p>
       </div>
+
+      {/* Proof Visual (if provided) */}
+      {proofImage && (
+        <div className="mb-4 rounded-lg overflow-hidden border border-neon/10">
+          <img 
+            src={proofImage} 
+            alt={`${archetype} proof visual`}
+            className="w-full h-auto object-cover"
+            loading="lazy"
+          />
+        </div>
+      )}
 
       {/* Metrics */}
       <div className="grid grid-cols-2 gap-3 mb-4">

@@ -415,6 +415,7 @@ export default function ProductPage() {
               icon={<DryVan size={24} className="text-neon" />}
               problem="High gate dwell. Labor scrambles. Detention surprises."
               standardize="Timed check-in → FIFO enforcement → Real-time dock assignment"
+              proofImage="/proof/pickup-vs-delivery-1.png"
               metrics={[
                 { label: 'Gate Time', value: '6 min' },
                 { label: 'Dwell Avg', value: '24 hr' },
@@ -433,6 +434,7 @@ export default function ProductPage() {
               icon={<Reefer size={24} className="text-neon" />}
               problem="Temperature alerts ignored. Trailer rejection rates high. Shipper penalties."
               standardize="Pre-arrival temp validation → Condition photo → Cryptographic lock"
+              proofImage="/proof/Reefer-driver-journey.png"
               metrics={[
                 { label: 'Rejections', value: '2%' },
                 { label: 'Shipper Fines', value: '$400/mo' },
@@ -451,6 +453,7 @@ export default function ProductPage() {
               icon={<Flatbed size={24} className="text-neon" />}
               problem="Weight compliance unclear. Tarping delays. Carrier disputes on load state."
               standardize="Pre-dock weight check → Photo evidence → Dispatcher confirmation"
+              proofImage="/proof/quick-drop.png"
               metrics={[
                 { label: 'Tarp Time', value: '8 min' },
                 { label: 'Weight Issues', value: '1%' },
@@ -469,6 +472,7 @@ export default function ProductPage() {
               icon={<Intermodal size={24} className="text-neon" />}
               problem="Dwell on rails. Demurrage costs explode. Rail yard coordination is manual."
               standardize="Automated rail alert → Checkpoint notifications → Live positioning"
+              proofImage="/proof/outbound-check-in.png"
               metrics={[
                 { label: 'Rail Dwell', value: '2.1 days' },
                 { label: 'Demurrage', value: '$3.8K/mo' },
