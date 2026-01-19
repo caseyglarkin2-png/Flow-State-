@@ -121,7 +121,7 @@ export default function BelieveSection({ className = '' }: BelieveSectionProps) 
 
             <ProofEngine
               title="Singularity Simulation"
-              description="Watch facilities converge from chaos to flow. Interactive simulation visualizes network effect. Based on actual Primo deployment (260 facilities). Standards kill variance. Flow follows."
+              description="Watch facilities converge from chaos to flow. Interactive simulation visualizes network effect across all facilities. Based on actual Primo deployment. Standards kill variance. Flow follows."
               poster="/proof/machine-vision.png"
               href="/singularity"
               icon={<Crosshair size={24} />}

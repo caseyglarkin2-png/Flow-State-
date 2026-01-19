@@ -6,7 +6,7 @@
  * 2. PROBLEM: Variance Tax (yard = control valve)
  * 3. PROTOCOL: standardized driver journey (same flow, every yard)
  * 4. EVIDENCE: Ground Source Truth + chain-of-custody artifact
- * 5. MULTIPLIER: network compounding (scale to 260+ and beyond)
+ * 5. MULTIPLIER: network compounding (scale to all facilities)
  * 6. BELIEVE: ROI calc + Singularity simulation as "proof engine"
  * 7. ACTION: Book Network Audit + Apply for Co-Development
  * 
@@ -82,7 +82,7 @@ export default function Home() {
             </p>
 
             <p className="mt-6 text-lg text-steel max-w-2xl mx-auto text-center">
-              The yard is the control valve for the supply chain network. When every driver journey is identical across 260+ facilities, throughput becomes predictable.
+              The yard is the control valve for the supply chain network. When every driver journey is identical across all facilities, throughput becomes predictable.
             </p>
 
             {/* Primary CTA */}
@@ -352,7 +352,7 @@ export default function Home() {
                 <div className="relative aspect-video rounded-xl border-2 border-neon/20 bg-gradient-to-br from-carbon via-void to-carbon overflow-hidden transition-all duration-300 hover:border-neon/40 hover:shadow-lg hover:shadow-neon/20">
                   <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
                     <p className="text-xs uppercase tracking-[0.3em] text-neon/70 mb-4">Interactive Network Simulation</p>
-                    <h3 className="text-3xl md:text-4xl font-black text-white mb-4">Watch 260 Facilities Converge</h3>
+                    <h3 className="text-3xl md:text-4xl font-black text-white mb-4">Watch All Facilities Converge</h3>
                     <p className="text-steel max-w-2xl mb-8">See network effect compounding in real time. Every facility adds intelligence. Variance bands tighten. Throughput becomes predictable.</p>
                     <div className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-neon text-void font-bold transition-transform duration-300 group-hover:scale-105">
                       Launch Singularity Simulation →
