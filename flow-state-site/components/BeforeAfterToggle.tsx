@@ -155,12 +155,13 @@ export const SAMPLE_BEFORE_AFTER: BeforeAfterContent = {
     ],
     visual: (
       <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-ember/30 bg-carbon">
-        <Image
-          src="/figma/yard-chaos.svg"
-          alt="Yard chaos: manual processes, high dwell, low recovery"
-          fill
-          className="object-cover"
-          priority
+        <video
+          src="/proof/pickup-vs-delivery-video.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
         />
       </div>
     ),
@@ -175,12 +176,13 @@ export const SAMPLE_BEFORE_AFTER: BeforeAfterContent = {
     ],
     visual: (
       <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-neon/30 bg-carbon">
-        <Image
-          src="/figma/digital-guard-proof.svg"
-          alt="Digital Guard: verified check-in, automated enforcement"
-          fill
-          className="object-cover"
-          priority
+        <video
+          src="/proof/kiosk-demo.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
         />
       </div>
     ),

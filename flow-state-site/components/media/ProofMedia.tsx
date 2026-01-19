@@ -22,20 +22,26 @@ interface ProofMediaAnnotation {
 
 interface ProofMediaProps {
   type?: 'phone' | 'desktop' | 'dashboard';
-  imagePath: string;
+  imagePath?: string;
+  videoPath?: string;
   alt: string;
   caption?: string;
   annotations?: ProofMediaAnnotation[];
   className?: string;
+  autoplay?: boolean;
+  loop?: boolean;
 }
 
 export default function ProofMedia({
   type = 'desktop',
   imagePath,
+  videoPath,
   alt,
   caption,
   annotations,
   className = '',
+  autoplay = true,
+  loop = true,
 }: ProofMediaProps) {
   const containerClasses = {
     phone: 'aspect-[9/16] max-w-sm',
@@ -50,14 +56,25 @@ export default function ProofMedia({
     >
       {/* Media container */}
       <div className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-neon/20 shadow-2xl shadow-neon/10 bg-carbon">
-        <Image
-          src={imagePath}
-          alt={alt}
-          fill
-          className="object-cover"
-          quality={90}
-          priority={false}
-        />
+        {videoPath ? (
+          <video
+            src={videoPath}
+            autoPlay={autoplay}
+            loop={loop}
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        ) : imagePath ? (
+          <Image
+            src={imagePath}
+            alt={alt}
+            fill
+            className="object-cover"
+            quality={90}
+            priority={false}
+          />
+        ) : null}
 
         {/* Phone frame (optional) */}
         {type === 'phone' && (

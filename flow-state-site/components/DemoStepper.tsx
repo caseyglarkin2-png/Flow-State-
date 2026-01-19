@@ -18,7 +18,8 @@ import { FlowArrow } from '@/components/icons/FlowIcons';
 export interface DemoStep {
   title: string;
   description: string;
-  image?: string; // Path to image in /public/demo/
+  image?: string; // Path to image in /public/
+  video?: string; // Path to video in /public/
   caption?: string;
 }
 
@@ -31,25 +32,25 @@ const DEFAULT_STEPS: DemoStep[] = [
   {
     title: 'Driver scans QR at gate',
     description: 'No app required. Kiosk instantly verifies credentials, checks BOL, captures photo.',
-    image: 'proof/driver-qr-scan.svg',
+    video: '/proof/driver-qr-scan.mp4',
     caption: '~2.4 seconds average',
   },
   {
     title: 'System assigns drop location',
     description: 'Real-time yard visibility. Driver receives SMS with lane assignment and drop rules.',
-    image: 'proof/sms-drop-rules.svg',
+    video: '/proof/two-way-comms.mp4',
     caption: 'Automated dock assignment',
   },
   {
     title: 'Enforcement at every step',
     description: 'System tracks compliance. Alerts fire if driver deviates. Timestamps lock automatically.',
-    image: 'proof/enforcement-alert.svg',
+    image: '/proof/real-time-alerts.png',
     caption: 'Audit-ready by design',
   },
   {
     title: 'Complete evidence trail',
     description: 'Every event captured. BOL signed cryptographically. Detention proof is defensible.',
-    image: 'proof/bol-proof.svg',
+    video: '/proof/Smart-bol-kiosk.mp4',
     caption: 'Evidence Vault ready',
   },
 ];
@@ -103,16 +104,27 @@ export default function DemoStepper({
             exit="hidden"
             className="space-y-6"
           >
-            {/* Image placeholder (if images are added) */}
-            {currentStepData.image && (
+            {/* Image/Video placeholder */}
+            {(currentStepData.image || currentStepData.video) && (
               <div className="relative aspect-video w-full rounded-lg border border-neon/10 bg-carbon/50 overflow-hidden">
-                <Image
-                  src={`/demo/${currentStepData.image}`}
-                  alt={currentStepData.title}
-                  fill
-                  className="object-cover"
-                  loading="lazy"
-                />
+                {currentStepData.video ? (
+                  <video
+                    src={currentStepData.video}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                  />
+                ) : currentStepData.image ? (
+                  <Image
+                    src={currentStepData.image}
+                    alt={currentStepData.title}
+                    fill
+                    className="object-cover"
+                    loading="lazy"
+                  />
+                ) : null}
               </div>
             )}
 
