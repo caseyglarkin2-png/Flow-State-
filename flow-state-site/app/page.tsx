@@ -240,6 +240,7 @@ export default function Home() {
                   <p className="text-center text-neon font-bold text-4xl mb-2">{item.impact}</p>
                   <p className="text-center text-steel font-semibold mb-3">{item.metric}</p>
                   <p className="text-center text-steel/70 text-sm">{item.meaning}</p>
+                  <p className="mt-3 text-xs text-steel/60 italic text-center">Illustrative examples. Results vary by facility layout, appointment discipline, inbound mix.</p>
                 </motion.div>
               ))}
             </div>

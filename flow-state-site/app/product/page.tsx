@@ -372,6 +372,7 @@ export default function ProductPage() {
                   <p className="text-center text-neon font-bold text-3xl mb-2">{item.impact}</p>
                   <p className="text-center text-steel font-semibold text-sm mb-3">{item.metric}</p>
                   <p className="text-center text-steel/70 text-xs">{item.outcome}</p>
+                  <p className="mt-2 text-xs text-steel/60 italic text-center">Illustrative example.</p>
                 </motion.div>
               ))}
             </div>

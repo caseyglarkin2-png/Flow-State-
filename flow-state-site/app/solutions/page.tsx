@@ -23,8 +23,9 @@ export default function SolutionsOverviewPage() {
       <main className="min-h-screen bg-void">
         {/* Hero Section */}
         <div className="mx-auto max-w-6xl px-6 pt-32 pb-12">
-          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Yard Network System</p>
-          <h1 className="mt-3 text-5xl font-black tracking-tight text-white md:text-7xl">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70">YardFlow by FreightRoll</p>
+          <div className="mt-2 text-sm text-steel/80 font-mono">The first Yard Network System (YNS). Not a YMS. A standardized operating protocol for deterministic throughput.</div>
+          <h1 className="mt-6 text-5xl font-black tracking-tight text-white md:text-7xl">
             Standardize the Yard. Kill Variance.
           </h1>
           <p className="mt-4 max-w-2xl text-xl text-steel leading-relaxed">

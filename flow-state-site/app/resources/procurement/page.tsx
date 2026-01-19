@@ -26,6 +26,8 @@ export default function SecurityPage() {
       {/* Hero */}
       <section className="pt-32 pb-16 border-b border-neon/20">
         <div className="max-w-5xl mx-auto px-6 text-center">
+          <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-2">YardFlow by FreightRoll</p>
+          <div className="mt-2 mb-6 text-sm text-steel/80 font-mono">The first Yard Network System (YNS). Not a YMS. Audit-grade evidence from day one.</div>
           <p className="text-neon font-mono text-sm tracking-widest mb-4 uppercase">
             Procurement Resources
           </p>

@@ -251,10 +251,15 @@ Before adding any new module, verify:
 
 ## Next Steps
 
-1. Open Figma prototype and manually screenshot each pattern
-2. Export high-res PNGs to `/public/figma/`
-3. Create component files in `/components/sections/` and `/components/media/`
-4. Test on homepage with 2-3 sections
-5. Measure conversion lift before rolling to other pages
-6. Document component usage in a Storybook or README
+1. Export webm loops from Figma for DemoStepper:
+   - Kiosk QR scan (Step 1)
+   - SMS notification confirmation (Step 2)
+   - Real-time yard enforcement alert (Step 3)
+   - BOL cryptographic signature (Step 4)
+2. Store in `/public/demo/` as `qr-scan.webm`, `sms-confirm.webm`, `enforcement.webm`, `bol-sign.webm`
+3. Update ProofMedia component to accept video type
+4. Wire into DemoStepper for autoplay on step enter
+5. Add lazy loading + poster image for each video
+6. Test performance on product page
+
 
