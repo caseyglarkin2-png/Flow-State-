@@ -103,32 +103,35 @@ export default function BeforeAfterToggle({
 
           {/* Metrics */}
           {current.metrics && current.metrics.length > 0 && (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
-              {current.metrics.map((metric, index) => (
-                <div
-                  key={index}
-                  className={`
-                    p-4 rounded-lg border
-                    ${metric.negative 
-                      ? 'border-ember/20 bg-ember/5' 
-                      : metric.positive 
-                        ? 'border-neon/20 bg-neon/5' 
-                        : 'border-steel/10 bg-carbon/30'
-                    }
-                  `}
-                >
-                  <div className={`
-                    text-2xl font-black mb-1
-                    ${metric.negative ? 'text-ember' : metric.positive ? 'text-neon' : 'text-white'}
-                  `}>
-                    {metric.value}
+            <>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-2">
+                {current.metrics.map((metric, index) => (
+                  <div
+                    key={index}
+                    className={`
+                      p-4 rounded-lg border
+                      ${metric.negative 
+                        ? 'border-ember/20 bg-ember/5' 
+                        : metric.positive 
+                          ? 'border-neon/20 bg-neon/5' 
+                          : 'border-steel/10 bg-carbon/30'
+                      }
+                    `}
+                  >
+                    <div className={`
+                      text-2xl font-black mb-1
+                      ${metric.negative ? 'text-ember' : metric.positive ? 'text-neon' : 'text-white'}
+                    `}>
+                      {metric.value}
+                    </div>
+                    <div className="text-xs uppercase tracking-wider text-steel/70">
+                      {metric.label}
+                    </div>
                   </div>
-                  <div className="text-xs uppercase tracking-wider text-steel/70">
-                    {metric.label}
-                  </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+              <p className="text-xs text-steel/60 mb-6">Illustrative example. Results vary by facility layout, appointment discipline, and inbound mix.</p>
+            </>
           )}
 
           {/* Visual */}

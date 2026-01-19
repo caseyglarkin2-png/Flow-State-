@@ -224,7 +224,7 @@ export default function Header() {
                 </Link>
                 <Link href="/resources/procurement" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
                   <span className="font-medium text-white flex items-center gap-2">
-                    <Shield size={14} className="text-neon" /> Evidence Vault
+                    <Shield size={14} className="text-neon" /> Procurement Resources
                   </span>
                   <span className="block text-xs text-steel/70">Security & compliance proof</span>
                 </Link>

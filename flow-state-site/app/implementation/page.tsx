@@ -167,6 +167,11 @@ export default function ImplementationPage() {
             How Rollout Works
           </h2>
 
+          {/* Rollout Visual */}
+          <div className="mb-12 rounded-xl overflow-hidden border-2 border-neon/20 bg-carbon/50">
+            <img src="/proof/roll-out.png" alt="Network rollout timeline visualization" className="w-full h-auto" />
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {[
               { step: '01', title: 'Discovery', body: 'Facility mix audit. Map each site to archetype. Identify priority modules per location.' },

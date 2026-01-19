@@ -135,13 +135,24 @@ export default function CapabilitySlice({
             className={`${mediaOrder} relative ${mediaContainerClasses[mediaType]} mx-auto`}
           >
             <div className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-neon/20 shadow-2xl shadow-neon/10">
-              <Image
-                src={mediaImage}
-                alt={mediaAlt}
-                fill
-                className="object-cover"
-                quality={90}
-              />
+              {mediaImage.endsWith('.mp4') ? (
+                <video
+                  src={mediaImage}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <Image
+                  src={mediaImage}
+                  alt={mediaAlt}
+                  fill
+                  className="object-cover"
+                  quality={90}
+                />
+              )}
             </div>
 
             {/* Media type indicator (subtle) */}

@@ -204,6 +204,12 @@ export default function SecurityPage() {
               This is your audit trail. Every carrier check-in. Every exception. Every resolution. Defensible timestamps. Cryptographic signatures. Ready for disputes, audits, and compliance reviews.
             </p>
           </div>
+
+          {/* Chain of Custody Proof */}
+          <div className="mb-12 rounded-xl overflow-hidden border-2 border-neon/20 bg-carbon/50">
+            <img src="/proof/streamlined-receiving-POD.png" alt="Streamlined receiving with proof of delivery chain of custody" className="w-full h-auto" />
+          </div>
+
           <EvidenceTimeline events={SAMPLE_TIMELINE} />
         </div>
       </section>
