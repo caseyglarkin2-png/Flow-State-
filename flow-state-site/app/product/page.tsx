@@ -180,8 +180,11 @@ export default function ProductPage() {
         <div className="max-w-6xl mx-auto px-6">
           <motion.div variants={staggerContainer} initial="hidden" animate="visible">
             <p className="text-xs uppercase tracking-[0.25em] text-neon/70">
-              Standardization Suite
+              YardFlow by FreightRoll
             </p>
+            <div className="mt-2 text-sm text-steel/80 font-mono">
+              The first Yard Network System (YNS). Not a YMS. A standardized operating protocol for deterministic throughput.
+            </div>
             <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
               Yards Create Variance.<br />
               <span className="text-neon">Standards Kill It.</span>

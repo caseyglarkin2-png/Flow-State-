@@ -31,21 +31,25 @@ const DEFAULT_STEPS: DemoStep[] = [
   {
     title: 'Driver scans QR at gate',
     description: 'No app required. Kiosk instantly verifies credentials, checks BOL, captures photo.',
+    image: 'digital-guard-proof.svg',
     caption: '~2.4 seconds average',
   },
   {
     title: 'System assigns drop location',
     description: 'Real-time yard visibility. Driver receives SMS with lane assignment and drop rules.',
+    image: 'digital-comms-proof.svg',
     caption: 'Automated dock assignment',
   },
   {
     title: 'Enforcement at every step',
     description: 'System tracks compliance. Alerts fire if driver deviates. Timestamps lock automatically.',
+    image: 'digital-yms-proof.svg',
     caption: 'Audit-ready by design',
   },
   {
     title: 'Complete evidence trail',
     description: 'Every event captured. BOL signed cryptographically. Detention proof is defensible.',
+    image: 'digital-bol-proof.svg',
     caption: 'Evidence Vault ready',
   },
 ];

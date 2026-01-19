@@ -58,8 +58,11 @@ export default function Home() {
 
             {/* One-liner frame */}
             <p className="text-xs uppercase tracking-[0.25em] text-neon/70 text-center">
-              Predictable Throughput Software
+              YardFlow by FreightRoll
             </p>
+            <div className="mt-2 text-center text-sm text-steel/80 font-mono">
+              The first Yard Network System (YNS). Not a YMS. A standardized operating protocol for deterministic throughput.
+            </div>
             
             <h1 className="mt-4 text-6xl md:text-8xl font-black tracking-tight text-white text-center">
               Predictable<br />

@@ -36,6 +36,7 @@ export default function Footer() {
           <div className="col-span-1 lg:col-span-2">
             <BrandLogo size={32} showWordmark={true} showOriginLine={true} className="mb-4" />
             <p className="text-steel text-sm mb-2">{SITE_METADATA.tagline}</p>
+            <p className="text-steel/70 text-xs">YardFlow by FreightRoll — the first Yard Network System (YNS). Not a YMS. A standardized operating protocol for deterministic throughput.</p>
           </div>
 
           {/* Product */}
