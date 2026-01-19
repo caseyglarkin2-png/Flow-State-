@@ -19,6 +19,8 @@ import ProofMedia from '@/components/media/ProofMedia';
 import BeforeAfterToggle, { SAMPLE_BEFORE_AFTER } from '@/components/BeforeAfterToggle';
 import { motion } from 'framer-motion';
 import { fadeIn, staggerContainer, staggerItem } from '@/lib/motion-presets';
+import FacilityCountSlider from '@/components/FacilityCountSlider';
+import BelieveSection from '@/components/BelieveSection';
 
 const CAPABILITY_MODULES = [
   {
@@ -389,7 +391,7 @@ export default function ProductPage() {
               Driver Journey in 15 Seconds
             </h2>
             <p className="text-steel max-w-2xl mx-auto">
-              QR scan → instant verification → SMS drop rules → automated enforcement. Same flow, every time, every yard.
+              QR scan → verification → SMS lane assignment → automated enforcement. Same flow, every time, every yard.
             </p>
           </div>
           <DemoStepper />
@@ -484,50 +486,27 @@ export default function ProductPage() {
         </div>
       </section>
 
-      {/* NETWORK EFFECT: Why 4 Standardized Sites > 1 Perfect Site */}
+      {/* NETWORK EFFECT: Interactive Facility Count */}
       <section className="py-20 border-y border-neon/20">
         <div className="max-w-6xl mx-auto px-6">
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-            <div className="text-center mb-12">
-              <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-2">The Multiplier</p>
-              <h2 className="text-3xl md:text-4xl font-bold text-white">Network Standardization Compounds</h2>
-              <p className="mt-4 text-steel max-w-2xl mx-auto text-lg">One site proves ROI. Multi-site standardization creates network intelligence that's impossible at a single facility.</p>
-            </div>
+          <div className="text-center mb-12">
+            <p className="text-xs uppercase tracking-[0.25em] text-neon/70 mb-2">Network Intelligence</p>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+              Standards Compound.<br />Data Patterns Emerge.
+            </h2>
+            <p className="text-xl text-steel max-w-3xl mx-auto leading-relaxed">
+              The yard is the control valve for the supply chain network. 
+              One site creates proof. 260 sites create cross-facility learning. 
+              When every yard runs the same protocol, variance patterns emerge that single-site data cannot reveal.
+            </p>
+          </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
-              <motion.div variants={staggerItem} className="p-8 rounded-xl border border-neon/20 bg-carbon/30">
-                <p className="text-xs uppercase tracking-[0.15em] text-steel/70 font-semibold mb-4">Site 1 (Pilot)</p>
-                <p className="text-sm text-steel mb-4">Proves concept: 8% dwell reduction, 2.3% detention recovery.</p>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-steel/70">Proof Points Created</span>
-                    <span className="text-neon font-semibold">4</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-steel/70">Data Patterns</span>
-                    <span className="text-neon font-semibold">Single Context</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div variants={staggerItem} className="p-8 rounded-xl border border-neon/20 bg-carbon/30">
-                <p className="text-xs uppercase tracking-[0.15em] text-neon/70 font-semibold mb-4">4 Sites (Network)</p>
-                <p className="text-sm text-steel mb-4">Cross-context learning: What works in dry van shapes reefer strategy. Intermodal insights improve flatbed.</p>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-steel/70">Proof Points Created</span>
-                    <span className="text-neon font-semibold">16</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-steel/70">Data Patterns</span>
-                    <span className="text-neon font-semibold">4x Intelligence</span>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
+          <FacilityCountSlider />
         </div>
       </section>
+
+      {/* PROOF ENGINES: ROI Calculator + Singularity */}
+      <BelieveSection />
 
       {/* Co-Development Callout */}
       <section className="py-12 bg-carbon/30 border-y border-neon/20">

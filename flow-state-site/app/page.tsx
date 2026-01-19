@@ -25,6 +25,7 @@ import StatusPulse from '@/components/StatusPulse';
 import BeforeAfterToggle, { SAMPLE_BEFORE_AFTER } from '@/components/BeforeAfterToggle';
 import ProofStrip from '@/components/ProofStrip';
 import CoDevCallout from '@/components/CoDevCallout';
+import BelieveSection from '@/components/BelieveSection';
 import { BRAND } from '@/config/brand';
 import { motion } from 'framer-motion';
 import { fadeIn, staggerContainer, staggerItem } from '@/lib/motion-presets';
@@ -332,6 +333,11 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          SECTION 6.5: PROOF ENGINES - ROI Calculator + Singularity
+      ═══════════════════════════════════════════════════════════════ */}
+      <BelieveSection />
 
       {/* ═══════════════════════════════════════════════════════════════
           SECTION 7: CO-DEVELOPMENT - Scarcity + Roadmap
