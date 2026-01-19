@@ -29,7 +29,7 @@ import StatusPulse from '@/components/StatusPulse';
 import ProofMedia from '@/components/media/ProofMedia';
 import FacilityCountSlider from '@/components/FacilityCountSlider';
 import CoDevCallout from '@/components/CoDevCallout';
-import BelieveSection from '@/components/BelieveSection';
+import ROIModuleSection from '@/components/ROIModuleSection';
 import { BRAND } from '@/config/brand';
 import { motion } from 'framer-motion';
 import { fadeIn, staggerContainer, staggerItem } from '@/lib/motion-presets';
@@ -433,9 +433,9 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════════
-          STEP 6: BELIEVE - ROI Calculator + Singularity Simulation
+          STEP 6: BELIEVE - ROI Calculator (now dedicated module)
       ═══════════════════════════════════════════════════════════════ */}
-      <BelieveSection />
+      <ROIModuleSection />
 
       {/* ═══════════════════════════════════════════════════════════════
           STEP 7: ACTION - Book Network Audit + Co-Development
