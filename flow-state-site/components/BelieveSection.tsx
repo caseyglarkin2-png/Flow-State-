@@ -112,8 +112,8 @@ export default function BelieveSection({ className = '' }: BelieveSectionProps) 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <ProofEngine
               title="ROI Calculator"
-              description="Input your facility specs. Get illustrative ROI projections based on economics methodology. Export board-ready PDF with variance reduction scenarios."
-              poster="/proof/roi-calculator-poster.png"
+              description="Input your facility specs. Get illustrative ROI projections based on our economics methodology. Export board-ready PDF. Conservative/Base/Aggressive scenarios included."
+              poster="/proof/real-time-alerts.png"
               href="/roi"
               icon={<Metrics size={24} />}
               cta="Calculate Your ROI"
@@ -121,8 +121,8 @@ export default function BelieveSection({ className = '' }: BelieveSectionProps) 
 
             <ProofEngine
               title="Singularity Simulation"
-              description="Watch 260 facilities converge to predictable throughput. Interactive simulation shows network effect compounding in real time. Standards kill variance. Flow follows."
-              poster="/proof/singularity-poster.png"
+              description="Watch facilities converge from chaos to flow. Interactive simulation visualizes network effect. Based on actual Primo deployment (260 facilities). Standards kill variance. Flow follows."
+              poster="/proof/machine-vision.png"
               href="/singularity"
               icon={<Crosshair size={24} />}
               cta="Run Simulation"

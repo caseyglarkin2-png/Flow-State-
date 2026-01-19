@@ -47,7 +47,7 @@ export default function ChainOfCustodyAnimation() {
   }, []);
 
   return (
-    <div className="relative w-full aspect-video bg-gradient-to-br from-void via-carbon to-void overflow-hidden rounded-lg border border-neon/20">
+    <div className="relative w-full h-[600px] md:h-[700px] bg-gradient-to-br from-void via-carbon to-void overflow-hidden rounded-lg border border-neon/20">
       {/* Title */}
       <div className="absolute top-8 left-0 right-0 text-center z-10">
         <h3 className="text-3xl md:text-4xl font-bold text-neon mb-2">CHAIN OF CUSTODY</h3>

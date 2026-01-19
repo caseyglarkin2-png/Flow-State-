@@ -37,7 +37,6 @@ import { Metrics, Velocity, Shield, Crosshair } from '@/components/icons/FlowIco
 import { 
   YardChaosAnimation, 
   DigitalGuardAnimation, 
-  NetworkCompoundingAnimation, 
   ChainOfCustodyAnimation,
   BeforeAfterFlowAnimation 
 } from '@/components/animations';
@@ -347,9 +346,21 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Network compounding visualization */}
+            {/* Network intelligence proof - link to Singularity */}
             <div className="mb-16">
-              <NetworkCompoundingAnimation />
+              <Link href="/singularity" className="block group">
+                <div className="relative aspect-video rounded-xl border-2 border-neon/20 bg-gradient-to-br from-carbon via-void to-carbon overflow-hidden transition-all duration-300 hover:border-neon/40 hover:shadow-lg hover:shadow-neon/20">
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
+                    <p className="text-xs uppercase tracking-[0.3em] text-neon/70 mb-4">Interactive Network Simulation</p>
+                    <h3 className="text-3xl md:text-4xl font-black text-white mb-4">Watch 260 Facilities Converge</h3>
+                    <p className="text-steel max-w-2xl mb-8">See network effect compounding in real time. Every facility adds intelligence. Variance bands tighten. Throughput becomes predictable.</p>
+                    <div className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-neon text-void font-bold transition-transform duration-300 group-hover:scale-105">
+                      Launch Singularity Simulation →
+                    </div>
+                  </div>
+                  <div className="absolute inset-0 bg-[url('/proof/singularity-poster.png')] bg-cover bg-center opacity-20 transition-opacity duration-300 group-hover:opacity-30" />
+                </div>
+              </Link>
             </div>
 
             {/* Interactive facility scaling */}
@@ -401,10 +412,25 @@ export default function Home() {
       ═══════════════════════════════════════════════════════════════ */}
       <section className="py-24 border-y border-neon/20">
         <div className="max-w-5xl mx-auto px-6">
-          <CoDevCallout 
-            title="Early Adopters Lock In Better Economics"
-            description="Multi-facility operators: join the Co-Development Program. Influence product roadmap. Get early access to new modules. Lock in early adopter pricing. Limited spots."
-          />
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            <div className="text-center mb-12">
+              <p className="text-xs uppercase tracking-[0.3em] text-neon/70 mb-4">The Network Advantage</p>
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
+                Your Siloed Facilities<br />Become Network Intelligence
+              </h2>
+              <p className="text-xl text-steel max-w-3xl mx-auto leading-relaxed mb-8">
+                <span className="text-white font-semibold">Here's what changes when you standardize for the network:</span> Every facility becomes a data source. Cross-facility learning compounds automatically. Variance bands tighten across your entire footprint. Throughput becomes calculable, not chaotic.
+              </p>
+              <p className="text-lg text-steel/90 max-w-2xl mx-auto">
+                Multi-facility operators in the Co-Development Program get more than early adopter pricing. They get roadmap influence, pilot support, and network intelligence that compounds with every site you add.
+              </p>
+            </div>
+            
+            <CoDevCallout 
+              title="Early Adopters Get Network Economics"
+              description="Join the Co-Development Program. Influence roadmap priorities. Deploy across your network with dedicated support. Lock in early adopter rates before general availability. Limited spots for qualified operators."
+            />
+          </motion.div>
         </div>
       </section>
 
