@@ -17,6 +17,7 @@
     "test:smoke": "playwright test e2e/routes.spec.ts",
     "test:shaders": "tsx scripts/validate-shaders.ts",
     "perf:baseline": "tsx scripts/capture-baseline.ts",
+    "perf:audit": "echo '⚠️  Performance audit requires Lighthouse CLI: npm install -g lighthouse' && echo 'Run: lighthouse http://localhost:3000 --view --output=html'",
     "content:budget": "node scripts/validate-content-budget.js",
     "content:duplicates": "node scripts/find-duplicate-content.js",
     "content:scan-duplicates": "tsx scripts/scan-duplicate-content.ts",
