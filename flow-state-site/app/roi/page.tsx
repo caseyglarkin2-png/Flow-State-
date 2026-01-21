@@ -69,10 +69,12 @@ import NextSteps from '@/components/NextSteps';
 import CFOProofChecklist from '@/components/CFOProofChecklist';
 import VarianceKillsBlock from '@/components/VarianceKillsBlock';
 import EvidenceTimeline, { SAMPLE_TIMELINE } from '@/components/EvidenceTimeline';
+import CoverageSlider from '@/components/CoverageSlider';
 import { FlowArrow, Metrics, Velocity, Config, Timeline, Caution, Agent, Manifest, Nexus } from '@/components/icons/FlowIcons';
 import { calcRoiV1, calcRoiV2, defaultRoiV2Inputs, roiV2InputsFromQuickMode } from '@/lib/roi/calc';
 import type { RoiV2Inputs } from '@/lib/roi/types';
 import { calcScenario, ECONOMICS_MODES, ECONOMICS_SCENARIOS, getQuickInputsForPreset, truckloads as formatTruckloads } from '@/lib/economics';
+import { buildAdoptionCopy, facilitiesInScope } from '@/src/lib/adoption';
 
 export default function ROICalculatorPage() {
   useEffect(() => {
@@ -89,6 +91,10 @@ export default function ROICalculatorPage() {
   const [contractedFacilities, setContractedFacilities] = useState(defaultQuick.facilities);
   // Year-1 realization: savings ramp as rollout progresses; costs are charged on the contracted count.
   const [yearOneRampShare, setYearOneRampShare] = useState(0.05);
+
+  // Adoption % (narrative-only UI control for deployment pace visualization)
+  const [adoptionPercent, setAdoptionPercent] = useState(5);
+
   const [trucksPerDay, setTrucksPerDay] = useState(defaultQuick.trucksPerDayPerFacility);
   const [avgDwellTime, setAvgDwellTime] = useState(defaultQuick.avgDwellTimeMinutes);
   const [detentionCost, setDetentionCost] = useState(defaultQuick.detentionCostPerHour);
@@ -386,9 +392,14 @@ export default function ROICalculatorPage() {
             {view === 'deep' ? (
             <div>
               <h2 className="text-2xl font-bold mb-4 neon-glow">Your Operation</h2>
-              <p className="text-sm text-steel mb-8">
-                Modeling {contractedFacilities} contracted facilities. Network value compounds with scale.
+              <p className="text-sm text-steel mb-4">
+                {buildAdoptionCopy(contractedFacilities, adoptionPercent)}
               </p>
+
+              {/* Coverage Slider */}
+              <div className="mb-8">
+                <CoverageSlider value={adoptionPercent} onChange={setAdoptionPercent} showPresets={true} />
+              </div>
 
               <div className="flex items-center justify-between mb-8">
                 <div className="text-sm text-steel">

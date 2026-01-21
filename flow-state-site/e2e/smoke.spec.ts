@@ -32,6 +32,26 @@ test.describe('smoke', () => {
     await expect(page.getByRole('button', { name: 'Board-ready', exact: true })).toBeVisible();
   });
 
+  test('roi calculator adoption slider works', async ({ page }) => {
+    await page.goto('/roi');
+    
+    // Find the slider
+    const slider = page.locator('input[type="range"]');
+    await expect(slider).toBeVisible();
+    
+    // Check initial value
+    const initialValue = await slider.inputValue();
+    expect(initialValue).toBeTruthy();
+    
+    // Change slider value
+    await slider.fill('25');
+    const newValue = await slider.inputValue();
+    expect(newValue).toBe('25');
+    
+    // Check copy updates
+    await expect(page.getByText(/Modeling.*facilities/)).toBeVisible();
+  });
+
   test('contact loads', async ({ page }) => {
     await page.goto('/contact');
     await expect(page.getByRole('heading', { name: /contact flow state/i })).toBeVisible();
