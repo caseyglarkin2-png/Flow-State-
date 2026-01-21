@@ -89,6 +89,24 @@ export default function DiagnosticPage() {
         </div>
       </section>
 
+      {/* Adoption Context + ROI Link */}
+      <section className="py-12">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="bg-steel/10 border border-steel/30 rounded-lg p-6">
+            <p className="text-sm text-steel leading-relaxed">
+              This scenario is modeled at <strong>5% adoption</strong> (Year 1 Deep Model default). 
+              See how the numbers change with different deployment paces — from conservative rollout to network inflection point.
+            </p>
+            <Link
+              href="/roi?adoption=5"
+              className="inline-flex items-center gap-2 mt-4 text-neon hover:text-flow transition font-medium"
+            >
+              View ROI with adoption scenarios →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
