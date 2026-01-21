@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
 import { AnimatedSection } from "@/components/motion/AnimatedSection";
-import { FileText, PlayCircle, Calculator, ArrowRight } from "lucide-react";
+import { FileText, PlayCircle, Calculator, ArrowRight, type LucideIcon } from "lucide-react";
 
 type ProofLink = {
   type: "field-note" | "simulation" | "calculator" | "case-study";
@@ -18,7 +18,7 @@ type ProofResourcesSectionProps = {
   links: ProofLink[];
 };
 
-const typeConfig: Record<string, { icon: React.ElementType; tag: string; color: string }> = {
+const typeConfig: Record<string, { icon: LucideIcon; tag: string; color: string }> = {
   "field-note": { icon: FileText, tag: "Field Note", color: "text-neon" },
   simulation: { icon: PlayCircle, tag: "Simulation", color: "text-ember" },
   calculator: { icon: Calculator, tag: "Calculator", color: "text-neon" },

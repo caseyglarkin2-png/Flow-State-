@@ -5,7 +5,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, FileText, Calculator, ChartBar, BookOpen } from 'lucide-react';
+import { ArrowRight, FileText, Calculator, ChartBar, BookOpen, type LucideIcon } from 'lucide-react';
 
 interface RelatedLink {
   label: string;
@@ -19,7 +19,7 @@ interface RelatedLinksProps {
   links: RelatedLink[];
 }
 
-const typeIcons: Record<string, React.ElementType> = {
+const typeIcons: Record<string, LucideIcon> = {
   'field-note': FileText,
   simulation: ChartBar,
   calculator: Calculator,

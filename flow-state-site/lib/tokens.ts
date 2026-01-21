@@ -3,6 +3,45 @@
  * Single source of truth for spacing, typography, motion, and visual system
  */
 
+/**
+ * Brand color palette
+ * Used for both CSS and WebGL shaders
+ */
+export const COLORS = {
+  // Core brand
+  void: '#050505',
+  neon: '#00B4FF',
+  ember: '#FF2A00',
+  carbon: '#1A1A1A',
+  steel: '#A0A0A0',
+  steelDim: '#707070',
+  
+  // Variance Tax additions
+  ebonyClay: '#232A35',
+  freightrollRed: '#D91411',
+  cerulean: '#05ACEB',
+  
+  // Semantic aliases
+  variance: '#D91411',   // FreightRoll red - chaos/cost
+  fluidity: '#05ACEB',   // Cerulean - order/savings
+} as const;
+
+/**
+ * Colors as normalized RGB arrays for WebGL shaders
+ */
+export const COLORS_GL = {
+  void: [0.02, 0.02, 0.02] as const,
+  neon: [0.0, 0.706, 1.0] as const,
+  ember: [1.0, 0.165, 0.0] as const,
+  carbon: [0.102, 0.102, 0.102] as const,
+  steel: [0.627, 0.627, 0.627] as const,
+  ebonyClay: [0.137, 0.165, 0.208] as const,
+  freightrollRed: [0.851, 0.078, 0.067] as const,
+  cerulean: [0.02, 0.675, 0.922] as const,
+  variance: [0.851, 0.078, 0.067] as const,
+  fluidity: [0.02, 0.675, 0.922] as const,
+} as const;
+
 export const TOKENS = {
   // SPACING SCALE (based on 4px grid)
   spacing: {

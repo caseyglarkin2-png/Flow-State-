@@ -1,0 +1,43 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Golden Tests - Calculator Snapshots > Default Inputs (Mid-Market Shipper) > produces consistent results for default scenario 1`] = `450000`;
+
+exports[`Golden Tests - Calculator Snapshots > Default Inputs (Mid-Market Shipper) > produces consistent results for default scenario 2`] = `450000`;
+
+exports[`Golden Tests - Calculator Snapshots > Default Inputs (Mid-Market Shipper) > produces consistent results for default scenario 3`] = `146666.66666666666`;
+
+exports[`Golden Tests - Calculator Snapshots > Default Inputs (Mid-Market Shipper) > produces consistent results for default scenario 4`] = `450000`;
+
+exports[`Golden Tests - Calculator Snapshots > Default Inputs (Mid-Market Shipper) > produces consistent results for default scenario 5`] = `125000`;
+
+exports[`Golden Tests - Calculator Snapshots > Default Inputs (Mid-Market Shipper) > produces consistent results for default scenario 6`] = `500000`;
+
+exports[`Golden Tests - Calculator Snapshots > Default Inputs (Mid-Market Shipper) > produces consistent results for default scenario 7`] = `2121666.6666666665`;
+
+exports[`Golden Tests - Calculator Snapshots > Default Inputs (Mid-Market Shipper) > produces consistent results for default scenario 8`] = `0.6233333333333334`;
+
+exports[`Golden Tests - Calculator Snapshots > Edge Cases > handles maximum stress scenario 1`] = `674666666.6666667`;
+
+exports[`Golden Tests - Calculator Snapshots > Edge Cases > handles minimum viable inputs 1`] = `5637.5`;
+
+exports[`Golden Tests - Calculator Snapshots > Enterprise Preset > produces consistent results 1`] = `25425000`;
+
+exports[`Golden Tests - Calculator Snapshots > Enterprise Preset > produces consistent results 2`] = `0.8208333333333333`;
+
+exports[`Golden Tests - Calculator Snapshots > High-Velocity DC Preset > produces consistent results 1`] = `4054166.6666666665`;
+
+exports[`Golden Tests - Calculator Snapshots > High-Velocity DC Preset > produces consistent results 2`] = `50`;
+
+exports[`Golden Tests - Calculator Snapshots > Low-Tech (Paper-Based) Preset > produces consistent results 1`] = `3897916.6666666665`;
+
+exports[`Golden Tests - Calculator Snapshots > Low-Tech (Paper-Based) Preset > produces consistent results 2`] = `
+{
+  "gateWaste": 199999.99999999997,
+  "huntWaste": 72916.66666666667,
+  "total": 272916.6666666666,
+}
+`;
+
+exports[`Golden Tests - Calculator Snapshots > Retail OTIF Focus Preset > produces consistent results 1`] = `4441666.666666667`;
+
+exports[`Golden Tests - Calculator Snapshots > Retail OTIF Focus Preset > produces consistent results 2`] = `2000000`;

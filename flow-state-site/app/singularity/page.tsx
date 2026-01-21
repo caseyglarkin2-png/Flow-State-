@@ -640,7 +640,7 @@ export default function SingularityPage() {
             <Card>
               <div className="text-neon mb-3"><Prism size={32} /></div>
               <h3 className="font-bold text-neon mb-2">Founder Pricing</h3>
-              <p className="text-steel/80 text-sm">Lock in 2024 rates forever. No increases. Ever.</p>
+              <p className="text-steel/80 text-sm">Early adopter pricing locked in at founding rates. No increases.</p>
             </Card>
           </div>
 

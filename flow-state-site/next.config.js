@@ -2,6 +2,45 @@
 
 const nextConfig = {
   reactStrictMode: true,
+  
+  // GLSL/Shader file imports configuration
+  // Turbopack config (Next.js 16+ default bundler)
+  turbopack: {
+    rules: {
+      // Import GLSL shader files as raw strings
+      '*.glsl': {
+        loaders: ['raw-loader'],
+        as: '*.js',
+      },
+      '*.vert': {
+        loaders: ['raw-loader'],
+        as: '*.js',
+      },
+      '*.frag': {
+        loaders: ['raw-loader'],
+        as: '*.js',
+      },
+      '*.vs': {
+        loaders: ['raw-loader'],
+        as: '*.js',
+      },
+      '*.fs': {
+        loaders: ['raw-loader'],
+        as: '*.js',
+      },
+    },
+  },
+  
+  // Webpack fallback for shader imports (if Turbopack disabled)
+  webpack: (config, { isServer }) => {
+    // Add raw-loader for GLSL shader files
+    config.module.rules.push({
+      test: /\.(glsl|vert|frag|vs|fs)$/,
+      type: 'asset/source',
+    });
+    return config;
+  },
+  
   // Canonical production build: standard Next.js output for Vercel.
   // (Required for API routes / server actions / conversion forms.)
   trailingSlash: true,

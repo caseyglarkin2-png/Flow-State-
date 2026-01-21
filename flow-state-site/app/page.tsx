@@ -347,7 +347,7 @@ export default function Home() {
                   </div>
                   <div className="flex justify-between text-steel/70">
                     <span>Immutable:</span>
-                    <span className="text-white">Blockchain</span>
+                    <span className="text-white">Cryptographic signature</span>
                   </div>
                 </div>
               </motion.div>

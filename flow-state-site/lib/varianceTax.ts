@@ -185,7 +185,7 @@ export const VARIANCE_TAX_CATEGORIES = [
 export const DIAGNOSTIC_HERO_H1 = 'Quantify the Variance Tax.';
 
 export const DIAGNOSTIC_HERO_SUBHEAD = 
-  '9 questions. Your hidden yard costs. Top variance drivers. Cost of delay. Instantly.';
+  '12 questions. Your hidden yard costs. Top variance drivers. Cost of delay. Instantly.';
 
 export const DIAGNOSTIC_CTA_TEXT = 
   'This diagnostic shows single-site costs. See how YardFlow reduces variance across your entire network.';

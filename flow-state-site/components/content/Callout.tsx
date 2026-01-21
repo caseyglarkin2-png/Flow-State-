@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Info, AlertTriangle, CheckCircle, Lightbulb } from 'lucide-react';
+import { Info, AlertTriangle, CheckCircle, Lightbulb, type LucideIcon } from 'lucide-react';
 
 type CalloutVariant = 'neutral' | 'info' | 'warning' | 'success';
 
@@ -46,7 +46,7 @@ const variantStyles: Record<CalloutVariant, { bg: string; border: string; icon: 
   },
 };
 
-const variantIcons: Record<CalloutVariant, React.ElementType> = {
+const variantIcons: Record<CalloutVariant, LucideIcon> = {
   neutral: Lightbulb,
   info: Info,
   warning: AlertTriangle,

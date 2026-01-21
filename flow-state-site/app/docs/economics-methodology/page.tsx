@@ -170,7 +170,7 @@ export default function EconomicsMethodologyPage() {
                 >
                   <h3 className="mb-2 font-semibold text-white">60-Second Diagnostic</h3>
                   <p className="text-sm text-steel">
-                    Answer 9 questions to calculate your specific Variance Tax across all eight categories.
+                    Answer 12 questions to calculate your specific Variance Tax across all eight categories.
                   </p>
                 </Link>
 

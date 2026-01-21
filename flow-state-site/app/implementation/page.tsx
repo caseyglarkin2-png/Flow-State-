@@ -213,7 +213,7 @@ export default function ImplementationPage() {
                   href="/co-development"
                   className="inline-flex items-center gap-2 rounded-xl bg-neon px-6 py-3 font-medium text-void hover:bg-white transition"
                 >
-                  Explore Co-Development
+                  Apply for Co-Development
                 </Link>
               </div>
             </div>
