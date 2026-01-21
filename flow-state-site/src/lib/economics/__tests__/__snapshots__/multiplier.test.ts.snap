@@ -1,0 +1,71 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Network Multiplier Golden Tests > Metcalfe-Inspired Multiplier Output Consistency > should produce consistent output for Enterprise 1`] = `
+{
+  "beta": undefined,
+  "connections": 4950,
+  "multiplier": 28.465002570463156,
+  "realization": 0.9987273661986602,
+  "tau": undefined,
+}
+`;
+
+exports[`Network Multiplier Golden Tests > Metcalfe-Inspired Multiplier Output Consistency > should produce consistent output for Large Network 1`] = `
+{
+  "beta": undefined,
+  "connections": 499500,
+  "multiplier": 3331,
+  "realization": 1,
+  "tau": undefined,
+}
+`;
+
+exports[`Network Multiplier Golden Tests > Metcalfe-Inspired Multiplier Output Consistency > should produce consistent output for Massive Scale 1`] = `
+{
+  "beta": undefined,
+  "connections": 49995000,
+  "multiplier": 388851,
+  "realization": 1,
+  "tau": undefined,
+}
+`;
+
+exports[`Network Multiplier Golden Tests > Metcalfe-Inspired Multiplier Output Consistency > should produce consistent output for MidMarket 1`] = `
+{
+  "beta": undefined,
+  "connections": 45,
+  "multiplier": 1.0948180838242836,
+  "realization": 0.6321205588285577,
+  "tau": undefined,
+}
+`;
+
+exports[`Network Multiplier Golden Tests > Metcalfe-Inspired Multiplier Output Consistency > should produce consistent output for Primo (260 facilities) 1`] = `
+{
+  "beta": undefined,
+  "connections": 33670,
+  "multiplier": 188.0551327483826,
+  "realization": 0.999997739670593,
+  "tau": undefined,
+}
+`;
+
+exports[`Network Multiplier Golden Tests > Metcalfe-Inspired Multiplier Output Consistency > should produce consistent output for Single Facility 1`] = `
+{
+  "beta": undefined,
+  "connections": 0,
+  "multiplier": 1,
+  "realization": 0.09516258196404048,
+  "tau": undefined,
+}
+`;
+
+exports[`Network Multiplier Golden Tests > Metcalfe-Inspired Multiplier Output Consistency > should produce consistent output for Small Network 1`] = `
+{
+  "beta": undefined,
+  "connections": 10,
+  "multiplier": 1.0131156446762455,
+  "realization": 0.3934693402873666,
+  "tau": undefined,
+}
+`;

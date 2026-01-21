@@ -1,0 +1,69 @@
+{
+  "scenarios": [
+    {
+      "name": "Micro_1Facility_5Percent",
+      "description": "Single facility, Year 1 conservative adoption",
+      "input": {
+        "facilitiesCount": 1,
+        "laborReductionPercent": 70,
+        "dwellReductionMinutes": 24,
+        "detentionRecoveryPercent": 65,
+        "adoptionPercent": 5,
+        "networkBeta": 0,
+        "shipmentsPerYear": 2000
+      }
+    },
+    {
+      "name": "MidMarket_10Facilities_5Percent",
+      "description": "Typical small-medium customer, Year 1 adoption",
+      "input": {
+        "facilitiesCount": 10,
+        "laborReductionPercent": 70,
+        "dwellReductionMinutes": 24,
+        "detentionRecoveryPercent": 65,
+        "adoptionPercent": 5,
+        "networkBeta": 0.15,
+        "shipmentsPerYear": 20000
+      }
+    },
+    {
+      "name": "Enterprise_260Facilities_5Percent",
+      "description": "Primo scenario - 260 facilities, Year 1 adoption (5%)",
+      "input": {
+        "facilitiesCount": 260,
+        "laborReductionPercent": 70,
+        "dwellReductionMinutes": 24,
+        "detentionRecoveryPercent": 65,
+        "adoptionPercent": 5,
+        "networkBeta": 0.25,
+        "shipmentsPerYear": 500000
+      }
+    },
+    {
+      "name": "Enterprise_10000Facilities_10Percent",
+      "description": "Large network, moderate adoption (10%)",
+      "input": {
+        "facilitiesCount": 10000,
+        "laborReductionPercent": 70,
+        "dwellReductionMinutes": 24,
+        "detentionRecoveryPercent": 65,
+        "adoptionPercent": 10,
+        "networkBeta": 0.35,
+        "shipmentsPerYear": 15000000
+      }
+    },
+    {
+      "name": "Massive_1000000Facilities_25Percent",
+      "description": "Theoretical maximum scale test, 1M facilities, 25% adoption",
+      "input": {
+        "facilitiesCount": 1000000,
+        "laborReductionPercent": 70,
+        "dwellReductionMinutes": 24,
+        "detentionRecoveryPercent": 65,
+        "adoptionPercent": 25,
+        "networkBeta": 0.4,
+        "shipmentsPerYear": 5000000000
+      }
+    }
+  ]
+}

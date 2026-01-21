@@ -27,14 +27,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Lint
+      - name: Typecheck (TypeScript strict)
+        run: npm run typecheck
+
+      - name: Lint (ESLint)
         run: npm run lint
 
-      - name: Unit tests
+      - name: Unit Tests (Vitest, includes golden tests)
         run: npm test
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
-      - name: E2E smoke tests
+      - name: E2E Smoke Tests (Playwright)
         run: npm run test:e2e:ci
