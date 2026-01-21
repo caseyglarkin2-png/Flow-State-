@@ -85,7 +85,7 @@
 
 ### Solution: Wave 2 Deferral + Focused S2
 
-#### Sprint 2 (THIS LAUNCH)
+#### Sprint 2 (DEFERRED POST-LAUNCH)
 ✅ **Reduced Motion Support** (S2.1)
 - Respect user accessibility preferences
 - No motion for users who request it
@@ -141,7 +141,7 @@
 
 **Launch Focus:** Get the adoption thesis RIGHT (narrative + copy + CTAs) before investing in motion polish.
 
-**Risk Reduction:** Remove 1 week of animation R&D; free team for ROI hardening + Diagnostic flow clarity.
+**Risk Reduction:** Defer animation investment; prioritize ROI + Diagnostic core functionality.
 
 **Data-Driven:** Measure user engagement post-launch; build Wave 2 based on what resonates, not assumptions.
 
@@ -184,14 +184,14 @@
 
 ## IMPLEMENTATION ROADMAP
 
-### THIS LAUNCH (S0-6, Weeks 1-7)
+### THIS LAUNCH (S0-6)
 ✅ Adoption % narrative is primary lever  
 ✅ Network scalability tested (260+ facilities)  
 ✅ Performance optimized (no animation thrash)  
 ✅ Accessibility first (reduced-motion respected)  
 ✅ Brand voice cohesive (no noise, no emojis out of place)  
 
-### WAVE 2 (Post-Launch)
+### WAVE 2 (Post-Launch, Deferred)
 🎬 Animation Lab sandbox created  
 🎬 Lottie integration (if CTAs >25% click-through)  
 🎬 Video gallery polished (URL bars removed)  

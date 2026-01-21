@@ -64,9 +64,9 @@ Each sprint is **atomic** (one core goal) + **demoable** (builds on prior work) 
 
 ## SPRINT 0: GUARDRAILS (Lock Outputs, Stop Regressions)
 
-**Duration:** 1 week  
 **Goal:** CI passes; econ golden tests lock formula outputs against accidental drift.  
-**Demo:** Build passes; all tests green; Playwright smoke tests confirm core routes render.
+**Demo:** Build passes; all tests green; Playwright smoke tests confirm core routes render.  
+**Deliverable:** Testable, shippable build with econ math locked + CI gates established.
 
 ### Tickets
 
@@ -282,16 +282,15 @@ Each sprint is **atomic** (one core goal) + **demoable** (builds on prior work) 
 ### Tickets
 
 #### S1.1: Create NetworkCoverageModel (Types + Defaults)
-**Objective:** Define adoption % as a shared concept.
+**Objective:** Define adoption % as a shared concept; support unlimited facility networks.
 
 **Acceptance Criteria:**
 - [ ] Create `src/lib/adoption/types.ts`:
   ```typescript
   export interface NetworkCoverageModel {
-    adoptionPercent: number;        // 5 | 10 | 25 | 50 (or custom)
+    adoptionPercent: number;              // 5-100
     scenarioName: 'Deep Model' | 'Custom';
-    year1FacilityCount: number;     // calculated: totalFacilities * adoptionPercent
-    description: string;             // "5% Year 1" → "Aggressive rollout"
+    description: string;                   // "5% Year 1" → "Aggressive rollout"
   }
   
   export const ADOPTION_PRESETS = {
@@ -300,20 +299,31 @@ Each sprint is **atomic** (one core goal) + **demoable** (builds on prior work) 
     Year2Aggressive: { adoptionPercent: 25, description: '25% Year 2 (aggressive)' },
     Year3Transformation: { adoptionPercent: 50, description: '50% Year 3 (network inflection)' },
   };
+  
+  // Helper: calculate facilities in scope
+  export fn facilitiesInScope(totalFacilities: number, adoptionPercent: number): number {
+    return Math.round(totalFacilities * (adoptionPercent / 100));
+  }
   ```
 - [ ] Export defaults: `getDefaultAdoptionModel() → NetworkCoverageModel`
+- [ ] Support unlimited facility counts: no upper cap; test with 1, 10, 260, 1000, 10000+
 - [ ] Add unit tests: `src/lib/adoption/model.test.ts`
   - Verify defaults match Deep Model (5% Year 1)
   - Verify presets are consistent
+  - Test facility calculation at scale (1 facility, 10k+ facilities)
+  - No overflow or precision loss at large numbers
 
 **Implementation Details:**
 - No logic changes; pure types + data
-- Adoption % is descriptive metadata for now
-- Unit test confirms presets match expected values
+- Adoption % is descriptive metadata (narrative-only per S0.5a)
+- Facility calculation: simple percentage arithmetic (handle large numbers gracefully)
+- Unit test: `facilitiesInScope(1000000, 5) === 50000` (no precision loss)
 
 **Validation Method:**
-- Import in REPL: `import { ADOPTION_PRESETS } from '@/lib/adoption'` ✅
+- Import in REPL: `import { ADOPTION_PRESETS, facilitiesInScope } from '@/lib/adoption'` ✅
 - Verify default = 5% ✅
+- Test: `facilitiesInScope(1000000, 5) === 50000` ✅
+- Test: `facilitiesInScope(10, 25) === 3` (rounding correct) ✅
 
 **Owner:** Architect agent  
 **Sign-off:** CTO
@@ -361,32 +371,50 @@ Each sprint is **atomic** (one core goal) + **demoable** (builds on prior work) 
 ---
 
 #### S1.3: Wire CoverageSlider to ROI Page (Math Frozen)
-**Objective:** Slider appears on ROI page; user can see adoption presets; outputs unchanged.
+**Objective:** Slider appears on ROI page; user can see adoption presets; supports unlimited facility networks; outputs unchanged.
 
 **Acceptance Criteria:**
 - [ ] Update `app/roi/page.tsx`:
   - Add CoverageSlider component near top of calculator
   - Track state: `adoptionPercent: number`
-  - **CRITICAL:** Adoption % updates UI copy ONLY (e.g., "Modeling 13 of 260 facilities")
+  - **CRITICAL:** Adoption % updates UI copy ONLY (e.g., "Modeling 13 of 260 facilities" or "Modeling 50,000 of 1,000,000 facilities")
   - **NOT wired to inputs:** slider does not change `facilities` input, `labor`, `dwell`, `detention`, or any formula
   - If adoption % was already a formula input, wire it; otherwise leave math alone
-- [ ] Update UI copy to reflect adoption:
+- [ ] Facility count input should accept any positive number (no upper cap)
+  - Test: input 1 → works ✅
+  - Test: input 10 → works ✅
+  - Test: input 260 → works ✅
+  - Test: input 10,000 → works ✅
+  - Test: input 1,000,000 → works ✅
+  - No overflow errors; no precision loss
+- [ ] Update UI copy to reflect adoption + facility count:
   - "Network Coverage: **5%** (Year 1 Deep Model default)"
-  - "Modeling **13 of 260 facilities** in scope"
+  - "Modeling **XX of YYYY facilities** in scope" (calculated: totalFacilities × adoptionPercent)
   - "As coverage increases to 10%, 25%, 50%, compounding accelerates"
+  - Format large numbers with commas: "1,000,000" not "1000000"
 - [ ] Snapshot regression tests: verify ROI outputs identical for baseline input set (before + after slider wiring)
+- [ ] Golden test S0.1 includes Primo scenario (260 facilities) + enterprise scenario (10,000+ facilities)
 
 **Implementation Details:**
 - `useState` for adoption % (default: 5)
 - CoverageSlider onChange updates state
-- Copy template: `Modeling ${Math.round(totalFacilities * adoption)}  facilities`
+- Copy template: 
+  ```typescript
+  const facilitiesInScope = facilitiesInScope(totalFacilities, adoptionPercent);
+  const formattedFacilities = facilitiesInScope.toLocaleString();
+  const formattedTotal = totalFacilities.toLocaleString();
+  return `Modeling ${formattedFacilities} of ${formattedTotal} facilities`;
+  ```
 - No changes to `calcRoiV2()` call or inputs object
+- Facilities input: standard HTML5 number input (no upper limit)
 
 **Validation Method:**
 - Render ROI page ✅
 - Adjust slider; copy updates ✅
+- Adjust facility count to 10,000; no errors ✅
 - Extract outputs (JSON); compare to golden test ✅ (unchanged)
-- Playwright test: "Slider updates adoption copy without changing ROI" ✅
+- Playwright test: "Slider updates adoption copy without changing ROI outputs" ✅
+- Playwright test: "Facilities input accepts 1,000,000+ without error" ✅
 
 **Owner:** Architect agent  
 **Sign-off:** CTO + Product
@@ -1873,40 +1901,6 @@ Sprint 5 ✓
 
 Sprint 6 ✓
   └─→ [No dependencies]
-
----
-
-## TIMELINE (REVISED: 9 Weeks Total)
-
-```
-Week 1: Sprint 0 (Guardrails + Adoption Semantics)
-        └─ Output: CI green, golden tests locked, adoption % semantics documented
-
-Week 2: Sprint 1 (Adoption Slider)
-        └─ Output: CoverageSlider works on ROI + Diagnostic; adoption copy shows
-
-Week 3: Sprint 2 (Adoption Presets + Performance)
-        └─ Output: Presets consistent across pages; performance baselines set; mobile optimized
-
-Week 4: Sprint 3 (Brand + IA Consistency) [can overlap with Sprint 2 end]
-        └─ Output: Brand names normalized; CTAs unified; orphaned content cleaned
-
-Week 5: Sprint 4 (Premium UI Design)
-        └─ Output: Home + ROI refactored with primitives; mobile responsive
-
-Week 6: Sprint 5 (ROI Hardening)
-        └─ Output: ROI deterministic; validation robust; adoption compounding chart visible
-
-Week 7: Sprint 6 (Diagnostic + CTA Wiring)
-        └─ Output: Diagnostic clearer; CTAs link to ROI with presets
-
-Week 8: UAT + Final Polish
-        └─ Output: Stakeholder sign-off; final bugs fixed
-
-Week 9: Code Freeze + Launch
-        └─ Output: Deployed to production
-
-**Total: 9 weeks (1 week earlier than original plan)**
 
 ---
 
