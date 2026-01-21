@@ -1,609 +1,194 @@
 /* ═══════════════════════════════════════════════════════════════
-   SINGULARITY PAGE - REDUNDANCY REPORT (Pass 6)
+   SINGULARITY PAGE - The Variance Tax Protocol Visualization
    ═══════════════════════════════════════════════════════════════
    
-   A) EXACT DUPLICATE STRINGS:
-      1. Network effect formula appears here + homepage + ROI calculator
-      2. "Cross-site intelligence" appears 4× in different contexts
-      3. Metcalfe-inspired multiplier explained here + economics.ts
+   WHAT IT IS:
+   - Interactive visualization of the Variance Tax Protocol
+   - Black Hole → Particle Network transition showing value unlock
+   - Real-time calculator driving shader parameters (Reynolds number)
+   - 6-component cost model from whitepaper
    
-   B) CONCEPT DUPLICATION:
-      1. "Chapter 3" explanation repeats Chapter3Content component
-      2. "Depends on standardization" repeats Ch1 dependency
-      3. Facility count → network value curve duplicates homepage proof
+   WHAT IT SHOWS:
+   - Operational Reynolds Number (Re*) visualization
+   - Viscosity (µ) as primary lever for reducing variance tax
+   - Dissolve transition when synthetic capacity improves
+   - Live cost breakdown with formula transparency
    
-   C) CTA DUPLICATION:
-      - "Model your network" CTA overlaps with ROI calculator
-      - No clear differentiation from ROI page value prop
+   INTEGRATION POINTS:
+   - src/lib/varianceTax/* - Calculator engine
+   - components/three/* - WebGL visualizations
+   - shaders/* - GLSL raymarching and particle systems
    
-   D) WHAT TO DELETE:
-      ✗ Redundant "this is Chapter 3" explanation - link to chapters instead
-      ✗ Duplicate standardization dependency explanation
-   
-   E) WHAT TO CONSOLIDATE:
-      ↓ Network effect formula should pull from economics.ts only
-      ↓ Scenario picker uses same presets as ROI - GOOD
-   
-   F) WHAT TO ADD:
-      + "This is Chapter 3 in action" badge at top
-      + Link to homepage for full spine context
-      + "Why network intelligence requires Ch1" callout
-   
-   ═══════════════════════════════════════════════════════════════
-   
-   AUDIT: SINGULARITY PAGE (Network Intelligence Visualization)
-   ═══════════════════════════════════════════════════════════════
-   
-   WHAT IT SAYS NOW:
-   - Interactive network map with 50+ facilities
-   - Drill-down from network → facility → root cause
-   - Uses calcScenario + roiV2InputsFromQuickMode (economics.ts LOCKED ✓)
-   - metcalfeInspiredMultiplier visualization
-   
-   WHAT IT SHOULD SAY (Chapter 3 Focus):
-   - This IS Chapter 3 - network effect made tangible
-   - Depends on Chapter 1 standardization (all facilities same timestamps)
-   - Shows compounding value: 5 facilities → 50 facilities = exponential insight
-   
-   TOP 3 CONVERSION BLOCKERS:
-   1. Doesn't explicitly say "This is Chapter 3" - should tie to spine
-   2. Network multiplier calculation not explained (black box feel)
-   3. Missing "only possible because of standardized inputs" callout
-   
-   STATUS: Economics LOCKED ✓, Visualization compelling ✓
-   NEXT: Add chapter badge, explain network effect formula briefly
+   STATUS: Variance Tax Protocol implementation complete ✓
    ═══════════════════════════════════════════════════════════════ */
 
 'use client';
 
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Button from '@/components/Button';
 import Card from '@/components/Card';
-import { calcScenario, getQuickInputsForPreset, roiV2InputsFromQuickMode, money as formatMoney, metcalfeInspiredMultiplier } from '@/lib/economics';
+import { VarianceTaxDashboard } from '@/components/singularity/VarianceTaxDashboard';
 import {
-  Caution,
-  FlowArrow,
-  Metrics,
-  Cortex,
   Prism,
-  Manifest,
-  Nexus,
-  Signal,
-  Cycle,
   Ignite,
-  Scope,
-  Waypoint,
   Crosshair,
   Velocity,
 } from '@/components/icons/FlowIcons';
 
-// Facility node type - simplified for performance
-interface Facility {
-  id: number;
-  name: string;
-  x: number;
-  y: number;
-  type: 'dc' | 'port' | 'terminal' | 'plant';
-}
-
-// Data packet type
-interface DataPacket {
-  id: number;
-  from: number;
-  to: number;
-  progress: number;
-  type: 'truck' | 'bol' | 'message';
-}
-
-// Pre-computed facility data (static, no runtime object creation)
-const FACILITIES: Facility[] = [
-  // West Coast Corridor
-  { id: 1, name: 'Seattle', x: 10, y: 12, type: 'port' },
-  { id: 2, name: 'Portland', x: 11, y: 18, type: 'dc' },
-  { id: 3, name: 'Oakland', x: 8, y: 35, type: 'port' },
-  { id: 4, name: 'LA Port', x: 12, y: 48, type: 'port' },
-  { id: 5, name: 'Long Beach', x: 14, y: 50, type: 'terminal' },
-  { id: 6, name: 'San Diego', x: 15, y: 55, type: 'dc' },
-  // Mountain West
-  { id: 7, name: 'Phoenix', x: 22, y: 52, type: 'plant' },
-  { id: 8, name: 'Las Vegas', x: 18, y: 42, type: 'dc' },
-  { id: 9, name: 'Salt Lake', x: 22, y: 32, type: 'dc' },
-  { id: 10, name: 'Denver', x: 32, y: 36, type: 'dc' },
-  // Texas Triangle
-  { id: 11, name: 'Dallas', x: 38, y: 52, type: 'dc' },
-  { id: 12, name: 'Houston', x: 42, y: 62, type: 'port' },
-  { id: 13, name: 'San Antonio', x: 36, y: 60, type: 'dc' },
-  // Central Corridor
-  { id: 14, name: 'Kansas City', x: 42, y: 38, type: 'dc' },
-  { id: 15, name: 'Minneapolis', x: 44, y: 22, type: 'dc' },
-  { id: 16, name: 'St Louis', x: 48, y: 40, type: 'dc' },
-  // Great Lakes
-  { id: 17, name: 'Chicago', x: 52, y: 32, type: 'dc' },
-  { id: 18, name: 'Detroit', x: 58, y: 28, type: 'plant' },
-  { id: 19, name: 'Cleveland', x: 62, y: 30, type: 'dc' },
-  { id: 20, name: 'Indianapolis', x: 55, y: 36, type: 'dc' },
-  // Southeast
-  { id: 21, name: 'Memphis', x: 50, y: 46, type: 'dc' },
-  { id: 22, name: 'Atlanta', x: 60, y: 50, type: 'dc' },
-  { id: 23, name: 'Jacksonville', x: 68, y: 58, type: 'port' },
-  { id: 24, name: 'Miami', x: 72, y: 75, type: 'port' },
-  { id: 25, name: 'Savannah', x: 68, y: 54, type: 'port' },
-  // Mid-Atlantic
-  { id: 26, name: 'Charlotte', x: 66, y: 46, type: 'dc' },
-  { id: 27, name: 'Norfolk', x: 74, y: 42, type: 'port' },
-  { id: 28, name: 'Baltimore', x: 74, y: 36, type: 'port' },
-  { id: 29, name: 'Philadelphia', x: 78, y: 32, type: 'dc' },
-  // Northeast
-  { id: 30, name: 'Newark', x: 80, y: 28, type: 'terminal' },
-  { id: 31, name: 'Boston', x: 88, y: 18, type: 'terminal' },
-  { id: 32, name: 'Pittsburgh', x: 68, y: 32, type: 'dc' },
-];
-
-const TOTAL_FACILITIES = FACILITIES.length;
-
-// Memoized network visualization component
-const NetworkMap = React.memo(function NetworkMap({
-  phase,
-  activeFacilities,
-  packets,
-}: {
-  phase: 'chaos' | 'transition' | 'flow';
-  activeFacilities: number;
-  packets: DataPacket[];
-}) {
-  // Pre-compute connections for active facilities (limited for performance)
-  const connections = useMemo(() => {
-    if (phase === 'chaos' || activeFacilities < 2) return [];
-    
-    const result: Array<{ from: Facility; to: Facility }> = [];
-    const activeNodes = FACILITIES.slice(0, activeFacilities);
-    
-    // Only render nearest-neighbor connections (not O(n²))
-    for (let i = 0; i < activeNodes.length; i++) {
-      const from = activeNodes[i];
-      // Connect to next 2-3 facilities only
-      for (let j = 1; j <= 3 && i + j < activeNodes.length; j++) {
-        const to = activeNodes[i + j];
-        result.push({ from, to });
-      }
-    }
-    return result;
-  }, [phase, activeFacilities]);
-
-  return (
-    <svg viewBox="0 0 100 100" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
-      {/* Connection lines - simplified */}
-      {connections.map(({ from, to }) => (
-        <line
-          key={`${from.id}-${to.id}`}
-          x1={from.x}
-          y1={from.y}
-          x2={to.x}
-          y2={to.y}
-          stroke="#00B4FF"
-          strokeWidth="0.2"
-          opacity={phase === 'flow' ? 0.5 : 0.25}
-        />
-      ))}
-
-      {/* Data packets - limited count */}
-      {packets.slice(0, 10).map(packet => {
-        const from = FACILITIES.find(f => f.id === packet.from);
-        const to = FACILITIES.find(f => f.id === packet.to);
-        if (!from || !to) return null;
-
-        const x = from.x + (to.x - from.x) * (packet.progress / 100);
-        const y = from.y + (to.y - from.y) * (packet.progress / 100);
-
-        return (
-          <circle
-            key={packet.id}
-            cx={x}
-            cy={y}
-            r={1}
-            fill={packet.type === 'truck' ? '#00B4FF' : '#FFB800'}
-            opacity={0.8}
-          />
-        );
-      })}
-
-      {/* Facility nodes */}
-      {FACILITIES.map((facility, index) => {
-        const isOnline = index < activeFacilities;
-        return (
-          <g key={facility.id}>
-            {/* Pulse ring for online - CSS animation instead of SVG animate */}
-            {isOnline && (
-              <circle
-                cx={facility.x}
-                cy={facility.y}
-                r="3"
-                fill="none"
-                stroke="#00B4FF"
-                strokeWidth="0.2"
-                opacity="0.3"
-                className="animate-pulse"
-              />
-            )}
-            
-            {/* Main node */}
-            <circle
-              cx={facility.x}
-              cy={facility.y}
-              r="1.8"
-              fill={isOnline ? '#00B4FF' : '#FF2A00'}
-              className="transition-colors duration-300"
-            />
-            
-            {/* Label - only show for larger screens via CSS */}
-            <text
-              x={facility.x}
-              y={facility.y + 4.5}
-              fontSize="1.8"
-              fill={isOnline ? '#00B4FF' : '#666666'}
-              textAnchor="middle"
-              className="hidden md:block"
-            >
-              {facility.name}
-            </text>
-          </g>
-        );
-      })}
-    </svg>
-  );
-});
-
 export default function SingularityPage() {
-  const [phase, setPhase] = useState<'chaos' | 'transition' | 'flow'>('chaos');
-  const [activeFacilities, setActiveFacilities] = useState(0);
-  const [totalSavings, setTotalSavings] = useState(0);
-  const [trucksProcessed, setTrucksProcessed] = useState(0);
-  const [networkVelocity, setNetworkVelocity] = useState(0);
-  const [isSimulating, setIsSimulating] = useState(false);
-  const [showROI, setShowROI] = useState(false);
-  const [packets, setPackets] = useState<DataPacket[]>([]);
-
-  const modeled = useMemo(() => {
-    const f = Math.max(0, Math.min(TOTAL_FACILITIES, Math.floor(activeFacilities)));
-    if (f <= 0) {
-      return {
-        facilities: 0,
-        annualLaborSavings: 0,
-        paperlessSavings: 0,
-        annualDetentionSavings: 0,
-        throughputValue: 0,
-        baseSavings: 0,
-        networkMultiplier: 1,
-        networkBonusSavings: 0,
-        totalAnnualSavings: 0,
-        beta: 0,
-        tau: 45,
-        examples: {
-          m1: 1,
-          m10: 1,
-          m25: 1,
-          m32: 1,
-        },
-      };
-    }
-
-    const quick = getQuickInputsForPreset('enterprise_50', 'expected');
-    const roiInputs = {
-      ...roiV2InputsFromQuickMode({ ...quick, facilities: f }),
-      contractedFacilities: f,
-      yearOneRampShare: 0.5,
-    };
-
-    const out = calcScenario({
-      roi: roiInputs,
-      profit: {
-        method: 'contribution_margin',
-        contributionMarginPerTruckload: roiInputs.throughput.incrementalMarginPerTruck,
-        outsourcedCostPerTruckload: 0,
-        internalVariableCostPerTruckload: 0,
-      },
-      discountRate: 0.1,
-      growthRate: 0.02,
-    });
-
-    const { beta, tau } = out.roi.assumptionsUsed.network;
-    const m = (n: number) => metcalfeInspiredMultiplier(n, { beta, tau }).multiplier;
-
-    return {
-      facilities: f,
-      annualLaborSavings: out.roi.annualLaborSavings,
-      paperlessSavings: out.roi.paperlessSavings,
-      annualDetentionSavings: out.roi.annualDetentionSavings,
-      throughputValue: out.roi.throughputValue,
-      baseSavings: out.roi.baseSavings,
-      networkMultiplier: out.roi.networkMultiplier,
-      networkBonusSavings: out.roi.networkBonusSavings,
-      totalAnnualSavings: out.roi.totalAnnualSavings,
-      beta,
-      tau,
-      examples: {
-        m1: m(1),
-        m10: m(10),
-        m25: m(25),
-        m32: m(32),
-      },
-    };
-  }, [activeFacilities]);
-
-  // Start the singularity simulation - optimized
-  const startSimulation = useCallback(() => {
-    setIsSimulating(true);
-    setPhase('transition');
-    setTotalSavings(0);
-    setTrucksProcessed(0);
-    setNetworkVelocity(0);
-    setActiveFacilities(0);
-  }, []);
-
-  // Facility activation effect
-  useEffect(() => {
-    if (!isSimulating || phase === 'chaos') return;
-
-    let activated = 0;
-    const activationInterval = setInterval(() => {
-      if (activated >= TOTAL_FACILITIES) {
-        clearInterval(activationInterval);
-        setPhase('flow');
-        // Don't stop - let it continue showing improvement
-        return;
-      }
-
-      activated++;
-      setActiveFacilities(activated);
-      
-      // Network effect multiplier (canonical, realization-adjusted)
-      const mult = metcalfeInspiredMultiplier(activated, { beta: modeled.beta, tau: modeled.tau }).multiplier;
-      setNetworkVelocity(Math.round(mult * 100));
-    }, 250);
-
-    return () => clearInterval(activationInterval);
-  }, [isSimulating, phase, modeled.beta, modeled.tau]);
-
-  // Accumulate savings - continues improving even at full deployment
-  useEffect(() => {
-    if (!isSimulating || phase === 'chaos') return;
-
-    const savingsInterval = setInterval(() => {
-      // At full deployment (flow phase), show continuous improvement from learning
-      const currentFacilities = Math.max(1, activeFacilities);
-      const networkEffect = phase === 'flow' 
-        ? Math.pow(TOTAL_FACILITIES, 1.4) * 1.2 // 20% boost for full network learning
-        : Math.pow(currentFacilities, 1.4);
-      
-      setTotalSavings(prev => prev + Math.round(networkEffect * 650));
-      setTrucksProcessed(prev => prev + Math.round(currentFacilities * 1.8));
-      
-      // In flow phase, show improving velocity from tighter variance bands
-      if (phase === 'flow' && networkVelocity < 120) {
-        setNetworkVelocity(prev => Math.min(120, prev + 0.5));
-      }
-    }, 150);
-
-    return () => clearInterval(savingsInterval);
-  }, [isSimulating, phase, activeFacilities, networkVelocity]);
-
-  // Generate data packets - limited
-  useEffect(() => {
-    if (phase !== 'flow') return;
-
-    const packetInterval = setInterval(() => {
-      if (activeFacilities < 2) return;
-
-      const fromIdx = Math.floor(Math.random() * activeFacilities);
-      const toIdx = Math.floor(Math.random() * activeFacilities);
-      if (fromIdx === toIdx) return;
-
-      const types: ('truck' | 'bol' | 'message')[] = ['truck', 'bol', 'message'];
-      
-      setPackets(prev => {
-        const newPackets = prev.slice(-8); // Keep max 8 packets
-        newPackets.push({
-          id: Date.now(),
-          from: FACILITIES[fromIdx].id,
-          to: FACILITIES[toIdx].id,
-          progress: 0,
-          type: types[Math.floor(Math.random() * types.length)]
-        });
-        return newPackets;
-      });
-    }, 400);
-
-    return () => clearInterval(packetInterval);
-  }, [phase, activeFacilities]);
-
-  // Animate packets - optimized
-  const hasPackets = packets.length > 0;
-  useEffect(() => {
-    if (!hasPackets) return;
-
-    const animationInterval = setInterval(() => {
-      setPackets(prev => 
-        prev
-          .map(p => ({ ...p, progress: p.progress + 8 }))
-          .filter(p => p.progress <= 100)
-      );
-    }, 60);
-
-    return () => clearInterval(animationInterval);
-  }, [hasPackets]);
-
-  const resetSimulation = useCallback(() => {
-    setIsSimulating(false);
-    setPhase('chaos');
-    setActiveFacilities(0);
-    setTotalSavings(0);
-    setTrucksProcessed(0);
-    setNetworkVelocity(0);
-    setPackets([]);
-  }, []);
-
   return (
-    <div className="min-h-screen bg-void">
+    <div className="min-h-screen bg-void text-white">
       <Header />
 
-      {/* Hero */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden">
-        {/* Animated background based on phase */}
-        <div className={`absolute inset-0 transition-opacity duration-1000 ${
-          phase === 'chaos' ? 'opacity-30' : phase === 'transition' ? 'opacity-50' : 'opacity-70'
-        }`}>
-          <div className="grid-background"></div>
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-24 px-6 overflow-hidden">
+        <div className="max-w-5xl mx-auto text-center relative z-10">
+          {/* Badge */}
+          <div className="inline-block px-4 py-2 rounded-full border border-neon/50 bg-neon/10 text-neon text-sm font-semibold mb-8 animate-pulse-glow">
+            <span className="inline-flex items-center gap-2">
+              <Prism size={16} />
+              THE VARIANCE TAX PROTOCOL
+            </span>
+          </div>
+
+          {/* Headline */}
+          <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
+            See Your <span className="neon-glow">Hidden Costs</span>
+          </h1>
+
+          <p className="text-xl md:text-2xl text-steel max-w-3xl mx-auto mb-8">
+            Answer 12 questions. Watch your operational Reynolds number drive a real-time physics simulation. 
+            See exactly where variance is draining your network.
+          </p>
+
+          {/* Value Props */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+            <Card className="text-center">
+              <div className="text-neon mb-3 flex justify-center">
+                <Prism size={32} />
+              </div>
+              <h3 className="font-bold text-white mb-2">Physics-Based Model</h3>
+              <p className="text-steel/80 text-sm">
+                Operational Reynolds Number (Re*) maps your inputs to shader parameters
+              </p>
+            </Card>
+            <Card className="text-center">
+              <div className="text-neon mb-3 flex justify-center">
+                <Velocity size={32} />
+              </div>
+              <h3 className="font-bold text-white mb-2">6-Component Analysis</h3>
+              <p className="text-steel/80 text-sm">
+                Recovery, detention, labor, chargeback, working capital, lost sales
+              </p>
+            </Card>
+            <Card className="text-center">
+              <div className="text-neon mb-3 flex justify-center">
+                <Crosshair size={32} />
+              </div>
+              <h3 className="font-bold text-white mb-2">Live Visualization</h3>
+              <p className="text-steel/80 text-sm">
+                Black hole dissolves into particle network as synthetic capacity improves
+              </p>
+            </Card>
+          </div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-12 w-full">
-          {/* Network Intelligence Layer */}
-          <div className="text-center mb-6">
-            <p className="text-xs uppercase tracking-[0.25em] text-neon/70">Network Intelligence Layer</p>
-            <p className="mt-3 text-sm text-steel max-w-2xl mx-auto">
-              Network intelligence is only possible when driver journey standardization and control loop enforcement are in place across all facilities.
-            </p>
-          </div>
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-void via-transparent to-void pointer-events-none"></div>
+      </section>
 
-          {/* Title */}
-          <div className="text-center mb-8">
-            <h1 className="mt-3 text-5xl md:text-7xl font-black tracking-tight text-white">
-              The Logistics Singularity
-            </h1>
-            <p className="mt-4 text-xl text-steel max-w-2xl mx-auto leading-relaxed">
-              Every facility on YardFlow. Every timestamp defensible. Every pattern visible.
-              <br />
-              <span className="text-neon font-semibold">This is the point of no return.</span>
-            </p>
-          </div>
+      {/* Main Dashboard Section */}
+      <section className="py-12 px-6">
+        <div className="max-w-7xl mx-auto">
+          <VarianceTaxDashboard 
+            layout="split"
+            showBreakdown={true}
+            debug={false}
+          />
+        </div>
+      </section>
 
-          {/* Network Visualization */}
-          <div className="glass-card p-4 mb-8 aspect-[16/9] relative overflow-hidden">
-            {/* Phase indicator */}
-            <div className="absolute top-4 left-4 z-20">
-              <div className={`px-4 py-2 rounded-full text-sm font-bold transition-colors ${
-                phase === 'chaos' ? 'bg-ember/20 text-ember' :
-                phase === 'transition' ? 'bg-yellow-500/20 text-yellow-400' :
-                'bg-neon/20 text-neon'
-              }`}>
-                <span className="inline-flex items-center gap-2">
-                  {phase === 'chaos' ? (
-                    <><Caution size={16} /> CHAOS STATE</>
-                  ) : phase === 'transition' ? (
-                    <><Cycle size={16} /> TRANSFORMATION</>
-                  ) : (
-                    <><Velocity size={16} /> YARDFLOW</>
-                  )}
-                </span>
-              </div>
-            </div>
+      {/* How It Works Section */}
+      <section className="py-20 md:py-24 px-6 bg-gradient-to-br from-neon/5 to-transparent border-t border-neon/20">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-black mb-12 text-center">
+            How the Protocol Works
+          </h2>
 
-            {/* Memoized SVG Network Map */}
-            <NetworkMap phase={phase} activeFacilities={activeFacilities} packets={packets} />
-
-            {/* Legend */}
-            <div className="absolute bottom-4 right-4 glass-card p-3 text-xs">
-              <div className="flex items-center gap-2 mb-1">
-                <div className="w-2 h-2 rounded-full bg-neon"></div>
-                <span className="text-steel">YardFlow by FreightRoll</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-ember"></div>
-                <span className="text-steel">Chaos</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Live Metrics Dashboard */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <Card className="text-center">
-              <p className="text-sm text-steel mb-1">Network Sites</p>
-              <p className="text-3xl md:text-4xl font-black neon-glow">{activeFacilities}/{TOTAL_FACILITIES}</p>
-            </Card>
-            <Card className="text-center">
-              <p className="text-sm text-steel mb-1">Simulated Savings</p>
-              <p className="text-3xl md:text-4xl font-black text-neon">{formatMoney(totalSavings)}</p>
-              <p className="text-xs text-steel/70 mt-1">Illustrative animation (not a forecast)</p>
-            </Card>
-            <Card className="text-center">
-              <p className="text-sm text-steel mb-1">Trucks Processed</p>
-              <p className="text-3xl md:text-4xl font-black">{trucksProcessed.toLocaleString()}</p>
-            </Card>
-            <Card className="text-center">
-              <p className="text-sm text-steel mb-1">Network Velocity</p>
-              <p className="text-3xl md:text-4xl font-black text-neon">{networkVelocity}%</p>
-            </Card>
-          </div>
-
-          {/* Control Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            {!isSimulating ? (
-              <Button variant="neon-fill" size="lg" onClick={startSimulation} icon={<Velocity size={20} className="text-void" />}>
-                Initiate Singularity
-              </Button>
-            ) : (
-              <Button variant="neon" size="lg" onClick={resetSimulation} icon={<Cycle size={20} />}>
-                Reset Simulation
-              </Button>
-            )}
-            <Button
-              variant="ghost"
-              size="lg"
-              onClick={() => setShowROI(!showROI)}
-              icon={<Metrics size={20} />}
-            >
-              {showROI ? 'Hide' : 'Show'} ROI Breakdown
-            </Button>
-          </div>
-
-          {/* ROI Breakdown Panel - lazy loaded */}
-          {showROI && (
-            <div className="glass-card p-6 md:p-8 mb-8 animate-flow-in">
-              <h3 className="text-2xl font-bold mb-6 neon-glow">Network Effect ROI Model</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div>
-                  <h4 className="font-semibold text-neon mb-3">Per-Site Savings</h4>
-                  <ul className="space-y-2 text-sm text-steel">
-                    <li className="flex justify-between"><span>Labor</span><span className="text-white">{formatMoney(modeled.facilities > 0 ? modeled.annualLaborSavings / modeled.facilities : 0)}/yr</span></li>
-                    <li className="flex justify-between"><span>Paperless</span><span className="text-white">{formatMoney(modeled.facilities > 0 ? modeled.paperlessSavings / modeled.facilities : 0)}/yr</span></li>
-                    <li className="flex justify-between"><span>Detention</span><span className="text-white">{formatMoney(modeled.facilities > 0 ? modeled.annualDetentionSavings / modeled.facilities : 0)}/yr</span></li>
-                    <li className="flex justify-between"><span>Throughput</span><span className="text-white">{formatMoney(modeled.facilities > 0 ? modeled.throughputValue / modeled.facilities : 0)}/yr</span></li>
-                    <li className="flex justify-between border-t border-neon/20 pt-2 mt-2">
-                      <span className="font-bold">Total per site</span>
-                      <span className="text-neon font-bold">{formatMoney(modeled.facilities > 0 ? modeled.baseSavings / modeled.facilities : 0)}/yr</span>
-                    </li>
-                  </ul>
-                  <p className="text-xs text-steel/70 mt-3">Computed from the same ROI engine used on /roi.</p>
+          <div className="space-y-8">
+            <Card>
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-neon/20 flex items-center justify-center">
+                  <span className="text-neon font-bold">1</span>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-neon mb-3">Network Multiplier</h4>
-                  <ul className="space-y-2 text-sm text-steel">
-                    <li className="flex justify-between"><span>1 site</span><span className="text-white">{modeled.examples.m1.toFixed(1)}x</span></li>
-                    <li className="flex justify-between"><span>10 sites</span><span className="text-white">{modeled.examples.m10.toFixed(1)}x</span></li>
-                    <li className="flex justify-between"><span>25 sites</span><span className="text-white">{modeled.examples.m25.toFixed(1)}x</span></li>
-                    <li className="flex justify-between border-t border-neon/20 pt-2 mt-2">
-                      <span className="font-bold">32 sites</span>
-                      <span className="text-neon font-bold">{modeled.examples.m32.toFixed(1)}x</span>
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-neon mb-3">32-Site Network</h4>
-                  <ul className="space-y-2 text-sm text-steel">
-                    <li className="flex justify-between"><span>Base savings</span><span className="text-white">{formatMoney(modeled.baseSavings)}/yr</span></li>
-                    <li className="flex justify-between"><span>Network effect ({modeled.networkMultiplier.toFixed(1)}x)</span><span className="text-white">+{formatMoney(modeled.networkBonusSavings)}/yr</span></li>
-                    <li className="flex justify-between border-t border-neon/20 pt-2 mt-2">
-                      <span className="font-bold">Total annual</span>
-                      <span className="text-neon font-bold">{formatMoney(modeled.totalAnnualSavings)}/yr</span>
-                    </li>
-                  </ul>
-                  <p className="text-xs text-steel/70 mt-3">Values update as sites come online.</p>
+                  <h3 className="text-xl font-bold text-white mb-2">Answer 12 Questions</h3>
+                  <p className="text-steel">
+                    Input your operational data: check-in times, dwell duration, load volume, labor costs, 
+                    detention rates, and chargeback frequency. All values sourced from industry standards 
+                    (ATRI, CSCMP, DAT, BLS).
+                  </p>
                 </div>
               </div>
-            </div>
-          )}
+            </Card>
+
+            <Card>
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-neon/20 flex items-center justify-center">
+                  <span className="text-neon font-bold">2</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-2">Calculate Reynolds Score</h3>
+                  <p className="text-steel mb-3">
+                    The calculator computes your Operational Reynolds Number (Re*):
+                  </p>
+                  <div className="bg-void/50 border border-zinc-800 rounded-lg p-4 font-mono text-sm">
+                    <p className="text-white mb-2">Re* = 0.5 × µ + 0.3 × ρ + 0.2 × v</p>
+                    <p className="text-steel/70 text-xs">
+                      µ = viscosity (manual vs digital check-in) <br />
+                      ρ = density (average dwell time) <br />
+                      v = velocity (annual load volume)
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </Card>
+
+            <Card>
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-neon/20 flex items-center justify-center">
+                  <span className="text-neon font-bold">3</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-2">Drive the Visualization</h3>
+                  <p className="text-steel">
+                    Your Reynolds score becomes the <code className="text-neon">uViscosity</code> uniform 
+                    in the GLSL shaders. High viscosity = intense black hole gravitational pull. 
+                    Low viscosity = dissolve transition to ordered particle network.
+                  </p>
+                </div>
+              </div>
+            </Card>
+
+            <Card>
+              <div className="flex gap-4">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-neon/20 flex items-center justify-center">
+                  <span className="text-neon font-bold">4</span>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-2">See the Breakdown</h3>
+                  <p className="text-steel">
+                    The 6-component cost model shows exactly where variance is hitting you: 
+                    recovery time, detention fees, labor inefficiency, chargebacks, working capital drag, 
+                    and lost sales opportunities.
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </div>
         </div>
       </section>
 
@@ -640,14 +225,14 @@ export default function SingularityPage() {
             <Card>
               <div className="text-neon mb-3"><Prism size={32} /></div>
               <h3 className="font-bold text-neon mb-2">Founder Pricing</h3>
-              <p className="text-steel/80 text-sm">Early adopter pricing locked in at founding rates. No increases.</p>
+              <p className="text-steel/80 text-sm">Early adopter pricing locked in. No increases.</p>
             </Card>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact?intent=qualify">
               <Button variant="neon-fill" size="lg" icon={<Crosshair size={20} className="text-void" />}>
-                Apply for Membership
+                Apply for Co-Development
               </Button>
             </Link>
           </div>

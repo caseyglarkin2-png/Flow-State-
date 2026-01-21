@@ -8,9 +8,9 @@
  */
 
 import { useState, useCallback } from 'react';
-import { CalculatorPanel } from '@/components/singularity/CalculatorPanel';
+import CalculatorPanel from '@/components/singularity/CalculatorPanel';
 import { SingularityVisualizer, MiniVisualizer } from '@/components/singularity/SingularityVisualizer';
-import { TaxBreakdown } from '@/components/singularity/TaxBreakdown';
+import TaxBreakdown from '@/components/singularity/TaxBreakdown';
 import { useVarianceTaxStore } from '@/src/lib/varianceTax/store';
 import { useMediaQuery } from '@/lib/hooks/useMediaQuery';
 

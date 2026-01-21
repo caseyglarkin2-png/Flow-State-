@@ -1,3 +1,4 @@
+import type { JSX } from 'react';
 /**
  * Accessibility Components
  * 
@@ -21,11 +22,7 @@ interface VisuallyHiddenProps {
  * Content that is visually hidden but accessible to screen readers
  */
 export function VisuallyHidden({ children, as: Component = 'span' }: VisuallyHiddenProps) {
-  return (
-    <Component className="sr-only">
-      {children}
-    </Component>
-  );
+  return React.createElement(Component, { className: "sr-only" }, children);
 }
 
 // ═══════════════════════════════════════════════════════════════════

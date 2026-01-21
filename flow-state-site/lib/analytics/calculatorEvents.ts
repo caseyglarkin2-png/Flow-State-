@@ -15,6 +15,7 @@ export interface AnalyticsEvent {
 }
 
 export interface CalculatorEventProperties {
+    [key: string]: string | number | boolean | undefined;
   presetId?: string;
   facilityCount?: number;
   loadVolume?: number;
@@ -26,6 +27,7 @@ export interface CalculatorEventProperties {
 }
 
 export interface VisualizationEventProperties {
+    [key: string]: string | number | boolean | undefined;
   qualityTier?: string;
   fps?: number;
   reducedMotion?: boolean;
