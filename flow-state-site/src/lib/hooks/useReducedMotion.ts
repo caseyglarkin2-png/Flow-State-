@@ -16,7 +16,14 @@ import { useEffect, useState } from 'react';
 const QUERY = '(prefers-reduced-motion: reduce)';
 
 export function useReducedMotion(): boolean {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState<boolean>(() => {
+    if (typeof window === 'undefined') return false;
+    try {
+      return !!window.matchMedia(QUERY).matches;
+    } catch {
+      return false;
+    }
+  });
 
   useEffect(() => {
     // Check if window is available (SSR safety)
@@ -25,7 +32,6 @@ export function useReducedMotion(): boolean {
     }
 
     const mediaQueryList = window.matchMedia(QUERY);
-    setPrefersReducedMotion(mediaQueryList.matches);
 
     // Listen for changes to user preference
     const listener = (event: MediaQueryListEvent) => {

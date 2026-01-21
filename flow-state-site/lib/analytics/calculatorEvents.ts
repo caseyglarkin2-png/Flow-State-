@@ -68,18 +68,18 @@ export const ANALYTICS_EVENTS = {
 // ANALYTICS PROVIDER INTERFACE
 // ═══════════════════════════════════════════════════════════════════
 
-type AnalyticsProvider = {
+export type CalculatorAnalyticsProvider = {
   track: (event: AnalyticsEvent) => void;
   identify: (userId: string, traits?: Record<string, unknown>) => void;
   page: (name?: string, properties?: Record<string, unknown>) => void;
 };
 
-let analyticsProvider: AnalyticsProvider | null = null;
+let analyticsProvider: CalculatorAnalyticsProvider | null = null;
 
 /**
  * Set the analytics provider (GA4, Mixpanel, etc.)
  */
-export function setAnalyticsProvider(provider: AnalyticsProvider) {
+export function setAnalyticsProvider(provider: CalculatorAnalyticsProvider) {
   analyticsProvider = provider;
 }
 

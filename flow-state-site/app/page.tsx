@@ -38,6 +38,7 @@ import {
   ChainOfCustodyAnimation,
   ProtocolRollupAnimation
 } from '@/components/animations';
+import { Section, Card, Stat, Callout } from '@/components/primitives';
 
 export default function Home() {
   return (
@@ -60,8 +61,10 @@ export default function Home() {
                 <span className="text-steel/50">|</span>
                 <span className="text-steel/70 text-sm font-mono">{BRAND.proof.tagline}</span>
               </div>
-              <div className="text-steel/60 text-sm">
-                {BRAND.proof.drivers} drivers | {BRAND.proof.facilities} facilities | {BRAND.proof.systems} live systems
+              <div className="grid grid-cols-3 gap-6 mt-2 w-full max-w-xl">
+                <Stat value={BRAND.proof.drivers} label="Drivers" />
+                <Stat value={BRAND.proof.facilities} label="Facilities" />
+                <Stat value={BRAND.proof.systems} label="Live Systems" />
               </div>
             </div>
 
@@ -118,7 +121,7 @@ export default function Home() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="p-8 rounded-2xl border border-ember/20 bg-ember/5">
+              <Card variant="bordered" className="p-8 rounded-2xl border-ember/20 bg-ember/5">
                 <h3 className="text-xl font-bold text-white mb-4">Typical Network Reality</h3>
                 <ul className="space-y-3 text-steel">
                   <li className="flex items-start gap-3">
@@ -138,9 +141,9 @@ export default function Home() {
                     <span>Each facility runs its own playbook = no network learning</span>
                   </li>
                 </ul>
-              </div>
+              </Card>
 
-              <div className="p-8 rounded-2xl border border-neon/20 bg-neon/5">
+              <Card variant="bordered" className="p-8 rounded-2xl border-neon/20 bg-neon/5">
                 <h3 className="text-xl font-bold text-white mb-4">The Fix: Protocol {'>'} Process</h3>
                 <p className="text-steel leading-relaxed mb-4">
                   The problem isn't your carriers. It's the lack of a standard protocol.
@@ -148,7 +151,7 @@ export default function Home() {
                 <p className="text-steel leading-relaxed">
                   <span className="text-white font-semibold">YardFlow enforces the same driver journey at every facility.</span> Same steps. Same sequence. Same proof requirements. Variance dies. Throughput becomes calculable.
                 </p>
-              </div>
+              </Card>
             </div>
           </motion.div>
         </div>

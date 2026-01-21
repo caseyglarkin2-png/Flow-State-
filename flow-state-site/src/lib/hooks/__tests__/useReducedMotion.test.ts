@@ -54,7 +54,7 @@ describe('useReducedMotion', () => {
 
     // Simulate user changing preference
     if (changeListener) {
-      changeListener({ matches: true } as MediaQueryListEvent);
+      (changeListener as (event: MediaQueryListEvent) => void)({ matches: true } as MediaQueryListEvent);
     }
 
     // Note: This test verifies listener is registered; 

@@ -71,6 +71,7 @@ import VarianceKillsBlock from '@/components/VarianceKillsBlock';
 import EvidenceTimeline, { SAMPLE_TIMELINE } from '@/components/EvidenceTimeline';
 import CoverageSlider from '@/components/CoverageSlider';
 import { FlowArrow, Metrics, Velocity, Config, Timeline, Caution, Agent, Manifest, Nexus } from '@/components/icons/FlowIcons';
+import { Section, Stat, Callout } from '@/components/primitives';
 import { calcRoiV1, calcRoiV2, defaultRoiV2Inputs, roiV2InputsFromQuickMode } from '@/lib/roi/calc';
 import type { RoiV2Inputs } from '@/lib/roi/types';
 import { calcScenario, ECONOMICS_MODES, ECONOMICS_SCENARIOS, getQuickInputsForPreset, truckloads as formatTruckloads } from '@/lib/economics';
@@ -350,6 +351,11 @@ export default function ROICalculatorPage() {
           <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
             Quick Mode assumes network averages. Pro Mode dials in your actual labor, dwell, and detention data. Same engine. Same credibility.
           </p>
+          <div className="mt-6 max-w-3xl">
+            <Callout variant="success" title="Verified Economics">
+              Economics engine is locked with golden tests. Board-ready formatting and guardrails active.
+            </Callout>
+          </div>
         </div>
       </section>
 

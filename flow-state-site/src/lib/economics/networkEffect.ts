@@ -35,6 +35,10 @@ export interface NetworkEffectResult {
 
   /** Canonical multiplier M(n) */
   multiplier: number;
+
+  /** Parameters used for realization/multiplier */
+  beta: number;
+  tau: number;
 }
 
 function clampFinite(n: number, min: number, max: number): number {
@@ -83,5 +87,7 @@ export function metcalfeInspiredMultiplier(n: number, params: NetworkEffectParam
     baselineConnections,
     realization,
     multiplier: Number.isFinite(multiplier) ? multiplier : 1,
+    beta,
+    tau,
   };
 }

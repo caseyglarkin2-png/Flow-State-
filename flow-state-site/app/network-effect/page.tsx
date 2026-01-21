@@ -277,7 +277,7 @@ export default function NetworkEffectPage() {
       yearOne,
       oppCostStopAt1,
     };
-  }, [assumptions, facilities]);
+  }, [assumptions, facilities, scenario]);
 
   const curvePoints = useMemo(() => buildCurvePoints({ beta: modeled.beta, tau: modeled.tau }), [modeled.beta, modeled.tau]);
 
