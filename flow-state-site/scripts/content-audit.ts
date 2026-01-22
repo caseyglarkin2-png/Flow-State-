@@ -12,6 +12,7 @@
  * Usage:
  *   npx tsx scripts/content-audit.ts
  *   npm run audit:content
+ *   npm run audit:content -- --ci  # JSON output for CI
  */
 
 import { readFileSync, readdirSync, statSync, existsSync } from 'fs';
@@ -19,16 +20,24 @@ import { join, relative } from 'path';
 
 const APP_DIR = join(process.cwd(), 'app');
 const PUBLIC_DIR = join(process.cwd(), 'public');
+const isCI = process.argv.includes('--ci');
+
+// Check if root layout has global OG config
+const LAYOUT_PATH = join(APP_DIR, 'layout.tsx');
+const layoutContent = existsSync(LAYOUT_PATH) ? readFileSync(LAYOUT_PATH, 'utf-8') : '';
+const hasGlobalOG = /openGraph:/.test(layoutContent);
 
 interface PageAudit {
   path: string;
   file: string;
   issues: string[];
   warnings: string[];
+  info: string[];
   hasMetadata: boolean;
   hasOgImage: boolean;
   hasCTA: boolean;
   lineCount: number;
+  isRedirect: boolean;
 }
 
 interface AuditSummary {
@@ -38,7 +47,8 @@ interface AuditSummary {
   issueBreakdown: Record<string, number>;
 }
 
-const IGNORED_DIRS = ['api', 'og-preview', 'logo-preview', 'logo-test'];
+// T12-001: Add test directories to ignored list
+const IGNORED_DIRS = ['api', 'og-preview', 'logo-preview', 'logo-test', '__test-error__', 'test-canvas'];
 const CTA_PATTERNS = [
   /Button/,
   /CTAGroup/,
@@ -102,15 +112,20 @@ function auditPage(filePath: string): PageAudit {
   const route = getRoutePath(filePath);
   const lines = content.split('\n');
   
+  // T12-002: Detect redirect pages
+  const isRedirectPage = /redirect\(['"]/.test(content) && lines.length < 15;
+  
   const audit: PageAudit = {
     path: route,
     file: relative(process.cwd(), filePath),
     issues: [],
     warnings: [],
+    info: [],
     hasMetadata: false,
     hasOgImage: false,
     hasCTA: false,
     lineCount: lines.length,
+    isRedirect: isRedirectPage,
   };
   
   // Check for metadata
@@ -119,30 +134,32 @@ function auditPage(filePath: string): PageAudit {
     audit.issues.push('Missing page metadata (title/description)');
   }
   
-  // Check for OG image
+  // Check for OG image - consider global OG inheritance
   audit.hasOgImage = OG_IMAGE_PATTERNS.some(pattern => pattern.test(content));
-  if (!audit.hasOgImage) {
+  if (!audit.hasOgImage && hasGlobalOG) {
+    audit.info.push('Inherits OG from root layout');
+  } else if (!audit.hasOgImage) {
     audit.warnings.push('No explicit OG image configuration');
   }
   
-  // Check for CTA
+  // Check for CTA (skip for redirect pages)
   audit.hasCTA = CTA_PATTERNS.some(pattern => pattern.test(content));
-  if (!audit.hasCTA) {
+  if (!audit.hasCTA && !isRedirectPage) {
     audit.warnings.push('No CTA (button/link) found');
   }
   
-  // Check for empty/thin content
+  // Check for empty/thin content (skip for redirect pages - T12-002)
   const codeLines = lines.filter(l => l.trim() && !l.trim().startsWith('//') && !l.trim().startsWith('*'));
-  if (codeLines.length < 20) {
+  if (codeLines.length < 20 && !isRedirectPage) {
     audit.issues.push(`Very thin page (${codeLines.length} code lines)`);
   }
   
-  // Check for placeholder text
+  // T12-003: Fix placeholder detection - don't match HTML placeholder attributes
   const placeholderPatterns = [
     /TODO/i,
     /FIXME/i,
     /Lorem ipsum/i,
-    /placeholder/i,
+    /placeholder(?!\s*=)/i,  // Match placeholder NOT followed by = (HTML attribute)
     /Coming soon/i,
   ];
   
@@ -180,6 +197,27 @@ function checkPublicAssets(): string[] {
 }
 
 function formatReport(audits: PageAudit[], assetIssues: string[]): void {
+  const pagesWithIssues = audits.filter(a => a.issues.length > 0);
+  const pagesWithWarnings = audits.filter(a => a.warnings.length > 0 && a.issues.length === 0);
+  const cleanPages = audits.filter(a => a.issues.length === 0 && a.warnings.length === 0);
+  
+  // T12-005: CI mode - JSON output
+  if (isCI) {
+    const result = {
+      totalPages: audits.length,
+      pagesWithIssues: pagesWithIssues.length,
+      pagesWithWarnings: pagesWithWarnings.length,
+      cleanPages: cleanPages.length,
+      issues: pagesWithIssues.map(a => ({ path: a.path, issues: a.issues })),
+      warnings: pagesWithWarnings.map(a => ({ path: a.path, warnings: a.warnings })),
+      assetIssues,
+      passed: pagesWithIssues.length === 0 && assetIssues.length === 0,
+    };
+    console.log(JSON.stringify(result, null, 2));
+    process.exit(result.passed ? 0 : 1);
+    return;
+  }
+
   console.log('\n' + '='.repeat(70));
   console.log('📋 CONTENT AUDIT REPORT');
   console.log('='.repeat(70) + '\n');
@@ -192,11 +230,6 @@ function formatReport(audits: PageAudit[], assetIssues: string[]): void {
     }
     console.log();
   }
-  
-  // Page audits
-  const pagesWithIssues = audits.filter(a => a.issues.length > 0);
-  const pagesWithWarnings = audits.filter(a => a.warnings.length > 0 && a.issues.length === 0);
-  const cleanPages = audits.filter(a => a.issues.length === 0 && a.warnings.length === 0);
   
   // Issues (red)
   if (pagesWithIssues.length > 0) {
