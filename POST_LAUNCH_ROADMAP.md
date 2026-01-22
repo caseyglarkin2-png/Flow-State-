@@ -360,36 +360,35 @@ MEDIUM - Improves email marketing ROI
 ## Recommended Timeline
 
 ### Week 1 Post-Launch (High Priority)
-- [ ] Priority 1: Update 4 page-specific OG references (15 min)
-- [ ] Priority 6: Draft brand guidelines doc (1 hour)
+- [x] Priority 1: Update 4 page-specific OG references ✅ Sprint 18
+- [x] Priority 6: Draft brand guidelines doc ✅ Already exists
 
 ### Week 2-3 Post-Launch (Medium Priority)
-- [ ] Priority 2: Implement page-specific OG images (3-4 hours)
-- [ ] Priority 4: Add UTM params to social links (1 hour)
-- [ ] Priority 3: Image optimization audit (2-3 hours)
+- [x] Priority 2: Implement page-specific OG images ✅ Sprints 19-22
+- [x] Priority 4: Add UTM params to social links ✅ Already implemented
+- [x] Priority 3: Image optimization audit ✅ Sprint 25 (video preload)
 
 ### Month 2 Post-Launch (Nice-to-Have)
-- [ ] Priority 5: OG preview debugging tool (1-2 hours)
-- [ ] Priority 7: A/B test headlines (2-3 hours)
-- [ ] Polish: Email-specific optimizations (0-1 hour)
+- [x] Priority 5: OG preview debugging tool ✅ Already exists at /og-preview
+- [x] Priority 7: A/B test headlines ✅ OG route supports ?variant=a|b|c
+- [x] Polish: Email-specific optimizations ✅ Auto-works with OG setup
 
 ---
 
 ## Effort Summary
 
-| Priority | Task | Effort | Impact |
-|----------|------|--------|--------|
-| 1 | Update page OG refs | 15 min | LOW |
-| 2 | Page-specific OG images | 3-4 hrs | HIGH |
-| 3 | Image optimization | 2-3 hrs | MEDIUM |
-| 4 | Social analytics | 1 hour | MEDIUM |
-| 5 | OG preview tool | 1-2 hrs | LOW |
-| 6 | Brand guidelines | 1 hour | LOW |
-| 7 | A/B test headlines | 2-3 hrs | HIGH |
-| 8 | Email optimization | 0 hrs | MEDIUM |
+| Priority | Task | Effort | Impact | Status |
+|----------|------|--------|--------|--------|
+| 1 | Update page OG refs | 15 min | LOW | ✅ Done |
+| 2 | Page-specific OG images | 3-4 hrs | HIGH | ✅ Done |
+| 3 | Image optimization | 2-3 hrs | MEDIUM | ✅ Done |
+| 4 | Social analytics | 1 hour | MEDIUM | ✅ Done |
+| 5 | OG preview tool | 1-2 hrs | LOW | ✅ Done |
+| 6 | Brand guidelines | 1 hour | LOW | ✅ Done |
+| 7 | A/B test headlines | 2-3 hrs | HIGH | ✅ Done |
+| 8 | Email optimization | 0 hrs | MEDIUM | ✅ Done |
 
-**Total if all implemented**: ~13-16 hours across several weeks  
-**Recommended core**: Priorities 1 + 2 + 4 = 4-5 hours (high ROI)
+**All priorities completed!** 🎉
 
 ---
 
@@ -402,6 +401,6 @@ MEDIUM - Improves email marketing ROI
 
 ---
 
-**Document Status**: Ready for post-launch planning  
+**Document Status**: ✅ All priorities complete  
 **Owner**: Development Team  
-**Last Updated**: Pre-Launch
+**Last Updated**: January 2026
