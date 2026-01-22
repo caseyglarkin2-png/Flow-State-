@@ -48,10 +48,10 @@ export default function NetworkMapPage() {
               Facility Types
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <LegendItem color="#00FFC2" label="Gated Facility" description="Secure access points" />
-              <LegendItem color="#3B82F6" label="Open Yard" description="High throughput" />
-              <LegendItem color="#F59E0B" label="Cross-Dock" description="Rapid transfers" />
-              <LegendItem color="#8B5CF6" label="Manufacturing" description="JIT integrated" />
+              <LegendItem color="#00B4FF" label="Gated Facility" description="Secure access points" />
+              <LegendItem color="#FFFFFF" label="Open Yard" description="High throughput" />
+              <LegendItem color="#FF2A00" label="Cross-Dock" description="Rapid transfers" />
+              <LegendItem color="#888888" label="Manufacturing" description="JIT integrated" />
             </div>
           </div>
         </section>

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
-import { ShieldAlert, Lock, CheckCircle2, AlertTriangle, Database, FileCheck, Eye, Clock } from 'lucide-react';
+import { Caution, Shield, Manifest, Scope, Confirm, Timeline, Nexus, Crosshair } from '@/components/icons/FlowIcons';
 
 export const metadata: Metadata = {
   title: 'Cargo Theft & Fraud Prevention - YardFlow by FreightRoll',
@@ -21,22 +21,22 @@ const threats = [
   {
     title: 'Fraudulent Carriers',
     description: 'Fake MC numbers, stolen credentials, spoofed identities. The fastest-growing threat in truckload logistics.',
-    Icon: AlertTriangle,
+    Icon: Caution,
   },
   {
     title: 'Unauthorized Pickups',
     description: 'Driver arrives with valid-looking paperwork but no authorization. Load disappears. Insurance fights.',
-    Icon: Lock,
+    Icon: Shield,
   },
   {
     title: 'Credential Misuse',
     description: 'Legitimate carrier credentials shared, stolen, or expired. No verification = no defense.',
-    Icon: ShieldAlert,
+    Icon: Crosshair,
   },
   {
     title: 'Compliance Gaps',
     description: 'CTPAT, TSA, and insurance requirements demand documented verification. Manual processes don\'t hold up.',
-    Icon: FileCheck,
+    Icon: Manifest,
   },
 ];
 
@@ -44,22 +44,22 @@ const controls = [
   {
     title: 'ID Verification',
     description: 'Real-time driver identity verification before gate access. CDL validation. Photo capture. Biometric option.',
-    Icon: Eye,
+    Icon: Scope,
   },
   {
     title: 'Carrier Credentialing',
     description: 'MC number validation. Authority status check. Insurance verification. Automated re-check on arrival.',
-    Icon: Database,
+    Icon: Nexus,
   },
   {
     title: 'Authorization Workflow',
     description: 'No load releases without verified appointment match. System-enforced, not human-dependent.',
-    Icon: CheckCircle2,
+    Icon: Confirm,
   },
   {
     title: 'Immutable Audit Trail',
     description: 'Every verification timestamped. Every exception logged. Every access decision defensible in court.',
-    Icon: Clock,
+    Icon: Timeline,
   },
 ];
 
