@@ -4,10 +4,9 @@
 
 This document outlines the sprint execution for implementing page-specific OpenGraph images and social sharing improvements for the YardFlow website, as specified in `POST_LAUNCH_ROADMAP.md`.
 
-**Status**: ✅ Priorities 1-7 COMPLETE  
-**Remaining**: Priority 3 (Image Optimization) - DEPRIORITIZED  
-**Total Sprints Executed**: 4 (Sprints 18-21)  
-**Total Commits**: 4
+**Status**: ✅ ALL PRIORITIES COMPLETE  
+**Total Sprints Executed**: 8 (Sprints 18-25)  
+**Total Commits**: 8
 
 ---
 
@@ -16,13 +15,15 @@ This document outlines the sprint execution for implementing page-specific OpenG
 | Priority | Description | Status | Sprint |
 |----------|-------------|--------|--------|
 | 1 | Dynamic OG refs (→ /api/og) | ✅ Complete | Sprint 18 |
-| 2 | Page-specific OG images | ✅ Complete | Sprint 19, 20 |
-| 3 | Image optimization | ⏸️ Deprioritized | — |
+| 2 | Page-specific OG images | ✅ Complete | Sprint 19, 20, 22 |
+| 3 | Image optimization | ✅ Complete (video focus) | Sprint 25 |
 | 4 | UTM tracking on social links | ✅ Already Done | — |
 | 5 | OG preview tool | ✅ Already Done | — |
 | 6 | Brand guidelines doc | ✅ Already Done | — |
 | 7 | A/B test headlines | ✅ Already Done | — |
 | 8 | Email optimization | ✅ Auto-works | — |
+| + | Twitter Cards | ✅ Complete | Sprint 23 |
+| + | JSON-LD Structured Data | ✅ Already Done | Sprint 24 |
 
 ---
 
@@ -293,6 +294,11 @@ After all sprints, the `/api/og` route supports:
 ### Tools (1 slug)
 - `diagnostic`
 
+### High-Traffic Pages (3 slugs)
+- `pricing`
+- `about`
+- `contact`
+
 ### Default + Variants
 - `default` (fallback)
 - `?variant=a|b|c` (A/B test headlines)
@@ -319,6 +325,7 @@ https://yardflow.ai/api/og                           # Default
 https://yardflow.ai/api/og?page=diagnostic           # Tool page
 https://yardflow.ai/api/og?page=solutions/dry-van    # Solution
 https://yardflow.ai/api/og?page=case-study/primo-network  # Case study
+https://yardflow.ai/api/og?page=pricing              # High-traffic page
 https://yardflow.ai/api/og?variant=b                 # A/B variant
 ```
 
@@ -330,6 +337,10 @@ https://yardflow.ai/api/og?variant=b                 # A/B variant
 0cd64f8 feat(og): Sprint 18 - migrate 3 layouts from /og.png to /api/og
 9271ac2 feat(og): Sprint 19 & 20 - add page-specific OG images for case studies and field notes
 2eec066 fix(og): Sprint 21 - fix critical OG issues from subagent review
+4be4644 feat(og): Sprint 22 - add OG to high-traffic pages (pricing, about, contact)
+d0ee727 feat(seo): Sprint 23 - add Twitter Cards to all key layouts
+(Sprint 24 - JSON-LD already existed in root layout)
+d2650e6 perf(video): Sprint 25 - video optimization with preload and poster support
 ```
 
 ---
@@ -339,4 +350,4 @@ https://yardflow.ai/api/og?variant=b                 # A/B variant
 - **Created**: January 22, 2026
 - **Last Updated**: January 22, 2026
 - **Owner**: Development Team
-- **Status**: Complete - Ready for review
+- **Status**: ✅ ALL SPRINTS COMPLETE
