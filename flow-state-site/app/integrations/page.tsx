@@ -1,7 +1,13 @@
 import React from 'react';
+import { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Integrations | TMS, WMS, ERP Connectivity',
+  description: 'YardFlow integrates with your existing TMS, WMS, and ERP systems. API-first architecture for enterprise connectivity.',
+};
 
 export default function IntegrationsPage() {
   return (

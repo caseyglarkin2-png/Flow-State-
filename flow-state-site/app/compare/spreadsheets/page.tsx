@@ -1,7 +1,13 @@
 import React from 'react';
+import { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
+
+export const metadata: Metadata = {
+  title: 'YardFlow vs Spreadsheet Tracking | Comparison',
+  description: 'Why spreadsheets fail at scale for yard management. Compare manual tracking to YardFlow automation.',
+};
 
 export default function CompareSpreadsheetsPage() {
   return (

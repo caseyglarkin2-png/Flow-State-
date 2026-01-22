@@ -1,7 +1,13 @@
 import React from 'react';
+import { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
+
+export const metadata: Metadata = {
+  title: 'System Status | YardFlow Platform',
+  description: 'Service status and uptime information for the YardFlow platform.',
+};
 
 export default function StatusPage() {
   return (

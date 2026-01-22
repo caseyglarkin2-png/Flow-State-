@@ -1,8 +1,14 @@
 import React from 'react';
+import { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { Manifest, Signal } from '@/components/icons/FlowIcons';
+
+export const metadata: Metadata = {
+  title: 'Press & Media | YardFlow by FreightRoll',
+  description: 'Company information, brand assets, and approved messaging for YardFlow by FreightRoll.',
+};
 
 export default function PressPage() {
   return (

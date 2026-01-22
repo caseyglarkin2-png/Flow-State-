@@ -1,8 +1,14 @@
 import React from 'react';
+import { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { ExpandableCard } from '@/components/ExpandableCard';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'FAQ | YardFlow Questions Answered',
+  description: 'Frequently asked questions about YardFlow implementation, pricing, integrations, and enterprise deployment.',
+};
 
 const faqs: Array<{
   q: string;

@@ -1,7 +1,13 @@
 import React from 'react';
+import { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
+
+export const metadata: Metadata = {
+  title: 'Changelog | YardFlow Product Updates',
+  description: 'Release notes and product updates for YardFlow. Detailed changelog available to customers and prospects on request.',
+};
 
 export default function ChangelogPage() {
   return (

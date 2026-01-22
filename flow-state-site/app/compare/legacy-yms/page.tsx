@@ -1,7 +1,13 @@
 import React from 'react';
+import { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
+
+export const metadata: Metadata = {
+  title: 'YardFlow vs Legacy YMS | Feature Comparison',
+  description: 'Compare YardFlow to traditional Yard Management Systems. See why enterprise freight networks choose our network-native approach.',
+};
 
 export default function CompareLegacyYmsPage() {
   return (
