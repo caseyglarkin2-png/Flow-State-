@@ -18,6 +18,7 @@
     "test:shaders": "tsx scripts/validate-shaders.ts",
     "perf:baseline": "tsx scripts/capture-baseline.ts",
     "perf:audit": "node scripts/lighthouse-audit.js",
+    "perf:bundle-check": "tsx scripts/bundle-size-check.ts",
     "audit:bundle": "npm run build && node scripts/bundle-audit.js",
     "congruence:check": "tsx scripts/congruence-check.ts",
     "site:crawl": "tsx scripts/site-crawl.ts",

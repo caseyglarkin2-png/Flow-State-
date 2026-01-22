@@ -25,16 +25,16 @@ module.exports = {
     },
     assert: {
       assertions: {
-        // Performance thresholds
-        'categories:performance': ['warn', { minScore: 0.85 }],
+        // Performance thresholds (S8: raised from 0.85 to 0.90)
+        'categories:performance': ['warn', { minScore: 0.90 }],
         'categories:accessibility': ['error', { minScore: 0.9 }],
         'categories:best-practices': ['warn', { minScore: 0.9 }],
         'categories:seo': ['warn', { minScore: 0.9 }],
         
-        // Core Web Vitals
+        // Core Web Vitals (S8: LCP target 2.5s, TBT reduced from 300 to 200)
         'largest-contentful-paint': ['warn', { maxNumericValue: 2500 }],
         'cumulative-layout-shift': ['warn', { maxNumericValue: 0.1 }],
-        'total-blocking-time': ['warn', { maxNumericValue: 300 }],
+        'total-blocking-time': ['warn', { maxNumericValue: 200 }],
         
         // Critical accessibility checks
         'color-contrast': 'error',

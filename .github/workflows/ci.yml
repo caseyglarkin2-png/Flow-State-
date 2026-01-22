@@ -42,6 +42,9 @@ jobs:
       - name: Bundle Size Audit
         run: node scripts/bundle-audit.js
 
+      - name: Bundle Size Check (S8 thresholds)
+        run: npx tsx scripts/bundle-size-check.ts
+
       - name: Content Audit
         run: npm run audit:content
 
