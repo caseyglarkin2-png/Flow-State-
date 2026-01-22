@@ -115,6 +115,12 @@ function auditPage(filePath: string): PageAudit {
   // T12-002: Detect redirect pages
   const isRedirectPage = /redirect\(['"]/.test(content) && lines.length < 15;
   
+  // Check for sibling layout.tsx with metadata (for 'use client' pages)
+  const pageDir = filePath.replace(/\/page\.(tsx|jsx)$/, '');
+  const layoutPath = join(pageDir, 'layout.tsx');
+  const siblingLayoutContent = existsSync(layoutPath) ? readFileSync(layoutPath, 'utf-8') : '';
+  const layoutHasMetadata = METADATA_PATTERNS.some(pattern => pattern.test(siblingLayoutContent));
+  
   const audit: PageAudit = {
     path: route,
     file: relative(process.cwd(), filePath),
@@ -128,18 +134,23 @@ function auditPage(filePath: string): PageAudit {
     isRedirect: isRedirectPage,
   };
   
-  // Check for metadata
-  audit.hasMetadata = METADATA_PATTERNS.some(pattern => pattern.test(content));
+  // Check for metadata (in page.tsx OR sibling layout.tsx)
+  audit.hasMetadata = METADATA_PATTERNS.some(pattern => pattern.test(content)) || layoutHasMetadata;
   if (!audit.hasMetadata) {
     audit.issues.push('Missing page metadata (title/description)');
+  } else if (layoutHasMetadata && !METADATA_PATTERNS.some(pattern => pattern.test(content))) {
+    audit.info.push('Metadata inherited from sibling layout.tsx');
   }
   
-  // Check for OG image - consider global OG inheritance
-  audit.hasOgImage = OG_IMAGE_PATTERNS.some(pattern => pattern.test(content));
+  // Check for OG image - consider global OG inheritance and sibling layout
+  const layoutHasOG = OG_IMAGE_PATTERNS.some(pattern => pattern.test(siblingLayoutContent));
+  audit.hasOgImage = OG_IMAGE_PATTERNS.some(pattern => pattern.test(content)) || layoutHasOG;
   if (!audit.hasOgImage && hasGlobalOG) {
     audit.info.push('Inherits OG from root layout');
   } else if (!audit.hasOgImage) {
     audit.warnings.push('No explicit OG image configuration');
+  } else if (layoutHasOG && !OG_IMAGE_PATTERNS.some(pattern => pattern.test(content))) {
+    audit.info.push('OG config in sibling layout.tsx');
   }
   
   // Check for CTA (skip for redirect pages)
