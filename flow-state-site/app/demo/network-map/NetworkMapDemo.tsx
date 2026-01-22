@@ -42,11 +42,11 @@ export default function NetworkMapDemo() {
         <NetworkMap
           facilities={sampleFacilities}
           connections={sampleConnections}
-          onFacilityClick={(facility) => {
+          onFacilityClick={(facility: Facility) => {
             setLastClicked(facility);
             console.log('Clicked facility:', facility);
           }}
-          onFacilityHover={(facility) => {
+          onFacilityHover={(facility: Facility | null) => {
             if (facility) {
               console.log('Hovering:', facility.name);
             }

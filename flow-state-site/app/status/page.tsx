@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
+import HealthIndicator from '@/components/HealthIndicator';
 
 export const metadata: Metadata = {
   title: 'System Status | YardFlow Platform',
@@ -23,6 +24,13 @@ export default function StatusPage() {
           <p className="mt-4 text-xl text-steel max-w-2xl leading-relaxed">
             We provide incident communication and uptime details directly to customers and prospects during evaluation.
           </p>
+        </div>
+      </section>
+
+      {/* Live Health Indicator */}
+      <section className="pb-12">
+        <div className="max-w-6xl mx-auto px-6">
+          <HealthIndicator />
         </div>
       </section>
 

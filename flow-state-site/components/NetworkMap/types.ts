@@ -36,7 +36,7 @@ export interface Connection {
   /** Connection strength (1-10) for line weight */
   strength: number;
   /** Optional: connection type for styling */
-  type?: 'primary' | 'secondary' | 'planned';
+  type?: 'primary' | 'secondary' | 'planned' | 'active';
 }
 
 /** Props for the main NetworkMap component */
