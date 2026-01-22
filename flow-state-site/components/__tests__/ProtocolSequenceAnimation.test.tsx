@@ -18,6 +18,21 @@ import { useProtocolSequenceAnalytics } from '@/lib/hooks/useProtocolSequenceAna
 const mockUseSSRSafeReducedMotion = useSSRSafeReducedMotion as ReturnType<typeof vi.fn>;
 const mockUseProtocolSequenceAnalytics = useProtocolSequenceAnalytics as ReturnType<typeof vi.fn>;
 
+// Mock IntersectionObserver for viewport pause/resume logic
+const mockObserve = vi.fn();
+const mockDisconnect = vi.fn();
+
+class MockIntersectionObserver {
+  callback: IntersectionObserverCallback;
+  constructor(callback: IntersectionObserverCallback) {
+    this.callback = callback;
+  }
+  observe = mockObserve;
+  disconnect = mockDisconnect;
+}
+
+(global as any).IntersectionObserver = MockIntersectionObserver as unknown as typeof IntersectionObserver;
+
 describe('ProtocolSequenceAnimation', () => {
   beforeEach(() => {
     vi.useFakeTimers();

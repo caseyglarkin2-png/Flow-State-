@@ -7,7 +7,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { TOKENS } from '@/lib/tokens';
+import { Dismiss } from '@/components/icons/FlowIcons';
 
 export default function YardChaosAnimation() {
   // Chaotic movement patterns for problem indicators
@@ -51,24 +51,24 @@ export default function YardChaosAnimation() {
         <p className="text-steel/70">Before Standardization</p>
       </div>
 
-      {/* Chaotic blob animations */}
+      {/* Chaotic geometric pulses (brand-aligned) */}
       <motion.div
         animate={pulseAnimation}
-        className="absolute top-1/4 left-[10%] w-32 h-32 rounded-full bg-ember/20 blur-2xl"
+        className="absolute top-1/4 left-[10%] w-32 h-32 rotate-6 bg-ember/10 border border-ember/30 shadow-[0_0_40px_rgba(255,42,0,0.25)]"
       />
       <motion.div
         animate={{
           ...pulseAnimation,
           transition: { ...pulseAnimation.transition, delay: 1 },
         }}
-        className="absolute top-1/2 right-[15%] w-40 h-40 rounded-full bg-ember/15 blur-3xl"
+        className="absolute top-1/2 right-[15%] w-40 h-32 -rotate-3 bg-ember/8 border border-ember/25 shadow-[0_0_50px_rgba(255,42,0,0.2)]"
       />
       <motion.div
         animate={{
           ...pulseAnimation,
           transition: { ...pulseAnimation.transition, delay: 2 },
         }}
-        className="absolute bottom-1/4 left-[35%] w-28 h-28 rounded-full bg-ember/20 blur-2xl"
+        className="absolute bottom-1/4 left-[35%] w-28 h-28 rotate-12 bg-ember/12 border border-ember/30 shadow-[0_0_32px_rgba(255,42,0,0.22)]"
       />
 
       {/* Problem indicators */}
@@ -77,7 +77,7 @@ export default function YardChaosAnimation() {
           animate={chaosAnimation}
           className="flex items-center gap-2 text-ember"
         >
-          <span className="text-xl">✕</span>
+          <Dismiss size={18} className="text-ember" />
           <span className="text-sm font-mono">45min gate dwell</span>
         </motion.div>
         <motion.div
@@ -87,7 +87,7 @@ export default function YardChaosAnimation() {
           }}
           className="flex items-center gap-2 text-ember"
         >
-          <span className="text-xl">✕</span>
+          <Dismiss size={18} className="text-ember" />
           <span className="text-sm font-mono">18% detention rate</span>
         </motion.div>
         <motion.div
@@ -97,7 +97,7 @@ export default function YardChaosAnimation() {
           }}
           className="flex items-center gap-2 text-ember"
         >
-          <span className="text-xl">✕</span>
+          <Dismiss size={18} className="text-ember" />
           <span className="text-sm font-mono">Manual documentation</span>
         </motion.div>
         <motion.div
@@ -107,7 +107,7 @@ export default function YardChaosAnimation() {
           }}
           className="flex items-center gap-2 text-ember"
         >
-          <span className="text-xl">✕</span>
+          <Dismiss size={18} className="text-ember" />
           <span className="text-sm font-mono">80+ disputes/month</span>
         </motion.div>
       </div>

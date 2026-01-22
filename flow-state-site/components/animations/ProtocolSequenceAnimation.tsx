@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSSRSafeReducedMotion } from '@/lib/ssr-safe-motion';
 import { useProtocolSequenceAnalytics } from '@/lib/hooks/useProtocolSequenceAnalytics';
@@ -41,6 +41,8 @@ export default function ProtocolSequenceAnimation({
   onStateChange,
 }: ProtocolSequenceAnimationProps) {
   const [currentState, setCurrentState] = useState<ProtocolModuleType>('Guard');
+  const [isInView, setIsInView] = useState(true); // default true to preserve autoplay server/client parity
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const prefersReducedMotion = useSSRSafeReducedMotion();
   const trackModuleView = useProtocolSequenceAnalytics(trackingEnabled);
 
@@ -57,11 +59,26 @@ export default function ProtocolSequenceAnimation({
   }, [currentState, trackModuleView]);
 
   useEffect(() => {
-    if (!autoPlay || prefersReducedMotion) return undefined;
+    if (!containerRef.current) return undefined;
+
+    // Basic viewport detection: pause when scrolled out of view by 50%
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => setIsInView(entry.isIntersecting));
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!autoPlay || prefersReducedMotion || !isInView) return undefined;
 
     const interval = setInterval(cycleToNext, displayDuration + transitionDuration);
     return () => clearInterval(interval);
-  }, [autoPlay, displayDuration, transitionDuration, cycleToNext, prefersReducedMotion]);
+  }, [autoPlay, displayDuration, transitionDuration, cycleToNext, prefersReducedMotion, isInView]);
 
   // Reduced-motion fallback: static 2x2 grid
   if (prefersReducedMotion) {
@@ -93,6 +110,7 @@ export default function ProtocolSequenceAnimation({
 
   return (
     <div
+      ref={containerRef}
       className="relative flex aspect-video w-full items-center justify-center rounded-lg border border-neon/20 bg-gradient-to-br from-void via-carbon to-void p-8"
       role="region"
       aria-label="Protocol sequence animation"
@@ -107,11 +125,29 @@ export default function ProtocolSequenceAnimation({
           transition={{ duration: transitionDuration / 1000, ease: [0.4, 0, 0.2, 1] }}
           className="flex flex-col items-center text-center"
         >
-          <CurrentIcon size={64} color="#00B4FF" className="mb-4" />
+          <CurrentIcon
+            size={64}
+            color="#00B4FF"
+            className="mb-4 drop-shadow-[0_0_12px_rgba(0,180,255,0.5)] transition-[filter] duration-500"
+          />
           <div className="text-2xl font-bold text-neon">{currentModule.label}</div>
           <div className="mt-2 text-sm text-steel">{currentModule.proof}</div>
         </motion.div>
       </AnimatePresence>
+
+      {/* Progress indicators */}
+      <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-3">
+        {PROTOCOL_MODULES.map((module) => (
+          <button
+            key={module.id}
+            onClick={() => setCurrentState(module.id)}
+            className={`h-3 w-3 rounded-full border border-neon/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-neon/50 ${
+              module.id === currentState ? 'bg-neon shadow-[0_0_12px_rgba(0,180,255,0.6)]' : 'bg-steel/40 hover:bg-steel/70'
+            }`}
+            aria-label={`Show ${module.label}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
