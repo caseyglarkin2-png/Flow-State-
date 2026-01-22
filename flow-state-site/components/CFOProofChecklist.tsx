@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ChevronDown, ChevronUp, CheckCircle, ExternalLink, FileText, Download } from 'lucide-react';
+import { ChevronDown, ChevronRight, Confirm, External, Manifest, Export } from '@/components/icons/FlowIcons';
 
 interface ChecklistItem {
   question: string;
@@ -104,7 +104,7 @@ export default function CFOProofChecklist({ variant = 'full', className = '' }: 
           className="w-full flex items-center justify-between text-left"
         >
           <div className="flex items-center gap-3">
-            <CheckCircle className="text-neon" size={20} />
+            <Confirm className="text-neon" size={20} />
             <span className="font-semibold text-white">CFO Proof Checklist</span>
           </div>
           <ChevronDown className="text-steel/60" size={20} />
@@ -118,7 +118,7 @@ export default function CFOProofChecklist({ variant = 'full', className = '' }: 
       {/* Header */}
       <div className="p-5 border-b border-steel/20 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <CheckCircle className="text-neon" size={22} />
+          <Confirm className="text-neon" size={22} />
           <div>
             <h3 className="font-bold text-white">CFO Proof Checklist</h3>
             <p className="text-steel/60 text-xs">10 questions every finance team asks</p>
@@ -129,7 +129,7 @@ export default function CFOProofChecklist({ variant = 'full', className = '' }: 
             onClick={() => setIsExpanded(false)}
             className="text-steel/60 hover:text-white"
           >
-            <ChevronUp size={20} />
+            <ChevronRight size={20} />
           </button>
         )}
       </div>
@@ -157,7 +157,7 @@ export default function CFOProofChecklist({ variant = 'full', className = '' }: 
                 </span>
               </div>
               {expandedItems.has(index) ? (
-                <ChevronUp className="text-neon" size={18} />
+                <ChevronRight className="text-neon" size={18} />
               ) : (
                 <ChevronDown className="text-steel/40 group-hover:text-steel" size={18} />
               )}
@@ -174,11 +174,11 @@ export default function CFOProofChecklist({ variant = 'full', className = '' }: 
                     className="inline-flex items-center gap-1.5 text-neon text-sm font-medium hover:text-white transition-colors"
                   >
                     {item.exportAction === 'pdf' ? (
-                      <Download size={14} />
+                      <Export size={14} />
                     ) : item.exportAction === 'assumptions' ? (
-                      <FileText size={14} />
+                      <Manifest size={14} />
                     ) : (
-                      <ExternalLink size={14} />
+                      <External size={14} />
                     )}
                     {item.linkLabel}
                   </Link>

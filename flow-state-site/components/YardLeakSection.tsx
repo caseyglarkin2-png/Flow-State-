@@ -10,8 +10,10 @@ import {
   Crosshair,
   Agent,
   Metrics,
+  Caution,
+  Haul,
+  Currency,
 } from '@/components/icons/FlowIcons';
-import { AlertTriangle, Clock, Truck, DollarSign, Lock } from 'lucide-react';
 
 interface YardLeakTile {
   symptom: string;
@@ -26,14 +28,14 @@ const yardLeakTiles: YardLeakTile[] = [
     symptom: 'Detention & disputes',
     cause: 'No defensible timestamps → carrier says one thing, you say another',
     costRange: '$50–200/occurrence',
-    icon: <Clock size={28} />,
+    icon: <Timeline size={28} />,
     color: 'text-ember',
   },
   {
     symptom: 'Missed cutoffs & expedite fees',
     cause: 'No real-time queue visibility → loads sit while clock runs',
     costRange: '$500–2,000/event',
-    icon: <AlertTriangle size={28} />,
+    icon: <Caution size={28} />,
     color: 'text-amber-500',
   },
   {
@@ -61,7 +63,7 @@ const yardLeakTiles: YardLeakTile[] = [
     symptom: 'Overflow yards & 3PL surge',
     cause: 'No throughput optimization → capacity appears full when it is not',
     costRange: '$200–800/trailer/day',
-    icon: <Truck size={28} />,
+    icon: <Haul size={28} />,
     color: 'text-rose-500',
   },
   {
@@ -75,7 +77,7 @@ const yardLeakTiles: YardLeakTile[] = [
     symptom: 'Working capital buffers',
     cause: 'No flow predictability → extra inventory, extra trailers "just in case"',
     costRange: '3–7% tied capital',
-    icon: <DollarSign size={28} />,
+    icon: <Currency size={28} />,
     color: 'text-blue-400',
   },
 ];

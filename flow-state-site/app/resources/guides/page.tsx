@@ -6,14 +6,14 @@ import { motion, type Variants } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import {
-  BookOpen,
-  Clock,
-  Users,
-  ArrowRight,
+  Manifest,
+  Timeline,
+  Team,
+  FlowArrow,
   Shield,
-  Network,
-  FileCheck,
-} from "lucide-react";
+  Nexus,
+  Confirm,
+} from "@/components/icons/FlowIcons";
 
 const guides = [
   {
@@ -35,7 +35,7 @@ const guides = [
       "Understanding how connected yards create compounding operational advantages and the economics behind multi-site adoption.",
     audience: ["VPs Operations", "CFOs", "Strategy"],
     readTime: "10 min",
-    icon: Network,
+    icon: Nexus,
     highlight: "50+ facilities see 1.25-1.40x network multiplier on savings",
   },
   {
@@ -46,7 +46,7 @@ const guides = [
       "A practical framework for maintaining supply chain security certification while minimizing compliance overhead.",
     audience: ["Compliance Officers", "Security", "Legal"],
     readTime: "8 min",
-    icon: FileCheck,
+    icon: Confirm,
     highlight: "Evidence Vault provides audit-ready documentation",
   },
 ];
@@ -101,7 +101,7 @@ export default function GuidesIndexPage() {
             {/* Badge */}
             <motion.div variants={heroItemVariants} className="mb-6">
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neon/10 border border-neon/30 text-neon text-xs uppercase tracking-wider font-medium">
-                <BookOpen size={14} />
+                <Manifest size={14} />
                 Deep-Dive Frameworks
               </span>
             </motion.div>
@@ -169,7 +169,7 @@ export default function GuidesIndexPage() {
                           <IconComponent size={20} className="text-neon" />
                         </div>
                         <div className="flex items-center gap-2 text-steel/60">
-                          <Clock size={14} />
+                          <Timeline size={14} />
                           <span className="text-xs">{guide.readTime}</span>
                         </div>
                       </div>
@@ -209,7 +209,7 @@ export default function GuidesIndexPage() {
                             </span>
                           )}
                         </div>
-                        <ArrowRight
+                        <FlowArrow
                           size={18}
                           className="text-neon/50 group-hover:text-neon group-hover:translate-x-1 transition-all"
                         />

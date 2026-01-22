@@ -5,7 +5,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
 import EvidenceTimeline, { SAMPLE_TIMELINE } from '@/components/EvidenceTimeline';
-import { Lock } from 'lucide-react';
 import {
   Shield,
   Agent,
@@ -109,7 +108,7 @@ export default function SecurityPage() {
 
             {/* Cargo Security */}
             <Card className="p-6 border-ember/30">
-              <Lock size={32} className="text-ember mb-4" />
+              <Shield size={32} className="text-ember mb-4" />
               <h3 className="text-2xl font-bold text-white mb-3">Cargo Theft Prevention</h3>
               <p className="text-steel/80 mb-4">
                 Trailers disappear. Loads go missing. No audit trail. 

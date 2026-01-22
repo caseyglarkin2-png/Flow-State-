@@ -10,8 +10,13 @@ import {
   Metrics,
   Velocity,
   FlowArrow,
+  Caution,
+  Confirm,
+  Export,
+  DataFile,
+  ChevronRight,
+  ChevronLeft,
 } from '@/components/icons/FlowIcons';
-import { AlertTriangle, CheckCircle, Download, FileJson, ChevronRight, ChevronLeft } from 'lucide-react';
 
 interface DiagnosticInputs {
   truckloadsPerDayPerFacility: number;
@@ -400,7 +405,7 @@ export default function DiagnosticCalculator() {
         {/* Top 3 Leak Drivers */}
         <div>
           <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
-            <AlertTriangle className="text-ember" size={20} />
+            <Caution className="text-ember" size={20} />
             Top Leak Drivers
           </h3>
           <div className="space-y-3">
@@ -468,7 +473,7 @@ export default function DiagnosticCalculator() {
             onClick={exportAssumptions}
             className="inline-flex items-center gap-2 px-6 py-4 rounded-xl font-semibold border border-steel/40 text-white hover:border-neon hover:text-neon transition-all"
           >
-            <FileJson size={20} />
+            <DataFile size={20} />
             Export Assumptions (JSON)
           </button>
         </div>

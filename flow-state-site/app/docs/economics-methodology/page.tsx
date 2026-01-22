@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft } from '@/components/icons/FlowIcons';
 import { CANON_TERMS, METHODOLOGY_INTRO_PARAGRAPH, VARIANCE_TAX_CATEGORIES } from '@/lib/varianceTax';
 
 export const metadata: Metadata = {

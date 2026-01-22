@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Activity, Network, ChevronRight, Zap, TrendingUp } from 'lucide-react';
+import { Pulse, Nexus, ChevronRight, Velocity, Trending } from '@/components/icons/FlowIcons';
 import Card from '@/components/Card';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -34,7 +34,7 @@ export default function SimulationsPage() {
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-neon/10 px-4 py-2">
-                <Activity className="h-5 w-5 text-neon" />
+                <Pulse className="h-5 w-5 text-neon" />
                 <span className="font-semibold text-neon">Primo Simulation</span>
               </div>
               
@@ -51,23 +51,23 @@ export default function SimulationsPage() {
                   <h3 className="mb-2 font-semibold text-white">What Primo Models</h3>
                   <ul className="space-y-2 text-steel">
                     <li className="flex items-start gap-2">
-                      <Zap className="mt-1 h-4 w-4 flex-shrink-0 text-neon" />
+                      <Velocity className="mt-1 h-4 w-4 flex-shrink-0 text-neon" />
                       <span>Gate-in to gate-out cycle times</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Zap className="mt-1 h-4 w-4 flex-shrink-0 text-neon" />
+                      <Velocity className="mt-1 h-4 w-4 flex-shrink-0 text-neon" />
                       <span>Detention accrual and dispute patterns</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Zap className="mt-1 h-4 w-4 flex-shrink-0 text-neon" />
+                      <Velocity className="mt-1 h-4 w-4 flex-shrink-0 text-neon" />
                       <span>Labor allocation across shifts</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Zap className="mt-1 h-4 w-4 flex-shrink-0 text-neon" />
+                      <Velocity className="mt-1 h-4 w-4 flex-shrink-0 text-neon" />
                       <span>Throughput capacity constraints</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Zap className="mt-1 h-4 w-4 flex-shrink-0 text-neon" />
+                      <Velocity className="mt-1 h-4 w-4 flex-shrink-0 text-neon" />
                       <span>Exception handling costs</span>
                     </li>
                   </ul>
@@ -77,15 +77,15 @@ export default function SimulationsPage() {
                   <h3 className="mb-2 font-semibold text-white">Key Findings</h3>
                   <ul className="space-y-2 text-steel">
                     <li className="flex items-start gap-2">
-                      <TrendingUp className="mt-1 h-4 w-4 flex-shrink-0 text-neon" />
+                      <Trending className="mt-1 h-4 w-4 flex-shrink-0 text-neon" />
                       <span>Gate automation reduces cycle time by 40-60%</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <TrendingUp className="mt-1 h-4 w-4 flex-shrink-0 text-neon" />
+                      <Trending className="mt-1 h-4 w-4 flex-shrink-0 text-neon" />
                       <span>Detention savings: $200K-$800K per facility annually</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <TrendingUp className="mt-1 h-4 w-4 flex-shrink-0 text-neon" />
+                      <Trending className="mt-1 h-4 w-4 flex-shrink-0 text-neon" />
                       <span>Labor reduction: 2-6 FTE per facility</span>
                     </li>
                   </ul>
@@ -96,7 +96,7 @@ export default function SimulationsPage() {
                 href="/singularity"
                 className="mt-6 inline-flex items-center gap-2 rounded-xl border border-neon/40 bg-neon/5 px-6 py-3 font-semibold text-neon transition-all hover:bg-neon/10"
               >
-                Explore Network Intelligence
+                Explore Nexus Intelligence
                 <ChevronRight className="h-5 w-5" />
               </Link>
             </div>
@@ -145,12 +145,12 @@ export default function SimulationsPage() {
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
             <div className="lg:order-2">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-ember/10 px-4 py-2">
-                <Network className="h-5 w-5 text-ember" />
+                <Nexus className="h-5 w-5 text-ember" />
                 <span className="font-semibold text-ember">Singularity Simulation</span>
               </div>
               
               <h2 className="mb-4 text-3xl font-bold text-white">
-                Enterprise Network Effects
+                Enterprise Nexus Effects
               </h2>
               
               <p className="mb-6 text-lg text-steel">
@@ -162,23 +162,23 @@ export default function SimulationsPage() {
                   <h3 className="mb-2 font-semibold text-white">What Singularity Models</h3>
                   <ul className="space-y-2 text-steel">
                     <li className="flex items-start gap-2">
-                      <Zap className="mt-1 h-4 w-4 flex-shrink-0 text-ember" />
+                      <Velocity className="mt-1 h-4 w-4 flex-shrink-0 text-ember" />
                       <span>Cross-facility data sharing and learning</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Zap className="mt-1 h-4 w-4 flex-shrink-0 text-ember" />
+                      <Velocity className="mt-1 h-4 w-4 flex-shrink-0 text-ember" />
                       <span>Carrier performance benchmarking</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Zap className="mt-1 h-4 w-4 flex-shrink-0 text-ember" />
+                      <Velocity className="mt-1 h-4 w-4 flex-shrink-0 text-ember" />
                       <span>Predictive ETA improvements</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Zap className="mt-1 h-4 w-4 flex-shrink-0 text-ember" />
+                      <Velocity className="mt-1 h-4 w-4 flex-shrink-0 text-ember" />
                       <span>Coordination efficiency gains</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Zap className="mt-1 h-4 w-4 flex-shrink-0 text-ember" />
+                      <Velocity className="mt-1 h-4 w-4 flex-shrink-0 text-ember" />
                       <span>Negotiation leverage from aggregated data</span>
                     </li>
                   </ul>
@@ -188,15 +188,15 @@ export default function SimulationsPage() {
                   <h3 className="mb-2 font-semibold text-white">Key Findings</h3>
                   <ul className="space-y-2 text-steel">
                     <li className="flex items-start gap-2">
-                      <TrendingUp className="mt-1 h-4 w-4 flex-shrink-0 text-ember" />
-                      <span>Network effects minimal until 10+ facilities</span>
+                      <Trending className="mt-1 h-4 w-4 flex-shrink-0 text-ember" />
+                      <span>Nexus effects minimal until 10+ facilities</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <TrendingUp className="mt-1 h-4 w-4 flex-shrink-0 text-ember" />
+                      <Trending className="mt-1 h-4 w-4 flex-shrink-0 text-ember" />
                       <span>At 50 facilities: 1.12x value multiplier</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <TrendingUp className="mt-1 h-4 w-4 flex-shrink-0 text-ember" />
+                      <Trending className="mt-1 h-4 w-4 flex-shrink-0 text-ember" />
                       <span>At 200 facilities: 1.18x value multiplier</span>
                     </li>
                   </ul>
@@ -213,7 +213,7 @@ export default function SimulationsPage() {
             </div>
             
             <div className="rounded-lg border border-steel/20 bg-carbon/20 p-8 lg:order-1">
-              <h3 className="mb-4 text-xl font-semibold text-white">Network Effect Growth Curve</h3>
+              <h3 className="mb-4 text-xl font-semibold text-white">Nexus Effect Growth Curve</h3>
               <div className="space-y-4">
                 <div className="rounded-lg border border-ember/20 bg-void/50 p-4">
                   <div className="mb-2 flex items-center justify-between">
@@ -234,7 +234,7 @@ export default function SimulationsPage() {
                   <div className="h-2 overflow-hidden rounded-full bg-steel/20">
                     <div className="h-full w-[8%] bg-ember"></div>
                   </div>
-                  <p className="mt-1 text-xs text-steel">Network effects emerging</p>
+                  <p className="mt-1 text-xs text-steel">Nexus effects emerging</p>
                 </div>
                 
                 <div className="rounded-lg border border-ember/20 bg-void/50 p-4">

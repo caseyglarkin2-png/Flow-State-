@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import { FlowArrow } from '@/components/icons/FlowIcons';
 
 /**
  * OPERATING MODEL COMPARISON
@@ -132,7 +132,7 @@ export default function OperatingModelComparison() {
       <div className="bg-carbon/50 border border-neon/30 rounded-xl p-8 text-center">
         <div className="flex items-center justify-center gap-6 mb-4">
           <span className="text-ember font-bold">Record Events</span>
-          <ArrowRight className="text-neon" size={32} />
+          <FlowArrow className="text-neon" size={32} />
           <span className="text-neon font-bold">Enforce Control</span>
         </div>
         <p className="text-steel/80 max-w-2xl mx-auto">

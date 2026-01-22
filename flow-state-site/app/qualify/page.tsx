@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 import Card from '@/components/Card';
 import LeadForm from '@/components/LeadForm';
 import { BRAND, getBrandedTitle } from '@/config/brand';
-import { Shield, DollarSign, Warehouse, Users } from 'lucide-react';
+import { Shield, Currency, Facility, Team } from '@/components/icons/FlowIcons';
 
 export const metadata: Metadata = {
   title: getBrandedTitle('See If You Qualify'),
@@ -19,7 +19,7 @@ interface QualifyContentProps {
 
 const INTENT_CONFIG = {
   founding: {
-    icon: Users,
+    icon: Team,
     title: 'See If You Qualify',
     subtitle: 'Co-Development Program. Founding partner pricing. Limited spots for multi-facility operators.',
     bullets: [
@@ -47,7 +47,7 @@ const INTENT_CONFIG = {
     leadType: 'quote' as const,
   },
   roi: {
-    icon: DollarSign,
+    icon: Currency,
     title: 'Executive ROI Review',
     subtitle: 'Board-ready economics model and 5-year value projection.',
     bullets: [
@@ -61,7 +61,7 @@ const INTENT_CONFIG = {
     leadType: 'quote' as const,
   },
   ops: {
-    icon: Warehouse,
+    icon: Facility,
     title: 'Yard Readiness Assessment',
     subtitle: 'Operational audit and implementation roadmap.',
     bullets: [
@@ -132,21 +132,21 @@ function QualifyContent({ intent }: QualifyContentProps) {
               href="/roi"
               className="inline-flex flex-col items-center justify-center px-6 py-4 rounded-xl font-semibold border border-neon/20 bg-carbon/50 text-white hover:border-neon/40 transition-all text-center"
             >
-              <DollarSign size={24} className="text-neon mb-2" />
+              <Currency size={24} className="text-neon mb-2" />
               <span>Calculate ROI</span>
             </a>
             <a
               href="/yardbuilder"
               className="inline-flex flex-col items-center justify-center px-6 py-4 rounded-xl font-semibold border-2 border-steel/30 text-white hover:border-neon/40 transition-all text-center"
             >
-              <Warehouse size={24} className="text-neon mb-2" />
+              <Facility size={24} className="text-neon mb-2" />
               <span>Yard Audit</span>
             </a>
             <a
               href="/contact"
               className="inline-flex flex-col items-center justify-center px-6 py-4 rounded-xl font-semibold border-2 border-steel/30 text-white hover:border-neon/40 transition-all text-center"
             >
-              <Users size={24} className="text-neon mb-2" />
+              <Team size={24} className="text-neon mb-2" />
               <span>Book Demo</span>
             </a>
           </div>

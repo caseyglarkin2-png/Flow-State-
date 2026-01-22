@@ -5,8 +5,7 @@ import { analytics } from '@/lib/analytics';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Card from '@/components/Card';
-import { Velocity, Ignite, FlowArrow, Metrics, Cortex } from '@/components/icons/FlowIcons';
-import { MapPin, Building2, Users, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Velocity, Ignite, FlowArrow, Metrics, Cortex, Beacon, Facility, Team, Confirm, ChevronRight } from '@/components/icons/FlowIcons';
 
 type FacilityType = 'dc' | 'plant' | 'cross-dock' | 'terminal' | 'yard';
 type Pain = 'detention' | 'gate' | 'labor' | 'visibility' | 'throughput';
@@ -59,7 +58,7 @@ export default function YardBuilderPage() {
 
   const deliverables = [
     {
-      icon: MapPin,
+      icon: Beacon,
       title: 'Satellite Facility Mapping',
       description: 'We analyze your facility layout using satellite imagery and your operational data.',
     },
@@ -105,7 +104,7 @@ export default function YardBuilderPage() {
             href="#request-form"
             className="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-neon text-void font-semibold rounded-xl hover:bg-white transition-all"
           >
-            Request Your Digital Twin <ArrowRight size={18} />
+            Request Your Digital Twin <ChevronRight size={18} />
           </a>
         </div>
       </section>
@@ -160,7 +159,7 @@ export default function YardBuilderPage() {
           {formState === 'success' ? (
             <Card className="border-neon/30 text-center py-12">
               <div className="w-16 h-16 rounded-full bg-neon/10 flex items-center justify-center mx-auto mb-6">
-                <CheckCircle2 size={32} className="text-neon" />
+                <Confirm size={32} className="text-neon" />
               </div>
               <h2 className="text-2xl font-semibold text-white mb-4">Request Received</h2>
               <p className="text-steel mb-6 max-w-md mx-auto">
@@ -183,7 +182,7 @@ export default function YardBuilderPage() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <Card className="border-neon/20">
                   <h3 className="font-semibold text-neon mb-4 flex items-center gap-2">
-                    <Users size={18} /> Contact Information
+                    <Team size={18} /> Contact Information
                   </h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
@@ -234,7 +233,7 @@ export default function YardBuilderPage() {
 
                 <Card className="border-neon/20">
                   <h3 className="font-semibold text-neon mb-4 flex items-center gap-2">
-                    <Building2 size={18} /> Facility Details
+                    <Facility size={18} /> Facility Details
                   </h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
@@ -325,7 +324,7 @@ export default function YardBuilderPage() {
                     </>
                   ) : (
                     <>
-                      Request Digital Twin <ArrowRight size={18} />
+                      Request Digital Twin <ChevronRight size={18} />
                     </>
                   )}
                 </button>

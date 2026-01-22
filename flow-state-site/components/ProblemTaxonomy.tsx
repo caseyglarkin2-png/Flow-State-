@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Check, X } from 'lucide-react';
+import { Confirm, Dismiss } from '@/components/icons/FlowIcons';
 
 /**
  * PROBLEM TAXONOMY VISUAL
@@ -66,7 +66,7 @@ export default function ProblemTaxonomy() {
         <div className="rounded-lg border-2 border-neon bg-neon/5 p-6">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-8 h-8 rounded-full bg-neon flex items-center justify-center">
-              <Check size={18} className="text-void" />
+              <Confirm size={18} className="text-void" />
             </div>
             <h3 className="text-lg font-bold text-neon">Universal (5)</h3>
           </div>
@@ -76,7 +76,7 @@ export default function ProblemTaxonomy() {
           <ul className="space-y-2">
             {universalProblems.map((problem, i) => (
               <li key={i} className="flex items-start gap-2 text-sm">
-                <Check size={14} className="text-neon mt-0.5 flex-shrink-0" />
+                <Confirm size={14} className="text-neon mt-0.5 flex-shrink-0" />
                 <span className="text-steel/90">{problem}</span>
               </li>
             ))}
@@ -87,7 +87,7 @@ export default function ProblemTaxonomy() {
         <div className="rounded-lg border-2 border-neon/60 bg-neon/5 p-6">
           <div className="flex items-center gap-2 mb-4">
             <div className="w-8 h-8 rounded-full bg-neon/60 flex items-center justify-center">
-              <Check size={18} className="text-void" />
+              <Confirm size={18} className="text-void" />
             </div>
             <h3 className="text-lg font-bold text-white">Per-Yard Top (5)</h3>
           </div>
@@ -97,7 +97,7 @@ export default function ProblemTaxonomy() {
           <ul className="space-y-2">
             {perYardProblems.map((problem, i) => (
               <li key={i} className="flex items-start gap-2 text-sm">
-                <Check size={14} className="text-neon/70 mt-0.5 flex-shrink-0" />
+                <Confirm size={14} className="text-neon/70 mt-0.5 flex-shrink-0" />
                 <span className="text-steel/90">{problem}</span>
               </li>
             ))}

@@ -6,7 +6,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown } from '@/components/icons/FlowIcons';
 
 interface DisclosureProps {
   title: string;

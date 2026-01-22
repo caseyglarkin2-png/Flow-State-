@@ -71,6 +71,45 @@ export const Dismiss: React.FC<IconProps> = ({ size = defaults.size, className }
   </svg>
 );
 
+// ChevronDown - Expand, dropdown, more
+export const ChevronDown: React.FC<IconProps> = ({ size = defaults.size, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+    <path 
+      d="M6 9l6 6 6-6" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+// ChevronRight - Next, forward, navigate
+export const ChevronRight: React.FC<IconProps> = ({ size = defaults.size, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+    <path 
+      d="M9 6l6 6-6 6" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+// ChevronLeft - Previous, back, navigate
+export const ChevronLeft: React.FC<IconProps> = ({ size = defaults.size, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+    <path 
+      d="M15 6l-6 6 6 6" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 // ═══════════════════════════════════════════════════════════════
 // ENERGY / POWER ICONS
 // ═══════════════════════════════════════════════════════════════
@@ -139,6 +178,26 @@ export const Config: React.FC<IconProps> = ({ size = defaults.size, className })
       stroke="currentColor" 
       strokeWidth="1.5" 
       strokeLinecap="round"
+    />
+  </svg>
+);
+
+// Trending - Growth, increase, upward
+export const Trending: React.FC<IconProps> = ({ size = defaults.size, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+    <path 
+      d="M3 17l6-6 4 4 8-8" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
+    />
+    <path 
+      d="M14 7h7v7" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -257,6 +316,103 @@ export const Crosshair: React.FC<IconProps> = ({ size = defaults.size, className
     <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="1" opacity="0.5" />
     <path d="M12 2v4M12 18v4M2 12h4M18 12h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+  </svg>
+);
+
+// ═══════════════════════════════════════════════════════════════
+// PEOPLE / ORGANIZATION ICONS
+// ═══════════════════════════════════════════════════════════════
+
+// Team - Users, people, group
+export const Team: React.FC<IconProps> = ({ size = defaults.size, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+    <circle cx="9" cy="7" r="3" stroke="currentColor" strokeWidth="1.5" />
+    <circle cx="17" cy="7" r="2.5" stroke="currentColor" strokeWidth="1.5" opacity="0.6" />
+    <path 
+      d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" 
+      stroke="currentColor" 
+      strokeWidth="1.5" 
+      strokeLinecap="round"
+    />
+    <path 
+      d="M17 15a3 3 0 0 1 3 3v3" 
+      stroke="currentColor" 
+      strokeWidth="1.5" 
+      strokeLinecap="round"
+      opacity="0.6"
+    />
+  </svg>
+);
+
+// Portfolio - Briefcase, business, executive
+export const Portfolio: React.FC<IconProps> = ({ size = defaults.size, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+    <rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M2 12h20" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+    <rect x="10" y="10" width="4" height="4" rx="1" fill="currentColor" opacity="0.3" />
+  </svg>
+);
+
+// Currency - Dollar, money, finance
+export const Currency: React.FC<IconProps> = ({ size = defaults.size, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+    <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5" />
+    <path 
+      d="M12 6v12M8 9.5c0-1.5 1.5-2.5 4-2.5s4 1 4 2.5-1.5 2.5-4 3-4 1.5-4 3 1.5 2.5 4 2.5 4-1 4-2.5" 
+      stroke="currentColor" 
+      strokeWidth="1.5" 
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+// Facility - Warehouse, building, structure
+export const Facility: React.FC<IconProps> = ({ size = defaults.size, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+    <path d="M3 21V8l9-6 9 6v13" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    <path d="M3 21h18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <rect x="8" y="12" width="8" height="9" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M12 12v9" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+  </svg>
+);
+
+// Server - Infrastructure, compute, system
+export const Server: React.FC<IconProps> = ({ size = defaults.size, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+    <rect x="3" y="4" width="18" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+    <rect x="3" y="14" width="18" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+    <circle cx="7" cy="7" r="1" fill="currentColor" />
+    <circle cx="7" cy="17" r="1" fill="currentColor" />
+    <path d="M11 7h6M11 17h6" stroke="currentColor" strokeWidth="1" opacity="0.4" />
+  </svg>
+);
+
+// External - Link out, open external
+export const External: React.FC<IconProps> = ({ size = defaults.size, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M15 3h6v6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M10 14L21 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+// Export - Download, save
+export const Export: React.FC<IconProps> = ({ size = defaults.size, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M7 10l5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M12 15V3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+// DataFile - JSON, data document
+export const DataFile: React.FC<IconProps> = ({ size = defaults.size, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    <path d="M14 2v6h6" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+    <path d="M8 13h3M8 17h5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.6" />
+    <circle cx="16" cy="15" r="2" stroke="currentColor" strokeWidth="1" opacity="0.4" />
   </svg>
 );
 
@@ -480,6 +636,9 @@ const FlowIcons = {
   Pulse,
   Confirm,
   Dismiss,
+  ChevronDown,
+  ChevronRight,
+  ChevronLeft,
   // Energy
   Velocity,
   Ignite,
@@ -488,6 +647,7 @@ const FlowIcons = {
   Timeline,
   Scope,
   Config,
+  Trending,
   // Location
   Nexus,
   Beacon,
@@ -500,6 +660,15 @@ const FlowIcons = {
   Cortex,
   Agent,
   Crosshair,
+  // People
+  Team,
+  Portfolio,
+  Currency,
+  Facility,
+  Server,
+  External,
+  Export,
+  DataFile,
   // Logistics
   Haul,
   Cargo,
@@ -518,6 +687,7 @@ const FlowIcons = {
   Prism,
   // Archetypes
   DryVan,
+  Reefer,
   Intermodal,
   Flatbed,
   Tanker,

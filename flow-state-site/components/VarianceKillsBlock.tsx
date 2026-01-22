@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Card from '@/components/Card';
-import { AlertTriangle, TrendingUp } from 'lucide-react';
+import { Caution, Trending } from '@/components/icons/FlowIcons';
 
 interface DwellDataPoint {
   day: string;
@@ -82,7 +82,7 @@ export default function VarianceKillsBlock() {
       <div className="flex items-start justify-between">
         <div>
           <h3 className="text-xl font-bold text-white flex items-center gap-2">
-            <AlertTriangle className="text-ember" size={22} />
+            <Caution className="text-ember" size={22} />
             Variance Kills More Than Averages Show
           </h3>
           <p className="text-steel/70 text-sm mt-1">
@@ -190,7 +190,7 @@ export default function VarianceKillsBlock() {
       {/* Key Insight */}
       <Card className="p-5 border-ember/30 bg-ember/5">
         <div className="flex items-start gap-4">
-          <TrendingUp className="text-ember flex-shrink-0 mt-1" size={24} />
+          <Trending className="text-ember flex-shrink-0 mt-1" size={24} />
           <div>
             <p className="text-white font-semibold mb-2">
               The insight CFOs miss:

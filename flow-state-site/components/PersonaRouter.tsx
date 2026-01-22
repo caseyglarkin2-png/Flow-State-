@@ -5,11 +5,11 @@
 
 import Link from 'next/link';
 import { PERSONA_CTAS } from '@/content/ctas';
-import { DollarSign, Warehouse, Shield } from 'lucide-react';
+import { Currency, Facility, Shield } from '@/components/icons/FlowIcons';
 
 const iconMap = {
-  DollarSign: DollarSign,
-  Warehouse: Warehouse,
+  Currency: Currency,
+  Facility: Facility,
   Shield: Shield,
 };
 
@@ -40,7 +40,7 @@ export default function PersonaRouter() {
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {personas.map(({ role, config }) => {
-            const IconComponent = iconMap[config.icon as keyof typeof iconMap] || DollarSign;
+            const IconComponent = iconMap[config.icon as keyof typeof iconMap] || Currency;
             
             return (
               <Link

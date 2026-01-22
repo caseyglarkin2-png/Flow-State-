@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { FileText, Clock, Users, ArrowRight, Sparkles } from "lucide-react";
+import { Manifest, Timeline, Team, FlowArrow, Genesis } from "@/components/icons/FlowIcons";
 
 const fieldNotes = [
   {
@@ -78,7 +78,7 @@ export default function FieldNotesIndexPage() {
             {/* Badge */}
             <motion.div variants={heroItemVariants} className="mb-6">
               <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neon/10 border border-neon/30 text-neon text-xs uppercase tracking-wider font-medium">
-                <FileText size={14} />
+                <Manifest size={14} />
                 Research Library
               </span>
             </motion.div>
@@ -141,13 +141,13 @@ export default function FieldNotesIndexPage() {
                     {/* Header */}
                     <div className="flex items-start justify-between mb-4">
                       <div className="p-2.5 rounded-lg bg-neon/10 border border-neon/20 group-hover:bg-neon/20 transition-colors">
-                        <FileText
+                        <Manifest
                           size={20}
                           className="text-neon"
                         />
                       </div>
                       <div className="flex items-center gap-2 text-steel/60">
-                        <Clock size={14} />
+                        <Timeline size={14} />
                         <span className="text-xs">{note.readTime}</span>
                       </div>
                     </div>
@@ -175,12 +175,12 @@ export default function FieldNotesIndexPage() {
                             key={a}
                             className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full bg-void border border-neon/20 text-steel/80"
                           >
-                            <Users size={12} />
+                            <Team size={12} />
                             {a}
                           </span>
                         ))}
                       </div>
-                      <ArrowRight
+                      <FlowArrow
                         size={18}
                         className="text-neon/50 group-hover:text-neon group-hover:translate-x-1 transition-all"
                       />
@@ -206,7 +206,7 @@ export default function FieldNotesIndexPage() {
                   variants={itemVariants}
                   className="p-4 rounded-xl bg-neon/10 border border-neon/30"
                 >
-                  <Sparkles size={32} className="text-neon" />
+                  <Genesis size={32} className="text-neon" />
                 </motion.div>
 
                 <div className="flex-1">
@@ -232,7 +232,7 @@ export default function FieldNotesIndexPage() {
                     className="inline-flex items-center gap-2 px-6 py-3 bg-neon text-void font-semibold rounded-lg hover:bg-neon/90 transition-colors group"
                   >
                     <span>Apply for Co-Development</span>
-                    <ArrowRight
+                    <FlowArrow
                       size={18}
                       className="transition-transform group-hover:translate-x-1"
                     />

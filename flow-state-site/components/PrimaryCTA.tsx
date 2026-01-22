@@ -5,14 +5,13 @@
 
 import Link from 'next/link';
 import { PRIMARY_CTA, SECONDARY_CTA, getCTAConfig } from '@/content/ctas';
-import { Crosshair, DollarSign, Warehouse, Shield } from 'lucide-react';
-import { Nexus } from './icons/FlowIcons';
+import { Crosshair, Currency, Facility, Shield, Nexus } from '@/components/icons/FlowIcons';
 
 const iconMap = {
   Crosshair: Crosshair,
   Nexus: Nexus,
-  DollarSign: DollarSign,
-  Warehouse: Warehouse,
+  Currency: Currency,
+  Facility: Facility,
   Shield: Shield,
 };
 
