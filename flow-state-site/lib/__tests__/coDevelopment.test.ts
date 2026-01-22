@@ -429,3 +429,70 @@ describe('Prerequisites Validity', () => {
     expect(rtls?.prerequisites.length).toBeGreaterThanOrEqual(4);
   });
 });
+describe('Partnership Clarity (Sprint 4)', () => {
+  it('has exactly 3 clarity sections', () => {
+    expect(coDevContent.partnershipClarity.length).toBe(3);
+  });
+
+  it('clarity sections have correct IDs', () => {
+    const ids = coDevContent.partnershipClarity.map((c) => c.id);
+    expect(ids).toContain('what-you-get');
+    expect(ids).toContain('what-we-build');
+    expect(ids).toContain('what-gets-productized');
+  });
+
+  it('each clarity section has at least 3 items', () => {
+    coDevContent.partnershipClarity.forEach((clarity) => {
+      expect(clarity.items.length).toBeGreaterThanOrEqual(3);
+    });
+  });
+
+  it('clarity sections have valid icons', () => {
+    coDevContent.partnershipClarity.forEach((clarity) => {
+      expect(MODULE_ICONS).toContain(clarity.icon);
+    });
+  });
+});
+
+describe('Partner Benefits (Sprint 4)', () => {
+  it('roadmap and artifacts have Evidence Vault links', () => {
+    const roadmap = coDevContent.partnerBenefits.find((b) => b.id === 'roadmap');
+    const artifacts = coDevContent.partnerBenefits.find((b) => b.id === 'artifacts');
+    
+    expect(roadmap?.link).toBeDefined();
+    expect(roadmap?.link?.href).toContain('/resources');
+    
+    expect(artifacts?.link).toBeDefined();
+    expect(artifacts?.link?.href).toContain('/resources');
+  });
+
+  it('links have labels', () => {
+    coDevContent.partnerBenefits.forEach((benefit) => {
+      if (benefit.link) {
+        expect(benefit.link.label.length).toBeGreaterThan(0);
+      }
+    });
+  });
+});
+
+describe('Eligibility Criteria (Phase 1 Narrative)', () => {
+  it('eligibility mentions protocol standardization', () => {
+    const allCriteria = coDevContent.eligibilityCriteria
+      .flatMap((card) => card.criteria)
+      .join(' ')
+      .toLowerCase();
+    
+    expect(allCriteria).toMatch(/protocol|standardize|phase 1|baseline/i);
+  });
+
+  it('eligibility does NOT require RTLS-specific criteria', () => {
+    const allCriteria = coDevContent.eligibilityCriteria
+      .flatMap((card) => card.criteria)
+      .join(' ')
+      .toLowerCase();
+    
+    expect(allCriteria).not.toMatch(/\brtls\b/i);
+    expect(allCriteria).not.toMatch(/\bcamera\b/i);
+    expect(allCriteria).not.toMatch(/\bvision\b/i);
+  });
+});

@@ -92,8 +92,33 @@ class Analytics {
   completeDiagnostic(properties?: Record<string, any>) {
     this.track('complete_diagnostic', properties);
   }
-}
 
+  // Co-Development Program Events
+  // See: docs/codev_program_sprint_plan.md for event schema
+  codevPageView(properties: { source: string; referrer?: string }) {
+    this.track('codev_page_view', properties);
+  }
+
+  codevCtaClick(properties: { cta_type: 'apply' | 'book_audit'; position: 'hero' | 'mid' | 'bottom' }) {
+    this.track('codev_cta_click', properties);
+  }
+
+  codevPhaseExpand(properties: { phase_number: 1 | 2 | 3 }) {
+    this.track('codev_phase_expand', properties);
+  }
+
+  codevModuleView(properties: { module_id: string; phase: number }) {
+    this.track('codev_module_view', properties);
+  }
+
+  codevFaqExpand(properties: { faq_id: string }) {
+    this.track('codev_faq_expand', properties);
+  }
+
+  codevScrollDepth(properties: { depth: 25 | 50 | 75 | 100 }) {
+    this.track('codev_scroll_depth', properties);
+  }
+}
 // Singleton instance
 export const analytics = new Analytics();
 

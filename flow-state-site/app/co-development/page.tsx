@@ -10,7 +10,9 @@
  * Outcome: Book Network Audit call or apply for co-dev program
  */
 
-import React from 'react';
+'use client';
+
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -18,6 +20,7 @@ import CTAGroup from '@/components/CTAGroup';
 import Card from '@/components/Card';
 import CoDevRolloutPhases from '@/components/CoDevRolloutPhases';
 import { BRAND } from '@/config/brand';
+import { useAnalytics } from '@/lib/analytics';
 import { 
   Ignite, 
   Cortex, 
@@ -36,14 +39,10 @@ import {
   type CoDevModule,
   type EligibilityCard,
   type PartnerBenefit,
+  type PartnershipClarity,
   type HowItWorksStep,
   type FAQItem,
 } from '@/src/content/coDevelopment';
-
-export const metadata = {
-  title: 'Co-Development Program | YardFlow by FreightRoll',
-  description: 'Build the Yard Network System with us. Multi-site operators: get roadmap influence, priority onboarding, and co-developed features.',
-};
 
 // Icon mapping for dynamic rendering
 const iconMap = {
@@ -158,7 +157,15 @@ function PartnerBenefitCard({ benefit }: { benefit: PartnerBenefit }) {
     <Card className="p-6">
       <Icon size={28} className="text-neon mb-3" />
       <h3 className="text-xl font-bold text-white mb-2">{benefit.title}</h3>
-      <p className="text-steel/90 text-sm">{benefit.description}</p>
+      <p className="text-steel/90 text-sm mb-3">{benefit.description}</p>
+      {benefit.link && (
+        <Link 
+          href={benefit.link.href}
+          className="text-neon text-sm font-semibold hover:underline inline-flex items-center gap-1"
+        >
+          {benefit.link.label} →
+        </Link>
+      )}
     </Card>
   );
 }
@@ -197,7 +204,34 @@ export default function CoDevelopmentPage() {
   const phase2Modules = getModulesByPhase(2);
   const phase3Modules = getModulesByPhase(3);
   const advancedModules = [...phase2Modules, ...phase3Modules];
+  const analytics = useAnalytics();
 
+  // Track page view on mount
+  useEffect(() => {
+    analytics.codevPageView({
+      source: typeof window !== 'undefined' ? new URL(window.location.href).searchParams.get('utm_source') || 'direct' : 'direct',
+      referrer: typeof document !== 'undefined' ? document.referrer || undefined : undefined,
+    });
+
+    // Scroll depth tracking
+    const thresholds = [25, 50, 75, 100] as const;
+    const trackedDepths = new Set<typeof thresholds[number]>();
+
+    const handleScroll = () => {
+      const scrollPercent = Math.round(
+        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+      );
+      for (const threshold of thresholds) {
+        if (scrollPercent >= threshold && !trackedDepths.has(threshold)) {
+          trackedDepths.add(threshold);
+          analytics.codevScrollDepth({ depth: threshold });
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [analytics]);
   return (
     <div className="min-h-screen bg-void">
       <Header />
@@ -305,6 +339,36 @@ export default function CoDevelopmentPage() {
           <p className="mt-8 text-center text-steel/60 text-sm max-w-3xl mx-auto">
             Co-developed features become part of the core product. You influence the roadmap. We productize the solution for the network.
           </p>
+        </div>
+      </section>
+
+      {/* Partnership Clarity - What You Get / Build / Productize */}
+      <section className="py-20 border-b border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-4xl font-black mb-3 text-center">How the Partnership Works</h2>
+          <p className="text-steel/80 mb-12 text-center max-w-3xl mx-auto">
+            Clear ownership. Clear outcomes. No surprises.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {coDevContent.partnershipClarity.map((clarity) => {
+              const Icon = getIcon(clarity.icon);
+              return (
+                <Card key={clarity.id} className="p-6 border-neon/20">
+                  <Icon size={28} className="text-neon mb-4" />
+                  <h3 className="text-xl font-bold text-white mb-4">{clarity.title}</h3>
+                  <ul className="space-y-2">
+                    {clarity.items.map((item, i) => (
+                      <li key={i} className="text-steel/80 text-sm flex items-start gap-2">
+                        <Confirm size={14} className="text-neon flex-shrink-0 mt-1" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </Card>
+              );
+            })}
+          </div>
         </div>
       </section>
 

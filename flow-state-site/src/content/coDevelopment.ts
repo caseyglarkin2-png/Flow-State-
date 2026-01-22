@@ -75,11 +75,22 @@ export interface HowItWorksStep {
   description: string;
 }
 
+export interface PartnershipClarity {
+  id: string;
+  title: string;
+  items: string[];
+  icon: ModuleIcon;
+}
+
 export interface PartnerBenefit {
   id: string;
   title: string;
   description: string;
   icon: ModuleIcon;
+  link?: {
+    href: string;
+    label: string;
+  };
 }
 
 export interface CoDevContent {
@@ -99,6 +110,7 @@ export interface CoDevContent {
   phases: CoDevPhase[];
   modules: CoDevModule[];
   eligibilityCriteria: EligibilityCard[];
+  partnershipClarity: PartnershipClarity[];
   howItWorks: HowItWorksStep[];
   partnerBenefits: PartnerBenefit[];
   faq: FAQItem[];
@@ -291,7 +303,7 @@ export const eligibilityCriteria: EligibilityCard[] = [
     icon: 'Agent',
     criteria: [
       '10+ facilities (ideally 20–50 sites)',
-      'Mix of complex modes (reefer, flatbed, intermodal)',
+      'Ready to standardize protocols across sites',
       'High-volume yards (100+ trucks/day per site)',
     ],
   },
@@ -301,18 +313,18 @@ export const eligibilityCriteria: EligibilityCard[] = [
     icon: 'Cortex',
     criteria: [
       'VP/SVP Operations with exec sponsorship',
-      'Willing to pilot at 1–2 sites quickly',
+      'Willing to pilot Phase 1 at 1–2 sites quickly',
       'Can commit ops + IT resources for integration',
     ],
   },
   {
     id: 'problems',
-    title: 'Real Problems',
+    title: 'Real Problems Worth Solving',
     icon: 'Velocity',
     criteria: [
       'Dwell >60 min causing detention hemorrhage',
-      'Yard capacity constraints blocking growth',
-      'No unified view across facilities',
+      'No unified protocol across facilities',
+      'Ready to build the network baseline first',
     ],
   },
 ];
@@ -320,6 +332,42 @@ export const eligibilityCriteria: EligibilityCard[] = [
 // =============================================================================
 // HOW IT WORKS (Aligned with rollout strategy)
 // =============================================================================
+
+export const partnershipClarity: PartnershipClarity[] = [
+  {
+    id: 'what-you-get',
+    title: 'What You Get',
+    icon: 'Agent',
+    items: [
+      'Priority access to new features',
+      'Dedicated onboarding team',
+      'Weekly product syncs',
+      'Favorable partner economics',
+    ],
+  },
+  {
+    id: 'what-we-build',
+    title: 'What We Build Together',
+    icon: 'Cortex',
+    items: [
+      'Features shaped by your ops reality',
+      'Integrations to your stack',
+      'Workflows for your use cases',
+      'Reports your CFO actually needs',
+    ],
+  },
+  {
+    id: 'what-gets-productized',
+    title: 'What Gets Productized',
+    icon: 'Nexus',
+    items: [
+      'Co-developed features become core',
+      'Your patterns inform the platform',
+      'Network benefits from your input',
+      'You keep competitive advantage',
+    ],
+  },
+];
 
 export const howItWorks: HowItWorksStep[] = [
   {
@@ -354,6 +402,10 @@ export const partnerBenefits: PartnerBenefit[] = [
     title: 'Roadmap Influence',
     description: 'Co-developed features become part of the core product. Your operational needs drive what we build next.',
     icon: 'Shield',
+    link: {
+      href: '/resources#product-roadmap',
+      label: 'View product roadmap',
+    },
   },
   {
     id: 'priority',
@@ -372,6 +424,10 @@ export const partnerBenefits: PartnerBenefit[] = [
     title: 'Board-Ready Artifacts',
     description: 'ROI reports, executive dashboards, compliance documentation. Make the business case internally with data-backed proof.',
     icon: 'Agent',
+    link: {
+      href: '/resources#board-artifacts',
+      label: 'See artifact examples',
+    },
   },
 ];
 
@@ -466,6 +522,7 @@ export const coDevContent: CoDevContent = {
   phases,
   modules,
   eligibilityCriteria,
+  partnershipClarity,
   howItWorks,
   partnerBenefits,
   faq,

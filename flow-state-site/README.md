@@ -254,6 +254,46 @@ See also:
 - [ADOPTION_SEMANTICS.md](../docs/ADOPTION_SEMANTICS.md) - Adoption % narrative-only rule
 - [ECONOMICS_AUDIT.md](../docs/ECONOMICS_AUDIT.md) - Formula audit trail, baselines, approval workflow
 
+## Content Models
+
+### Co-Development Program (`src/content/coDevelopment.ts`)
+
+Typed content model for the co-development program page. Enforces rollout strategy alignment:
+`Network → Protocols → Interoperable Data → Multi-site Adoption → RTLS`
+
+**Key Exports:**
+```typescript
+import { 
+  coDevContent,       // Full content object
+  modules,            // All 5 modules with phase assignments
+  phases,             // 3 phases with availability
+  getModulesByPhase,  // Filter modules by phase (1, 2, 3)
+  getPhase,           // Get phase details by number
+  hasPrerequisites,   // Check if module requires Phase 1
+  MODULE_ICONS,       // Type-safe icon union
+} from '@/src/content/coDevelopment';
+```
+
+**Type Safety:**
+- `PhaseNumber` = `1 | 2 | 3`
+- `ModuleIcon` = `'Agent' | 'Velocity' | 'Cortex' | 'Ignite' | 'Shield' | 'Nexus' | 'Timeline'`
+- RTLS is always Phase 3 (enforced by 51 regression tests)
+
+**Testing:**
+```bash
+# Run co-dev content tests
+npm run test:unit -- lib/__tests__/coDevelopment.test.ts
+
+# Key test invariants:
+# - RTLS has phase >= 2 (actually 3)
+# - RTLS has 4 prerequisites
+# - MODULE_ICONS matches icon usage in modules
+# - All phases have estimatedAvailability
+# - "Why This Order" has 4 reasons
+```
+
+**Sprint Plan:** See [codev_program_sprint_plan.md](../docs/codev_program_sprint_plan.md) for implementation roadmap.
+
 ## SEO
 
 - Meta tags configured for each page
