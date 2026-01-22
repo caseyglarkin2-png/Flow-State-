@@ -22,6 +22,13 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'The Logistics Singularity | YardFlow',
+    description: 'Interactive network effect simulation. Watch facilities transform.',
+    images: [`${siteUrl}/api/og`],
+    creator: '@freightroll',
+  },
 };
 
 export default function SingularityLayout({ children }: { children: React.ReactNode }) {

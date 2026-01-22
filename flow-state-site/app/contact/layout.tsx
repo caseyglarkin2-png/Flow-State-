@@ -21,6 +21,13 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: `Contact | ${siteName}`,
+    description: 'Book a 30-minute network audit. Get a rollout plan. Zero fluff.',
+    images: [`${siteUrl}/api/og?page=contact`],
+    creator: '@freightroll',
+  },
 };
 
 export default function ContactLayout({ children }: { children: React.ReactNode }) {

@@ -20,6 +20,13 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Variance Tax Diagnostic | YardFlow',
+    description: 'Calculate your hidden Variance Tax in 60 seconds.',
+    images: [`${siteUrl}/api/og?page=diagnostic`],
+    creator: '@freightroll',
+  },
 };
 
 export default function DiagnosticLayout({

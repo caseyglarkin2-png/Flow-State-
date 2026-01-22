@@ -21,6 +21,13 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: `About | ${siteName}`,
+    description: 'From FreightRoll to YardFlow. The evolution of enterprise yard management.',
+    images: [`${siteUrl}/api/og?page=about`],
+    creator: '@freightroll',
+  },
 };
 
 export default function AboutLayout({ children }: { children: React.ReactNode }) {

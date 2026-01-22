@@ -31,6 +31,13 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Network Effect | YardFlow',
+    description: 'How facilities compound value as network adoption grows.',
+    images: [`${siteUrl}/api/og`],
+    creator: '@freightroll',
+  },
 };
 
 export default function NetworkEffectLayout({

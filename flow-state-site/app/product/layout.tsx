@@ -22,6 +22,13 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Product | YardFlow by FreightRoll',
+    description: 'Complete yard orchestration platform. Gate → Dock → Move → Integrate.',
+    images: [`${siteUrl}/api/og`],
+    creator: '@freightroll',
+  },
 };
 
 export default function ProductLayout({ children }: { children: React.ReactNode }) {

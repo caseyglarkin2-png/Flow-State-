@@ -21,6 +21,13 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: `Pricing | ${siteName}`,
+    description: 'Transparent facility-based pricing. Network incentives reward full adoption.',
+    images: [`${siteUrl}/api/og?page=pricing`],
+    creator: '@freightroll',
+  },
 };
 
 export default function PricingLayout({ children }: { children: React.ReactNode }) {

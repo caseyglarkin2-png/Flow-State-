@@ -22,6 +22,13 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ROI Calculator | YardFlow by FreightRoll',
+    description: 'CFO-ready, scenario-based ROI modeling with transparent assumptions.',
+    images: [`${siteUrl}/api/og`],
+    creator: '@freightroll',
+  },
 };
 
 export default function RoiLayout({ children }: { children: React.ReactNode }) {
