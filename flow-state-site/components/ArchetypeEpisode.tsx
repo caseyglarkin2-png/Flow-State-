@@ -6,6 +6,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { staggerItem } from '@/lib/motion-presets';
@@ -68,11 +69,12 @@ export default function ArchetypeEpisode({
 
       {/* Proof Visual (if provided) */}
       {proofImage && (
-        <div className="mb-4 rounded-lg overflow-hidden border border-neon/10">
-          <img 
+        <div className="mb-4 rounded-lg overflow-hidden border border-neon/10 relative aspect-video">
+          <Image 
             src={proofImage} 
             alt={`${archetype} proof visual`}
-            className="w-full h-auto object-cover"
+            fill
+            className="object-cover"
             loading="lazy"
           />
         </div>

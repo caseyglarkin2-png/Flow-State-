@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -206,8 +207,8 @@ export default function SecurityPage() {
           </div>
 
           {/* Chain of Custody Proof */}
-          <div className="mb-12 rounded-xl overflow-hidden border-2 border-neon/20 bg-carbon/50">
-            <img src="/proof/streamlined-receiving-POD.png" alt="Streamlined receiving with proof of delivery chain of custody" className="w-full h-auto" />
+          <div className="mb-12 rounded-xl overflow-hidden border-2 border-neon/20 bg-carbon/50 relative aspect-[16/9]">
+            <Image src="/proof/streamlined-receiving-POD.png" alt="Streamlined receiving with proof of delivery chain of custody" fill className="object-cover" />
           </div>
 
           <EvidenceTimeline events={SAMPLE_TIMELINE} />

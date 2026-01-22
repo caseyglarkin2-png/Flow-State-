@@ -34,11 +34,15 @@ import { fadeIn, staggerContainer, staggerItem } from '@/lib/motion-presets';
 import { Metrics, Velocity, Shield, Crosshair } from '@/components/icons/FlowIcons';
 import { 
   YardChaosAnimation, 
-  DigitalGuardAnimation, 
+  ProtocolSequenceAnimation, 
   ChainOfCustodyAnimation,
   ProtocolRollupAnimation
 } from '@/components/animations';
 import { Section, Card, Stat, Callout } from '@/components/primitives';
+import SingularityPreviewCard from '@/components/cards/SingularityPreviewCard';
+import SingularityCard from '@/components/cards/SingularityCard';
+import ProductCard from '@/components/cards/ProductCard';
+import NetworkEffectCard from '@/components/cards/NetworkEffectCard';
 
 export default function Home() {
   return (
@@ -94,6 +98,31 @@ export default function Home() {
               >
                 {BRAND.ctas.primary.label}
               </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════════
+          STEP 3.5: PROOF ENGINE CARDS - Visualize Adoption & Product
+      ═══════════════════════════════════════════════════════════════ */}
+      <section className="py-24">
+        <div className="max-w-6xl mx-auto px-6">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            <div className="text-center mb-16">
+              <p className="text-xs uppercase tracking-[0.3em] text-neon/70 mb-4">Proof Engine</p>
+              <h2 className="text-4xl md:text-6xl font-black text-white mb-6">
+                Visualize Protocol Adoption
+              </h2>
+              <p className="text-xl text-steel max-w-3xl mx-auto leading-relaxed">
+                See how standardized flow collapses variance and scales across your facilities.
+              </p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <motion.div variants={staggerItem}><SingularityCard /></motion.div>
+              <motion.div variants={staggerItem}><ProductCard /></motion.div>
+              <motion.div variants={staggerItem}><NetworkEffectCard /></motion.div>
             </div>
           </motion.div>
         </div>
@@ -173,9 +202,9 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Protocol proof: Digital Guard verification flow */}
+            {/* Protocol proof: Sequential module demonstration */}
             <div className="mb-16">
-              <DigitalGuardAnimation />
+              <ProtocolSequenceAnimation />
             </div>
 
             {/* Protocol modules grid */}
@@ -377,49 +406,7 @@ export default function Home() {
 
             {/* Network intelligence proof - link to Singularity */}
             <div className="mb-16">
-              <Link href="/singularity" className="block group">
-                <div className="relative aspect-video rounded-xl border-2 border-neon/20 bg-gradient-to-br from-carbon via-void to-carbon overflow-hidden transition-all duration-300 hover:border-neon/40 hover:shadow-lg hover:shadow-neon/20">
-                  {/* Network node visualization background */}
-                  <svg className="absolute inset-0 w-full h-full opacity-20 group-hover:opacity-30 transition-opacity duration-300" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-                    {/* Network connections */}
-                    <line x1="10" y1="15" x2="30" y2="25" stroke="#00B4FF" strokeWidth="0.3" opacity="0.5" />
-                    <line x1="30" y1="25" x2="50" y2="20" stroke="#00B4FF" strokeWidth="0.3" opacity="0.5" />
-                    <line x1="50" y1="20" x2="70" y2="30" stroke="#00B4FF" strokeWidth="0.3" opacity="0.5" />
-                    <line x1="70" y1="30" x2="90" y2="25" stroke="#00B4FF" strokeWidth="0.3" opacity="0.5" />
-                    <line x1="10" y1="40" x2="30" y2="50" stroke="#00B4FF" strokeWidth="0.3" opacity="0.5" />
-                    <line x1="30" y1="50" x2="50" y2="45" stroke="#00B4FF" strokeWidth="0.3" opacity="0.5" />
-                    <line x1="50" y1="45" x2="70" y2="55" stroke="#00B4FF" strokeWidth="0.3" opacity="0.5" />
-                    <line x1="70" y1="55" x2="90" y2="50" stroke="#00B4FF" strokeWidth="0.3" opacity="0.5" />
-                    <line x1="10" y1="65" x2="30" y2="75" stroke="#00B4FF" strokeWidth="0.3" opacity="0.5" />
-                    <line x1="30" y1="75" x2="50" y2="70" stroke="#00B4FF" strokeWidth="0.3" opacity="0.5" />
-                    <line x1="50" y1="70" x2="70" y2="80" stroke="#00B4FF" strokeWidth="0.3" opacity="0.5" />
-                    {/* Facility nodes */}
-                    <circle cx="10" cy="15" r="2" fill="#00B4FF" className="animate-pulse" />
-                    <circle cx="30" cy="25" r="2" fill="#00B4FF" className="animate-pulse" style={{animationDelay: "0.2s"}} />
-                    <circle cx="50" cy="20" r="2" fill="#00B4FF" className="animate-pulse" style={{animationDelay: "0.4s"}} />
-                    <circle cx="70" cy="30" r="2" fill="#00B4FF" className="animate-pulse" style={{animationDelay: "0.6s"}} />
-                    <circle cx="90" cy="25" r="2" fill="#00B4FF" className="animate-pulse" style={{animationDelay: "0.8s"}} />
-                    <circle cx="10" cy="40" r="2" fill="#00B4FF" className="animate-pulse" style={{animationDelay: "1s"}} />
-                    <circle cx="30" cy="50" r="2" fill="#00B4FF" className="animate-pulse" style={{animationDelay: "1.2s"}} />
-                    <circle cx="50" cy="45" r="2" fill="#00B4FF" className="animate-pulse" style={{animationDelay: "1.4s"}} />
-                    <circle cx="70" cy="55" r="2" fill="#00B4FF" className="animate-pulse" style={{animationDelay: "1.6s"}} />
-                    <circle cx="90" cy="50" r="2" fill="#00B4FF" className="animate-pulse" style={{animationDelay: "1.8s"}} />
-                    <circle cx="10" cy="65" r="2" fill="#00B4FF" className="animate-pulse" style={{animationDelay: "2s"}} />
-                    <circle cx="30" cy="75" r="2" fill="#00B4FF" className="animate-pulse" style={{animationDelay: "2.2s"}} />
-                    <circle cx="50" cy="70" r="2" fill="#00B4FF" className="animate-pulse" style={{animationDelay: "2.4s"}} />
-                    <circle cx="70" cy="80" r="2" fill="#00B4FF" className="animate-pulse" style={{animationDelay: "2.6s"}} />
-                  </svg>
-                  
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 z-10">
-                    <p className="text-xs uppercase tracking-[0.3em] text-neon/70 mb-4">Interactive Network Simulation</p>
-                    <h3 className="text-3xl md:text-4xl font-black text-white mb-4">Watch All Facilities Converge</h3>
-                    <p className="text-steel max-w-2xl mb-8">See network effect compounding in real time. Every facility adds intelligence. Variance bands tighten. Throughput becomes predictable.</p>
-                    <div className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-neon text-void font-bold transition-transform duration-300 group-hover:scale-105">
-                      Launch Singularity Simulation →
-                    </div>
-                  </div>
-                </div>
-              </Link>
+              <SingularityPreviewCard />
             </div>
 
 

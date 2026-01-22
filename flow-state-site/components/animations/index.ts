@@ -3,11 +3,12 @@
  * Brand-aligned Framer Motion animations inspired by Figma SVG assets
  * 
  * Export all animations for easy import:
- * import { YardChaosAnimation, DigitalGuardAnimation } from '@/components/animations'
+ * import { YardChaosAnimation, ProtocolSequenceAnimation } from '@/components/animations'
  */
 
 export { default as YardChaosAnimation } from './YardChaosAnimation';
 export { default as DigitalGuardAnimation } from './DigitalGuardAnimation';
+export { default as ProtocolSequenceAnimation } from './ProtocolSequenceAnimation';
 export { default as NetworkCompoundingAnimation } from './NetworkCompoundingAnimation';
 export { default as ChainOfCustodyAnimation } from './ChainOfCustodyAnimation';
 export { default as BeforeAfterFlowAnimation } from './BeforeAfterFlowAnimation';

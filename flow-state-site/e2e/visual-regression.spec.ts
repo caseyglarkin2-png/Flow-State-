@@ -77,6 +77,34 @@ test.describe('Visual Regression - Adoption Slider', () => {
     // Baseline screenshot for regression detection
     await expect(page).toHaveScreenshot('home-baseline.png');
   });
+
+  test('Home hero (reduced motion baseline)', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/');
+
+    const hero = page.getByRole('region', { name: /protocol sequence animation/i });
+    await expect(hero).toBeVisible();
+    await expect(hero).toHaveScreenshot('home-hero-reduced-motion.png');
+  });
+
+  test('Home cards section (desktop baseline)', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 720 });
+    await page.goto('/');
+
+    const cardsSection = page.locator('section', { has: page.getByRole('heading', { name: /visualize protocol adoption/i }) }).first();
+    await expect(cardsSection).toBeVisible();
+    await expect(cardsSection).toHaveScreenshot('home-cards-desktop.png');
+  });
+
+  test('Home cards section (mobile baseline)', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto('/');
+
+    const cardsSection = page.locator('section', { has: page.getByRole('heading', { name: /visualize protocol adoption/i }) }).first();
+    await expect(cardsSection).toBeVisible();
+    await expect(cardsSection).toHaveScreenshot('home-cards-mobile.png');
+  });
 });
 
 test.describe('Visual Regression - Interactive States', () => {
@@ -107,5 +135,34 @@ test.describe('Visual Regression - Interactive States', () => {
     
     const sliderGroup = page.locator('div[role="group"]').first();
     await expect(sliderGroup).toHaveScreenshot('coverage-slider-preset-50pct.png');
+  });
+});
+
+test.describe('Visual Regression - Card Components', () => {
+  test('SingularityCard component', async ({ page }) => {
+    await page.setViewportSize({ width: 600, height: 400 });
+    await page.goto('/');
+    
+    const card = page.locator('[role="article"][aria-label="Singularity proof engine"]');
+    await expect(card).toBeVisible();
+    await expect(card).toHaveScreenshot('singularity-card.png');
+  });
+
+  test('ProductCard component', async ({ page }) => {
+    await page.setViewportSize({ width: 600, height: 400 });
+    await page.goto('/');
+    
+    const card = page.locator('[role="article"][aria-label="Product overview"]');
+    await expect(card).toBeVisible();
+    await expect(card).toHaveScreenshot('product-card.png');
+  });
+
+  test('NetworkEffectCard component', async ({ page }) => {
+    await page.setViewportSize({ width: 600, height: 400 });
+    await page.goto('/');
+    
+    const card = page.locator('[role="article"][aria-label="Network effect"]');
+    await expect(card).toBeVisible();
+    await expect(card).toHaveScreenshot('network-effect-card.png');
   });
 });

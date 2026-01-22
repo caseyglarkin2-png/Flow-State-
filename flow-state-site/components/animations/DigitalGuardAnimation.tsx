@@ -1,7 +1,12 @@
 /**
  * DIGITAL GUARD ANIMATION
- * Inspired by digital-guard-proof.svg - shows automated verification flow
- * Brand-aligned: neon checkmarks, kiosk UI, verification progress
+ * 
+ * @deprecated Replaced by ProtocolSequenceAnimation (Sprint 1, T1-003)
+ * This component showed a single module (Digital Guard verification).
+ * The new ProtocolSequenceAnimation cycles through all 4 protocol modules,
+ * providing better proof density on the homepage.
+ * 
+ * Kept for reference only. Remove in Sprint 3 cleanup.
  */
 
 'use client';

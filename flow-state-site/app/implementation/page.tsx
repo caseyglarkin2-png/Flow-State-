@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
@@ -168,8 +169,8 @@ export default function ImplementationPage() {
           </h2>
 
           {/* Rollout Visual */}
-          <div className="mb-12 rounded-xl overflow-hidden border-2 border-neon/20 bg-carbon/50">
-            <img src="/proof/roll-out.png" alt="Network rollout timeline visualization" className="w-full h-auto" />
+          <div className="mb-12 rounded-xl overflow-hidden border-2 border-neon/20 bg-carbon/50 relative aspect-[16/9]">
+            <Image src="/proof/roll-out.png" alt="Network rollout timeline visualization" fill className="object-cover" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
