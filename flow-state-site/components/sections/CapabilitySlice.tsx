@@ -27,6 +27,7 @@ interface CapabilitySliceProps {
   mediaType?: 'phone' | 'desktop' | 'workflow';
   mediaImage: string;
   mediaAlt: string;
+  mediaPoster?: string;
   kpiLabel?: string;
   kpiValue?: string;
   align?: 'left' | 'right';
@@ -41,6 +42,7 @@ export default function CapabilitySlice({
   mediaType = 'desktop',
   mediaImage,
   mediaAlt,
+  mediaPoster,
   kpiLabel,
   kpiValue,
   align = 'left',
@@ -143,6 +145,7 @@ export default function CapabilitySlice({
                   muted
                   playsInline
                   preload="none"
+                  poster={mediaPoster}
                   className="w-full h-full object-cover"
                 />
               ) : (

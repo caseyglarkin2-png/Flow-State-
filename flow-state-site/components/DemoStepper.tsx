@@ -21,6 +21,7 @@ export interface DemoStep {
   description: string;
   image?: string; // Path to image in /public/
   video?: string; // Path to video in /public/
+  poster?: string; // Poster frame for video
   caption?: string;
   artifact?: EvidenceArtifact; // Evidence artifact for Ground Source Truth sidebar
 }
@@ -155,6 +156,7 @@ export default function DemoStepper({
                     muted
                     playsInline
                     preload="none"
+                    poster={currentStepData.poster}
                     className="w-full h-full object-cover"
                   />
                 ) : currentStepData.image ? (

@@ -83,6 +83,7 @@ export default function AnimatedPanel({
           loop
           muted
           playsInline
+          preload="none"
           poster={posterSrc}
           onLoadedData={() => setIsLoading(false)}
           onError={() => {
