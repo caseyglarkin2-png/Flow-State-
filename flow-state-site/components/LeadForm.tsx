@@ -2,7 +2,6 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { analytics } from '@/lib/analytics';
-import HCaptcha from '@hcaptcha/react-hcaptcha';
 import { trackEvent } from '@/lib/analytics';
 import { usePersonaStore } from '@/store/persona';
 import { captureUtmParams, getStoredUtm, type UtmParams } from '@/lib/utm';
@@ -70,7 +69,7 @@ const initialState: LeadFormState = {
  * Features:
  * - Industry and timeline dropdowns for lead scoring
  * - UTM parameter capture for attribution
- * - hCaptcha spam protection
+ * - Honeypot spam protection
  * - HubSpot webhook integration
  * - Accessible form with ARIA labels
  * 
@@ -85,7 +84,6 @@ const initialState: LeadFormState = {
  */
 export default function LeadForm({ leadType, title, subtitle }: LeadFormProps) {
   const [state, setState] = useState<LeadFormState>(initialState);
-  const [captchaToken, setCaptchaToken] = useState<string>('');
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<{ ok: boolean; message: string } | null>(null);
   const [utm, setUtm] = useState<UtmParams | null>(null);
@@ -98,15 +96,11 @@ export default function LeadForm({ leadType, title, subtitle }: LeadFormProps) {
     setUtm(getStoredUtm());
   }, []);
 
-  const hcaptchaSiteKey = process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY ?? '';
-  const canUseCaptcha = Boolean(hcaptchaSiteKey);
-
   const disabledReason = useMemo(() => {
     if (submitting) return 'Submitting…';
     if (!state.name || !state.email || !state.company) return 'Fill required fields';
-    if (!captchaToken && canUseCaptcha) return 'Complete captcha';
     return '';
-  }, [submitting, state.name, state.email, state.company, captchaToken, canUseCaptcha]);
+  }, [submitting, state.name, state.email, state.company]);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -121,7 +115,7 @@ export default function LeadForm({ leadType, title, subtitle }: LeadFormProps) {
           leadType,
           ...state,
           utm: utm || undefined,
-          captchaToken,
+          
         }),
       });
 
@@ -137,7 +131,6 @@ export default function LeadForm({ leadType, title, subtitle }: LeadFormProps) {
       if (leadType === 'demo') trackEvent('demo_booked', { persona, source: 'lead_form' });
 
       setState(initialState);
-      setCaptchaToken('');
     } catch {
       setResult({ ok: false, message: 'Network error. Try again.' });
     } finally {
@@ -287,15 +280,7 @@ export default function LeadForm({ leadType, title, subtitle }: LeadFormProps) {
         />
       </div>
 
-      {canUseCaptcha && (
-        <div>
-          <HCaptcha
-            sitekey={hcaptchaSiteKey}
-            onVerify={(token: string) => setCaptchaToken(token)}
-            onExpire={() => setCaptchaToken('')}
-          />
-        </div>
-      )}
+
 
       {result ? (
         <p 
