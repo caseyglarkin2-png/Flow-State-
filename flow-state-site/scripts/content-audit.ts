@@ -194,7 +194,7 @@ function checkPublicAssets(): string[] {
   
   const requiredAssets = [
     'favicon.ico',
-    'og-default.png',
+    'og.png',  // Primary OG image referenced in root layout
     'apple-touch-icon.png',
   ];
   
