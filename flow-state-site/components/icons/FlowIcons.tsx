@@ -252,6 +252,16 @@ export const Territory: React.FC<IconProps> = ({ size = defaults.size, className
 // SECURITY / VERIFICATION ICONS
 // ═══════════════════════════════════════════════════════════════
 
+// Lock - Locked, prerequisite, gated
+export const Lock: React.FC<IconProps> = ({ size = defaults.size, className }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
+    <rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="1.5" />
+    <rect x="5" y="11" width="14" height="10" rx="2" fill="currentColor" opacity="0.1" />
+    <path d="M8 11V7a4 4 0 1 1 8 0v4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <circle cx="12" cy="16" r="1.5" fill="currentColor" />
+  </svg>
+);
+
 // Shield - Protection, security, guard
 export const Shield: React.FC<IconProps> = ({ size = defaults.size, className }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" className={className}>
@@ -654,6 +664,7 @@ const FlowIcons = {
   Orbital,
   Territory,
   // Security
+  Lock,
   Shield,
   Caution,
   // Intelligence

@@ -84,6 +84,7 @@
     "zustand": "^5.0.9"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^16.1.4",
     "@playwright/test": "^1.55.0",
     "@resvg/resvg-js": "^2.6.2",
     "@testing-library/jest-dom": "^6.9.1",
