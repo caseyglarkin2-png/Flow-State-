@@ -105,6 +105,22 @@ function ModuleCard({ module, showPhase = true }: { module: CoDevModule; showPha
             </div>
           )}
           
+          {/* Module highlights */}
+          {module.highlights.length > 0 && (
+            <ul className="flex flex-wrap gap-2 mb-4">
+              {module.highlights.map((highlight) => (
+                <li 
+                  key={highlight} 
+                  className={`px-2 py-1 text-xs rounded ${
+                    isPhase1 ? 'bg-neon/10 text-neon' : 'bg-steel/10 text-steel/70'
+                  }`}
+                >
+                  {highlight}
+                </li>
+              ))}
+            </ul>
+          )}
+          
           <p className={`text-sm font-semibold ${isPhase1 ? 'text-neon' : 'text-steel/60'}`}>
             POC: {module.timeline.poc} | Scale: {module.timeline.scale}
           </p>

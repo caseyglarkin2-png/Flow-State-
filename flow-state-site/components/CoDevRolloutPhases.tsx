@@ -114,10 +114,10 @@ export default function CoDevRolloutPhases({ phases, className = '' }: CoDevRoll
 
                     {/* Phase badge */}
                     <span className={`
-                      inline-block px-3 py-1 rounded-full text-xs font-semibold border mb-3
+                      inline-block px-3 py-1 rounded-full text-xs font-semibold border mb-2
                       ${styles.badge}
                     `}>
-                      {styles.label}
+                      {phase.estimatedAvailability || styles.label}
                     </span>
 
                     {/* Phase content */}
@@ -190,7 +190,7 @@ export default function CoDevRolloutPhases({ phases, className = '' }: CoDevRoll
                       inline-block px-2 py-0.5 rounded-full text-xs font-semibold border mb-2
                       ${styles.badge}
                     `}>
-                      {styles.label}
+                      {phase.estimatedAvailability || styles.label}
                     </span>
                     <h3 className="text-lg font-bold text-white mb-1">
                       Phase {phase.number}: {phase.shortName}

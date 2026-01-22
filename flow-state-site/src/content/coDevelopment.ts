@@ -17,6 +17,10 @@ export type PhaseNumber = 1 | 2 | 3;
 export type PhaseAvailability = 'now' | 'upcoming' | 'future';
 export type CTAVariant = 'primary' | 'secondary' | 'tertiary';
 
+// Type-safe icon union - single source of truth
+export const MODULE_ICONS = ['Agent', 'Velocity', 'Cortex', 'Ignite', 'Shield', 'Nexus', 'Timeline'] as const;
+export type ModuleIcon = typeof MODULE_ICONS[number];
+
 export interface CoDevPhase {
   id: string;
   number: PhaseNumber;
@@ -24,6 +28,7 @@ export interface CoDevPhase {
   shortName: string;
   description: string;
   available: PhaseAvailability;
+  estimatedAvailability?: string; // e.g., 'Q2 2026'
 }
 
 export interface Prerequisite {
@@ -36,7 +41,7 @@ export interface CoDevModule {
   id: string;
   name: string;
   description: string;
-  icon: 'Agent' | 'Velocity' | 'Cortex' | 'Ignite' | 'Shield' | 'Nexus' | 'Timeline';
+  icon: ModuleIcon;
   phase: PhaseNumber;
   timeline: {
     poc: string;
@@ -49,7 +54,7 @@ export interface CoDevModule {
 export interface EligibilityCard {
   id: string;
   title: string;
-  icon: 'Agent' | 'Cortex' | 'Velocity';
+  icon: ModuleIcon;
   criteria: string[];
 }
 
@@ -74,7 +79,7 @@ export interface PartnerBenefit {
   id: string;
   title: string;
   description: string;
-  icon: 'Shield' | 'Velocity' | 'Cortex' | 'Agent';
+  icon: ModuleIcon;
 }
 
 export interface CoDevContent {
@@ -115,6 +120,7 @@ export const phases: CoDevPhase[] = [
     shortName: 'Standardization',
     description: 'Deploy the base platform. Same protocol at every yard. Digital Guard, BOL, Comms, and YMS create the foundation for everything else.',
     available: 'now',
+    estimatedAvailability: 'Available Now',
   },
   {
     id: 'phase-2',
@@ -123,6 +129,7 @@ export const phases: CoDevPhase[] = [
     shortName: 'Interoperability',
     description: 'Cross-site visibility, network benchmarking, and automated entry/exit. Your yards speak the same language.',
     available: 'upcoming',
+    estimatedAvailability: 'Q2 2026',
   },
   {
     id: 'phase-3',
@@ -131,6 +138,7 @@ export const phases: CoDevPhase[] = [
     shortName: 'Advanced',
     description: 'Vision-based RTLS, full AI orchestration. These become dramatically easier once yards share protocols, IDs, and event models.',
     available: 'future',
+    estimatedAvailability: 'Q4 2026+',
   },
 ];
 
