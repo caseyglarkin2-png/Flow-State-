@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { siteUrl } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'Variance Tax Diagnostic | YardFlow by FreightRoll',
@@ -10,6 +11,14 @@ export const metadata: Metadata = {
     title: 'Variance Tax Diagnostic | YardFlow by FreightRoll',
     description: 'Calculate your hidden Variance Tax in 60 seconds. No forms required.',
     type: 'website',
+    images: [
+      {
+        url: `${siteUrl}/api/og?page=diagnostic`,
+        width: 1200,
+        height: 630,
+        alt: 'Variance Tax Diagnostic',
+      },
+    ],
   },
 };
 

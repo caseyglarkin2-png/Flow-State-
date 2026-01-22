@@ -96,6 +96,12 @@ const PAGE_CONTENT: Record<string, { headline?: string; subtitle?: string; tagli
     subtitle: 'Measuring the real impact of gate automation on facility throughput.',
     tagline: 'Field Note.'
   },
+  // Tools & Calculators
+  'diagnostic': {
+    headline: 'Calculate Your Variance Tax',
+    subtitle: 'Identify hidden detention, overtime, and expedite costs in 60 seconds.',
+    tagline: 'Diagnostic Tool.'
+  },
 };
 
 export async function GET(request: Request) {
@@ -537,10 +543,8 @@ export async function GET(request: Request) {
     }
   );
 
-  // Add cache-busting headers to prevent stale OG images
-  response.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
-  response.headers.set('Pragma', 'no-cache');
-  response.headers.set('Expires', '0');
+  // Edge cache OG images for 1 hour, serve stale for 24 hours while revalidating
+  response.headers.set('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
   
   return response;
 }
