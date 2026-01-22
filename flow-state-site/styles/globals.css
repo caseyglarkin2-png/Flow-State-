@@ -21,6 +21,114 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   ACCESSIBILITY: HIGH CONTRAST MODE (Windows High Contrast/Forced Colors)
+   ═══════════════════════════════════════════════════════════════ */
+
+/**
+ * Support for Windows High Contrast Mode and other forced-color environments.
+ * WCAG 2.1 Level AAA: Provides system-level color overrides for users who
+ * require high contrast for visibility.
+ */
+@media (forced-colors: active) {
+  /* Ensure focus indicators use system colors */
+  *:focus-visible {
+    outline: 3px solid CanvasText !important;
+    outline-offset: 2px !important;
+  }
+
+  /* Buttons maintain visibility with forced colors */
+  button,
+  .btn-neon,
+  .btn-neon-fill,
+  [role="button"] {
+    forced-color-adjust: none;
+    border: 2px solid ButtonText !important;
+    background: ButtonFace !important;
+    color: ButtonText !important;
+  }
+
+  button:hover,
+  .btn-neon:hover,
+  .btn-neon-fill:hover,
+  [role="button"]:hover {
+    background: Highlight !important;
+    color: HighlightText !important;
+    border-color: Highlight !important;
+  }
+
+  /* Links use system link colors */
+  a {
+    color: LinkText !important;
+  }
+
+  a:visited {
+    color: VisitedText !important;
+  }
+
+  /* Glass cards get solid backgrounds */
+  .glass-card,
+  .glass-card-hover {
+    background: Canvas !important;
+    border: 1px solid CanvasText !important;
+  }
+
+  /* Remove decorative shadows and glows */
+  .neon-glow,
+  .neon-glow-static,
+  .neon-glow-hover {
+    text-shadow: none !important;
+    color: CanvasText !important;
+  }
+
+  /* SVG icons use system text color */
+  svg {
+    fill: currentColor;
+  }
+
+  /* Ensure input fields are visible */
+  input,
+  select,
+  textarea {
+    forced-color-adjust: none;
+    background: Field !important;
+    border: 1px solid FieldText !important;
+    color: FieldText !important;
+  }
+
+  /* Placeholder text uses graytext */
+  input::placeholder,
+  textarea::placeholder {
+    color: GrayText !important;
+  }
+
+  /* Disabled elements */
+  button:disabled,
+  input:disabled,
+  select:disabled {
+    color: GrayText !important;
+    border-color: GrayText !important;
+  }
+
+  /* Cards and panels get system backgrounds */
+  [class*="bg-carbon"],
+  [class*="bg-void"] {
+    background: Canvas !important;
+  }
+
+  /* Grid background is removed (decorative) */
+  .grid-background {
+    background-image: none !important;
+    animation: none !important;
+  }
+
+  /* Mark/highlight text */
+  mark {
+    background: Mark !important;
+    color: MarkText !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
    ACCESSIBILITY: FOCUS STATES
    ═══════════════════════════════════════════════════════════════ */
 

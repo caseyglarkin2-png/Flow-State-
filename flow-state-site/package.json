@@ -26,7 +26,8 @@
     "content:budget": "node scripts/validate-content-budget.js",
     "content:duplicates": "node scripts/find-duplicate-content.js",
     "content:scan-duplicates": "tsx scripts/scan-duplicate-content.ts",
-    "content:check": "npm run content:budget && npm run content:duplicates"
+    "content:check": "npm run content:budget && npm run content:duplicates",
+    "audit:content": "tsx scripts/content-audit.ts"
   },
   "keywords": [
     "logistics",
