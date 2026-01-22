@@ -154,6 +154,7 @@ export default function DemoStepper({
                     loop
                     muted
                     playsInline
+                    preload="none"
                     className="w-full h-full object-cover"
                   />
                 ) : currentStepData.image ? (

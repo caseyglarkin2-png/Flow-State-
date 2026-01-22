@@ -164,6 +164,8 @@ export const SAMPLE_BEFORE_AFTER: BeforeAfterContent = {
           loop
           muted
           playsInline
+          preload="none"
+          poster="/proof/pickup-vs-delivery-1.png"
           className="w-full h-full object-cover"
         />
       </div>
@@ -185,6 +187,8 @@ export const SAMPLE_BEFORE_AFTER: BeforeAfterContent = {
           loop
           muted
           playsInline
+          preload="none"
+          poster="/proof/quick-drop.png"
           className="w-full h-full object-cover"
         />
       </div>
