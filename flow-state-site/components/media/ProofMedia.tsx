@@ -100,15 +100,19 @@ export default function ProofMedia({
         {videoPath ? (
           <video
             ref={videoRef}
-            src={videoPath}
             loop={loop}
             muted
             playsInline
-            poster={poster}
-            preload="metadata"
+            poster={poster || videoPath.replace('.mp4', '-poster.webp')}
+            preload="none"
             className="w-full h-full object-cover"
             aria-label={alt}
-          />
+          >
+            {/* WebM source for better compression (VP9) */}
+            <source src={videoPath.replace('.mp4', '.webm')} type="video/webm" />
+            {/* MP4 fallback for Safari/older browsers */}
+            <source src={videoPath} type="video/mp4" />
+          </video>
         ) : imagePath ? (
           <Image
             src={imagePath}

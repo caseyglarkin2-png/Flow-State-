@@ -150,15 +150,19 @@ export default function DemoStepper({
               <div className="relative aspect-video w-full rounded-lg border border-neon/10 bg-carbon/50 overflow-hidden">
                 {currentStepData.video ? (
                   <video
-                    src={currentStepData.video}
                     autoPlay
                     loop
                     muted
                     playsInline
                     preload="none"
-                    poster={currentStepData.poster}
+                    poster={currentStepData.poster || currentStepData.video.replace('.mp4', '-poster.webp')}
                     className="w-full h-full object-cover"
-                  />
+                  >
+                    {/* WebM source for better compression (VP9) */}
+                    <source src={currentStepData.video.replace('.mp4', '.webm')} type="video/webm" />
+                    {/* MP4 fallback */}
+                    <source src={currentStepData.video} type="video/mp4" />
+                  </video>
                 ) : currentStepData.image ? (
                   <Image
                     src={currentStepData.image}

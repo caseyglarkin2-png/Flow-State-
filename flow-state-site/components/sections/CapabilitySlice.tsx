@@ -139,15 +139,17 @@ export default function CapabilitySlice({
             <div className="relative w-full h-full rounded-2xl overflow-hidden border-2 border-neon/20 shadow-2xl shadow-neon/10">
               {mediaImage.endsWith('.mp4') ? (
                 <video
-                  src={mediaImage}
                   autoPlay
                   loop
                   muted
                   playsInline
                   preload="none"
-                  poster={mediaPoster}
+                  poster={mediaPoster || mediaImage.replace('.mp4', '-poster.webp')}
                   className="w-full h-full object-cover"
-                />
+                >
+                  <source src={mediaImage.replace('.mp4', '.webm')} type="video/webm" />
+                  <source src={mediaImage} type="video/mp4" />
+                </video>
               ) : (
                 <Image
                   src={mediaImage}

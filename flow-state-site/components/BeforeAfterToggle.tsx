@@ -159,15 +159,17 @@ export const SAMPLE_BEFORE_AFTER: BeforeAfterContent = {
     visual: (
       <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-ember/30 bg-carbon">
         <video
-          src="/proof/pickup-vs-delivery-video.mp4"
           autoPlay
           loop
           muted
           playsInline
           preload="none"
-          poster="/proof/pickup-vs-delivery-1.png"
+          poster="/proof/pickup-vs-delivery-video-poster.webp"
           className="w-full h-full object-cover"
-        />
+        >
+          <source src="/proof/pickup-vs-delivery-video.webm" type="video/webm" />
+          <source src="/proof/pickup-vs-delivery-video.mp4" type="video/mp4" />
+        </video>
       </div>
     ),
   },
@@ -182,15 +184,17 @@ export const SAMPLE_BEFORE_AFTER: BeforeAfterContent = {
     visual: (
       <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-neon/30 bg-carbon">
         <video
-          src="/proof/kiosk-demo.mp4"
           autoPlay
           loop
           muted
           playsInline
           preload="none"
-          poster="/proof/quick-drop.png"
+          poster="/proof/kiosk-demo-poster.webp"
           className="w-full h-full object-cover"
-        />
+        >
+          <source src="/proof/kiosk-demo.webm" type="video/webm" />
+          <source src="/proof/kiosk-demo.mp4" type="video/mp4" />
+        </video>
       </div>
     ),
   },

@@ -68,14 +68,17 @@ export default function HeroSlice({
       {/* Background Video (fallback) */}
       {backgroundVideo && !backgroundImage && (
         <video
-          src={backgroundVideo}
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
+          poster={backgroundVideo.replace('.mp4', '-poster.webp')}
           className="absolute inset-0 w-full h-full object-cover"
-        />
+        >
+          <source src={backgroundVideo.replace('.mp4', '.webm')} type="video/webm" />
+          <source src={backgroundVideo} type="video/mp4" />
+        </video>
       )}
 
       {/* Gradient Overlay */}
