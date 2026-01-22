@@ -135,8 +135,7 @@ export default function DetailPanel({ facility, onClose }: DetailPanelProps) {
         <button
           className="w-full py-2 px-4 rounded-lg bg-neon text-void font-semibold hover:bg-neon/90 transition-colors"
           onClick={() => {
-            // Track event and potentially navigate
-            console.log('View facility details:', facility.id);
+            // Future: Navigate to facility detail page
           }}
         >
           View Full Details

@@ -44,12 +44,9 @@ export default function NetworkMapDemo() {
           connections={sampleConnections}
           onFacilityClick={(facility: Facility) => {
             setLastClicked(facility);
-            console.log('Clicked facility:', facility);
           }}
-          onFacilityHover={(facility: Facility | null) => {
-            if (facility) {
-              console.log('Hovering:', facility.name);
-            }
+          onFacilityHover={() => {
+            // Hover state handled by NetworkMap internally
           }}
           showTooltips={showTooltips}
           showDetailPanel={showDetailPanel}
