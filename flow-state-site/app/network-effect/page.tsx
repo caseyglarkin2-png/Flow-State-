@@ -10,7 +10,6 @@ import NextSteps from '@/components/NextSteps';
 import CFOProofChecklist from '@/components/CFOProofChecklist';
 import VarianceKillsBlock from '@/components/VarianceKillsBlock';
 import NetworkMap from '@/components/NetworkMap';
-import type { Facility } from '@/components/NetworkMap/types';
 import { trackEvent } from '@/lib/analytics';
 import { ROUTES, DEFINITIONS } from '@/content/config';
 import { calcScenario, getQuickInputsForPreset, roiV2InputsFromQuickMode, money as formatMoney, metcalfeInspiredMultiplier } from '@/lib/economics';

@@ -1,3 +1,5 @@
+const { withSentryConfig } = require('@sentry/nextjs');
+
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
@@ -66,7 +68,7 @@ const nextConfig = {
       "font-src 'self' data:",
       "style-src 'self' 'unsafe-inline' https://hcaptcha.com https://*.hcaptcha.com",
       "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://hcaptcha.com https://*.hcaptcha.com https://vercel.live",
-      "connect-src 'self' https://hcaptcha.com https://*.hcaptcha.com https://vercel.live https://vitals.vercel-insights.com",
+      "connect-src 'self' https://hcaptcha.com https://*.hcaptcha.com https://vercel.live https://vitals.vercel-insights.com https://*.sentry.io https://*.ingest.sentry.io",
       "frame-src https://hcaptcha.com https://*.hcaptcha.com https://vercel.live",
       "form-action 'self'",
     ].join('; ');
@@ -183,4 +185,21 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+// Sentry configuration
+const sentryWebpackPluginOptions = {
+  // Suppress logs during build
+  silent: true,
+  
+  // Upload source maps for better stack traces
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  
+  // Only upload source maps in production builds
+  hideSourceMaps: true,
+  
+  // Disable source map uploading if no auth token
+  disableServerWebpackPlugin: !process.env.SENTRY_AUTH_TOKEN,
+  disableClientWebpackPlugin: !process.env.SENTRY_AUTH_TOKEN,
+};
+
+module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions);

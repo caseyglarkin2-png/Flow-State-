@@ -1,17 +1,16 @@
 'use client';
 
 import React, { useState } from 'react';
-import NetworkMap from '@/components/NetworkMap';
+import NetworkMap, { FacilityNode } from '@/components/NetworkMap';
 import { sampleFacilities, sampleConnections } from '../../../data/sampleNetwork';
-import type { Facility } from '@/components/NetworkMap/types';
 
 /**
  * Demo wrapper for NetworkMap with controls and state display.
  */
 export default function NetworkMapDemo() {
-  const [lastClicked, setLastClicked] = useState<Facility | null>(null);
-  const [showTooltips, setShowTooltips] = useState(true);
-  const [showDetailPanel, setShowDetailPanel] = useState(true);
+  const [lastClicked, setLastClicked] = useState<FacilityNode | null>(null);
+  const [showLabels, setShowLabels] = useState(true);
+  const [interactive, setInteractive] = useState(true);
 
   return (
     <div className="space-y-6">
@@ -20,20 +19,20 @@ export default function NetworkMapDemo() {
         <label className="flex items-center gap-2 text-sm text-steel">
           <input
             type="checkbox"
-            checked={showTooltips}
-            onChange={(e) => setShowTooltips(e.target.checked)}
+            checked={showLabels}
+            onChange={(e) => setShowLabels(e.target.checked)}
             className="w-4 h-4 rounded border-steel/30 bg-carbon text-neon focus:ring-neon"
           />
-          Show Tooltips
+          Show Labels
         </label>
         <label className="flex items-center gap-2 text-sm text-steel">
           <input
             type="checkbox"
-            checked={showDetailPanel}
-            onChange={(e) => setShowDetailPanel(e.target.checked)}
+            checked={interactive}
+            onChange={(e) => setInteractive(e.target.checked)}
             className="w-4 h-4 rounded border-steel/30 bg-carbon text-neon focus:ring-neon"
           />
-          Show Detail Panel
+          Interactive Mode
         </label>
       </div>
 
@@ -42,14 +41,14 @@ export default function NetworkMapDemo() {
         <NetworkMap
           facilities={sampleFacilities}
           connections={sampleConnections}
-          onFacilityClick={(facility: Facility) => {
-            setLastClicked(facility);
+          onNodeClick={(node: FacilityNode) => {
+            setLastClicked(node);
           }}
-          onFacilityHover={() => {
+          onNodeHover={() => {
             // Hover state handled by NetworkMap internally
           }}
-          showTooltips={showTooltips}
-          showDetailPanel={showDetailPanel}
+          showLabels={showLabels}
+          interactive={interactive}
           className="h-full"
         />
       </div>
@@ -59,8 +58,8 @@ export default function NetworkMapDemo() {
         <div className="bg-carbon/50 border border-neon/10 rounded-xl p-4 text-center">
           <p className="text-sm text-steel">
             Last clicked: <span className="text-neon font-semibold">{lastClicked.name}</span>
-            {lastClicked.location && (
-              <span className="text-steel/70"> ({lastClicked.location})</span>
+            {lastClicked.type && (
+              <span className="text-steel/70"> ({lastClicked.type})</span>
             )}
           </p>
         </div>

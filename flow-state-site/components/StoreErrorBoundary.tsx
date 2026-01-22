@@ -1,6 +1,7 @@
 'use client';
 
 import React, { Component, ErrorInfo, ReactNode } from 'react';
+import * as Sentry from '@sentry/nextjs';
 
 interface Props {
   children: ReactNode;
@@ -63,10 +64,16 @@ export class StoreErrorBoundary extends Component<Props, State> {
       }
     }
 
-    // TODO: Send to Sentry when configured
-    // if (typeof Sentry !== 'undefined') {
-    //   Sentry.captureException(error, { extra: errorInfo });
-    // }
+    // Send to Sentry for error tracking
+    Sentry.captureException(error, {
+      tags: {
+        component: 'StoreErrorBoundary',
+        type: 'store_hydration_error',
+      },
+      extra: {
+        componentStack: errorInfo.componentStack,
+      },
+    });
   }
 
   handleReset = () => {
