@@ -102,6 +102,22 @@ const PAGE_CONTENT: Record<string, { headline?: string; subtitle?: string; tagli
     subtitle: 'Identify hidden detention, overtime, and expedite costs in 60 seconds.',
     tagline: 'Diagnostic Tool.'
   },
+  // High-Traffic Pages
+  'pricing': {
+    headline: 'Transparent Pricing',
+    subtitle: 'Facility-based pricing with network incentives. Full adoption rewarded.',
+    tagline: 'Pricing.'
+  },
+  'about': {
+    headline: 'From FreightRoll to YardFlow',
+    subtitle: 'The evolution of enterprise yard management. Built for networks.',
+    tagline: 'Our Story.'
+  },
+  'contact': {
+    headline: 'Book a Network Audit',
+    subtitle: '30 minutes. Rollout plan. Zero fluff. Founding member pricing.',
+    tagline: 'Get Started.'
+  },
 };
 
 export async function GET(request: Request) {
