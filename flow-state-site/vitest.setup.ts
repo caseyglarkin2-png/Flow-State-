@@ -107,6 +107,13 @@ global.matchMedia = vi.fn().mockImplementation((query) => ({
   dispatchEvent: vi.fn(),
 }));
 
+// Mock ResizeObserver for component tests
+global.ResizeObserver = class ResizeObserver {
+  observe = vi.fn();
+  unobserve = vi.fn();
+  disconnect = vi.fn();
+};
+
 // Suppress console.warn for specific Three.js warnings in tests
 const originalWarn = console.warn;
 console.warn = (...args: unknown[]) => {

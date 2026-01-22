@@ -6,6 +6,7 @@ import { Facility, ARCHETYPE_COLORS, ARCHETYPE_LABELS } from './types';
 interface FacilityNodeProps {
   facility: Facility;
   isHovered: boolean;
+  isSelected?: boolean;
   onClick: () => void;
   onHover: (isHovered: boolean) => void;
 }
@@ -17,17 +18,19 @@ interface FacilityNodeProps {
 export default function FacilityNode({
   facility,
   isHovered,
+  isSelected = false,
   onClick,
   onHover,
 }: FacilityNodeProps) {
   const color = ARCHETYPE_COLORS[facility.archetype];
   const label = ARCHETYPE_LABELS[facility.archetype];
+  const isActive = isHovered || isSelected;
   
   return (
     <g
       transform={`translate(${facility.x}, ${facility.y})`}
       className="cursor-pointer transition-transform"
-      style={{ transform: isHovered ? 'scale(1.1)' : undefined }}
+      style={{ transform: isActive ? 'scale(1.1)' : undefined }}
       onClick={onClick}
       onMouseEnter={() => onHover(true)}
       onMouseLeave={() => onHover(false)}
@@ -35,7 +38,8 @@ export default function FacilityNode({
       onBlur={() => onHover(false)}
       tabIndex={0}
       role="button"
-      aria-label={`${facility.name}, ${label}`}
+      aria-label={`${facility.name}, ${label}${isSelected ? ' (selected)' : ''}`}
+      aria-pressed={isSelected}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
@@ -43,8 +47,19 @@ export default function FacilityNode({
         }
       }}
     >
+      {/* Selection ring */}
+      {isSelected && (
+        <circle
+          r={32}
+          fill="none"
+          stroke={color}
+          strokeWidth={3}
+          opacity={0.8}
+        />
+      )}
+      
       {/* Glow effect on hover */}
-      {isHovered && (
+      {isHovered && !isSelected && (
         <circle
           r={28}
           fill="none"

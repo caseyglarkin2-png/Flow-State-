@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { 
   NetworkMapProps, 
   Facility, 
@@ -9,6 +9,7 @@ import {
 import FacilityNode from './FacilityNode';
 import Connections from './Connections';
 import Tooltip from './Tooltip';
+import DetailPanel from './DetailPanel';
 
 /**
  * Interactive SVG visualization of a facility network.
@@ -17,9 +18,9 @@ import Tooltip from './Tooltip';
  * - Facility nodes with archetype-based colors
  * - Connection lines between related facilities
  * - Hover tooltips with facility details
- * - Click interactions for detail view
- * - Keyboard accessible
- * - Responsive scaling
+ * - Click interactions for detail panel
+ * - Keyboard accessible (Tab + Enter navigation)
+ * - Responsive scaling with ResizeObserver
  * 
  * @example
  * ```tsx
@@ -27,6 +28,7 @@ import Tooltip from './Tooltip';
  *   facilities={facilities} 
  *   connections={connections}
  *   onFacilityClick={(f) => console.log('Selected:', f.name)}
+ *   showDetailPanel={true}
  * />
  * ```
  */
@@ -37,9 +39,31 @@ export default function NetworkMap({
   onFacilityHover,
   className = '',
   showTooltips = true,
-}: NetworkMapProps) {
+  showDetailPanel = true,
+}: NetworkMapProps & { showDetailPanel?: boolean }) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [hoveredFacility, setHoveredFacility] = useState<Facility | null>(null);
+  const [selectedFacility, setSelectedFacility] = useState<Facility | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
+
+  // Responsive scaling with ResizeObserver
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        const { width } = entry.contentRect;
+        // Maintain 4:3 aspect ratio
+        const height = width * 0.75;
+        setDimensions({ width: Math.max(400, width), height: Math.max(300, height) });
+      }
+    });
+
+    resizeObserver.observe(container);
+    return () => resizeObserver.disconnect();
+  }, []);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<SVGSVGElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -54,14 +78,35 @@ export default function NetworkMap({
     onFacilityHover?.(facility);
   }, [onFacilityHover]);
 
+  const handleFacilityClick = useCallback((facility: Facility) => {
+    setSelectedFacility(facility);
+    onFacilityClick?.(facility);
+  }, [onFacilityClick]);
+
+  const handleClosePanel = useCallback(() => {
+    setSelectedFacility(null);
+  }, []);
+
+  // Keyboard navigation: Escape to close panel
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && selectedFacility) {
+        handleClosePanel();
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [selectedFacility, handleClosePanel]);
+
   return (
-    <div className={`relative ${className}`}>
+    <div ref={containerRef} className={`relative ${className}`}>
       <svg
-        viewBox="0 0 800 600"
+        viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}
         role="img"
         aria-label="Facility network map showing connected locations"
         className="w-full h-auto"
         onMouseMove={handleMouseMove}
+        style={{ minHeight: 300 }}
       >
         {/* Background grid */}
         <defs>
@@ -89,19 +134,28 @@ export default function NetworkMap({
               key={facility.id}
               facility={facility}
               isHovered={hoveredFacility?.id === facility.id}
-              onClick={() => onFacilityClick?.(facility)}
+              isSelected={selectedFacility?.id === facility.id}
+              onClick={() => handleFacilityClick(facility)}
               onHover={(isHovered) => handleFacilityHover(isHovered ? facility : null)}
             />
           ))}
         </g>
       </svg>
 
-      {/* Tooltip overlay */}
-      {showTooltips && hoveredFacility && (
+      {/* Tooltip overlay (only when not showing detail panel) */}
+      {showTooltips && hoveredFacility && !selectedFacility && (
         <Tooltip
           facility={hoveredFacility}
           x={mousePosition.x}
           y={mousePosition.y}
+        />
+      )}
+
+      {/* Detail panel for selected facility */}
+      {showDetailPanel && selectedFacility && (
+        <DetailPanel
+          facility={selectedFacility}
+          onClose={handleClosePanel}
         />
       )}
 

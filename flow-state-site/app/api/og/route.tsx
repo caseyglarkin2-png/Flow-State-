@@ -3,6 +3,25 @@ import { getActiveLogo, SITE_METADATA } from '@/lib/branding';
 
 export const runtime = 'edge';
 
+// A/B Test Variants for OG headlines
+const OG_VARIANTS: Record<string, { headline1: string; headline2: string; subtitle: string }> = {
+  a: {
+    headline1: 'Variance Is The Villain.',
+    headline2: 'Control Is The Hero.',
+    subtitle: 'The first yard network system that makes every facility operate like your best.',
+  },
+  b: {
+    headline1: 'Stop The Variance Tax.',
+    headline2: 'Build Your Yard Network.',
+    subtitle: 'Standardize operations across all facilities. Reduce detention 50%.',
+  },
+  c: {
+    headline1: '50% Faster Turns.',
+    headline2: 'Network Effect Scaling.',
+    subtitle: '200K+ drivers. 58 facilities. Same protocol everywhere.',
+  },
+};
+
 // Map of page-specific content
 const PAGE_CONTENT: Record<string, { headline?: string; subtitle?: string; tagline?: string }> = {
   'solutions/dry-van': {
@@ -50,7 +69,15 @@ const PAGE_CONTENT: Record<string, { headline?: string; subtitle?: string; tagli
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const pageKey = searchParams.get('page') || 'default';
+  const customTitle = searchParams.get('title');
+  const customSubtitle = searchParams.get('subtitle');
+  const variant = searchParams.get('variant') as 'a' | 'b' | 'c' | null;
   const pageContent = PAGE_CONTENT[pageKey];
+  const variantContent = variant ? OG_VARIANTS[variant] : null;
+
+  // Use custom params if provided, otherwise fall back to page content
+  const displayTitle = customTitle || pageContent?.headline;
+  const displaySubtitle = customSubtitle || pageContent?.subtitle;
 
   // Load Inter font for proper branding
   const interSemiBold = fetch(
@@ -232,8 +259,37 @@ export async function GET(request: Request) {
                 gap: '8px',
               }}
             >
-              {pageContent ? (
-                // Page-specific headline (single line)
+              {variantContent ? (
+                // A/B test variant headline (dual line)
+                <>
+                  <span
+                    style={{
+                      fontSize: 72,
+                      fontWeight: 900,
+                      color: '#FFFFFF',
+                      letterSpacing: '-0.03em',
+                      lineHeight: 1,
+                      fontFamily: 'Inter',
+                    }}
+                  >
+                    {variantContent.headline1}
+                  </span>
+                  <span
+                    style={{
+                      fontSize: 72,
+                      fontWeight: 900,
+                      color: '#00B4FF',
+                      letterSpacing: '-0.03em',
+                      lineHeight: 1,
+                      textShadow: '0 0 60px rgba(0, 180, 255, 0.4)',
+                      fontFamily: 'Inter',
+                    }}
+                  >
+                    {variantContent.headline2}
+                  </span>
+                </>
+              ) : displayTitle ? (
+                // Custom or page-specific headline (single line)
                 <span
                   style={{
                     fontSize: 72,
@@ -245,7 +301,7 @@ export async function GET(request: Request) {
                     fontFamily: 'Inter',
                   }}
                 >
-                  {pageContent.headline}
+                  {displayTitle}
                 </span>
               ) : (
                 // Default headline (dual line)
@@ -289,7 +345,7 @@ export async function GET(request: Request) {
                 fontFamily: 'Inter',
               }}
             >
-              {pageContent?.subtitle || SITE_METADATA.ogDescription}
+              {displaySubtitle || SITE_METADATA.ogDescription}
             </span>
           </div>
 

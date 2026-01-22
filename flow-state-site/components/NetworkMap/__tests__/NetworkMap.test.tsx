@@ -4,6 +4,7 @@ import NetworkMap from '../index';
 import FacilityNode from '../FacilityNode';
 import Connections from '../Connections';
 import Tooltip from '../Tooltip';
+import DetailPanel from '../DetailPanel';
 import { Facility, Connection, ARCHETYPE_COLORS, ARCHETYPE_LABELS } from '../types';
 
 const mockFacilities: Facility[] = [
@@ -193,6 +194,62 @@ describe('NetworkMap', () => {
       expect(ARCHETYPE_LABELS.open).toBe('Open Yard');
       expect(ARCHETYPE_LABELS['cross-dock']).toBe('Cross-Dock');
       expect(ARCHETYPE_LABELS.manufacturing).toBe('Manufacturing');
+    });
+  });
+
+  describe('DetailPanel', () => {
+    const mockFacility: Facility = {
+      id: 'test',
+      name: 'Test Hub',
+      archetype: 'gated',
+      x: 100,
+      y: 100,
+      location: 'Test City, ST',
+      metrics: { movesPerDay: 500, dwellTime: 45, drivers: 800 },
+    };
+
+    it('renders facility name and type', () => {
+      const onClose = vi.fn();
+      render(<DetailPanel facility={mockFacility} onClose={onClose} />);
+      
+      expect(screen.getByText('Test Hub')).toBeInTheDocument();
+      // "Gated Facility" appears twice (header + type section), use getAllByText
+      expect(screen.getAllByText('Gated Facility').length).toBeGreaterThanOrEqual(1);
+    });
+
+    it('shows location when provided', () => {
+      const onClose = vi.fn();
+      render(<DetailPanel facility={mockFacility} onClose={onClose} />);
+      
+      expect(screen.getByText(/Test City, ST/)).toBeInTheDocument();
+    });
+
+    it('calls onClose when close button clicked', () => {
+      const onClose = vi.fn();
+      render(<DetailPanel facility={mockFacility} onClose={onClose} />);
+      
+      // There are two close buttons - the X and the "Close" text button
+      const closeButtons = screen.getAllByRole('button', { name: /close/i });
+      fireEvent.click(closeButtons[0]);
+      
+      expect(onClose).toHaveBeenCalled();
+    });
+
+    it('has accessible dialog role', () => {
+      const onClose = vi.fn();
+      render(<DetailPanel facility={mockFacility} onClose={onClose} />);
+      
+      const dialog = screen.getByRole('dialog');
+      expect(dialog).toHaveAttribute('aria-label', 'Details for Test Hub');
+    });
+
+    it('displays metrics when available', () => {
+      const onClose = vi.fn();
+      render(<DetailPanel facility={mockFacility} onClose={onClose} />);
+      
+      expect(screen.getByText('500')).toBeInTheDocument(); // movesPerDay
+      expect(screen.getByText('45 min')).toBeInTheDocument(); // dwellTime
+      expect(screen.getByText('800')).toBeInTheDocument(); // drivers
     });
   });
 });
