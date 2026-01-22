@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import NetworkMapDemo from './NetworkMapDemo';
+import { canonicalUrl } from '@/lib/site';
+import { BRAND } from '@/config/brand';
 
 export const metadata: Metadata = {
   title: 'Network Map Demo | YardFlow',
@@ -9,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Network Map Demo | YardFlow',
     description: 'See how facilities connect in the YardFlow network',
-    url: 'https://flow-state-klbt.vercel.app/demo/network-map',
+    url: canonicalUrl('/demo/network-map'),
   },
 };
 
@@ -50,6 +53,24 @@ export default function NetworkMapPage() {
               <LegendItem color="#F59E0B" label="Cross-Dock" description="Rapid transfers" />
               <LegendItem color="#8B5CF6" label="Manufacturing" description="JIT integrated" />
             </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="pb-24 px-6">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-2xl font-bold text-white mb-4">
+              See Your Network Mapped
+            </h2>
+            <p className="text-steel mb-8">
+              Discover how YardFlow can visualize and optimize your facility network.
+            </p>
+            <Link 
+              href={BRAND.ctas.primary.href}
+              className="inline-flex items-center justify-center px-8 py-4 rounded-lg bg-neon text-void font-semibold hover:bg-neon/90 transition-colors"
+            >
+              {BRAND.ctas.primary.label}
+            </Link>
           </div>
         </section>
       </main>

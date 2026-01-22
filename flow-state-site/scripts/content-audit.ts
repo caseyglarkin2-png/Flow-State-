@@ -57,6 +57,7 @@ const CTA_PATTERNS = [
   /Link\s+href/,
   /BookDemoButton/,
   /StartButton/,
+  /CTA\b/,  // Match any component ending with CTA (FieldNoteCTA, GuideCTA, etc.)
 ];
 
 const METADATA_PATTERNS = [
