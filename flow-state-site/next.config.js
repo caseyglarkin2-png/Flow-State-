@@ -53,14 +53,8 @@ const nextConfig = {
     // Allow Next image optimization on Vercel.
     unoptimized: false,
   },
-  transpilePackages: [
-    'maplibre-gl',
-    'react-map-gl',
-    '@deck.gl/core',
-    '@deck.gl/layers',
-    '@deck.gl/react',
-    '@deck.gl/geo-layers',
-  ],
+  // transpilePackages removed - deck.gl, maplibre-gl, react-map-gl were unused
+  transpilePackages: [],
   async headers() {
     const csp = [
       "default-src 'self'",

@@ -5,14 +5,42 @@
  * 
  * Combines the CalculatorPanel with SingularityVisualizer for a 
  * cohesive experience where inputs drive visual feedback in real-time.
+ * 
+ * SingularityVisualizer is dynamically imported to avoid loading
+ * three.js (~950KB) in the main bundle.
  */
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, Suspense } from 'react';
+import dynamic from 'next/dynamic';
 import CalculatorPanel from '@/components/singularity/CalculatorPanel';
-import { SingularityVisualizer, MiniVisualizer } from '@/components/singularity/SingularityVisualizer';
 import TaxBreakdown from '@/components/singularity/TaxBreakdown';
 import { useVarianceTaxStore } from '@/src/lib/varianceTax/store';
 import { useMediaQuery } from '@/lib/hooks/useMediaQuery';
+
+// Dynamic import to avoid loading three.js in main bundle
+const SingularityVisualizer = dynamic(
+  () => import('@/components/singularity/SingularityVisualizer').then((mod) => mod.SingularityVisualizer),
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full bg-carbon/50 rounded-2xl flex items-center justify-center">
+        <div className="text-steel text-sm">Loading visualization...</div>
+      </div>
+    ),
+  }
+);
+
+const MiniVisualizer = dynamic(
+  () => import('@/components/singularity/SingularityVisualizer').then((mod) => mod.MiniVisualizer),
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full bg-carbon/50 rounded-lg flex items-center justify-center">
+        <div className="text-steel text-xs">Loading...</div>
+      </div>
+    ),
+  }
+);
 
 // ═══════════════════════════════════════════════════════════════════
 // TYPES

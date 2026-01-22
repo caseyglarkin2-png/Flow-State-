@@ -1,11 +1,19 @@
-import { Metadata } from 'next';
-import { TestCanvas } from '@/components/three';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'R3F Test Canvas | YardFlow',
-  description: 'Test page for React Three Fiber canvas validation',
-  robots: 'noindex, nofollow',
-};
+import dynamic from 'next/dynamic';
+
+// Dynamic import to avoid loading three.js in main bundle
+const TestCanvas = dynamic(
+  () => import('@/components/three').then((mod) => mod.TestCanvas),
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="aspect-video bg-carbon rounded-lg flex items-center justify-center">
+        <p className="text-steel">Loading 3D Canvas...</p>
+      </div>
+    ),
+  }
+);
 
 /**
  * Temporary test route for validating R3F setup
