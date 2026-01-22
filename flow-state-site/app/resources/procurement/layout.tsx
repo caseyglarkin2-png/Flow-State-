@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Evidence Vault - Security & Compliance | YardFlow by FreightRoll',
     description: 'Procurement-ready security and compliance information for security review.',
-    url: `${siteUrl}/security`,
+    url: `${siteUrl}/resources/procurement`,
     type: 'website',
     images: [
       {
-        url: `${siteUrl}/og.png`,
+        url: `${siteUrl}/api/og`,
         width: 1200,
         height: 630,
         alt: 'YardFlow by FreightRoll Security & Compliance',
