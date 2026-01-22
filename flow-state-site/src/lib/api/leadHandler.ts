@@ -4,6 +4,14 @@ import { getClientIp, isRateLimited } from '@/lib/rateLimit';
 import { sendEmail } from '@/lib/email';
 import { postWebhook } from '@/lib/webhooks';
 
+type UtmParams = {
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+};
+
 type LeadPayload = {
   leadType: 'quote' | 'founding' | 'demo' | 'roi_pdf' | 'yardbuilder_pdf';
   name: string;
@@ -11,9 +19,12 @@ type LeadPayload = {
   company: string;
   role?: string;
   facilityCount?: string;
+  industry?: string;
+  timeline?: string;
   message?: string;
   website?: string; // honeypot
   captchaToken?: string;
+  utm?: UtmParams;
   meta?: Record<string, unknown>;
 };
 
@@ -58,6 +69,11 @@ export async function handleLeadPost(req: Request) {
     `Company: ${payload.company}`,
     payload.role ? `Role: ${payload.role}` : null,
     payload.facilityCount ? `Facility Count: ${payload.facilityCount}` : null,
+    payload.industry ? `Industry: ${payload.industry}` : null,
+    payload.timeline ? `Timeline: ${payload.timeline}` : null,
+    payload.utm?.utm_source ? `UTM Source: ${payload.utm.utm_source}` : null,
+    payload.utm?.utm_medium ? `UTM Medium: ${payload.utm.utm_medium}` : null,
+    payload.utm?.utm_campaign ? `UTM Campaign: ${payload.utm.utm_campaign}` : null,
     payload.message ? `Message: ${payload.message}` : null,
     payload.meta ? `Meta: ${JSON.stringify(payload.meta)}` : null,
     `IP: ${ip}`,
@@ -79,6 +95,9 @@ export async function handleLeadPost(req: Request) {
     company: payload.company,
     role: payload.role,
     facilityCount: payload.facilityCount ? Number(payload.facilityCount) : undefined,
+    industry: payload.industry,
+    timeline: payload.timeline,
+    utm: payload.utm,
     message: payload.message,
     ip,
     meta: payload.meta,

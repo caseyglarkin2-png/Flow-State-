@@ -11,6 +11,8 @@ export default defineConfig({
       'src/lib/**/__tests__/**/*.test.tsx',
       'components/**/__tests__/**/*.test.ts',
       'components/**/__tests__/**/*.test.tsx',
+      'lib/__tests__/**/*.test.ts',
+      'lib/__tests__/**/*.test.tsx',
       'lib/hooks/__tests__/**/*.test.ts',
       'lib/hooks/__tests__/**/*.test.tsx',
       'lib/a11y/__tests__/**/*.test.ts',
@@ -26,8 +28,18 @@ export default defineConfig({
     },
   },
   resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './'),
-    },
+    alias: [
+      // Specific paths that exist in src/lib
+      { find: '@/lib/hcaptcha', replacement: path.resolve(__dirname, './src/lib/hcaptcha') },
+      { find: '@/lib/rateLimit', replacement: path.resolve(__dirname, './src/lib/rateLimit') },
+      { find: '@/lib/email', replacement: path.resolve(__dirname, './src/lib/email') },
+      { find: '@/lib/webhooks', replacement: path.resolve(__dirname, './src/lib/webhooks') },
+      { find: '@/lib/api', replacement: path.resolve(__dirname, './src/lib/api') },
+      { find: '@/lib/utm', replacement: path.resolve(__dirname, './lib/utm') },
+      // Default lib path (root lib folder)
+      { find: '@/lib', replacement: path.resolve(__dirname, './lib') },
+      { find: '@/components', replacement: path.resolve(__dirname, './components') },
+      { find: '@', replacement: path.resolve(__dirname, './') },
+    ],
   },
 });

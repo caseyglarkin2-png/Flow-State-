@@ -53,6 +53,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════════
           STEP 1: HERO - First Yard Network System (YNS)
       ═══════════════════════════════════════════════════════════════ */}
+      <main id="main-content">
       <section className="relative pt-32 pb-24 overflow-hidden">
         <SystemGrid opacity={0.12} pulsing={true} />
         
@@ -450,6 +451,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+      </main>
 
       <Footer />
     </div>

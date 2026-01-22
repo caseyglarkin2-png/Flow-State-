@@ -29,12 +29,39 @@ A modern, high-performance website for YardFlow by FreightRoll, a next-generatio
 
 ## Getting Started
 
+### Prerequisites
+
+- **Node.js** 20.x or higher
+- **npm** 10.x or higher
+
+### Quick Start (3 commands)
+
+```bash
+npm install
+cp .env.example .env.local   # Configure env vars (see below)
+npm run dev                   # http://localhost:3000
+```
+
 ### Installation
 
 ```bash
 cd flow-state-site
 npm install
 ```
+
+### Environment Variables
+
+| Variable | Required | Default | Description |
+|----------|----------|---------|-------------|
+| `NEXT_PUBLIC_POSTHOG_KEY` | No | - | PostHog analytics key |
+| `NEXT_PUBLIC_POSTHOG_HOST` | No | `https://us.i.posthog.com` | PostHog host URL |
+| `NEXT_PUBLIC_HCAPTCHA_SITEKEY` | No | - | hCaptcha site key for forms |
+| `HCAPTCHA_SECRET` | No | - | hCaptcha server secret |
+| `HUBSPOT_WEBHOOK_URL` | No | - | HubSpot webhook for lead capture |
+| `RESEND_API_KEY` | No | - | Resend email service key |
+| `LEAD_NOTIFY_EMAIL` | No | - | Email for lead notifications |
+
+See `.env.example` for all available options.
 
 ### Development
 

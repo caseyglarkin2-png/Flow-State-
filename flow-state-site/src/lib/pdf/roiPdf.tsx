@@ -24,6 +24,19 @@ export type RoiPdfPayload = {
 
 const styles = StyleSheet.create({
   page: { padding: 36, fontSize: 11, fontFamily: 'Helvetica' },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    borderBottom: '2pt solid #00FF88',
+    paddingBottom: 12,
+    marginBottom: 16,
+  },
+  headerLeft: { flex: 1 },
+  headerRight: { alignItems: 'flex-end' },
+  brandName: { fontSize: 10, color: '#00FF88', fontWeight: 700, letterSpacing: 1 },
+  companyName: { fontSize: 16, fontWeight: 700, marginTop: 4 },
+  generatedDate: { fontSize: 9, color: '#888888', marginTop: 2 },
   h1: { fontSize: 18, fontWeight: 700 },
   h2: { fontSize: 12, fontWeight: 700, marginTop: 16 },
   muted: { color: '#666666' },
@@ -59,14 +72,29 @@ export function RoiSummaryPdf({ payload }: { payload: RoiPdfPayload }) {
       ? Math.max(0, payload.results.yearOneGrossSavings) / 4
       : undefined;
 
+  const generatedDate = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
   return (
     <Document>
       <Page size="LETTER" style={styles.page}>
-        <Text style={styles.h1}>YardFlow by FreightRoll | ROI Summary (Modeled)</Text>
-        <Text style={styles.muted}>Company: {payload.lead.company}</Text>
-        <Text style={styles.muted}>
-          Prepared for: {payload.lead.name} ({payload.lead.email})
-        </Text>
+        {/* Branded Header */}
+        <View style={styles.header}>
+          <View style={styles.headerLeft}>
+            <Text style={styles.brandName}>YARDFLOW BY FREIGHTROLL</Text>
+            <Text style={styles.companyName}>{payload.lead.company}</Text>
+            <Text style={styles.generatedDate}>Prepared for: {payload.lead.name}</Text>
+          </View>
+          <View style={styles.headerRight}>
+            <Text style={styles.generatedDate}>Generated: {generatedDate}</Text>
+            <Text style={styles.generatedDate}>{payload.lead.email}</Text>
+          </View>
+        </View>
+
+        <Text style={styles.h1}>ROI Summary (Modeled)</Text>
         <Text style={[styles.muted, { marginTop: 6 }]}>
           This summary is a directional model. Pro-mode defaults are aligned to a reference spreadsheet model; accuracy depends on
           validating assumptions against your operational data.
