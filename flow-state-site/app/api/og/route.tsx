@@ -64,6 +64,38 @@ const PAGE_CONTENT: Record<string, { headline?: string; subtitle?: string; tagli
     subtitle: 'Automated security compliance and TSA requirements management for regulated operations.',
     tagline: 'Compliance Ready.'
   },
+  // Case Studies
+  'case-study/primo-network': {
+    headline: 'Primo: 260 Facilities',
+    subtitle: 'Enterprise network standardization at scale. Network-wide deployment ROI modeling.',
+    tagline: 'Enterprise Case Study.'
+  },
+  'case-study/regional-3pl': {
+    headline: 'Regional 3PL Success',
+    subtitle: 'From manual gates to ground truth. 85% reduction in detention disputes.',
+    tagline: '3PL Case Study.'
+  },
+  'case-study/cold-chain-security': {
+    headline: 'Cold Chain Security',
+    subtitle: 'Cargo theft prevention at the gate. 80% reduction in incidents.',
+    tagline: 'Security Case Study.'
+  },
+  // Field Notes
+  'field-note/dwell-time-patterns': {
+    headline: 'Dwell Time Patterns',
+    subtitle: 'What actually moves the needle on trailer wait times across 50+ yards.',
+    tagline: 'Field Note.'
+  },
+  'field-note/appointment-compliance': {
+    headline: 'Appointment Compliance',
+    subtitle: 'Leading indicators and enforcement patterns for improved dock scheduling.',
+    tagline: 'Field Note.'
+  },
+  'field-note/gate-automation-roi': {
+    headline: 'Gate Automation ROI',
+    subtitle: 'Measuring the real impact of gate automation on facility throughput.',
+    tagline: 'Field Note.'
+  },
 };
 
 export async function GET(request: Request) {

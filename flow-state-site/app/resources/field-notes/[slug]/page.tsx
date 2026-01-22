@@ -3,6 +3,7 @@
 
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { siteUrl } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import {
@@ -278,6 +279,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${note.title} | Field Notes | YardFlow`,
     description: note.subtitle,
+    openGraph: {
+      title: `${note.title} | YardFlow Field Notes`,
+      description: note.subtitle,
+      type: 'article',
+      images: [
+        {
+          url: `${siteUrl}/api/og?page=field-note/${slug}`,
+          width: 1200,
+          height: 630,
+          alt: note.title,
+        },
+      ],
+    },
   };
 }
 
