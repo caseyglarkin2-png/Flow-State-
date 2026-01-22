@@ -147,4 +147,82 @@ describe('Protocol Icon Components', () => {
       expect(ymsSize).toBeLessThan(2048);
     });
   });
+
+  describe('Brand aesthetic compliance', () => {
+    it('Guard icon has crosshair lines (not shield)', () => {
+      const { container } = render(<ProtocolGuardIcon />);
+      // Should have crosshair path pattern
+      const crosshairPath = container.querySelector('path[d*="M24 4v8"]');
+      expect(crosshairPath).toBeInTheDocument();
+      // Should NOT have shield path (old design)
+      const shieldPath = container.querySelector('path[d*="L10 10v10c0"]');
+      expect(shieldPath).not.toBeInTheDocument();
+    });
+
+    it('Comms icon has bidirectional pulse arcs (not chat bubble)', () => {
+      const { container } = render(<ProtocolCommsIcon />);
+      // Should have arc paths for signal pulses
+      const leftPulse = container.querySelector('path[d*="M8 16a12"]');
+      const rightPulse = container.querySelector('path[d*="M40 16a12"]');
+      expect(leftPulse).toBeInTheDocument();
+      expect(rightPulse).toBeInTheDocument();
+      // Should NOT have chat bubble path (old design)
+      const bubblePath = container.querySelector('path[d*="M12 8h24a4"]');
+      expect(bubblePath).not.toBeInTheDocument();
+    });
+
+    it('BOL icon has 3x3 grid (not document shape)', () => {
+      const { container } = render(<ProtocolBOLIcon />);
+      // Should have 9 grid rectangles
+      const rects = container.querySelectorAll('rect');
+      expect(rects.length).toBe(9);
+      // Should NOT have document corner fold (old design)
+      const foldPath = container.querySelector('path[d*="M30 6v8h8"]');
+      expect(foldPath).not.toBeInTheDocument();
+    });
+
+    it('YMS icon has triangular network nodes (not bar chart)', () => {
+      const { container } = render(<ProtocolYMSIcon />);
+      // Should have 3 outer node circles + 3 inner fill circles + 2 hub circles = 8+
+      const circles = container.querySelectorAll('circle');
+      expect(circles.length).toBeGreaterThanOrEqual(8);
+      // Should NOT have bar chart rects (old design)
+      const chartRects = container.querySelectorAll('rect[x="36"]');
+      expect(chartRects.length).toBe(0);
+    });
+
+    it('all icons use geometric shapes (circles, lines, paths)', () => {
+      const { container: g } = render(<ProtocolGuardIcon />);
+      const { container: c } = render(<ProtocolCommsIcon />);
+      const { container: b } = render(<ProtocolBOLIcon />);
+      const { container: y } = render(<ProtocolYMSIcon />);
+
+      // All should have circles (geometric)
+      expect(g.querySelectorAll('circle').length).toBeGreaterThan(0);
+      expect(c.querySelectorAll('circle').length).toBeGreaterThan(0);
+      expect(y.querySelectorAll('circle').length).toBeGreaterThan(0);
+      
+      // BOL uses rects for grid
+      expect(b.querySelectorAll('rect').length).toBe(9);
+    });
+  });
+
+  describe('Stroke scaling', () => {
+    it('stroke widths scale with size prop', () => {
+      const { container: small } = render(<ProtocolGuardIcon size={24} />);
+      const { container: large } = render(<ProtocolGuardIcon size={64} />);
+      
+      // Get stroke-width attributes (as numbers)
+      const smallStrokes = Array.from(small.querySelectorAll('[stroke-width]'))
+        .map(el => parseFloat(el.getAttribute('stroke-width') || '0'));
+      const largeStrokes = Array.from(large.querySelectorAll('[stroke-width]'))
+        .map(el => parseFloat(el.getAttribute('stroke-width') || '0'));
+      
+      // Average stroke should be smaller for 24px vs 64px
+      const avgSmall = smallStrokes.reduce((a, b) => a + b, 0) / smallStrokes.length;
+      const avgLarge = largeStrokes.reduce((a, b) => a + b, 0) / largeStrokes.length;
+      
+      expect(avgSmall).toBeLessThan(avgLarge);
+    });
+  });
 });
