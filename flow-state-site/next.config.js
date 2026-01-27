@@ -1,15 +1,20 @@
-// Sentry is optional - gracefully degrade if not installed
-let withSentryConfig;
+// Optional dependencies - gracefully degrade if not installed
+let withSentryConfig = (config) => config;
+let withBundleAnalyzer = (config) => config;
+
 try {
   withSentryConfig = require('@sentry/nextjs').withSentryConfig;
 } catch {
-  // Sentry not installed, use passthrough
-  withSentryConfig = (config) => config;
+  // Sentry not installed
 }
 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-});
+try {
+  withBundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: process.env.ANALYZE === 'true',
+  });
+} catch {
+  // Bundle analyzer not installed
+}
 
 /** @type {import('next').NextConfig} */
 
