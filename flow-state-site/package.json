@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "eslint src/lib/**/*.ts src/lib/**/*.tsx lib/**/*.ts lib/**/*.tsx components/**/*.tsx --max-warnings 0 --no-warn-ignored",
     "typecheck": "tsc --noEmit",
-    "test": "tsx src/__tests__/schema.test.ts && tsx src/__tests__/roi.test.ts && tsx src/lib/economics/tests/model.test.ts",
+    "test": "vitest run",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest",
     "test:e2e": "playwright test",
