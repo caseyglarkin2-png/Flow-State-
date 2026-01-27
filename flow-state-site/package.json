@@ -1,6 +1,6 @@
 {
   "name": "yardflow-site",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "YardFlow by FreightRoll - Yard orchestration and security for freight networks",
   "main": "index.js",
   "scripts": {
