@@ -1,20 +1,20 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
 // Mock dependencies before importing handler
-vi.mock('../../hcaptcha', () => ({
+vi.mock('@/lib/hcaptcha', () => ({
   verifyHCaptcha: vi.fn().mockResolvedValue(true),
 }));
 
-vi.mock('../../rateLimit', () => ({
+vi.mock('@/lib/rateLimit', () => ({
   getClientIp: vi.fn().mockReturnValue('127.0.0.1'),
   isRateLimited: vi.fn().mockReturnValue(false),
 }));
 
-vi.mock('../../email', () => ({
+vi.mock('@/lib/email', () => ({
   sendEmail: vi.fn().mockResolvedValue(undefined),
 }));
 
-vi.mock('../../webhooks', () => ({
+vi.mock('@/lib/webhooks', () => ({
   postWebhook: vi.fn().mockResolvedValue(undefined),
 }));
 

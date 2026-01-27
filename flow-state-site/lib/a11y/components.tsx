@@ -1,4 +1,3 @@
-import type { JSX } from 'react';
 /**
  * Accessibility Components
  * 
@@ -7,7 +6,7 @@ import type { JSX } from 'react';
 
 'use client';
 
-import React, { forwardRef, ReactNode } from 'react';
+import React, { forwardRef, ReactNode, createElement } from 'react';
 
 // ═══════════════════════════════════════════════════════════════════
 // VISUALLY HIDDEN (Screen Reader Only)
@@ -15,14 +14,14 @@ import React, { forwardRef, ReactNode } from 'react';
 
 interface VisuallyHiddenProps {
   children: ReactNode;
-  as?: keyof JSX.IntrinsicElements;
+  as?: 'span' | 'div' | 'p' | 'label';
 }
 
 /**
  * Content that is visually hidden but accessible to screen readers
  */
-export function VisuallyHidden({ children, as: Component = 'span' }: VisuallyHiddenProps) {
-  return React.createElement(Component, { className: "sr-only" }, children);
+export function VisuallyHidden({ children, as = 'span' }: VisuallyHiddenProps) {
+  return createElement(as, { className: 'sr-only' }, children);
 }
 
 // ═══════════════════════════════════════════════════════════════════

@@ -1,0 +1,152 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Product Tier Configuration > Tier Snapshots (LOCKED) > capability list should match snapshot 1`] = `
+[
+  "digital-guard",
+  "digital-comms",
+  "digital-bol",
+  "digital-yms",
+  "machine-vision",
+  "guard-digitization",
+  "advanced-rtls",
+]
+`;
+
+exports[`Product Tier Configuration > Tier Snapshots (LOCKED) > core tier structure should match snapshot 1`] = `
+{
+  "capabilities": [
+    {
+      "description": "Gate automation with OCR, photo capture, and real-time driver authentication. Driver stays in truck.",
+      "icon": "shield",
+      "id": "digital-guard",
+      "includedIn": [
+        "core",
+        "enhanced",
+      ],
+      "name": "Digital Guard",
+    },
+    {
+      "description": "Lane-level driver messaging with read receipts. 40+ languages. No more "I never got the message" disputes.",
+      "icon": "signal",
+      "id": "digital-comms",
+      "includedIn": [
+        "core",
+        "enhanced",
+      ],
+      "name": "Digital Comms",
+    },
+    {
+      "description": "Touchless documentation with cryptographic timestamps. Photo proof of load condition. Detention disputes die young.",
+      "icon": "document",
+      "id": "digital-bol",
+      "includedIn": [
+        "core",
+        "enhanced",
+      ],
+      "name": "Digital BOL",
+    },
+    {
+      "description": "Real-time yard visibility with dwell anomaly detection. Network-wide predictive intelligence.",
+      "icon": "grid",
+      "id": "digital-yms",
+      "includedIn": [
+        "core",
+        "enhanced",
+      ],
+      "name": "Digital YMS",
+    },
+  ],
+  "ctaHref": "/roi",
+  "ctaLabel": "Calculate Your ROI",
+  "description": "The foundation of yard network standardization. Digital Guard, Comms, BOL, and YMS — everything you need to keep drivers in trucks and eliminate paper waste. Finance can underwrite this on paper savings alone.",
+  "headline": "Pays for itself with paper",
+  "id": "core",
+  "name": "YardFlow Core",
+  "priceLogic": "10¢/page × 2-page BOL = 20¢/shipment",
+  "roiAnchor": "$0.20/shipment paper savings",
+  "subheadline": "Digital modules for gate, dock, and paperless BOL",
+}
+`;
+
+exports[`Product Tier Configuration > Tier Snapshots (LOCKED) > enhanced tier structure should match snapshot 1`] = `
+{
+  "capabilities": [
+    {
+      "description": "Gate automation with OCR, photo capture, and real-time driver authentication. Driver stays in truck.",
+      "icon": "shield",
+      "id": "digital-guard",
+      "includedIn": [
+        "core",
+        "enhanced",
+      ],
+      "name": "Digital Guard",
+    },
+    {
+      "description": "Lane-level driver messaging with read receipts. 40+ languages. No more "I never got the message" disputes.",
+      "icon": "signal",
+      "id": "digital-comms",
+      "includedIn": [
+        "core",
+        "enhanced",
+      ],
+      "name": "Digital Comms",
+    },
+    {
+      "description": "Touchless documentation with cryptographic timestamps. Photo proof of load condition. Detention disputes die young.",
+      "icon": "document",
+      "id": "digital-bol",
+      "includedIn": [
+        "core",
+        "enhanced",
+      ],
+      "name": "Digital BOL",
+    },
+    {
+      "description": "Real-time yard visibility with dwell anomaly detection. Network-wide predictive intelligence.",
+      "icon": "grid",
+      "id": "digital-yms",
+      "includedIn": [
+        "core",
+        "enhanced",
+      ],
+      "name": "Digital YMS",
+    },
+    {
+      "description": "Automated seal verification, temperature capture for reefers, and condition documentation. No driver upload required.",
+      "icon": "camera",
+      "id": "machine-vision",
+      "includedIn": [
+        "enhanced",
+      ],
+      "name": "Machine Vision",
+    },
+    {
+      "description": "Digital workflows for guards still on-site. Capture reefer data, seal checks, and exception handling without paper.",
+      "icon": "user",
+      "id": "guard-digitization",
+      "includedIn": [
+        "enhanced",
+      ],
+      "name": "Guard Digitization",
+    },
+    {
+      "description": "Real-time trailer location for automated yard checks. Coming soon with network-optimized economics.",
+      "icon": "location",
+      "id": "advanced-rtls",
+      "includedIn": [
+        "enhanced",
+      ],
+      "name": "Advanced RTLS",
+    },
+  ],
+  "ctaHref": "/contact?intent=qualify",
+  "ctaLabel": "Schedule Audit Call",
+  "description": "Everything in Core, plus machine vision for automated seal verification, temperature capture, and guard digitization. For facilities where headcount reduction is the goal, this tier delivers measurable labor savings.",
+  "headline": "Machine vision unlocks headcount savings",
+  "id": "enhanced",
+  "name": "YardFlow Enhanced",
+  "priceLogic": "Core + Gen Logs machine vision module",
+  "roiAnchor": "~$40k/facility/year labor value",
+  "subheadline": "Core + Gen Logs machine vision for reefer and seal automation",
+}
+`;

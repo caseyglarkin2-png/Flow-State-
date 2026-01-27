@@ -21,6 +21,7 @@ import { motion } from 'framer-motion';
 import { fadeIn, staggerContainer, staggerItem } from '@/lib/motion-presets';
 import FacilityCountSlider from '@/components/FacilityCountSlider';
 import BelieveSection from '@/components/BelieveSection';
+import TierComparison, { TierBadges } from '@/components/products/TierComparison';
 
 const CAPABILITY_MODULES = [
   {
@@ -194,6 +195,9 @@ export default function ProductPage() {
             <p className="mt-4 text-xl text-steel max-w-3xl leading-relaxed">
               Every yard has 10 common denominators: check-in, authorization, dock assignment, drop rules, enforcement, exceptions, compliance, departure, evidence, and recovery. When those are standardized, throughput compounds. When they're manual, variance compounds. <span className="text-white font-semibold">YardFlow orchestrates all 10 as one system.</span>
             </p>
+            <div className="mt-6">
+              <TierBadges />
+            </div>
           </motion.div>
         </div>
       </section>
@@ -309,6 +313,13 @@ export default function ProductPage() {
               <p className="text-center text-steel text-sm mt-6">Guard verifies identity → Comms sends verified driver to dock → BOL captures verification → YMS records and learns from each standardized event</p>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* TIER COMPARISON: Core vs Enhanced */}
+      <section className="py-20 bg-carbon/20 border-y border-neon/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <TierComparison showCTA={true} />
         </div>
       </section>
 

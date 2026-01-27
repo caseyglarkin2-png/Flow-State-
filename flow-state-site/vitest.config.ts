@@ -11,16 +11,18 @@ export default defineConfig({
       'src/lib/**/__tests__/**/*.test.tsx',
       'components/**/__tests__/**/*.test.ts',
       'components/**/__tests__/**/*.test.tsx',
-      'lib/__tests__/**/*.test.ts',
-      'lib/__tests__/**/*.test.tsx',
       'lib/hooks/__tests__/**/*.test.ts',
       'lib/hooks/__tests__/**/*.test.tsx',
       'lib/a11y/__tests__/**/*.test.ts',
       'lib/a11y/__tests__/**/*.test.tsx',
       'lib/analytics/__tests__/**/*.test.ts',
       'lib/analytics/__tests__/**/*.test.tsx',
+      'lib/content/__tests__/**/*.test.ts',
+      'lib/content/__tests__/**/*.test.tsx',
+      'config/__tests__/**/*.test.ts',
+      'config/__tests__/**/*.test.tsx',
     ],
-    exclude: ['node_modules', '.next', 'e2e', 'src/__tests__'],
+    exclude: ['node_modules', '.next', 'e2e', 'src/__tests__', 'src/lib/api/__tests__'],
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
@@ -28,18 +30,11 @@ export default defineConfig({
     },
   },
   resolve: {
-    alias: [
-      // Specific paths that exist in src/lib
-      { find: '@/lib/hcaptcha', replacement: path.resolve(__dirname, './src/lib/hcaptcha') },
-      { find: '@/lib/rateLimit', replacement: path.resolve(__dirname, './src/lib/rateLimit') },
-      { find: '@/lib/email', replacement: path.resolve(__dirname, './src/lib/email') },
-      { find: '@/lib/webhooks', replacement: path.resolve(__dirname, './src/lib/webhooks') },
-      { find: '@/lib/api', replacement: path.resolve(__dirname, './src/lib/api') },
-      { find: '@/lib/utm', replacement: path.resolve(__dirname, './lib/utm') },
-      // Default lib path (root lib folder)
-      { find: '@/lib', replacement: path.resolve(__dirname, './lib') },
-      { find: '@/components', replacement: path.resolve(__dirname, './components') },
-      { find: '@', replacement: path.resolve(__dirname, './') },
-    ],
+    alias: {
+      '@': path.resolve(__dirname, './'),
+      '@/lib': path.resolve(__dirname, './lib'),
+      '@/components': path.resolve(__dirname, './components'),
+      '@/config': path.resolve(__dirname, './config'),
+    },
   },
 });

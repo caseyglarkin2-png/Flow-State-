@@ -15,7 +15,7 @@ export interface AnalyticsEvent {
 }
 
 export interface CalculatorEventProperties {
-    [key: string]: string | number | boolean | undefined;
+  [key: string]: string | number | boolean | undefined;
   presetId?: string;
   facilityCount?: number;
   loadVolume?: number;
@@ -27,7 +27,7 @@ export interface CalculatorEventProperties {
 }
 
 export interface VisualizationEventProperties {
-    [key: string]: string | number | boolean | undefined;
+  [key: string]: string | number | boolean | undefined;
   qualityTier?: string;
   fps?: number;
   reducedMotion?: boolean;
@@ -68,18 +68,18 @@ export const ANALYTICS_EVENTS = {
 // ANALYTICS PROVIDER INTERFACE
 // ═══════════════════════════════════════════════════════════════════
 
-export type CalculatorAnalyticsProvider = {
+export type AnalyticsProvider = {
   track: (event: AnalyticsEvent) => void;
   identify: (userId: string, traits?: Record<string, unknown>) => void;
   page: (name?: string, properties?: Record<string, unknown>) => void;
 };
 
-let analyticsProvider: CalculatorAnalyticsProvider | null = null;
+let analyticsProvider: AnalyticsProvider | null = null;
 
 /**
  * Set the analytics provider (GA4, Mixpanel, etc.)
  */
-export function setAnalyticsProvider(provider: CalculatorAnalyticsProvider) {
+export function setAnalyticsProvider(provider: AnalyticsProvider) {
   analyticsProvider = provider;
 }
 
