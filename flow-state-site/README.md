@@ -26,6 +26,11 @@ A modern, high-performance website for YardFlow by FreightRoll, a next-generatio
 2. **Product** (`/product`) - YardFlow deep dive with Digital Guard, Orchestration Engine, Driver Experience modules
 3. **Solutions** (`/solutions`) - Industry archetypes (Retail, 3PL, Port, LTL, Manufacturing) with pain/flow mapping
 4. **YardBuilder AI** (`/yardbuilder`) - 10-minute digital twin feature with 3-step process and use cases
+5. **ROI Calculator** (`/roi`) - Interactive ROI calculator with industry presets and PDF export
+6. **Proof** (`/proof`) - Primo case study and validation data
+7. **Network Map Demo** (`/demo/network-map`) - Interactive facility network visualization with sharing
+
+See [docs/ROUTE_AUDIT.md](docs/ROUTE_AUDIT.md) for complete route inventory and redirect mappings.
 
 ## Getting Started
 
@@ -195,8 +200,12 @@ All snapshots are locked in git. Formula changes require:
 ### E2E Tests
 
 - **`smoke.spec.ts`** - Playwright smoke tests (critical user journeys)
+- **`routes.spec.ts`** - Route accessibility and redirect validation
 - **`visual-regression.spec.ts`** - Screenshot baselines (desktop 1280×720, mobile 375×667)
 - **`mobile-interaction.spec.ts`** - Touch input, button sizing (44×44px), overflow checking, orientation changes
+- **`accessibility.spec.ts`** - Keyboard navigation, skip links, ARIA compliance
+- **`lead-form.spec.ts`** - Form submission, UTM capture, validation
+- **`network-sharing.spec.ts`** - Network map URL sharing, clipboard, config loading
 
 ### CI Pipeline
 

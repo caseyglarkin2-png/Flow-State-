@@ -4,38 +4,30 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Logo from '@/components/Logo';
-import { FlowArrow, Ignite, Velocity, Shield, DryVan, Intermodal, Flatbed, Tanker } from '@/components/icons/FlowIcons';
-import { solutionNav } from '@/lib/solutions';
-import { BRAND } from '@/config/brand';
+import { Velocity } from '@/components/icons/FlowIcons';
 import { PRIMARY_CTA } from '@/lib/cta';
+
+/**
+ * Simplified Header — 5-item IA
+ * Routes: /, /product, /solutions, /roi, /procurement, /contact
+ * No dropdowns, no Co-Dev banner, clean and focused
+ */
+
+const NAV_ITEMS = [
+  { href: '/product', label: 'Product' },
+  { href: '/solutions', label: 'Solutions' },
+  { href: '/roi', label: 'ROI' },
+  { href: '/procurement', label: 'Procurement' },
+] as const;
 
 export default function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [solutionsOpen, setSolutionsOpen] = useState(false);
-  const [resourcesOpen, setResourcesOpen] = useState(false);
-  const [companyOpen, setCompanyOpen] = useState(false);
-  const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
 
-  const closeAllDropdowns = () => {
-    setSolutionsOpen(false);
-    setResourcesOpen(false);
-    setCompanyOpen(false);
-  };
+  const isActive = (href: string) => pathname === href;
 
   return (
     <header className="fixed top-0 w-full z-50 bg-void/80 backdrop-blur-md border-b border-neon/20">
-      {/* Co-Development Program Banner */}
-      <div className="bg-neon/10 border-b border-neon/20 py-2 px-4 text-center text-sm">
-        <span className="text-steel inline-flex items-center gap-2">
-          <Ignite size={16} className="text-neon" />
-          {BRAND.program.name}:
-        </span>
-        <Link href="/co-development" className="text-neon font-semibold hover:underline inline-flex items-center gap-1 ml-1">
-          {BRAND.program.tagline} <FlowArrow size={12} className="text-neon" />
-        </Link>
-      </div>
-
       <nav className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
@@ -48,230 +40,40 @@ export default function Header() {
           </div>
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-6">
-          {/* YNS - Featured link */}
-
-
-          {/* Product - Direct link */}
-          <Link 
-            href="/product" 
-            className={`text-sm transition-colors ${
-              pathname === '/product' ? 'text-neon font-semibold' : 'text-steel hover:text-neon'
-            }`}
-          >
-            Product
-          </Link>
-
-          {/* Solutions Dropdown */}
-          <div className="relative">
-            <button 
-              onClick={() => { closeAllDropdowns(); setSolutionsOpen(!solutionsOpen); }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  closeAllDropdowns();
-                  setSolutionsOpen(!solutionsOpen);
-                }
-                if (e.key === 'Escape') setSolutionsOpen(false);
-              }}
-              onBlur={() => setTimeout(() => setSolutionsOpen(false), 150)}
-              aria-expanded={solutionsOpen}
-              aria-haspopup="true"
-              aria-label="Solutions menu"
-              className="text-sm text-steel hover:text-neon transition-colors flex items-center gap-1"
+        {/* Desktop Menu — Simple links, no dropdowns */}
+        <div className="hidden lg:flex items-center gap-8">
+          {NAV_ITEMS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`text-sm transition-colors ${
+                isActive(item.href) 
+                  ? 'text-neon font-semibold' 
+                  : 'text-steel hover:text-neon'
+              }`}
             >
-              Solutions
-              <svg className={`w-4 h-4 transition-transform ${solutionsOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            
-            {solutionsOpen && (
-              <div className="absolute top-full left-0 mt-2 w-72 bg-carbon border border-neon/20 rounded-xl shadow-lg py-2 z-50">
-                <Link 
-                  href="/solutions" 
-                  className={`block px-4 py-3 text-sm hover:text-neon hover:bg-neon/5 transition-colors border-b border-steel/10 ${
-                    pathname === '/solutions' ? 'bg-neon/10 text-neon' : 'text-steel'
-                  }`}
-                >
-                  <span className="font-bold text-white">Solutions Overview</span>
-                  <span className="block text-xs text-steel/70 mt-1">Five operational archetypes</span>
-                </Link>
-                
-                <div className="py-2">
-                  <p className="px-4 py-2 text-xs font-semibold text-steel/60 uppercase tracking-wider">By Archetype</p>
-                  {solutionNav.map((item) => (
-                    <Link 
-                      key={item.slug}
-                      href={item.href} 
-                      className={`block px-4 py-2 text-sm hover:text-neon hover:bg-neon/5 transition-colors ${
-                        pathname === item.href ? 'bg-neon/10' : ''
-                      }`}
-                    >
-                      <span className={`font-medium ${
-                        pathname === item.href ? 'text-neon' : 'text-white'
-                      }`}>
-                        {item.label}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* ROI - Direct link */}
-          <Link 
-            href="/roi" 
-            className={`text-sm transition-colors ${
-              pathname === '/roi' ? 'text-neon font-semibold' : 'text-steel hover:text-neon'
-            }`}
-          >
-            ROI
-          </Link>
-
-          {/* YardBuilder - Direct link */}
-          <Link 
-            href="/yardbuilder" 
-            className={`text-sm transition-colors ${
-              pathname === '/yardbuilder' ? 'text-neon font-semibold' : 'text-steel hover:text-neon'
-            }`}
-          >
-            YardBuilder
-          </Link>
-
-          {/* Resources Dropdown */}
-          <div className="relative">
-            <button 
-              onClick={() => { closeAllDropdowns(); setResourcesOpen(!resourcesOpen); }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  closeAllDropdowns();
-                  setResourcesOpen(!resourcesOpen);
-                }
-                if (e.key === 'Escape') setResourcesOpen(false);
-              }}
-              onBlur={() => setTimeout(() => setResourcesOpen(false), 150)}
-              aria-expanded={resourcesOpen}
-              aria-haspopup="true"
-              aria-label="Resources menu"
-              className="text-sm text-steel hover:text-neon transition-colors flex items-center gap-1"
-            >
-              Resources
-              <svg className={`w-4 h-4 transition-transform ${resourcesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            
-            {resourcesOpen && (
-              <div className="absolute top-full left-0 mt-2 w-56 bg-carbon border border-neon/20 rounded-xl shadow-lg py-2 z-50">
-                <Link href="/resources/guides" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  <span className="font-medium text-white">Guides</span>
-                  <span className="block text-xs text-steel/70">Deep dives on yard operations</span>
-                </Link>
-                <Link href="/resources/field-notes" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  <span className="font-medium text-white">Field Notes</span>
-                  <span className="block text-xs text-steel/70">Operational insights & patterns</span>
-                </Link>
-                <Link href="/resources/simulations" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  <span className="font-medium text-white">Simulations</span>
-                  <span className="block text-xs text-steel/70">Interactive ROI & network models</span>
-                </Link>
-                <div className="border-t border-neon/10 my-2"></div>
-                <Link href="/docs/economics-methodology" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  Economics Methodology
-                </Link>
-                <Link href="/case-studies" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  Case Studies
-                </Link>
-              </div>
-            )}
-          </div>
-
-          {/* Company Dropdown */}
-          <div className="relative">
-            <button 
-              onClick={() => { closeAllDropdowns(); setCompanyOpen(!companyOpen); }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  closeAllDropdowns();
-                  setCompanyOpen(!companyOpen);
-                }
-                if (e.key === 'Escape') setCompanyOpen(false);
-              }}
-              onBlur={() => setTimeout(() => setCompanyOpen(false), 150)}
-              aria-expanded={companyOpen}
-              aria-haspopup="true"
-              aria-label="Company menu"
-              className="text-sm text-steel hover:text-neon transition-colors flex items-center gap-1"
-            >
-              Company
-              <svg className={`w-4 h-4 transition-transform ${companyOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            
-            {companyOpen && (
-              <div className="absolute top-full right-0 mt-2 w-56 bg-carbon border border-neon/20 rounded-xl shadow-lg py-2 z-50">
-                <Link href="/co-development" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors border-b border-neon/10">
-                  <span className="font-medium text-white flex items-center gap-2">
-                    <Ignite size={14} className="text-neon" /> Co-Development
-                  </span>
-                  <span className="block text-xs text-steel/70">Build features with us</span>
-                </Link>
-                <Link href="/resources/procurement" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  <span className="font-medium text-white flex items-center gap-2">
-                    <Shield size={14} className="text-neon" /> Procurement Resources
-                  </span>
-                  <span className="block text-xs text-steel/70">Security & compliance proof</span>
-                </Link>
-                <Link href="/implementation" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  Implementation
-                </Link>
-                <Link href="/integrations" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  Integrations
-                </Link>
-                <Link href="/pricing" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  Pricing
-                </Link>
-                <div className="border-t border-neon/10 my-2"></div>
-                <Link href="/about" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  About
-                </Link>
-                <Link href="/faq" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  FAQ
-                </Link>
-                <Link href="/press" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  Press
-                </Link>
-                <Link href="/status" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  Status
-                </Link>
-                <Link href="/changelog" className="block px-4 py-2 text-sm text-steel hover:text-neon hover:bg-neon/5 transition-colors">
-                  Changelog
-                </Link>
-              </div>
-            )}
-          </div>
+              {item.label}
+            </Link>
+          ))}
         </div>
 
         {/* Right Actions */}
         <div className="flex items-center gap-3">
-          <Link href={PRIMARY_CTA.href} className="px-4 py-2 text-sm font-semibold bg-neon text-void rounded-xl hover:shadow-lg hover:shadow-neon/50 transition-all flex items-center gap-1" aria-label={PRIMARY_CTA.ariaLabel}>
+          {/* Primary CTA */}
+          <Link 
+            href={PRIMARY_CTA.href} 
+            className="hidden sm:inline-flex px-4 py-2 text-sm font-semibold bg-neon text-void rounded-xl hover:shadow-lg hover:shadow-neon/50 transition-all items-center gap-1" 
+            aria-label={PRIMARY_CTA.ariaLabel}
+          >
             <Velocity size={16} className="text-void" />
             {PRIMARY_CTA.label}
-          </Link>
-          <Link href="/co-development" className="hidden md:inline-flex px-4 py-2 text-sm font-semibold border border-neon/30 text-white rounded-xl hover:border-neon/50 transition-all" aria-label="Apply for Co-Development">
-            Apply for Co-Development
           </Link>
           
           {/* Mobile Menu Button */}
           <button 
             className="lg:hidden p-2 text-neon"
             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileMenuOpen}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -287,92 +89,37 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-carbon border-t border-neon/20 py-4 px-6 space-y-4 max-h-[80vh] overflow-y-auto">
-
-          <Link 
-            href="/product" 
-            className={`block transition-colors font-medium ${
-              pathname === '/product' ? 'text-neon' : 'text-steel hover:text-neon'
-            }`}
-          >
-            Product
-          </Link>
+        <div className="lg:hidden bg-carbon border-t border-neon/20 py-4 px-6 space-y-4">
+          {NAV_ITEMS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className={`block py-2 text-lg transition-colors ${
+                isActive(item.href) 
+                  ? 'text-neon font-semibold' 
+                  : 'text-steel hover:text-neon'
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
           
-          <div className="border-t border-neon/10 pt-4">
-            <button 
-              onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
-              className="w-full flex items-center justify-between text-xs text-steel/60 font-mono mb-2 uppercase hover:text-neon transition-colors"
+          <div className="pt-4 border-t border-neon/10">
+            <Link
+              href={PRIMARY_CTA.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="block w-full text-center px-4 py-3 text-sm font-semibold bg-neon text-void rounded-xl"
             >
-              Solutions
-              <svg className={`w-4 h-4 transition-transform ${mobileSolutionsOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            
-            <Link 
-              href="/solutions" 
-              className={`block transition-colors py-1 ${
-                pathname === '/solutions' ? 'text-neon font-semibold' : 'text-steel hover:text-neon'
-              }`}
-            >
-              Overview
-            </Link>
-            
-            {mobileSolutionsOpen && (
-              <div className="ml-4 mt-2 space-y-1 border-l-2 border-neon/20 pl-4">
-                {solutionNav.map((item) => (
-                  <Link 
-                    key={item.slug}
-                    href={item.href} 
-                    className={`block py-1 text-sm transition-colors ${
-                      pathname === item.href ? 'text-neon font-semibold' : 'text-steel hover:text-neon'
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-
-          <div className="flex gap-4">
-            <Link 
-              href="/roi" 
-              className={`block transition-colors font-medium ${
-                pathname === '/roi' ? 'text-neon' : 'text-steel hover:text-neon'
-              }`}
-            >
-              ROI
-            </Link>
-            <Link 
-              href="/yardbuilder" 
-              className={`block transition-colors font-medium ${
-                pathname === '/yardbuilder' ? 'text-neon' : 'text-steel hover:text-neon'
-              }`}
-            >
-              YardBuilder
+              {PRIMARY_CTA.label}
             </Link>
           </div>
           
-          <div className="border-t border-neon/10 pt-4">
-            <p className="text-xs text-steel/60 font-mono mb-2 uppercase">Resources</p>
-            <Link href="/resources/guides" className="block text-steel hover:text-neon transition-colors py-1">Guides</Link>
-            <Link href="/resources/field-notes" className="block text-steel hover:text-neon transition-colors py-1">Field Notes</Link>
-            <Link href="/resources/simulations" className="block text-steel hover:text-neon transition-colors py-1">Simulations</Link>
-            <Link href="/case-studies" className="block text-steel hover:text-neon transition-colors py-1">Case Studies</Link>
-          </div>
-
-          <div className="border-t border-neon/10 pt-4">
-            <p className="text-xs text-steel/60 font-mono mb-2 uppercase">Company</p>
-            <Link href="/resources/procurement" className="block text-steel hover:text-neon transition-colors py-1">Evidence Vault</Link>
-            <Link href="/implementation" className="block text-steel hover:text-neon transition-colors py-1">Implementation</Link>
-            <Link href="/integrations" className="block text-steel hover:text-neon transition-colors py-1">Integrations</Link>
-            <Link href="/pricing" className="block text-steel hover:text-neon transition-colors py-1">Pricing</Link>
-            <Link href="/about" className="block text-steel hover:text-neon transition-colors py-1">About</Link>
-            <Link href="/faq" className="block text-steel hover:text-neon transition-colors py-1">FAQ</Link>
-            <Link href="/press" className="block text-steel hover:text-neon transition-colors py-1">Press</Link>
-            <Link href="/status" className="block text-steel hover:text-neon transition-colors py-1">Status</Link>
-            <Link href="/changelog" className="block text-steel hover:text-neon transition-colors py-1">Changelog</Link>
+          {/* Utility links */}
+          <div className="pt-4 border-t border-neon/10 flex gap-4 text-sm text-steel">
+            <Link href="/contact" className="hover:text-neon transition-colors">Contact</Link>
+            <Link href="/privacy" className="hover:text-neon transition-colors">Privacy</Link>
+            <Link href="/terms" className="hover:text-neon transition-colors">Terms</Link>
           </div>
         </div>
       )}

@@ -58,7 +58,7 @@ export default function Footer() {
               <li><Link href="/solutions/dry-van" className="hover:text-neon transition-colors">Dry Van</Link></li>
               <li><Link href="/solutions/reefer" className="hover:text-neon transition-colors">Reefer</Link></li>
               <li><Link href="/solutions/flatbed" className="hover:text-neon transition-colors">Flatbed</Link></li>
-              <li><Link href="/case-studies" className="hover:text-neon transition-colors">Case Studies</Link></li>
+              <li><Link href="/proof" className="hover:text-neon transition-colors">Proof</Link></li>
             </ul>
           </div>
 
@@ -68,7 +68,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-steel">
               <li><Link href="/resources/guides" className="hover:text-neon transition-colors">Guides</Link></li>
               <li><Link href="/resources/field-notes" className="hover:text-neon transition-colors">Field Notes</Link></li>
-              <li><Link href="/resources/simulations" className="hover:text-neon transition-colors">Simulations</Link></li>
+              <li><Link href="/singularity" className="hover:text-neon transition-colors">Simulations</Link></li>
               <li><Link href="/docs/economics-methodology" className="hover:text-neon transition-colors">Economics Methodology</Link></li>
             </ul>
           </div>

@@ -137,3 +137,66 @@ test.describe('Accessibility - Color Contrast', () => {
     }
   });
 });
+
+test.describe('Accessibility - Keyboard Navigation', () => {
+  test('skip link is first focusable element', async ({ page }) => {
+    await page.goto('/');
+    await page.keyboard.press('Tab');
+    
+    const focused = page.locator(':focus');
+    await expect(focused).toContainText('Skip to main content');
+  });
+
+  test('skip link moves focus to main content', async ({ page }) => {
+    await page.goto('/');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Enter');
+    
+    // Focus should now be on or near main content
+    const focused = await page.evaluate(() => {
+      const el = document.activeElement;
+      return el?.id || el?.tagName || 'unknown';
+    });
+    expect(focused).toMatch(/main-content|MAIN/i);
+  });
+
+  test('full keyboard navigation - no focus traps', async ({ page }) => {
+    await page.goto('/');
+    
+    // Tab through 50 elements, verify focus never gets stuck
+    const focusedElements: string[] = [];
+    for (let i = 0; i < 50; i++) {
+      await page.keyboard.press('Tab');
+      const focused = await page.evaluate(() => {
+        const el = document.activeElement;
+        return el?.tagName + (el?.getAttribute('aria-label') || el?.textContent?.slice(0, 20) || '');
+      });
+      focusedElements.push(focused);
+      
+      // If we're seeing the same element repeatedly, we might be trapped
+      if (i > 5 && focusedElements.slice(-5).every(f => f === focused)) {
+        throw new Error(`Focus trap detected at: ${focused}`);
+      }
+    }
+    
+    // Should have navigated through multiple unique elements
+    const unique = new Set(focusedElements);
+    expect(unique.size).toBeGreaterThan(5);
+  });
+
+  test('mobile menu is keyboard accessible', async ({ page }) => {
+    await page.setViewportSize({ width: 375, height: 667 });
+    await page.goto('/');
+    
+    // Find and activate mobile menu button
+    const menuButton = page.getByRole('button', { name: /open menu|close menu/i });
+    await menuButton.focus();
+    await page.keyboard.press('Enter');
+    
+    // Menu should be visible
+    await expect(page.locator('[class*="md:hidden"]').first()).toBeVisible();
+    
+    // Close with Escape (if implemented)
+    await page.keyboard.press('Escape');
+  });
+});

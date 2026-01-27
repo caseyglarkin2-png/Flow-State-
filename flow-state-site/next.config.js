@@ -100,82 +100,190 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      // Old archetype routes -> new canonical routes
+      // ═══════════════════════════════════════════════════════════════
+      // IA SIMPLIFICATION REDIRECTS (Jan 2026)
+      // Target IA: /, /product, /solutions, /roi, /procurement, /contact
+      // ═══════════════════════════════════════════════════════════════
+
+      // Solutions archetype consolidation → tab params
       {
-        source: "/solutions/archetypes/dry-van-reefer",
-        destination: "/solutions/dry-van",
+        source: "/solutions/dry-van",
+        destination: "/solutions?tab=dry-van",
         permanent: true,
       },
       {
-        source: "/solutions/archetypes/dry-van-reefer/",
-        destination: "/solutions/dry-van",
+        source: "/solutions/intermodal",
+        destination: "/solutions?tab=intermodal",
         permanent: true,
       },
       {
-        source: "/solutions/archetypes/intermodal",
-        destination: "/solutions/intermodal",
+        source: "/solutions/flatbed",
+        destination: "/solutions?tab=flatbed",
         permanent: true,
       },
       {
-        source: "/solutions/archetypes/intermodal/",
-        destination: "/solutions/intermodal",
+        source: "/solutions/tanker",
+        destination: "/solutions?tab=tanker",
         permanent: true,
       },
       {
-        source: "/solutions/archetypes/flatbed-industrial",
-        destination: "/solutions/flatbed",
+        source: "/solutions/ltl",
+        destination: "/solutions?tab=ltl",
         permanent: true,
       },
-      {
-        source: "/solutions/archetypes/flatbed-industrial/",
-        destination: "/solutions/flatbed",
-        permanent: true,
-      },
-      {
-        source: "/solutions/archetypes/tanker-hazmat",
-        destination: "/solutions/tanker",
-        permanent: true,
-      },
-      {
-        source: "/solutions/archetypes/tanker-hazmat/",
-        destination: "/solutions/tanker",
-        permanent: true,
-      },
-      // catch-all if you had other variants
+      // Old archetype routes
       {
         source: "/solutions/archetypes/:path*",
         destination: "/solutions",
         permanent: true,
       },
-      // Blog to Resources redirects
+
+      // CTA consolidation → contact with intent
+      {
+        source: "/qualify",
+        destination: "/contact?intent=qualify",
+        permanent: true,
+      },
+      {
+        source: "/demo",
+        destination: "/contact?intent=demo",
+        permanent: true,
+      },
+      {
+        source: "/co-development",
+        destination: "/contact?intent=partnership",
+        permanent: true,
+      },
+
+      // Calculator/tool consolidation → ROI
+      {
+        source: "/pricing",
+        destination: "/roi",
+        permanent: true,
+      },
+      {
+        source: "/diagnostic",
+        destination: "/roi",
+        permanent: true,
+      },
+      {
+        source: "/yardbuilder",
+        destination: "/roi",
+        permanent: true,
+      },
+      {
+        source: "/singularity",
+        destination: "/roi",
+        permanent: true,
+      },
+      {
+        source: "/network-effect",
+        destination: "/roi",
+        permanent: true,
+      },
+
+      // Evidence/resources → Procurement
+      {
+        source: "/proof",
+        destination: "/procurement",
+        permanent: true,
+      },
+      {
+        source: "/resources",
+        destination: "/procurement",
+        permanent: true,
+      },
+      {
+        source: "/resources/:path*",
+        destination: "/procurement",
+        permanent: true,
+      },
+      {
+        source: "/risk",
+        destination: "/procurement",
+        permanent: true,
+      },
+      {
+        source: "/security",
+        destination: "/procurement",
+        permanent: true,
+      },
+      {
+        source: "/press",
+        destination: "/procurement",
+        permanent: true,
+      },
+      {
+        source: "/case-studies",
+        destination: "/procurement",
+        permanent: true,
+      },
+      {
+        source: "/case-studies/:slug",
+        destination: "/procurement",
+        permanent: true,
+      },
+
+      // Product capability consolidation
+      {
+        source: "/scale",
+        destination: "/product",
+        permanent: true,
+      },
+      {
+        source: "/integrations",
+        destination: "/product",
+        permanent: true,
+      },
+      {
+        source: "/implementation",
+        destination: "/product",
+        permanent: true,
+      },
+      {
+        source: "/compare",
+        destination: "/product",
+        permanent: true,
+      },
+
+      // Misc consolidation
+      {
+        source: "/about",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/faq",
+        destination: "/contact",
+        permanent: true,
+      },
+      {
+        source: "/changelog",
+        destination: "/archive/changelog",
+        permanent: true,
+      },
+
+      // Blog redirects (legacy)
       {
         source: '/blog/',
-        destination: '/resources/',
+        destination: '/procurement',
         permanent: true,
       },
       {
-        source: '/blog/cargo-theft-prevention/',
-        destination: '/resources/guides/cargo-theft-prevention/',
+        source: '/blog/:path*',
+        destination: '/procurement',
+        permanent: true,
+      },
+
+      // Simulations (legacy)
+      {
+        source: '/simulations',
+        destination: '/roi',
         permanent: true,
       },
       {
-        source: '/blog/network-effect-yard-automation/',
-        destination: '/resources/guides/network-effect-yard-automation/',
-        permanent: true,
-      },
-      {
-        source: '/blog/ctpat-tsa-compliance/',
-        destination: '/resources/guides/ctpat-tsa-compliance/',
-        permanent: true,
-      },
-      {
-        source: '/blog/yard-tax-calculator/',
-        destination: '/diagnostic/',
-        permanent: true,
-      },
-      {
-        source: '/blog/primo-singularity-simulations/',
-        destination: '/resources/simulations/',
+        source: '/start-your-map',
+        destination: '/roi',
         permanent: true,
       },
     ];

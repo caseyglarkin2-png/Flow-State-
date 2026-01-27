@@ -218,4 +218,66 @@ test.describe('Lead Form', () => {
       await expect(page.getByText(/server error|went wrong/i)).toBeVisible({ timeout: 5000 });
     }
   });
+
+  test('UTM parameters are captured from URL', async ({ page }) => {
+    // Visit with UTM params
+    await page.goto('/contact?utm_source=google&utm_medium=cpc&utm_campaign=test-campaign');
+    
+    // Wait for form to load
+    await page.locator('#lead-name').waitFor({ state: 'visible' });
+    
+    // Check sessionStorage for UTM params
+    const storedUtm = await page.evaluate(() => {
+      return sessionStorage.getItem('yardflow_utm');
+    });
+    
+    expect(storedUtm).toBeTruthy();
+    
+    const utm = JSON.parse(storedUtm!);
+    expect(utm.utm_source).toBe('google');
+    expect(utm.utm_medium).toBe('cpc');
+    expect(utm.utm_campaign).toBe('test-campaign');
+  });
+
+  test('UTM parameters are included in form submission', async ({ page }) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let submittedData: any = null;
+    
+    // Intercept API call and capture the data
+    await page.route('/api/leads', async (route) => {
+      const request = route.request();
+      submittedData = JSON.parse(request.postData() || '{}');
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/json',
+        body: JSON.stringify({ ok: true }),
+      });
+    });
+
+    // Visit with UTM params
+    await page.goto('/contact?utm_source=linkedin&utm_medium=social&utm_campaign=launch');
+    
+    // Wait for form
+    await page.locator('#lead-name').waitFor({ state: 'visible' });
+    
+    // Fill required fields
+    await page.locator('#lead-name').fill('UTM Test');
+    await page.locator('#lead-email').fill('utm@example.com');
+    await page.locator('#lead-company').fill('UTM Corp');
+    
+    // Submit if possible (depends on captcha config)
+    const submitButton = page.getByRole('button', { name: /^submit$/i });
+    if (await submitButton.isVisible() && await submitButton.isEnabled()) {
+      await submitButton.click();
+      
+      // Wait for submission
+      await page.waitForTimeout(500);
+      
+      // Verify UTM was included
+      expect(submittedData?.utm).toBeTruthy();
+      expect(submittedData?.utm?.utm_source).toBe('linkedin');
+      expect(submittedData?.utm?.utm_medium).toBe('social');
+      expect(submittedData?.utm?.utm_campaign).toBe('launch');
+    }
+  });
 });

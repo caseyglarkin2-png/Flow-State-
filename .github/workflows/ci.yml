@@ -36,8 +36,18 @@ jobs:
       - name: Unit Tests (Vitest, includes golden tests)
         run: npm test
 
+      - name: Shader Validation (GLSL syntax)
+        run: npm run test:shaders
+
       - name: Build
         run: npm run build
+
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nextjs-build
+          path: flow-state-site/.next
+          retention-days: 3
 
       - name: Bundle Size Audit
         run: node scripts/bundle-audit.js
@@ -48,11 +58,22 @@ jobs:
       - name: Content Audit
         run: npm run audit:content
 
+      - name: Congruence Check
+        run: npm run congruence:check
+
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps chromium firefox webkit
 
       - name: E2E Smoke Tests (Playwright)
         run: npm run test:e2e:ci
+
+      - name: Upload Playwright Report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: flow-state-site/playwright-report
+          retention-days: 7
 
   lighthouse:
     runs-on: ubuntu-latest

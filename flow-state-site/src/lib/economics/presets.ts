@@ -75,6 +75,75 @@ export const ECONOMICS_MODES: Record<
   },
 };
 
+/**
+ * Industry-specific presets for ROI calculator.
+ * Adjusts operational parameters based on typical industry characteristics.
+ */
+export type IndustryPresetId = 'retail' | '3pl' | 'manufacturing' | 'food-bev' | 'automotive';
+
+export const INDUSTRY_PRESETS: Record<
+  IndustryPresetId,
+  {
+    id: IndustryPresetId;
+    label: string;
+    description: string;
+    /** Typical labor reduction % (0-100) */
+    laborReductionPercent: number;
+    /** Typical dwell reduction in minutes */
+    dwellReductionMinutes: number;
+    /** Typical detention recovery % (0-100) */
+    detentionRecoveryPercent: number;
+    /** Typical trucks per day per facility */
+    trucksPerDayPerFacility: number;
+  }
+> = {
+  retail: {
+    id: 'retail',
+    label: 'Retail / Distribution',
+    description: 'High volume, time-sensitive deliveries',
+    laborReductionPercent: 70,
+    dwellReductionMinutes: 24,
+    detentionRecoveryPercent: 65,
+    trucksPerDayPerFacility: 180,
+  },
+  '3pl': {
+    id: '3pl',
+    label: '3PL / Logistics',
+    description: 'Multi-client, variable operations',
+    laborReductionPercent: 65,
+    dwellReductionMinutes: 30,
+    detentionRecoveryPercent: 60,
+    trucksPerDayPerFacility: 150,
+  },
+  manufacturing: {
+    id: 'manufacturing',
+    label: 'Manufacturing',
+    description: 'Just-in-time, production-critical',
+    laborReductionPercent: 60,
+    dwellReductionMinutes: 20,
+    detentionRecoveryPercent: 55,
+    trucksPerDayPerFacility: 100,
+  },
+  'food-bev': {
+    id: 'food-bev',
+    label: 'Food & Beverage',
+    description: 'Temperature-sensitive, FIFO critical',
+    laborReductionPercent: 68,
+    dwellReductionMinutes: 28,
+    detentionRecoveryPercent: 70,
+    trucksPerDayPerFacility: 160,
+  },
+  automotive: {
+    id: 'automotive',
+    label: 'Automotive',
+    description: 'Precise sequencing, high-value parts',
+    laborReductionPercent: 62,
+    dwellReductionMinutes: 22,
+    detentionRecoveryPercent: 58,
+    trucksPerDayPerFacility: 120,
+  },
+};
+
 export function getQuickInputsForPreset(scenarioId: EconomicsScenarioId, mode: EconomicsMode): RoiV1Inputs {
   const scenario = ECONOMICS_SCENARIOS[scenarioId];
   const m = ECONOMICS_MODES[mode];
